@@ -169,10 +169,11 @@ DROP TABLE IF EXISTS `refuel`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `refuel` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `kilometers` decimal(10,2) unsigned NOT NULL,
+  `distance_total` decimal(10,2) unsigned NOT NULL,
   `distance` decimal(6,2) unsigned NOT NULL,
-  `litres` decimal(6,2) unsigned NOT NULL,
-  `price` decimal(6,2) unsigned NOT NULL,
+  `quantity` decimal(6,2) unsigned NOT NULL,
+  `quantity_before` decimal(6,2) unsigned NOT NULL,
+  `price` decimal(7,3) unsigned NOT NULL,
   `total` decimal(6,2) unsigned NOT NULL,
   `date_at` datetime NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -304,5 +305,8 @@ INSERT INTO `migrations` VALUES (11,'2022_10_16_190000_timezone',1);
 INSERT INTO `migrations` VALUES (12,'2022_10_16_193000_device_timezone',1);
 INSERT INTO `migrations` VALUES (13,'2022_10_16_193000_position_date_utc_at',1);
 INSERT INTO `migrations` VALUES (14,'2022_10_16_193000_position_timezone',1);
-INSERT INTO `migrations` VALUES (15,'2022_10_17_193000_trip_dates_utc_at',1);
-INSERT INTO `migrations` VALUES (16,'2022_10_17_193000_trip_timezone',1);
+INSERT INTO `migrations` VALUES (15,'2022_10_17_193000_refuel_units',1);
+INSERT INTO `migrations` VALUES (16,'2022_10_17_193000_trip_dates_utc_at',1);
+INSERT INTO `migrations` VALUES (17,'2022_10_17_193000_trip_timezone',1);
+INSERT INTO `migrations` VALUES (18,'2022_10_17_230000_refuel_quantity_before',1);
+INSERT INTO `migrations` VALUES (19,'2022_10_17_233000_refuel_price',1);
