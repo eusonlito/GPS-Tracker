@@ -1,0 +1,25 @@
+@layer components {
+    .report-box-2 {
+        @apply relative;
+        &:before {
+            content: "";
+            width: 90%;
+            background: #f9fafc;
+            box-shadow: 0px 3px 20px #0000000b;
+            @apply h-full mt-3 absolute rounded-md mx-auto inset-x-0;
+        }
+        .report-box-2__indicator {
+            padding-top: 3px;
+            padding-bottom: 3px;
+            @apply flex rounded-full text-white text-xs pl-2 pr-1 mt-3 mr-auto items-center font-medium;
+        }
+    }
+
+    .dark {
+        .report-box-2 {
+            &:before {
+                background: #2d3650;
+            }
+        }
+    }
+}

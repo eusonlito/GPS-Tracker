@@ -1,0 +1,74 @@
+.tom-select {
+    .ts-input {
+        min-height: 40px;
+        padding: 7.5px 32px 7.5px 12px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgb(74 85 104)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-size: 18px;
+        background-position: center right 0.6rem;
+        @apply text-sm shadow-sm border-gray-300 bg-no-repeat rounded;
+        .item {
+            line-height: 22px;
+        }
+        &.dropdown-active {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14.828' height='8.414' viewBox='0 0 14.828 8.414'%3E%3Cpath id='chevron' d='M6,9l6,6,6-6' transform='translate(19.414 16) rotate(180)' fill='none' stroke='%234a5568' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'/%3E%3C/svg%3E%0A") !important;
+            background-size: 11px !important;
+            background-position: center right 0.8rem !important;
+            background-repeat: no-repeat !important;
+        }
+        input {
+            height: 23px;
+            @apply text-sm;
+        }
+    }
+    &.multi .ts-input {
+        @apply px-1.5 py-1;
+        & > div {
+            @apply rounded my-0.5 mr-1 px-2 py-0 bg-gray-300;
+            &.active {
+                @apply bg-gray-400;
+                .remove {
+                    @apply border-gray-500;
+                }
+            }
+        }
+    }
+    &.plugin-remove_button .item .remove {
+        @apply border-gray-400 ml-2 px-2;
+    }
+    &.plugin-dropdown_input .ts-input.focus {
+        @apply border-gray-300;
+    }
+    .ts-dropdown {
+        margin-top: -1px;
+        border-top: 1px solid rgba(226, 232, 240, var(--tw-border-opacity));
+        @apply z-50 text-sm shadow-sm border-gray-300 rounded;
+        .optgroup-header {
+            padding: 9px 10px;
+            @apply font-medium;
+        }
+        .option {
+            padding: 9px 13px;
+            .highlight {
+                @apply bg-theme-6 text-white;
+            }
+            &.active {
+                @apply bg-theme-17 text-white;
+            }
+            &:hover:not(.active) {
+                @apply bg-gray-300 text-gray-800;
+            }
+        }
+        &.plugin-dropdown_input .dropdown-input-wrap {
+            @apply p-2;
+            input {
+                @apply outline-none border border-gray-300 rounded py-2 px-3;
+            }
+        }
+        .dropdown-header {
+            @apply px-3 bg-gray-100 border-gray-300;
+            .dropdown-header-close {
+                @apply cursor-pointer opacity-100 text-gray-500 mr-0.5;
+            }
+        }
+    }
+}

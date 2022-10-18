@@ -1,0 +1,161 @@
+.full-calendar {
+    .fc-toolbar {
+        @include media-breakpoint-down(lg) {
+            @apply flex-col;
+        }
+        .fc-toolbar-chunk {
+            &:nth-child(1) {
+                @apply order-3;
+            }
+            &:nth-child(2) {
+                @apply order-1;
+            }
+            &:nth-child(3) {
+                @apply order-2;
+                @include media-breakpoint-down(lg) {
+                    @apply my-3;
+                }
+                .fc-button-group button {
+                    @apply w-20;
+                }
+            }
+        }
+        .fc-toolbar-title {
+            @apply text-lg font-medium;
+        }
+    }
+    .fc-toolbar-chunk .fc-button-primary {
+        &:first-child {
+            border-top-left-radius: 0.375rem;
+            border-bottom-left-radius: 0.375rem;
+        }
+        &:last-child {
+            border-top-right-radius: 0.375rem;
+            border-bottom-right-radius: 0.375rem;
+        }
+    }
+    &.fc-theme-standard {
+        .fc-scrollgrid,
+        th,
+        td,
+        .fc-list {
+            @apply border-gray-200 dark:border-dark-5;
+        }
+    }
+    table {
+        @apply rounded-md;
+        tr th {
+            @apply px-5 py-3;
+        }
+    }
+    .fc-daygrid-event-harness {
+        @apply mx-5;
+    }
+    .fc-h-event {
+        @apply bg-theme-1 border-theme-1 rounded-md;
+    }
+    .fc-event-title-container {
+        @apply py-1 px-2 text-xs;
+    }
+    .fc-daygrid-event {
+        @apply text-xs;
+    }
+    .fc-daygrid-event-dot {
+        @apply border-theme-1 mr-2;
+    }
+    .fc-daygrid-dot-event .fc-event-title {
+        @apply font-medium;
+    }
+    .fc-col-header-cell-cushion {
+        @apply font-medium;
+    }
+    .fc-daygrid-more-link {
+        @apply text-sm;
+    }
+    .fc-daygrid-day-bottom {
+        @apply pt-1;
+    }
+    .fc-day-other {
+        @apply bg-gray-100 dark:bg-dark-1;
+    }
+    .fc-button-primary {
+        --tw-border-opacity: 1;
+        border-color: rgba(237, 242, 247, var(--tw-border-opacity)) !important;
+        --tw-bg-opacity: 1;
+        background-color: transparent !important;
+        --tw-text-opacity: 1;
+        color: rgba(113, 128, 150, var(--tw-text-opacity)) !important;
+        text-transform: capitalize !important;
+        padding: 0.4em 0.65em !important;
+        display: inline-block !important;
+        font-weight: 400 !important;
+        @apply btn;
+        .fc-icon {
+            font-size: 1.2em !important;
+        }
+        &:focus {
+            box-shadow: none !important;
+        }
+    }
+    .fc-button-primary:not(:disabled):active,
+    .fc-button-primary:not(:disabled).fc-button-active {
+        color: #ffffff !important;
+        border-color: rgba(20, 46, 113, var(--tw-bg-opacity)) !important;
+        background-color: rgba(20, 46, 113, var(--tw-bg-opacity)) !important;
+    }
+    .fc-list-day-cushion {
+        --tw-bg-opacity: 1;
+        background-color: rgba(237, 242, 247, var(--tw-bg-opacity)) !important;
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+    }
+    .fc-list-event td {
+        @apply px-5 py-3;
+    }
+    .fc-list-event-dot {
+        --tw-border-opacity: 1;
+        border-color: rgba(28, 63, 170, var(--tw-border-opacity)) !important;
+    }
+    .fc-v-event {
+        @apply border-theme-1 bg-theme-1 dark:shadow-none dark:border-dark-1 dark:bg-dark-1;
+    }
+    .fc-event-time {
+        font-size: 0.75rem !important;
+        @apply px-0.5;
+    }
+    .fc-daygrid-more-link {
+        @apply pl-2;
+    }
+}
+
+.dark {
+    .full-calendar {
+        .fc-button-primary {
+            border-color: rgba(41, 49, 69, var(--tw-bg-opacity)) !important;
+            background-color: rgba(41, 49, 69, var(--tw-bg-opacity)) !important;
+            color: rgba(203, 213, 224, var(--tw-text-opacity)) !important;
+        }
+        .fc-button-primary:not(:disabled):active,
+        .fc-button-primary:not(:disabled).fc-button-active {
+            border-color: rgba(20, 46, 113, var(--tw-bg-opacity)) !important;
+            background-color: rgba(
+                28,
+                63,
+                170,
+                var(--tw-bg-opacity)
+            ) !important;
+        }
+        .fc-day-today {
+            @apply bg-dark-1;
+        }
+        .fc-list-day-cushion {
+            --tw-bg-opacity: 1;
+            background-color: rgba(41, 49, 69, var(--tw-bg-opacity)) !important;
+        }
+        .fc-event:hover td {
+            @apply border-dark-3 bg-dark-3;
+        }
+    }
+}

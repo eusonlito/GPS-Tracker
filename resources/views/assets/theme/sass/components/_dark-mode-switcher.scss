@@ -1,0 +1,25 @@
+@layer components {
+    .dark-mode-switcher {
+        .dark-mode-switcher__toggle {
+            width: 38px;
+            height: 24px;
+            padding: 1px;
+            @apply outline-none rounded-full relative cursor-pointer dark:bg-dark-5 dark:border-dark-5;
+            &:before {
+                content: "";
+                width: 22px;
+                height: 22px;
+                transition: all 0.2s ease-in-out;
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+                @apply absolute inset-y-0 my-auto rounded-full dark:bg-dark-1;
+            }
+            &.dark-mode-switcher__toggle--active {
+                @apply bg-theme-1 border-theme-1 dark:bg-theme-26;
+                &::before {
+                    margin-left: 13px;
+                    @apply bg-white;
+                }
+            }
+        }
+    }
+}

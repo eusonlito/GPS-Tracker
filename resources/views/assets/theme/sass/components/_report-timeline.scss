@@ -1,0 +1,15 @@
+@layer components {
+    .report-timeline {
+        &:before {
+            content: "";
+            height: 85%;
+            @apply w-px bg-theme-25 absolute ml-5 mt-5 dark:bg-dark-5;
+        }
+        .report-timeline__image {
+            &:before {
+                content: "";
+                @apply w-20 h-px bg-theme-25 absolute mt-5 ml-5 dark:bg-dark-5;
+            }
+        }
+    }
+}

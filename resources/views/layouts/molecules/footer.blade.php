@@ -1,0 +1,1 @@
+<script src="@asset('build/js/main.min.js')"></script>

@@ -1,0 +1,60 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Model;
+
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Domains\{{ domain }}\Model\Builder\{{ domain }}Tag as Builder;
+use App\Domains\Shared\Model\PivotAbstract;
+use App\Domains\Tag\Model\Tag as TagModel;
+
+class {{ domain }}Tag extends PivotAbstract
+{
+    /**
+     * @var string
+     */
+    protected $table = '{{ table }}_tag';
+
+    /**
+     * @const string
+     */
+    public const TABLE = '{{ table }}_tag';
+
+    /**
+     * @const string
+     */
+    public const FOREIGN = '{{ table }}_tag_id';
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'content' => 'array',
+        'config' => 'array',
+    ];
+
+    /**
+     * @param \Illuminate\Database\Query\Builder $q
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|static
+     */
+    public function newEloquentBuilder($q)
+    {
+        return new Builder($q);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function page(): BelongsTo
+    {
+        return $this->belongsTo({{ domain }}::class, {{ domain }}::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tag(): BelongsTo
+    {
+        return $this->belongsTo(TagModel::class, TagModel::FOREIGN);
+    }
+}

@@ -1,0 +1,29 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Command;
+
+class Create extends CommandAbstract
+{
+    /**
+     * @var string
+     */
+    protected $signature = '{{ name }}:create {--name=}';
+
+    /**
+     * @var string
+     */
+    protected $description = 'Create {{ domain }} with {--name=}';
+
+    /**
+     * @return void
+     */
+    public function handle()
+    {
+        $this->checkOptions(['name']);
+        $this->requestWithOptions();
+
+        $row = $this->factory()->action()->create();
+
+        $this->info(sprintf('Created {{ domain }} %s with ID %s', $row->name, $row->id));
+    }
+}

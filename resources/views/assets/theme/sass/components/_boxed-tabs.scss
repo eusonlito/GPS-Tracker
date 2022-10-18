@@ -1,0 +1,10 @@
+@layer components {
+    .nav.nav-tabs.boxed-tabs {
+        a {
+            @apply border-b-0;
+            &.active {
+                @apply bg-theme-17 text-white dark:bg-theme-26 dark:text-white;
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+[
+    {
+        "key": "position_filter_distance",
+        "value": 5,
+        "description": "Descartar posiciones si la anterior para ese viaje está a menos de X metros de la actual"
+    },
+
+    {
+        "key": "trip_wait_minutes",
+        "value": 15,
+        "description": "Esperar X minutos entre posiciones para crear un nuevo viaje"
+    },
+
+    {
+        "key": "socket_debug",
+        "value": "",
+        "description": "Activar el modo debug para la lectura del Socket"
+    },
+
+    {
+        "key": "position_filter_signal",
+        "value": 1,
+        "description": "Descartar posiciones que no contengan una señal válida"
+    }
+]

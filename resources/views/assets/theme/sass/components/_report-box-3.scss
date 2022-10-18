@@ -1,0 +1,45 @@
+@layer components {
+    .report-box-3 {
+        margin-left: -22px;
+        margin-right: -22px;
+        @apply relative;
+        @include media-breakpoint-down(md) {
+            margin-left: -16px;
+            margin-right: -16px;
+        }
+        &:before {
+            content: "";
+            border-radius: 30px 30px 0px 0px;
+            transform: translatey(35px);
+            animation: 0.4s intro-report-box-3-animation ease-in-out 0.33333s;
+            animation-fill-mode: forwards;
+            animation-delay: 0.1s;
+            @apply w-full h-full bg-theme-7 dark:bg-dark-3 bg-opacity-40 dark:bg-opacity-50 absolute top-0 left-0 right-0 opacity-0;
+        }
+        &.report-box-3--content {
+            padding: 0px 22px;
+            min-height: 400px;
+            &:before {
+                content: "";
+                border-radius: 30px;
+                transform: translatey(35px);
+                animation: 0.4s intro-report-box-3-animation ease-in-out
+                    0.33333s;
+                animation-fill-mode: forwards;
+                animation-delay: 0.1s;
+                box-shadow: 0px 3px 20px #0000000b;
+                @apply w-full h-full bg-theme-15 dark:bg-dark-1 absolute top-0 left-0 right-0 opacity-0;
+                @include media-breakpoint-down(xl) {
+                    @apply shadow-none rounded-t-none;
+                }
+            }
+        }
+    }
+
+    @keyframes intro-report-box-3-animation {
+        100% {
+            @apply opacity-100;
+            transform: translateX(0px);
+        }
+    }
+}

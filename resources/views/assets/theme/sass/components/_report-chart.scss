@@ -1,0 +1,54 @@
+@layer components {
+    .report-chart {
+        @apply relative;
+        &:before {
+            content: "";
+            height: 93%;
+            background: linear-gradient(
+                to right,
+                white,
+                #ffffffde,
+                transparent
+            );
+            @apply w-12 left-0 top-0 ml-10 absolute;
+            @include media-breakpoint-down(sm) {
+                height: 85%;
+            }
+        }
+        &:after {
+            content: "";
+            height: 93%;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #ffffffde,
+                white
+            );
+            @apply w-12 right-0 top-0 absolute mr-2;
+            @include media-breakpoint-down(sm) {
+                height: 85%;
+            }
+        }
+    }
+
+    .dark {
+        .report-chart {
+            &:before {
+                background: linear-gradient(
+                    to right,
+                    #313b56,
+                    #313b56,
+                    transparent
+                );
+            }
+            &:after {
+                background: linear-gradient(
+                    to right,
+                    transparent,
+                    #313b56,
+                    #313b56
+                );
+            }
+        }
+    }
+}

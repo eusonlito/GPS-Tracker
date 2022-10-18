@@ -1,0 +1,12 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+    paths:
+        - app/
+
+    level: 5
+
+    ignoreErrors:
+        - '#is not subtype of native type App\\Domains\\SharedApp\\Model\\ModelAbstract#'
+        - '#Unsafe usage of new static#'

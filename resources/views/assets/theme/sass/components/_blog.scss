@@ -1,0 +1,18 @@
+@layer components {
+    .blog {
+        .blog__preview {
+            height: 320px;
+            &:before {
+                content: "";
+                background: linear-gradient(to top, #000000d9, #00000045);
+                @apply absolute w-full h-full top-0 left-0 z-10;
+            }
+        }
+        .blog__category {
+            background: #ffffff3d;
+        }
+        .blog__action {
+            background: #ffffff3d;
+        }
+    }
+}

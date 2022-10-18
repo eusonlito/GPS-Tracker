@@ -1,0 +1,227 @@
+.ck-editor,
+.document-editor,
+.ck-editor__editable {
+    @apply shadow-sm;
+}
+
+.document-editor {
+    display: flex;
+    max-height: 700px;
+    flex-flow: column nowrap;
+    border-radius: var(--ck-border-radius);
+    @apply border border-gray-300;
+    .document-editor__toolbar {
+        z-index: 1;
+        @apply border-b border-gray-300;
+    }
+    .document-editor__toolbar .ck-toolbar {
+        border: 0;
+        border-radius: 0;
+        @apply bg-gray-200;
+        .ck-icon {
+            width: 16px;
+        }
+    }
+    .document-editor__editable-container {
+        overflow-y: scroll;
+        padding: calc(2 * var(--ck-spacing-large));
+        @apply bg-gray-100;
+    }
+    .document-editor__editable-container .ck-editor__editable {
+        width: 15.8cm;
+        margin: 0 auto;
+        min-height: 21cm;
+        background: white;
+        padding: 1cm 2cm 2cm;
+        border-radius: var(--ck-border-radius);
+        @apply border border-gray-300 shadow-md;
+    }
+    .ck-heading-dropdown .ck-list .ck-button__label {
+        line-height: calc(
+            1.7 * var(--ck-line-height-base) * var(--ck-font-size-base)
+        );
+        min-width: 6em;
+    }
+    .ck-heading-dropdown
+        .ck-list
+        .ck-button:not(.ck-heading_paragraph)
+        .ck-button__label {
+        transform: scale(0.8);
+        transform-origin: left;
+    }
+    .ck-content h2,
+    .ck-heading-dropdown .ck-heading_heading1 .ck-button__label {
+        font-size: 2.18em;
+        font-weight: normal;
+    }
+    .ck-content h2 {
+        line-height: 1.37em;
+        padding-top: 0.342em;
+        margin-bottom: 0.142em;
+    }
+    .ck-content h3,
+    .ck-heading-dropdown .ck-heading_heading2 .ck-button__label {
+        font-size: 1.75em;
+        font-weight: normal;
+        color: hsl(203, 100%, 50%);
+    }
+    .ck-heading-dropdown .ck-heading_heading2.ck-on .ck-button__label {
+        color: var(--ck-color-list-button-on-text);
+    }
+    .ck-content h3 {
+        line-height: 1.86em;
+        padding-top: 0.171em;
+        margin-bottom: 0.357em;
+    }
+    .ck-content h4,
+    .ck-heading-dropdown .ck-heading_heading3 .ck-button__label {
+        font-size: 1.31em;
+        font-weight: bold;
+    }
+    .ck-content h4 {
+        line-height: 1.24em;
+        padding-top: 0.286em;
+        margin-bottom: 0.952em;
+    }
+    .ck-content p {
+        font-size: 1em;
+        line-height: 1.63em;
+        padding-top: 0.5em;
+        margin-bottom: 1.13em;
+    }
+    .ck-content blockquote {
+        font-family: Georgia, serif;
+        margin-left: calc(2 * var(--ck-spacing-large));
+        margin-right: calc(2 * var(--ck-spacing-large));
+    }
+}
+
+.ck.ck-content {
+    min-height: 250px;
+    &.ck-editor__editable_inline {
+        @apply border border-gray-300;
+    }
+}
+
+.ck .ck {
+    .ck-content {
+        min-height: 250px;
+        &.ck-editor__editable_inline {
+            @apply border border-gray-300;
+        }
+    }
+    &.ck-reset_all,
+    &.ck-reset_all * {
+        @apply text-gray-800;
+    }
+    &.ck-toolbar,
+    &.ck-balloon-panel {
+        @apply bg-gray-200 border-gray-300;
+        &:before {
+            border-bottom-color: #e2e8f0 !important;
+        }
+        &:after {
+            border-bottom-color: #edf2f7 !important;
+        }
+        .ck-icon {
+            width: 16px;
+        }
+    }
+    &.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+        @apply border-gray-300;
+    }
+    &.ck-button:not(.ck-disabled):hover,
+    &a.ck-button:not(.ck-disabled):hover {
+        @apply bg-gray-300;
+    }
+}
+
+.dark {
+    .document-editor {
+        @apply border-dark-4;
+        .document-editor__toolbar {
+            @apply border-dark-4;
+        }
+        .document-editor__toolbar .ck-toolbar {
+            @apply bg-dark-4;
+            .ck-toolbar__separator {
+                @apply bg-dark-5;
+            }
+            .ck-tooltip .ck-tooltip__text {
+                @apply text-gray-300 bg-dark-5;
+                &:after {
+                    border-bottom-color: #3f4865;
+                }
+            }
+            .ck.ck-icon :not([fill]) {
+                fill: #9fa8bb;
+            }
+            .ck.ck-dropdown__panel {
+                @apply border-dark-2;
+            }
+            .ck.ck-button.ck-on,
+            a.ck.ck-button.ck-on {
+                @apply bg-dark-2;
+            }
+        }
+        .document-editor__editable-container {
+            @apply bg-dark-1;
+        }
+        .document-editor__editable-container .ck-editor__editable {
+            @apply border-dark-4 bg-dark-2;
+        }
+    }
+
+    .ck.ck-content.ck-editor__editable_inline {
+        @apply border-dark-4 bg-dark-2;
+    }
+
+    .ck .ck {
+        .ck-content.ck-editor__editable_inline {
+            @apply border-dark-4 bg-dark-2;
+        }
+        &.ck-reset_all,
+        &.ck-reset_all * {
+            @apply text-gray-800;
+        }
+        &.ck-toolbar,
+        &.ck-balloon-panel {
+            @apply bg-dark-4 border-dark-4;
+            &:before {
+                border-bottom-color: #1e2533 !important;
+            }
+            &:after {
+                border-bottom-color: #1e2533 !important;
+            }
+            .ck-toolbar__separator {
+                @apply bg-dark-5;
+            }
+            .ck-tooltip .ck-tooltip__text {
+                @apply text-gray-300 bg-dark-5;
+                &:after {
+                    border-bottom-color: #3f4865;
+                }
+            }
+            .ck.ck-icon :not([fill]) {
+                fill: #9fa8bb;
+            }
+            .ck.ck-dropdown__panel {
+                @apply border-dark-2;
+            }
+            .ck.ck-button.ck-on,
+            a.ck.ck-button.ck-on {
+                @apply bg-dark-2;
+            }
+        }
+        &.ck-editor__main > .ck-editor__editable {
+            @apply bg-dark-2;
+            &:not(.ck-focused) {
+                @apply border-dark-4;
+            }
+        }
+        &.ck-button:not(.ck-disabled):hover,
+        &a.ck-button:not(.ck-disabled):hover {
+            @apply bg-dark-4;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+.wrapper {
+    @apply relative;
+    &:before {
+        content: "";
+        width: 95%;
+        z-index: -1;
+        transform: translatey(35px);
+        animation: 0.4s intro-wrapper-animation ease-in-out 0.33333s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.1s;
+        border-radius: 1.3rem;
+        @apply bg-theme-32 dark:bg-dark-4 h-full -mt-4 absolute mx-auto inset-x-0 opacity-0;
+    }
+    &.wrapper--top-nav {
+        .wrapper-box {
+            padding-top: 80px;
+            margin-top: -62px;
+            @include media-breakpoint-down(xl) {
+                margin-top: -67px;
+                @apply bg-transparent;
+            }
+            @include media-breakpoint-down(md) {
+                margin-top: -7px;
+                @apply pt-0;
+            }
+        }
+        &:before {
+            @include media-breakpoint-down(xl) {
+                @apply bg-transparent;
+            }
+        }
+    }
+    .wrapper-box {
+        transform: translatey(35px);
+        animation: 0.4s intro-wrapper-animation ease-in-out 0.33333s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.2s;
+        border-radius: 1.3rem;
+        @apply flex bg-theme-1 dark:bg-dark-8 opacity-80;
+        @include media-breakpoint-down(md) {
+            margin-top: -7px;
+        }
+    }
+}
+
+@keyframes intro-wrapper-animation {
+    100% {
+        @apply opacity-100;
+        transform: translateX(0px);
+    }
+}

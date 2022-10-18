@@ -1,0 +1,9 @@
+[
+    {
+        "code": "es",
+        "name": "Castellano",
+        "locale": "es_ES",
+        "default": true,
+        "enabled": true
+    }
+]

@@ -1,0 +1,21 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Controller;
+
+use Illuminate\Http\Response;
+use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @return \Illuminate\Http\Response
+     */
+    public function __invoke(): Response
+    {
+        $this->meta('title', __('{{ name }}-index.meta-title'));
+
+        return $this->page('{{ name }}.index', [
+            'list' => Model::list()->get()
+        ]);
+    }
+}

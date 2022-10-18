@@ -1,0 +1,21 @@
+html {
+    @apply bg-theme-14;
+    &.dark {
+        @apply bg-dark-2;
+        body {
+            @apply text-gray-300;
+            *,
+            ::before,
+            ::after {
+                @apply border-dark-3;
+            }
+        }
+    }
+    body {
+        -webkit-font-smoothing: antialiased;
+        @apply overflow-x-hidden pt-3 px-8 font-roboto text-sm text-gray-800;
+        @include media-breakpoint-down(sm) {
+            @apply px-3;
+        }
+    }
+}

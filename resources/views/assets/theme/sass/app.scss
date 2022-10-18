@@ -1,0 +1,110 @@
+/*
+ |--------------------------------------------------------------------------
+ | TailwindCSS Directives
+ |--------------------------------------------------------------------------
+ |
+ | Import TailwindCSS directives and swipe out at build-time with all of
+ | the styles it generates based on your configured design system.
+ |
+ | Please check this link for more details:
+ | https://tailwindcss.com/docs/installation#include-tailwind-in-your-css
+ |
+ */
+@import "tailwind";
+
+/*
+ |--------------------------------------------------------------------------
+ | Fonts
+ |--------------------------------------------------------------------------
+ |
+ | Import all fonts used in the template, the font configuration can be
+ | seen in "tailwind.config.js".
+ |
+ | Please check this link for more details:
+ | https://tailwindcss.com/docs/theme
+ |
+ */
+@import "fonts/roboto";
+
+/*
+ |--------------------------------------------------------------------------
+ | Breakpoints
+ |--------------------------------------------------------------------------
+ |
+ | Provide custom breakpoints for responsive layouts.
+ |
+ | Default values:
+ | xs: 0, sm: 640px, md: 768px, lg: 1024px, xl: 1280px, xxl: 1536px
+ |
+ */
+@import "node_modules/@left4code/tw-starter/dist/scss/breakpoint";
+
+/*
+ |--------------------------------------------------------------------------
+ | Mixins
+ |--------------------------------------------------------------------------
+ |
+ | Import helper mixins.
+ |
+ */
+@import "node_modules/@left4code/tw-starter/dist/scss/mixins/media";
+
+/*
+ |--------------------------------------------------------------------------
+ | 3rd Party Libraries
+ |--------------------------------------------------------------------------
+ |
+ | Import 3rd party library CSS/SASS files.
+ |
+ */
+@import "node_modules/@left4code/tw-starter/dist/scss/alert";
+@import "node_modules/@left4code/tw-starter/dist/scss/btn";
+@import "node_modules/@left4code/tw-starter/dist/scss/form-check";
+@import "node_modules/@left4code/tw-starter/dist/scss/form-control";
+@import "node_modules/@left4code/tw-starter/dist/scss/form-help";
+@import "node_modules/@left4code/tw-starter/dist/scss/form-inline";
+@import "node_modules/@left4code/tw-starter/dist/scss/form-label";
+@import "node_modules/@left4code/tw-starter/dist/scss/form-select";
+@import "node_modules/@left4code/tw-starter/dist/scss/image-fit";
+@import "node_modules/@left4code/tw-starter/dist/scss/input-group";
+@import "node_modules/@left4code/tw-starter/dist/scss/modal";
+@import "node_modules/@left4code/tw-starter/dist/scss/pagination";
+@import "node_modules/@left4code/tw-starter/dist/scss/tab";
+@import "node_modules/@left4code/tw-starter/dist/scss/table";
+@import "node_modules/@left4code/tw-starter/dist/scss/box";
+@import "node_modules/tippy.js/dist/tippy";
+@import "node_modules/tippy.js/animations/shift-away";
+@import "node_modules/tom-select/src/scss/tom-select";
+
+/*
+ |--------------------------------------------------------------------------
+ | Components
+ |--------------------------------------------------------------------------
+ |
+ | Import CSS/SCSS components.
+ |
+ */
+@import "components/global";
+@import "components/main";
+@import "components/ads-box";
+@import "components/breadcrumb";
+@import "components/notification-content";
+@import "components/notification";
+@import "components/top-bar-boxed";
+@import "components/wrapper";
+@import "components/side-nav";
+@import "components/top-nav";
+@import "components/content";
+@import "components/report-box";
+@import "components/report-box-2";
+@import "components/table-report";
+@import "components/boxed-tabs";
+@import "components/mobile-menu";
+@import "components/inbox-filter";
+@import "components/inbox";
+@import "components/pricing-tabs";
+@import "components/login";
+@import "components/error-page";
+@import "components/tabulator";
+@import "components/tippy";
+@import "components/tom-select";

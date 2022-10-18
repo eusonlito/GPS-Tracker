@@ -1,0 +1,14 @@
+@layer components {
+    .notification-content {
+        width: 350px;
+        @include media-breakpoint-down(sm) {
+            width: 280px;
+        }
+        .notification-content__title {
+            @apply font-medium mb-5;
+        }
+        .notification-content__box {
+            @apply p-5;
+        }
+    }
+}

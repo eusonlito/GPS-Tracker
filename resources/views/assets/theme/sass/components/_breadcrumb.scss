@@ -1,0 +1,16 @@
+@layer components {
+    .breadcrumb {
+        @apply h-full ml-10 pl-10 border-l border-theme-2 text-theme-4 dark:border-dark-3 dark:text-theme-33 flex items-center;
+        @include media-breakpoint-down(md) {
+            @apply ml-0 pl-0 border-l-0;
+        }
+        .breadcrumb__icon {
+            width: 14px;
+            height: 14px;
+            @apply mx-1;
+        }
+        .breadcrumb--active {
+            @apply text-theme-3 cursor-text dark:text-gray-600;
+        }
+    }
+}

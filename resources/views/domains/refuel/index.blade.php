@@ -1,0 +1,83 @@
+@extends ('layouts.in')
+
+@section ('body')
+
+<form method="get">
+    <div class="sm:flex sm:space-x-4">
+        <div class="flex-grow mt-2 sm:mt-0">
+            <input type="search" class="form-control form-control-lg" placeholder="{{ __('refuel-index.filter') }}" data-table-search="#refuel-list-table" />
+        </div>
+
+        <div class="flex-grow mt-2 sm:mt-0">
+            <x-select name="device_id" :options="$devices" value="id" text="name" :placeholder="__('refuel-index.device')" data-change-submit></x-select>
+        </div>
+
+        <div class="flex-grow mt-2 sm:mt-0">
+            <x-select name="year" :options="$years" :placeholder="__('refuel-index.year')" value-only data-change-submit></x-select>
+        </div>
+
+        <div class="flex-grow mt-2 sm:mt-0">
+            <x-select name="month" :options="$months" :placeholder="__('refuel-index.month')" data-change-submit></x-select>
+        </div>
+
+        <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
+            <a href="{{ route('refuel.create') }}" class="btn form-control-lg">{{ __('refuel-index.create') }}</a>
+        </div>
+    </div>
+</form>
+
+<div class="overflow-auto md:overflow-visible header-sticky">
+    <table id="refuel-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
+        <thead>
+            <tr>
+                <th class="w-1">{{ __('refuel-index.id') }}</th>
+                <th class="text-center">{{ __('refuel-index.date_at') }}</th>
+                <th class="text-center">{{ __('refuel-index.device') }}</th>
+                <th class="text-center">{{ __('refuel-index.distance_total') }}</th>
+                <th class="text-center">{{ __('refuel-index.distance') }}</th>
+                <th class="text-center">{{ __('refuel-index.quantity') }}</th>
+                <th class="text-center">{{ __('refuel-index.price') }}</th>
+                <th class="text-center">{{ __('refuel-index.total') }}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach ($list as $row)
+
+            @php ($link = route('refuel.update', $row->id))
+
+            <tr>
+                <td class="w-1"><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->id }}</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->date_at }}</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->device->name }}</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@number($row->distance_total, 0)</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@number($row->distance, 0)</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@number($row->quantity)</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@money($row->price, 3)</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@money($row->total)</a></td>
+            </tr>
+
+            @endforeach
+        </tbody>
+
+        @if ($totals)
+
+        <tfoot class="bg-white">
+            <tr>
+                <th colspan="4"></th>
+                <th class="text-center">@number($totals->distance, 0)</th>
+                <th class="text-center">@number($totals->quantity)</th>
+                <th class="text-center">@money($totals->price, 3)</th>
+                <th class="text-center">@money($totals->total)</th>
+            </tr>
+        </tfoot>
+
+        @endif
+    </table>
+</div>
+
+<div class="mt-2 p-2 text-right">
+    <a href="{{ route('refuel.create') }}" class="btn form-control-lg bg-white">{{ __('refuel-index.create') }}</a>
+</div>
+
+@stop

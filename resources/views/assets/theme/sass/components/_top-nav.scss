@@ -1,0 +1,193 @@
+@layer components {
+    .top-nav {
+        padding-top: 12px;
+        transform: translatey(35px);
+        animation: 0.4s intro-top-menu-animation ease-in-out 0.33333s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.2s;
+        @apply z-50 relative px-6 opacity-0;
+        @include media-breakpoint-down(xl) {
+            @apply px-0 pt-0 -mt-2;
+        }
+        @include media-breakpoint-down(md) {
+            @apply hidden;
+        }
+        > ul {
+            @for $i from 1 through 50 {
+                > li:nth-child(#{$i}) {
+                    & > a {
+                        &:not(.top-menu--active) {
+                            @apply opacity-0;
+                            transform: translateY(50px);
+                            animation: 0.4s
+                                intro-menu-animation
+                                ease-in-out
+                                0.33333s;
+                            animation-fill-mode: forwards;
+                            animation-delay: #{$i * 0.1}s;
+                        }
+                        &.top-menu--active {
+                            animation: 0.4s
+                                intro-active-menu-animation
+                                ease-in-out
+                                0.33333s;
+                            animation-fill-mode: forwards;
+                        }
+                    }
+                }
+            }
+            @apply flex flex-wrap;
+            li {
+                @apply relative;
+                &:hover {
+                    > .top-menu > .top-menu__title > .top-menu__sub-icon {
+                        @apply rotate-180;
+                    }
+                    > ul {
+                        @apply block;
+                        li:hover
+                            .top-menu
+                            > .top-menu__title
+                            > .top-menu__sub-icon {
+                            @apply -rotate-90;
+                        }
+                    }
+                }
+                .top-menu {
+                    height: 47px;
+                    @apply flex items-center px-5 mr-1 text-white relative rounded-lg;
+                    @include media-breakpoint-down(xl) {
+                        height: 55px;
+                        @apply rounded-full;
+                    }
+                    &.top-menu--active {
+                        border-bottom-width: 3px;
+                        @apply bg-theme-17 border-solid border-theme-34 dark:bg-dark-1 dark:border-dark-2 dark:text-white;
+                        @include media-breakpoint-down(xl) {
+                            @apply bg-theme-15 dark:bg-dark-1 border-b-0;
+                        }
+                        &:before {
+                            content: "";
+                            width: 20px;
+                            height: 80px;
+                            margin-bottom: -77px;
+                            animation: 0.3s active-top-menu-chevron-animation
+                                ease-in-out 0.33333s;
+                            animation-fill-mode: forwards;
+                            animation-delay: 1s;
+                            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='80' viewBox='0 0 20 122.1'%3E%3Cpath data-name='Union 1' d='M16.038 122H16v-2.213a95.805 95.805 0 00-2.886-20.735 94.894 94.894 0 00-7.783-20.434A39.039 39.039 0 010 61.051a39.035 39.035 0 015.331-17.567 94.9 94.9 0 007.783-20.435A95.746 95.746 0 0016 2.314V0h4v122h-3.961v.1l-.001-.1z' fill='%23f1f5f8'/%3E%3C/svg%3E");
+                            @apply bg-no-repeat bg-cover absolute left-0 right-0 bottom-0 mx-auto transform rotate-90 opacity-0;
+                            @include media-breakpoint-down(xl) {
+                                @apply hidden;
+                            }
+                        }
+                        .top-menu__icon {
+                            @apply text-theme-19;
+                            @include media-breakpoint-down(xl) {
+                                @apply text-theme-1;
+                            }
+                        }
+                        .top-menu__title {
+                            @apply text-theme-19 font-medium;
+                            @include media-breakpoint-down(xl) {
+                                @apply text-black;
+                            }
+                        }
+                    }
+                    .top-menu__icon {
+                        @apply dark:text-gray-500;
+                    }
+                    .top-menu__title {
+                        @apply dark:text-gray-500;
+                    }
+                    .top-menu__title {
+                        @apply ml-3 flex items-center whitespace-nowrap;
+                        .top-menu__sub-icon {
+                            @apply transform transition ease-in duration-200 w-4 h-4 ml-2;
+                            @include media-breakpoint-down(xl) {
+                                @apply hidden;
+                            }
+                            .top-menu__sub-icon {
+                                @apply duration-100;
+                            }
+                        }
+                    }
+                }
+                ul {
+                    background: #1e3371fa;
+                    box-shadow: 0px 3px 20px #0000000b;
+                    @apply hidden w-56 absolute rounded-md z-20 px-0 mt-1;
+                    @include media-breakpoint-down(xl) {
+                        background: #112766f2;
+                    }
+                    &:before {
+                        content: "";
+                        @apply w-full h-1 absolute top-0 left-0 -mt-1 cursor-pointer;
+                    }
+                    li {
+                        @apply px-5 relative;
+                        .top-menu {
+                            @apply px-0 mr-0;
+                            .top-menu__title {
+                                @apply w-full;
+                                .top-menu__sub-icon {
+                                    @apply ml-auto;
+                                }
+                            }
+                        }
+                    }
+                    ul {
+                        left: 100%;
+                        background: #1e3371fa;
+                        @apply hidden rounded-md mt-0 ml-0 top-0;
+                        @include media-breakpoint-down(xl) {
+                            background: #112766f2;
+                        }
+                    }
+                }
+            }
+            > li:hover > .top-menu:not(.top-menu--active) {
+                @apply bg-theme-20 dark:bg-dark-4;
+            }
+        }
+    }
+
+    @keyframes intro-top-menu-animation {
+        100% {
+            @apply opacity-100;
+            transform: translateY(0px);
+        }
+    }
+
+    @keyframes intro-active-top-menu-animation {
+        100% {
+            @apply z-10;
+        }
+    }
+
+    @keyframes active-top-menu-chevron-animation {
+        100% {
+            margin-bottom: -57px;
+            @apply opacity-100;
+        }
+    }
+
+    .dark {
+        .top-nav {
+            > ul {
+                & > li {
+                    & > .top-menu {
+                        &.top-menu--active {
+                            &:before {
+                                background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='80' viewBox='0 0 20 122.1'%3E%3Cpath data-name='Union 1' d='M16.038 122H16v-2.213a95.805 95.805 0 00-2.886-20.735 94.894 94.894 0 00-7.783-20.434A39.039 39.039 0 010 61.051a39.035 39.035 0 015.331-17.567 94.9 94.9 0 007.783-20.435A95.746 95.746 0 0016 2.314V0h4v122h-3.961v.1l-.001-.1z' fill='%23293145'/%3E%3C/svg%3E");
+                            }
+                        }
+                    }
+                    ul {
+                        background: #181f29e6;
+                    }
+                }
+            }
+        }
+    }
+}

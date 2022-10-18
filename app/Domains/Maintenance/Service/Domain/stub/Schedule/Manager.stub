@@ -1,0 +1,17 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Schedule;
+
+use App\Domains\{{ domain }}\Command\Create as CreateCommand;
+use App\Domains\Shared\Schedule\ScheduleAbstract;
+
+class Manager extends ScheduleAbstract
+{
+    /**
+     * @return void
+     */
+    public function handle(): void
+    {
+        $this->command(CreateCommand::class, '{{ name }}-create')->daily();
+    }
+}

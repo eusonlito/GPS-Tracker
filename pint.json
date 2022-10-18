@@ -1,0 +1,18 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "@PHP80Migration": true,
+        "@PHP81Migration": true,
+        "@PSR2": true,
+        "blank_line_after_opening_tag": false,
+        "cast_spaces": false,
+        "linebreak_after_opening_tag": false,
+        "no_unused_imports": true,
+        "not_operator_with_successor_space": false,
+        "ordered_imports": false,
+        "single_line_comment_style": false,
+        "Laravel/laravel_phpdoc_alignment": false,
+        "Laravel/laravel_phpdoc_order": false,
+        "Laravel/laravel_phpdoc_separation": false
+    }
+}

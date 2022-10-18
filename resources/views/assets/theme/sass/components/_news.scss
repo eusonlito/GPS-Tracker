@@ -1,0 +1,16 @@
+@layer components {
+    .news {
+        .news__preview {
+            height: 400px;
+            @include media-breakpoint-down(md) {
+                height: 250px;
+            }
+        }
+        p {
+            text-indent: 30px;
+        }
+        .news__input {
+            height: 69px;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Seeder;
+
+use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
+use App\Domains\Shared\Seeder\SeederAbstract;
+
+class {{ domain }} extends SeederAbstract
+{
+    /**
+     * @return void
+     */
+    public function run()
+    {
+        $this->insertWithoutDuplicates(Model::class, $this->json('{{ name }}'), 'id');
+    }
+}

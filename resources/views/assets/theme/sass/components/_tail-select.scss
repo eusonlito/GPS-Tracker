@@ -1,0 +1,140 @@
+.tail-select {
+    @apply w-full align-top m-0 shadow-sm;
+    input[type="text"] {
+        padding: 8px 10px;
+        @apply select-text text-sm border shadow-sm border-gray-300 rounded;
+        &:focus {
+            @apply text-gray-800 border border-gray-300 rounded;
+        }
+    }
+    mark {
+        @apply bg-theme-24 rounded;
+    }
+    &:hover .select-label,
+    &.idle .select-label,
+    &.active .select-label {
+        @apply shadow-none;
+    }
+    .select-label {
+        padding: 7.5px 32px 7.5px 12px;
+        @apply shadow-none border border-gray-300 rounded-md text-gray-800;
+        &:after {
+            border-top-color: #444;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
+        }
+        &.tail-select-container {
+            padding: 5.5px 25px 5.5px 8px;
+            .select-handle {
+                margin-top: 1.5px;
+                margin-bottom: 1.5px;
+                margin-right: 5px;
+                padding: 0.2em 0.6em 0.3em 1.6em;
+                @apply bg-gray-300 ml-0 font-normal text-sm;
+                &:before {
+                    content: "×";
+                    margin-left: 8px;
+                    @apply h-full flex items-center absolute top-0 left-0 text-gray-700;
+                }
+                &:hover {
+                    &:before {
+                        @apply text-gray-800;
+                    }
+                }
+            }
+            .label-inner {
+                padding: 1.3px 4px;
+            }
+        }
+    }
+    .select-dropdown {
+        @apply shadow-none border border-gray-300 rounded;
+        .dropdown-inner {
+            @apply p-0;
+        }
+        .dropdown-empty {
+            @apply capitalize text-sm text-gray-600 py-3;
+        }
+        .dropdown-search {
+            @apply shadow-none border-gray-300 p-1;
+        }
+        ul li {
+            padding: 9px 13px;
+            @apply text-sm;
+            &:first-of-type {
+                @apply mt-0;
+                &.selected {
+                    @apply rounded-t border-t border-gray-300;
+                }
+            }
+            &:last-of-type {
+                @apply mb-0;
+                &.selected {
+                    @apply rounded-b border-b border-gray-300;
+                }
+            }
+            &.dropdown-option {
+                &:before {
+                    @apply hidden;
+                }
+                &.selected {
+                    @apply bg-theme-17 text-white;
+                    &:before {
+                        opacity: 0.8;
+                    }
+                }
+            }
+            &.optgroup-title {
+                @apply text-gray-800;
+            }
+        }
+    }
+}
+
+.dark {
+    .tail-select {
+        input[type="text"] {
+            @apply bg-dark-3 border-dark-4 text-white;
+        }
+        .select-label {
+            @apply bg-dark-2 border-dark-4 text-white;
+            &:after {
+                @apply border-gray-600;
+                border-right-color: transparent;
+                border-left-color: transparent;
+            }
+            &.tail-select-container .select-handle {
+                @apply bg-dark-1 text-white;
+                &:before {
+                    @apply text-gray-500;
+                }
+                &:hover {
+                    &:before {
+                        @apply text-gray-400;
+                    }
+                }
+            }
+        }
+        .select-dropdown {
+            @apply bg-dark-2 border-dark-4 text-white;
+            ul li {
+                @apply text-white;
+                &.optgroup-title {
+                    @apply text-gray-500;
+                }
+                &:hover:not(.selected):not(.optgroup-title) {
+                    @apply bg-dark-4 text-white;
+                }
+                &:first-of-type.selected {
+                    @apply border-dark-4;
+                }
+                &:last-of-type.selected {
+                    @apply border-dark-4;
+                }
+            }
+            .dropdown-search {
+                @apply border-dark-4;
+            }
+        }
+    }
+}

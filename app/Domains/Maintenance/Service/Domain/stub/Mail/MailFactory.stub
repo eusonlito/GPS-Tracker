@@ -1,0 +1,18 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Mail;
+
+use App\Domains\Shared\Mail\MailFactoryAbstract;
+
+class MailFactory extends MailFactoryAbstract
+{
+    /**
+     * @param \App\Domains\{{ domain }}\Model\{{ domain }} $row
+     *
+     * @return void
+     */
+    public function signup(Model $row): void
+    {
+        $this->queue(new Signup($row));
+    }
+}

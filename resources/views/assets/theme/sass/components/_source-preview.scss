@@ -1,0 +1,12 @@
+.source-preview {
+    @apply relative;
+    code {
+        &:before {
+            content: "HTML";
+            @apply font-roboto font-medium px-4 py-2 block absolute top-0 right-0 rounded-bl bg-gray-300 bg-opacity-70;
+        }
+        &.javascript:before {
+            content: "JS";
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@layer components {
+    .pos {
+        .pos-image {
+            &:before {
+                content: "";
+                padding-top: 100%;
+                @apply w-full block;
+            }
+            .pos-image__preview {
+                @apply absolute top-0 left-0 w-full h-full;
+                img {
+                    @apply rounded-md;
+                }
+            }
+        }
+        .pos__tabs a.active {
+            @apply bg-theme-17 text-white;
+        }
+        .pos__ticket {
+            .pos__ticket__item-name {
+                max-width: 50%;
+            }
+        }
+        .pos__box {
+            height: 780px;
+        }
+    }
+}

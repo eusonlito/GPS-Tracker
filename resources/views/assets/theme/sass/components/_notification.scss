@@ -1,0 +1,14 @@
+@layer components {
+    .notification {
+        @apply relative text-theme-9;
+        .notification__icon {
+            @apply w-5 h-5;
+        }
+        &.notification--bullet:before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            @apply rounded-full absolute right-0 bg-theme-5;
+        }
+    }
+}

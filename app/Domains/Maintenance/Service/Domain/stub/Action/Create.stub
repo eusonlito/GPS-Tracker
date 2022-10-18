@@ -1,0 +1,41 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Action;
+
+use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
+
+class Create extends ActionAbstract
+{
+    /**
+     * @return \App\Domains\{{ domain }}\Model\{{ domain }}
+     */
+    public function handle(): Model
+    {
+        $this->data();
+        $this->check();
+        $this->save();
+
+        return $this->row;
+    }
+
+    /**
+     * @return void
+     */
+    protected function data(): void
+    {
+    }
+
+    /**
+     * @return void
+     */
+    protected function check(): void
+    {
+    }
+
+    /**
+     * @return void
+     */
+    protected function save(): void
+    {
+    }
+}

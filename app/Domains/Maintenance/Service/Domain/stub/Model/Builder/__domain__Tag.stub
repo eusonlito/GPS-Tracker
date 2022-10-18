@@ -1,0 +1,50 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Model\Builder;
+
+use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
+use App\Domains\Shared\Model\Builder\BuilderAbstract;
+use App\Domains\Tag\Model\Tag as TagModel;
+
+class {{ domain }}Tag extends BuilderAbstract
+{
+    /**
+     * @param \App\Domains\{{ domain }}\Model\{{ domain }} $row
+     *
+     * @return self
+     */
+    public function by{{ domain }}(Model $row): self
+    {
+        return $this->where('{{ table }}_id', $row->id);
+    }
+
+    /**
+     * @param int ${{ table }}_id
+     *
+     * @return self
+     */
+    public function by{{ domain }}Id(int ${{ table }}_id): self
+    {
+        return $this->where('{{ table }}_id', ${{ table }}_id);
+    }
+
+    /**
+     * @param \App\Domains\Tag\Model\Tag $tag
+     *
+     * @return self
+     */
+    public function byTag(TagModel $tag): self
+    {
+        return $this->where('tag_id', $tag->id);
+    }
+
+    /**
+     * @param int $tag_id
+     *
+     * @return self
+     */
+    public function byTagId(int $tag_id): self
+    {
+        return $this->where('tag_id', $tag_id);
+    }
+}

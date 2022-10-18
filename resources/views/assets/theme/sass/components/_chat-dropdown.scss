@@ -1,0 +1,17 @@
+@layer components {
+    .chat-dropdown {
+        width: 320px;
+        margin-top: -364px;
+        .chat-dropdown__box {
+            height: 364px;
+            .chat-dropdown__box__tabs {
+                @apply text-gray-600;
+                a {
+                    &.active {
+                        @apply bg-gray-300 border-b-0 text-gray-600 dark:bg-dark-1;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Mail;
+
+use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
+use App\Domains\Shared\Mail\MailAbstract;
+
+class Signup extends MailAbstract
+{
+    /**
+     * @var \App\Domains\{{ domain }}\Model\{{ domain }}
+     */
+    public Model $row;
+
+    /**
+     * @var string
+     */
+    public $view = 'domains.{{ domain }}.mail.signup';
+
+    /**
+     * @param \App\Domains\{{ domain }}\Model\{{ domain }} $row
+     *
+     * @return self
+     */
+    public function __construct(Model $row)
+    {
+        $this->to($row->email);
+
+        $this->subject = __('{{ domain }}-signup-mail.subject');
+        $this->row = $row;
+    }
+}

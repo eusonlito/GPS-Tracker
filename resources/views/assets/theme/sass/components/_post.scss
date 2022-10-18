@@ -1,0 +1,12 @@
+@layer components {
+    .post {
+        .post__tabs {
+            a {
+                @apply border-b-0;
+                &.active {
+                    @apply bg-white border-transparent text-theme-17 dark:bg-dark-3 dark:text-gray-300;
+                }
+            }
+        }
+    }
+}

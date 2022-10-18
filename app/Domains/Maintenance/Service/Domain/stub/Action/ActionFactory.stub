@@ -1,0 +1,22 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Action;
+
+use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
+use App\Domains\Shared\Action\ActionFactoryAbstract;
+
+class ActionFactory extends ActionFactoryAbstract
+{
+    /**
+     * @var ?\App\Domains\{{ domain }}\Model\{{ domain }}
+     */
+    protected ?Model $row;
+
+    /**
+     * @return \App\Domains\{{ domain }}\Model\{{ domain }}
+     */
+    public function create(): Model
+    {
+        return $this->actionHandle(Create::class, $this->validate()->create());
+    }
+}

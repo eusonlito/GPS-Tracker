@@ -1,0 +1,219 @@
+.litepicker {
+    @apply bg-white rounded-md text-sm;
+    z-index: 999999 !important;
+    margin-top: 7px;
+    box-shadow: 0px 3px 20px #00000014;
+    @include media-breakpoint-down(lg) {
+        width: 310px;
+    }
+    @include media-breakpoint-down(sm) {
+        left: 0px !important;
+        @apply right-0 mx-auto;
+    }
+    &:before {
+        content: "";
+        left: 9px;
+        top: -7px;
+        border-bottom-color: #f7f7f7;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        border-bottom: 7px solid #e8e8e8;
+        @apply absolute inline-block;
+    }
+    &:after {
+        content: "";
+        left: 10px;
+        top: -6px;
+        border-right: 6px solid transparent;
+        border-bottom: 6px solid #fff;
+        border-left: 6px solid transparent;
+        @apply absolute inline-block;
+    }
+    .container__months,
+    .container__footer {
+        @apply shadow-none bg-transparent pt-0;
+    }
+    .container__footer {
+        @apply border-t border-gray-200 m-0 p-3;
+        @include media-breakpoint-down(lg) {
+            @apply flex flex-col-reverse text-center;
+        }
+        .preview-date-range {
+            @include media-breakpoint-down(lg) {
+                @apply w-full block order-1 mb-1.5;
+            }
+        }
+        .button-cancel {
+            @include media-breakpoint-down(lg) {
+                width: 100% !important;
+                margin-left: 0px !important;
+                padding-top: 0.375rem !important;
+                padding-bottom: 0.375rem !important;
+            }
+        }
+        .button-apply {
+            @include media-breakpoint-down(lg) {
+                width: 100% !important;
+                margin-left: 0px !important;
+                padding-top: 0.375rem !important;
+                padding-bottom: 0.375rem !important;
+                @apply mb-1.5;
+            }
+        }
+        .button-apply,
+        .button-cancel {
+            @apply w-20 py-1 px-2 rounded-md font-medium ml-1 mr-0;
+        }
+        .button-apply {
+            @apply bg-theme-26 text-white;
+        }
+        .button-cancel {
+            @apply bg-gray-200 text-gray-600;
+        }
+    }
+    .container__months {
+        @apply px-1;
+        .month-item-weekdays-row {
+            @apply text-gray-500 mt-3;
+        }
+        .month-item-header {
+            @apply px-0 pb-0 pt-2;
+            .button-previous-month {
+                @apply flex items-center justify-center w-8 h-8;
+                &:hover {
+                    @apply bg-gray-200;
+                }
+                svg {
+                    transform: rotate(135deg);
+                    @apply -mr-1;
+                }
+            }
+            .button-next-month {
+                @apply flex items-center justify-center w-8 h-8;
+                &:hover {
+                    @apply bg-gray-200;
+                }
+                svg {
+                    transform: rotate(-45deg);
+                    @apply -ml-1;
+                }
+            }
+            .button-previous-month:hover svg,
+            .button-previous-month svg,
+            .button-next-month:hover svg,
+            .button-next-month svg {
+                fill: transparent;
+                border: solid black;
+                border-width: 0 2px 2px 0;
+                border-radius: 0;
+                display: inline-block;
+                border-color: #4a5568;
+                @apply w-2 h-2 block;
+            }
+            div > .month-item-name,
+            div > .month-item-year {
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgb(74, 85, 104)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+                background-size: 15px;
+                background-position: center right 0.6rem;
+                @apply bg-transparent border bg-no-repeat py-1 pl-2 pr-8 rounded-md appearance-none;
+            }
+        }
+    }
+    .container__days {
+        .day-item {
+            @apply text-gray-800;
+            &:hover {
+                @apply shadow-none bg-gray-200 text-gray-800;
+            }
+            &.is-today,
+            &.is-today:hover {
+                @apply text-theme-6;
+            }
+            &.is-start-date,
+            &.is-start-date:hover,
+            &.is-end-date,
+            &.is-end-date:hover {
+                @apply bg-theme-26 text-white;
+            }
+            &.is-in-range,
+            &.is-in-range:hover {
+                @apply bg-gray-200;
+            }
+        }
+        .week-number {
+            @apply text-gray-500;
+        }
+    }
+}
+@include media-breakpoint-down(lg) {
+    :root {
+        --litepicker-day-width: 35px;
+    }
+}
+
+.dark {
+    .litepicker {
+        @apply bg-dark-1;
+        &:before,
+        &:after {
+            border-right-color: transparent;
+            border-left-color: transparent;
+            border-bottom-color: #293145;
+        }
+        .container__months {
+            .button-previous-month:hover {
+                @apply bg-dark-2;
+            }
+            .button-next-month:hover {
+                @apply bg-dark-2;
+            }
+            .month-item-header {
+                .button-previous-month:hover svg,
+                .button-previous-month svg,
+                .button-next-month:hover svg,
+                .button-next-month svg {
+                    @apply border-gray-300;
+                }
+                div > .month-item-name,
+                div > .month-item-year {
+                    @apply text-gray-300;
+                }
+            }
+        }
+        .container__days {
+            .day-item {
+                @apply text-gray-300;
+                &:hover {
+                    @apply bg-dark-2;
+                }
+                &.is-start-date,
+                &.is-start-date:hover,
+                &.is-end-date,
+                &.is-end-date:hover {
+                    @apply bg-theme-26 text-gray-300;
+                }
+                &.is-in-range,
+                &.is-in-range:hover {
+                    @apply bg-dark-2;
+                }
+                &.is-today,
+                &.is-today:hover {
+                    @apply text-gray-300;
+                }
+            }
+        }
+        .container__footer {
+            @apply border-dark-3;
+            .button-cancel {
+                @apply bg-dark-5 text-gray-300;
+            }
+        }
+        .container__tooltip {
+            @apply bg-dark-5;
+            &:before,
+            &:after {
+                border-top-color: #3f4865;
+            }
+        }
+    }
+}

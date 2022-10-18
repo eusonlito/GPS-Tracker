@@ -1,0 +1,22 @@
+<label class="form-label"></label>
+
+<select data-placeholder="Select your favorite actors" class="tom-select w-full tomselected" multiple="multiple" tabindex="-1" hidden="hidden">
+    <option value="1" selected="true"></option>
+</select>
+
+<div class="ts-control tom-select w-full multi plugin-dropdown_input plugin-remove_button" tabindex="0">
+    <div class="items ts-input not-full has-items">
+        <div data-value="1" class="item"><a href="javascript:void(0)" class="remove" tabindex="-1" title="Remove">×</a></div>
+    </div>
+
+    <div class="ts-dropdown multi tom-select w-full plugin-dropdown_input plugin-remove_button" style="display: none;">
+        <div class="dropdown-input-wrap">
+            <input type="select-multiple" autocomplete="off" class="dropdown-input" role="combobox" haspopup="listbox">
+        </div>
+
+        <div role="listbox" tabindex="-1" class="ts-dropdown-content">
+            <div class="create" data-selectable=""></div>
+            <div class="no-results"></div>
+        </div>
+    </div>
+</div>

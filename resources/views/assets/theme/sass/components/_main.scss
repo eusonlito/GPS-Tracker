@@ -1,0 +1,14 @@
+@layer components {
+    .main {
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-image: url(../images/bg-main.svg);
+        @apply py-5;
+    }
+
+    .dark {
+        .main {
+            background-image: url(../images/bg-main-dark.svg);
+        }
+    }
+}

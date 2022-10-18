@@ -1,0 +1,11 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Controller;
+
+use Illuminate\Support\Facades\Route;
+
+Route::group(['middleware' => ['user.auth', 'user.enabled']], static function () {
+    Route::get('/{{ name }}', Index::class)->name('{{ name }}.index');
+    Route::any('/{{ name }}/create', Create::class)->name('{{ name }}.create');
+    Route::any('/{{ name }}/{id}', Update::class)->name('{{ name }}.update');
+});

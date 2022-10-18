@@ -1,0 +1,24 @@
+@layer components {
+    .search-result {
+        width: 450px;
+        @apply z-20 absolute right-0 mt-1 invisible opacity-0;
+        transition: visibility 0s linear 0.2s, opacity 0.2s 0s;
+        &.show {
+            transition: visibility 0s linear 0s, opacity 0.2s 0s;
+            @apply visible opacity-100;
+            > .search-result__content {
+                margin-top: -1px;
+                .tab-content .tab-pane {
+                    @apply visible;
+                }
+            }
+        }
+        .search-result__content {
+            transition: margin-top 0.2s;
+            @apply box p-5 mt-5 dark:bg-dark-6;
+            .search-result__content__title {
+                @apply font-medium mb-2;
+            }
+        }
+    }
+}

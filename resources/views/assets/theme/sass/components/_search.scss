@@ -1,0 +1,11 @@
+@layer components {
+    .search {
+        @apply relative;
+        .search__input {
+            @apply w-56 shadow-none rounded-full bg-theme-7 pr-8 dark:bg-dark-3;
+        }
+        .search__icon {
+            @apply w-5 h-5 absolute my-auto inset-y-0 mr-3 right-0 text-theme-6;
+        }
+    }
+}

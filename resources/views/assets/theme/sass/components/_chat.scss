@@ -1,0 +1,25 @@
+@layer components {
+    .chat {
+        .chat__tabs a.active {
+            @apply bg-theme-17 text-white;
+        }
+        .chat__chat-list {
+            height: 525px;
+        }
+        .chat__user-list {
+            height: 525px;
+        }
+        .chat__box {
+            height: 782px;
+            .chat__box__text-box {
+                max-width: 49%;
+                @include media-breakpoint-down(sm) {
+                    max-width: 90%;
+                }
+            }
+        }
+        .chat__box__input {
+            height: 46px;
+        }
+    }
+}

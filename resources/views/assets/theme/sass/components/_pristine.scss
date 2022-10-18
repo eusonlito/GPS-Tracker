@@ -1,0 +1,5 @@
+.has-error {
+    .form-control {
+        @apply border-primary-3;
+    }
+}

@@ -1,0 +1,15 @@
+<?php return [
+    'create' => 'Crear',
+    'date_at' => 'Fecha',
+    'device' => 'Dispositivo',
+    'distance' => 'Distancia',
+    'distance_total' => 'Distancia total',
+    'filter' => 'Filtrar...',
+    'id' => 'ID',
+    'meta-title' => 'Repostajes',
+    'month' => 'Mes',
+    'price' => 'Precio',
+    'quantity' => 'Cantidad',
+    'total' => 'Importe Total',
+    'year' => 'Año',
+];

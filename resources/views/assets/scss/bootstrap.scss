@@ -1,0 +1,126 @@
+html, body, .main {
+    padding: 0;
+}
+
+form {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+select {
+    background-color: inherit;
+}
+
+.mobile-menu {
+    margin: 0;
+}
+
+.wrapper:before,
+.wrapper .wrapper-box,
+.content,
+.side-nav > ul > li > a,
+.side-nav > ul > li > .side-menu.side-menu--active:before,
+.side-nav > ul ul li > a,
+.tab-content .tab-pane {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    border-radius: 0;
+}
+
+.side-nav > ul > li > .side-menu.side-menu--active {
+    border-bottom-width: 2px;
+}
+
+.side-nav > ul > li > .side-menu.side-menu--active:before {
+    margin-right: -26px !important;
+}
+
+.side-nav {
+    width: 230px;
+
+    @media (max-width: 1279px) {
+        width: 105px;
+    }
+}
+
+.header-sticky table thead th {
+    position: sticky;
+    top: 0px;
+    border-bottom: 1px solid #CCC;
+    box-shadow: 20px 3px 20px #0000000b;
+    background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+
+.table-report img {
+    box-shadow: none;
+}
+
+.app-logo {
+    display: block;
+    height: 32px;
+    min-width: 32px;
+    max-width: 128px;
+}
+
+.input-group .input-group-text-lg {
+    padding: 0.375rem 1rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.textarea-password {
+    text-security: circle;
+    -webkit-text-security: circle;
+}
+
+.btn.form-select-lg {
+    padding-right: 1rem
+}
+
+.input-group .input-group-text {
+    background: white;
+}
+
+[data-table-pagination] {
+    display: none;
+}
+
+.pagination li .pagination__link.pagination__link--active {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.pagination li .pagination__link:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.overflow-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+        width: 0px;
+        background: transparent;
+    }
+}
+
+.h-600px {
+    height: 600px;
+}
+
+.max-w-2xs {
+    max-width: 15rem;
+}
+
+::-webkit-file-upload-button {
+    display: none;
+}
+
+table[data-table-sort] thead th {
+    cursor: pointer;
+}
