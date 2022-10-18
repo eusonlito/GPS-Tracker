@@ -193,14 +193,14 @@ php artisan socket:server {--port=} {--reset}
 
 ![Screenshot from 2022-10-18 18-29-53](https://user-images.githubusercontent.com/644551/196489682-7875a2b6-35e7-4f16-8a18-4a1bdc4102e8.png)
 
-![Screenshot from 2022-10-18 18-30-06](https://user-images.githubusercontent.com/644551/196489713-969ffb72-a864-434e-8533-afc87e700582.png)
-
-![Screenshot from 2022-10-18 18-30-15](https://user-images.githubusercontent.com/644551/196489740-b71e0042-51e9-4038-9a6d-03d5bf8180ac.png)
-
-![Screenshot from 2022-10-18 18-30-37](https://user-images.githubusercontent.com/644551/196489787-6f570213-6e4b-444d-979b-62bdf0625582.png)
-
 ![Screenshot from 2022-10-18 18-31-10](https://user-images.githubusercontent.com/644551/196489823-7ef35c1d-4c88-49dd-b0b7-e50a24b7beb2.png)
 
 ![Screenshot from 2022-10-18 18-31-21](https://user-images.githubusercontent.com/644551/196489866-e1b89302-1558-41ef-89a2-02a3f335ec17.png)
 
 ![Screenshot from 2022-10-18 18-31-27](https://user-images.githubusercontent.com/644551/196489891-2f3a81a8-b788-44e1-bb9e-1457bcba92ba.png)
+
+![Screenshot from 2022-10-18 18-30-06](https://user-images.githubusercontent.com/644551/196489713-969ffb72-a864-434e-8533-afc87e700582.png)
+
+![Screenshot from 2022-10-18 18-30-15](https://user-images.githubusercontent.com/644551/196489740-b71e0042-51e9-4038-9a6d-03d5bf8180ac.png)
+
+![Screenshot from 2022-10-18 18-30-37](https://user-images.githubusercontent.com/644551/196489787-6f570213-6e4b-444d-979b-62bdf0625582.png)
