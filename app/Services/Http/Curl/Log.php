@@ -18,16 +18,8 @@ class Log
         $file = preg_replace(['/[^a-zA-Z0-9-]/', '/\-{2,}/'], ['-', '-'], $url);
         $file = date('H-i-s').'-'.microtime(true).'-'.$status.'-'.substr($file, 0, 200).'.json';
 
-        clearstatcache(true, $dir);
+        helper()->mkdir($dir);
 
-        if (is_dir($dir) === false) {
-            mkdir($dir, 0o755, true);
-        }
-
-        file_put_contents($dir.'/'.$file, json_encode(
-            $data,
-            JSON_PRETTY_PRINT | JSON_UNESCAPED_LINE_TERMINATORS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE |
-            JSON_INVALID_UTF8_IGNORE | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR
-        ), LOCK_EX);
+        file_put_contents($dir.'/'.$file, helper()->jsonEncode($data), LOCK_EX);
     }
 }

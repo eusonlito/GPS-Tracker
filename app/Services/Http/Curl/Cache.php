@@ -10,11 +10,6 @@ class Cache
     protected int $ttl = 0;
 
     /**
-     * @var array
-     */
-    protected array $data = [];
-
-    /**
      * @var string
      */
     protected string $key = '';
@@ -65,8 +60,7 @@ class Cache
     {
         unset($data['ttl'], $data['sleep']);
 
-        $this->data = $data;
-        $this->keyGenerate();
+        $this->keyGenerate($data);
 
         return $this;
     }
@@ -80,11 +74,13 @@ class Cache
     }
 
     /**
+     * @param array $data
+     *
      * @return self
      */
-    protected function keyGenerate(): self
+    protected function keyGenerate(array $data): self
     {
-        $this->key = md5(json_encode($this->data, JSON_PARTIAL_OUTPUT_ON_ERROR));
+        $this->key = md5(json_encode($data, JSON_PARTIAL_OUTPUT_ON_ERROR));
 
         return $this;
     }
@@ -99,43 +95,25 @@ class Cache
     }
 
     /**
-     * @return ?string
+     * @return ?array
      */
-    public function get(): ?string
+    public function get(): ?array
     {
-        return $this->exists() ? file_get_contents($this->file()) : null;
+        return $this->exists() ? json_decode(file_get_contents($this->file()), true) : null;
     }
 
     /**
-     * @param string $contents
+     * @param array $data
      *
-     * @return string
+     * @return void
      */
-    public function set(string $contents): string
+    public function set(array $data): void
     {
         $file = $this->file();
 
-        file_put_contents($file, $contents, LOCK_EX);
+        file_put_contents($file, helper()->jsonEncode($data), LOCK_EX);
 
         touch($file, time() + $this->ttl);
-
-        $this->info();
-
-        return $contents;
-    }
-
-    /**
-     * @return void
-     */
-    public function info(): void
-    {
-        $file = $this->file().'.json';
-
-        file_put_contents($file, json_encode(
-            $this->data,
-            JSON_PRETTY_PRINT | JSON_UNESCAPED_LINE_TERMINATORS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE |
-            JSON_INVALID_UTF8_IGNORE | JSON_INVALID_UTF8_SUBSTITUTE | JSON_PARTIAL_OUTPUT_ON_ERROR
-        ), LOCK_EX);
     }
 
     /**
@@ -143,6 +121,6 @@ class Cache
      */
     public function file(): string
     {
-        return $this->path.'/'.$this->key;
+        return $this->path.'/'.$this->key.'.json';
     }
 }

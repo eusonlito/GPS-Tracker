@@ -208,8 +208,8 @@ class Curl
     }
 
     /**
-     * @param  int  $option
-     * @param  mixed  $value
+     * @param int $option
+     * @param mixed $value
      *
      * @return self
      */
@@ -221,7 +221,7 @@ class Curl
     }
 
     /**
-     * @param  string  $method
+     * @param string $method
      *
      * @return self
      */
@@ -235,7 +235,7 @@ class Curl
     }
 
     /**
-     * @param  string  $url
+     * @param string $url
      *
      * @return self
      */
@@ -247,7 +247,7 @@ class Curl
     }
 
     /**
-     * @param  array  $query
+     * @param array $query
      *
      * @return self
      */
@@ -259,7 +259,7 @@ class Curl
     }
 
     /**
-     * @param  mixed  $body
+     * @param mixed $body
      *
      * @return self
      */
@@ -271,9 +271,21 @@ class Curl
     }
 
     /**
-     * @param  string  $name
-     * @param  string  $file
-     * @param  ?string  $mime = null
+     * @param bool $body
+     *
+     * @return self
+     */
+    public function setNoBody(bool $body): self
+    {
+        $this->setOption(CURLOPT_NOBODY, $body);
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @param string $file
+     * @param  ?string $mime = null
      *
      * @return self
      */
@@ -289,7 +301,7 @@ class Curl
     }
 
     /**
-     * @param  array  $headers
+     * @param array $headers
      *
      * @return self
      */
@@ -301,8 +313,8 @@ class Curl
     }
 
     /**
-     * @param  string  $key
-     * @param  mixed  $value
+     * @param string $key
+     * @param mixed $value
      *
      * @return self
      */
@@ -314,7 +326,7 @@ class Curl
     }
 
     /**
-     * @param  callable  $function
+     * @param callable $function
      *
      * @return self
      */
@@ -326,7 +338,7 @@ class Curl
     }
 
     /**
-     * @param  string  $file
+     * @param string $file
      *
      * @return self
      */
@@ -340,8 +352,8 @@ class Curl
     }
 
     /**
-     * @param  ?string  $token
-     * @param  bool  $bearer = true
+     * @param  ?string $token
+     * @param bool $bearer = true
      *
      * @return self
      */
@@ -355,8 +367,8 @@ class Curl
     }
 
     /**
-     * @param  string  $user
-     * @param  string  $password
+     * @param string $user
+     * @param string $password
      *
      * @return self
      */
@@ -368,7 +380,7 @@ class Curl
     }
 
     /**
-     * @param  bool  $json = true
+     * @param bool $json = true
      *
      * @return self
      */
@@ -386,7 +398,7 @@ class Curl
     }
 
     /**
-     * @param  bool  $jsonResponse = true
+     * @param bool $jsonResponse = true
      *
      * @return self
      */
@@ -402,7 +414,7 @@ class Curl
     }
 
     /**
-     * @param  bool  $multipart = true
+     * @param bool $multipart = true
      *
      * @return self
      */
@@ -417,7 +429,7 @@ class Curl
     }
 
     /**
-     * @param  int  $timeout
+     * @param int $timeout
      *
      * @return self
      */
@@ -445,8 +457,8 @@ class Curl
     }
 
     /**
-     * @param  resource  $fp
-     * @param  ?int  $size = null
+     * @param resource $fp
+     * @param  ?int $size = null
      *
      * @return self
      */
@@ -464,7 +476,7 @@ class Curl
     }
 
     /**
-     * @param  int  $sleep
+     * @param int $sleep
      *
      * @return self
      */
@@ -476,7 +488,7 @@ class Curl
     }
 
     /**
-     * @param  bool  $exception = true
+     * @param bool $exception = true
      *
      * @return self
      */
@@ -488,7 +500,7 @@ class Curl
     }
 
     /**
-     * @param  bool  $errorReport = true
+     * @param bool $errorReport = true
      *
      * @return self
      */
@@ -500,7 +512,7 @@ class Curl
     }
 
     /**
-     * @param  int  $ttl
+     * @param int $ttl
      *
      * @return self
      */
@@ -512,7 +524,7 @@ class Curl
     }
 
     /**
-     * @param  bool  $cache = true
+     * @param bool $cache = true
      *
      * @return self
      */
@@ -524,7 +536,7 @@ class Curl
     }
 
     /**
-     * @param  bool  $log = true
+     * @param bool $log = true
      *
      * @return self
      */
@@ -536,7 +548,7 @@ class Curl
     }
 
     /**
-     * @param  bool  $logContents = true
+     * @param bool $logContents = true
      *
      * @return self
      */
@@ -548,7 +560,7 @@ class Curl
     }
 
     /**
-     * @param  bool  $logBody = true
+     * @param bool $logBody = true
      *
      * @return self
      */
@@ -560,7 +572,7 @@ class Curl
     }
 
     /**
-     * @param  ?callable  $sendSuccess
+     * @param  ?callable $sendSuccess
      *
      * @return self
      */
@@ -572,8 +584,8 @@ class Curl
     }
 
     /**
-     * @param  int  $ttl
-     * @param  int  $wait = 1000
+     * @param int $ttl
+     * @param int $wait = 1000
      *
      * @return self
      */
@@ -608,7 +620,11 @@ class Curl
      */
     public function send(): self
     {
-        $this->response = $this->cacheGet() ?: $this->sendExec();
+        $this->cacheSetData();
+
+        if ($this->cacheGet() === false) {
+            $this->sendExec();
+        }
 
         if ($this->sendSuccess()) {
             $this->success();
@@ -622,9 +638,9 @@ class Curl
     }
 
     /**
-     * @return ?string
+     * @return self
      */
-    public function sendExec(): ?string
+    protected function sendExec(): self
     {
         if ($this->sleep) {
             sleep($this->sleep);
@@ -648,11 +664,13 @@ class Curl
 
         $this->responseHeaders($headers);
 
-        return $body;
+        $this->response = $body;
+
+        return $this;
     }
 
     /**
-     * @param  string  $headers
+     * @param string $headers
      *
      * @return void
      */
@@ -700,21 +718,11 @@ class Curl
     }
 
     /**
-     * @param  string  $key = ''
+     * @param  ?string $format = null
      *
      * @return mixed
      */
-    public function info(string $key = '')
-    {
-        return $key ? $this->info[$key] : $this->info;
-    }
-
-    /**
-     * @param  ?string  $format = null
-     *
-     * @return mixed
-     */
-    public function getBody(?string $format = null)
+    public function getBody(?string $format = null): mixed
     {
         if (empty($this->response)) {
             return null;
@@ -729,6 +737,26 @@ class Curl
             'object' => json_decode($this->response),
             default => $this->response,
         };
+    }
+
+    /**
+     * @param string $key = ''
+     *
+     * @return mixed
+     */
+    public function getHeaders(string $key = ''): mixed
+    {
+        return $key ? ($this->responseHeaders[$key] ?? null) : $this->responseHeaders;
+    }
+
+    /**
+     * @param string $key = ''
+     *
+     * @return mixed
+     */
+    public function getInfo(string $key = ''): mixed
+    {
+        return $key ? ($this->info[$key] ?? null) : $this->info;
     }
 
     /**
@@ -750,8 +778,8 @@ class Curl
     }
 
     /**
-     * @param  string  $url
-     * @param  array  $query
+     * @param string $url
+     * @param array $query
      *
      * @return string
      */
@@ -847,8 +875,8 @@ class Curl
     }
 
     /**
-     * @param  string  $name
-     * @param  mixed  $value
+     * @param string $name
+     * @param mixed $value
      *
      * @return string
      */
@@ -895,17 +923,40 @@ class Curl
     }
 
     /**
-     * @return ?string
+     * @return void
      */
-    protected function cacheGet(): ?string
+    protected function cacheSetData(): void
     {
-        if ($this->cacheEnabled() === false) {
-            return null;
+        if ($this->cacheEnabled()) {
+            $this->cache->setData($this->getVars());
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function cacheGet(): bool
+    {
+        if ($this->cacheGetEnabled() === false) {
+            return false;
         }
 
-        $this->cache->setData(get_object_vars($this));
+        $cached = $this->cache->get();
 
-        return $this->cache->get();
+        $this->response = $cached['response'] ?? null;
+        $this->responseHeaders = $cached['responseHeaders'] ?? null;
+        $this->info = $cached['info'] ?? null;
+
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function cacheGetEnabled(): bool
+    {
+        return $this->cacheEnabled()
+            && $this->cache->exists();
     }
 
     /**
@@ -914,7 +965,7 @@ class Curl
     protected function cacheSet(): void
     {
         if ($this->cacheSetEnabled()) {
-            $this->cache->set($this->response);
+            $this->cache->set($this->getVars());
         }
     }
 
@@ -933,7 +984,7 @@ class Curl
      */
     protected function success(): void
     {
-        $this->log();
+        $this->logSet();
         $this->cacheSet();
     }
 
@@ -942,7 +993,7 @@ class Curl
      */
     protected function error(): void
     {
-        $this->log('error', $e = $this->exception());
+        $this->logSet('error', $e = $this->exception());
 
         if ($this->errorReport && app()->bound('sentry')) {
             app('sentry')->captureException($e);
@@ -952,7 +1003,7 @@ class Curl
     }
 
     /**
-     * @param  \App\Services\Http\Curl\CurlException  $e
+     * @param  \App\Services\Http\Curl\CurlException $e
      *
      * @return void
      */
@@ -982,9 +1033,9 @@ class Curl
     /**
      * @return bool
      */
-    public function retryExec(): bool
+    protected function retryExec(): bool
     {
-        $this->response = $this->sendExec();
+        $this->sendExec();
 
         if ($success = $this->sendSuccess()) {
             $this->success();
@@ -993,6 +1044,18 @@ class Curl
         }
 
         return $success;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getVars(): array
+    {
+        $vars = get_object_vars($this);
+
+        unset($vars['curl']);
+
+        return $vars;
     }
 
     /**
@@ -1007,7 +1070,7 @@ class Curl
     }
 
     /**
-     * @param  string  $message
+     * @param string $message
      *
      * @return string
      */
@@ -1029,8 +1092,8 @@ class Curl
     }
 
     /**
-     * @param  string  $message
-     * @param  int  $code
+     * @param string $message
+     * @param int $code
      *
      * @return int
      */
@@ -1048,7 +1111,7 @@ class Curl
     }
 
     /**
-     * @param  string  $message
+     * @param string $message
      *
      * @return bool
      */
@@ -1061,12 +1124,12 @@ class Curl
     }
 
     /**
-     * @param  string  $status = 'success'
-     * @param  ?\Throwable  $e = null
+     * @param string $status = 'success'
+     * @param  ?\Throwable $e = null
      *
      * @return void
      */
-    protected function log(string $status = 'success', ?Throwable $e = null): void
+    protected function logSet(string $status = 'success', ?Throwable $e = null): void
     {
         $this->logFile($status);
 
@@ -1076,7 +1139,7 @@ class Curl
     }
 
     /**
-     * @param  string  $status
+     * @param string $status
      *
      * @return void
      */
@@ -1086,9 +1149,7 @@ class Curl
             return;
         }
 
-        $data = get_object_vars($this);
-
-        unset($data['curl']);
+        $data = $this->getVars();
 
         if ($this->logBody === false) {
             $data['body'] = 'NO-LOG-BODY';
