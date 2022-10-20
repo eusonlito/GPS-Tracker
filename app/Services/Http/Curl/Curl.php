@@ -657,7 +657,7 @@ class Curl
         $this->responseHeaders = [];
 
         if (is_string($response) === false) {
-            return null;
+            return $this;
         }
 
         [$headers, $body] = explode("\r\n\r\n", $response, 2);
