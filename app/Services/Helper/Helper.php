@@ -543,7 +543,7 @@ class Helper
             return DateTimeZone::listIdentifiers();
         }
 
-        return DateTimeZone::listIdentifiers(DateTimeZone::PER_COUNTRY, $country)
+        return DateTimeZone::listIdentifiers(DateTimeZone::PER_COUNTRY, strtoupper($country))
             ?: DateTimeZone::listIdentifiers();
     }
 
