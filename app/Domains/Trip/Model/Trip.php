@@ -111,7 +111,7 @@ class Trip extends ModelAbstract
             UPDATE `trip`, (
                 WITH `summary` AS (
                     SELECT `trip_id`, ST_Distance(
-                        ST_SwapXY(LAG(`point`) OVER (ORDER BY `date_utc_at` ASC)),
+                        ST_SwapXY(LAG(`point`) OVER (PARTITION BY `trip_id` ORDER BY `date_utc_at` ASC)),
                         ST_SwapXY(`point`)
                     ) AS `distance`
                     FROM `position`
