@@ -64,6 +64,14 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return \App\Domains\Trip\Model\Trip
      */
+    public function updateNameDistanceTime(): Model
+    {
+        return $this->actionHandle(UpdateNameDistanceTime::class);
+    }
+
+    /**
+     * @return \App\Domains\Trip\Model\Trip
+     */
     public function updatePositionCreate(): Model
     {
         return $this->actionHandle(UpdatePositionCreate::class, $this->validate()->updatePositionCreate());

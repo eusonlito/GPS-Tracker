@@ -239,6 +239,15 @@ class Create extends ActionAbstract
      */
     protected function save(): void
     {
+        $this->saveRow();
+        $this->saveTrip();
+    }
+
+    /**
+     * @return void
+     */
+    protected function saveRow(): void
+    {
         Model::insert([
             'point' => Model::pointFromLatitudeLongitude($this->data['latitude'], $this->data['longitude']),
             'speed' => $this->data['speed'],
@@ -253,5 +262,13 @@ class Create extends ActionAbstract
             'trip_id' => $this->trip->id,
             'user_id' => $this->device->user_id,
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    protected function saveTrip(): void
+    {
+        $this->factory('Trip', $this->trip)->action()->updateNameDistanceTime();
     }
 }

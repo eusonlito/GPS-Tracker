@@ -3,13 +3,10 @@
 namespace App\Domains\Trip\Action;
 
 use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Trip\Action\Traits\SaveRow as SaveRowTrait;
 use App\Domains\Trip\Model\Trip as Model;
 
 class UpdateMerge extends ActionAbstract
 {
-    use SaveRowTrait;
-
     /**
      * @return \App\Domains\Trip\Model\Trip
      */
@@ -77,10 +74,7 @@ class UpdateMerge extends ActionAbstract
      */
     protected function saveRow(): void
     {
-        $this->saveRowStartEnd();
-        $this->saveRowName();
-        $this->saveRowSave();
-        $this->saveRowDistanceTime();
+        $this->factory()->action()->updateNameDistanceTime();
     }
 
     /**

@@ -2,13 +2,10 @@
 
 namespace App\Domains\Trip\Action;
 
-use App\Domains\Trip\Action\Traits\SaveRow as SaveRowTrait;
 use App\Domains\Trip\Model\Trip as Model;
 
 class UpdatePositionDelete extends ActionAbstract
 {
-    use SaveRowTrait;
-
     /**
      * @return \App\Domains\Trip\Model\Trip
      */
@@ -33,9 +30,6 @@ class UpdatePositionDelete extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->saveRowStartEnd();
-        $this->saveRowName();
-        $this->saveRowSave();
-        $this->saveRowDistanceTime();
+        $this->factory()->action()->updateNameDistanceTime();
     }
 }

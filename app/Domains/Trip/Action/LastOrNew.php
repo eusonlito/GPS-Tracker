@@ -25,8 +25,7 @@ class LastOrNew extends ActionAbstract
     {
         $this->device();
         $this->row();
-        $this->position();
-        $this->save();
+        $this->createIfPositionInvalid();
 
         return $this->row;
     }
@@ -65,7 +64,7 @@ class LastOrNew extends ActionAbstract
     /**
      * @return void
      */
-    protected function position(): void
+    protected function createIfPositionInvalid(): void
     {
         if ($this->positionIsValid() === false) {
             $this->rowCreate();
@@ -110,85 +109,5 @@ class LastOrNew extends ActionAbstract
     protected function positionMinutes(string $dateUtcAt): int
     {
         return (int)abs((strtotime($this->data['date_utc_at']) - strtotime($dateUtcAt)) / 60);
-    }
-
-    /**
-     * @return void
-     */
-    protected function save(): void
-    {
-        $this->saveRowStartUtcAt();
-        $this->saveRowEndAt();
-        $this->saveRowName();
-        $this->saveRowSave();
-        $this->saveRowDistanceTime();
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveRowStartUtcAt(): void
-    {
-        $position = $this->positionFirst();
-
-        $this->row->start_at = min(array_filter([$position?->date_at, $this->data['date_at']]));
-        $this->row->start_utc_at = min(array_filter([$position?->date_utc_at, $this->data['date_utc_at']]));
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveRowEndAt(): void
-    {
-        $position = $this->positionLast();
-
-        $this->row->end_at = max(array_filter([$position?->date_at, $this->data['date_at']]));
-        $this->row->end_utc_at = max(array_filter([$position?->date_utc_at, $this->data['date_utc_at']]));
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveRowName(): void
-    {
-        if ($this->row->nameIsDefault()) {
-            $this->row->name = $this->row->nameFromDates();
-        }
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveRowSave(): void
-    {
-        $this->row->save();
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveRowDistanceTime(): void
-    {
-        $this->row->updateDistanceTime();
-    }
-
-    /**
-     * @return ?\App\Domains\Position\Model\Position
-     */
-    protected function positionFirst(): ?PositionModel
-    {
-        return PositionModel::byTripId($this->row->id)
-            ->orderByDateUtcAtAsc()
-            ->first();
-    }
-
-    /**
-     * @return ?\App\Domains\Position\Model\Position
-     */
-    protected function positionLast(): ?PositionModel
-    {
-        return PositionModel::byTripId($this->row->id)
-            ->orderByDateUtcAtDesc()
-            ->first();
     }
 }

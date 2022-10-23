@@ -4,13 +4,10 @@ namespace App\Domains\Trip\Action;
 
 use Illuminate\Support\Collection;
 use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Trip\Action\Traits\SaveRow as SaveRowTrait;
 use App\Domains\Trip\Model\Trip as Model;
 
 class UpdatePositionCreate extends ActionAbstract
 {
-    use SaveRowTrait;
-
     /**
      * @var \App\Domains\Trip\Model\Trip
      */
@@ -135,7 +132,7 @@ class UpdatePositionCreate extends ActionAbstract
     protected function saveNew(): void
     {
         $this->saveNewPositions();
-        $this->saveNewDistanceTime();
+        $this->saveNewNameDistanceTime();
     }
 
     /**
@@ -150,9 +147,9 @@ class UpdatePositionCreate extends ActionAbstract
     /**
      * @return void
      */
-    protected function saveNewDistanceTime(): void
+    protected function saveNewNameDistanceTime(): void
     {
-        $this->new->updateDistanceTime();
+        $this->factory('Trip', $this->new)->action()->updateNameDistanceTime();
     }
 
     /**
@@ -160,9 +157,6 @@ class UpdatePositionCreate extends ActionAbstract
      */
     protected function saveRow(): void
     {
-        $this->saveRowStartEnd();
-        $this->saveRowName();
-        $this->saveRowSave();
-        $this->saveRowDistanceTime();
+        $this->factory()->action()->updateNameDistanceTime();
     }
 }
