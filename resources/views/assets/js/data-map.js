@@ -118,7 +118,7 @@ import Feather from './feather';
     const map = L.map(render, {
         attributionControl: false,
         zoomControl: true,
-        zoomSnap: 0.1
+        zoomSnap: 1
     });
 
     L.control.layers({ ...layers }, null, { collapsed: true }).addTo(map);
