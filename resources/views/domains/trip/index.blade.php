@@ -82,6 +82,15 @@
 
             @endforeach
         </tbody>
+
+        <tfoot class="bg-white">
+            <tr>
+                <th colspan="3"></th>
+                <th class="text-center">@distanceHuman($list->sum('distance'))</th>
+                <th class="text-center">@timeHuman($list->sum('time'))</th>
+                <th colspan="2"></th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 

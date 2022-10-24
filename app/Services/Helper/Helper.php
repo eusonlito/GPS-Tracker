@@ -317,10 +317,10 @@ class Helper
     public function distanceHuman(int $meters): string
     {
         if ($meters > 1000) {
-            return round($meters / 1000, 2).' km';
+            return sprintf('%.02f', round($meters / 1000, 2)).' km';
         }
 
-        return $meters.' m';
+        return sprintf('%.02f', $meters).' m';
     }
 
     /**
