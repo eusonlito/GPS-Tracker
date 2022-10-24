@@ -62,7 +62,7 @@
 
         <tfoot class="bg-white">
             <tr>
-                <th colspan="4"></th>
+                <th colspan="3"></th>
                 <th class="text-center">@number($totals->distance, 0)</th>
                 <th class="text-center">@number($totals->quantity)</th>
                 <th class="text-center">@money($totals->price, 3)</th>
