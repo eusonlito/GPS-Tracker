@@ -43,9 +43,9 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \App\Domains\Device\Model\Device
+     * @return ?\App\Domains\Device\Model\Device
      */
-    protected function device(): DeviceModel
+    protected function device(): ?DeviceModel
     {
         return $this->cache[__FUNCTION__] ??= $this->devices()->firstWhere('id', $this->request->input('device_id'))
             ?: $this->devices()->first();
@@ -56,14 +56,17 @@ class Index extends ControllerAbstract
      */
     protected function trips(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= $this->device()?->trips()->list()->limit(50)->get()
-            ?: collect();
+        if ($this->device() === null) {
+            return collect();
+        }
+
+        return $this->cache[__FUNCTION__] ??= $this->device()?->trips()->list()->limit(50)->get();
     }
 
     /**
-     * @return \App\Domains\Trip\Model\Trip
+     * @return ?\App\Domains\Trip\Model\Trip
      */
-    protected function trip(): TripModel
+    protected function trip(): ?TripModel
     {
         return $this->cache[__FUNCTION__] ??= $this->trips()->firstWhere('id', $this->request->input('trip_id'))
             ?: $this->trips()->first();
@@ -74,7 +77,14 @@ class Index extends ControllerAbstract
      */
     protected function positions(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= $this->trip()?->positions()->selectPointAsLatitudeLongitude()->list()->get()
-            ?: collect();
+        if ($this->trip() === null) {
+            return collect();
+        }
+
+        return $this->cache[__FUNCTION__] ??= $this->trip()->positions()
+            ->selectPointAsLatitudeLongitude()
+            ->withCity()
+            ->list()
+            ->get();
     }
 }

@@ -34,6 +34,10 @@ import Feather from './feather';
         return;
     }
 
+    const ucfirst = function(string) {
+        return string[0].toUpperCase() + string.slice(1);
+    }
+
     const polylineAdd = function (positions, color) {
         line = L.polyline(positions, {
             color: color,
@@ -56,7 +60,7 @@ import Feather from './feather';
         let html = '';
 
         Object.keys(json).forEach(function(key) {
-            html += '<p style="margin: 0.5em 0 !important"><strong>' + key.replace(/_at$/, '') + ':</strong> ' + json[key] + '</p>';
+            html += '<p style="margin: 0.5em 0 !important"><strong>' + ucfirst(key.replace(/_at$/, '')) + ':</strong> ' + json[key] + '</p>';
         });
 
         return html;

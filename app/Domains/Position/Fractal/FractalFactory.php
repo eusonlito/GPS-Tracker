@@ -12,8 +12,9 @@ class FractalFactory extends FractalAbstract
      *
      * @return array
      */
-    protected function simple(Model $row): array
+    protected function map(Model $row): array
     {
-        return $row->only('id', 'date_at', 'latitude', 'longitude', 'speed', 'signal', 'created_at');
+        return $row->only('id', 'date_at', 'latitude', 'longitude', 'speed', 'signal', 'created_at')
+            + ['city' => $row->city->name, 'state' => $row->city->state->name];
     }
 }

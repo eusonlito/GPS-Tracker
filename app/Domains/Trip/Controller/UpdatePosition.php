@@ -38,7 +38,7 @@ class UpdatePosition extends UpdateAbstract
      */
     protected function responseJson(): JsonResponse
     {
-        return $this->json($this->factory('Position')->fractal('simple', $this->responseJsonPositions()));
+        return $this->json($this->factory('Position')->fractal('map', $this->responseJsonPositions()));
     }
 
     /**
@@ -49,6 +49,7 @@ class UpdatePosition extends UpdateAbstract
         return $this->row->positions()
             ->selectPointAsLatitudeLongitude()
             ->byIdNext((int)$this->request->input('id_from'))
+            ->withCity()
             ->list()
             ->get();
     }

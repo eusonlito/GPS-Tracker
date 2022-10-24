@@ -5,6 +5,7 @@ namespace App\View\Components;
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use App\Domains\Position\Model\Position as PositionModel;
 
 class Map extends Component
 {
@@ -37,14 +38,17 @@ class Map extends Component
      */
     protected function json(): string
     {
-        return $this->positions->map->only(
-            'id',
-            'date_at',
-            'latitude',
-            'longitude',
-            'speed',
-            'signal',
-            'created_at'
-        )->toJson();
+        return $this->positions->map(fn ($position) => $this->jsonMap($position))->toJson();
+    }
+
+    /**
+     * @param \App\Domains\Position\Model\Position $position
+     *
+     * @return array
+     */
+    protected function jsonMap(PositionModel $position): array
+    {
+        return $position->only('id', 'date_at', 'latitude', 'longitude', 'speed', 'signal', 'created_at')
+            + ['city' => $position->city->name, 'state' => $position->city->state->name];
     }
 }
