@@ -118,7 +118,7 @@ class Index extends ControllerAbstract
 
     /**
      * @param \stdClass $carry
-     * @param \App\Domains\Refuel\Model\Refuel $model
+     * @param \App\Domains\Refuel\Model\Refuel $row
      *
      * @return \stdClass
      */

@@ -60,7 +60,7 @@ class Index extends ControllerAbstract
             return collect();
         }
 
-        return $this->cache[__FUNCTION__] ??= $this->device()?->trips()->list()->limit(50)->get();
+        return $this->cache[__FUNCTION__] ??= $this->device()->trips()->list()->limit(50)->get();
     }
 
     /**
@@ -81,7 +81,8 @@ class Index extends ControllerAbstract
             return collect();
         }
 
-        return $this->cache[__FUNCTION__] ??= $this->trip()->positions()
+        return $this->cache[__FUNCTION__] ??= $this->trip()
+            ->positions()
             ->selectPointAsLatitudeLongitude()
             ->withCity()
             ->list()

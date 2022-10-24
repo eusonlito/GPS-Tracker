@@ -26,7 +26,7 @@ class Create extends ActionAbstract
     protected TripModel $trip;
 
     /**
-     * @var ?\App\Position\Trip\Model\Position
+     * @var ?\App\Position\Model\Position
      */
     protected ?Model $previous = null;
 
