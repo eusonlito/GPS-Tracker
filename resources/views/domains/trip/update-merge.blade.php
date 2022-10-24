@@ -10,7 +10,6 @@
             <table class="table table-report font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
                 <thead>
                     <tr>
-                        <th class="w-1">{{ __('trip-update-merge.id') }}</th>
                         <th class="text-left">{{ __('trip-update-merge.name') }}</th>
                         <th class="text-center">{{ __('trip-update-merge.start_at') }}</th>
                         <th class="text-center">{{ __('trip-update-merge.end_at') }}</th>
@@ -26,7 +25,6 @@
                     @php ($link = route('trip.update.map', $each->id))
 
                     <tr>
-                        <td class="w-1"><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $each->id }}</a></td>
                         <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap text-left">{{ $each->name }}</a></td>
                         <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $each->start_at }}</a></td>
                         <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $each->end_at }}</a></td>

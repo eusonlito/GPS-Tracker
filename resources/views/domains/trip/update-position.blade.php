@@ -12,13 +12,12 @@
             <table id="position-list-table" class="table table-report font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
                 <thead>
                     <tr>
-                        <th class="w-1">{{ __('trip-update-position.id') }}</th>
                         <th class="w-1">{{ __('trip-update-position.date') }}</th>
                         <th class="w-1">{{ __('trip-update-position.location') }}</th>
                         <th class="w-1">{{ __('trip-update-position.city') }}</th>
                         <th class="w-1">{{ __('trip-update-position.speed') }}</th>
                         <th class="w-1">{{ __('trip-update-position.signal') }}</th>
-                        <th class="w-1">{{ __('trip-update-position.select') }}</th>
+                        <th class="w-1"><input type="checkbox" data-checkall="#position-list-table > tbody" /></th>
                     </tr>
                 </thead>
 
@@ -26,7 +25,6 @@
                     @foreach ($positions as $each)
 
                     <tr>
-                        <td class="w-1">{{ $each->id }}</td>
                         <td class="w-1">{{ $each->date_at }}</td>
                         <td class="w-1"><a href="https://maps.google.com/?q={{ $each->latitude }},{{ $each->longitude }}" rel="nofollow noopener noreferrer" target="_blank">{{ $each->latitude }},{{ $each->longitude }}</a></td>
                         <td class="w-1">{{ $each->city->name }} ({{ $each->city->state->name }})</td>

@@ -10,6 +10,7 @@ import './data-table-sort.js';
 import './data-password-show.js';
 import './data-current-datetime.js';
 import './data-calculator.js';
+import './data-checkall.js';
 import './mobile-menu.js';
 import './modal.js';
 import './alert.js';

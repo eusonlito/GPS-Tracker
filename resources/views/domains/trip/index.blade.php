@@ -46,7 +46,6 @@
     <table id="trip-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
-                <th class="w-1">{{ __('trip-index.id') }}</th>
                 <th class="text-left">{{ __('trip-index.name') }}</th>
                 <th class="text-center">{{ __('trip-index.start_at') }}</th>
                 <th class="text-center">{{ __('trip-index.end_at') }}</th>
@@ -62,7 +61,6 @@
             @php ($link = route('trip.update.map', $row->id))
 
             <tr>
-                <td class="w-1"><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->id }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap text-left">{{ $row->name }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->start_at }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->end_at }}</a></td>

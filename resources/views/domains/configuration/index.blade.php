@@ -18,7 +18,6 @@
     <table id="configuration-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>
-                <th class="w-1">{{ __('configuration-index.id') }}</th>
                 <th class="text-left">{{ __('configuration-index.key') }}</th>
                 <th class="text-center">{{ __('configuration-index.value') }}</th>
                 <th class="text-left">{{ __('configuration-index.description') }}</th>
@@ -31,7 +30,6 @@
             @php ($link = route('configuration.update', $row->id))
 
             <tr>
-                <td class="w-1"><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->id }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap text-left">{{ $row->key }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->value }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold truncate text-left">{{ $row->description }}</a></td>
