@@ -3,30 +3,30 @@
 @section ('body')
 
 <form method="get">
-    <div class="sm:flex sm:space-x-4">
-        <div class="flex-grow mt-2 sm:mt-0">
+    <div class="lg:flex lg:space-x-4">
+        <div class="flex-grow mt-2 lg:mt-0">
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('refuel-index.filter') }}" data-table-search="#refuel-list-table" />
         </div>
 
-        <div class="flex-grow mt-2 sm:mt-0">
+        <div class="flex-grow mt-2 lg:mt-0">
             <x-select name="device_id" :options="$devices" value="id" text="name" :placeholder="__('refuel-index.device')" data-change-submit></x-select>
         </div>
 
-        <div class="flex-grow mt-2 sm:mt-0">
+        <div class="flex-grow mt-2 lg:mt-0">
             <x-select name="year" :options="$years" :placeholder="__('refuel-index.year')" value-only data-change-submit></x-select>
         </div>
 
-        <div class="flex-grow mt-2 sm:mt-0">
+        <div class="flex-grow mt-2 lg:mt-0">
             <x-select name="month" :options="$months" :placeholder="__('refuel-index.month')" data-change-submit></x-select>
         </div>
 
-        <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
+        <div class="lg:ml-4 mt-2 lg:mt-0 bg-white">
             <a href="{{ route('refuel.create') }}" class="btn form-control-lg">{{ __('refuel-index.create') }}</a>
         </div>
     </div>
 </form>
 
-<div class="overflow-auto md:overflow-visible header-sticky">
+<div class="overflow-auto lg:overflow-visible header-sticky">
     <table id="refuel-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>

@@ -6,4 +6,11 @@ use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 
 class Country extends BuilderAbstract
 {
+    /**
+     * @return self
+     */
+    public function list(): self
+    {
+        return $this->orderBy('name', 'ASC');
+    }
 }

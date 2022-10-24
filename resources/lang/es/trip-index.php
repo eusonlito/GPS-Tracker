@@ -1,11 +1,18 @@
 <?php return [
     'actions' => 'Acciones',
+    'city' => 'Ciudad',
+    'country' => 'País',
     'distance' => 'Distancia',
     'end_at' => 'Fin',
     'filter' => 'Filtrar...',
     'id' => 'ID',
+    'last-month' => 'Último mes',
+    'last-months' => 'Últimos :month meses',
+    'last-week' => 'Última semana',
     'meta-title' => 'Viajes',
+    'months' => 'Sin Límite',
     'name' => 'Nombre',
     'start_at' => 'Inicio',
+    'state' => 'Provincia',
     'time' => 'Duración',
 ];

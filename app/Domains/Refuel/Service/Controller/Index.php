@@ -41,9 +41,7 @@ class Index extends ControllerAbstract
      */
     protected function list(): Collection
     {
-        static $cache;
-
-        return $cache ??= Model::list()
+        return $this->cache[__FUNCTION__] ??= Model::list()
             ->byUserId($this->auth->id)
             ->whenDeviceId((int)$this->request->input('device_id'))
             ->whenYear((int)$this->request->input('year'))

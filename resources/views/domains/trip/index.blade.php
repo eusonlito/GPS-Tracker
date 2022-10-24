@@ -3,14 +3,46 @@
 @section ('body')
 
 <form method="get">
-    <div class="sm:flex sm:space-x-4">
-        <div class="flex-grow mt-2 sm:mt-0">
+    <div class="lg:flex lg:space-x-4">
+        <div class="flex-grow mt-2 lg:mt-0">
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('trip-index.filter') }}" data-table-search="#trip-list-table"/>
         </div>
+
+        @if ($devices->count() > 1)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="device_id" :options="$devices" value="id" text="name" data-change-submit></x-select>
+        </div>
+
+        @endif
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="last" :options="$lasts" placeholder="{{ __('trip-index.months') }}" data-change-submit></x-select>
+        </div>
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="country_id" :options="$countries" value="id" text="name" placeholder="{{ __('trip-index.country') }}" data-change-submit></x-select>
+        </div>
+
+        @if ($country)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="state_id" :options="$states" value="id" text="name" placeholder="{{ __('trip-index.state') }}" data-change-submit></x-select>
+        </div>
+
+        @endif
+
+        @if ($state)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="city_id" :options="$cities" value="id" text="name" placeholder="{{ __('trip-index.city') }}" data-change-submit></x-select>
+        </div>
+
+        @endif
     </div>
 </form>
 
-<div class="overflow-auto md:overflow-visible header-sticky">
+<div class="overflow-auto lg:overflow-visible header-sticky">
     <table id="trip-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>

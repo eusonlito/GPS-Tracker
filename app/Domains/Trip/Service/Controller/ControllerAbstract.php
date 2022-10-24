@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Refuel\Service\Controller;
+namespace App\Domains\Trip\Service\Controller;
 
 use App\Domains\Shared\Service\Controller\ControllerAbstract as ControllerAbstractShared;
 

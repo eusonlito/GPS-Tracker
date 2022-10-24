@@ -5,7 +5,7 @@
 @if ($process->isNotEmpty())
 
 <div class="box p-5 mt-5">
-    <div class="overflow-auto md:overflow-visible header-sticky">
+    <div class="overflow-auto lg:overflow-visible header-sticky">
         <table class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
             <thead>
                 <tr>
@@ -40,7 +40,7 @@
 
 <form method="post">
     <div class="box p-5 mt-5">
-        <div class="overflow-auto md:overflow-visible header-sticky">
+        <div class="overflow-auto lg:overflow-visible header-sticky">
             <table class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
                 <thead>
                     <tr>

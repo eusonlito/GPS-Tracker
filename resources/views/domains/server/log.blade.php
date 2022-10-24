@@ -11,7 +11,7 @@
     @endforeach
 </div>
 
-<div class="overflow-auto md:overflow-visible header-sticky">
+<div class="overflow-auto lg:overflow-visible header-sticky">
     <table class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>

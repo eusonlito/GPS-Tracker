@@ -22,9 +22,13 @@
 
 <form>
     <div class="lg:flex lg:space-x-4">
+        @if ($devices->count() > 1)
+
         <div class="flex-1 mb-4">
             <x-select name="device_id" :options="$devices" value="id" text="name" data-change-submit></x-select>
         </div>
+
+        @endif
 
         <div class="flex-1 mb-4">
             <x-select name="trip_id" :options="$trips" value="id" text="name" data-change-submit></x-select>

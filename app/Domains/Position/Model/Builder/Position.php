@@ -2,10 +2,31 @@
 
 namespace App\Domains\Position\Model\Builder;
 
+use App\Domains\City\Model\City as CityModel;
 use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 
 class Position extends BuilderAbstract
 {
+    /**
+     * @param int $city_id
+     *
+     * @return self
+     */
+    public function byCityId(int $city_id): self
+    {
+        return $this->where('city_id', $city_id);
+    }
+
+    /**
+     * @param int $country_id
+     *
+     * @return self
+     */
+    public function byCountryId(int $country_id): self
+    {
+        return $this->whereIn('city_id', CityModel::select('id')->byCountryId($country_id));
+    }
+
     /**
      * @param string $date_utc_at
      *
@@ -24,6 +45,26 @@ class Position extends BuilderAbstract
     public function byDeviceId(int $device_id): self
     {
         return $this->where('device_id', $device_id);
+    }
+
+    /**
+     * @param int $days
+     *
+     * @return self
+     */
+    public function byLastDays(int $days): self
+    {
+        return $this->where('date_utc_at', '>=', date('Y-m-d H:i:s', strtotime('-'.$days.' days')));
+    }
+
+    /**
+     * @param int $state_id
+     *
+     * @return self
+     */
+    public function byStateId(int $state_id): self
+    {
+        return $this->whereIn('city_id', CityModel::select('id')->byStateId($state_id));
     }
 
     /**
@@ -90,6 +131,16 @@ class Position extends BuilderAbstract
             ROUND(ST_X(`point`), 5) AS `longitude`, ROUND(ST_Y(`point`), 5) AS `latitude`,
             `city_id`, `device_id`, `timezone_id`, `trip_id`, `user_id`
         ');
+    }
+
+    /**
+     * @param ?int $days
+     *
+     * @return self
+     */
+    public function whenLastDays(?int $days): self
+    {
+        return $this->when($days, static fn ($q) => $q->byLastDays($days));
     }
 
     /**
