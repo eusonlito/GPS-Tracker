@@ -9,6 +9,6 @@
     'protocol' => 'Protocolo',
     'select' => 'Seleccionar',
     'server-success' => 'Los Sockets han sido iniciados correctamente',
-    'start' => 'Inicio',
+    'start' => 'Iniciar/Reiniciar',
     'time' => 'Tiempo',
 ];
