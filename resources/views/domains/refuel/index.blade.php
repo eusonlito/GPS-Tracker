@@ -48,8 +48,8 @@
             <tr>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->date_at }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->device->name }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@number($row->distance_total, 0)</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@number($row->distance, 0)</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@distanceHuman($row->distance_total * 1000, 0)</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@distanceHuman($row->distance * 1000, 0)</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@number($row->quantity)</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@money($row->price, 3)</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@money($row->total)</a></td>
@@ -63,7 +63,7 @@
         <tfoot class="bg-white">
             <tr>
                 <th colspan="3"></th>
-                <th class="text-center">@number($totals->distance, 0)</th>
+                <th class="text-center">@distanceHuman($totals->distance * 1000, 0)</th>
                 <th class="text-center">@number($totals->quantity)</th>
                 <th class="text-center">@money($totals->price, 3)</th>
                 <th class="text-center">@money($totals->total)</th>

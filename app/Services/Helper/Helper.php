@@ -294,11 +294,11 @@ class Helper
 
     /**
      * @param int $bytes
-     * @param int $precision = 2
+     * @param int $decimals = 2
      *
      * @return string
      */
-    public function sizeHuman(int $bytes, int $precision = 2): string
+    public function sizeHuman(int $bytes, int $decimals = 2): string
     {
         if ($bytes === 0) {
             return '0B';
@@ -306,21 +306,18 @@ class Helper
 
         $e = floor(log($bytes, 1024));
 
-        return round($bytes / pow(1024, $e), $precision).['B', 'KB', 'MB', 'GB', 'TB', 'PB'][$e];
+        return round($bytes / pow(1024, $e), $decimals).['B', 'KB', 'MB', 'GB', 'TB', 'PB'][$e];
     }
 
     /**
      * @param int $meters
+     * @param int $decimals = 2
      *
      * @return string
      */
-    public function distanceHuman(int $meters): string
+    public function distanceHuman(int $meters, int $decimals = 2): string
     {
-        if ($meters > 1000) {
-            return sprintf('%.02f', round($meters / 1000, 2)).' km';
-        }
-
-        return sprintf('%.02f', $meters).' m';
+        return $this->number(($km = ($meters >= 1000)) ? ($meters / 1000) : $meters, $decimals).' '.($km ? 'km' : 'm');
     }
 
     /**
