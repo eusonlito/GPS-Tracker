@@ -4,7 +4,6 @@
     'error' => [
         'ids-empty' => 'No se ha seleccionado ningún viaje',
     ],
-    'id' => 'ID',
     'merge' => 'Unir con los viajes seleccionados',
     'name' => 'Nombre',
     'select' => 'Seleccionar',

@@ -21,6 +21,17 @@ class Index extends ControllerAbstract
      */
     public function __construct(protected Request $request, protected Authenticatable $auth)
     {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        if ($this->request->input('year') || $this->request->input('month')) {
+            $this->request->merge(['last' => '']);
+        }
     }
 
     /**
@@ -39,6 +50,8 @@ class Index extends ControllerAbstract
             'state' => $this->state(),
             'cities' => $this->cities(),
             'city' => $this->city(),
+            'years' => $this->years(),
+            'months' => $this->months(),
             'list' => $this->list(),
         ];
     }
@@ -79,15 +92,14 @@ class Index extends ControllerAbstract
      */
     protected function last(): ?int
     {
-        if (isset($this->cache[__FUNCTION__])) {
+        if (array_key_exists(__FUNCTION__, $this->cache)) {
             return $this->cache[__FUNCTION__];
         }
 
-        $input = $this->request->input();
+        $last = $this->request->input('last');
         $lasts = array_keys($this->lasts());
-        $last = $input['last'] ?? null;
 
-        if (array_key_exists('last', $input) === false) {
+        if ($last === null) {
             $last = $lasts[0];
         } elseif (empty($last)) {
             $last = null;
@@ -163,12 +175,33 @@ class Index extends ControllerAbstract
     }
 
     /**
+     * @return array
+     */
+    protected function years(): array
+    {
+        $first = Model::byUserId($this->auth->id)->selectStartAtAsYear()->orderByStartUtcAtAsc()->value('year');
+        $last = Model::byUserId($this->auth->id)->selectStartAtAsYear()->orderByStartUtcAtDesc()->value('year');
+
+        return $first ? range($first, $last) : [];
+    }
+
+    /**
+     * @return array
+     */
+    protected function months(): array
+    {
+        return helper()->months();
+    }
+
+    /**
      * @return \Illuminate\Support\Collection
      */
     protected function list(): Collection
     {
         return $this->cache[__FUNCTION__] ??= Model::byUserId($this->auth->id)
             ->whenLastDays($this->last())
+            ->whenYear((int)$this->request->input('year'))
+            ->whenMonth((int)$this->request->input('month'))
             ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id)
             ->list()
             ->get();

@@ -7,5 +7,7 @@
         'query' => 'Error del Sistema',
         'system' => 'Error del Sistema',
     ],
+    'month' => 'Mes',
     'show' => 'Mostrar',
+    'year' => 'Año',
 ];

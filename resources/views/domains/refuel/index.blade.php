@@ -13,11 +13,11 @@
         </div>
 
         <div class="flex-grow mt-2 lg:mt-0">
-            <x-select name="year" :options="$years" :placeholder="__('refuel-index.year')" value-only data-change-submit></x-select>
+            <x-select name="year" :options="$years" :placeholder="__('common.year')" value-only data-change-submit></x-select>
         </div>
 
         <div class="flex-grow mt-2 lg:mt-0">
-            <x-select name="month" :options="$months" :placeholder="__('refuel-index.month')" data-change-submit></x-select>
+            <x-select name="month" :options="$months" :placeholder="__('common.month')" data-change-submit></x-select>
         </div>
 
         <div class="lg:ml-4 mt-2 lg:mt-0 bg-white">

@@ -2,7 +2,6 @@
     'create' => 'Crear Dipositivo',
     'enabled' => 'Activo',
     'filter' => 'Filtrar...',
-    'id' => 'ID',
     'maker' => 'Fabricante',
     'meta-title' => 'Dispositivos',
     'name' => 'Nombre',

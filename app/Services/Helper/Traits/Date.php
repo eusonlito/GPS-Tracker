@@ -5,6 +5,7 @@ namespace App\Services\Helper\Traits;
 use DateTime;
 use DateTimeZone;
 use Exception;
+use IntlDateFormatter;
 
 trait Date
 {
@@ -171,5 +172,23 @@ trait Date
 
         return DateTimeZone::listIdentifiers(DateTimeZone::PER_COUNTRY, strtoupper($country))
             ?: DateTimeZone::listIdentifiers();
+    }
+
+    /**
+     * @return array
+     */
+    public function months(): array
+    {
+        $format = function ($index) {
+            $formatter = new IntlDateFormatter('es_ES');
+            $formatter->setPattern('MMMM');
+
+            return ucfirst($formatter->format(mktime(0, 0, 0, $index)));
+        };
+
+        return array_combine(
+            range(1, 12),
+            array_map(static fn ($index) => $format($index), range(1, 12))
+        );
     }
 }

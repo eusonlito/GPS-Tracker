@@ -6,9 +6,7 @@
     'delete' => 'Borrar las coordenadas seleccionadas',
     'delete-success' => 'Las coordenadas han sido borradas correctamente',
     'filter' => 'Filtrar...',
-    'id' => 'ID',
     'location' => 'Coordenadas',
-    'select' => 'Seleccionar',
     'signal' => 'Señal',
     'speed' => 'Velocidad',
 ];

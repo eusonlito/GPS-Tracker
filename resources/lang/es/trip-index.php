@@ -5,7 +5,6 @@
     'distance' => 'Distancia',
     'end_at' => 'Fin',
     'filter' => 'Filtrar...',
-    'id' => 'ID',
     'last-month' => 'Último mes',
     'last-months' => 'Últimos :month meses',
     'last-week' => 'Última semana',

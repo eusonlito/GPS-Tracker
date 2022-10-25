@@ -2,7 +2,6 @@
 
 namespace App\Domains\Refuel\Service\Controller;
 
-use IntlDateFormatter;
 use stdClass;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
@@ -74,17 +73,7 @@ class Index extends ControllerAbstract
      */
     protected function months(): array
     {
-        $format = function ($index) {
-            $formatter = new IntlDateFormatter('es_ES');
-            $formatter->setPattern('MMMM');
-
-            return ucfirst($formatter->format(mktime(0, 0, 0, $index)));
-        };
-
-        return array_combine(
-            range(1, 12),
-            array_map(static fn ($index) => $format($index), range(1, 12))
-        );
+        return helper()->months();
     }
 
     /**

@@ -48,6 +48,16 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @param int $month
+     *
+     * @return self
+     */
+    public function byMonth(int $month): self
+    {
+        return $this->whereMonth('start_at', $month);
+    }
+
+    /**
      * @param int $state_id
      *
      * @return self
@@ -64,7 +74,7 @@ class Trip extends BuilderAbstract
      */
     public function byStartUtcAtNext(string $start_utc_at): self
     {
-        return $this->where('start_utc_at', '>', $start_utc_at)->orderBy('start_utc_at', 'ASC');
+        return $this->where('start_utc_at', '>', $start_utc_at)->orderByStartUtcAtAsc();
     }
 
     /**
@@ -74,7 +84,17 @@ class Trip extends BuilderAbstract
      */
     public function byStartUtcAtPrevious(string $start_utc_at): self
     {
-        return $this->where('start_utc_at', '<', $start_utc_at)->orderBy('start_utc_at', 'DESC');
+        return $this->where('start_utc_at', '<', $start_utc_at)->orderByStartUtcAtDesc();
+    }
+
+    /**
+     * @param int $year
+     *
+     * @return self
+     */
+    public function byYear(int $year): self
+    {
+        return $this->whereYear('start_at', $year);
     }
 
     /**
@@ -82,7 +102,7 @@ class Trip extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->orderBy('start_utc_at', 'DESC');
+        return $this->orderByStartUtcAtDesc();
     }
 
     /**
@@ -92,7 +112,31 @@ class Trip extends BuilderAbstract
      */
     public function nearToStartUtcAt(string $start_utc_at): self
     {
-        return $this->where('start_utc_at', '<=', $start_utc_at)->orderBy('start_utc_at', 'DESC');
+        return $this->where('start_utc_at', '<=', $start_utc_at)->orderByStartUtcAtDesc();
+    }
+
+    /**
+     * @return self
+     */
+    public function orderByStartUtcAtAsc(): self
+    {
+        return $this->orderBy('start_utc_at', 'ASC');
+    }
+
+    /**
+     * @return self
+     */
+    public function orderByStartUtcAtDesc(): self
+    {
+        return $this->orderBy('start_utc_at', 'DESC');
+    }
+
+    /**
+     * @return self
+     */
+    public function selectStartAtAsYear(): self
+    {
+        return $this->selectRaw('YEAR(`start_at`) `year`');
     }
 
     /**
@@ -120,6 +164,26 @@ class Trip extends BuilderAbstract
     public function whenLastDays(?int $days): self
     {
         return $this->when($days, static fn ($q) => $q->byLastDays($days));
+    }
+
+    /**
+     * @param ?int $month
+     *
+     * @return self
+     */
+    public function whenMonth(?int $month): self
+    {
+        return $this->when($month, static fn ($q) => $q->byMonth($month));
+    }
+
+    /**
+     * @param ?int $year
+     *
+     * @return self
+     */
+    public function whenYear(?int $year): self
+    {
+        return $this->when($year, static fn ($q) => $q->byYear($year));
     }
 
     /**
