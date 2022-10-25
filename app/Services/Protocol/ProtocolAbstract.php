@@ -17,6 +17,13 @@ abstract class ProtocolAbstract
     /**
      * @param string $body
      *
+     * @return array
+     */
+    abstract public function resources(string $body): array;
+
+    /**
+     * @param string $body
+     *
      * @return \App\Services\Protocol\Resource
      */
     abstract public function resource(string $body): Resource;

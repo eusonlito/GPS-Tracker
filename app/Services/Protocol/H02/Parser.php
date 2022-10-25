@@ -48,6 +48,7 @@ class Parser
         $this->values = explode(',', substr($this->body, 1, -1));
 
         return [
+            'body' => $this->body,
             'maker' => $this->maker(),
             'serial' => $this->serial(),
             'type' => $this->type(),

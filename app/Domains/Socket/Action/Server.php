@@ -101,14 +101,17 @@ class Server extends ActionAbstract
     {
         $this->logDebug($body);
 
-        $resource = $this->protocol->resource($body);
+        $resources = $this->protocol->resources($body);
 
-        if ($resource->isValid() === false) {
+        if (empty($resources)) {
             return null;
         }
 
         $this->log($body);
-        $this->save($resource);
+
+        foreach ($resources as $resource) {
+            $this->save($resource);
+        }
 
         return $resource->response();
     }

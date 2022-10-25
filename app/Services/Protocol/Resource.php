@@ -8,7 +8,7 @@ class Resource
      * @const array
      */
     protected const ATTRIBUTES = [
-        'maker', 'serial', 'type', 'latitude', 'longitude', 'speed',
+        'body', 'maker', 'serial', 'type', 'latitude', 'longitude', 'speed',
         'signal', 'direction', 'datetime', 'timezone', 'country', 'response',
     ];
 
@@ -66,6 +66,14 @@ class Resource
             && $this->latitude()
             && $this->longitude()
             && $this->datetime();
+    }
+
+    /**
+     * @return ?string
+     */
+    public function body(): ?string
+    {
+        return $this->attribute(__FUNCTION__);
     }
 
     /**

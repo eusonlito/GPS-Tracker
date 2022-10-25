@@ -80,9 +80,7 @@ class LogRead extends ActionAbstract
      */
     protected function store(string $body): void
     {
-        $resource = $this->protocol->resource($body);
-
-        if ($resource->isValid()) {
+        foreach ($this->protocol->resources($body) as $resource) {
             $this->save($resource);
         }
     }
