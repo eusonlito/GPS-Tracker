@@ -9,22 +9,24 @@ class Trip extends BuilderAbstract
 {
     /**
      * @param int $city_id
+     * @param ?string $start_end = null
      *
      * @return self
      */
-    public function byCityId(int $city_id): self
+    public function byCityId(int $city_id, ?string $start_end = null): self
     {
-        return $this->whereIn('id', PositionModel::select('trip_id')->byCityId($city_id));
+        return $this->whereIn('id', PositionModel::select('trip_id')->byCityId($city_id)->whenStartEnd($start_end));
     }
 
     /**
      * @param int $country_id
+     * @param ?string $start_end = null
      *
      * @return self
      */
-    public function byCountryId(int $country_id): self
+    public function byCountryId(int $country_id, ?string $start_end = null): self
     {
-        return $this->whereIn('id', PositionModel::select('trip_id')->byCountryId($country_id));
+        return $this->whereIn('id', PositionModel::select('trip_id')->byCountryId($country_id)->whenStartEnd($start_end));
     }
 
     /**
@@ -58,16 +60,6 @@ class Trip extends BuilderAbstract
     }
 
     /**
-     * @param int $state_id
-     *
-     * @return self
-     */
-    public function byStateId(int $state_id): self
-    {
-        return $this->whereIn('id', PositionModel::select('trip_id')->byStateId($state_id));
-    }
-
-    /**
      * @param string $start_utc_at
      *
      * @return self
@@ -85,6 +77,17 @@ class Trip extends BuilderAbstract
     public function byStartUtcAtPrevious(string $start_utc_at): self
     {
         return $this->where('start_utc_at', '<', $start_utc_at)->orderByStartUtcAtDesc();
+    }
+
+    /**
+     * @param int $state_id
+     * @param ?string $start_end = null
+     *
+     * @return self
+     */
+    public function byStateId(int $state_id, ?string $start_end = null): self
+    {
+        return $this->whereIn('id', PositionModel::select('trip_id')->byStateId($state_id)->whenStartEnd($start_end));
     }
 
     /**
@@ -118,6 +121,22 @@ class Trip extends BuilderAbstract
     /**
      * @return self
      */
+    public function orderByStartAtAsc(): self
+    {
+        return $this->orderBy('start_at', 'ASC');
+    }
+
+    /**
+     * @return self
+     */
+    public function orderByStartAtDesc(): self
+    {
+        return $this->orderBy('start_at', 'DESC');
+    }
+
+    /**
+     * @return self
+     */
     public function orderByStartUtcAtAsc(): self
     {
         return $this->orderBy('start_utc_at', 'ASC');
@@ -132,26 +151,19 @@ class Trip extends BuilderAbstract
     }
 
     /**
-     * @return self
-     */
-    public function selectStartAtAsYear(): self
-    {
-        return $this->selectRaw('YEAR(`start_at`) `year`');
-    }
-
-    /**
      * @param ?int $city_id
      * @param ?int $state_id
      * @param ?int $country_id
+     * @param ?string $start_end = null
      *
      * @return self
      */
-    public function whenCityStateCountry(?int $city_id, ?int $state_id, ?int $country_id): self
+    public function whenCityStateCountry(?int $city_id, ?int $state_id, ?int $country_id, ?string $start_end = null): self
     {
         return match (true) {
-            boolval($city_id) => $this->byCityId($city_id),
-            boolval($state_id) => $this->byStateId($state_id),
-            boolval($country_id) => $this->byCountryId($country_id),
+            boolval($city_id) => $this->byCityId($city_id, $start_end),
+            boolval($state_id) => $this->byStateId($state_id, $start_end),
+            boolval($country_id) => $this->byCountryId($country_id, $start_end),
             default => $this,
         };
     }

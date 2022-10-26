@@ -144,6 +144,36 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @param ?string $start_end
+     *
+     * @return self
+     */
+    public function whenStartEnd(?string $start_end): self
+    {
+        return match ($start_end) {
+            'start' => $this->whereStart(),
+            'end' => $this->whereEnd(),
+            default => $this,
+        };
+    }
+
+    /**
+     * @return self
+     */
+    public function whereEnd(): self
+    {
+        return $this->whereRaw('`date_utc_at` IN (SELECT MAX(`date_utc_at`) FROM `position` GROUP BY `trip_id`)');
+    }
+
+    /**
+     * @return self
+     */
+    public function whereStart(): self
+    {
+        return $this->whereRaw('`date_utc_at` IN (SELECT MIN(`date_utc_at`) FROM `position` GROUP BY `trip_id`)');
+    }
+
+    /**
      * @return self
      */
     public function withCity(): self

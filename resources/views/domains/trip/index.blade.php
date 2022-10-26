@@ -47,6 +47,14 @@
         </div>
 
         @endif
+
+        @if ($country)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="start_end" :options="$starts_ends" placeholder="{{ __('trip-index.start_end') }}" data-change-submit></x-select>
+        </div>
+
+        @endif
     </div>
 </form>
 

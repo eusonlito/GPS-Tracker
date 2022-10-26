@@ -29,6 +29,18 @@ class State extends BuilderAbstract
     }
 
     /**
+     * @param int $user_id
+     * @param ?int $days
+     * @param ?string $start_end
+     *
+     * @return self
+     */
+    public function byUserIdDaysAndStartEnd(int $user_id, ?int $days, ?string $start_end): self
+    {
+        return $this->whereIn('id', CityModel::select('state_id')->byUserIdDaysAndStartEnd($user_id, $days, $start_end));
+    }
+
+    /**
      * @return self
      */
     public function list(): self

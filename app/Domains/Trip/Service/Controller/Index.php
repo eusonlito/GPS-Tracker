@@ -52,6 +52,7 @@ class Index extends ControllerAbstract
             'city' => $this->city(),
             'years' => $this->years(),
             'months' => $this->months(),
+            'starts_ends' => $this->startsEnds(),
             'list' => $this->list(),
         ];
     }
@@ -138,7 +139,7 @@ class Index extends ControllerAbstract
         }
 
         return $this->cache[__FUNCTION__] ??= StateModel::byCountryId($country_id)
-            ->byUserIdAndDays($this->auth->id, $this->last())
+            ->byUserIdDaysAndStartEnd($this->auth->id, $this->last(), $this->request->input('start_end'))
             ->list()
             ->get();
     }
@@ -161,7 +162,7 @@ class Index extends ControllerAbstract
         }
 
         return $this->cache[__FUNCTION__] ??= CityModel::byStateId($state_id)
-            ->byUserIdAndDays($this->auth->id, $this->last())
+            ->byUserIdDaysAndStartEnd($this->auth->id, $this->last(), $this->request->input('start_end'))
             ->list()
             ->get();
     }
@@ -179,8 +180,8 @@ class Index extends ControllerAbstract
      */
     protected function years(): array
     {
-        $first = Model::byUserId($this->auth->id)->selectStartAtAsYear()->orderByStartUtcAtAsc()->value('year');
-        $last = Model::byUserId($this->auth->id)->selectStartAtAsYear()->orderByStartUtcAtDesc()->value('year');
+        $first = Model::byUserId($this->auth->id)->orderByStartAtAsc()->rawValue('YEAR(`start_at`)');
+        $last = Model::byUserId($this->auth->id)->orderByStartAtDesc()->rawValue('YEAR(`start_at`)');
 
         return $first ? range($first, $last) : [];
     }
@@ -194,6 +195,17 @@ class Index extends ControllerAbstract
     }
 
     /**
+     * @return array
+     */
+    protected function startsEnds(): array
+    {
+        return $this->cache[__FUNCTION__] ??= [
+            'start' => __('trip-index.start'),
+            'end' => __('trip-index.end'),
+        ];
+    }
+
+    /**
      * @return \Illuminate\Support\Collection
      */
     protected function list(): Collection
@@ -202,7 +214,7 @@ class Index extends ControllerAbstract
             ->whenLastDays($this->last())
             ->whenYear((int)$this->request->input('year'))
             ->whenMonth((int)$this->request->input('month'))
-            ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id)
+            ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
             ->list()
             ->get();
     }

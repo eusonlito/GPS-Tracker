@@ -62,8 +62,8 @@ class Index extends ControllerAbstract
      */
     protected function years(): array
     {
-        $first = Model::byUserId($this->auth->id)->selectDateAtAsYear()->orderByDateAtAsc()->value('year');
-        $last = Model::byUserId($this->auth->id)->selectDateAtAsYear()->orderByDateAtDesc()->value('year');
+        $first = Model::byUserId($this->auth->id)->orderByDateAtAsc()->rawValue('YEAR(`date_at`)');
+        $last = Model::byUserId($this->auth->id)->orderByDateAtDesc()->rawValue('YEAR(`date_at`)');
 
         return $first ? range($first, $last) : [];
     }

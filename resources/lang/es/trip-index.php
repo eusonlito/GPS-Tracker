@@ -3,6 +3,7 @@
     'city' => 'Ciudad',
     'country' => 'País',
     'distance' => 'Distancia',
+    'end' => 'Llegada',
     'end_at' => 'Fin',
     'filter' => 'Filtrar...',
     'last-month' => 'Último mes',
@@ -11,7 +12,9 @@
     'meta-title' => 'Viajes',
     'months' => 'Sin Límite',
     'name' => 'Nombre',
+    'start' => 'Salida',
     'start_at' => 'Inicio',
+    'start_end' => 'Trayecto',
     'state' => 'Provincia',
     'time' => 'Duración',
 ];

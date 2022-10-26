@@ -61,14 +61,6 @@ class Refuel extends BuilderAbstract
     }
 
     /**
-     * @return self
-     */
-    public function selectDateAtAsYear(): self
-    {
-        return $this->selectRaw('YEAR(`date_at`) `year`');
-    }
-
-    /**
      * @param ?int $device_id
      *
      * @return self

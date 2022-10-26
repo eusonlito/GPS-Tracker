@@ -50,6 +50,18 @@ class City extends BuilderAbstract
     }
 
     /**
+     * @param int $user_id
+     * @param ?int $days
+     * @param ?string $start_end
+     *
+     * @return self
+     */
+    public function byUserIdDaysAndStartEnd(int $user_id, ?int $days, ?string $start_end): self
+    {
+        return $this->whereIn('id', PositionModel::select('city_id')->byUserId($user_id)->whenLastDays($days)->whenStartEnd($start_end));
+    }
+
+    /**
      * @return self
      */
     public function list(): self
