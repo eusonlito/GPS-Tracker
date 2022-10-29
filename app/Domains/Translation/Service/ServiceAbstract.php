@@ -15,6 +15,14 @@ abstract class ServiceAbstract
     protected array $folders = ['app', 'resources/views'];
 
     /**
+     * @return self
+     */
+    public static function new(): self
+    {
+        return new static(...func_get_args());
+    }
+
+    /**
      * @param array $folders = []
      *
      * @return self

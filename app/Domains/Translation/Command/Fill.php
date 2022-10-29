@@ -2,8 +2,6 @@
 
 namespace App\Domains\Translation\Command;
 
-use App\Domains\Translation\Service\Fill as FillService;
-
 class Fill extends CommandAbstract
 {
     /**
@@ -21,6 +19,10 @@ class Fill extends CommandAbstract
      */
     public function handle()
     {
-        (new FillService())->write();
+        $this->info('[START]');
+
+        $this->action()->fill();
+
+        $this->info('[END]');
     }
 }

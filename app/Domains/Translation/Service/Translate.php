@@ -3,54 +3,27 @@
 namespace App\Domains\Translation\Service;
 
 use App\Exceptions\UnexpectedValueException;
+use App\Services\Translator\TranslatorFactory;
 
 class Translate extends ServiceAbstract
 {
-    /**
-     * @const string
-     */
-    protected const ENDPOINT = 'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=:from&to=:to';
-
-    /**
-     * @var array
-     */
-    protected array $config;
-
-    /**
-     * @var string
-     */
-    protected string $reference;
-
-    /**
-     * @var string
-     */
-    protected string $lang;
-
     /**
      * @var string
      */
     protected string $base = 'resources/lang';
 
     /**
-     * @param string $lang
+     * @param string $from
+     * @param string $to
      *
      * @return self
      */
-    public function __construct(string $lang)
+    public function __construct(protected string $from, protected string $to)
     {
-        $this->reference = config('app.locale');
-
-        if ($lang === $this->reference) {
-            throw new UnexpectedValueException(sprintf('Language must be different than reference language %s', $lang));
+        if ($this->from === $this->to) {
+            throw new UnexpectedValueException('Languages must be different');
         }
 
-        $this->config = config('microsoft.azure', []);
-
-        if (empty($this->config['key']) || empty($this->config['region'])) {
-            throw new UnexpectedValueException('You must set a Microsoft Azure Key and Region');
-        }
-
-        $this->lang = $lang;
         $this->base = base_path($this->base);
     }
 
@@ -69,7 +42,7 @@ class Translate extends ServiceAbstract
      */
     protected function files(): array
     {
-        return glob($this->base.'/'.$this->reference.'/*.php');
+        return glob($this->base.'/'.$this->from.'/*.php');
     }
 
     /**
@@ -79,20 +52,20 @@ class Translate extends ServiceAbstract
      */
     protected function file(string $name): string
     {
-        return $this->base.'/'.$this->lang.'/'.$name;
+        return $this->base.'/'.$this->to.'/'.$name;
     }
 
     /**
-     * @param string $reference
+     * @param string $from
      *
      * @return void
      */
-    protected function translate(string $reference): void
+    protected function translate(string $from): void
     {
-        $file = $this->file(basename($reference));
+        $file = $this->file(basename($from));
         $current = array_dot(is_file($file) ? (require $file) : []);
         $empty = helper()->arrayFilterRecursive($current, static fn ($value) => is_string($value) && empty($value));
-        $strings = array_intersect_key(array_dot(require $reference), $empty);
+        $strings = array_filter(array_intersect_key(array_dot(require $from), $empty));
 
         if (empty($strings)) {
             return;
@@ -119,43 +92,6 @@ class Translate extends ServiceAbstract
      */
     protected function request(array $strings): array
     {
-        $response = file_get_contents($this->requestEndpoint(), false, stream_context_create([
-            'http' => [
-                'method' => 'POST',
-                'header' => $this->requestHeader(),
-                'content' => $this->requestContent($strings),
-            ],
-        ]));
-
-        return array_map(static fn ($value) => $value->translations[0]->text, json_decode($response));
-    }
-
-    /**
-     * @return string
-     */
-    protected function requestEndpoint(): string
-    {
-        return str_replace([':from', ':to'], [$this->reference, $this->lang], static::ENDPOINT);
-    }
-
-    /**
-     * @return string
-     */
-    protected function requestHeader(): string
-    {
-        return ''
-            .'Content-type: application/json'."\r\n"
-            .'Ocp-Apim-Subscription-Key: '.$this->config['key']."\r\n"
-            .'Ocp-Apim-Subscription-Region: '.$this->config['region']."\r\n";
-    }
-
-    /**
-     * @param array $strings
-     *
-     * @return string
-     */
-    protected function requestContent(array $strings): string
-    {
-        return json_encode(array_map(static fn ($value) => ['Text' => $value], array_values($strings)));
+        return TranslatorFactory::get()->array($this->from, $this->to, $strings);
     }
 }

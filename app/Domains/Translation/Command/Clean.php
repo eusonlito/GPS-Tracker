@@ -2,8 +2,6 @@
 
 namespace App\Domains\Translation\Command;
 
-use App\Domains\Translation\Service\Clean as CleanService;
-
 class Clean extends CommandAbstract
 {
     /**
@@ -21,6 +19,10 @@ class Clean extends CommandAbstract
      */
     public function handle()
     {
-        (new CleanService())->write();
+        $this->info('[START]');
+
+        $this->action()->clean();
+
+        $this->info('[END]');
     }
 }

@@ -2,14 +2,12 @@
 
 namespace App\Domains\Translation\Command;
 
-use App\Domains\Translation\Service\Translate as TranslateService;
-
 class Translate extends CommandAbstract
 {
     /**
      * @var string
      */
-    protected $signature = 'translation:translate {lang}';
+    protected $signature = 'translation:translate {--from=} {--to=}';
 
     /**
      * @var string
@@ -21,6 +19,13 @@ class Translate extends CommandAbstract
      */
     public function handle()
     {
-        (new TranslateService((string)$this->argument('lang')))->write();
+        $this->info('[START]');
+
+        $this->checkOptions(['from', 'to']);
+        $this->requestWithOptions();
+
+        $this->action()->translate();
+
+        $this->info('[END]');
     }
 }

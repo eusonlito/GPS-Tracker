@@ -2,8 +2,6 @@
 
 namespace App\Domains\Translation\Command;
 
-use App\Domains\Translation\Service\Fixed as FixedService;
-
 class Fixed extends CommandAbstract
 {
     /**
@@ -21,8 +19,12 @@ class Fixed extends CommandAbstract
      */
     public function handle()
     {
-        foreach ((new FixedService((array)$this->option('paths-exclude')))->scan() as $status) {
-            $this->info($status);
-        }
+        $this->info('[START]');
+
+        $this->requestWithOptions();
+
+        $this->action()->fixed();
+
+        $this->info('[END]');
     }
 }

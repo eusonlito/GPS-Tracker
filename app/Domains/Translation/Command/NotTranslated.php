@@ -2,8 +2,6 @@
 
 namespace App\Domains\Translation\Command;
 
-use App\Domains\Translation\Service\NotTranslated as NotTranslatedService;
-
 class NotTranslated extends CommandAbstract
 {
     /**
@@ -21,8 +19,10 @@ class NotTranslated extends CommandAbstract
      */
     public function handle()
     {
-        foreach ((new NotTranslatedService())->scan() as $status) {
-            $this->info($status);
-        }
+        $this->info('[START]');
+
+        $this->action()->notTranslated();
+
+        $this->info('[END]');
     }
 }

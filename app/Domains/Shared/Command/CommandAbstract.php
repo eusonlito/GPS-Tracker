@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Domains\Shared\Action\ActionFactoryAbstract;
+use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Traits\Factory;
 use App\Exceptions\ValidatorException;
 
@@ -115,5 +117,16 @@ abstract class CommandAbstract extends Command
         Auth::login($user);
 
         return $this->auth = $user;
+    }
+
+    /**
+     * @param ?\App\Domains\Shared\Model\ModelAbstract $row = null
+     * @param array $data = []
+     *
+     * @return \App\Domains\Shared\Action\ActionFactoryAbstract
+     */
+    final protected function action(?ModelAbstract $row = null, array $data = []): ActionFactoryAbstract
+    {
+        return $this->factory(row: $row)->action($data);
     }
 }

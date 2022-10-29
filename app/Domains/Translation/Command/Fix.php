@@ -2,8 +2,6 @@
 
 namespace App\Domains\Translation\Command;
 
-use App\Domains\Translation\Service\Fix as FixService;
-
 class Fix extends CommandAbstract
 {
     /**
@@ -21,6 +19,10 @@ class Fix extends CommandAbstract
      */
     public function handle()
     {
-        (new FixService())->write();
+        $this->info('[START]');
+
+        $this->action()->fix();
+
+        $this->info('[END]');
     }
 }

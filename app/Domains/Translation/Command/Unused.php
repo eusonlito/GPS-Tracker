@@ -2,8 +2,6 @@
 
 namespace App\Domains\Translation\Command;
 
-use App\Domains\Translation\Service\Unused as UnusedService;
-
 class Unused extends CommandAbstract
 {
     /**
@@ -21,6 +19,10 @@ class Unused extends CommandAbstract
      */
     public function handle()
     {
-        (new UnusedService())->write();
+        $this->info('[START]');
+
+        $this->action()->unused();
+
+        $this->info('[END]');
     }
 }
