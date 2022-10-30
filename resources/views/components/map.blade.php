@@ -1,9 +1,14 @@
-<app-map class="map" data-map data-map-id="{{ $id }}" data-map-positions="{{ $json }}" data-map-positions-url="{{ route('trip.update.position', $id) }}" {{ $attributes }}>
+<app-map class="map" data-map data-map-id="{{ $trip->id }}" data-map-positions="{{ $json }}" data-map-positions-url="{{ route('trip.update.position', $trip->id) }}" {{ $attributes }}>
     <div class="map-map">
         <div class="map-map-render" data-map-render></div>
     </div>
 
-    <div class="map-list box p-5">
+    <div class="map-list box px-5 py-2">
+        <div class="flex items-center text-center">
+            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600">@distanceHuman($trip->distance)</div>
+            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600">@timeHuman($trip->time)</div>
+        </div>
+
         <table class="table table-report font-medium text-center whitespace-nowrap text-xs" data-table-sort>
             <thead>
                 <tr>

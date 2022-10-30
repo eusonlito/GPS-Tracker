@@ -6,16 +6,17 @@ use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Trip\Model\Trip as TripModel;
 
 class Map extends Component
 {
     /**
-     * @param int $id
+     * @param \App\Domains\Trip\Model\Trip $trip
      * @param \Illuminate\Support\Collection $positions
      *
      * @return self
      */
-    public function __construct(readonly public int $id, readonly public Collection $positions)
+    public function __construct(readonly public TripModel $trip, readonly public Collection $positions)
     {
     }
 

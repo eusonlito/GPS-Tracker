@@ -45,7 +45,7 @@
     </div>
 </form>
 
-<x-map :id="$trip->id" :positions="$positions" data-map-show-last="true"></x-map>
+<x-map :trip="$trip" :positions="$positions" data-map-show-last="true"></x-map>
 
 @endif
 
