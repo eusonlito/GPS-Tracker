@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
+use App\Domains\Trip\Model\Trip as Model;
 
 class UpdatePosition extends UpdateAbstract
 {
@@ -38,20 +39,20 @@ class UpdatePosition extends UpdateAbstract
      */
     protected function responseJson(): JsonResponse
     {
-        return $this->json($this->factory('Position')->fractal('map', $this->responseJsonPositions()));
+        return $this->json($this->factory()->fractal('map', $this->responseJsonRowWithPositions()));
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Trip\Model\Trip
      */
-    protected function responseJsonPositions(): Collection
+    protected function responseJsonRowWithPositions(): Model
     {
-        return $this->row->positions()
+        return $this->row->setRelation('positions', $this->row->positions()
             ->selectPointAsLatitudeLongitude()
             ->byIdNext((int)$this->request->input('id_from'))
             ->withCity()
             ->list()
-            ->get();
+            ->get());
     }
 
     /**

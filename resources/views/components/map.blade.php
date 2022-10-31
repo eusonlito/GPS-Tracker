@@ -5,8 +5,8 @@
 
     <div class="map-list box px-5 py-2">
         <div class="flex items-center text-center">
-            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600">@distanceHuman($trip->distance)</div>
-            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600">@timeHuman($trip->time)</div>
+            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600" map-list-distance>@distanceHuman($trip->distance)</div>
+            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600" map-list-time>@timeHuman($trip->time)</div>
         </div>
 
         <table class="table table-report font-medium text-center whitespace-nowrap text-xs" data-table-sort>

@@ -166,6 +166,9 @@ import Feather from './feather';
         return;
     }
 
+    const distance = document.querySelector('[map-list-distance]');
+    const time = document.querySelector('[map-list-time]');
+
     let interval;
 
     live.addEventListener('click', (e) => {
@@ -202,7 +205,12 @@ import Feather from './feather';
             .send();
     };
 
-    const liveStartMapPositions = function (positions) {
+    const liveStartMapPositions = function (trip) {
+        distance.textContent = distanceHuman(trip.distance);
+        time.textContent = timeHuman(trip.time);
+
+        const positions = trip.positions;
+
         if (!positions || !positions.length) {
             return;
         }
@@ -252,5 +260,28 @@ import Feather from './feather';
 
     const tableAddPositionSignal = function (td, position) {
         td.innerHTML = Feather(position.signal ? 'check-square' : 'square', '', !!position.signal);
+    };
+
+    const distanceHuman = function (meters) {
+        let decimals = 2,
+            units = 'km';
+
+        if (meters >= 1000) {
+            meters /= 1000;
+        } else {
+            decimals = 0;
+            units = 'm';
+        }
+
+        return new Intl.NumberFormat('es-ES', {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals
+        }).format(meters) + ' ' + units;
+    };
+
+    const timeHuman = function (seconds) {
+        return ('00' + Math.floor(seconds / 3600)).slice(-2)
+            + ':' + ('00' + Math.floor(seconds / 60 % 60)).slice(-2)
+            + ':' + ('00' + Math.floor(seconds % 60)).slice(-2);
     };
 })();
