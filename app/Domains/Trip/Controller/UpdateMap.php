@@ -19,7 +19,7 @@ class UpdateMap extends UpdateAbstract
         $this->meta('title', $this->row->name);
 
         return $this->page('trip.update-map', [
-            'positions' => $this->row->positions()->selectPointAsLatitudeLongitude()->list()->get(),
+            'positions' => $this->row->positions()->selectPointAsLatitudeLongitude()->withCity()->list()->get(),
         ]);
     }
 }
