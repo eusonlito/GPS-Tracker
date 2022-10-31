@@ -74,7 +74,7 @@ The opened port for the connection of devices with H02 protocol is `8091` made b
 To configure your device via SMS you can do it with the following command:
 
 ```
-804{PASSWORD} {IP/HOST} {PUERTO}
+804{PASSWORD} {IP/HOST} {PORT}
 ```
 
 You can configure the connection server in the device using either the IP or a HOST that will resolve internally BUT ONLY AT THE TIME OF RECEIVING THE COMMAND, so if the server does not have a fixed IP as soon as it changes you will stop receiving data from the device.
@@ -84,7 +84,7 @@ You can configure the connection server in the device using either the IP or a H
 #### Configuring the Phone from which you can connect to the device
 
 ```
-{TELEFONO}{PASSWORD} 1
+{PHONE}{PASSWORD} 1
 ```
 
 #### Set the time zone to UTC to delegate the time adjustment to the platform.
@@ -102,31 +102,31 @@ You can configure the connection server in the device using either the IP or a H
 #### Configure APN Operator
 
 ```
-803{PASSWORD} {OPERADORA}
+803{PASSWORD} {OPERATOR}
 ```
 
 #### Configure Server
 
 ```
-804{PASSWORD} {IP/HOST} {PUERTO}
+804{PASSWORD} {IP/HOST} {PORT}
 ```
 
 #### Configure frequency in seconds of sending position reports with the car ignition on
 
 ```
-805{PASSWORD} {SEGUNDOS}
+805{PASSWORD} {SECONDS}
 ```
 
 #### Configure frequency in seconds of sending position reports with the car ignition off
 
 ```
-809{PASSWORD} {SEGUNDOS}
+809{PASSWORD} {SECONDS}
 ```
 
 #### Set timeout before switching to SLEEP mode when the car is stopped
 
 ```
-SLEEP{PASSWORD} {SEGUNDOS}
+SLEEP{PASSWORD} {SECONDS}
 ```
 
 #### Deactivate call in case of alarm
