@@ -12,7 +12,7 @@ Plataforma de gestión de dispositivos Sinotrack ST-90x creada con Laravel 9 + P
 git clone https://github.com/eusonlito/GPS-Tracker.git
 ```
 
-3. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.0).
+3. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.1).
 
 ```bash
 composer install --no-scripts --no-dev
