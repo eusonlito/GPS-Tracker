@@ -79,7 +79,11 @@ class Create extends ActionAbstract
      */
     protected function dataLanguageId(): void
     {
-        $this->data['language_id'] = LanguageModel::whereDefault(true)->firstOrFail('id')->id;
+        $this->data['language_id'] = LanguageModel::select('id')->when(
+            $this->data['language_id'],
+            static fn ($q) => $q->byId($this->data['language_id']),
+            static fn ($q) => $q->whereDefault(true)
+        )->firstOrFail()->id;
     }
 
     /**

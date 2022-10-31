@@ -1,157 +1,157 @@
-[English](README.en.md)
+[Castellano](README.md)
 
 # GPS Tracker (Laravel 9 + PHP 8.1 + MySQL 8)
 
-Plataforma de gestión de dispositivos Sinotrack ST-90x creada con Laravel 9 + PHP 8.1 y MySQL 8.
+Sinotrack ST-90x device management platform built with Laravel 9 + PHP 8.1 and MySQL 8.
 
-### Instalación
+### Installation
 
-1. Creamos la base de datos en MySQL.
+1. Create the database in MySQL.
 
-2. Clonamos el repositorio.
+2. Clone the repository.
 
 ```bash
 git clone https://github.com/eusonlito/GPS-Tracker.git
 ```
 
-3. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.1).
+3. Perform the first installation (remember always using the PHP 8.1 binary).
 
 ```bash
 composer install --no-scripts --no-dev
 composer install --no-dev --optimize-autoloader --classmap-authoritative
 ```
 
-4. Configuramos el fichero `.env` con los datos necesarios.
+4. Configure the `.env` file with the necessary data.
 
 ```bash
 cp .env.example .env
 ```
 
-5. Generamos la clave de aplicación.
+5. Generate the application key.
 
 ```bash
 php artisan key:generate
 ```
 
-6. Regeneramos las cachés.
+6. Regenerate the caches.
 
 ```bash
 composer artisan-cache
 ```
 
-7. Lanzamos la migración inicial.
+7. Launch the initial migration.
 
 ```bash
 php artisan migrate --path=database/migrations
 ```
 
-8. Lanzamos el seeder.
+8. Launch the seeder.
 
 ```bash
 php artisan db:seed --class=Database\\Seeders\\Database
 ```
 
-9. Configuramos la tarea cron para el usuario relacionado con el proyecto:
+9. Configure the cron job for the user related to the project:
 
 ```
 * * * * * cd /var/www/tracker.domain.com && install -d storage/logs/artisan/$(date +"\%Y-\%m-\%d") && /usr/bin/php artisan schedule:run >> storage/logs/artisan/$(date +"\%Y-\%m-\%d")/schedule-run.log 2>&1
 ```
 
-10. Creamos el usuario principal.
+10. Create the main user.
 
 ```bash
 php artisan user:create --email=user@domain.com --name=Admin --password=StrongPassword2 --enabled --admin
 ```
 
-11. Configuramos el `DocumentRoot` del servidor web para apuntar a `/var/www/project/public`.
+11. Configure the web server `DocumentRoot` to `/var/www/project/public`.
 
 12. Profit!
 
-### Conexión vía Socket
+### Socket connection
 
-El puerto abierto para la conexión de dispositivos con protocolo H02 se realiza por defecto en el puerto `8091`, pero puede ser personalizado cambiando el fichero `config/sockets.php`.
+The opened port for the connection of devices with H02 protocol is `8091` made by default, but it can be customized by changing the `config/sockets.php` file.
 
-Para configurar tu dispositivo vía SMS puedes hacerlo con el siguiente comando:
+To configure your device via SMS you can do it with the following command:
 
 ```
 804{PASSWORD} {IP/HOST} {PUERTO}
 ```
 
-Puedes configurar el servidor de conexión en el dispositivo usando o bien la IP o bien un HOST que resolverá internamente PERO SÓLO EN EL MOMENTO DE RECIBIR EL COMANDO, con lo cual si el servidor no tiene IP fija en cuanto cambie dejarás de recibir los datos del dispositivo.
+You can configure the connection server in the device using either the IP or a HOST that will resolve internally BUT ONLY AT THE TIME OF RECEIVING THE COMMAND, so if the server does not have a fixed IP as soon as it changes you will stop receiving data from the device.
 
-### SMS comunes para Sinotrack ST-901
+### Common Sinotrack ST-901 SMS commands
 
-#### Configurar el Teléfono desde el cual te puedes conectar al dispositivo
+#### Configuring the Phone from which you can connect to the device
 
 ```
 {TELEFONO}{PASSWORD} 1
 ```
 
-#### Configurar la zona horaria para UTC y así delegar en la plataforma el ajuste horario
+#### Set the time zone to UTC to delegate the time adjustment to the platform.
 
 ```
 896{PASSWORD}E00
 ```
 
-#### Activar Modo GPRS
+#### Enable GPRS Mode
 
 ```
 710{PASSWORD}
 ```
 
-#### Configurar APN Operadora
+#### Configure APN Operator
 
 ```
 803{PASSWORD} {OPERADORA}
 ```
 
-#### Configurar Servidor
+#### Configure Server
 
 ```
 804{PASSWORD} {IP/HOST} {PUERTO}
 ```
 
-#### Configurar frecuencia en segundos de envío reportes de posición con el contacto puesto
+#### Configure frequency in seconds of sending position reports with the car ignition on
 
 ```
 805{PASSWORD} {SEGUNDOS}
 ```
 
-#### Configurar frecuencia en segundos de envío reportes de posición SIN el contacto puesto
+#### Configure frequency in seconds of sending position reports with the car ignition off
 
 ```
 809{PASSWORD} {SEGUNDOS}
 ```
 
-#### Configurar tiempo de espera antes de pasar a modo SLEEP con el coche parado
+#### Set timeout before switching to SLEEP mode when the car is stopped
 
 ```
 SLEEP{PASSWORD} {SEGUNDOS}
 ```
 
-#### Desactivar llamada en caso de alarma
+#### Deactivate call in case of alarm
 
 ```
 151{PASSWORD}
 ```
 
-#### Reiniciar dispositivo
+#### Device restart
 
 ```
 RESTART
 ```
 
-#### Mostrar configuración actual
+#### Show current configuration
 
 ```
 RCONF
 ```
 
-### Actualización de la Plataforma
+### Platform Update
 
-La actualización de la plataforma se puede realizar de manera sencilla con el comando `composer deploy` ejecutado por el usuario que gestiona ese projecto (normalmente `www-data`).
+Updating the platform can be done in a simple way with the `composer deploy` command executed by the user who manages that project (usually `www-data`).
 
-Este comando realiza las siguientes acciones:
+This command performs the following actions:
 
 ```
 "rm -f bootstrap/cache/*.php",
@@ -165,31 +165,31 @@ Este comando realiza las siguientes acciones:
 "@php artisan socket:server:all --reset"
 ```
 
-### Comandos
+### Platform Commands
 
-#### Alta de usuario:
+#### User Creation:
 
 ```bash
 php artisan user:create {--email=} {--name=} {--password=} {--enabled} {--admin}
 ```
 
-#### Iniciar/Reiniciar todos los sockets configurados:
+#### Start or Restart all configured sockets:
 
-La opción de `reset` permite reiniciar el puerto en caso de que esté siendo usado.
+The `reset` option allows you to reset the port in case it is being used.
 
 ```bash
 php artisan socket:server:all {--reset}
 ```
 
-#### Iniciar/Reiniciar socket en un puerto en concreto:
+#### Start or Restart only one socket port:
 
-La opción de `reset` permite reiniciar el puerto en caso de que esté siendo usado.
+The `reset` option allows you to reset the port in case it is being used.
 
 ```bash
 php artisan socket:server {--port=} {--reset}
 ```
 
-### Capturas
+### Screenshots
 
 ![Screenshot from 2022-10-31 09-37-46](https://user-images.githubusercontent.com/644551/198966515-1afb7ac3-b2a6-428a-b65d-a9eacff35ded.png)
 

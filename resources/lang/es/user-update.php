@@ -7,6 +7,7 @@
         'email-exists' => 'Ya existe otro usuario con ese mismo email',
         'enabled-own' => 'No es posible desactivar a tu propio usuario',
     ],
+    'language' => 'Idioma',
     'name' => 'Nombre',
     'password' => 'Contraseña',
     'save' => 'Guardar',

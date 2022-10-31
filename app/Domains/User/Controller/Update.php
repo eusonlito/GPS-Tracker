@@ -4,6 +4,7 @@ namespace App\Domains\User\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Domains\Language\Model\Language as LanguageModel;
 
 class Update extends ControllerAbstract
 {
@@ -26,7 +27,7 @@ class Update extends ControllerAbstract
 
         return $this->page('user.update', [
             'row' => $this->row,
-            'certificate_enabled' => config('auth.certificate.enabled'),
+            'languages' => LanguageModel::list()->get(),
         ]);
     }
 

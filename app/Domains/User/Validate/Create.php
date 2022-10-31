@@ -17,6 +17,7 @@ class Create extends ValidateAbstract
             'password' => ['bail', 'required', 'min:8'],
             'admin' => ['bail', 'nullable', 'boolean'],
             'enabled' => ['bail', 'nullable', 'boolean'],
+            'language_id' => ['bail', 'nullable', 'integer'],
         ];
     }
 }

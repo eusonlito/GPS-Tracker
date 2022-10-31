@@ -3,6 +3,7 @@
 namespace App\Domains\User\Action;
 
 use Illuminate\Support\Facades\Hash;
+use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\User\Model\User as Model;
 use App\Exceptions\ValidatorException;
 
@@ -28,6 +29,7 @@ class Update extends ActionAbstract
         $this->dataName();
         $this->dataEmail();
         $this->dataPassword();
+        $this->dataLanguageId();
     }
 
     /**
@@ -56,6 +58,14 @@ class Update extends ActionAbstract
         } else {
             $this->data['password'] = $this->row->password;
         }
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataLanguageId(): void
+    {
+        $this->data['language_id'] = LanguageModel::byId($this->data['language_id'])->firstOrFail()->id;
     }
 
     /**
@@ -105,6 +115,7 @@ class Update extends ActionAbstract
         $this->row->admin = $this->data['admin'];
         $this->row->enabled = $this->data['enabled'];
         $this->row->password = $this->data['password'];
+        $this->row->language_id = $this->data['language_id'];
 
         $this->row->save();
     }

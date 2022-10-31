@@ -5,6 +5,7 @@
     'error' => [
         'email-exists' => 'Ya existe otro usuario con ese mismo email',
     ],
+    'language' => 'Idioma',
     'meta-title' => 'Crear Usuario',
     'name' => 'Nombre',
     'password' => 'Contraseña',

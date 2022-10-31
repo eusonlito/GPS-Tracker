@@ -4,6 +4,7 @@ namespace App\Domains\User\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Domains\Language\Model\Language as LanguageModel;
 
 class Create extends ControllerAbstract
 {
@@ -18,7 +19,9 @@ class Create extends ControllerAbstract
 
         $this->meta('title', __('user-create.meta-title'));
 
-        return $this->page('user.create');
+        return $this->page('user.create', [
+            'languages' => LanguageModel::list()->get(),
+        ]);
     }
 
     /**

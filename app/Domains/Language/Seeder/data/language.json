@@ -5,5 +5,13 @@
         "locale": "es_ES",
         "default": true,
         "enabled": true
+    },
+
+    {
+        "code": "en",
+        "name": "English",
+        "locale": "en_US",
+        "default": false,
+        "enabled": true
     }
 ]
