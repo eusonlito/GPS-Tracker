@@ -189,9 +189,9 @@ php artisan socket:server {--port=} {--reset}
 
 ### Capturas
 
-![Screenshot from 2022-10-18 18-29-40](https://user-images.githubusercontent.com/644551/196489655-682ef00e-25c0-422d-8370-94be19e5700d.png)
+![Screenshot from 2022-10-31 09-37-46](https://user-images.githubusercontent.com/644551/198966515-1afb7ac3-b2a6-428a-b65d-a9eacff35ded.png)
 
-![Screenshot from 2022-10-18 18-29-53](https://user-images.githubusercontent.com/644551/196489682-7875a2b6-35e7-4f16-8a18-4a1bdc4102e8.png)
+![Screenshot from 2022-10-31 09-38-26](https://user-images.githubusercontent.com/644551/198966533-961ca22c-832a-4bd6-a176-d78b060c9d3e.png)
 
 ![Screenshot from 2022-10-18 18-31-10](https://user-images.githubusercontent.com/644551/196489823-7ef35c1d-4c88-49dd-b0b7-e50a24b7beb2.png)
 
