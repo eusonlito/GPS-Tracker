@@ -12,4 +12,5 @@
     'serial' => 'Número de Serie',
     'success' => 'El dispositivo ha sido registrado correctamente',
     'timezone' => 'Zona Horaria',
+    'timezone_auto' => 'Zona Horaria Automática',
 ];

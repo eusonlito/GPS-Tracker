@@ -72,6 +72,7 @@ return new class extends MigrationAbstract
 
             $table->unsignedInteger('port')->default(0);
 
+            $table->boolean('timezone_auto')->default(0);
             $table->boolean('enabled')->default(0);
 
             $this->timestamps($table);

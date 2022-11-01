@@ -18,6 +18,7 @@ class Create extends ValidateAbstract
             'password' => ['bail', 'string'],
             'port' => ['bail', 'integer'],
             'timezone_id' => ['bail', 'required', 'integer'],
+            'timezone_auto' => ['bail', 'boolean'],
             'enabled' => ['bail', 'boolean'],
         ];
     }

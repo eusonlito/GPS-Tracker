@@ -83,8 +83,13 @@ class Create extends ActionAbstract
      */
     protected function timezone(): void
     {
-        $this->timezone = TimezoneModel::byZone($this->data['timezone'])->first()
-            ?: $this->device->timezone;
+        if ($this->device->timezone_auto) {
+            $timezone = TimezoneModel::byZone($this->data['timezone'])->first();
+        } else {
+            $timezone = null;
+        }
+
+        $this->timezone = $timezone ?: $this->device->timezone;
     }
 
     /**

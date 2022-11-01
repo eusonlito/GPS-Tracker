@@ -34,6 +34,13 @@
 
     <div class="p-2">
         <div class="form-check">
+            <input type="checkbox" name="timezone_auto" value="1" class="form-check-switch" id="device-timezone_auto" {{ $REQUEST->input('timezone_auto') ? 'checked' : '' }}>
+            <label for="device-timezone_auto" class="form-check-label">{{ __('device-create.timezone_auto') }}</label>
+        </div>
+    </div>
+
+    <div class="p-2">
+        <div class="form-check">
             <input type="checkbox" name="enabled" value="1" class="form-check-switch" id="device-enabled" {{ $REQUEST->input('enabled') ? 'checked' : '' }}>
             <label for="device-enabled" class="form-check-label">{{ __('device-create.enabled') }}</label>
         </div>

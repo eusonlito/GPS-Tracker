@@ -34,6 +34,7 @@ class Update extends CreateUpdateAbstract
         $this->row->serial = $this->data['serial'];
         $this->row->password = $this->data['password'];
         $this->row->port = $this->data['port'];
+        $this->row->timezone_auto = $this->data['timezone_auto'];
         $this->row->enabled = $this->data['enabled'];
         $this->row->timezone_id = $this->data['timezone_id'];
 
