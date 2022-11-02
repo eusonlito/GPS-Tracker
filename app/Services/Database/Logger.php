@@ -194,6 +194,10 @@ class Logger
      */
     protected function backtraceIsValid(array $line): bool
     {
+        if (empty($line['file'])) {
+            return false;
+        }
+
         $file = $line['file'];
 
         if ($file === __FILE__) {

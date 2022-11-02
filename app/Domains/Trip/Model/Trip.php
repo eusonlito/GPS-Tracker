@@ -87,7 +87,7 @@ class Trip extends ModelAbstract
      */
     public function next(): ?Trip
     {
-        return Trip::byUserId($this->user_id)
+        return self::byUserId($this->user_id)
             ->byStartUtcAtNext($this->start_utc_at)
             ->first();
     }
@@ -97,7 +97,7 @@ class Trip extends ModelAbstract
      */
     public function previous(): ?Trip
     {
-        return Trip::byUserId($this->user_id)
+        return self::byUserId($this->user_id)
             ->byStartUtcAtPrevious($this->start_utc_at)
             ->first();
     }

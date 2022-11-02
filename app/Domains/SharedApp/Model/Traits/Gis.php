@@ -8,6 +8,14 @@ use Illuminate\Database\Query\Expression;
 trait Gis
 {
     /**
+     * @return string
+     */
+    public static function emptyGeoJSON(): string
+    {
+        return 'ST_GeomFromText("MULTIPOLYGON(((0 90,0 90,0 90,0 90)))")';
+    }
+
+    /**
      * @param float $latitude
      * @param float $longitude
      *

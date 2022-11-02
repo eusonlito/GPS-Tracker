@@ -30,6 +30,8 @@ class Index extends ControllerAbstract
             'device' => $this->device(),
             'trips' => $this->trips(),
             'trip' => $this->trip(),
+            'trip_next_id' => $this->tripNextId(),
+            'trip_previous_id' => $this->tripPreviousId(),
             'positions' => $this->positions(),
         ];
     }
@@ -70,6 +72,34 @@ class Index extends ControllerAbstract
     {
         return $this->cache[__FUNCTION__] ??= $this->trips()->firstWhere('id', $this->request->input('trip_id'))
             ?: $this->trips()->first();
+    }
+
+    /**
+     * @return ?int
+     */
+    protected function tripNextId(): ?int
+    {
+        if ($this->trip() === null) {
+            return null;
+        }
+
+        return $this->cache[__FUNCTION__] ??= TripModel::byUserId($this->auth->id)
+            ->byStartUtcAtNext($this->trip()->start_utc_at)
+            ->value('id');
+    }
+
+    /**
+     * @return ?int
+     */
+    protected function tripPreviousId(): ?int
+    {
+        if ($this->trip() === null) {
+            return null;
+        }
+
+        return $this->cache[__FUNCTION__] ??= TripModel::byUserId($this->auth->id)
+            ->byStartUtcAtPrevious($this->trip()->start_utc_at)
+            ->value('id');
     }
 
     /**

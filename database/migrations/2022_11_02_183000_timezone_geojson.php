@@ -3,6 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Domains\Shared\Migration\MigrationAbstract;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 
 return new class extends MigrationAbstract
 {
@@ -37,15 +38,8 @@ return new class extends MigrationAbstract
             $table->multiPolygon('geojson')->nullable();
         });
 
-        $this->db()->statement('
-            UPDATE `timezone`
-            SET `geojson` = ST_GeomFromGeoJSON(\'{"type":"MultiPolygon","coordinates":[[[[0,90],[0,90],[0,90],[0,90]]]]}\', 2, 0);
-        ');
-
-        $this->db()->statement('
-            ALTER TABLE `timezone`
-            MODIFY COLUMN `geojson` multipolygon NOT NULL;
-        ');
+        $this->db()->statement('UPDATE `timezone` SET `geojson` = '.TimezoneModel::emptyGeoJSON().';');
+        $this->db()->statement('ALTER TABLE `timezone` MODIFY COLUMN `geojson` multipolygon NOT NULL;');
     }
 
     /**

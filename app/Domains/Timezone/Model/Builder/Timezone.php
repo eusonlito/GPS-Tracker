@@ -3,6 +3,7 @@
 namespace App\Domains\Timezone\Model\Builder;
 
 use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
+use App\Domains\Timezone\Model\Timezone as Model;
 
 class Timezone extends BuilderAbstract
 {
@@ -40,6 +41,6 @@ class Timezone extends BuilderAbstract
      */
     public function whereGeojson(): self
     {
-        return $this->whereNotNull('geojson');
+        return $this->whereRaw('`geojson` != '.Model::emptyGeoJSON());
     }
 }
