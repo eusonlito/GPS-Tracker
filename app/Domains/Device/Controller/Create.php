@@ -22,7 +22,7 @@ class Create extends ControllerAbstract
         $this->meta('title', __('device-create.meta-title'));
 
         return $this->page('device.create', [
-            'timezones' => TimezoneModel::list()->get(),
+            'timezones' => TimezoneModel::select('id', 'zone')->list()->get(),
         ]);
     }
 

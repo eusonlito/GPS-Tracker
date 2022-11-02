@@ -64,10 +64,7 @@ class Create extends ActionAbstract
      */
     protected function device(): void
     {
-        $this->device = DeviceModel::bySerial($this->data['serial'])
-            ->enabled()
-            ->withTimezone()
-            ->first();
+        $this->device = DeviceModel::bySerial($this->data['serial'])->enabled()->first();
     }
 
     /**
@@ -83,13 +80,37 @@ class Create extends ActionAbstract
      */
     protected function timezone(): void
     {
-        if ($this->device->timezone_auto) {
-            $timezone = TimezoneModel::byZone($this->data['timezone'])->first();
-        } else {
-            $timezone = null;
+        $this->timezone = $this->timezoneByLatitudeLongitude()
+            ?: $this->timezoneByZone()
+            ?: $this->device->timezone;
+    }
+
+    /**
+     * @return ?\App\Domains\Timezone\Model\Timezone
+     */
+    protected function timezoneByLatitudeLongitude(): ?TimezoneModel
+    {
+        if ($this->device->timezone_auto === false) {
+            return null;
         }
 
-        $this->timezone = $timezone ?: $this->device->timezone;
+        return TimezoneModel::select('id', 'zone')
+            ->byLatitudeLongitude($this->data['latitude'], $this->data['longitude'])
+            ->first();
+    }
+
+    /**
+     * @return ?\App\Domains\Timezone\Model\Timezone
+     */
+    protected function timezoneByZone(): ?TimezoneModel
+    {
+        if ($this->device->timezone_auto === false) {
+            return null;
+        }
+
+        return TimezoneModel::select('id', 'zone')
+            ->byZone($this->data['timezone'])
+            ->first();
     }
 
     /**

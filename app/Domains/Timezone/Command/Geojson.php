@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Translation\Command;
+namespace App\Domains\Timezone\Command;
 
-class Fixed extends CommandAbstract
+class Geojson extends CommandAbstract
 {
     /**
      * @var string
      */
-    protected $signature = 'translation:fixed {--paths-exclude=*}';
+    protected $signature = 'timezone:geojson {--overwrite}';
 
     /**
      * @var string
      */
-    protected $description = 'Search fixed texts on app and views';
+    protected $description = 'Generate Timezones From Remote GeoJSON';
 
     /**
      * @return void
@@ -22,8 +22,7 @@ class Fixed extends CommandAbstract
         $this->info('[START]');
 
         $this->requestWithOptions();
-
-        $this->info($this->action()->fixed());
+        $this->factory()->action()->geojson();
 
         $this->info('[END]');
     }

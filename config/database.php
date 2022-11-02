@@ -49,7 +49,8 @@ return [
             'engine' => null,
             'timezone' => '+00:00',
             'options' => [],
-            'log' => env('DB_LOG', false),
+            'log' => (bool)env('DB_LOG', false),
+            'log_backtrace' => (bool)env('DB_LOG_BACKTRACE'),
         ],
     ],
 

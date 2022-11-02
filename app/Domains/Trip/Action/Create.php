@@ -44,7 +44,7 @@ class Create extends ActionAbstract
      */
     protected function timezone(): void
     {
-        $this->timezone = TimezoneModel::findOrFail($this->data['timezone_id']);
+        $this->timezone = TimezoneModel::select('id', 'zone')->findOrFail($this->data['timezone_id']);
     }
 
     /**

@@ -62,6 +62,6 @@ class Position extends ModelAbstract
      */
     public function timezone(): BelongsTo
     {
-        return $this->belongsTo(TimezoneModel::class, TimezoneModel::FOREIGN);
+        return $this->belongsTo(TimezoneModel::class, TimezoneModel::FOREIGN)->select('id', 'zone');
     }
 }

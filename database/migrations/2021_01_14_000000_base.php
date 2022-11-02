@@ -162,9 +162,7 @@ return new class extends MigrationAbstract
             $table->id();
 
             $table->string('zone')->index();
-            $table->integer('offset');
-            $table->string('gmt');
-            $table->string('abbr');
+            $table->multiPolygon('geojson');
 
             $this->timestamps($table);
         });
@@ -266,6 +264,10 @@ return new class extends MigrationAbstract
 
         Schema::table('state', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'country');
+        });
+
+        Schema::table('timezone', function (Blueprint $table) {
+            $table->spatialIndex('geojson');
         });
 
         Schema::table('trip', function (Blueprint $table) {

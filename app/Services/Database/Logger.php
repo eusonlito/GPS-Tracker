@@ -15,6 +15,11 @@ class Logger
     protected static bool $listen = false;
 
     /**
+     * @var string
+     */
+    protected string $base;
+
+    /**
      * @var array
      */
     protected array $files = [];
@@ -37,7 +42,16 @@ class Logger
      */
     public function __construct()
     {
+        $this->base();
         $this->connections();
+    }
+
+    /**
+     * @return void
+     */
+    protected function base(): void
+    {
+        $this->base = base_path();
     }
 
     /**
@@ -50,7 +64,7 @@ class Logger
         }
 
         foreach (config('database.connections') as $name => $config) {
-            if ($this->connectionEnabled($name, $config)) {
+            if ($this->connectionEnabled($config)) {
                 $this->connections[$name] = $config;
             }
         }
@@ -66,12 +80,11 @@ class Logger
     }
 
     /**
-     * @param string $name
      * @param array $config
      *
      * @return bool
      */
-    protected function connectionEnabled(string $name, array $config): bool
+    protected function connectionEnabled(array $config): bool
     {
         return ($config['log'] ?? false) === true;
     }
@@ -127,7 +140,9 @@ class Logger
      */
     protected function listenConnectionLog(string $name, QueryExecuted $query): void
     {
-        if (empty($this->connections[$name])) {
+        $connection = $this->connections[$name] ?? null;
+
+        if (empty($connection)) {
             return;
         }
 
@@ -148,7 +163,46 @@ class Logger
             }
         }
 
+        if ($connection['log_backtrace']) {
+            $this->write($name, $this->backtrace());
+        }
+
         $this->write($name, vsprintf(str_replace(['%', '?'], ['%%', '%s'], $sql), $bindings));
+    }
+
+    /**
+     * @return string
+     */
+    protected function backtrace(): string
+    {
+        $backtrace = current(array_filter(
+            debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
+            fn ($line) => $this->backtraceIsValid($line)
+        ));
+
+        if (empty($backtrace)) {
+            return "\n".'#';
+        }
+
+        return "\n".'# '.str_replace($this->base, '', $backtrace['file']).'#'.$backtrace['line'];
+    }
+
+    /**
+     * @param array $line
+     *
+     * @return bool
+     */
+    protected function backtraceIsValid(array $line): bool
+    {
+        $file = $line['file'];
+
+        if ($file === __FILE__) {
+            return false;
+        }
+
+        return str_starts_with($file, $this->base.'/app/')
+            || str_starts_with($file, $this->base.'/config/')
+            || str_starts_with($file, $this->base.'/database/');
     }
 
     /**

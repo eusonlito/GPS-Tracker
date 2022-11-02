@@ -27,7 +27,7 @@ class Update extends ControllerAbstract
 
         return $this->page('device.update', [
             'row' => $this->row,
-            'timezones' => TimezoneModel::list()->get(),
+            'timezones' => TimezoneModel::select('id', 'zone')->list()->get(),
         ]);
     }
 

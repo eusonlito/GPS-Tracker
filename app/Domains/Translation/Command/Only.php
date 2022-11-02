@@ -24,7 +24,7 @@ class Only extends CommandAbstract
         $this->checkOptions(['lang']);
         $this->requestWithOptions();
 
-        $this->action()->only();
+        $this->info($this->action()->only());
 
         $this->info('[END]');
     }

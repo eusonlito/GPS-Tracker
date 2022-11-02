@@ -73,7 +73,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     protected function dataTimeZoneId(): void
     {
-        $this->data['timezone_id'] = TimezoneModel::findOrFail($this->data['timezone_id'])->id;
+        $this->data['timezone_id'] = TimezoneModel::select('id')->findOrFail($this->data['timezone_id'])->id;
     }
 
     /**

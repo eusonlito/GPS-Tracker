@@ -7,6 +7,17 @@ use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 class Timezone extends BuilderAbstract
 {
     /**
+     * @param float $latitude
+     * @param float $longitude
+     *
+     * @return self
+     */
+    public function byLatitudeLongitude(float $latitude, float $longitude): self
+    {
+        return $this->whereRaw('ST_CONTAINS(`geojson`, POINT(?, ?))', [$longitude, $latitude]);
+    }
+
+    /**
      * @param string $zone
      *
      * @return self
@@ -21,6 +32,14 @@ class Timezone extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->orderBy('zone', 'ASC');
+        return $this->whereGeojson()->orderBy('zone', 'ASC');
+    }
+
+    /**
+     * @return self
+     */
+    public function whereGeojson(): self
+    {
+        return $this->whereNotNull('geojson');
     }
 }

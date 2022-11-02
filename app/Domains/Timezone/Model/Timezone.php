@@ -2,11 +2,14 @@
 
 namespace App\Domains\Timezone\Model;
 
-use App\Domains\Timezone\Model\Builder\Timezone as Builder;
 use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;
+use App\Domains\Timezone\Model\Builder\Timezone as Builder;
 
 class Timezone extends ModelAbstract
 {
+    use GisTrait;
+
     /**
      * @var string
      */

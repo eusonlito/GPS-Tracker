@@ -21,7 +21,7 @@ class NotTranslated extends CommandAbstract
     {
         $this->info('[START]');
 
-        $this->action()->notTranslated();
+        $this->info($this->action()->notTranslated());
 
         $this->info('[END]');
     }
