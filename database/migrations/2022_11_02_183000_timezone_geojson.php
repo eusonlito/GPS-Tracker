@@ -34,8 +34,18 @@ return new class extends MigrationAbstract
     protected function tables()
     {
         Schema::table('timezone', function (Blueprint $table) {
-            $table->multiPolygon('geojson');
+            $table->multiPolygon('geojson')->nullable();
         });
+
+        $this->db()->statement('
+            UPDATE `timezone`
+            SET `geojson` = ST_GeomFromGeoJSON(\'{"type":"MultiPolygon","coordinates":[[[[0,90],[0,90],[0,90],[0,90]]]]}\', 2, 0);
+        ');
+
+        $this->db()->statement('
+            ALTER TABLE `timezone`
+            MODIFY COLUMN `geojson` multipolygon NOT NULL;
+        ');
     }
 
     /**
