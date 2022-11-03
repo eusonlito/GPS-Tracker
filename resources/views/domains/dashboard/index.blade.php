@@ -38,10 +38,14 @@
 
                 @if ($trip_previous_id)
                 <a href="?trip_id={{ $trip_previous_id }}" class="btn bg-white ml-2">@icon('chevrons-left', 'w-4 h-4')</a>
+                @else
+                <span class="btn bg-white ml-2 text-gray-300 cursor-default">@icon('chevrons-left', 'w-4 h-4')</span>
                 @endif
 
                 @if ($trip_next_id)
                 <a href="?trip_id={{ $trip_next_id }}" class="btn bg-white ml-2">@icon('chevrons-right', 'w-4 h-4')</a>
+                @else
+                <span class="btn bg-white ml-2 text-gray-300 cursor-default">@icon('chevrons-right', 'w-4 h-4')</span>
                 @endif
             </div>
         </div>

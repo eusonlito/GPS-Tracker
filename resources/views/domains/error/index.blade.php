@@ -14,7 +14,7 @@
                 <div class="text-white mt-10 lg:mt-0">
                     <div class="text-8xl font-medium">{{ $code }}</div>
                     <div class="text-xl lg:text-3xl font-medium mt-5">{{ $message }}</div>
-                    <a href="{{ route('dashboard.index') }}" class="btn py-3 px-4 text-white border-white dark:border-dark-5 dark:text-gray-300 mt-10">{{ __('error.back-home') }}</a>
+                    <a href="{{ route('dashboard.index') }}" class="btn py-3 px-4 text-white border-white mt-10">{{ __('error.back-home') }}</a>
                 </div>
             </div>
         </div>

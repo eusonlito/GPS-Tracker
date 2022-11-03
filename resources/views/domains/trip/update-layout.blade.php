@@ -12,10 +12,14 @@
 
         @if ($previous)
         <a href="{{ route($ROUTE, $previous->id) }}" class="py-4 sm:mr-8" role="tab">&laquo; {{ __('trip-update.previous') }}</a>
+        @else
+        <span class="text-gray-300 py-4 sm:mr-8" role="tab">&laquo; {{ __('trip-update.previous') }}</span>
         @endif
 
         @if ($next)
         <a href="{{ route($ROUTE, $next->id) }}" class="py-4 sm:mr-8" role="tab">{{ __('trip-update.next') }} &raquo;</a>
+        @else
+        <span class="text-gray-300 py-4 sm:mr-8" role="tab">{{ __('trip-update.next') }} &raquo;</span>
         @endif
     </div>
 </div>
