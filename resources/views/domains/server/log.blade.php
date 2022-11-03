@@ -11,8 +11,14 @@
     @endforeach
 </div>
 
+<form method="get">
+    <div class="mt-2 lg:mt-0">
+        <input type="search" class="form-control form-control-lg" placeholder="{{ __('server-log.filter') }}" data-table-search="#server-log-table"/>
+    </div>
+</form>
+
 <div class="overflow-auto lg:overflow-visible header-sticky">
-    <table class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
+    <table id="server-log-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
                 <th class="text-left">{{ __('server-log.name') }}</th>
