@@ -62,6 +62,7 @@ CREATE TABLE `device` (
   `serial` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `port` int unsigned NOT NULL DEFAULT '0',
+  `timezone_auto` tinyint(1) NOT NULL DEFAULT '0',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -209,13 +210,12 @@ DROP TABLE IF EXISTS `timezone`;
 CREATE TABLE `timezone` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `zone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `offset` int NOT NULL,
-  `gmt` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abbr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `geojson` multipolygon NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `timezone_zone_index` (`zone`)
+  KEY `timezone_zone_index` (`zone`),
+  SPATIAL KEY `timezone_geojson_spatialindex` (`geojson`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `trip`;
@@ -310,3 +310,6 @@ INSERT INTO `migrations` VALUES (16,'2022_10_17_193000_trip_dates_utc_at',1);
 INSERT INTO `migrations` VALUES (17,'2022_10_17_193000_trip_timezone',1);
 INSERT INTO `migrations` VALUES (18,'2022_10_17_230000_refuel_quantity_before',1);
 INSERT INTO `migrations` VALUES (19,'2022_10_17_233000_refuel_price',1);
+INSERT INTO `migrations` VALUES (20,'2022_11_01_193000_device_timezone_auto',1);
+INSERT INTO `migrations` VALUES (21,'2022_11_02_180000_timezone_unused',1);
+INSERT INTO `migrations` VALUES (22,'2022_11_02_183000_timezone_geojson',1);

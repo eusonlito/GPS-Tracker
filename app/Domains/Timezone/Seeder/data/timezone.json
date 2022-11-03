@@ -1,2547 +1,1355 @@
-
 [
     {
-        "zone": "Africa/Abidjan",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Abidjan"
     },
     {
-        "zone": "Africa/Accra",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Accra"
     },
     {
-        "zone": "Africa/Addis_Ababa",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EAT"
+        "zone": "Africa/Addis_Ababa"
     },
     {
-        "zone": "Africa/Algiers",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "CET"
+        "zone": "Africa/Algiers"
     },
     {
-        "zone": "Africa/Asmara",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EAT"
+        "zone": "Africa/Asmara"
     },
     {
-        "zone": "Africa/Bamako",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Bamako"
     },
     {
-        "zone": "Africa/Bangui",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WAT"
+        "zone": "Africa/Bangui"
     },
     {
-        "zone": "Africa/Banjul",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Banjul"
     },
     {
-        "zone": "Africa/Bissau",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Bissau"
     },
     {
-        "zone": "Africa/Blantyre",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CAT"
+        "zone": "Africa/Blantyre"
     },
     {
-        "zone": "Africa/Brazzaville",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WAT"
+        "zone": "Africa/Brazzaville"
     },
     {
-        "zone": "Africa/Bujumbura",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CAT"
+        "zone": "Africa/Bujumbura"
     },
     {
-        "zone": "Africa/Cairo",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "EET"
+        "zone": "Africa/Cairo"
     },
     {
-        "zone": "Africa/Casablanca",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "+01"
+        "zone": "Africa/Casablanca"
     },
     {
-        "zone": "Africa/Ceuta",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Africa/Ceuta"
     },
     {
-        "zone": "Africa/Conakry",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Conakry"
     },
     {
-        "zone": "Africa/Dakar",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Dakar"
     },
     {
-        "zone": "Africa/Dar_es_Salaam",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EAT"
+        "zone": "Africa/Dar_es_Salaam"
     },
     {
-        "zone": "Africa/Djibouti",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EAT"
+        "zone": "Africa/Djibouti"
     },
     {
-        "zone": "Africa/Douala",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WAT"
+        "zone": "Africa/Douala"
     },
     {
-        "zone": "Africa/El_Aaiun",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "+01"
+        "zone": "Africa/El_Aaiun"
     },
     {
-        "zone": "Africa/Freetown",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Freetown"
     },
     {
-        "zone": "Africa/Gaborone",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CAT"
+        "zone": "Africa/Gaborone"
     },
     {
-        "zone": "Africa/Harare",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CAT"
+        "zone": "Africa/Harare"
     },
     {
-        "zone": "Africa/Johannesburg",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "SAST"
+        "zone": "Africa/Johannesburg"
     },
     {
-        "zone": "Africa/Juba",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CAT"
+        "zone": "Africa/Juba"
     },
     {
-        "zone": "Africa/Kampala",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EAT"
+        "zone": "Africa/Kampala"
     },
     {
-        "zone": "Africa/Khartoum",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CAT"
+        "zone": "Africa/Khartoum"
     },
     {
-        "zone": "Africa/Kigali",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CAT"
+        "zone": "Africa/Kigali"
     },
     {
-        "zone": "Africa/Kinshasa",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WAT"
+        "zone": "Africa/Kinshasa"
     },
     {
-        "zone": "Africa/Lagos",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WAT"
+        "zone": "Africa/Lagos"
     },
     {
-        "zone": "Africa/Libreville",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WAT"
+        "zone": "Africa/Libreville"
     },
     {
-        "zone": "Africa/Lome",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Lome"
     },
     {
-        "zone": "Africa/Luanda",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WAT"
+        "zone": "Africa/Luanda"
     },
     {
-        "zone": "Africa/Lubumbashi",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CAT"
+        "zone": "Africa/Lubumbashi"
     },
     {
-        "zone": "Africa/Lusaka",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CAT"
+        "zone": "Africa/Lusaka"
     },
     {
-        "zone": "Africa/Malabo",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WAT"
+        "zone": "Africa/Malabo"
     },
     {
-        "zone": "Africa/Maputo",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CAT"
+        "zone": "Africa/Maputo"
     },
     {
-        "zone": "Africa/Maseru",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "SAST"
+        "zone": "Africa/Maseru"
     },
     {
-        "zone": "Africa/Mbabane",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "SAST"
+        "zone": "Africa/Mbabane"
     },
     {
-        "zone": "Africa/Mogadishu",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EAT"
+        "zone": "Africa/Mogadishu"
     },
     {
-        "zone": "Africa/Monrovia",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Monrovia"
     },
     {
-        "zone": "Africa/Nairobi",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EAT"
+        "zone": "Africa/Nairobi"
     },
     {
-        "zone": "Africa/Ndjamena",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WAT"
+        "zone": "Africa/Ndjamena"
     },
     {
-        "zone": "Africa/Niamey",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WAT"
+        "zone": "Africa/Niamey"
     },
     {
-        "zone": "Africa/Nouakchott",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Nouakchott"
     },
     {
-        "zone": "Africa/Ouagadougou",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Ouagadougou"
     },
     {
-        "zone": "Africa/Porto-Novo",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WAT"
+        "zone": "Africa/Porto-Novo"
     },
     {
-        "zone": "Africa/Sao_Tome",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Africa/Sao_Tome"
     },
     {
-        "zone": "Africa/Tripoli",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "EET"
+        "zone": "Africa/Tripoli"
     },
     {
-        "zone": "Africa/Tunis",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "CET"
+        "zone": "Africa/Tunis"
     },
     {
-        "zone": "Africa/Windhoek",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CAT"
+        "zone": "Africa/Windhoek"
     },
     {
-        "zone": "America/Adak",
-        "offset": -32400,
-        "gmt": "-09:00",
-        "abbr": "HDT"
+        "zone": "America/Adak"
     },
     {
-        "zone": "America/Anchorage",
-        "offset": -28800,
-        "gmt": "-08:00",
-        "abbr": "AKDT"
+        "zone": "America/Anchorage"
     },
     {
-        "zone": "America/Anguilla",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Anguilla"
     },
     {
-        "zone": "America/Antigua",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Antigua"
     },
     {
-        "zone": "America/Araguaina",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Araguaina"
     },
     {
-        "zone": "America/Argentina/Buenos_Aires",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/Buenos_Aires"
     },
     {
-        "zone": "America/Argentina/Catamarca",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/Catamarca"
     },
     {
-        "zone": "America/Argentina/Cordoba",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/Cordoba"
     },
     {
-        "zone": "America/Argentina/Jujuy",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/Jujuy"
     },
     {
-        "zone": "America/Argentina/La_Rioja",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/La_Rioja"
     },
     {
-        "zone": "America/Argentina/Mendoza",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/Mendoza"
     },
     {
-        "zone": "America/Argentina/Rio_Gallegos",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/Rio_Gallegos"
     },
     {
-        "zone": "America/Argentina/Salta",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/Salta"
     },
     {
-        "zone": "America/Argentina/San_Juan",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/San_Juan"
     },
     {
-        "zone": "America/Argentina/San_Luis",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/San_Luis"
     },
     {
-        "zone": "America/Argentina/Tucuman",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/Tucuman"
     },
     {
-        "zone": "America/Argentina/Ushuaia",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Argentina/Ushuaia"
     },
     {
-        "zone": "America/Aruba",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Aruba"
     },
     {
-        "zone": "America/Asuncion",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "-04"
+        "zone": "America/Asuncion"
     },
     {
-        "zone": "America/Atikokan",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "EST"
+        "zone": "America/Atikokan"
     },
     {
-        "zone": "America/Bahia",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Bahia"
     },
     {
-        "zone": "America/Bahia_Banderas",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Bahia_Banderas"
     },
     {
-        "zone": "America/Barbados",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Barbados"
     },
     {
-        "zone": "America/Belem",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Belem"
     },
     {
-        "zone": "America/Belize",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "CST"
+        "zone": "America/Belize"
     },
     {
-        "zone": "America/Blanc-Sablon",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Blanc-Sablon"
     },
     {
-        "zone": "America/Boa_Vista",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "-04"
+        "zone": "America/Boa_Vista"
     },
     {
-        "zone": "America/Bogota",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "-05"
+        "zone": "America/Bogota"
     },
     {
-        "zone": "America/Boise",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "MDT"
+        "zone": "America/Boise"
     },
     {
-        "zone": "America/Cambridge_Bay",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "MDT"
+        "zone": "America/Cambridge_Bay"
     },
     {
-        "zone": "America/Campo_Grande",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "-04"
+        "zone": "America/Campo_Grande"
     },
     {
-        "zone": "America/Cancun",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "EST"
+        "zone": "America/Cancun"
     },
     {
-        "zone": "America/Caracas",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "-04"
+        "zone": "America/Caracas"
     },
     {
-        "zone": "America/Cayenne",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Cayenne"
     },
     {
-        "zone": "America/Cayman",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "EST"
+        "zone": "America/Cayman"
     },
     {
-        "zone": "America/Chicago",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Chicago"
     },
     {
-        "zone": "America/Chihuahua",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "MDT"
+        "zone": "America/Chihuahua"
     },
     {
-        "zone": "America/Costa_Rica",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "CST"
+        "zone": "America/Costa_Rica"
     },
     {
-        "zone": "America/Creston",
-        "offset": -25200,
-        "gmt": "-07:00",
-        "abbr": "MST"
+        "zone": "America/Creston"
     },
     {
-        "zone": "America/Cuiaba",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "-04"
+        "zone": "America/Cuiaba"
     },
     {
-        "zone": "America/Curacao",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Curacao"
     },
     {
-        "zone": "America/Danmarkshavn",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "America/Danmarkshavn"
     },
     {
-        "zone": "America/Dawson",
-        "offset": -25200,
-        "gmt": "-07:00",
-        "abbr": "MST"
+        "zone": "America/Dawson"
     },
     {
-        "zone": "America/Dawson_Creek",
-        "offset": -25200,
-        "gmt": "-07:00",
-        "abbr": "MST"
+        "zone": "America/Dawson_Creek"
     },
     {
-        "zone": "America/Denver",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "MDT"
+        "zone": "America/Denver"
     },
     {
-        "zone": "America/Detroit",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Detroit"
     },
     {
-        "zone": "America/Dominica",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Dominica"
     },
     {
-        "zone": "America/Edmonton",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "MDT"
+        "zone": "America/Edmonton"
     },
     {
-        "zone": "America/Eirunepe",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "-05"
+        "zone": "America/Eirunepe"
     },
     {
-        "zone": "America/El_Salvador",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "CST"
+        "zone": "America/El_Salvador"
     },
     {
-        "zone": "America/Fort_Nelson",
-        "offset": -25200,
-        "gmt": "-07:00",
-        "abbr": "MST"
+        "zone": "America/Fort_Nelson"
     },
     {
-        "zone": "America/Fortaleza",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Fortaleza"
     },
     {
-        "zone": "America/Glace_Bay",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "ADT"
+        "zone": "America/Glace_Bay"
     },
     {
-        "zone": "America/Goose_Bay",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "ADT"
+        "zone": "America/Goose_Bay"
     },
     {
-        "zone": "America/Grand_Turk",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Grand_Turk"
     },
     {
-        "zone": "America/Grenada",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Grenada"
     },
     {
-        "zone": "America/Guadeloupe",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Guadeloupe"
     },
     {
-        "zone": "America/Guatemala",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "CST"
+        "zone": "America/Guatemala"
     },
     {
-        "zone": "America/Guayaquil",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "-05"
+        "zone": "America/Guayaquil"
     },
     {
-        "zone": "America/Guyana",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "-04"
+        "zone": "America/Guyana"
     },
     {
-        "zone": "America/Halifax",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "ADT"
+        "zone": "America/Halifax"
     },
     {
-        "zone": "America/Havana",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "CDT"
+        "zone": "America/Havana"
     },
     {
-        "zone": "America/Hermosillo",
-        "offset": -25200,
-        "gmt": "-07:00",
-        "abbr": "MST"
+        "zone": "America/Hermosillo"
     },
     {
-        "zone": "America/Indiana/Indianapolis",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Indiana/Indianapolis"
     },
     {
-        "zone": "America/Indiana/Knox",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Indiana/Knox"
     },
     {
-        "zone": "America/Indiana/Marengo",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Indiana/Marengo"
     },
     {
-        "zone": "America/Indiana/Petersburg",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Indiana/Petersburg"
     },
     {
-        "zone": "America/Indiana/Tell_City",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Indiana/Tell_City"
     },
     {
-        "zone": "America/Indiana/Vevay",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Indiana/Vevay"
     },
     {
-        "zone": "America/Indiana/Vincennes",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Indiana/Vincennes"
     },
     {
-        "zone": "America/Indiana/Winamac",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Indiana/Winamac"
     },
     {
-        "zone": "America/Inuvik",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "MDT"
+        "zone": "America/Inuvik"
     },
     {
-        "zone": "America/Iqaluit",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Iqaluit"
     },
     {
-        "zone": "America/Jamaica",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "EST"
+        "zone": "America/Jamaica"
     },
     {
-        "zone": "America/Juneau",
-        "offset": -28800,
-        "gmt": "-08:00",
-        "abbr": "AKDT"
+        "zone": "America/Juneau"
     },
     {
-        "zone": "America/Kentucky/Louisville",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Kentucky/Louisville"
     },
     {
-        "zone": "America/Kentucky/Monticello",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Kentucky/Monticello"
     },
     {
-        "zone": "America/Kralendijk",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Kralendijk"
     },
     {
-        "zone": "America/La_Paz",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "-04"
+        "zone": "America/La_Paz"
     },
     {
-        "zone": "America/Lima",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "-05"
+        "zone": "America/Lima"
     },
     {
-        "zone": "America/Los_Angeles",
-        "offset": -25200,
-        "gmt": "-07:00",
-        "abbr": "PDT"
+        "zone": "America/Los_Angeles"
     },
     {
-        "zone": "America/Lower_Princes",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Lower_Princes"
     },
     {
-        "zone": "America/Maceio",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Maceio"
     },
     {
-        "zone": "America/Managua",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "CST"
+        "zone": "America/Managua"
     },
     {
-        "zone": "America/Manaus",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "-04"
+        "zone": "America/Manaus"
     },
     {
-        "zone": "America/Marigot",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Marigot"
     },
     {
-        "zone": "America/Martinique",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Martinique"
     },
     {
-        "zone": "America/Matamoros",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Matamoros"
     },
     {
-        "zone": "America/Mazatlan",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "MDT"
+        "zone": "America/Mazatlan"
     },
     {
-        "zone": "America/Menominee",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Menominee"
     },
     {
-        "zone": "America/Merida",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Merida"
     },
     {
-        "zone": "America/Metlakatla",
-        "offset": -28800,
-        "gmt": "-08:00",
-        "abbr": "AKDT"
+        "zone": "America/Metlakatla"
     },
     {
-        "zone": "America/Mexico_City",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Mexico_City"
     },
     {
-        "zone": "America/Miquelon",
-        "offset": -7200,
-        "gmt": "-02:00",
-        "abbr": "-02"
+        "zone": "America/Miquelon"
     },
     {
-        "zone": "America/Moncton",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "ADT"
+        "zone": "America/Moncton"
     },
     {
-        "zone": "America/Monterrey",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Monterrey"
     },
     {
-        "zone": "America/Montevideo",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Montevideo"
     },
     {
-        "zone": "America/Montserrat",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Montserrat"
     },
     {
-        "zone": "America/Nassau",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Nassau"
     },
     {
-        "zone": "America/New_York",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/New_York"
     },
     {
-        "zone": "America/Nipigon",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Nipigon"
     },
     {
-        "zone": "America/Nome",
-        "offset": -28800,
-        "gmt": "-08:00",
-        "abbr": "AKDT"
+        "zone": "America/Nome"
     },
     {
-        "zone": "America/Noronha",
-        "offset": -7200,
-        "gmt": "-02:00",
-        "abbr": "-02"
+        "zone": "America/Noronha"
     },
     {
-        "zone": "America/North_Dakota/Beulah",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/North_Dakota/Beulah"
     },
     {
-        "zone": "America/North_Dakota/Center",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/North_Dakota/Center"
     },
     {
-        "zone": "America/North_Dakota/New_Salem",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/North_Dakota/New_Salem"
     },
     {
-        "zone": "America/Nuuk",
-        "offset": -7200,
-        "gmt": "-02:00",
-        "abbr": "-02"
+        "zone": "America/Nuuk"
     },
     {
-        "zone": "America/Ojinaga",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "MDT"
+        "zone": "America/Ojinaga"
     },
     {
-        "zone": "America/Panama",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "EST"
+        "zone": "America/Panama"
     },
     {
-        "zone": "America/Pangnirtung",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Pangnirtung"
     },
     {
-        "zone": "America/Paramaribo",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Paramaribo"
     },
     {
-        "zone": "America/Phoenix",
-        "offset": -25200,
-        "gmt": "-07:00",
-        "abbr": "MST"
+        "zone": "America/Phoenix"
     },
     {
-        "zone": "America/Port-au-Prince",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Port_of_Spain"
     },
     {
-        "zone": "America/Port_of_Spain",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Port-au-Prince"
     },
     {
-        "zone": "America/Porto_Velho",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "-04"
+        "zone": "America/Porto_Velho"
     },
     {
-        "zone": "America/Puerto_Rico",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Puerto_Rico"
     },
     {
-        "zone": "America/Punta_Arenas",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Punta_Arenas"
     },
     {
-        "zone": "America/Rainy_River",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Rainy_River"
     },
     {
-        "zone": "America/Rankin_Inlet",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Rankin_Inlet"
     },
     {
-        "zone": "America/Recife",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Recife"
     },
     {
-        "zone": "America/Regina",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "CST"
+        "zone": "America/Regina"
     },
     {
-        "zone": "America/Resolute",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Resolute"
     },
     {
-        "zone": "America/Rio_Branco",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "-05"
+        "zone": "America/Rio_Branco"
     },
     {
-        "zone": "America/Santarem",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Santarem"
     },
     {
-        "zone": "America/Santiago",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "-04"
+        "zone": "America/Santiago"
     },
     {
-        "zone": "America/Santo_Domingo",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Santo_Domingo"
     },
     {
-        "zone": "America/Sao_Paulo",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "America/Sao_Paulo"
     },
     {
-        "zone": "America/Scoresbysund",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "+00"
+        "zone": "America/Scoresbysund"
     },
     {
-        "zone": "America/Sitka",
-        "offset": -28800,
-        "gmt": "-08:00",
-        "abbr": "AKDT"
+        "zone": "America/Sitka"
     },
     {
-        "zone": "America/St_Barthelemy",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/St_Barthelemy"
     },
     {
-        "zone": "America/St_Johns",
-        "offset": -9000,
-        "gmt": "-02:30",
-        "abbr": "NDT"
+        "zone": "America/St_Johns"
     },
     {
-        "zone": "America/St_Kitts",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/St_Kitts"
     },
     {
-        "zone": "America/St_Lucia",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/St_Lucia"
     },
     {
-        "zone": "America/St_Thomas",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/St_Thomas"
     },
     {
-        "zone": "America/St_Vincent",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/St_Vincent"
     },
     {
-        "zone": "America/Swift_Current",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "CST"
+        "zone": "America/Swift_Current"
     },
     {
-        "zone": "America/Tegucigalpa",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "CST"
+        "zone": "America/Tegucigalpa"
     },
     {
-        "zone": "America/Thule",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "ADT"
+        "zone": "America/Thule"
     },
     {
-        "zone": "America/Thunder_Bay",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Thunder_Bay"
     },
     {
-        "zone": "America/Tijuana",
-        "offset": -25200,
-        "gmt": "-07:00",
-        "abbr": "PDT"
+        "zone": "America/Tijuana"
     },
     {
-        "zone": "America/Toronto",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "EDT"
+        "zone": "America/Toronto"
     },
     {
-        "zone": "America/Tortola",
-        "offset": -14400,
-        "gmt": "-04:00",
-        "abbr": "AST"
+        "zone": "America/Tortola"
     },
     {
-        "zone": "America/Vancouver",
-        "offset": -25200,
-        "gmt": "-07:00",
-        "abbr": "PDT"
+        "zone": "America/Vancouver"
     },
     {
-        "zone": "America/Whitehorse",
-        "offset": -25200,
-        "gmt": "-07:00",
-        "abbr": "MST"
+        "zone": "America/Whitehorse"
     },
     {
-        "zone": "America/Winnipeg",
-        "offset": -18000,
-        "gmt": "-05:00",
-        "abbr": "CDT"
+        "zone": "America/Winnipeg"
     },
     {
-        "zone": "America/Yakutat",
-        "offset": -28800,
-        "gmt": "-08:00",
-        "abbr": "AKDT"
+        "zone": "America/Yakutat"
     },
     {
-        "zone": "America/Yellowknife",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "MDT"
+        "zone": "America/Yellowknife"
     },
     {
-        "zone": "Antarctica/Casey",
-        "offset": 39600,
-        "gmt": "+11:00",
-        "abbr": "+11"
+        "zone": "Antarctica/Casey"
     },
     {
-        "zone": "Antarctica/Davis",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Antarctica/Davis"
     },
     {
-        "zone": "Antarctica/DumontDUrville",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "+10"
+        "zone": "Antarctica/DumontDUrville"
     },
     {
-        "zone": "Antarctica/Macquarie",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "AEST"
+        "zone": "Antarctica/Macquarie"
     },
     {
-        "zone": "Antarctica/Mawson",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Antarctica/Mawson"
     },
     {
-        "zone": "Antarctica/McMurdo",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "NZST"
+        "zone": "Antarctica/McMurdo"
     },
     {
-        "zone": "Antarctica/Palmer",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "Antarctica/Palmer"
     },
     {
-        "zone": "Antarctica/Rothera",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "Antarctica/Rothera"
     },
     {
-        "zone": "Antarctica/Syowa",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "+03"
+        "zone": "Antarctica/Syowa"
     },
     {
-        "zone": "Antarctica/Troll",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "+02"
+        "zone": "Antarctica/Troll"
     },
     {
-        "zone": "Antarctica/Vostok",
-        "offset": 21600,
-        "gmt": "+06:00",
-        "abbr": "+06"
+        "zone": "Antarctica/Vostok"
     },
     {
-        "zone": "Arctic/Longyearbyen",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Arctic/Longyearbyen"
     },
     {
-        "zone": "Asia/Aden",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "+03"
+        "zone": "Asia/Aden"
     },
     {
-        "zone": "Asia/Almaty",
-        "offset": 21600,
-        "gmt": "+06:00",
-        "abbr": "+06"
+        "zone": "Asia/Almaty"
     },
     {
-        "zone": "Asia/Amman",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Asia/Amman"
     },
     {
-        "zone": "Asia/Anadyr",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "+12"
+        "zone": "Asia/Anadyr"
     },
     {
-        "zone": "Asia/Aqtau",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Asia/Aqtau"
     },
     {
-        "zone": "Asia/Aqtobe",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Asia/Aqtobe"
     },
     {
-        "zone": "Asia/Ashgabat",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Asia/Ashgabat"
     },
     {
-        "zone": "Asia/Atyrau",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Asia/Atyrau"
     },
     {
-        "zone": "Asia/Baghdad",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "+03"
+        "zone": "Asia/Baghdad"
     },
     {
-        "zone": "Asia/Bahrain",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "+03"
+        "zone": "Asia/Bahrain"
     },
     {
-        "zone": "Asia/Baku",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Asia/Baku"
     },
     {
-        "zone": "Asia/Bangkok",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Asia/Bangkok"
     },
     {
-        "zone": "Asia/Barnaul",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Asia/Barnaul"
     },
     {
-        "zone": "Asia/Beirut",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Asia/Beirut"
     },
     {
-        "zone": "Asia/Bishkek",
-        "offset": 21600,
-        "gmt": "+06:00",
-        "abbr": "+06"
+        "zone": "Asia/Bishkek"
     },
     {
-        "zone": "Asia/Brunei",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "+08"
+        "zone": "Asia/Brunei"
     },
     {
-        "zone": "Asia/Chita",
-        "offset": 32400,
-        "gmt": "+09:00",
-        "abbr": "+09"
+        "zone": "Asia/Chita"
     },
     {
-        "zone": "Asia/Choibalsan",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "+08"
+        "zone": "Asia/Choibalsan"
     },
     {
-        "zone": "Asia/Colombo",
-        "offset": 19800,
-        "gmt": "+05:30",
-        "abbr": "+0530"
+        "zone": "Asia/Colombo"
     },
     {
-        "zone": "Asia/Damascus",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Asia/Damascus"
     },
     {
-        "zone": "Asia/Dhaka",
-        "offset": 21600,
-        "gmt": "+06:00",
-        "abbr": "+06"
+        "zone": "Asia/Dhaka"
     },
     {
-        "zone": "Asia/Dili",
-        "offset": 32400,
-        "gmt": "+09:00",
-        "abbr": "+09"
+        "zone": "Asia/Dili"
     },
     {
-        "zone": "Asia/Dubai",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Asia/Dubai"
     },
     {
-        "zone": "Asia/Dushanbe",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Asia/Dushanbe"
     },
     {
-        "zone": "Asia/Famagusta",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Asia/Famagusta"
     },
     {
-        "zone": "Asia/Gaza",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Asia/Gaza"
     },
     {
-        "zone": "Asia/Hebron",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Asia/Hebron"
     },
     {
-        "zone": "Asia/Ho_Chi_Minh",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Asia/Ho_Chi_Minh"
     },
     {
-        "zone": "Asia/Hong_Kong",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "HKT"
+        "zone": "Asia/Hong_Kong"
     },
     {
-        "zone": "Asia/Hovd",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Asia/Hovd"
     },
     {
-        "zone": "Asia/Irkutsk",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "+08"
+        "zone": "Asia/Irkutsk"
     },
     {
-        "zone": "Asia/Jakarta",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "WIB"
+        "zone": "Asia/Jakarta"
     },
     {
-        "zone": "Asia/Jayapura",
-        "offset": 32400,
-        "gmt": "+09:00",
-        "abbr": "WIT"
+        "zone": "Asia/Jayapura"
     },
     {
-        "zone": "Asia/Jerusalem",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "IDT"
+        "zone": "Asia/Jerusalem"
     },
     {
-        "zone": "Asia/Kabul",
-        "offset": 16200,
-        "gmt": "+04:30",
-        "abbr": "+0430"
+        "zone": "Asia/Kabul"
     },
     {
-        "zone": "Asia/Kamchatka",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "+12"
+        "zone": "Asia/Kamchatka"
     },
     {
-        "zone": "Asia/Karachi",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "PKT"
+        "zone": "Asia/Karachi"
     },
     {
-        "zone": "Asia/Kathmandu",
-        "offset": 20700,
-        "gmt": "+05:45",
-        "abbr": "+0545"
+        "zone": "Asia/Kathmandu"
     },
     {
-        "zone": "Asia/Khandyga",
-        "offset": 32400,
-        "gmt": "+09:00",
-        "abbr": "+09"
+        "zone": "Asia/Khandyga"
     },
     {
-        "zone": "Asia/Kolkata",
-        "offset": 19800,
-        "gmt": "+05:30",
-        "abbr": "IST"
+        "zone": "Asia/Kolkata"
     },
     {
-        "zone": "Asia/Krasnoyarsk",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Asia/Krasnoyarsk"
     },
     {
-        "zone": "Asia/Kuala_Lumpur",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "+08"
+        "zone": "Asia/Kuala_Lumpur"
     },
     {
-        "zone": "Asia/Kuching",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "+08"
+        "zone": "Asia/Kuching"
     },
     {
-        "zone": "Asia/Kuwait",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "+03"
+        "zone": "Asia/Kuwait"
     },
     {
-        "zone": "Asia/Macau",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "CST"
+        "zone": "Asia/Macau"
     },
     {
-        "zone": "Asia/Magadan",
-        "offset": 39600,
-        "gmt": "+11:00",
-        "abbr": "+11"
+        "zone": "Asia/Magadan"
     },
     {
-        "zone": "Asia/Makassar",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "WITA"
+        "zone": "Asia/Makassar"
     },
     {
-        "zone": "Asia/Manila",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "PST"
+        "zone": "Asia/Manila"
     },
     {
-        "zone": "Asia/Muscat",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Asia/Muscat"
     },
     {
-        "zone": "Asia/Nicosia",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Asia/Nicosia"
     },
     {
-        "zone": "Asia/Novokuznetsk",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Asia/Novokuznetsk"
     },
     {
-        "zone": "Asia/Novosibirsk",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Asia/Novosibirsk"
     },
     {
-        "zone": "Asia/Omsk",
-        "offset": 21600,
-        "gmt": "+06:00",
-        "abbr": "+06"
+        "zone": "Asia/Omsk"
     },
     {
-        "zone": "Asia/Oral",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Asia/Oral"
     },
     {
-        "zone": "Asia/Phnom_Penh",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Asia/Phnom_Penh"
     },
     {
-        "zone": "Asia/Pontianak",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "WIB"
+        "zone": "Asia/Pontianak"
     },
     {
-        "zone": "Asia/Pyongyang",
-        "offset": 32400,
-        "gmt": "+09:00",
-        "abbr": "KST"
+        "zone": "Asia/Pyongyang"
     },
     {
-        "zone": "Asia/Qatar",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "+03"
+        "zone": "Asia/Qatar"
     },
     {
-        "zone": "Asia/Qostanay",
-        "offset": 21600,
-        "gmt": "+06:00",
-        "abbr": "+06"
+        "zone": "Asia/Qostanay"
     },
     {
-        "zone": "Asia/Qyzylorda",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Asia/Qyzylorda"
     },
     {
-        "zone": "Asia/Riyadh",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "+03"
+        "zone": "Asia/Riyadh"
     },
     {
-        "zone": "Asia/Sakhalin",
-        "offset": 39600,
-        "gmt": "+11:00",
-        "abbr": "+11"
+        "zone": "Asia/Sakhalin"
     },
     {
-        "zone": "Asia/Samarkand",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Asia/Samarkand"
     },
     {
-        "zone": "Asia/Seoul",
-        "offset": 32400,
-        "gmt": "+09:00",
-        "abbr": "KST"
+        "zone": "Asia/Seoul"
     },
     {
-        "zone": "Asia/Shanghai",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "CST"
+        "zone": "Asia/Shanghai"
     },
     {
-        "zone": "Asia/Singapore",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "+08"
+        "zone": "Asia/Singapore"
     },
     {
-        "zone": "Asia/Srednekolymsk",
-        "offset": 39600,
-        "gmt": "+11:00",
-        "abbr": "+11"
+        "zone": "Asia/Srednekolymsk"
     },
     {
-        "zone": "Asia/Taipei",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "CST"
+        "zone": "Asia/Taipei"
     },
     {
-        "zone": "Asia/Tashkent",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Asia/Tashkent"
     },
     {
-        "zone": "Asia/Tbilisi",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Asia/Tbilisi"
     },
     {
-        "zone": "Asia/Tehran",
-        "offset": 16200,
-        "gmt": "+04:30",
-        "abbr": "+0430"
+        "zone": "Asia/Tehran"
     },
     {
-        "zone": "Asia/Thimphu",
-        "offset": 21600,
-        "gmt": "+06:00",
-        "abbr": "+06"
+        "zone": "Asia/Thimphu"
     },
     {
-        "zone": "Asia/Tokyo",
-        "offset": 32400,
-        "gmt": "+09:00",
-        "abbr": "JST"
+        "zone": "Asia/Tokyo"
     },
     {
-        "zone": "Asia/Tomsk",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Asia/Tomsk"
     },
     {
-        "zone": "Asia/Ulaanbaatar",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "+08"
+        "zone": "Asia/Ulaanbaatar"
     },
     {
-        "zone": "Asia/Urumqi",
-        "offset": 21600,
-        "gmt": "+06:00",
-        "abbr": "+06"
+        "zone": "Asia/Urumqi"
     },
     {
-        "zone": "Asia/Ust-Nera",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "+10"
+        "zone": "Asia/Ust-Nera"
     },
     {
-        "zone": "Asia/Vientiane",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Asia/Vientiane"
     },
     {
-        "zone": "Asia/Vladivostok",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "+10"
+        "zone": "Asia/Vladivostok"
     },
     {
-        "zone": "Asia/Yakutsk",
-        "offset": 32400,
-        "gmt": "+09:00",
-        "abbr": "+09"
+        "zone": "Asia/Yakutsk"
     },
     {
-        "zone": "Asia/Yangon",
-        "offset": 23400,
-        "gmt": "+06:30",
-        "abbr": "+0630"
+        "zone": "Asia/Yangon"
     },
     {
-        "zone": "Asia/Yekaterinburg",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Asia/Yekaterinburg"
     },
     {
-        "zone": "Asia/Yerevan",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Asia/Yerevan"
     },
     {
-        "zone": "Atlantic/Azores",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "+00"
+        "zone": "Atlantic/Azores"
     },
     {
-        "zone": "Atlantic/Bermuda",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "ADT"
+        "zone": "Atlantic/Bermuda"
     },
     {
-        "zone": "Atlantic/Canary",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WEST"
+        "zone": "Atlantic/Canary"
     },
     {
-        "zone": "Atlantic/Cape_Verde",
-        "offset": -3600,
-        "gmt": "-01:00",
-        "abbr": "-01"
+        "zone": "Atlantic/Cape_Verde"
     },
     {
-        "zone": "Atlantic/Faroe",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WEST"
+        "zone": "Atlantic/Faroe"
     },
     {
-        "zone": "Atlantic/Madeira",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WEST"
+        "zone": "Atlantic/Madeira"
     },
     {
-        "zone": "Atlantic/Reykjavik",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Atlantic/Reykjavik"
     },
     {
-        "zone": "Atlantic/South_Georgia",
-        "offset": -7200,
-        "gmt": "-02:00",
-        "abbr": "-02"
+        "zone": "Atlantic/South_Georgia"
     },
     {
-        "zone": "Atlantic/St_Helena",
-        "offset": 0,
-        "gmt": "+00:00",
-        "abbr": "GMT"
+        "zone": "Atlantic/St_Helena"
     },
     {
-        "zone": "Atlantic/Stanley",
-        "offset": -10800,
-        "gmt": "-03:00",
-        "abbr": "-03"
+        "zone": "Atlantic/Stanley"
     },
     {
-        "zone": "Australia/Adelaide",
-        "offset": 34200,
-        "gmt": "+09:30",
-        "abbr": "ACST"
+        "zone": "Australia/Adelaide"
     },
     {
-        "zone": "Australia/Brisbane",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "AEST"
+        "zone": "Australia/Brisbane"
     },
     {
-        "zone": "Australia/Broken_Hill",
-        "offset": 34200,
-        "gmt": "+09:30",
-        "abbr": "ACST"
+        "zone": "Australia/Broken_Hill"
     },
     {
-        "zone": "Australia/Darwin",
-        "offset": 34200,
-        "gmt": "+09:30",
-        "abbr": "ACST"
+        "zone": "Australia/Darwin"
     },
     {
-        "zone": "Australia/Eucla",
-        "offset": 31500,
-        "gmt": "+08:45",
-        "abbr": "+0845"
+        "zone": "Australia/Eucla"
     },
     {
-        "zone": "Australia/Hobart",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "AEST"
+        "zone": "Australia/Hobart"
     },
     {
-        "zone": "Australia/Lindeman",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "AEST"
+        "zone": "Australia/Lindeman"
     },
     {
-        "zone": "Australia/Lord_Howe",
-        "offset": 37800,
-        "gmt": "+10:30",
-        "abbr": "+1030"
+        "zone": "Australia/Lord_Howe"
     },
     {
-        "zone": "Australia/Melbourne",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "AEST"
+        "zone": "Australia/Melbourne"
     },
     {
-        "zone": "Australia/Perth",
-        "offset": 28800,
-        "gmt": "+08:00",
-        "abbr": "AWST"
+        "zone": "Australia/Perth"
     },
     {
-        "zone": "Australia/Sydney",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "AEST"
+        "zone": "Australia/Sydney"
     },
     {
-        "zone": "Europe/Amsterdam",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Etc/GMT"
     },
     {
-        "zone": "Europe/Andorra",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Etc/GMT-1"
     },
     {
-        "zone": "Europe/Astrakhan",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Etc/GMT-10"
     },
     {
-        "zone": "Europe/Athens",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Etc/GMT-11"
     },
     {
-        "zone": "Europe/Belgrade",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Etc/GMT-12"
     },
     {
-        "zone": "Europe/Berlin",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Etc/GMT-2"
     },
     {
-        "zone": "Europe/Bratislava",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Etc/GMT-3"
     },
     {
-        "zone": "Europe/Brussels",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Etc/GMT-4"
     },
     {
-        "zone": "Europe/Bucharest",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Etc/GMT-5"
     },
     {
-        "zone": "Europe/Budapest",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Etc/GMT-6"
     },
     {
-        "zone": "Europe/Busingen",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Etc/GMT-7"
     },
     {
-        "zone": "Europe/Chisinau",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Etc/GMT-8"
     },
     {
-        "zone": "Europe/Copenhagen",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Etc/GMT-9"
     },
     {
-        "zone": "Europe/Dublin",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "IST"
+        "zone": "Etc/GMT+1"
     },
     {
-        "zone": "Europe/Gibraltar",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Etc/GMT+10"
     },
     {
-        "zone": "Europe/Guernsey",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "BST"
+        "zone": "Etc/GMT+11"
     },
     {
-        "zone": "Europe/Helsinki",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Etc/GMT+12"
     },
     {
-        "zone": "Europe/Isle_of_Man",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "BST"
+        "zone": "Etc/GMT+2"
     },
     {
-        "zone": "Europe/Istanbul",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "+03"
+        "zone": "Etc/GMT+3"
     },
     {
-        "zone": "Europe/Jersey",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "BST"
+        "zone": "Etc/GMT+4"
     },
     {
-        "zone": "Europe/Kaliningrad",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "EET"
+        "zone": "Etc/GMT+5"
     },
     {
-        "zone": "Europe/Kiev",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Etc/GMT+6"
     },
     {
-        "zone": "Europe/Kirov",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "+03"
+        "zone": "Etc/GMT+7"
     },
     {
-        "zone": "Europe/Lisbon",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "WEST"
+        "zone": "Etc/GMT+8"
     },
     {
-        "zone": "Europe/Ljubljana",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Etc/GMT+9"
     },
     {
-        "zone": "Europe/London",
-        "offset": 3600,
-        "gmt": "+01:00",
-        "abbr": "BST"
+        "zone": "Etc/UTC"
     },
     {
-        "zone": "Europe/Luxembourg",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Amsterdam"
     },
     {
-        "zone": "Europe/Madrid",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Andorra"
     },
     {
-        "zone": "Europe/Malta",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Astrakhan"
     },
     {
-        "zone": "Europe/Mariehamn",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Europe/Athens"
     },
     {
-        "zone": "Europe/Minsk",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "+03"
+        "zone": "Europe/Belgrade"
     },
     {
-        "zone": "Europe/Monaco",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Berlin"
     },
     {
-        "zone": "Europe/Moscow",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "MSK"
+        "zone": "Europe/Bratislava"
     },
     {
-        "zone": "Europe/Oslo",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Brussels"
     },
     {
-        "zone": "Europe/Paris",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Bucharest"
     },
     {
-        "zone": "Europe/Podgorica",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Budapest"
     },
     {
-        "zone": "Europe/Prague",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Busingen"
     },
     {
-        "zone": "Europe/Riga",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Europe/Chisinau"
     },
     {
-        "zone": "Europe/Rome",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Copenhagen"
     },
     {
-        "zone": "Europe/Samara",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Europe/Dublin"
     },
     {
-        "zone": "Europe/San_Marino",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Gibraltar"
     },
     {
-        "zone": "Europe/Sarajevo",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Guernsey"
     },
     {
-        "zone": "Europe/Saratov",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Europe/Helsinki"
     },
     {
-        "zone": "Europe/Simferopol",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "MSK"
+        "zone": "Europe/Isle_of_Man"
     },
     {
-        "zone": "Europe/Skopje",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Istanbul"
     },
     {
-        "zone": "Europe/Sofia",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Europe/Jersey"
     },
     {
-        "zone": "Europe/Stockholm",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Kaliningrad"
     },
     {
-        "zone": "Europe/Tallinn",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Europe/Kiev"
     },
     {
-        "zone": "Europe/Tirane",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Kirov"
     },
     {
-        "zone": "Europe/Ulyanovsk",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Europe/Kyiv"
     },
     {
-        "zone": "Europe/Uzhgorod",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Europe/Lisbon"
     },
     {
-        "zone": "Europe/Vaduz",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Ljubljana"
     },
     {
-        "zone": "Europe/Vatican",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/London"
     },
     {
-        "zone": "Europe/Vienna",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Luxembourg"
     },
     {
-        "zone": "Europe/Vilnius",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Europe/Madrid"
     },
     {
-        "zone": "Europe/Volgograd",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "+03"
+        "zone": "Europe/Malta"
     },
     {
-        "zone": "Europe/Warsaw",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Mariehamn"
     },
     {
-        "zone": "Europe/Zagreb",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Minsk"
     },
     {
-        "zone": "Europe/Zaporozhye",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EEST"
+        "zone": "Europe/Monaco"
     },
     {
-        "zone": "Europe/Zurich",
-        "offset": 7200,
-        "gmt": "+02:00",
-        "abbr": "CEST"
+        "zone": "Europe/Moscow"
     },
     {
-        "zone": "Indian/Antananarivo",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EAT"
+        "zone": "Europe/Oslo"
     },
     {
-        "zone": "Indian/Chagos",
-        "offset": 21600,
-        "gmt": "+06:00",
-        "abbr": "+06"
+        "zone": "Europe/Paris"
     },
     {
-        "zone": "Indian/Christmas",
-        "offset": 25200,
-        "gmt": "+07:00",
-        "abbr": "+07"
+        "zone": "Europe/Podgorica"
     },
     {
-        "zone": "Indian/Cocos",
-        "offset": 23400,
-        "gmt": "+06:30",
-        "abbr": "+0630"
+        "zone": "Europe/Prague"
     },
     {
-        "zone": "Indian/Comoro",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EAT"
+        "zone": "Europe/Riga"
     },
     {
-        "zone": "Indian/Kerguelen",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Europe/Rome"
     },
     {
-        "zone": "Indian/Mahe",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Europe/Samara"
     },
     {
-        "zone": "Indian/Maldives",
-        "offset": 18000,
-        "gmt": "+05:00",
-        "abbr": "+05"
+        "zone": "Europe/San_Marino"
     },
     {
-        "zone": "Indian/Mauritius",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Europe/Sarajevo"
     },
     {
-        "zone": "Indian/Mayotte",
-        "offset": 10800,
-        "gmt": "+03:00",
-        "abbr": "EAT"
+        "zone": "Europe/Saratov"
     },
     {
-        "zone": "Indian/Reunion",
-        "offset": 14400,
-        "gmt": "+04:00",
-        "abbr": "+04"
+        "zone": "Europe/Simferopol"
     },
     {
-        "zone": "Pacific/Apia",
-        "offset": 46800,
-        "gmt": "+13:00",
-        "abbr": "+13"
+        "zone": "Europe/Skopje"
     },
     {
-        "zone": "Pacific/Auckland",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "NZST"
+        "zone": "Europe/Sofia"
     },
     {
-        "zone": "Pacific/Bougainville",
-        "offset": 39600,
-        "gmt": "+11:00",
-        "abbr": "+11"
+        "zone": "Europe/Stockholm"
     },
     {
-        "zone": "Pacific/Chatham",
-        "offset": 45900,
-        "gmt": "+12:45",
-        "abbr": "+1245"
+        "zone": "Europe/Tallinn"
     },
     {
-        "zone": "Pacific/Chuuk",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "+10"
+        "zone": "Europe/Tirane"
     },
     {
-        "zone": "Pacific/Easter",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "-06"
+        "zone": "Europe/Ulyanovsk"
     },
     {
-        "zone": "Pacific/Efate",
-        "offset": 39600,
-        "gmt": "+11:00",
-        "abbr": "+11"
+        "zone": "Europe/Uzhgorod"
     },
     {
-        "zone": "Pacific/Fakaofo",
-        "offset": 46800,
-        "gmt": "+13:00",
-        "abbr": "+13"
+        "zone": "Europe/Vaduz"
     },
     {
-        "zone": "Pacific/Fiji",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "+12"
+        "zone": "Europe/Vatican"
     },
     {
-        "zone": "Pacific/Funafuti",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "+12"
+        "zone": "Europe/Vienna"
     },
     {
-        "zone": "Pacific/Galapagos",
-        "offset": -21600,
-        "gmt": "-06:00",
-        "abbr": "-06"
+        "zone": "Europe/Vilnius"
     },
     {
-        "zone": "Pacific/Gambier",
-        "offset": -32400,
-        "gmt": "-09:00",
-        "abbr": "-09"
+        "zone": "Europe/Volgograd"
     },
     {
-        "zone": "Pacific/Guadalcanal",
-        "offset": 39600,
-        "gmt": "+11:00",
-        "abbr": "+11"
+        "zone": "Europe/Warsaw"
     },
     {
-        "zone": "Pacific/Guam",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "ChST"
+        "zone": "Europe/Zagreb"
     },
     {
-        "zone": "Pacific/Honolulu",
-        "offset": -36000,
-        "gmt": "-10:00",
-        "abbr": "HST"
+        "zone": "Europe/Zaporozhye"
     },
     {
-        "zone": "Pacific/Kanton",
-        "offset": 46800,
-        "gmt": "+13:00",
-        "abbr": "+13"
+        "zone": "Europe/Zurich"
     },
     {
-        "zone": "Pacific/Kiritimati",
-        "offset": 50400,
-        "gmt": "+14:00",
-        "abbr": "+14"
+        "zone": "Indian/Antananarivo"
     },
     {
-        "zone": "Pacific/Kosrae",
-        "offset": 39600,
-        "gmt": "+11:00",
-        "abbr": "+11"
+        "zone": "Indian/Chagos"
     },
     {
-        "zone": "Pacific/Kwajalein",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "+12"
+        "zone": "Indian/Christmas"
     },
     {
-        "zone": "Pacific/Majuro",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "+12"
+        "zone": "Indian/Cocos"
     },
     {
-        "zone": "Pacific/Marquesas",
-        "offset": -34200,
-        "gmt": "-09:30",
-        "abbr": "-0930"
+        "zone": "Indian/Comoro"
     },
     {
-        "zone": "Pacific/Midway",
-        "offset": -39600,
-        "gmt": "-11:00",
-        "abbr": "SST"
+        "zone": "Indian/Kerguelen"
     },
     {
-        "zone": "Pacific/Nauru",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "+12"
+        "zone": "Indian/Mahe"
     },
     {
-        "zone": "Pacific/Niue",
-        "offset": -39600,
-        "gmt": "-11:00",
-        "abbr": "-11"
+        "zone": "Indian/Maldives"
     },
     {
-        "zone": "Pacific/Norfolk",
-        "offset": 39600,
-        "gmt": "+11:00",
-        "abbr": "+11"
+        "zone": "Indian/Mauritius"
     },
     {
-        "zone": "Pacific/Noumea",
-        "offset": 39600,
-        "gmt": "+11:00",
-        "abbr": "+11"
+        "zone": "Indian/Mayotte"
     },
     {
-        "zone": "Pacific/Pago_Pago",
-        "offset": -39600,
-        "gmt": "-11:00",
-        "abbr": "SST"
+        "zone": "Indian/Reunion"
     },
     {
-        "zone": "Pacific/Palau",
-        "offset": 32400,
-        "gmt": "+09:00",
-        "abbr": "+09"
+        "zone": "Pacific/Apia"
     },
     {
-        "zone": "Pacific/Pitcairn",
-        "offset": -28800,
-        "gmt": "-08:00",
-        "abbr": "-08"
+        "zone": "Pacific/Auckland"
     },
     {
-        "zone": "Pacific/Pohnpei",
-        "offset": 39600,
-        "gmt": "+11:00",
-        "abbr": "+11"
+        "zone": "Pacific/Bougainville"
     },
     {
-        "zone": "Pacific/Port_Moresby",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "+10"
+        "zone": "Pacific/Chatham"
     },
     {
-        "zone": "Pacific/Rarotonga",
-        "offset": -36000,
-        "gmt": "-10:00",
-        "abbr": "-10"
+        "zone": "Pacific/Chuuk"
     },
     {
-        "zone": "Pacific/Saipan",
-        "offset": 36000,
-        "gmt": "+10:00",
-        "abbr": "ChST"
+        "zone": "Pacific/Easter"
     },
     {
-        "zone": "Pacific/Tahiti",
-        "offset": -36000,
-        "gmt": "-10:00",
-        "abbr": "-10"
+        "zone": "Pacific/Efate"
     },
     {
-        "zone": "Pacific/Tarawa",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "+12"
+        "zone": "Pacific/Fakaofo"
     },
     {
-        "zone": "Pacific/Tongatapu",
-        "offset": 46800,
-        "gmt": "+13:00",
-        "abbr": "+13"
+        "zone": "Pacific/Fiji"
     },
     {
-        "zone": "Pacific/Wake",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "+12"
+        "zone": "Pacific/Funafuti"
     },
     {
-        "zone": "Pacific/Wallis",
-        "offset": 43200,
-        "gmt": "+12:00",
-        "abbr": "+12"
+        "zone": "Pacific/Galapagos"
+    },
+    {
+        "zone": "Pacific/Gambier"
+    },
+    {
+        "zone": "Pacific/Guadalcanal"
+    },
+    {
+        "zone": "Pacific/Guam"
+    },
+    {
+        "zone": "Pacific/Honolulu"
+    },
+    {
+        "zone": "Pacific/Kanton"
+    },
+    {
+        "zone": "Pacific/Kiritimati"
+    },
+    {
+        "zone": "Pacific/Kosrae"
+    },
+    {
+        "zone": "Pacific/Kwajalein"
+    },
+    {
+        "zone": "Pacific/Majuro"
+    },
+    {
+        "zone": "Pacific/Marquesas"
+    },
+    {
+        "zone": "Pacific/Midway"
+    },
+    {
+        "zone": "Pacific/Nauru"
+    },
+    {
+        "zone": "Pacific/Niue"
+    },
+    {
+        "zone": "Pacific/Norfolk"
+    },
+    {
+        "zone": "Pacific/Noumea"
+    },
+    {
+        "zone": "Pacific/Pago_Pago"
+    },
+    {
+        "zone": "Pacific/Palau"
+    },
+    {
+        "zone": "Pacific/Pitcairn"
+    },
+    {
+        "zone": "Pacific/Pohnpei"
+    },
+    {
+        "zone": "Pacific/Port_Moresby"
+    },
+    {
+        "zone": "Pacific/Rarotonga"
+    },
+    {
+        "zone": "Pacific/Saipan"
+    },
+    {
+        "zone": "Pacific/Tahiti"
+    },
+    {
+        "zone": "Pacific/Tarawa"
+    },
+    {
+        "zone": "Pacific/Tongatapu"
+    },
+    {
+        "zone": "Pacific/Wake"
+    },
+    {
+        "zone": "Pacific/Wallis"
     }
 ]
