@@ -1,0 +1,22 @@
+{
+    "name": "GPS Tracker",
+    "short_name": "GPS Tracker",
+    "start_url": "https://tracker.lito.com.es",
+    "scope": "https://tracker.lito.com.es",
+    "theme_color": "white",
+    "background_color": "white",
+    "display": "standalone",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "https://tracker.lito.com.es/build/images/webapp/logo.png",
+            "type": "image/png"
+        }
+    ],
+    "splash_screens": [
+        {
+            "src": "https://tracker.lito.com.es/build/images/webapp/startup.png",
+            "type": "image/png"
+        }
+    ]
+}

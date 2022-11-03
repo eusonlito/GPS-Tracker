@@ -17,3 +17,15 @@
 <link rel="icon" href="@asset('favicon.ico')" type="image/png">
 
 <script>const WWW = '{{ rtrim(asset('/'), '/') }}';</script>
+
+<link rel="manifest" href="https://tracker.lito.com.es/manifest.json" defer="defer"/>
+
+<meta name="application-name" content="GPS Tracker" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="white" />
+
+<meta name="apple-mobile-web-app-title" content="GPS Tracker" />
+<meta name="apple-mobile-web-app-status-bar-style" content="white-translucent">
+
+<link rel="apple-touch-icon" type="image/png" href="https://tracker.lito.com.es/build/images/webapp/logo.png" />
+<link rel="apple-touch-startup-image" type="image/png" href="https://tracker.lito.com.es/build/images/webapp/startup.png" />

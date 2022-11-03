@@ -33,7 +33,7 @@ class Timezone extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->whereGeojson()->orderBy('zone', 'ASC');
+        return $this->orderBy('zone', 'ASC');
     }
 
     /**
