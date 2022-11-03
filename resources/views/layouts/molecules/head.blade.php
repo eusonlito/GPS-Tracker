@@ -20,9 +20,11 @@
 
 <link rel="manifest" href="https://tracker.lito.com.es/manifest.json" defer="defer"/>
 
-<meta name="application-name" content="GPS Tracker" />
 <meta name="mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="GPS Tracker" />
 <meta name="theme-color" content="white" />
+
+<link rel="shortcut icon" type="image/png" href="https://tracker.lito.com.es/build/images/webapp/logo.png" />
 
 <meta name="apple-mobile-web-app-title" content="GPS Tracker" />
 <meta name="apple-mobile-web-app-status-bar-style" content="white-translucent">
