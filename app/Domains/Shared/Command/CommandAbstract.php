@@ -100,6 +100,14 @@ abstract class CommandAbstract extends Command
     }
 
     /**
+     * @return \Illuminate\Http\Request
+     */
+    final protected function requestMergeRow(): Request
+    {
+        return request()->replace(array_filter(request()->input()) + $this->row->toArray());
+    }
+
+    /**
      * @param \Illuminate\Contracts\Auth\Authenticatable|int|null $user = null
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable

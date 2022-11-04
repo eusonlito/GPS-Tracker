@@ -34,6 +34,13 @@
             </a>
         </li>
 
+        <li>
+            <a href="{{ route('user.profile') }}" class="menu {{ ($ROUTE === 'user.profile') ? 'menu--active' : '' }}">
+                <div class="menu__icon">@icon('user')</div>
+                <div class="menu__title">{{ __('in-sidebar.profile') }}</div>
+            </a>
+        </li>
+
         @if ($AUTH->admin)
 
         <li>
@@ -44,7 +51,7 @@
         </li>
 
         <li>
-            <a href="{{ route('user.index') }}" class="menu {{ str_starts_with($ROUTE, 'user.') ? 'menu--active' : '' }}">
+            <a href="{{ route('user.index') }}" class="menu {{ (str_starts_with($ROUTE, 'user.') && ($ROUTE !== 'user.profile')) ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('users')</div>
                 <div class="menu__title">{{ __('in-sidebar.users') }}</div>
             </a>

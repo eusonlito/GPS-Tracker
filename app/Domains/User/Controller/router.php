@@ -13,6 +13,7 @@ Route::group(['middleware' => ['user.request']], static function () {
 });
 
 Route::group(['middleware' => ['user-auth']], static function () {
+    Route::any('/user/profile', Profile::class)->name('user.profile');
     Route::any('/user/disabled', Disabled::class)->name('user.disabled');
 });
 

@@ -45,6 +45,14 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
+     * @return \App\Domains\User\Model\User
+     */
+    public function profile(): Model
+    {
+        return $this->actionHandleTransaction(Profile::class, $this->validate()->profile());
+    }
+
+    /**
      * @return void
      */
     public function request(): void
