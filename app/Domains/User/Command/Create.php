@@ -19,9 +19,13 @@ class Create extends CommandAbstract
      */
     public function handle()
     {
+        $this->info('[START]');
+
         $this->checkOptions(['email', 'name', 'password']);
         $this->requestWithOptions();
 
         $this->info($this->factory()->action()->create()->only('id', 'email', 'name', 'admin', 'enabled'));
+
+        $this->info('[END]');
     }
 }

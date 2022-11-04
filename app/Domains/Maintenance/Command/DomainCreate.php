@@ -19,11 +19,15 @@ class DomainCreate extends CommandAbstract
      */
     public function handle()
     {
+        $this->info('START');
+
         $this->checkOption('name');
         $this->requestWithOptions();
 
         $this->factory()->action()->domainCreate();
 
         $this->info(sprintf('Created Domain %s', $this->option('name')));
+
+        $this->info('END');
     }
 }

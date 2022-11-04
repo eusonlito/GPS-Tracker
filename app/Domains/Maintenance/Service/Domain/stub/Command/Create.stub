@@ -19,11 +19,15 @@ class Create extends CommandAbstract
      */
     public function handle()
     {
+        $this->info('[START]');
+
         $this->checkOptions(['name']);
         $this->requestWithOptions();
 
         $row = $this->factory()->action()->create();
 
         $this->info(sprintf('Created {{ domain }} %s with ID %s', $row->name, $row->id));
+
+        $this->info('[END]');
     }
 }

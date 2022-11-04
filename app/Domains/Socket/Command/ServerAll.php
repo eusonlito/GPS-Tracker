@@ -19,10 +19,14 @@ class ServerAll extends CommandAbstract
      */
     public function handle()
     {
+        $this->info('START');
+
         $this->middlewares();
 
         $this->requestWithOptions();
 
         $this->factory()->action()->serverAll();
+
+        $this->info('END');
     }
 }

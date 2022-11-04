@@ -19,11 +19,15 @@ class Server extends CommandAbstract
      */
     public function handle()
     {
+        $this->info('START');
+
         $this->middlewares();
 
         $this->checkOptions(['port']);
         $this->requestWithOptions();
 
         $this->factory()->action()->server();
+
+        $this->info('END');
     }
 }
