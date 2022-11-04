@@ -23,6 +23,7 @@
                 <th class="text-center">{{ __('device-index.serial') }}</th>
                 <th class="text-center">{{ __('device-index.port') }}</th>
                 <th class="text-center">{{ __('device-index.timezone') }}</th>
+                <th class="text-center">{{ __('device-index.connected_at') }}</th>
                 <th>{{ __('device-index.enabled') }}</th>
             </tr>
         </thead>
@@ -38,6 +39,7 @@
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->serial }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->port }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->timezone->zone }}</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@dateWithTimezone($row->connected_at, $row->timezone->zone, 'Y-m-d H:i:s')</a>
                 <td data-table-sort-value="{{ (int)$row->enabled }}">@status($row->enabled)</td>
             </tr>
 

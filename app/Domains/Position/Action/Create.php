@@ -46,6 +46,7 @@ class Create extends ActionAbstract
             return;
         }
 
+        $this->deviceConnected();
         $this->timezone();
         $this->data();
         $this->previous();
@@ -73,6 +74,15 @@ class Create extends ActionAbstract
     protected function isValidDevice(): bool
     {
         return (bool)$this->device;
+    }
+
+    /**
+     * @return void
+     */
+    protected function deviceConnected(): void
+    {
+        $this->device->connected_at = date('Y-m-d H:i:s');
+        $this->device->save();
     }
 
     /**

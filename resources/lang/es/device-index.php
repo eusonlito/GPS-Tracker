@@ -1,4 +1,5 @@
 <?php return [
+    'connected_at' => 'Última Conexión',
     'create' => 'Crear Dipositivo',
     'enabled' => 'Activo',
     'filter' => 'Filtrar...',

@@ -75,6 +75,8 @@ return new class extends MigrationAbstract
             $table->boolean('timezone_auto')->default(0);
             $table->boolean('enabled')->default(0);
 
+            $table->dateTimeTz('connected_at')->nullable();
+
             $this->timestamps($table);
 
             $table->unsignedBigInteger('timezone_id');
