@@ -51,21 +51,27 @@ php artisan migrate --path=database/migrations
 php artisan db:seed --class=Database\\Seeders\\Database
 ```
 
-9. Configure the cron job for the user related to the project:
+9. Fill Timezones GeoJSON.
+
+```bash
+php artisan timezone:geojson
+```
+
+10. Configure the cron job for the user related to the project:
 
 ```
 * * * * * cd /var/www/tracker.domain.com && install -d storage/logs/artisan/$(date +"\%Y-\%m-\%d") && /usr/bin/php artisan schedule:run >> storage/logs/artisan/$(date +"\%Y-\%m-\%d")/schedule-run.log 2>&1
 ```
 
-10. Create the main user.
+11. Create the main user.
 
 ```bash
 php artisan user:create --email=user@domain.com --name=Admin --password=StrongPassword2 --enabled --admin
 ```
 
-11. Configure the web server `DocumentRoot` to `/var/www/project/public`.
+12. Configure the web server `DocumentRoot` to `/var/www/project/public`.
 
-12. Profit!
+13. Profit!
 
 ### Socket connection
 
