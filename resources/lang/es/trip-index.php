@@ -2,6 +2,7 @@
     'actions' => 'Acciones',
     'city' => 'Ciudad',
     'country' => 'País',
+    'device' => 'Dispositivo',
     'distance' => 'Distancia',
     'end' => 'Llegada',
     'end_at' => 'Fin',

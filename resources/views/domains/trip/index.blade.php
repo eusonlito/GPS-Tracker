@@ -8,7 +8,7 @@
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('trip-index.filter') }}" data-table-search="#trip-list-table"/>
         </div>
 
-        @if ($devices->count() > 1)
+        @if ($devices_multiple)
 
         <div class="flex-grow mt-2 lg:mt-0">
             <x-select name="device_id" :options="$devices" value="id" text="name" data-change-submit></x-select>
@@ -62,6 +62,10 @@
     <table id="trip-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
+                @if ($devices_multiple)
+                <th class="text-center">{{ __('trip-index.device') }}</th>
+                @endif
+
                 <th class="text-left">{{ __('trip-index.name') }}</th>
                 <th class="text-center">{{ __('trip-index.start_at') }}</th>
                 <th class="text-center">{{ __('trip-index.end_at') }}</th>
@@ -77,7 +81,12 @@
             @php ($link = route('trip.update.map', $row->id))
 
             <tr>
+                @if ($devices_multiple)
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->device->name }}</a></td>
+                @endif
+
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap text-left">{{ $row->name }}</a></td>
+
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->start_at }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->end_at }}</a></td>
                 <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@distanceHuman($row->distance)</a></td>
@@ -101,7 +110,7 @@
 
         <tfoot class="bg-white">
             <tr>
-                <th colspan="3"></th>
+                <th colspan="{{ $devices_multiple ? '4' : '3' }}"></th>
                 <th class="text-center">@distanceHuman($list->sum('distance'))</th>
                 <th class="text-center">@timeHuman($list->sum('time'))</th>
                 <th colspan="2"></th>

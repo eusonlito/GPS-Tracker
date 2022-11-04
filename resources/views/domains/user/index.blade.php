@@ -20,6 +20,8 @@
             <tr>
                 <th class="text-left">{{ __('user-index.name') }}</th>
                 <th class="text-left">{{ __('user-index.email') }}</th>
+                <th>{{ __('user-index.created_at') }}</th>
+                <th>{{ __('user-index.updated_at') }}</th>
                 <th>{{ __('user-index.admin') }}</th>
                 <th>{{ __('user-index.enabled') }}</th>
             </tr>
@@ -33,6 +35,8 @@
             <tr>
                 <td class="text-left"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->name }}</a></td>
                 <td class="text-left"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->email }}</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->created_at }}</a></td>
+                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->updated_at }}</a></td>
                 <td data-table-sort-value="{{ (int)$row->admin }}">@status($row->admin)</td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}">@status($row->enabled)</td>
             </tr>

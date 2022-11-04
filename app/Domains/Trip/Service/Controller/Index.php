@@ -41,6 +41,7 @@ class Index extends ControllerAbstract
     {
         return [
             'devices' => $this->devices(),
+            'devices_multiple' => ($this->devices()->count() > 1),
             'device' => $this->device(),
             'lasts' => $this->lasts(),
             'last' => $this->last(),
@@ -211,6 +212,7 @@ class Index extends ControllerAbstract
     protected function list(): Collection
     {
         return $this->cache[__FUNCTION__] ??= Model::byUserId($this->auth->id)
+            ->withDevice()
             ->whenLastDays($this->last())
             ->whenYear((int)$this->request->input('year'))
             ->whenMonth((int)$this->request->input('month'))

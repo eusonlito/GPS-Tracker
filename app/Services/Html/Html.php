@@ -88,16 +88,17 @@ class Html
     /**
      * @param ?string $date
      * @param ?string $timezone
+     * @param string $format = 'd/m/Y H:i'
      *
      * @return string
      */
-    public static function dateWithTimezone(?string $date, ?string $timezone): string
+    public static function dateWithTimezone(?string $date, ?string $timezone, string $format = 'd/m/Y H:i'): string
     {
         if (empty($date) || empty($timezone)) {
-            return '';
+            return $date ?: '';
         }
 
-        return helper()->dateUtcToTimezone('Y-m-d H:i:s', $date, $timezone, 'd/m/Y H:i');
+        return helper()->dateUtcToTimezone('Y-m-d H:i:s', $date, $timezone, $format);
     }
 
     /**

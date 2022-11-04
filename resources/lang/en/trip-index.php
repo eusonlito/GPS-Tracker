@@ -2,6 +2,7 @@
     'actions' => 'Actions',
     'city' => 'City',
     'country' => 'Country',
+    'device' => 'Device',
     'distance' => 'Distance',
     'end' => 'Arrival',
     'end_at' => 'End',

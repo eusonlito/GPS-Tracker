@@ -201,6 +201,14 @@ class Trip extends BuilderAbstract
     /**
      * @return self
      */
+    public function withDevice(): self
+    {
+        return $this->with('device');
+    }
+
+    /**
+     * @return self
+     */
     public function withTimezone(): self
     {
         return $this->with('timezone');

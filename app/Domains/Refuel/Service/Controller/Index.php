@@ -29,6 +29,7 @@ class Index extends ControllerAbstract
         return [
             'list' => $this->list(),
             'devices' => $this->devices(),
+            'devices_multiple' => ($this->devices()->count() > 1),
             'years' => $this->years(),
             'months' => $this->months(),
             'totals' => $this->totals(),
@@ -54,7 +55,7 @@ class Index extends ControllerAbstract
      */
     protected function devices(): Collection
     {
-        return DeviceModel::byUserId($this->auth->id)->list()->get();
+        return $this->cache[__FUNCTION__] ??= DeviceModel::byUserId($this->auth->id)->list()->get();
     }
 
     /**
