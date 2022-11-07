@@ -76,7 +76,26 @@ class LastOrNew extends ActionAbstract
      */
     protected function positionIsValid(): bool
     {
-        $dateUtcAt = $this->positionDateUtcAt();
+        return $this->positionIsValidAfter()
+            || $this->positionIsValidWait();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function positionIsValidAfter(): bool
+    {
+        return (bool)PositionModel::byTripId($this->row->id)
+            ->nextToDateUtcAt($this->data['date_utc_at'])
+            ->count();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function positionIsValidWait(): bool
+    {
+        $dateUtcAt = $this->positionIsValidWaitDateUtcAt();
 
         if ($dateUtcAt === null) {
             return true;
@@ -84,7 +103,7 @@ class LastOrNew extends ActionAbstract
 
         $wait = app('configuration')->int('trip_wait_minutes');
 
-        if (($wait === 0) || ($wait >= $this->positionMinutes($dateUtcAt))) {
+        if (($wait === 0) || ($wait >= $this->positionIsValidWaitMinutes($dateUtcAt))) {
             return true;
         }
 
@@ -94,7 +113,7 @@ class LastOrNew extends ActionAbstract
     /**
      * @return ?string
      */
-    protected function positionDateUtcAt(): ?string
+    protected function positionIsValidWaitDateUtcAt(): ?string
     {
         return PositionModel::byTripId($this->row->id)
             ->nearToDateUtcAt($this->data['date_utc_at'])
@@ -106,7 +125,7 @@ class LastOrNew extends ActionAbstract
      *
      * @return int
      */
-    protected function positionMinutes(string $dateUtcAt): int
+    protected function positionIsValidWaitMinutes(string $dateUtcAt): int
     {
         return (int)abs((strtotime($this->data['date_utc_at']) - strtotime($dateUtcAt)) / 60);
     }

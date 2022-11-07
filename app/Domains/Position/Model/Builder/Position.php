@@ -106,6 +106,16 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @param string $date_utc_at
+     *
+     * @return self
+     */
+    public function nextToDateUtcAt(string $date_utc_at): self
+    {
+        return $this->where('date_utc_at', '>', $date_utc_at);
+    }
+
+    /**
      * @return self
      */
     public function orderByDateUtcAtAsc(): self
