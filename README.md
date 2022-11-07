@@ -141,6 +141,12 @@ SLEEP{PASSWORD} {SEGUNDOS}
 151{PASSWORD}
 ```
 
+#### Cambiar Contraseña
+
+```
+777{PASSWORD-NEW}{PASSWORD-OLD}
+```
+
 #### Reiniciar dispositivo
 
 ```
