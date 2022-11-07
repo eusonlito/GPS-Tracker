@@ -141,6 +141,12 @@ SLEEP{PASSWORD} {SECONDS}
 151{PASSWORD}
 ```
 
+#### Password change
+
+```
+777{PASSWORD-NEW}{PASSWORD-OLD}
+```
+
 #### Device restart
 
 ```
