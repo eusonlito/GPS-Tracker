@@ -83,9 +83,10 @@ class Index extends ControllerAbstract
             return null;
         }
 
-        return $this->cache[__FUNCTION__] ??= TripModel::byUserId($this->auth->id)
-            ->byStartUtcAtNext($this->trip()->start_utc_at)
-            ->value('id');
+        return $this->cache[__FUNCTION__] ??= $this->trips()
+            ->reverse()
+            ->firstWhere('start_utc_at', '>', $this->trip()->start_utc_at)
+            ->id ?? null;
     }
 
     /**
@@ -97,9 +98,9 @@ class Index extends ControllerAbstract
             return null;
         }
 
-        return $this->cache[__FUNCTION__] ??= TripModel::byUserId($this->auth->id)
-            ->byStartUtcAtPrevious($this->trip()->start_utc_at)
-            ->value('id');
+        return $this->cache[__FUNCTION__] ??= $this->trips()
+            ->firstWhere('start_utc_at', '<', $this->trip()->start_utc_at)
+            ->id ?? null;
     }
 
     /**
