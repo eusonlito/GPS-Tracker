@@ -32,12 +32,12 @@ return new class extends MigrationAbstract
         $this->db()->statement('DELETE FROM `position` WHERE `trip_id` IS NULL;');
 
         Schema::table('position', function (Blueprint $table) {
-            $this->tableDropForeign($table, 'trip', 'fk');
-            $this->foreignOnDeleteCascade($table, 'trip');
+            $table->unsignedBigInteger('trip_id')->nullable(false)->change();
         });
 
         Schema::table('position', function (Blueprint $table) {
-            $table->unsignedBigInteger('trip_id')->nullable(false)->change();
+            $this->tableDropForeign($table, 'trip', 'fk');
+            $this->foreignOnDeleteCascade($table, 'trip');
         });
     }
 

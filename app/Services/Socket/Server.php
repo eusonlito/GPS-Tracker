@@ -4,8 +4,8 @@ namespace App\Services\Socket;
 
 use Closure;
 use Socket;
+use stdClass;
 use Throwable;
-use Illuminate\Support\Facades\Log;
 
 class Server
 {
@@ -106,54 +106,42 @@ class Server
 
             $this->clientFilter();
 
-            $read = array_filter(array_merge([$this->socket], $this->clientSockets()));
+            $sockets = array_filter(array_merge([$this->socket], $this->clientSockets()));
             $write = null;
             $except = null;
 
-            if (socket_select($read, $write, $except, null) === 0) {
+            if (socket_select($sockets, $write, $except, null) === 0) {
                 continue;
             }
 
-            if (in_array($this->socket, $read)) {
+            if (in_array($this->socket, $sockets)) {
                 $this->client();
             }
 
             foreach ($this->clients as &$client) {
-                $socket = $client->socket;
-
-                if ($this->isSocket($socket) === false) {
-                    continue;
-                }
-
-                if (in_array($socket, $read) === false) {
-                    continue;
-                }
-
-                $buffer = socket_read($socket, 2048);
-
-                if ($buffer === null) {
-                    $this->close($socket);
-
-                    continue;
-                }
-
-                if (empty($buffer = trim($buffer))) {
-                    continue;
-                }
-
-                $client->timestamp = time();
-
-                $response = 'OK';
-
-                try {
-                    $response = $handler($buffer) ?? $response;
-                } catch (Throwable $e) {
-                    $this->error($e);
-                }
-
-                socket_write($socket, $response, strlen($response));
+                $this->readClient($sockets, $client, $handler);
             }
         } while (true);
+    }
+
+    /**
+     * @param array $sockets
+     * @param \stdClass &$client
+     * @param \Closure $handler
+     *
+     * @return void
+     */
+    protected function readClient(array $sockets, stdClass &$client, Closure $handler): void
+    {
+        if (in_array($client->socket, $sockets) === false) {
+            return;
+        }
+
+        $response = Client::new($client, $handler)->handle();
+
+        if ($response === false) {
+            $this->close($client->socket);
+        }
     }
 
     /**
@@ -287,6 +275,6 @@ class Server
      */
     protected function error(Throwable $e): void
     {
-        Log::error($e);
+        report($e);
     }
 }

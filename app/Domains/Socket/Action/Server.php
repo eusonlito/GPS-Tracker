@@ -95,9 +95,9 @@ class Server extends ActionAbstract
     /**
      * @param string $body
      *
-     * @return ?string
+     * @return ?\App\Services\Protocol\Resource
      */
-    protected function store(string $body): ?string
+    protected function store(string $body): ?ProtocolResource
     {
         $this->logDebug($body);
 
@@ -113,7 +113,7 @@ class Server extends ActionAbstract
             $this->save($resource);
         }
 
-        return $resource->response();
+        return $resource;
     }
 
     /**

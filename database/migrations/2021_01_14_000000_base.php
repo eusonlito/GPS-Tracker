@@ -83,6 +83,20 @@ return new class extends MigrationAbstract
             $table->unsignedBigInteger('user_id');
         });
 
+        Schema::create('device_message', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('message');
+            $table->string('response')->nullable();
+
+            $table->dateTime('sent_at')->nullable();
+            $table->dateTime('response_at')->nullable();
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('device_id');
+        });
+
         Schema::create('ip_lock', function (Blueprint $table) {
             $table->id();
 
@@ -124,7 +138,7 @@ return new class extends MigrationAbstract
             $table->unsignedBigInteger('city_id')->nullable();
             $table->unsignedBigInteger('device_id');
             $table->unsignedBigInteger('timezone_id');
-            $table->unsignedBigInteger('trip_id')->nullable();
+            $table->unsignedBigInteger('trip_id');
             $table->unsignedBigInteger('user_id');
         });
 
@@ -249,13 +263,17 @@ return new class extends MigrationAbstract
             $this->foreignOnDeleteCascade($table, 'user');
         });
 
+        Schema::table('device_message', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'device');
+        });
+
         Schema::table('position', function (Blueprint $table) {
             $table->spatialIndex('point');
 
             $this->foreignOnDeleteSetNull($table, 'city');
             $this->foreignOnDeleteCascade($table, 'device');
             $this->foreignOnDeleteCascade($table, 'timezone');
-            $this->foreignOnDeleteSetNull($table, 'trip');
+            $this->foreignOnDeleteCascade($table, 'trip');
             $this->foreignOnDeleteCascade($table, 'user');
         });
 

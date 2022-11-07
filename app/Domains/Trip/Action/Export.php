@@ -4,7 +4,6 @@ namespace App\Domains\Trip\Action;
 
 use Throwable;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use Illuminate\Support\Facades\Log;
 use App\Services\Gpx\Gpx as GpxService;
 
 class Export extends ActionAbstract
@@ -55,7 +54,7 @@ class Export extends ActionAbstract
      */
     protected function error(Throwable $e): void
     {
-        Log::error($e);
+        report($e);
 
         $this->exceptionNotFound();
     }

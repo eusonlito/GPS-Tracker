@@ -5,7 +5,6 @@ namespace App\Domains\User\Middleware;
 use Closure;
 use Exception;
 use Illuminate\Http\Request as RequestVendor;
-use Illuminate\Support\Facades\Log;
 
 class Request extends MiddlewareAbstract
 {
@@ -35,7 +34,7 @@ class Request extends MiddlewareAbstract
     protected function fail(RequestVendor $request, Exception $e)
     {
         if (helper()->isExceptionSystem($e)) {
-            Log::error($e);
+            report($e);
         }
 
         if ($request->ajax() || $request->wantsJson()) {

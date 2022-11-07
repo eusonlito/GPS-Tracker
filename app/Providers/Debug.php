@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Queue\Events\JobFailed;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\VarDumper\VarDumper;
@@ -30,7 +29,7 @@ class Debug extends ServiceProvider
     protected function queue(): void
     {
         Queue::failing(static function (JobFailed $event) {
-            Log::error($event->exception->getMessage());
+            report($event->exception);
         });
     }
 

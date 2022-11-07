@@ -27,4 +27,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(Update::class, $this->validate()->update());
     }
+
+    /**
+     * @return \App\Domains\Device\Model\Device
+     */
+    public function updateMessageCreate(): Model
+    {
+        return $this->actionHandle(UpdateMessageCreate::class);
+    }
 }

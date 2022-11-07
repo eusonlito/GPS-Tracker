@@ -5,7 +5,6 @@ namespace App\Services\Http\Curl;
 use Closure;
 use CurlFile;
 use CurlHandle;
-use Illuminate\Support\Facades\Log as LogVendor;
 use Throwable;
 
 class Curl
@@ -1134,7 +1133,7 @@ class Curl
         $this->logFile($status);
 
         if ($e) {
-            LogVendor::error($e);
+            report($e);
         }
     }
 
