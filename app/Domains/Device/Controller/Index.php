@@ -3,6 +3,7 @@
 namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 use App\Domains\Device\Model\Device as Model;
 
 class Index extends ControllerAbstract
@@ -15,7 +16,20 @@ class Index extends ControllerAbstract
         $this->meta('title', __('device-index.meta-title'));
 
         return $this->page('device.index', [
-            'list' => Model::byUserId($this->auth->id)->withTimezone()->list()->get(),
+            'list' => $this->list(),
         ]);
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    protected function list(): Collection
+    {
+        return Model::byUserId($this->auth->id)
+            ->withTimezone()
+            ->withMessagesCount()
+            ->withMessagesPendingCount()
+            ->list()
+            ->get();
     }
 }

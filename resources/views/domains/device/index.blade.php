@@ -43,7 +43,10 @@
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@dateWithTimezone($row->connected_at, $row->timezone->zone, 'Y-m-d H:i:s')</a></td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}" class="text-center w-1">@status($row->enabled)</td>
                 <td class="text-center w-1">
-                    <a href="{{ route('device.update.device-message', $row->id) }}">@icon('message-square', 'w-4 h-4')</a>
+                    <a href="{{ route('device.update.device-message', $row->id) }}" class="{{ $row->hasPendingMessages() ? 'text-warning' : 'text-success' }}">
+                        @icon('message-square', 'w-4 h-4')
+                        {{ $row->messages_count }}/{{ $row->messages_pending_count }}
+                    </a>
                 </td>
             </tr>
 

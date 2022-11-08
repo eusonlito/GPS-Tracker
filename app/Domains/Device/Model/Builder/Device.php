@@ -19,6 +19,22 @@ class Device extends BuilderAbstract
     /**
      * @return self
      */
+    public function withMessagesCount(): self
+    {
+        return $this->withCount('messages');
+    }
+
+    /**
+     * @return self
+     */
+    public function withMessagesPendingCount(): self
+    {
+        return $this->withCount(['messages as messages_pending_count' => static fn ($q) => $q->whereSentAt()]);
+    }
+
+    /**
+     * @return self
+     */
     public function withTimezone(): self
     {
         return $this->with('timezone');
