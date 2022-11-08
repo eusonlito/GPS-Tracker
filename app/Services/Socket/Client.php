@@ -7,15 +7,10 @@ use Socket;
 use stdClass;
 use Throwable;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
-use App\Services\Protocol\Resource as ProtocolResource;
+use App\Services\Protocol\Resource\ResourceAbstract;
 
 class Client
 {
-    /**
-     * @param ?\App\Services\Protocol\Resource
-     */
-    protected ?ProtocolResource $resource;
-
     /**
      * @return self
      */
@@ -25,7 +20,7 @@ class Client
     }
 
     /**
-     * @param \stdClass &$this->client
+     * @param \stdClass &$client
      * @param \Closure $handler
      *
      * @return self
@@ -49,14 +44,9 @@ class Client
             return true;
         }
 
-        $this->resource = $this->readHandle($buffer);
-
-        if ($this->resource === null) {
-            return true;
+        foreach ($this->readHandle($buffer) as $resource) {
+            $this->readResource($resource);
         }
-
-        $this->readResourceResponse();
-        $this->readResourceMessages();
 
         return true;
     }
@@ -80,43 +70,89 @@ class Client
     /**
      * @param string $buffer
      *
-     * @return ?\App\Services\Protocol\Resource
+     * @return array
      */
-    protected function readHandle(string $buffer): ?ProtocolResource
+    protected function readHandle(string $buffer): array
     {
         $this->client->timestamp = time();
 
         try {
             return ($this->handler)($buffer);
         } catch (Throwable $e) {
-            return $this->error($e);
+            $this->error($e);
         }
+
+        return [];
     }
 
     /**
+     * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
+     *
      * @return void
      */
-    protected function readResourceResponse(): void
+    protected function readResource(ResourceAbstract $resource): void
     {
-        if ($response = $this->resource->response()) {
-            socket_write($this->client->socket, $response, strlen($response));
-        }
+        $this->readResourceResponse($resource);
+        $this->readResourceMessagesRead($resource);
+        $this->readResourceMessagesWrite($resource);
     }
 
     /**
+     * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
+     *
      * @return void
      */
-    protected function readResourceMessages(): void
+    protected function readResourceResponse(ResourceAbstract $resource): void
     {
-        if (empty($this->resource->serial())) {
+        socket_write($this->client->socket, $response = $resource->response(), strlen($response));
+    }
+
+    /**
+     * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
+     *
+     * @return void
+     */
+    protected function readResourceMessagesRead(ResourceAbstract $resource): void
+    {
+        if ($resource->format() !== 'sms') {
             return;
         }
 
-        DeviceMessageModel::byDeviceSerial($this->resource->serial())
-            ->whereSentAt()
+        DeviceMessageModel::byDeviceSerial($resource->serial())
+            ->whereSentAt(true)
+            ->whereResponseAt(false)
+            ->withDevice()
+            ->orderByCreatedAtAsc()
+            ->get()
+            ->each(fn ($message) => $this->readResourceMessageRead($resource, $message));
+    }
+
+    /**
+     * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
+     * @param \App\Domains\DeviceMessage\Model\DeviceMessage $message
+     *
+     * @return void
+     */
+    protected function readResourceMessageRead(ResourceAbstract $resource, DeviceMessageModel $message): void
+    {
+        $message->response = $resource->body();
+        $message->response_at = date('Y-m-d H:i:s');
+
+        $message->save();
+    }
+
+    /**
+     * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
+     *
+     * @return void
+     */
+    protected function readResourceMessagesWrite(ResourceAbstract $resource): void
+    {
+        DeviceMessageModel::byDeviceSerial($resource->serial())
+            ->whereSentAt(false)
             ->withDevice()
             ->get()
-            ->each(fn ($message) => $this->readResourceMessage($message));
+            ->each(fn ($message) => $this->readResourceMessageWrite($message));
     }
 
     /**
@@ -124,18 +160,12 @@ class Client
      *
      * @return void
      */
-    protected function readResourceMessage(DeviceMessageModel $message): void
+    protected function readResourceMessageWrite(DeviceMessageModel $message): void
     {
-        $text = $message->message();
-
         $message->sent_at = date('Y-m-d H:i:s');
-
-        socket_write($this->client->socket, $text, strlen($text));
-
-        $message->response = (string)socket_read($this->client->socket, 2048);
-        $message->response_at = date('Y-m-d H:i:s');
-
         $message->save();
+
+        socket_write($this->client->socket, $text = $message->message(), strlen($text));
     }
 
     /**

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Services\Protocol;
+namespace App\Services\Protocol\Resource;
 
-class Resource
+class Location extends ResourceAbstract
 {
     /**
      * @const array
@@ -13,46 +13,11 @@ class Resource
     ];
 
     /**
-     * @var array
+     * @return string
      */
-    protected array $attributes;
-
-    /**
-     * @return self
-     */
-    public static function new(): self
+    public function format(): string
     {
-        return new static(...func_get_args());
-    }
-
-    /**
-     * @param array $attributes
-     *
-     * @return self
-     */
-    public function __construct(array $attributes)
-    {
-        $this->attributes($attributes);
-    }
-
-    /**
-     * @param array $attributes
-     *
-     * @return void
-     */
-    protected function attributes(array $attributes): void
-    {
-        array_map(fn ($key) => $this->attributes[$key] = $attributes[$key] ?? null, static::ATTRIBUTES);
-    }
-
-    /**
-     * @param string $key
-     *
-     * @return mixed
-     */
-    protected function attribute(string $key): mixed
-    {
-        return $this->attributes[$key] ?? null;
+        return 'location';
     }
 
     /**
@@ -69,33 +34,33 @@ class Resource
     }
 
     /**
-     * @return ?string
+     * @return string
      */
-    public function body(): ?string
+    public function body(): string
     {
         return $this->attribute(__FUNCTION__);
     }
 
     /**
-     * @return ?string
+     * @return string
      */
-    public function maker(): ?string
+    public function maker(): string
     {
         return $this->attribute(__FUNCTION__);
     }
 
     /**
-     * @return ?string
+     * @return string
      */
-    public function serial(): ?string
+    public function serial(): string
     {
         return $this->attribute(__FUNCTION__);
     }
 
     /**
-     * @return ?string
+     * @return string
      */
-    public function type(): ?string
+    public function type(): string
     {
         return $this->attribute(__FUNCTION__);
     }
@@ -165,9 +130,9 @@ class Resource
     }
 
     /**
-     * @return ?string
+     * @return string
      */
-    public function response(): ?string
+    public function response(): string
     {
         return $this->attribute(__FUNCTION__);
     }

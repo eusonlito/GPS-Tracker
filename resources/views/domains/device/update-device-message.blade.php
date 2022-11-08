@@ -19,14 +19,14 @@
 </form>
 
 <div class="overflow-auto lg:overflow-visible header-sticky">
-    <table id="device-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
+    <table id="device-list-table" class="table table-report sm:mt-2 font-medium text-center" data-table-sort>
         <thead>
             <tr>
                 <th class="text-left w-1">{{ __('device-update-device-message.message') }}</th>
                 <th class="text-left">{{ __('device-update-device-message.response') }}</th>
-                <th class="text-center w-1">{{ __('device-update-device-message.created_at') }}</th>
-                <th class="text-center w-1">{{ __('device-update-device-message.sent_at') }}</th>
-                <th class="text-center w-1">{{ __('device-update-device-message.response_at') }}</th>
+                <th class="w-1">{{ __('device-update-device-message.created_at') }}</th>
+                <th class="w-1">{{ __('device-update-device-message.sent_at') }}</th>
+                <th class="w-1">{{ __('device-update-device-message.response_at') }}</th>
             </tr>
         </thead>
 

@@ -186,22 +186,22 @@ class Log extends ControllerAbstract
     }
 
     /**
-     * @param \SplFileInfo $fileInfo
+     * @param \DirectoryIterator $fileInfo
      *
      * @return bool
      */
-    protected function listContentIsValid(SplFileInfo $fileInfo): bool
+    protected function listContentIsValid(DirectoryIterator $fileInfo): bool
     {
         return ($fileInfo->isDot() === false)
             && ($fileInfo->isDir() || ($fileInfo->getExtension() === 'log'));
     }
 
     /**
-     * @param \SplFileInfo $fileInfo
+     * @param \DirectoryIterator $fileInfo
      *
      * @return \stdClass
      */
-    protected function listContent(SplFileInfo $fileInfo): stdClass
+    protected function listContent(DirectoryIterator $fileInfo): stdClass
     {
         return (object)[
             'path' => ($path = $fileInfo->getPathname()),

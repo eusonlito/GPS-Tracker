@@ -2,11 +2,21 @@
 
 namespace App\Services\Protocol\H02;
 
+use App\Services\Protocol\H02\Parser\Location as LocationParser;
+use App\Services\Protocol\H02\Parser\Sms as SmsParser;
 use App\Services\Protocol\ProtocolAbstract;
-use App\Services\Protocol\Resource;
+use App\Services\Protocol\Resource\ResourceAbstract;
 
 class Manager extends ProtocolAbstract
 {
+    /**
+     * @const array
+     */
+    protected const PARSERS = [
+        LocationParser::class,
+        SmsParser::class,
+    ];
+
     /**
      * @return string
      */
@@ -30,21 +40,34 @@ class Manager extends ProtocolAbstract
      */
     public function resources(string $body): array
     {
-        preg_match_all('/\*[^#]+#/', $body, $matches);
-
-        return array_filter(
-            array_map(fn ($body) => $this->resource($body), $matches[0]),
-            static fn ($resource) => $resource->isValid()
-        );
+        return array_filter(array_map(fn ($body) => $this->resource($body), $this->bodies($body)));
     }
 
     /**
      * @param string $body
      *
-     * @return \App\Services\Protocol\Resource
+     * @return array
      */
-    public function resource(string $body): Resource
+    protected function bodies(string $body): array
     {
-        return Resource::new((array)Parser::new($body)->data());
+        preg_match_all('/\*[^#]+#/', $body, $matches);
+
+        return $matches[0];
+    }
+
+    /**
+     * @param string $body
+     *
+     * @return ?\App\Services\Protocol\Resource\ResourceAbstract
+     */
+    public function resource(string $body): ?ResourceAbstract
+    {
+        foreach (static::PARSERS as $parser) {
+            if (($resource = $parser::new($body)->resource()) && $resource->isValid()) {
+                return $resource;
+            }
+        }
+
+        return null;
     }
 }

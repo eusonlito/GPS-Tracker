@@ -1,45 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace App\Services\Protocol\H02;
+namespace App\Services\Protocol\H02\Parser;
 
-class Parser
+use App\Services\Protocol\Resource\Location as LocationResource;
+
+class Location extends ParserAbstract
 {
     /**
-     * @var bool
+     * @return ?\App\Services\Protocol\Resource\Location
      */
-    protected bool $bodyIsValid;
-
-    /**
-     * @var array
-     */
-    protected array $values;
-
-    /**
-     * @var array
-     */
-    protected array $cache = [];
-
-    /**
-     * @return self
-     */
-    public static function new(): self
-    {
-        return new static(...func_get_args());
-    }
-
-    /**
-     * @param string $body
-     *
-     * @return self
-     */
-    public function __construct(protected readonly string $body)
-    {
-    }
-
-    /**
-     * @return ?array
-     */
-    public function data(): ?array
+    public function resource(): ?LocationResource
     {
         if ($this->bodyIsValid() === false) {
             return null;
@@ -47,7 +17,7 @@ class Parser
 
         $this->values = explode(',', substr($this->body, 1, -1));
 
-        return [
+        return new LocationResource([
             'body' => $this->body,
             'maker' => $this->maker(),
             'serial' => $this->serial(),
@@ -61,7 +31,7 @@ class Parser
             'country' => $this->country(),
             'timezone' => $this->timezone(),
             'response' => $this->response(),
-        ];
+        ]);
     }
 
     /**

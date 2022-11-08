@@ -53,7 +53,6 @@ class Kernel extends KernelVendor
      */
     protected $routeMiddleware = [
         'device.available' => DeviceAvailable::class,
-        'test' => Test::class,
         'user.admin' => UserAdmin::class,
         'user.auth.redirect' => UserAuthRedirect::class,
         'user.enabled' => UserEnabled::class,

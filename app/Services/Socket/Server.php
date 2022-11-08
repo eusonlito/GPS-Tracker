@@ -106,34 +106,61 @@ class Server
 
             $this->clientFilter();
 
-            $sockets = array_filter(array_merge([$this->socket], $this->clientSockets()));
-            $write = null;
-            $except = null;
+            $sockets = $this->clientSockets();
 
-            if (socket_select($sockets, $write, $except, null) === 0) {
+            if ($this->select($sockets) === 0) {
                 continue;
             }
 
             if (in_array($this->socket, $sockets)) {
-                $this->client();
+                $sockets = $this->clientAdd($sockets);
             }
 
-            foreach ($this->clients as &$client) {
-                $this->readClient($sockets, $client, $handler);
+            foreach ($sockets as $socket) {
+                $this->readClient($socket, $handler);
             }
         } while (true);
     }
 
     /**
+     * @param array &$sockets
+     *
+     * @return int
+     */
+    protected function select(array &$sockets): int
+    {
+        $write = $except = null;
+
+        array_push($sockets, $this->socket);
+
+        return intval(socket_select($sockets, $write, $except, null));
+    }
+
+    /**
      * @param array $sockets
-     * @param \stdClass &$client
+     *
+     * @return array
+     */
+    protected function clientAdd(array $sockets): array
+    {
+        $this->clientAccept();
+
+        unset($sockets[array_search($this->socket, $sockets)]);
+
+        return array_values($sockets);
+    }
+
+    /**
+     * @param \Socket $socket
      * @param \Closure $handler
      *
      * @return void
      */
-    protected function readClient(array $sockets, stdClass &$client, Closure $handler): void
+    protected function readClient(Socket $socket, Closure $handler): void
     {
-        if (in_array($client->socket, $sockets) === false) {
+        $client = $this->clientBySocket($socket);
+
+        if ($client === null) {
             return;
         }
 
@@ -179,7 +206,7 @@ class Server
     /**
      * @return void
      */
-    protected function client(): void
+    protected function clientAccept(): void
     {
         $this->clients[] = (object)[
             'socket' => socket_accept($this->socket),
@@ -188,11 +215,27 @@ class Server
     }
 
     /**
+     * @param \Socket $socket
+     *
+     * @return ?\stdClass
+     */
+    protected function clientBySocket(Socket $socket): ?stdClass
+    {
+        foreach ($this->clients as $client) {
+            if ($client->socket === $socket) {
+                return $client;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * @return array
      */
     protected function clientSockets(): array
     {
-        return array_column($this->clients, 'socket');
+        return array_filter(array_column($this->clients, 'socket'));
     }
 
     /**
@@ -217,16 +260,6 @@ class Server
         }
 
         $this->clients = array_filter($this->clients);
-    }
-
-    /**
-     * @param mixed $socket
-     *
-     * @return bool
-     */
-    protected function isSocket(mixed $socket): bool
-    {
-        return $socket && ($socket instanceof Socket);
     }
 
     /**

@@ -18,6 +18,16 @@ class DeviceMessage extends BuilderAbstract
     }
 
     /**
+     * @param bool $response_at = false
+     *
+     * @return self
+     */
+    public function whereResponseAt(bool $response_at = false): self
+    {
+        return $this->when($response_at, static fn ($q) => $q->whereNotNull('response_at'), static fn ($q) => $q->whereNull('response_at'));
+    }
+
+    /**
      * @param bool $sent_at = false
      *
      * @return self

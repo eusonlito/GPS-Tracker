@@ -19,9 +19,9 @@ class Timezone extends SeederAbstract
     /**
      * @param array $list
      *
-     * @return void
+     * @return array
      */
-    protected function map(array $list)
+    protected function map(array $list): array
     {
         $geojson = $this->geojson();
 

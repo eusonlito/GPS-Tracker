@@ -4,7 +4,7 @@ namespace App\Domains\Socket\Action;
 
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\ProtocolFactory;
-use App\Services\Protocol\Resource as ProtocolResource;
+use App\Services\Protocol\Resource\ResourceAbstract;
 
 class LogRead extends ActionAbstract
 {
@@ -86,21 +86,23 @@ class LogRead extends ActionAbstract
     }
 
     /**
-     * @param \App\Services\Protocol\Resource $resource
+     * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
      *
      * @return void
      */
-    protected function save(ProtocolResource $resource): void
+    protected function save(ResourceAbstract $resource): void
     {
-        $this->factory('Position')->action($this->saveData($resource))->create();
+        if ($resource->format() === 'location') {
+            $this->factory('Position')->action($this->saveData($resource))->create();
+        }
     }
 
     /**
-     * @param \App\Services\Protocol\Resource $resource
+     * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
      *
      * @return array
      */
-    protected function saveData(ProtocolResource $resource): array
+    protected function saveData(ResourceAbstract $resource): array
     {
         return [
             'serial' => $resource->serial(),

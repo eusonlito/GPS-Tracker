@@ -5,7 +5,7 @@ namespace App\Domains\Socket\Action;
 use App\Services\Filesystem\Directory;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\ProtocolFactory;
-use App\Services\Protocol\Resource as ProtocolResource;
+use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Socket\Server as SocketServer;
 
 class Server extends ActionAbstract
@@ -95,16 +95,16 @@ class Server extends ActionAbstract
     /**
      * @param string $body
      *
-     * @return ?\App\Services\Protocol\Resource
+     * @return array
      */
-    protected function store(string $body): ?ProtocolResource
+    protected function store(string $body): array
     {
         $this->logDebug($body);
 
         $resources = $this->protocol->resources($body);
 
         if (empty($resources)) {
-            return null;
+            return [];
         }
 
         $this->log($body);
@@ -113,7 +113,7 @@ class Server extends ActionAbstract
             $this->save($resource);
         }
 
-        return $resource;
+        return $resources;
     }
 
     /**
@@ -164,21 +164,23 @@ class Server extends ActionAbstract
     }
 
     /**
-     * @param \App\Services\Protocol\Resource $resource
+     * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
      *
      * @return void
      */
-    protected function save(ProtocolResource $resource): void
+    protected function save(ResourceAbstract $resource): void
     {
-        $this->factory('Position')->action($this->saveData($resource))->create();
+        if ($resource->format() === 'location') {
+            $this->factory('Position')->action($this->saveData($resource))->create();
+        }
     }
 
     /**
-     * @param \App\Services\Protocol\Resource $resource
+     * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
      *
      * @return array
      */
-    protected function saveData(ProtocolResource $resource): array
+    protected function saveData(ResourceAbstract $resource): array
     {
         return [
             'serial' => $resource->serial(),

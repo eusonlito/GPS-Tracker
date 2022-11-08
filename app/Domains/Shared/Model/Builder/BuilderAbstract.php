@@ -124,6 +124,22 @@ abstract class BuilderAbstract extends Builder
     /**
      * @return self
      */
+    public function orderByCreatedAtAsc(): self
+    {
+        return $this->orderBy($this->getTable().'.created_at', 'ASC');
+    }
+
+    /**
+     * @return self
+     */
+    public function orderByCreatedAtDesc(): self
+    {
+        return $this->orderBy($this->getTable().'.created_at', 'DESC');
+    }
+
+    /**
+     * @return self
+     */
     public function orderByFirst(): self
     {
         return $this->orderBy($this->getTable().'.id', 'ASC');
@@ -140,7 +156,15 @@ abstract class BuilderAbstract extends Builder
     /**
      * @return self
      */
-    public function orderByUpdatedAt(): self
+    public function orderByUpdatedAtAsc(): self
+    {
+        return $this->orderBy($this->getTable().'.updated_at', 'ASC');
+    }
+
+    /**
+     * @return self
+     */
+    public function orderByUpdatedAtDesc(): self
     {
         return $this->orderBy($this->getTable().'.updated_at', 'DESC');
     }

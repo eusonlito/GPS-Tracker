@@ -2,6 +2,8 @@
 
 namespace App\Services\Protocol;
 
+use App\Services\Protocol\Resource\ResourceAbstract;
+
 abstract class ProtocolAbstract
 {
     /**
@@ -24,7 +26,7 @@ abstract class ProtocolAbstract
     /**
      * @param string $body
      *
-     * @return \App\Services\Protocol\Resource
+     * @return ?\App\Services\Protocol\Resource\ResourceAbstract
      */
-    abstract public function resource(string $body): Resource;
+    abstract public function resource(string $body): ?ResourceAbstract;
 }
