@@ -35,7 +35,7 @@
 
             <tr>
                 <td class="text-left w-1"><span class="block font-semibold whitespace-nowrap truncate max-w-sm" title="{{ $each->message }}">{{ $each->message }}</span></td>
-                <td class="text-left"><span class="block font-semibold whitespace-nowrap" title="{{ $each->response }}">{{ $each->response }}</span></td>
+                <td class="text-left"><span class="block font-semibold">{{ $each->response }}</span></td>
                 <td><span class="block font-semibold whitespace-nowrap w-1">@dateWithTimezone($each->created_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
                 <td><span class="block font-semibold whitespace-nowrap w-1">@dateWithTimezone($each->sent_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
                 <td><span class="block font-semibold whitespace-nowrap w-1">@dateWithTimezone($each->response_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
