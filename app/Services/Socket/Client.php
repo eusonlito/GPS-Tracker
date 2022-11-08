@@ -114,7 +114,7 @@ class Client
      */
     protected function readResourceMessagesRead(ResourceAbstract $resource): void
     {
-        if ($resource->format() !== 'sms') {
+        if (in_array($resource->format(), ['sms', 'command']) === false) {
             return;
         }
 

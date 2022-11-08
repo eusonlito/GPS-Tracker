@@ -2,14 +2,14 @@
 
 namespace App\Services\Protocol\H02\Parser;
 
-use App\Services\Protocol\Resource\Sms as SmsResource;
+use App\Services\Protocol\Resource\Command as CommandResource;
 
-class Sms extends ParserAbstract
+class Command extends ParserAbstract
 {
     /**
-     * @return ?\App\Services\Protocol\Resource\Sms
+     * @return ?\App\Services\Protocol\Resource\Command
      */
-    public function resource(): ?SmsResource
+    public function resource(): ?CommandResource
     {
         if ($this->bodyIsValid() === false) {
             return null;
@@ -17,7 +17,7 @@ class Sms extends ParserAbstract
 
         $this->values = explode(',', substr($this->body, 1, -1));
 
-        return new SmsResource([
+        return new CommandResource([
             'body' => $this->body,
             'maker' => $this->maker(),
             'serial' => $this->serial(),
@@ -43,7 +43,7 @@ class Sms extends ParserAbstract
         return '/^'
             .'\*[A-Z]{2},' // 0 - maker
             .'[0-9]+,'     // 1 - serial
-            .'SMS,'        // 2 - type
+            .'V4,'         // 2 - type
             .'.*'          // 3 - payload
             .'$/';
     }

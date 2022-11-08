@@ -2,6 +2,7 @@
 
 namespace App\Services\Protocol\H02;
 
+use App\Services\Protocol\H02\Parser\Command as CommandParser;
 use App\Services\Protocol\H02\Parser\Location as LocationParser;
 use App\Services\Protocol\H02\Parser\Sms as SmsParser;
 use App\Services\Protocol\ProtocolAbstract;
@@ -15,6 +16,7 @@ class Manager extends ProtocolAbstract
     protected const PARSERS = [
         LocationParser::class,
         SmsParser::class,
+        CommandParser::class,
     ];
 
     /**

@@ -50,7 +50,7 @@ class Location extends ParserAbstract
         return '/^'
             .'\*[A-Z]{2},'         //  0 - maker
             .'[0-9]+,'             //  1 - serial
-            .'[A-Z]+[0-9]+,'       //  2 - type
+            .'V1,'                 //  2 - type
             .'[0-9]{6},'           //  3 - time
             .'[VA],'               //  4 - signal
             .'[0-9]{4}\.[0-9]{4},' //  5 - latitude
