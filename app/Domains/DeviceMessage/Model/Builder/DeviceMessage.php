@@ -26,4 +26,12 @@ class DeviceMessage extends BuilderAbstract
     {
         return $this->when($sent_at, static fn ($q) => $q->whereNotNull('sent_at'), static fn ($q) => $q->whereNull('sent_at'));
     }
+
+    /**
+     * @return self
+     */
+    public function withDevice(): self
+    {
+        return $this->with('device');
+    }
 }

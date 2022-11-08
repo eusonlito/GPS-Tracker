@@ -114,6 +114,7 @@ class Client
 
         DeviceMessageModel::byDeviceSerial($this->resource->serial())
             ->whereSentAt()
+            ->withDevice()
             ->get()
             ->each(fn ($message) => $this->readResourceMessage($message));
     }
@@ -125,9 +126,11 @@ class Client
      */
     protected function readResourceMessage(DeviceMessageModel $message): void
     {
+        $text = $message->message();
+
         $message->sent_at = date('Y-m-d H:i:s');
 
-        socket_write($this->client->socket, $message->message, strlen($message->message));
+        socket_write($this->client->socket, $text, strlen($text));
 
         $message->response = (string)socket_read($this->client->socket, 2048);
         $message->response_at = date('Y-m-d H:i:s');

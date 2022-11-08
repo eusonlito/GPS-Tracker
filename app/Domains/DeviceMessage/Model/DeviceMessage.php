@@ -41,4 +41,15 @@ class DeviceMessage extends ModelAbstract
     {
         return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN);
     }
+
+    /**
+     * @return string
+     */
+    public function message(): string
+    {
+        return strtr($this->message, [
+            '{PASSWORD}' => $this->device->password,
+            '{SERIAL}' => $this->device->serial,
+        ]);
+    }
 }
