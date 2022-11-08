@@ -1,196 +1,154 @@
-(function (cash) {
-    // Show or hide global event listener
-    let events = [];
+(function () {
+    const body = document.querySelector('body');
+    const modals = document.querySelectorAll('.modal');
 
-    // Get highest z-index
-    function getHighestZindex() {
+    if (!modals) {
+        return;
+    }
+
+    const insertAfter = function (newNode, existingNode) {
+        existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+    }
+
+    const getHighestZindex = function () {
         let zIndex = 52;
 
-        cash('.modal').each(function () {
-            if ((cash(this).css('z-index') !== 'auto') && (cash(this).css('z-index') > zIndex)) {
-                zIndex = parseInt(cash(this).css('z-index'));
+        modals.forEach(element => {
+            const current = element.style.zIndex;
+
+            if ((current !== 'auto') && (current > zIndex)) {
+                zIndex = parseInt(current);
             }
         });
 
         return zIndex;
     }
 
-    // Get scrollbar width
-    function getScrollbarWidth(el) {
-        return window.innerWidth - cash(el)[0].clientWidth;
+    const getScrollbarWidth = function (element) {
+        if (typeof element === 'String') {
+            element = document.querySelector(element);
+        }
+
+        return window.innerWidth - element.clientWidth;
     }
 
-    // Show modal with z-index
-    function show(el) {
-        const element = cash(el);
-
-        if (cash("[data-modal-replacer='" + element.attr("id") + "']").length) {
+    const show = function (element) {
+        if (!element) {
             return;
         }
 
-        // Move modal element to body
-        cash('<div data-modal-replacer="' + element.attr("id") + '"></div>').insertAfter(el);
+        if (document.querySelector('[data-modal-replacer="' + element.id + '"]')) {
+            return;
+        }
 
-        cash(el).css({
-            'margin-top': 0,
-            'margin-left': 0,
+        const div = document.createElement('div');
+
+        div.dataset.modalReplacer = element.id;
+
+        insertAfter(div, element);
+
+        element.style.marginTop = 0;
+        element.style.marginLeft = 0;
+
+        element.ariaHidden = 'false';
+
+        insertAfter(element, body);
+
+        setTimeout(() => {
+            element.classList.add('show');
+            element.style.zIndex = getHighestZindex() + 1
+        }, 200);
+
+        body.style.paddingRight = parseInt(body.style.paddingRight) + getScrollbarWidth('html') + 'px';
+        body.classList.add('overflow-y-hidden');
+
+        modals.forEach(modal => {
+            modal.classList.remove('overflow-y-auto');
+            modal.style.paddingLeft = '0';
         });
 
-        element.attr('aria-hidden', false).appendTo('body');
+        element.classList.add('overflow-y-auto');
+        element.style.paddingLeft = getScrollbarWidth(element) + 'px';
 
-        // Show modal by highest z-index
-        setTimeout(() => element.addClass('show').css('z-index', getHighestZindex() + 1), 200);
-
-        // Setting up modal scroll
-        cash('body').css('padding-right', parseInt(cash('body').css('padding-right')) + getScrollbarWidth('html') + 'px')
-            .addClass('overflow-y-hidden');
-
-        cash('.modal').removeClass('overflow-y-auto').css('padding-left', '0px');
-
-        element.addClass('overflow-y-auto').css('padding-left', getScrollbarWidth(el) + 'px')
-            .addClass(cash('.modal.show').length ? 'modal-overlap' : '');
-
-        // Trigger callback function
-        events.forEach(function (val, key) {
-            if (element.attr('id') == cash(val.el).attr('id') && (val.event === 'on.show')) {
-                events[key].triggerCallback = true;
-            }
-        });
+        if (element.classList.contains('show')) {
+            element.classList.add('modal-overlap');
+        }
     }
 
-    // Hide modal & remove modal scroll
-    function hide(el) {
-        const element = cash(el);
+    const hide = function (element) {
+        if (!element) {
+            return;
+        }
 
-        if (element.hasClass('modal') && element.hasClass('show')) {
-            element.attr('aria-hidden', true).removeClass('show');
+        if (!element.classList.contains('modal') || !element.classList.contains('show')) {
+            return;
+        }
 
-            setTimeout(() => {
-                element.removeAttr('style').removeClass('modal-overlap').removeClass('overflow-y-auto');
+        element.ariaHidden = 'true';
+        element.classList.remove('show');
 
-                // Add scroll to highest z-index modal if exist
-                cash('.modal').each(function () {
-                    if (parseInt(cash(this).css('z-index')) === getHighestZindex()) {
-                        cash(this).addClass('overflow-y-auto').css('padding-left', getScrollbarWidth(this) + 'px');
-                    }
-                });
+        setTimeout(() => {
+            element.style = {};
+            element.classList.remove('modal-overlap', 'overflow-y-auto');
 
-                // Return back scroll to body if no more modal showed up
-                if (getHighestZindex() == 52) {
-                    cash('body').removeClass('overflow-y-hidden').css('padding-right', '');
+            modals.forEach(modal => {
+                if (parseInt(modal.style.zIndex) !== getHighestZindex()) {
+                    return;
                 }
 
-                // Return back modal element to it's first place
-                cash('[data-modal-replacer="' + element.attr("id") + '"]').replaceWith(el);
-            }, parseFloat(element.css('transition-duration').split(',')[1]) * 1000);
-
-            // Trigger callback function
-            events.forEach(function (val, key) {
-                if (element.attr('id') == cash(val.el).attr('id') && (val.event === 'on.hide')) {
-                    events[key].triggerCallback = true;
-                }
+                modal.classList.add('overflow-y-auto');
+                modal.style.paddingLeft = getScrollbarWidth(modal) + 'px';
             });
-        }
+
+            if (getHighestZindex() === 52) {
+                body.classList.remove('overflow-y-hidden');
+                body.style.paddingRight = 0;
+            }
+
+            const current = document.querySelector('[data-modal-replacer="' + element.id + '"]');
+
+            current.parentNode.replaceChild(element, current);
+        }, parseFloat(element.style.transitionDuration.split(',')[1]) * 1000);
     }
 
-    // Toggle modal
-    function toggle(el) {
-        const element = cash(el);
-
-        if (element.hasClass('modal') && element.hasClass('show')) {
-            hide(el);
+    const toggle = function (element) {
+        if (element.classList.contains('modal') && element.classList.contains('show')) {
+            hide(element);
         } else {
-            show(el);
+            show(element);
         }
     }
 
-    // On show
-    function onShow(el, callback) {
-        events[events.length] = {
-            el: el,
-            event: 'on.show',
-            triggerCallback: false,
-            callback: callback,
-        };
-    }
-
-    // On hide
-    function onHide(el, callback) {
-        events[events.length] = {
-            el: el,
-            event: 'on.hide',
-            triggerCallback: false,
-            callback: callback,
-        };
-    }
-
-    // Show modal
-    cash("body").on("click", 'a[data-toggle="modal"]', function () {
-        show(cash(this).attr('data-target'));
+    document.querySelectorAll('[data-toggle="modal"]').forEach(element => {
+        element.addEventListener('click', () => show(document.querySelector(element.dataset.target)), false);
     });
 
-    // Hide modal
-    cash('body').on('click', function (event) {
-        const target = cash(event.target);
-
-        if (target.hasClass('modal') && target.hasClass('show')) {
-            if (target.data('backdrop') === undefined) {
-                hide(event.target);
-            } else {
-                target.addClass('modal-static');
-                setTimeout(() => target.removeClass('modal-static'), 600);
-            }
-        }
+    document.querySelectorAll('[data-dismiss="modal"]').forEach(element => {
+        element.addEventListener('click', () => hide(element.closest('.modal')), false);
     });
 
-    // Dismiss modal by link
-    cash("body").on("click", '[data-dismiss="modal"]', function () {
-        hide(cash(this).closest('.modal')[0]);
-    });
-
-    // Detect show or hide event
-    setInterval(function () {
-        events.forEach(function (val, key) {
-            if (val.event === 'on.show' && val.triggerCallback) {
-                val.callback();
-                events[key].triggerCallback = false;
-            } else if (val.event === 'on.hide' && val.triggerCallback) {
-                val.callback();
-                events[key].triggerCallback = false;
-            }
-        });
-    }, 300);
-
-    // Keyboard event
     document.addEventListener('keydown', function (event) {
         if (event.code !== 'Escape') {
             return;
         }
 
-        const el = cash('.modal.show').last();
-        const element = cash(el);
+        let element;
 
-        if (element.hasClass('modal') && element.hasClass('show')) {
-            if (element.data('backdrop') === undefined) {
-                hide(el);
-            } else {
-                element.addClass('modal-static');
-                setTimeout(() => element.removeClass('modal-static'), 600);
+        modals.forEach(modal => {
+            if (modal.classList.contains('show')) {
+                element = modal;
             }
-        }
-    });
+        })
 
-    cash.fn.modal = function (event, callback) {
-        if (event == 'show') {
-            show(this);
-        } else if (event === 'hide') {
-            hide(this);
-        } else if (event === 'toggle') {
-            toggle(this);
-        } else if (event === 'on.show') {
-            onShow(this, callback);
-        } else if (event === 'on.hide') {
-            onHide(this, callback);
+        if (!element.classList.contains('modal') || !element.classList.contains('show')) {
+            return;
         }
-    };
-})(cash);
+
+        if (element.dataset.backdrop === undefined) {
+            hide(element);
+        } else {
+            element.classList.add('modal-static');
+            setTimeout(() => element.classList.remove('modal-static'), 600);
+        }
+    }, false);
+})();

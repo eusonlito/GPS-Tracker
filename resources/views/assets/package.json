@@ -2,12 +2,8 @@
     "private": true,
     "devDependencies": {
         "@left4code/tw-starter": "^1.1.0",
-        "@popperjs/core": "^2.11.6",
         "ansi-regex": "^6.0.1",
         "autoprefixer": "^10.4.13",
-        "cash-dom": "^8.1.1",
-        "chart.js": "^3.9.1",
-        "dayjs": "^1.11.6",
         "del": "^6.1.1",
         "files-exist": "^1.1.0",
         "glob-parent": "^5.1.2",
@@ -44,8 +40,7 @@
         "velocity-animate": "^1.5.2",
         "webpack": "^5.74.0",
         "webpack-stream": "^7.0.0",
-        "yargs-parser": "^21.1.1",
-        "zoom-vanilla.js": "^2.0.6"
+        "yargs-parser": "^21.1.1"
     },
     "dependencies": {
         "leaflet-arrowheads": "^1.4.0",

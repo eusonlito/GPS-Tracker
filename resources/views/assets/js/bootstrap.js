@@ -1,5 +1,3 @@
-import './cash.js';
-
 import './data-table-pagination.js';
 import './data-map.js';
 import './data-change-submit.js';
