@@ -22,7 +22,7 @@
     <table id="device-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>
-                <th class="text-left">{{ __('device-update-device-message.message') }}</th>
+                <th class="text-left w-1">{{ __('device-update-device-message.message') }}</th>
                 <th class="text-left">{{ __('device-update-device-message.response') }}</th>
                 <th class="text-center w-1">{{ __('device-update-device-message.created_at') }}</th>
                 <th class="text-center w-1">{{ __('device-update-device-message.sent_at') }}</th>
@@ -34,7 +34,7 @@
             @foreach ($messages as $each)
 
             <tr>
-                <td class="text-left"><span class="block font-semibold whitespace-nowrap truncate max-w-sm" title="{{ $each->message }}">{{ $each->message }}</span></td>
+                <td class="text-left w-1"><span class="block font-semibold whitespace-nowrap truncate max-w-sm" title="{{ $each->message }}">{{ $each->message }}</span></td>
                 <td class="text-left"><span class="block font-semibold whitespace-nowrap" title="{{ $each->response }}">{{ $each->response }}</span></td>
                 <td><span class="block font-semibold whitespace-nowrap w-1">@dateWithTimezone($each->created_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
                 <td><span class="block font-semibold whitespace-nowrap w-1">@dateWithTimezone($each->sent_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
