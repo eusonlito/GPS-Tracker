@@ -60,16 +60,4 @@ class Device extends ModelAbstract
     {
         return $this->hasMany(TripModel::class, static::FOREIGN);
     }
-
-    /**
-     * @return bool
-     */
-    public function hasPendingMessages(): bool
-    {
-        if (isset($this->messages_pending_count)) {
-            return (bool)$this->messages_pending_count;
-        }
-
-        return true;
-    }
 }
