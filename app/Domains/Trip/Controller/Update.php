@@ -41,7 +41,7 @@ class Update extends UpdateAbstract
      */
     protected function update(): RedirectResponse
     {
-        $this->row = $this->action()->update();
+        $this->action()->update();
 
         $this->sessionMessage('success', __('trip-update.success'));
 

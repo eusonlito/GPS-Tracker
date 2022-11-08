@@ -3,7 +3,6 @@
 namespace App\Domains\Server\Service\Controller;
 
 use DirectoryIterator;
-use SplFileInfo;
 use stdClass;
 
 class Log extends ControllerAbstract

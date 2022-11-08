@@ -45,7 +45,7 @@ class Update extends ControllerAbstract
      */
     protected function update(): RedirectResponse
     {
-        $this->row = $this->action()->update();
+        $this->action()->update();
 
         $this->sessionMessage('success', __('refuel-update.success'));
 

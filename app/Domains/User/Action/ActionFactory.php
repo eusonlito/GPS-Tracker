@@ -39,6 +39,14 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return void
      */
+    public function delete(): void
+    {
+        $this->actionHandle(Delete::class);
+    }
+
+    /**
+     * @return void
+     */
     public function logout(): void
     {
         $this->actionHandle(Logout::class);

@@ -17,7 +17,7 @@ class Update extends ControllerAbstract
     {
         $this->row($id);
 
-        if ($response = $this->actionPost('update')) {
+        if ($response = $this->actions()) {
             return $response;
         }
 
@@ -32,14 +32,35 @@ class Update extends ControllerAbstract
     }
 
     /**
+     * @return \Illuminate\Http\RedirectResponse|false|null
+     */
+    protected function actions(): RedirectResponse|false|null
+    {
+        return $this->actionPost('update')
+            ?: $this->actionPost('delete');
+    }
+
+    /**
      * @return \Illuminate\Http\RedirectResponse
      */
     protected function update(): RedirectResponse
     {
-        $this->row = $this->action()->update();
+        $this->action()->update();
 
         $this->sessionMessage('success', __('device-update.success'));
 
         return redirect()->route('device.update', $this->row->id);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function delete(): RedirectResponse
+    {
+        $this->action()->delete();
+
+        $this->sessionMessage('success', __('device-update.delete-success'));
+
+        return redirect()->route('device.index');
     }
 }

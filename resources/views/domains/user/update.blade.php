@@ -48,9 +48,18 @@
 
     <div class="box p-5 mt-5">
         <div class="text-right">
-            <button type="submit" class="btn btn-primary">{{ __('user-update.save') }}</button>
+            @if ($can_be_deleted)
+            <a href="javascript:;" data-toggle="modal" data-target="#delete-modal" class="btn btn-outline-danger mr-5">{{ __('device-update.delete-button') }}</a>
+            @endif
+
+            <button type="submit" class="btn btn-primary" data-click-one>{{ __('user-update.save') }}</button>
         </div>
     </div>
 </form>
+
+@includeWhen ($can_be_deleted, 'molecules.delete-modal', [
+    'title' => __('user-update.delete-title'),
+    'message' => __('user-update.delete-message'),
+])
 
 @stop

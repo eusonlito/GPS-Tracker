@@ -21,6 +21,14 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
+     * @return void
+     */
+    public function delete(): void
+    {
+        $this->actionHandle(Delete::class);
+    }
+
+    /**
      * @return \App\Domains\Device\Model\Device
      */
     public function update(): Model
