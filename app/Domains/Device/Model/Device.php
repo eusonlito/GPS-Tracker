@@ -66,8 +66,8 @@ class Device extends ModelAbstract
      */
     public function hasPendingMessages(): bool
     {
-        if (isset($this->messages_count) && isset($this->messages_pending_count)) {
-            return $this->messages_count !== $this->messages_pending_count;
+        if (isset($this->messages_pending_count)) {
+            return (bool)$this->messages_pending_count;
         }
 
         return true;
