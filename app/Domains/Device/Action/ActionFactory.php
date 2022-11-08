@@ -43,4 +43,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(UpdateDeviceMessageCreate::class);
     }
+
+    /**
+     * @return \App\Domains\Device\Model\Device
+     */
+    public function updateDeviceMessageDelete(): Model
+    {
+        return $this->actionHandle(UpdateDeviceMessageDelete::class, $this->validate()->updateDeviceMessageDelete());
+    }
 }

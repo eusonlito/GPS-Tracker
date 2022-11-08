@@ -27,6 +27,7 @@
                 <th class="w-1">{{ __('device-update-device-message.created_at') }}</th>
                 <th class="w-1">{{ __('device-update-device-message.sent_at') }}</th>
                 <th class="w-1">{{ __('device-update-device-message.response_at') }}</th>
+                <th class="w-1">{{ __('device-update-device-message.actions') }}</th>
             </tr>
         </thead>
 
@@ -39,11 +40,20 @@
                 <td><span class="block font-semibold whitespace-nowrap w-1">@dateWithTimezone($each->created_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
                 <td><span class="block font-semibold whitespace-nowrap w-1">@dateWithTimezone($each->sent_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
                 <td><span class="block font-semibold whitespace-nowrap w-1">@dateWithTimezone($each->response_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
+                <td class="text-center w-1">
+                    <a href="javascript:;" data-toggle="modal" data-target="#delete-modal" data-delete-modal-one data-delete-modal-one-name="device_message_id" data-delete-modal-one-value="{{ $each->id }}" class="text-danger">
+                        @icon('trash', 'w-4 h-4')
+                    </a>
+                </td>
             </tr>
 
             @endforeach
         </tbody>
     </table>
 </div>
+
+@include ('molecules.delete-modal', [
+    'action' => 'updateDeviceMessageDelete'
+])
 
 @stop

@@ -16,7 +16,7 @@ class UpdateDeviceMessage extends ControllerAbstract
     {
         $this->row($id);
 
-        if ($response = $this->actionPost('updateDeviceMessageCreate')) {
+        if ($response = $this->actions()) {
             return $response;
         }
 
@@ -29,6 +29,15 @@ class UpdateDeviceMessage extends ControllerAbstract
     }
 
     /**
+     * @return \Illuminate\Http\RedirectResponse|false|null
+     */
+    protected function actions(): RedirectResponse|false|null
+    {
+        return $this->actionPost('updateDeviceMessageCreate')
+            ?: $this->actionPost('updateDeviceMessageDelete');
+    }
+
+    /**
      * @return \Illuminate\Http\RedirectResponse
      */
     protected function updateDeviceMessageCreate(): RedirectResponse
@@ -36,6 +45,18 @@ class UpdateDeviceMessage extends ControllerAbstract
         $this->action()->updateDeviceMessageCreate();
 
         $this->sessionMessage('success', __('device-update-device-message.create-success'));
+
+        return redirect()->route('device.update.device-message', $this->row->id);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function updateDeviceMessageDelete(): RedirectResponse
+    {
+        $this->action()->updateDeviceMessageDelete();
+
+        $this->sessionMessage('success', __('device-update-device-message.delete-success'));
 
         return redirect()->route('device.update.device-message', $this->row->id);
     }

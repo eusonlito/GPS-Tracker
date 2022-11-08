@@ -19,4 +19,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(Create::class, $this->validate()->create());
     }
+
+    /**
+     * @return void
+     */
+    public function delete(): void
+    {
+        $this->actionHandle(Delete::class);
+    }
 }
