@@ -123,6 +123,7 @@ class Client
             ->whereResponseAt(false)
             ->withDevice()
             ->orderByCreatedAtAsc()
+            ->limit(1)
             ->get()
             ->each(fn ($message) => $this->readResourceMessageRead($resource, $message));
     }
@@ -165,7 +166,7 @@ class Client
         $message->sent_at = date('Y-m-d H:i:s');
         $message->save();
 
-        socket_write($this->client->socket, $text = $message->message(), strlen($text));
+        socket_write($this->client->socket, $response = $message->message(), strlen($response));
     }
 
     /**
