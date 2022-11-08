@@ -4,7 +4,7 @@ namespace App\Domains\Device\Action;
 
 use App\Domains\Device\Model\Device as Model;
 
-class UpdateMessageCreate extends ActionAbstract
+class UpdateDeviceMessageCreate extends ActionAbstract
 {
     /**
      * @return \App\Domains\Device\Model\Device

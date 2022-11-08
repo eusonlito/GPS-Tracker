@@ -31,8 +31,8 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return \App\Domains\Device\Model\Device
      */
-    public function updateMessageCreate(): Model
+    public function updateDeviceMessageCreate(): Model
     {
-        return $this->actionHandle(UpdateMessageCreate::class);
+        return $this->actionHandle(UpdateDeviceMessageCreate::class);
     }
 }

@@ -24,7 +24,8 @@
                 <th class="text-center">{{ __('device-index.port') }}</th>
                 <th class="text-center">{{ __('device-index.timezone') }}</th>
                 <th class="text-center">{{ __('device-index.connected_at') }}</th>
-                <th>{{ __('device-index.enabled') }}</th>
+                <th class="text-center">{{ __('device-index.enabled') }}</th>
+                <th class="text-center">{{ __('trip-index.actions') }}</th>
             </tr>
         </thead>
 
@@ -40,16 +41,15 @@
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->port }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->timezone->zone }}</a></td>
                 <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@dateWithTimezone($row->connected_at, $row->timezone->zone, 'Y-m-d H:i:s')</a></td>
-                <td data-table-sort-value="{{ (int)$row->enabled }}">@status($row->enabled)</td>
+                <td data-table-sort-value="{{ (int)$row->enabled }}" class="text-center w-1">@status($row->enabled)</td>
+                <td class="text-center w-1">
+                    <a href="{{ route('device.update.device-message', $row->id) }}">@icon('message-square', 'w-4 h-4')</a>
+                </td>
             </tr>
 
             @endforeach
         </tbody>
     </table>
-</div>
-
-<div class="mt-2 p-2 text-right">
-    <a href="{{ route('device.create') }}" class="btn form-control-lg bg-white">{{ __('device-index.create') }}</a>
 </div>
 
 @stop

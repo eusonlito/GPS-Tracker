@@ -5,7 +5,7 @@ namespace App\Domains\Device\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
-class UpdateMessage extends ControllerAbstract
+class UpdateDeviceMessage extends ControllerAbstract
 {
     /**
      * @param int $id
@@ -16,13 +16,13 @@ class UpdateMessage extends ControllerAbstract
     {
         $this->row($id);
 
-        if ($response = $this->actionPost('updateMessageCreate')) {
+        if ($response = $this->actionPost('updateDeviceMessageCreate')) {
             return $response;
         }
 
         $this->meta('title', $this->row->name);
 
-        return $this->page('device.update-message', [
+        return $this->page('device.update-device-message', [
             'row' => $this->row,
             'messages' => $this->row->messages()->list()->get(),
         ]);
@@ -31,12 +31,12 @@ class UpdateMessage extends ControllerAbstract
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function updateMessageCreate(): RedirectResponse
+    protected function updateDeviceMessageCreate(): RedirectResponse
     {
-        $this->action()->updateMessageCreate();
+        $this->action()->updateDeviceMessageCreate();
 
-        $this->sessionMessage('success', __('device-update-message.create-success'));
+        $this->sessionMessage('success', __('device-update-device-message.create-success'));
 
-        return redirect()->route('device.update.message', $this->row->id);
+        return redirect()->route('device.update.device-message', $this->row->id);
     }
 }
