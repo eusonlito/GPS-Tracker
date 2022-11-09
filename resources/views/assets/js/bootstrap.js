@@ -1,10 +1,11 @@
 import './data-table-pagination.js';
 import './data-map.js';
-import './data-change-submit.js';
-import './data-table-search.js';
+import './nav-tabs.js';
 import './data-table-sort.js';
-import './data-password-show.js';
+import './data-table-search.js';
 import './data-current-datetime.js';
+import './data-change-submit.js';
+import './data-password-show.js';
 import './data-calculator.js';
 import './data-checkall.js';
 import './data-copy.js';
