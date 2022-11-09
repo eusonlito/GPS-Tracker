@@ -8,7 +8,11 @@
     <div class="box p-5 mt-5">
         <div class="flex">
             <div class="flex-1 p-2">
-                <input type="text" name="message" class="form-control form-control-lg" id="device-message-message" placeholder="{{ __('device-update-device-message.message') }}" required>
+                <div class="input-group">
+                    <input type="text" name="message" class="form-control form-control-lg" id="device-message-message" placeholder="{{ __('device-update-device-message.message') }}" required>
+                    <button type="button" class="input-group-text input-group-text-lg" data-input-insert data-input-insert-selector="#device-message-message" data-input-insert-value="{PASSWORD}" tabindex="-1">@icon('key', 'w-5 h-5')</button>
+                    <button type="button" class="input-group-text input-group-text-lg" data-input-insert data-input-insert-selector="#device-message-message" data-input-insert-value="{SERIAL}" tabindex="-1">@icon('award', 'w-5 h-5')</button>
+                </div>
             </div>
 
             <div class="p-2">
