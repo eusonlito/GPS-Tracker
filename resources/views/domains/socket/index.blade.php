@@ -6,7 +6,7 @@
 
 <div class="box p-5 mt-5">
     <div class="overflow-auto lg:overflow-visible header-sticky">
-        <table class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
+        <table class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
             <thead>
                 <tr>
                     <th>{{ __('socket-index.port') }}</th>
@@ -22,12 +22,12 @@
                 @foreach ($process as $each)
 
                 <tr>
-                    <td class="font-semibold whitespace-nowrap">{{ $each->port }}</td>
-                    <td class="font-semibold whitespace-nowrap">{{ $each->pid }}</td>
-                    <td class="font-semibold whitespace-nowrap">{{ $each->owner }}</td>
-                    <td class="font-semibold whitespace-nowrap">{{ $each->start }}</td>
-                    <td class="font-semibold whitespace-nowrap">{{ $each->time }}</td>
-                    <td class="font-semibold whitespace-nowrap">{{ $each->command }}</td>
+                    <td>{{ $each->port }}</td>
+                    <td>{{ $each->pid }}</td>
+                    <td>{{ $each->owner }}</td>
+                    <td>{{ $each->start }}</td>
+                    <td>{{ $each->time }}</td>
+                    <td>{{ $each->command }}</td>
                 </tr>
 
                 @endforeach
@@ -41,7 +41,7 @@
 <form method="post">
     <div class="box p-5 mt-5">
         <div class="overflow-auto lg:overflow-visible header-sticky">
-            <table class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
+            <table class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
                 <thead>
                     <tr>
                         <th>{{ __('socket-index.port') }}</th>
@@ -54,8 +54,8 @@
                     @foreach ($sockets as $port => $protocol)
 
                     <tr>
-                        <td class="font-semibold whitespace-nowrap">{{ $port }}</td>
-                        <td class="font-semibold whitespace-nowrap">{{ $protocol }}</td>
+                        <td>{{ $port }}</td>
+                        <td>{{ $protocol }}</td>
                         <td class="w-1"><input type="checkbox" name="ports[]" value="{{ $port }}" /></td>
                     </tr>
 
