@@ -3,8 +3,8 @@
 @section ('body')
 
 <div class="box flex items-center px-5">
-    <div class="nav nav-tabs flex-col sm:flex-row justify-center lg:justify-start mr-auto" tab="tablist">
-        <a href="{{ route('user.update', $row->id) }}" class="py-4 sm:mr-8 {{ ($ROUTE === 'user.update') ? 'active' : '' }}" role="tab">{{ $row->name }}</a>
+    <div class="nav nav-tabs flex overflow-auto whitespace-nowrap" role="tablist">
+        <a href="{{ route('user.update', $row->id) }}" class="p-4 {{ ($ROUTE === 'user.update') ? 'active' : '' }}" role="tab">{{ $row->name }}</a>
     </div>
 </div>
 

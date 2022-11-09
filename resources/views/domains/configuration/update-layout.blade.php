@@ -3,8 +3,8 @@
 @section ('body')
 
 <div class="box flex items-center px-5">
-    <div class="nav nav-tabs flex-col sm:flex-row justify-center lg:justify-start mr-auto" role="tablist">
-        <a href="{{ route('configuration.update', $row->id) }}" class="py-4 sm:mr-8 {{ ($ROUTE === 'configuration.update') ? 'active' : '' }}" role="tab">{{ __('configuration-update.data') }}</a>
+    <div class="nav nav-tabs flex overflow-auto whitespace-nowrap" role="tablist">
+        <a href="{{ route('configuration.update', $row->id) }}" class="p-4 {{ ($ROUTE === 'configuration.update') ? 'active' : '' }}" role="tab">{{ __('configuration-update.data') }}</a>
     </div>
 </div>
 
