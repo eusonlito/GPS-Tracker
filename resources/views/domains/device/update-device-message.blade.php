@@ -6,23 +6,24 @@
     <input type="hidden" name="_action" value="updateDeviceMessageCreate" />
 
     <div class="box p-5 mt-5">
-        <div class="flex">
+        <div class="md:flex">
             <div class="flex-1 p-2">
-                <div class="input-group">
-                    <input type="text" name="message" class="form-control form-control-lg" id="device-message-message" placeholder="{{ __('device-update-device-message.message') }}" required>
-                    <button type="button" class="input-group-text input-group-text-lg" data-input-insert data-input-insert-selector="#device-message-message" data-input-insert-value="{PASSWORD}" tabindex="-1">@icon('key', 'w-5 h-5')</button>
-                    <button type="button" class="input-group-text input-group-text-lg" data-input-insert data-input-insert-selector="#device-message-message" data-input-insert-value="{SERIAL}" tabindex="-1">@icon('award', 'w-5 h-5')</button>
-                </div>
+                <input type="text" name="message" class="form-control form-control-lg" id="device-message-message" placeholder="{{ __('device-update-device-message.message') }}" required>
+            </div>
+
+            <div class="flex p-2">
+                <button type="button" class="btn form-control-lg block" data-input-insert data-input-insert-selector="#device-message-message" data-input-insert-value="{PASSWORD}" tabindex="-1">@icon('key', 'w-5 h-5')</button>
+                <button type="button" class="btn form-control-lg block ml-2" data-input-insert data-input-insert-selector="#device-message-message" data-input-insert-value="{SERIAL}" tabindex="-1">@icon('award', 'w-5 h-5')</button>
             </div>
 
             <div class="p-2">
-                <button type="submit" class="btn btn-primary form-control-lg">{{ __('device-update-device-message.send') }}</button>
+                <button type="submit" class="btn btn-primary form-control-lg w-full block">{{ __('device-update-device-message.send') }}</button>
             </div>
         </div>
     </div>
 </form>
 
-<div class="overflow-auto lg:overflow-visible header-sticky">
+<div class="overflow-auto header-sticky">
     <table id="device-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>

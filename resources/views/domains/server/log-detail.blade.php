@@ -13,7 +13,7 @@
 
 @if ($is_file)
 
-<pre class="p-2 bg-white w-100 max-h-screen overflow-x-auto">{{ $contents }}</pre>
+<pre class="p-2 bg-white w-full max-h-screen overflow-x-auto">{{ $contents }}</pre>
 
 @else
 
