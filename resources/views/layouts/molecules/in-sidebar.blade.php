@@ -1,4 +1,4 @@
-<nav class="side-nav pt-10 pb-10">
+<nav class="side-nav py-10">
     <ul>
         <li>
             <a href="{{ route('dashboard.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'dashboard.') ? 'side-menu--active' : '' }}">

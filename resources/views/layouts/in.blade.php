@@ -11,7 +11,7 @@
             <div class="wrapper-box">
                 @include ('layouts.molecules.in-sidebar')
 
-                <div class="content pt-10 pb-10 sm:px-10">
+                <div class="content py-5 md:p-10">
                     <x-message type="error" />
                     <x-message type="success" />
 
