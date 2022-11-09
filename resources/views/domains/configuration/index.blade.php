@@ -40,8 +40,4 @@
     </table>
 </div>
 
-<div class="mt-2 p-2 text-right">
-    <a href="{{ route('configuration.create') }}" class="btn form-control-lg bg-white">{{ __('configuration-index.create') }}</a>
-</div>
-
 @stop

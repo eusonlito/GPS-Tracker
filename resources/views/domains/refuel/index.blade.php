@@ -84,8 +84,4 @@
     </table>
 </div>
 
-<div class="mt-2 p-2 text-right">
-    <a href="{{ route('refuel.create') }}" class="btn form-control-lg bg-white">{{ __('refuel-index.create') }}</a>
-</div>
-
 @stop

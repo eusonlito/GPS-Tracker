@@ -48,8 +48,4 @@
     <ul id="user-list-table-pagination" class="pagination justify-end"></ul>
 </div>
 
-<div class="box mt-2 p-2 text-right">
-    <a href="{{ route('user.create') }}" class="btn form-control-lg">{{ __('user-index.create') }}</a>
-</div>
-
 @stop
