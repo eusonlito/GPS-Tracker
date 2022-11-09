@@ -203,18 +203,24 @@ php artisan socket:server {--port=} {--reset}
 
 ### Capturas
 
-![Screenshot from 2022-10-31 09-37-46](https://user-images.githubusercontent.com/644551/198966515-1afb7ac3-b2a6-428a-b65d-a9eacff35ded.png)
+![gps-tracker-2022-11-09-15_43_06](https://user-images.githubusercontent.com/644551/200862784-b53868e1-03ad-4e5b-98ef-e2c8eb314ba1.png)
 
-![Screenshot from 2022-10-31 09-38-26](https://user-images.githubusercontent.com/644551/198966533-961ca22c-832a-4bd6-a176-d78b060c9d3e.png)
+![gps-tracker-2022-11-09-15_43_36](https://user-images.githubusercontent.com/644551/200862818-6b1fd847-0dce-46f2-9529-b8a8b20a0bd2.png)
 
-![Screenshot from 2022-10-18 18-31-10](https://user-images.githubusercontent.com/644551/196489823-7ef35c1d-4c88-49dd-b0b7-e50a24b7beb2.png)
+![gps-tracker-2022-11-09-15_44_26](https://user-images.githubusercontent.com/644551/200862848-44ba2d78-f614-46dd-a5bb-6435f4269dcb.png)
 
-![Screenshot from 2022-10-18 18-31-21](https://user-images.githubusercontent.com/644551/196489866-e1b89302-1558-41ef-89a2-02a3f335ec17.png)
+![gps-tracker-2022-11-09-15_44_52](https://user-images.githubusercontent.com/644551/200862881-478a4264-0eae-4bd2-9bd5-d95cfd28d616.png)
 
-![Screenshot from 2022-10-18 18-31-27](https://user-images.githubusercontent.com/644551/196489891-2f3a81a8-b788-44e1-bb9e-1457bcba92ba.png)
+![gps-tracker-2022-11-09-15_45_13](https://user-images.githubusercontent.com/644551/200862915-1454768c-894d-405b-b1c5-616fcc242fdc.png)
 
-![Screenshot from 2022-10-18 18-30-06](https://user-images.githubusercontent.com/644551/196489713-969ffb72-a864-434e-8533-afc87e700582.png)
+![gps-tracker-2022-11-09-15_45_39](https://user-images.githubusercontent.com/644551/200862939-fd3b8610-1019-4930-9149-cf560414459b.png)
 
-![Screenshot from 2022-10-18 18-30-15](https://user-images.githubusercontent.com/644551/196489740-b71e0042-51e9-4038-9a6d-03d5bf8180ac.png)
+![gps-tracker-2022-11-09-15_47_46](https://user-images.githubusercontent.com/644551/200862976-32047c5e-3a4b-4770-9e59-8b3d092eb963.png)
 
-![Screenshot from 2022-10-18 18-30-37](https://user-images.githubusercontent.com/644551/196489787-6f570213-6e4b-444d-979b-62bdf0625582.png)
+![gps-tracker-2022-11-09-15_48_58](https://user-images.githubusercontent.com/644551/200863006-67032098-bbbc-4708-8113-71220c56ad2e.png)
+
+![gps-tracker-2022-11-09-15_49_16](https://user-images.githubusercontent.com/644551/200863049-c8671732-b03d-4b7e-b21c-dfa12ad7587a.png)
+
+![gps-tracker-2022-11-09-15_50_50](https://user-images.githubusercontent.com/644551/200863108-d36b4e26-5f4b-4487-8d5e-8dbfbb8d6160.png)
+
+![gps-tracker-2022-11-09-15_51_10](https://user-images.githubusercontent.com/644551/200863128-0a0e14a9-7920-4caa-b080-b48a0c4ecae6.png)
