@@ -9,7 +9,7 @@
         }
 
         element.scrollTo({
-            left: selected.offsetLeft,
+            left: selected.offsetLeft - parseFloat(window.getComputedStyle(selected, null).paddingLeft),
             behavior: 'smooth'
         });
     });
