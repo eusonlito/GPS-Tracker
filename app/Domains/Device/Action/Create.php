@@ -35,6 +35,7 @@ class Create extends CreateUpdateAbstract
             'name' => $this->data['name'],
             'maker' => $this->data['maker'],
             'serial' => $this->data['serial'],
+            'phone_number' => $this->data['phone_number'],
             'password' => $this->data['password'],
             'port' => $this->data['port'],
             'timezone_auto' => $this->data['timezone_auto'],

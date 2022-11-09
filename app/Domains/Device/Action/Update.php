@@ -32,6 +32,7 @@ class Update extends CreateUpdateAbstract
         $this->row->name = $this->data['name'];
         $this->row->maker = $this->data['maker'];
         $this->row->serial = $this->data['serial'];
+        $this->row->phone_number = $this->data['phone_number'];
         $this->row->password = $this->data['password'];
         $this->row->port = $this->data['port'];
         $this->row->timezone_auto = $this->data['timezone_auto'];

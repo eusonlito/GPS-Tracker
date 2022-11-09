@@ -7,6 +7,5 @@
     'meta-title' => 'Dispositivos',
     'name' => 'Nombre',
     'port' => 'Puerto',
-    'serial' => 'Serie',
     'timezone' => 'Zona Horaria',
 ];

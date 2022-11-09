@@ -59,19 +59,19 @@
 </form>
 
 <div class="overflow-auto lg:overflow-visible header-sticky">
-    <table id="trip-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
+    <table id="trip-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
                 @if ($devices_multiple)
-                <th class="text-center">{{ __('trip-index.device') }}</th>
+                <th>{{ __('trip-index.device') }}</th>
                 @endif
 
                 <th class="text-left">{{ __('trip-index.name') }}</th>
-                <th class="text-center">{{ __('trip-index.start_at') }}</th>
-                <th class="text-center">{{ __('trip-index.end_at') }}</th>
-                <th class="text-center">{{ __('trip-index.distance') }}</th>
-                <th class="text-center">{{ __('trip-index.time') }}</th>
-                <th class="text-center">{{ __('trip-index.actions') }}</th>
+                <th>{{ __('trip-index.start_at') }}</th>
+                <th>{{ __('trip-index.end_at') }}</th>
+                <th>{{ __('trip-index.distance') }}</th>
+                <th>{{ __('trip-index.time') }}</th>
+                <th>{{ __('trip-index.actions') }}</th>
             </tr>
         </thead>
 
@@ -82,17 +82,17 @@
 
             <tr>
                 @if ($devices_multiple)
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->device->name }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->device->name }}</a></td>
                 @endif
 
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap text-left">{{ $row->name }}</a></td>
+                <td><a href="{{ $link }}" class="block text-left">{{ $row->name }}</a></td>
 
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->start_at }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->end_at }}</a></td>
-                <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@distanceHuman($row->distance)</a></td>
-                <td data-table-sort-value="{{ $row->time }}"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@timeHuman($row->time)</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->start_at }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->end_at }}</a></td>
+                <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block">@distanceHuman($row->distance)</a></td>
+                <td data-table-sort-value="{{ $row->time }}"><a href="{{ $link }}" class="block">@timeHuman($row->time)</a></td>
 
-                <td class="text-center w-1">
+                <td class="w-1">
                     <a href="{{ route('trip.update', $row->id) }}">@icon('edit', 'w-4 h-4')</a>
                     <span class="mx-2"></span>
                     <a href="{{ $link }}">@icon('map', 'w-4 h-4')</a>
@@ -111,8 +111,8 @@
         <tfoot class="bg-white">
             <tr>
                 <th colspan="{{ $devices_multiple ? '4' : '3' }}"></th>
-                <th class="text-center">@distanceHuman($list->sum('distance'))</th>
-                <th class="text-center">@timeHuman($list->sum('time'))</th>
+                <th>@distanceHuman($list->sum('distance'))</th>
+                <th>@timeHuman($list->sum('time'))</th>
                 <th colspan="2"></th>
             </tr>
         </tfoot>

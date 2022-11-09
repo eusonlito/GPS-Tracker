@@ -7,15 +7,15 @@
 
     <div class="box p-5 mt-5">
         <div class="overflow-auto lg:overflow-visible header-sticky">
-            <table class="table table-report font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
+            <table class="table table-report font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
                 <thead>
                     <tr>
                         <th class="text-left">{{ __('trip-update-merge.name') }}</th>
-                        <th class="text-center">{{ __('trip-update-merge.start_at') }}</th>
-                        <th class="text-center">{{ __('trip-update-merge.end_at') }}</th>
-                        <th class="text-center">{{ __('trip-update-merge.distance') }}</th>
-                        <th class="text-center">{{ __('trip-update-merge.time') }}</th>
-                        <th class="text-center">{{ __('trip-update-merge.select') }}</th>
+                        <th>{{ __('trip-update-merge.start_at') }}</th>
+                        <th>{{ __('trip-update-merge.end_at') }}</th>
+                        <th>{{ __('trip-update-merge.distance') }}</th>
+                        <th>{{ __('trip-update-merge.time') }}</th>
+                        <th>{{ __('trip-update-merge.select') }}</th>
                     </tr>
                 </thead>
 
@@ -25,11 +25,11 @@
                     @php ($link = route('trip.update.map', $each->id))
 
                     <tr>
-                        <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap text-left">{{ $each->name }}</a></td>
-                        <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $each->start_at }}</a></td>
-                        <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $each->end_at }}</a></td>
-                        <td data-table-sort-value="{{ $each->distance }}"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@distanceHuman($each->distance)</a></td>
-                        <td data-table-sort-value="{{ $each->time }}"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@timeHuman($each->time)</a></td>
+                        <td><a href="{{ $link }}" class="block text-left">{{ $each->name }}</a></td>
+                        <td><a href="{{ $link }}" class="block">{{ $each->start_at }}</a></td>
+                        <td><a href="{{ $link }}" class="block">{{ $each->end_at }}</a></td>
+                        <td data-table-sort-value="{{ $each->distance }}"><a href="{{ $link }}" class="block">@distanceHuman($each->distance)</a></td>
+                        <td data-table-sort-value="{{ $each->time }}"><a href="{{ $link }}" class="block">@timeHuman($each->time)</a></td>
                         <td class="w-1">
                             @if ($each->id !== $row->id)
                             <input type="checkbox" name="ids[]" value="{{ $each->id }}" />

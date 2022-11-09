@@ -18,13 +18,13 @@
 </form>
 
 <div class="overflow-auto lg:overflow-visible header-sticky">
-    <table id="server-log-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
+    <table id="server-log-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
                 <th class="text-left">{{ __('server-log.name') }}</th>
-                <th class="text-center">{{ __('server-log.type') }}</th>
-                <th class="text-center">{{ __('server-log.updated_at') }}</th>
-                <th class="text-center">{{ __('server-log.size') }}</th>
+                <th>{{ __('server-log.type') }}</th>
+                <th>{{ __('server-log.updated_at') }}</th>
+                <th>{{ __('server-log.size') }}</th>
             </tr>
         </thead>
 
@@ -34,10 +34,10 @@
             @php ($link = route('server.log', ['path' => $each->hash]))
 
             <tr>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap text-left">{{ $each->name }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $each->type }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $each->updated_at }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $each->size }}</a></td>
+                <td><a href="{{ $link }}" class="block text-left">{{ $each->name }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $each->type }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $each->updated_at }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $each->size }}</a></td>
             </tr>
 
             @endforeach

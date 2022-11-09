@@ -31,19 +31,19 @@
 </form>
 
 <div class="overflow-auto lg:overflow-visible header-sticky">
-    <table id="refuel-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
+    <table id="refuel-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>
                 @if ($devices_multiple)
-                <th class="text-center">{{ __('refuel-index.device') }}</th>
+                <th>{{ __('refuel-index.device') }}</th>
                 @endif
 
-                <th class="text-center">{{ __('refuel-index.date_at') }}</th>
-                <th class="text-center">{{ __('refuel-index.distance_total') }}</th>
-                <th class="text-center">{{ __('refuel-index.distance') }}</th>
-                <th class="text-center">{{ __('refuel-index.quantity') }}</th>
-                <th class="text-center">{{ __('refuel-index.price') }}</th>
-                <th class="text-center">{{ __('refuel-index.total') }}</th>
+                <th>{{ __('refuel-index.date_at') }}</th>
+                <th>{{ __('refuel-index.distance_total') }}</th>
+                <th>{{ __('refuel-index.distance') }}</th>
+                <th>{{ __('refuel-index.quantity') }}</th>
+                <th>{{ __('refuel-index.price') }}</th>
+                <th>{{ __('refuel-index.total') }}</th>
             </tr>
         </thead>
 
@@ -54,15 +54,15 @@
 
             <tr>
                 @if ($devices_multiple)
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->device->name }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->device->name }}</a></td>
                 @endif
 
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->date_at }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@distanceHuman($row->distance_total * 1000, 0)</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@distanceHuman($row->distance * 1000, 0)</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@number($row->quantity)</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@money($row->price, 3)</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@money($row->total)</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->date_at }}</a></td>
+                <td><a href="{{ $link }}" class="block">@distanceHuman($row->distance_total * 1000, 0)</a></td>
+                <td><a href="{{ $link }}" class="block">@distanceHuman($row->distance * 1000, 0)</a></td>
+                <td><a href="{{ $link }}" class="block">@number($row->quantity)</a></td>
+                <td><a href="{{ $link }}" class="block">@money($row->price, 3)</a></td>
+                <td><a href="{{ $link }}" class="block">@money($row->total)</a></td>
             </tr>
 
             @endforeach
@@ -73,10 +73,10 @@
         <tfoot class="bg-white">
             <tr>
                 <th colspan="{{ $devices_multiple ? '3' : '2' }}"></th>
-                <th class="text-center">@distanceHuman($totals->distance * 1000, 0)</th>
-                <th class="text-center">@number($totals->quantity)</th>
-                <th class="text-center">@money($totals->price, 3)</th>
-                <th class="text-center">@money($totals->total)</th>
+                <th>@distanceHuman($totals->distance * 1000, 0)</th>
+                <th>@number($totals->quantity)</th>
+                <th>@money($totals->price, 3)</th>
+                <th>@money($totals->total)</th>
             </tr>
         </tfoot>
 

@@ -14,6 +14,11 @@
         <input type="text" name="serial" class="form-control form-control-lg" id="device-serial" value="{{ $REQUEST->input('serial') }}" required>
     </div>
 
+    <div class="p-2">
+        <label for="device-phone_number" class="form-label">{{ __('device-create.phone_number') }}</label>
+        <input type="text" name="phone_number" class="form-control form-control-lg" id="device-phone_number" value="{{ $REQUEST->input('phone_number') }}">
+    </div>
+
     <div class="flex-1 p-2">
         <label for="device-password" class="form-label">{{ __('device-create.password') }}</label>
 

@@ -68,6 +68,7 @@ return new class extends MigrationAbstract
             $table->string('name')->index();
             $table->string('maker')->index();
             $table->string('serial')->unique();
+            $table->string('phone_number')->nullable();
             $table->string('password')->default('');
 
             $table->unsignedInteger('port')->default(0);
@@ -87,7 +88,7 @@ return new class extends MigrationAbstract
             $table->id();
 
             $table->string('message');
-            $table->string('response')->nullable();
+            $table->text('response')->nullable();
 
             $table->dateTime('sent_at')->nullable();
             $table->dateTime('response_at')->nullable();

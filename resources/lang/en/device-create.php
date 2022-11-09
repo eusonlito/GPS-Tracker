@@ -7,6 +7,7 @@
     'meta-title' => 'Create Device',
     'name' => 'Name',
     'password' => 'Password',
+    'phone_number' => 'Phone Number',
     'port' => 'Port',
     'save' => 'Create',
     'serial' => 'Serial Number',

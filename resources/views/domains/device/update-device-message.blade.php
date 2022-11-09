@@ -19,7 +19,7 @@
 </form>
 
 <div class="overflow-auto lg:overflow-visible header-sticky">
-    <table id="device-list-table" class="table table-report sm:mt-2 font-medium text-center" data-table-sort>
+    <table id="device-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>
                 <th class="text-left w-1">{{ __('device-update-device-message.message') }}</th>
@@ -35,12 +35,12 @@
             @foreach ($messages as $each)
 
             <tr>
-                <td class="text-left w-1"><span class="block font-semibold whitespace-nowrap truncate max-w-sm" title="{{ $each->message }}">{{ $each->message }}</span></td>
-                <td class="text-left"><span class="block font-semibold">{{ $each->response }}</span></td>
-                <td><span class="block font-semibold whitespace-nowrap w-1">@dateWithTimezone($each->created_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
-                <td><span class="block font-semibold whitespace-nowrap w-1">@dateWithTimezone($each->sent_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
-                <td><span class="block font-semibold whitespace-nowrap w-1">@dateWithTimezone($each->response_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
-                <td class="text-center w-1">
+                <td class="text-left w-1"><span class="block truncate max-w-sm" title="{{ $each->message }}">{{ $each->message }}</span></td>
+                <td class="text-left"><span class="block whitespace-normal">{{ $each->response }}</span></td>
+                <td><span class="block w-1">@dateWithTimezone($each->created_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
+                <td><span class="block w-1">@dateWithTimezone($each->sent_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
+                <td><span class="block w-1">@dateWithTimezone($each->response_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
+                <td class="w-1">
                     <a href="javascript:;" data-toggle="modal" data-target="#delete-modal" data-delete-modal-one data-delete-modal-one-name="device_message_id" data-delete-modal-one-value="{{ $each->id }}" class="text-danger">
                         @icon('trash', 'w-4 h-4')
                     </a>

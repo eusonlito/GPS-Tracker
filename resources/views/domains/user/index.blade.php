@@ -15,7 +15,7 @@
 </form>
 
 <div class="overflow-auto lg:overflow-visible header-sticky">
-    <table id="user-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-pagination="user-list-table-pagination" data-table-sort>
+    <table id="user-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-pagination="user-list-table-pagination" data-table-sort>
         <thead>
             <tr>
                 <th class="text-left">{{ __('user-index.name') }}</th>
@@ -33,10 +33,10 @@
             @php ($link = route('user.update', $row->id))
 
             <tr>
-                <td class="text-left"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->name }}</a></td>
-                <td class="text-left"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->email }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->created_at }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->updated_at }}</a></td>
+                <td class="text-left"><a href="{{ $link }}" class="block">{{ $row->name }}</a></td>
+                <td class="text-left"><a href="{{ $link }}" class="block">{{ $row->email }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->created_at }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->updated_at }}</a></td>
                 <td data-table-sort-value="{{ (int)$row->admin }}">@status($row->admin)</td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}">@status($row->enabled)</td>
             </tr>

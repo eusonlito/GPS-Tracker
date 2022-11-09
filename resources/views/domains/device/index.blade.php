@@ -15,17 +15,16 @@
 </form>
 
 <div class="overflow-auto lg:overflow-visible header-sticky">
-    <table id="device-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
+    <table id="device-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>
-                <th class="text-center">{{ __('device-index.name') }}</th>
-                <th class="text-center">{{ __('device-index.maker') }}</th>
-                <th class="text-center">{{ __('device-index.serial') }}</th>
-                <th class="text-center">{{ __('device-index.port') }}</th>
-                <th class="text-center">{{ __('device-index.timezone') }}</th>
-                <th class="text-center">{{ __('device-index.connected_at') }}</th>
-                <th class="text-center">{{ __('device-index.enabled') }}</th>
-                <th class="text-center">{{ __('trip-index.actions') }}</th>
+                <th>{{ __('device-index.name') }}</th>
+                <th>{{ __('device-index.maker') }}</th>
+                <th>{{ __('device-index.port') }}</th>
+                <th>{{ __('device-index.timezone') }}</th>
+                <th>{{ __('device-index.connected_at') }}</th>
+                <th>{{ __('device-index.enabled') }}</th>
+                <th>{{ __('trip-index.actions') }}</th>
             </tr>
         </thead>
 
@@ -35,14 +34,13 @@
             @php ($link = route('device.update', $row->id))
 
             <tr>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->name }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->maker }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->serial }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->port }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->timezone->zone }}</a></td>
-                <td><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">@dateWithTimezone($row->connected_at, $row->timezone->zone, 'Y-m-d H:i:s')</a></td>
-                <td data-table-sort-value="{{ (int)$row->enabled }}" class="text-center w-1">@status($row->enabled)</td>
-                <td class="text-center w-1">
+                <td><a href="{{ $link }}" class="block">{{ $row->name }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->maker }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->port }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->timezone->zone }}</a></td>
+                <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->connected_at, $row->timezone->zone, 'Y-m-d H:i:s')</a></td>
+                <td data-table-sort-value="{{ (int)$row->enabled }}" class="w-1">@status($row->enabled)</td>
+                <td class="w-1">
                     <a href="{{ route('device.update.device-message', $row->id) }}" class="{{ $row->messages_pending_count ? 'text-warning' : 'text-success' }}">
                         @icon('message-square', 'w-4 h-4')
                         {{ $row->messages_count.($row->messages_pending_count ? ('/'.$row->messages_pending_count) : '') }}

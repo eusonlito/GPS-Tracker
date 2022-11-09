@@ -7,6 +7,7 @@
     'meta-title' => 'Crear Dispositivo',
     'name' => 'Nombre',
     'password' => 'Contraseña',
+    'phone_number' => 'Número de Teléfono',
     'port' => 'Puerto',
     'save' => 'Crear',
     'serial' => 'Número de Serie',
