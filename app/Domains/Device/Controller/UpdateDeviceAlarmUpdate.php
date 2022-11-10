@@ -1,0 +1,66 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\Controller;
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+
+class UpdateDeviceAlarmUpdate extends ControllerAbstract
+{
+    /**
+     * @param int $id
+     * @param int $device_alarm_id
+     *
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function __invoke(int $id, int $device_alarm_id): Response|RedirectResponse
+    {
+        $this->row($id);
+        $this->alarm($device_alarm_id);
+
+        if ($response = $this->actions()) {
+            return $response;
+        }
+
+        $this->requestMergeWithRow(row: $this->alarm);
+
+        $this->meta('title', $this->row->name);
+
+        return $this->page('device.update-device-alarm-update', [
+            'row' => $this->row,
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|false|null
+     */
+    protected function actions(): RedirectResponse|false|null
+    {
+        return $this->actionPost('updateDeviceAlarmUpdate')
+            ?: $this->actionPost('updateDeviceAlarmDelete');
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function updateDeviceAlarmUpdate(): RedirectResponse
+    {
+        $this->action()->updateDeviceAlarmUpdate($this->alarm);
+
+        $this->sessionMessage('success', __('device-update-device-alarm-update.update-success'));
+
+        return redirect()->route('device.update.device-alarm', $this->row->id);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function updateDeviceAlarmDelete(): RedirectResponse
+    {
+        $this->action()->updateDeviceAlarmDelete($this->alarm);
+
+        $this->sessionMessage('success', __('device-update-device-alarm-update.delete-success'));
+
+        return redirect()->route('device.update.device-alarm', $this->row->id);
+    }
+}

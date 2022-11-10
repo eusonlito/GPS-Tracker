@@ -84,6 +84,33 @@ return new class extends MigrationAbstract
             $table->unsignedBigInteger('user_id');
         });
 
+        Schema::create('device_alarm', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('type');
+
+            $table->jsonb('config')->nullable();
+
+            $table->boolean('enabled')->default(0);
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('device_id');
+        });
+
+        Schema::create('device_alarm_notification', function (Blueprint $table) {
+            $table->id();
+
+            $table->jsonb('config')->nullable();
+
+            $table->dateTime('sent_at')->nullable();
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('device_id');
+            $table->unsignedBigInteger('device_alarm_id');
+        });
+
         Schema::create('device_message', function (Blueprint $table) {
             $table->id();
 
@@ -262,6 +289,15 @@ return new class extends MigrationAbstract
         Schema::table('device', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'timezone');
             $this->foreignOnDeleteCascade($table, 'user');
+        });
+
+        Schema::table('device_alarm', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'device');
+        });
+
+        Schema::table('device_alarm_notification', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'device');
+            $this->foreignOnDeleteCascade($table, 'device_alarm');
         });
 
         Schema::table('device_message', function (Blueprint $table) {

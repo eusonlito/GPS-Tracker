@@ -2,18 +2,23 @@
 
 namespace App\Domains\Device\Action;
 
-use App\Domains\Device\Model\Device as Model;
+use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 
 class UpdateDeviceMessageCreate extends ActionAbstract
 {
     /**
-     * @return \App\Domains\Device\Model\Device
+     * @var \App\Domains\DeviceMessage\Model\DeviceMessage
      */
-    public function handle(): Model
+    protected DeviceMessageModel $message;
+
+    /**
+     * @return \App\Domains\DeviceMessage\Model\DeviceMessage
+     */
+    public function handle(): DeviceMessageModel
     {
         $this->save();
 
-        return $this->row;
+        return $this->message;
     }
 
     /**
@@ -21,7 +26,7 @@ class UpdateDeviceMessageCreate extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->factory('DeviceMessage')->action($this->saveData())->create();
+        $this->message = $this->factory('DeviceMessage')->action($this->saveData())->create();
     }
 
     /**

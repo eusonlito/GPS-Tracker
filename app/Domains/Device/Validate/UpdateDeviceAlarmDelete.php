@@ -4,7 +4,7 @@ namespace App\Domains\Device\Validate;
 
 use App\Domains\Shared\Validate\ValidateAbstract;
 
-class UpdateDeviceMessageDelete extends ValidateAbstract
+class UpdateDeviceAlarmDelete extends ValidateAbstract
 {
     /**
      * @return array
@@ -12,7 +12,7 @@ class UpdateDeviceMessageDelete extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'device_message_id' => ['bail', 'required', 'integer'],
+            'device_alarm_id' => ['bail', 'required', 'integer'],
         ];
     }
 }

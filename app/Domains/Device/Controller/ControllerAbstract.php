@@ -3,6 +3,8 @@
 namespace App\Domains\Device\Controller;
 
 use App\Domains\Device\Model\Device as Model;
+use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
+use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\Shared\Controller\ControllerWebAbstract;
 use App\Exceptions\NotFoundException;
 
@@ -14,6 +16,16 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     protected ?Model $row;
 
     /**
+     * @var ?\App\Domains\DeviceAlarm\Model\DeviceAlarm
+     */
+    protected ?DeviceAlarmModel $alarm;
+
+    /**
+     * @var ?\App\Domains\DeviceMessage\Model\DeviceMessage
+     */
+    protected ?DeviceMessageModel $message;
+
+    /**
      * @param int $id
      *
      * @return void
@@ -23,5 +35,33 @@ abstract class ControllerAbstract extends ControllerWebAbstract
         $this->row = Model::byId($id)->byUserId($this->auth->id)->firstOr(static function () {
             throw new NotFoundException(__('device.error.not-found'));
         });
+    }
+
+    /**
+     * @param int $device_alarm_id
+     *
+     * @return void
+     */
+    protected function alarm(int $device_alarm_id): void
+    {
+        $this->alarm = DeviceAlarmModel::byId($device_alarm_id)
+            ->byDeviceId($this->row->id)
+            ->firstOr(static function () {
+                throw new NotFoundException(__('device.error.not-found'));
+            });
+    }
+
+    /**
+     * @param int $device_message_id
+     *
+     * @return void
+     */
+    protected function message(int $device_message_id): void
+    {
+        $this->message = DeviceMessageModel::byId($device_message_id)
+            ->byDeviceId($this->row->id)
+            ->firstOr(static function () {
+                throw new NotFoundException(__('device.error.not-found'));
+            });
     }
 }
