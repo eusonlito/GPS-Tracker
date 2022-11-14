@@ -22,7 +22,7 @@ abstract class UpdateBoolean extends ValidateAbstract
     public function messages(): array
     {
         return [
-            'column.required' => __('validate.column.required'),
+            'column.required' => __('validator.column-required'),
         ];
     }
 }

@@ -1,8 +1,5 @@
 <div class="box p-5 mt-5">
-    <div class="p-2">
-        <label for="device-type" class="form-label">{{ __('device-update-device-alarm-create.type') }}</label>
-        <input type="text" name="type" class="form-control form-control-lg" id="device-type" value="{{ $REQUEST->input('type') }}" required>
-    </div>
+    @include ('domains.device-alarm.types.'.$type.'.create')
 
     <div class="p-2">
         <div class="form-check">

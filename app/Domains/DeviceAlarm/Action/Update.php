@@ -2,16 +2,23 @@
 
 namespace App\Domains\DeviceAlarm\Action;
 
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\DeviceAlarm\Model\DeviceAlarm as Model;
+use App\Domains\DeviceAlarm\Service\Type\Manager as TypeManager;
+use App\Domains\DeviceAlarm\Service\Type\Format\FormatAbstract as TypeFormatAbstract;
 
 class Update extends ActionAbstract
 {
+    /**
+     * @var \App\Domains\DeviceAlarm\Service\Type\Format\FormatAbstract
+     */
+    protected TypeFormatAbstract $type;
+
     /**
      * @return \App\Domains\DeviceAlarm\Model\DeviceAlarm
      */
     public function handle(): Model
     {
+        $this->type();
         $this->data();
         $this->save();
 
@@ -21,17 +28,25 @@ class Update extends ActionAbstract
     /**
      * @return void
      */
-    protected function data(): void
+    protected function type(): void
     {
-        $this->dataAlarm();
+        $this->type = TypeManager::new()->factory($this->row->type, $this->data['config']);
     }
 
     /**
      * @return void
      */
-    protected function dataAlarm(): void
+    protected function data(): void
     {
-        $this->data['type'] = trim($this->data['type']);
+        $this->dataConfig();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataConfig(): void
+    {
+        $this->data['config'] = $this->type->config();
     }
 
     /**
@@ -39,7 +54,6 @@ class Update extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->row->type = $this->data['type'];
         $this->row->config = $this->data['config'];
         $this->row->enabled = $this->data['enabled'];
 

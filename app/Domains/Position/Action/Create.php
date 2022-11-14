@@ -2,7 +2,6 @@
 
 namespace App\Domains\Position\Action;
 
-use App\Domains\City\Model\City as CityModel;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Job\UpdateCity as UpdateCityJob;
 use App\Domains\Position\Model\Position as Model;

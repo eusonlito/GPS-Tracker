@@ -4,14 +4,22 @@ namespace App\Domains\DeviceAlarm\Action;
 
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\DeviceAlarm\Model\DeviceAlarm as Model;
+use App\Domains\DeviceAlarm\Service\Type\Manager as TypeManager;
+use App\Domains\DeviceAlarm\Service\Type\Format\FormatAbstract as TypeFormatAbstract;
 
 class Create extends ActionAbstract
 {
+    /**
+     * @var \App\Domains\DeviceAlarm\Service\Type\Format\FormatAbstract
+     */
+    protected TypeFormatAbstract $type;
+
     /**
      * @return \App\Domains\DeviceAlarm\Model\DeviceAlarm
      */
     public function handle(): Model
     {
+        $this->type();
         $this->data();
         $this->save();
 
@@ -21,18 +29,35 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
+    protected function type(): void
+    {
+        $this->type = TypeManager::new()->factory($this->data['type'], $this->data['config']);
+    }
+
+    /**
+     * @return void
+     */
     protected function data(): void
     {
-        $this->dataAlarm();
+        $this->dataType();
+        $this->dataConfig();
         $this->dataDeviceId();
     }
 
     /**
      * @return void
      */
-    protected function dataAlarm(): void
+    protected function dataType(): void
     {
-        $this->data['type'] = trim($this->data['type']);
+        $this->data['type'] = $this->type->code();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataConfig(): void
+    {
+        $this->data['config'] = $this->type->config();
     }
 
     /**

@@ -6,7 +6,6 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as KernelVendor;
 use App\Domains\Maintenance\Schedule\Manager as MaintenanceScheduleManager;
 use App\Domains\Socket\Schedule\Manager as SocketScheduleManager;
-use App\Services\Filesystem\Directory;
 
 class Kernel extends KernelVendor
 {
@@ -58,7 +57,7 @@ class Kernel extends KernelVendor
     {
         $file = storage_path('logs/artisan/'.date('Y-m-d').'/schedule-command-queue-work.log');
 
-        Directory::create($file, true);
+        helper()->mkdir($file, true);
 
         return $file;
     }

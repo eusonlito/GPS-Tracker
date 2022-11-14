@@ -31,7 +31,7 @@ abstract class UpdateBoolean extends ActionAbstract
     protected function check(): void
     {
         if (($this->row->getCasts()[$this->data['column']] ?? null) !== 'boolean') {
-            $this->exceptionValidator(__('validate.column.not-valid'));
+            $this->exceptionValidator(__('validator.column-not-valid'));
         }
     }
 

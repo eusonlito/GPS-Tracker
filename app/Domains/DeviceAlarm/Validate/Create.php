@@ -13,7 +13,7 @@ class Create extends ValidateAbstract
     {
         return [
             'type' => ['bail', 'required'],
-            'config' => ['bail', 'array', 'nullable'],
+            'config' => ['bail', 'array'],
             'enabled' => ['bail', 'boolean'],
             'device_id' => ['bail', 'required', 'integer'],
         ];

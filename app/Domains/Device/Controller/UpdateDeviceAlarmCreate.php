@@ -4,6 +4,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Domains\DeviceAlarm\Service\Type\Manager as DeviceAlarmTypeManager;
 
 class UpdateDeviceAlarmCreate extends ControllerAbstract
 {
@@ -20,10 +21,14 @@ class UpdateDeviceAlarmCreate extends ControllerAbstract
             return $response;
         }
 
+        $typeService = DeviceAlarmTypeManager::new();
+
         $this->meta('title', $this->row->name);
 
         return $this->page('device.update-device-alarm-create', [
             'row' => $this->row,
+            'types' => $typeService->titles(),
+            'type' => $typeService->selected($this->request->input('type')),
         ]);
     }
 

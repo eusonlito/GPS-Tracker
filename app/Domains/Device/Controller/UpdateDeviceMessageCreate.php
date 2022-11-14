@@ -3,7 +3,6 @@
 namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
 
 class UpdateDeviceMessageCreate extends ControllerAbstract
 {
