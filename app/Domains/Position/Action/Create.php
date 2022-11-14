@@ -4,6 +4,7 @@ namespace App\Domains\Position\Action;
 
 use App\Domains\City\Model\City as CityModel;
 use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Position\Job\UpdateCity as UpdateCityJob;
 use App\Domains\Position\Model\Position as Model;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
@@ -31,11 +32,6 @@ class Create extends ActionAbstract
     protected ?Model $previous = null;
 
     /**
-     * @var \App\Domains\City\Model\City
-     */
-    protected CityModel $city;
-
-    /**
      * @return void
      */
     public function handle(): void
@@ -56,8 +52,8 @@ class Create extends ActionAbstract
         }
 
         $this->trip();
-        $this->city();
         $this->save();
+        $this->job();
     }
 
     /**
@@ -254,25 +250,6 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
-    protected function city(): void
-    {
-        $this->city = $this->factory('City')->action($this->cityData())->getOrNew();
-    }
-
-    /**
-     * @return array
-     */
-    protected function cityData(): array
-    {
-        return [
-            'latitude' => $this->data['latitude'],
-            'longitude' => $this->data['longitude'],
-        ];
-    }
-
-    /**
-     * @return void
-     */
     protected function save(): void
     {
         $this->saveRow();
@@ -292,7 +269,6 @@ class Create extends ActionAbstract
             'date_at' => $this->data['date_at'],
             'date_utc_at' => $this->data['date_utc_at'],
 
-            'city_id' => $this->city->id,
             'device_id' => $this->device->id,
             'timezone_id' => $this->timezone->id,
             'trip_id' => $this->trip->id,
@@ -306,5 +282,13 @@ class Create extends ActionAbstract
     protected function saveTrip(): void
     {
         $this->factory('Trip', $this->trip)->action()->updateNameDistanceTime();
+    }
+
+    /**
+     * @return void
+     */
+    protected function job(): void
+    {
+        UpdateCityJob::dispatch($this->row->id);
     }
 }

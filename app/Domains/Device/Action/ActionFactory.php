@@ -47,34 +47,10 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return \App\Domains\Device\Model\Device
-     */
-    public function updateDeviceAlarmDelete(): Model
-    {
-        return $this->actionHandle(UpdateDeviceAlarmDelete::class, null, ...func_get_args());
-    }
-
-    /**
-     * @return \App\Domains\DeviceAlarm\Model\DeviceAlarm
-     */
-    public function updateDeviceAlarmUpdate(): DeviceAlarmModel
-    {
-        return $this->actionHandle(UpdateDeviceAlarmUpdate::class, null, ...func_get_args());
-    }
-
-    /**
      * @return \App\Domains\DeviceMessage\Model\DeviceMessage
      */
     public function updateDeviceMessageCreate(): DeviceMessageModel
     {
         return $this->actionHandle(UpdateDeviceMessageCreate::class);
-    }
-
-    /**
-     * @return \App\Domains\Device\Model\Device
-     */
-    public function updateDeviceMessageDelete(): Model
-    {
-        return $this->actionHandle(UpdateDeviceMessageDelete::class, $this->validate()->updateDeviceMessageDelete());
     }
 }

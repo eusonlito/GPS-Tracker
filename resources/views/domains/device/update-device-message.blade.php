@@ -2,7 +2,7 @@
 
 @section ('content')
 
-<form method="post">
+<form action="{{ route('device.update.device-message.create', $row->id) }}" method="post">
     <input type="hidden" name="_action" value="updateDeviceMessageCreate" />
 
     <div class="box p-5 mt-5">
@@ -46,7 +46,7 @@
                 <td><span class="block w-1">@dateWithTimezone($each->sent_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
                 <td><span class="block w-1">@dateWithTimezone($each->response_at, $row->timezone->zone, 'Y-m-d H:i:s')</span></td>
                 <td class="w-1">
-                    <a href="javascript:;" data-toggle="modal" data-target="#delete-modal" data-delete-modal-one data-delete-modal-one-name="device_message_id" data-delete-modal-one-value="{{ $each->id }}" class="text-danger">
+                    <a href="{{ route('device.update.device-message.update', [$row->id, $each->id]) }}" data-toggle="modal" data-target="#delete-modal" data-delete-modal-one class="text-danger">
                         @icon('trash', 'w-4 h-4')
                     </a>
                 </td>

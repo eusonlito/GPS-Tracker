@@ -42,6 +42,6 @@ class City extends ModelAbstract
      */
     public function state(): BelongsTo
     {
-        return $this->belongsTo(StateModel::class, StateModel::FOREIGN);
+        return $this->belongsTo(StateModel::class, StateModel::FOREIGN)->withDefault();
     }
 }

@@ -27,6 +27,8 @@ class Kernel extends KernelVendor
      */
     protected function schedule(Schedule $schedule)
     {
+        $this->scheduleQueue($schedule);
+
         (new SocketScheduleManager($schedule))->handle();
         (new MaintenanceScheduleManager($schedule))->handle();
     }
@@ -38,6 +40,10 @@ class Kernel extends KernelVendor
      */
     protected function scheduleQueue(Schedule $schedule): void
     {
+        if (config('queue.schedule') !== true) {
+            return;
+        }
+
         $schedule->command('queue:work', ['--tries' => 3, '--stop-when-empty'])
             ->withoutOverlapping()
             ->runInBackground()
@@ -50,7 +56,7 @@ class Kernel extends KernelVendor
      */
     protected function log(): string
     {
-        $file = storage_path('logs/artisan/schedule-command-queue-work/'.date('Y-m-d').'.log');
+        $file = storage_path('logs/artisan/'.date('Y-m-d').'/schedule-command-queue-work.log');
 
         Directory::create($file, true);
 

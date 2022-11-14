@@ -2,6 +2,7 @@
 
 namespace App\Domains\Position\Action;
 
+use App\Domains\Position\Job\UpdateCity as UpdateCityJob;
 use App\Domains\Position\Model\Position as Model;
 
 class UpdateCityEmpty extends ActionAbstract
@@ -19,8 +20,16 @@ class UpdateCityEmpty extends ActionAbstract
      */
     protected function iterate(): void
     {
-        foreach (Model::selectPointAsLatitudeLongitude()->withoutCity()->orderByDateUtcAtAsc()->get() as $row) {
-            $this->factory(row: $row)->action()->updateCity();
+        foreach ($this->ids() as $id) {
+            UpdateCityJob::dispatch($id);
         }
+    }
+
+    /**
+     * @return array
+     */
+    protected function ids(): array
+    {
+        return Model::withoutCity()->orderByDateUtcAtAsc()->pluck('id')->all();
     }
 }

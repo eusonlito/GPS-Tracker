@@ -35,7 +35,7 @@
                 <td class="w-1"><a href="{{ $route }}" class="block">{{ $each->type }}</a></td>
                 <td class="text-left"><a href="{{ $route }}" class="block whitespace-normal">@json($each->config)</a></td>
                 <td><a href="{{ $route }}" class="block">@dateWithTimezone($row->created_at, $row->timezone->zone)</a></td>
-                <td><a href="{{ $route }}" class="block">@status($row->enabled)</a></td>
+                <td><a href="{{ route('device.update.device-alarm.update.boolean', [$row->id, $each->id, 'enabled']) }}" class="block" data-update-boolean="enabled">@status($each->enabled)</a></td>
                 <td><a href="{{ $route }}" class="block">{{ $each->notifications_count }}</a></td>
             </tr>
 

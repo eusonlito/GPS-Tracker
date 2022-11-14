@@ -54,7 +54,7 @@ class Position extends ModelAbstract
      */
     public function city(): BelongsTo
     {
-        return $this->belongsTo(CityModel::class, CityModel::FOREIGN);
+        return $this->belongsTo(CityModel::class, CityModel::FOREIGN)->withDefault();
     }
 
     /**

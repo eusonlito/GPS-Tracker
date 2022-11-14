@@ -26,6 +26,14 @@ class DeviceAlarm extends ModelAbstract
     public const FOREIGN = 'device_alarm_id';
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'config' => 'array',
+        'enabled' => 'boolean',
+    ];
+
+    /**
      * @param \Illuminate\Database\Query\Builder $q
      *
      * @return \Illuminate\Database\Eloquent\Builder|static

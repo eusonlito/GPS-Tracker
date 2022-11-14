@@ -45,7 +45,7 @@ class UpdateDeviceAlarmUpdate extends ControllerAbstract
      */
     protected function updateDeviceAlarmUpdate(): RedirectResponse
     {
-        $this->action()->updateDeviceAlarmUpdate($this->alarm);
+        $this->factory('DeviceAlarm', $this->alarm)->action()->update();
 
         $this->sessionMessage('success', __('device-update-device-alarm-update.update-success'));
 
@@ -57,7 +57,7 @@ class UpdateDeviceAlarmUpdate extends ControllerAbstract
      */
     protected function updateDeviceAlarmDelete(): RedirectResponse
     {
-        $this->action()->updateDeviceAlarmDelete($this->alarm);
+        $this->factory('DeviceAlarm', $this->alarm)->action()->delete();
 
         $this->sessionMessage('success', __('device-update-device-alarm-update.delete-success'));
 
