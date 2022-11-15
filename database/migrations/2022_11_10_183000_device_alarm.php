@@ -49,14 +49,19 @@ return new class extends MigrationAbstract
         Schema::create('device_alarm_notification', function (Blueprint $table) {
             $table->id();
 
+            $table->string('type');
+
             $table->jsonb('config')->nullable();
 
+            $table->dateTime('closed_at')->nullable();
             $table->dateTime('sent_at')->nullable();
 
             $this->timestamps($table);
 
             $table->unsignedBigInteger('device_id');
             $table->unsignedBigInteger('device_alarm_id');
+            $table->unsignedBigInteger('position_id')->nullable();
+            $table->unsignedBigInteger('trip_id')->nullable();
         });
     }
 
@@ -72,6 +77,8 @@ return new class extends MigrationAbstract
         Schema::table('device_alarm_notification', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'device');
             $this->foreignOnDeleteCascade($table, 'device_alarm');
+            $this->foreignOnDeleteSetNull($table, 'position');
+            $this->foreignOnDeleteSetNull($table, 'trip');
         });
     }
 

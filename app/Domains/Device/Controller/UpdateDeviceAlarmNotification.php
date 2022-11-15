@@ -2,10 +2,10 @@
 
 namespace App\Domains\Device\Controller;
 
-use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
+use Illuminate\Http\Response;
 
-class UpdateDeviceAlarm extends ControllerAbstract
+class UpdateDeviceAlarmNotification extends ControllerAbstract
 {
     /**
      * @param int $id
@@ -18,18 +18,19 @@ class UpdateDeviceAlarm extends ControllerAbstract
 
         $this->meta('title', $this->row->name);
 
-        return $this->page('device.update-device-alarm', [
+        return $this->page('device.update-device-alarm-notification', [
             'row' => $this->row,
-            'alarms' => $this->alarms(),
+            'notifications' => $this->notifications(),
         ]);
     }
 
     /**
      * @return \Illuminate\Support\Collection
      */
-    protected function alarms(): Collection
+    protected function notifications(): Collection
     {
-        return $this->row->alarms()
+        return $this->row->alarmsNotifications()
+            ->withAlarm()
             ->list()
             ->get();
     }

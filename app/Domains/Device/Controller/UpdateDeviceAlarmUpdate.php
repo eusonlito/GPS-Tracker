@@ -29,6 +29,7 @@ class UpdateDeviceAlarmUpdate extends ControllerAbstract
 
         return $this->page('device.update-device-alarm-update', [
             'row' => $this->row,
+            'alarm' => $this->alarm,
             'types' => DeviceAlarmTypeManager::new()->titles(),
             'type' => $this->alarm->type,
         ]);

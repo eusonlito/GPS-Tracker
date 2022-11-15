@@ -5,6 +5,7 @@
     'delete-success' => 'The device has been successfully deleted',
     'delete-title' => 'Delete Device',
     'messages' => 'Messages',
+    'notifications' => 'Notifications',
     'save' => 'Save',
     'success' => 'The device has been successfully updated',
 ];

@@ -4,11 +4,14 @@ namespace App\Domains\DeviceAlarm\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\DeviceAlarm\Model\Builder\DeviceAlarmNotification as Builder;
+use App\Domains\DeviceAlarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class DeviceAlarmNotification extends ModelAbstract
 {
+    use TypeFormatTrait;
+
     /**
      * @var string
      */
@@ -46,7 +49,7 @@ class DeviceAlarmNotification extends ModelAbstract
      */
     public function alarm(): BelongsTo
     {
-        return $this->belongsTo(Alarm::class, Alarm::FOREIGN);
+        return $this->belongsTo(DeviceAlarm::class, DeviceAlarm::FOREIGN);
     }
 
     /**

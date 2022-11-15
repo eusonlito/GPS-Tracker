@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\DeviceAlarm\Model\Builder\DeviceAlarm as Builder;
-use App\Domains\DeviceAlarm\Service\Type\Manager as TypeManager;
-use App\Domains\DeviceAlarm\Service\Type\Format\FormatAbstract as TypeFormatAbstract;
+use App\Domains\DeviceAlarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class DeviceAlarm extends ModelAbstract
 {
+    use TypeFormatTrait;
+
     /**
      * @var string
      */
@@ -34,11 +35,6 @@ class DeviceAlarm extends ModelAbstract
         'config' => 'array',
         'enabled' => 'boolean',
     ];
-
-    /**
-     * @var \App\Domains\DeviceAlarm\Service\Type\Format\FormatAbstract
-     */
-    protected TypeFormatAbstract $typeFormat;
 
     /**
      * @param \Illuminate\Database\Query\Builder $q
@@ -64,13 +60,5 @@ class DeviceAlarm extends ModelAbstract
     public function notifications(): HasMany
     {
         return $this->hasMany(DeviceAlarmNotification::class, static::FOREIGN);
-    }
-
-    /**
-     * @return \App\Domains\DeviceAlarm\Service\Type\Format\FormatAbstract
-     */
-    public function type(): TypeFormatAbstract
-    {
-        return $this->typeFormat ??= TypeManager::new()->factory($this->type, $this->config);
     }
 }

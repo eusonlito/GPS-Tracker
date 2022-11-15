@@ -18,6 +18,16 @@ class DeviceAlarm extends BuilderAbstract
     }
 
     /**
+     * @param int $device_id
+     *
+     * @return self
+     */
+    public function byDeviceIdEnabled(int $device_id): self
+    {
+        return $this->whereIn('device_id', DeviceModel::select('id')->byId($device_id)->enabled());
+    }
+
+    /**
      * @param string $serial
      *
      * @return self
@@ -41,5 +51,13 @@ class DeviceAlarm extends BuilderAbstract
     public function withNotificationsCount(): self
     {
         return $this->withCount('notifications');
+    }
+
+    /**
+     * @return self
+     */
+    public function withNotificationsPendingCount(): self
+    {
+        return $this->withCount(['notifications as notifications_pending_count' => static fn ($q) => $q->whereClosedAt()]);
     }
 }

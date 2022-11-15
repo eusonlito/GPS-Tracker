@@ -26,7 +26,7 @@ class Manager
     public function titles(): array
     {
         return [
-            'movement' => __('device-alarm-type.movement'),
+            'movement' => __('device-alarm-type-movement.title'),
         ];
     }
 

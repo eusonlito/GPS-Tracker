@@ -3,7 +3,6 @@
 namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
 
 class UpdateDeviceMessageUpdate extends ControllerAbstract
 {
@@ -11,9 +10,9 @@ class UpdateDeviceMessageUpdate extends ControllerAbstract
      * @param int $id
      * @param int $device_message_id
      *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function __invoke(int $id, int $device_message_id): Response|RedirectResponse
+    public function __invoke(int $id, int $device_message_id): RedirectResponse
     {
         $this->row($id);
         $this->message($device_message_id);

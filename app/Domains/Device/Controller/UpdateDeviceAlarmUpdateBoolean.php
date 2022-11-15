@@ -18,7 +18,7 @@ class UpdateDeviceAlarmUpdateBoolean extends ControllerAbstract
         $this->row($id);
         $this->alarm($device_alarm_id);
 
-        return $this->json($this->fractal($this->execute()));
+        return $this->json($this->fractal($this->actionCall('execute')));
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php return [
     'actions' => 'Acciones',
+    'alarms' => 'Alarmas',
     'city' => 'Ciudad',
     'country' => 'País',
     'device' => 'Dispositivo',
@@ -10,9 +11,11 @@
     'last-month' => 'Último mes',
     'last-months' => 'Últimos :month meses',
     'last-week' => 'Última semana',
+    'messages' => 'Mensajes',
     'meta-title' => 'Viajes',
     'months' => 'Sin Límite',
     'name' => 'Nombre',
+    'notifications' => 'Notificaciones',
     'start' => 'Salida',
     'start_at' => 'Inicio',
     'start_end' => 'Trayecto',

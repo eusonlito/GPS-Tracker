@@ -29,6 +29,9 @@ class Index extends ControllerAbstract
             ->withTimezone()
             ->withMessagesCount()
             ->withMessagesPendingCount()
+            ->withAlarmsCount()
+            ->withAlarmsNotificationsCount()
+            ->withAlarmsNotificationsPendingCount()
             ->list()
             ->get();
     }

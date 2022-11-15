@@ -2,6 +2,8 @@
 
 namespace App\Domains\DeviceAlarm\Service\Type\Format;
 
+use App\Domains\Position\Model\Position as PositionModel;
+
 abstract class FormatAbstract
 {
     /**
@@ -18,6 +20,13 @@ abstract class FormatAbstract
      * @return array
      */
     abstract public function config(): array;
+
+    /**
+     * @param \App\Domains\Position\Model\Position $position
+     *
+     * @return bool
+     */
+    abstract public function checkPosition(PositionModel $position): bool;
 
     /**
      * @return self

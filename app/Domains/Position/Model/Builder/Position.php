@@ -186,6 +186,14 @@ class Position extends BuilderAbstract
     /**
      * @return self
      */
+    public function withDevice(): self
+    {
+        return $this->with('device');
+    }
+
+    /**
+     * @return self
+     */
     public function withCity(): self
     {
         return $this->with(['city' => static fn ($q) => $q->withState()]);
@@ -205,5 +213,13 @@ class Position extends BuilderAbstract
     public function withTimezone(): self
     {
         return $this->with('timezone');
+    }
+
+    /**
+     * @return self
+     */
+    public function withTrip(): self
+    {
+        return $this->with('trip');
     }
 }

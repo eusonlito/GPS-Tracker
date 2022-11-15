@@ -24,7 +24,9 @@
                 <th>{{ __('device-index.timezone') }}</th>
                 <th>{{ __('device-index.connected_at') }}</th>
                 <th>{{ __('device-index.enabled') }}</th>
-                <th>{{ __('trip-index.actions') }}</th>
+                <th>{{ __('trip-index.alarms') }}</th>
+                <th>{{ __('trip-index.notifications') }}</th>
+                <th>{{ __('trip-index.messages') }}</th>
             </tr>
         </thead>
 
@@ -40,9 +42,14 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->timezone->zone }}</a></td>
                 <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->connected_at, $row->timezone->zone, 'Y-m-d H:i:s')</a></td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}" class="w-1">@status($row->enabled)</td>
+                <td class="w-1"><a href="{{ route('device.update.device-alarm', $row->id) }}">{{ $row->alarms_count }}</a></td>
+                <td class="w-1">
+                    <a href="{{ route('device.update.device-alarm-notification', $row->id) }}" class="{{ $row->alarms_notifications_pending_count ? 'text-warning' : 'text-success' }}">
+                        {{ $row->alarms_notifications_count.($row->alarms_notifications_pending_count ? ('/'.$row->alarms_notifications_pending_count) : '') }}
+                    </a>
+                </td>
                 <td class="w-1">
                     <a href="{{ route('device.update.device-message', $row->id) }}" class="{{ $row->messages_pending_count ? 'text-warning' : 'text-success' }}">
-                        @icon('message-square', 'w-4 h-4')
                         {{ $row->messages_count.($row->messages_pending_count ? ('/'.$row->messages_pending_count) : '') }}
                     </a>
                 </td>

@@ -2,6 +2,8 @@
 
 namespace App\Domains\DeviceAlarm\Service\Type\Format;
 
+use App\Domains\Position\Model\Position as PositionModel;
+
 class Movement extends FormatAbstract
 {
     /**
@@ -17,7 +19,7 @@ class Movement extends FormatAbstract
      */
     public function title(): string
     {
-        return __('device-alarm-type.movement');
+        return __('device-alarm-type-movement.title');
     }
 
     /**
@@ -26,5 +28,15 @@ class Movement extends FormatAbstract
     public function config(): array
     {
         return [];
+    }
+
+    /**
+     * @param \App\Domains\Position\Model\Position $position
+     *
+     * @return bool
+     */
+    public function checkPosition(PositionModel $position): bool
+    {
+        return true;
     }
 }

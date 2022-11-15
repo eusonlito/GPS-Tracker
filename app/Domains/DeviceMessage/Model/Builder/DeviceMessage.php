@@ -34,7 +34,11 @@ class DeviceMessage extends BuilderAbstract
      */
     public function whereResponseAt(bool $response_at = false): self
     {
-        return $this->when($response_at, static fn ($q) => $q->whereNotNull('response_at'), static fn ($q) => $q->whereNull('response_at'));
+        return $this->when(
+            $response_at,
+            static fn ($q) => $q->whereNotNull('response_at'),
+            static fn ($q) => $q->whereNull('response_at')
+        );
     }
 
     /**
@@ -44,7 +48,11 @@ class DeviceMessage extends BuilderAbstract
      */
     public function whereSentAt(bool $sent_at = false): self
     {
-        return $this->when($sent_at, static fn ($q) => $q->whereNotNull('sent_at'), static fn ($q) => $q->whereNull('sent_at'));
+        return $this->when(
+            $sent_at,
+            static fn ($q) => $q->whereNotNull('sent_at'),
+            static fn ($q) => $q->whereNull('sent_at')
+        );
     }
 
     /**

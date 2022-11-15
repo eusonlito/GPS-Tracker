@@ -22,7 +22,6 @@
                 <th class="text-left">{{ __('device-update-device-alarm.config') }}</th>
                 <th class="w-1">{{ __('device-update-device-alarm.created_at') }}</th>
                 <th class="w-1">{{ __('device-update-device-alarm.enabled') }}</th>
-                <th class="w-1">{{ __('device-update-device-alarm.notifications') }}</th>
             </tr>
         </thead>
 
@@ -32,11 +31,10 @@
             @php ($route = route('device.update.device-alarm.update', [$row->id, $each->id]))
 
             <tr>
-                <td class="w-1"><a href="{{ $route }}" class="block">{{ $each->type()->title() }}</a></td>
-                <td class="text-left"><a href="{{ $route }}" class="block whitespace-normal">@include ('domains.device-alarm.types.'.$each->type.'.list', ['row' => $each])</a></td>
+                <td class="w-1"><a href="{{ $route }}" class="block">{{ $each->typeFormat()->title() }}</a></td>
+                <td class="text-left"><a href="{{ $route }}" class="block whitespace-normal">@include ('domains.device-alarm.types.'.$each->type.'.config-values', ['config' => $each->config])</a></td>
                 <td><a href="{{ $route }}" class="block">@dateWithTimezone($each->created_at, $row->timezone->zone)</a></td>
                 <td><a href="{{ route('device.update.device-alarm.update.boolean', [$row->id, $each->id, 'enabled']) }}" class="block" data-update-boolean="enabled">@status($each->enabled)</a></td>
-                <td><a href="{{ $route }}" class="block">{{ $each->notifications_count }}</a></td>
             </tr>
 
             @endforeach

@@ -3,6 +3,7 @@
 namespace App\Domains\DeviceAlarm\Action;
 
 use App\Domains\DeviceAlarm\Model\DeviceAlarm as Model;
+use App\Domains\DeviceAlarm\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
 
 class ActionFactory extends ActionFactoryAbstract
@@ -11,6 +12,14 @@ class ActionFactory extends ActionFactoryAbstract
      * @var ?\App\Domains\DeviceAlarm\Model\DeviceAlarm
      */
     protected ?Model $row;
+
+    /**
+     * @return void
+     */
+    public function checkPosition(): void
+    {
+        $this->actionHandle(CheckPosition::class, $this->validate()->checkPosition());
+    }
 
     /**
      * @return \App\Domains\DeviceAlarm\Model\DeviceAlarm
@@ -26,6 +35,14 @@ class ActionFactory extends ActionFactoryAbstract
     public function delete(): void
     {
         $this->actionHandle(Delete::class);
+    }
+
+    /**
+     * @return \App\Domains\DeviceAlarm\Model\DeviceAlarmNotification
+     */
+    public function notificationUpdateClosedAt(): DeviceAlarmNotificationModel
+    {
+        return $this->actionHandle(NotificationUpdateClosedAt::class, $this->validate()->notificationUpdateClosedAt());
     }
 
     /**

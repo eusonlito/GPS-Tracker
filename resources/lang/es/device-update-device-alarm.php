@@ -5,6 +5,5 @@
     'created_at' => 'Alta',
     'enabled' => 'Activa',
     'filter' => 'Filtrar...',
-    'notifications' => 'Notificaciones',
     'type' => 'Tipo',
 ];

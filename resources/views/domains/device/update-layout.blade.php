@@ -5,7 +5,8 @@
 <div class="box flex items-center px-5">
     <div class="nav nav-tabs flex overflow-auto whitespace-nowrap" role="tablist">
         <a href="{{ route('device.update', $row->id) }}" class="p-4 {{ ($ROUTE === 'device.update') ? 'active' : '' }}" role="tab">{{ $row->name }}</a>
-        <a href="{{ route('device.update.device-alarm', $row->id) }}" class="p-4 {{ str_starts_with($ROUTE, 'device.update.device-alarm') ? 'active' : '' }}" role="tab">{{ __('device-update.alarms') }}</a>
+        <a href="{{ route('device.update.device-alarm', $row->id) }}" class="p-4 {{ (($ROUTE === 'device.update.device-alarm') || str_starts_with($ROUTE, 'device.update.device-alarm.')) ? 'active' : '' }}" role="tab">{{ __('device-update.alarms') }}</a>
+        <a href="{{ route('device.update.device-alarm-notification', $row->id) }}" class="p-4 {{ str_starts_with($ROUTE, 'device.update.device-alarm-notification') ? 'active' : '' }}" role="tab">{{ __('device-update.notifications') }}</a>
         <a href="{{ route('device.update.device-message', $row->id) }}" class="p-4 {{ ($ROUTE === 'device.update.device-message') ? 'active' : '' }}" role="tab">{{ __('device-update.messages') }}</a>
     </div>
 </div>

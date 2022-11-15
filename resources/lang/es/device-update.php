@@ -5,6 +5,7 @@
     'delete-success' => 'El dispositivo ha sido borrado correctamente',
     'delete-title' => 'Borrar Dispositivo',
     'messages' => 'Mensajes',
+    'notifications' => 'Notificaciones',
     'save' => 'Guardar',
     'success' => 'El dispositivo ha sido actualizado correctamente',
 ];
