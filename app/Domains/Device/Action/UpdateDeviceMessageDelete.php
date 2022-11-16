@@ -28,7 +28,8 @@ class UpdateDeviceMessageDelete extends ActionAbstract
      */
     protected function message(): void
     {
-        $this->message = DeviceMessageModel::byDeviceId($this->row->id)
+        $this->message = DeviceMessageModel::query()
+            ->byDeviceId($this->row->id)
             ->byId($this->data['device_message_id'])
             ->firstOrFail();
     }

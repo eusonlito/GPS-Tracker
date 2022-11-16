@@ -20,7 +20,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::byId($id)->byUserId($this->auth->id)->firstOr(static function () {
+        $this->row = Model::query()->byId($id)->byUserId($this->auth->id)->firstOr(static function () {
             throw new NotFoundException(__('refuel.error.not-found'));
         });
     }

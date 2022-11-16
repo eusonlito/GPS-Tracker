@@ -27,7 +27,7 @@ class Update extends ControllerAbstract
 
         return $this->page('refuel.update', [
             'row' => $this->row,
-            'devices' => DeviceModel::byUserId($this->auth->id)->list()->get(),
+            'devices' => DeviceModel::query()->byUserId($this->auth->id)->list()->get(),
         ]);
     }
 

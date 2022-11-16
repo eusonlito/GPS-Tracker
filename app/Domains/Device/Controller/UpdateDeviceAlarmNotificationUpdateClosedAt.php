@@ -19,7 +19,7 @@ class UpdateDeviceAlarmNotificationUpdateClosedAt extends ControllerAbstract
 
         $this->actionCall('execute');
 
-        return redirect()->route('device.update.device-alarm-notification', $this->row->id);
+        return redirect()->back();
     }
 
     /**

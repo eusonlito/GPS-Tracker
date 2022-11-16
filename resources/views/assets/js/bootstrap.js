@@ -14,5 +14,6 @@ import './data-delete-modal-one.js';
 import './data-input-insert.js';
 import './data-update-boolean.js';
 import './mobile-menu.js';
+import './data-map-fence.js';
 import './modal.js';
 import './alert.js';

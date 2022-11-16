@@ -27,7 +27,8 @@ class NotificationUpdateClosedAt extends ActionAbstract
      */
     protected function notification(): void
     {
-        $this->notification = DeviceAlarmNotificationModel::byDeviceAlarmId($this->row->id)
+        $this->notification = DeviceAlarmNotificationModel::query()
+            ->byDeviceAlarmId($this->row->id)
             ->findOrFail($this->data['device_alarm_notification_id']);
     }
 

@@ -43,7 +43,8 @@ class LastOrNew extends ActionAbstract
      */
     protected function row(): void
     {
-        $this->row = Model::byDeviceId($this->device->id)
+        $this->row = Model::query()
+            ->byDeviceId($this->device->id)
             ->nearToStartUtcAt($this->data['date_utc_at'])
             ->firstOr(fn () => $this->rowCreate());
     }
@@ -85,7 +86,8 @@ class LastOrNew extends ActionAbstract
      */
     protected function positionIsValidAfter(): bool
     {
-        return (bool)PositionModel::byTripId($this->row->id)
+        return (bool)PositionModel::query()
+            ->byTripId($this->row->id)
             ->nextToDateUtcAt($this->data['date_utc_at'])
             ->count();
     }
@@ -115,7 +117,8 @@ class LastOrNew extends ActionAbstract
      */
     protected function positionIsValidWaitDateUtcAt(): ?string
     {
-        return PositionModel::byTripId($this->row->id)
+        return PositionModel::query()
+            ->byTripId($this->row->id)
             ->nearToDateUtcAt($this->data['date_utc_at'])
             ->value('date_utc_at');
     }

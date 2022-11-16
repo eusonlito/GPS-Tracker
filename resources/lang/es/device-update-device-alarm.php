@@ -5,5 +5,6 @@
     'created_at' => 'Alta',
     'enabled' => 'Activa',
     'filter' => 'Filtrar...',
+    'name' => 'Nombre',
     'type' => 'Tipo',
 ];

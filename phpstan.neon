@@ -8,5 +8,10 @@ parameters:
     level: 5
 
     ignoreErrors:
+        - '#Call to an undefined method App\\Domains\\Shared\\Action\\ActionFactoryAbstract#'
+        - '#Call to an undefined method App\\Domains\\Shared\\Model\\Builder\\BuilderAbstract#'
+        - '#Call to an undefined method App\\Domains\\Shared\\Validate\\ValidateFactoryAbstract#'
+        - '#of parent class Illuminate\\Database\\Eloquent\\Builder#'
+        - '#of parent class Illuminate\\Database\\Eloquent\\Relations#'
         - '#is not subtype of native type App\\Domains\\SharedApp\\Model\\ModelAbstract#'
         - '#Unsafe usage of new static#'

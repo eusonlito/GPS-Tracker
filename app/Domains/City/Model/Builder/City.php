@@ -15,7 +15,7 @@ class City extends BuilderAbstract
      */
     public function byCountryId(int $country_id): self
     {
-        return $this->whereIn('state_id', StateModel::select('id')->byCountryId($country_id));
+        return $this->whereIn('state_id', StateModel::query()->select('id')->byCountryId($country_id));
     }
 
     /**
@@ -46,7 +46,7 @@ class City extends BuilderAbstract
      */
     public function byUserIdAndDays(int $user_id, ?int $days): self
     {
-        return $this->whereIn('id', PositionModel::select('city_id')->byUserId($user_id)->whenLastDays($days));
+        return $this->whereIn('id', PositionModel::query()->select('city_id')->byUserId($user_id)->whenLastDays($days));
     }
 
     /**
@@ -58,7 +58,7 @@ class City extends BuilderAbstract
      */
     public function byUserIdDaysAndStartEnd(int $user_id, ?int $days, ?string $start_end): self
     {
-        return $this->whereIn('id', PositionModel::select('city_id')->byUserId($user_id)->whenLastDays($days)->whenStartEnd($start_end));
+        return $this->whereIn('id', PositionModel::query()->select('city_id')->byUserId($user_id)->whenLastDays($days)->whenStartEnd($start_end));
     }
 
     /**

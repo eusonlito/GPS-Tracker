@@ -37,7 +37,7 @@ class AuthCredentials extends ActionAbstract
      */
     protected function row(): void
     {
-        $this->row = Model::byEmail($this->data['email'])->enabled()->firstOr(fn () => $this->fail());
+        $this->row = Model::query()->byEmail($this->data['email'])->enabled()->firstOr(fn () => $this->fail());
     }
 
     /**

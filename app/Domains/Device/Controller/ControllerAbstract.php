@@ -38,7 +38,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::byId($id)->byUserId($this->auth->id)->firstOr(static function () {
+        $this->row = Model::query()->byId($id)->byUserId($this->auth->id)->firstOr(static function () {
             throw new NotFoundException(__('device.error.not-found'));
         });
     }
@@ -50,7 +50,8 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function alarm(int $device_alarm_id): void
     {
-        $this->alarm = DeviceAlarmModel::byId($device_alarm_id)
+        $this->alarm = DeviceAlarmModel::query()
+            ->byId($device_alarm_id)
             ->byDeviceId($this->row->id)
             ->firstOr(static function () {
                 throw new NotFoundException(__('device.error.not-found'));
@@ -64,7 +65,8 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function alarmNotification(int $device_alarm_notification_id): void
     {
-        $this->alarmNotification = DeviceAlarmNotificationModel::byId($device_alarm_notification_id)
+        $this->alarmNotification = DeviceAlarmNotificationModel::query()
+            ->byId($device_alarm_notification_id)
             ->byDeviceId($this->row->id)
             ->firstOr(static function () {
                 throw new NotFoundException(__('device.error.not-found'));
@@ -78,7 +80,8 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function message(int $device_message_id): void
     {
-        $this->message = DeviceMessageModel::byId($device_message_id)
+        $this->message = DeviceMessageModel::query()
+            ->byId($device_message_id)
             ->byDeviceId($this->row->id)
             ->firstOr(static function () {
                 throw new NotFoundException(__('device.error.not-found'));

@@ -73,7 +73,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     protected function dataTimeZoneId(): void
     {
-        $this->data['timezone_id'] = TimezoneModel::select('id')->findOrFail($this->data['timezone_id'])->id;
+        $this->data['timezone_id'] = TimezoneModel::query()->select('id')->findOrFail($this->data['timezone_id'])->id;
     }
 
     /**
@@ -81,7 +81,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     protected function checkSerial(): void
     {
-        if (Model::byIdNot($this->row->id ?? 0)->bySerial($this->data['serial'])->count()) {
+        if (Model::query()->byIdNot($this->row->id ?? 0)->bySerial($this->data['serial'])->count()) {
             $this->exceptionValidator(__('device-create.error.serial-exists'));
         }
     }

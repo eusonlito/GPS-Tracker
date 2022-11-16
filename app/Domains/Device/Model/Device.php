@@ -32,9 +32,9 @@ class Device extends ModelAbstract
     /**
      * @param \Illuminate\Database\Query\Builder $q
      *
-     * @return \Illuminate\Database\Eloquent\Builder|static
+     * @return \App\Domains\Device\Model\Builder\Device
      */
-    public function newEloquentBuilder($q)
+    public function newEloquentBuilder($q): Builder
     {
         return new Builder($q);
     }

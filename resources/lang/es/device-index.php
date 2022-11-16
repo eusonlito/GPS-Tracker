@@ -1,6 +1,6 @@
 <?php return [
     'connected_at' => 'Última Conexión',
-    'create' => 'Crear Dipositivo',
+    'create' => 'Crear',
     'enabled' => 'Activo',
     'filter' => 'Filtrar...',
     'maker' => 'Fabricante',

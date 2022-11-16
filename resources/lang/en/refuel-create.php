@@ -3,7 +3,7 @@
     'device' => 'Device',
     'distance' => 'Distance since previous refueling',
     'distance_total' => 'Total distance',
-    'meta-title' => 'Create Refueling',
+    'meta-title' => 'Create',
     'price' => 'Price',
     'quantity' => 'Quantity',
     'quantity_before' => 'Quantity in tank before refueling',

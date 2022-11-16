@@ -33,7 +33,8 @@ class UpdateMerge extends ActionAbstract
      */
     protected function dataIds(): void
     {
-        $this->data['ids'] = Model::byUserId($this->auth->id)
+        $this->data['ids'] = Model::query()
+            ->byUserId($this->auth->id)
             ->byIdNot($this->row->id)
             ->byIds($this->data['ids'])
             ->pluck('id')
@@ -64,7 +65,8 @@ class UpdateMerge extends ActionAbstract
      */
     protected function savePoints(): void
     {
-        PositionModel::byTripIds($this->data['ids'])
+        PositionModel::query()
+            ->byTripIds($this->data['ids'])
             ->byIdNot($this->row->id)
             ->update(['trip_id' => $this->row->id]);
     }
@@ -82,6 +84,6 @@ class UpdateMerge extends ActionAbstract
      */
     protected function delete(): void
     {
-        Model::byIds($this->data['ids'])->delete();
+        Model::query()->byIds($this->data['ids'])->delete();
     }
 }

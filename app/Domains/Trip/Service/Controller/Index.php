@@ -63,7 +63,10 @@ class Index extends ControllerAbstract
      */
     protected function devices(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= DeviceModel::byUserId($this->auth->id)->list()->get();
+        return $this->cache[__FUNCTION__] ??= DeviceModel::query()
+            ->byUserId($this->auth->id)
+            ->list()
+            ->get();
     }
 
     /**
@@ -119,7 +122,7 @@ class Index extends ControllerAbstract
      */
     protected function countries(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= CountryModel::list()->get();
+        return $this->cache[__FUNCTION__] ??= CountryModel::query()->list()->get();
     }
 
     /**
@@ -139,7 +142,8 @@ class Index extends ControllerAbstract
             return collect();
         }
 
-        return $this->cache[__FUNCTION__] ??= StateModel::byCountryId($country_id)
+        return $this->cache[__FUNCTION__] ??= StateModel::query()
+            ->byCountryId($country_id)
             ->byUserIdDaysAndStartEnd($this->auth->id, $this->last(), $this->request->input('start_end'))
             ->list()
             ->get();
@@ -162,7 +166,8 @@ class Index extends ControllerAbstract
             return collect();
         }
 
-        return $this->cache[__FUNCTION__] ??= CityModel::byStateId($state_id)
+        return $this->cache[__FUNCTION__] ??= CityModel::query()
+            ->byStateId($state_id)
             ->byUserIdDaysAndStartEnd($this->auth->id, $this->last(), $this->request->input('start_end'))
             ->list()
             ->get();
@@ -181,8 +186,8 @@ class Index extends ControllerAbstract
      */
     protected function years(): array
     {
-        $first = Model::byUserId($this->auth->id)->orderByStartAtAsc()->rawValue('YEAR(`start_at`)');
-        $last = Model::byUserId($this->auth->id)->orderByStartAtDesc()->rawValue('YEAR(`start_at`)');
+        $first = Model::query()->byUserId($this->auth->id)->orderByStartAtAsc()->rawValue('YEAR(`start_at`)');
+        $last = Model::query()->byUserId($this->auth->id)->orderByStartAtDesc()->rawValue('YEAR(`start_at`)');
 
         return $first ? range($first, $last) : [];
     }
@@ -211,7 +216,8 @@ class Index extends ControllerAbstract
      */
     protected function list(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= Model::byUserId($this->auth->id)
+        return $this->cache[__FUNCTION__] ??= Model::query()
+            ->byUserId($this->auth->id)
             ->withDevice()
             ->whenLastDays($this->last())
             ->whenYear((int)$this->request->input('year'))

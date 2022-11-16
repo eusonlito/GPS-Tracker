@@ -33,7 +33,7 @@ class Create extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->row = Model::current()->updateOrCreate(
+        $this->row = Model::query()->current()->updateOrCreate(
             ['ip' => $this->request->ip()],
             ['end_at' => $this->endAt()],
         );

@@ -118,7 +118,8 @@ class Client
             return;
         }
 
-        DeviceMessageModel::byDeviceSerial($resource->serial())
+        DeviceMessageModel::query()
+            ->byDeviceSerial($resource->serial())
             ->whereSentAt(true)
             ->whereResponseAt(false)
             ->withDevice()
@@ -149,7 +150,8 @@ class Client
      */
     protected function readResourceMessagesWrite(ResourceAbstract $resource): void
     {
-        DeviceMessageModel::byDeviceSerial($resource->serial())
+        DeviceMessageModel::query()
+            ->byDeviceSerial($resource->serial())
             ->whereSentAt(false)
             ->withDevice()
             ->get()

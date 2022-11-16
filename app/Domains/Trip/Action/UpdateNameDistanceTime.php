@@ -78,7 +78,8 @@ class UpdateNameDistanceTime extends ActionAbstract
      */
     protected function positionFirst(): ?PositionModel
     {
-        return PositionModel::select('date_at', 'date_utc_at')
+        return PositionModel::query()
+            ->select('date_at', 'date_utc_at')
             ->byTripId($this->row->id)
             ->orderByDateUtcAtAsc()
             ->first();
@@ -89,7 +90,8 @@ class UpdateNameDistanceTime extends ActionAbstract
      */
     protected function positionLast(): ?PositionModel
     {
-        return PositionModel::select('date_at', 'date_utc_at')
+        return PositionModel::query()
+            ->select('date_at', 'date_utc_at')
             ->byTripId($this->row->id)
             ->orderByDateUtcAtDesc()
             ->first();

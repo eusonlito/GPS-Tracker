@@ -49,4 +49,17 @@ trait Custom
 
         return '<span class="'.$theme.'">'.($text ?: static::icon($icon, 'w-4 h-4 '.$class)).'</span>';
     }
+
+    /**
+     * @param ?array $data
+     * @param string $class = 'border text-slate-600'
+     *
+     * @return string
+     */
+    public static function arrayAsBadges(?array $data, string $class = 'border text-slate-600'): string
+    {
+        return implode(array_map(static function ($key, $value) use ($class) {
+            return '<span class="px-2 py-1 rounded-full '.$class.' mr-2">'.ucfirst($key).': '.strval($value).'</span>';
+        }, array_keys($data), $data));
+    }
 }

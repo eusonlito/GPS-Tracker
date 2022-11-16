@@ -3,7 +3,7 @@
 @section ('content')
 
 <form method="get">
-    <input type="search" class="form-control form-control-lg mt-4" placeholder="{{ __('trip-update-position.filter') }}" data-table-search="#position-list-table"/>
+    <input type="search" class="form-control form-control-lg mt-5" placeholder="{{ __('trip-update-position.filter') }}" data-table-search="#position-list-table"/>
 </form>
 
 <form method="post">

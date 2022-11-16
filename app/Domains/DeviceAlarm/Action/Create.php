@@ -65,7 +65,8 @@ class Create extends ActionAbstract
      */
     protected function dataDeviceId(): void
     {
-        $this->data['device_id'] = DeviceModel::select('id')
+        $this->data['device_id'] = DeviceModel::query()
+            ->select('id')
             ->byId($this->data['device_id'])
             ->byUserId($this->auth->id)
             ->firstOrFail()
@@ -79,6 +80,7 @@ class Create extends ActionAbstract
     {
         $this->row = Model::create([
             'type' => $this->data['type'],
+            'name' => $this->data['name'],
             'config' => $this->data['config'],
             'enabled' => $this->data['enabled'],
             'device_id' => $this->data['device_id'],

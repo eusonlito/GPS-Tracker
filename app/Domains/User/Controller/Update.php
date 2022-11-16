@@ -27,7 +27,7 @@ class Update extends ControllerAbstract
 
         return $this->page('user.update', [
             'row' => $this->row,
-            'languages' => LanguageModel::list()->get(),
+            'languages' => LanguageModel::query()->list()->get(),
             'can_be_deleted' => ($this->row->id !== $this->auth->id),
         ]);
     }

@@ -79,11 +79,13 @@ class Create extends ActionAbstract
      */
     protected function dataLanguageId(): void
     {
-        $this->data['language_id'] = LanguageModel::select('id')->when(
-            $this->data['language_id'],
-            fn ($q) => $q->byId($this->data['language_id']),
-            fn ($q) => $q->whereDefault(true)
-        )->firstOrFail()->id;
+        $this->data['language_id'] = LanguageModel::query()
+            ->select('id')
+            ->when(
+                $this->data['language_id'],
+                fn ($q) => $q->byId($this->data['language_id']),
+                fn ($q) => $q->whereDefault(true)
+            )->firstOrFail()->id;
     }
 
     /**
@@ -99,7 +101,7 @@ class Create extends ActionAbstract
      */
     protected function checkEmail(): void
     {
-        if (Model::byEmail($this->data['email'])->count()) {
+        if (Model::query()->byEmail($this->data['email'])->count()) {
             throw new ValidatorException(__('user-create.error.email-exists'));
         }
     }

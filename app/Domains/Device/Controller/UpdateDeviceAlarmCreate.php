@@ -5,6 +5,7 @@ namespace App\Domains\Device\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use App\Domains\DeviceAlarm\Service\Type\Manager as DeviceAlarmTypeManager;
+use App\Domains\Position\Model\Position as PositionModel;
 
 class UpdateDeviceAlarmCreate extends ControllerAbstract
 {
@@ -29,6 +30,7 @@ class UpdateDeviceAlarmCreate extends ControllerAbstract
             'row' => $this->row,
             'types' => $typeService->titles(),
             'type' => $typeService->selected($this->request->input('type')),
+            'position' => PositionModel::query()->selectPointAsLatitudeLongitude()->byUserId($this->auth->id)->orderByDateUtcAtDesc()->first(),
         ]);
     }
 

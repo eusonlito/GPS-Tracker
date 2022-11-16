@@ -16,6 +16,7 @@ class Profile extends ValidateAbstract
             'email' => ['bail', 'required', 'email:filter'],
             'password' => ['bail', 'min:8'],
             'password_current' => ['bail', 'required', 'current_password'],
+            'language_id' => ['bail', 'required', 'integer'],
         ];
     }
 }

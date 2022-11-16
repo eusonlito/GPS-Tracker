@@ -24,7 +24,7 @@ class DeviceMessage extends BuilderAbstract
      */
     public function byDeviceSerial(string $serial): self
     {
-        return $this->whereIn('device_id', DeviceModel::select('id')->bySerial($serial));
+        return $this->whereIn('device_id', DeviceModel::query()->select('id')->bySerial($serial));
     }
 
     /**

@@ -9,7 +9,7 @@ class UpdateDeviceMessageCreate extends ControllerAbstract
     /**
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(int $id): RedirectResponse
     {
@@ -17,7 +17,7 @@ class UpdateDeviceMessageCreate extends ControllerAbstract
 
         $this->actionPost('updateDeviceMessageCreate');
 
-        return redirect()->route('device.update.device-message', $this->row->id);
+        return redirect()->back();
     }
 
     /**

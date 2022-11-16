@@ -35,7 +35,8 @@ class CheckPosition extends ActionAbstract
      */
     protected function position(): void
     {
-        $this->position = PositionModel::selectPointAsLatitudeLongitude()
+        $this->position = PositionModel::query()
+            ->selectPointAsLatitudeLongitude()
             ->withDevice()
             ->withTrip()
             ->findOrFail($this->data['position_id']);
@@ -64,7 +65,8 @@ class CheckPosition extends ActionAbstract
      */
     protected function list(): Collection
     {
-        return Model::byDeviceIdEnabled($this->device->id)
+        return Model::query()
+            ->byDeviceIdEnabled($this->device->id)
             ->enabled()
             ->get();
     }
@@ -111,6 +113,7 @@ class CheckPosition extends ActionAbstract
     protected function saveNotification(Model $row): void
     {
         DeviceAlarmNotificationModel::insert([
+            'name' => $row->name,
             'type' => $row->type,
             'config' => json_encode($row->config),
 

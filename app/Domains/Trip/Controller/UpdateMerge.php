@@ -24,7 +24,7 @@ class UpdateMerge extends UpdateAbstract
         $this->meta('title', $this->row->name);
 
         return $this->page('trip.update-merge', [
-            'list' => Model::byUserId($this->auth->id)->list()->get(),
+            'list' => Model::query()->byUserId($this->auth->id)->list()->get(),
         ]);
     }
 

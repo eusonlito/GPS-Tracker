@@ -41,7 +41,8 @@ class Index extends ControllerAbstract
      */
     protected function list(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= Model::list()
+        return $this->cache[__FUNCTION__] ??= Model::query()
+            ->list()
             ->byUserId($this->auth->id)
             ->whenDeviceId((int)$this->request->input('device_id'))
             ->whenYear((int)$this->request->input('year'))
@@ -55,7 +56,10 @@ class Index extends ControllerAbstract
      */
     protected function devices(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= DeviceModel::byUserId($this->auth->id)->list()->get();
+        return $this->cache[__FUNCTION__] ??= DeviceModel::query()
+            ->byUserId($this->auth->id)
+            ->list()
+            ->get();
     }
 
     /**
@@ -63,8 +67,8 @@ class Index extends ControllerAbstract
      */
     protected function years(): array
     {
-        $first = Model::byUserId($this->auth->id)->orderByDateAtAsc()->rawValue('YEAR(`date_at`)');
-        $last = Model::byUserId($this->auth->id)->orderByDateAtDesc()->rawValue('YEAR(`date_at`)');
+        $first = Model::query()->byUserId($this->auth->id)->orderByDateAtAsc()->rawValue('YEAR(`date_at`)');
+        $last = Model::query()->byUserId($this->auth->id)->orderByDateAtDesc()->rawValue('YEAR(`date_at`)');
 
         return $first ? range($first, $last) : [];
     }

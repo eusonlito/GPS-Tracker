@@ -3,7 +3,7 @@
     'device' => 'Dispositivo',
     'distance' => 'Distancia desde el repostaje anterior',
     'distance_total' => 'Distancia total',
-    'meta-title' => 'Crear Repostaje',
+    'meta-title' => 'Crear',
     'price' => 'Precio',
     'quantity' => 'Cantidad',
     'quantity_before' => 'Cantidad en el depósito antes del repostaje',

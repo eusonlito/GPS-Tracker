@@ -22,7 +22,7 @@
             <div class="input-group">
                 <input type="password" name="password" class="form-control form-control-lg" id="user-password" value="{{ $REQUEST->input('password') }}" autocomplete="off" />
                 <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.show') }}" data-password-show="#user-password" tabindex="-1">@icon('eye', 'w-5 h-5')</button>
-             </div>
+            </div>
         </div>
 
         <div class="p-2">

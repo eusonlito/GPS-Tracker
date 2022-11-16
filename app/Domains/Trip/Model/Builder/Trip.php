@@ -15,7 +15,7 @@ class Trip extends BuilderAbstract
      */
     public function byCityId(int $city_id, ?string $start_end = null): self
     {
-        return $this->whereIn('id', PositionModel::select('trip_id')->byCityId($city_id)->whenStartEnd($start_end));
+        return $this->whereIn('id', PositionModel::query()->select('trip_id')->byCityId($city_id)->whenStartEnd($start_end));
     }
 
     /**
@@ -26,7 +26,7 @@ class Trip extends BuilderAbstract
      */
     public function byCountryId(int $country_id, ?string $start_end = null): self
     {
-        return $this->whereIn('id', PositionModel::select('trip_id')->byCountryId($country_id)->whenStartEnd($start_end));
+        return $this->whereIn('id', PositionModel::query()->select('trip_id')->byCountryId($country_id)->whenStartEnd($start_end));
     }
 
     /**
@@ -87,7 +87,7 @@ class Trip extends BuilderAbstract
      */
     public function byStateId(int $state_id, ?string $start_end = null): self
     {
-        return $this->whereIn('id', PositionModel::select('trip_id')->byStateId($state_id)->whenStartEnd($start_end));
+        return $this->whereIn('id', PositionModel::query()->select('trip_id')->byStateId($state_id)->whenStartEnd($start_end));
     }
 
     /**

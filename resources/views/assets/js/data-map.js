@@ -66,14 +66,18 @@ import Feather from './feather';
         return html;
     }
 
-    function markerShow(e, point) {
+    function mapPointClick(e, point) {
         e.preventDefault();
 
+        markerShow(point.dataset.mapPoint);
+    }
+
+    function markerShow(id) {
         if (marker) {
             marker.closePopup();
         }
 
-        marker = markers[point.dataset.mapPoint];
+        marker = markers[id];
 
         if (!marker) {
             return;
@@ -157,8 +161,14 @@ import Feather from './feather';
     }
 
     element.querySelectorAll('[data-map-point]').forEach(point => {
-        point.addEventListener('click', (e) => markerShow(e, point));
+        point.addEventListener('click', (e) => mapPointClick(e, point));
     });
+
+    const anchor = window.location.hash.substr(1);
+
+    if (anchor.match(/^position\-id\-[0-9]+$/)) {
+        markerShow(anchor.split('-').pop());
+    }
 
     const live = document.querySelector('[data-map-live]');
 

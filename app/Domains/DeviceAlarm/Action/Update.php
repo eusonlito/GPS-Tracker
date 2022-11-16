@@ -38,6 +38,7 @@ class Update extends ActionAbstract
      */
     protected function save(): void
     {
+        $this->row->name = $this->data['name'];
         $this->row->config = $this->data['config'];
         $this->row->enabled = $this->data['enabled'];
 

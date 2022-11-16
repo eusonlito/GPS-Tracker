@@ -50,7 +50,8 @@ class Fail extends ActionAbstract
      */
     protected function count(): int
     {
-        return Model::where('success', false)
+        return Model::query()
+            ->where('success', false)
             ->where('ip', $this->ip)
             ->where('created_at', '>=', $this->authLockCheckDate())
             ->count();

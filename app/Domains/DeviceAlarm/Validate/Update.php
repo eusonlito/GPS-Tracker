@@ -12,6 +12,7 @@ class Update extends ValidateAbstract
     public function rules(): array
     {
         return [
+            'name' => ['bail', 'required'],
             'config' => ['bail', 'array'],
             'enabled' => ['bail', 'boolean'],
         ];

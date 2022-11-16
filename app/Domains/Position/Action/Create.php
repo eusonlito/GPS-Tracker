@@ -61,7 +61,7 @@ class Create extends ActionAbstract
      */
     protected function device(): void
     {
-        $this->device = DeviceModel::bySerial($this->data['serial'])->enabled()->first();
+        $this->device = DeviceModel::query()->bySerial($this->data['serial'])->enabled()->first();
     }
 
     /**
@@ -100,7 +100,8 @@ class Create extends ActionAbstract
             return null;
         }
 
-        return TimezoneModel::select('id', 'zone')
+        return TimezoneModel::query()
+            ->select('id', 'zone')
             ->byLatitudeLongitude($this->data['latitude'], $this->data['longitude'])
             ->first();
     }
@@ -114,7 +115,8 @@ class Create extends ActionAbstract
             return null;
         }
 
-        return TimezoneModel::select('id', 'zone')
+        return TimezoneModel::query()
+            ->select('id', 'zone')
             ->byZone($this->data['timezone'])
             ->first();
     }
@@ -149,7 +151,8 @@ class Create extends ActionAbstract
      */
     protected function previous(): void
     {
-        $this->previous = Model::byDeviceId($this->device->id)
+        $this->previous = Model::query()
+            ->byDeviceId($this->device->id)
             ->nearToDateUtcAt($this->data['date_utc_at'])
             ->selectPointAsLatitudeLongitude()
             ->first();
@@ -180,7 +183,8 @@ class Create extends ActionAbstract
      */
     protected function isValidNotExists(): bool
     {
-        return Model::byDeviceId($this->device->id)
+        return Model::query()
+            ->byDeviceId($this->device->id)
             ->byDateUtcAt($this->data['date_utc_at'])
             ->count() === 0;
     }

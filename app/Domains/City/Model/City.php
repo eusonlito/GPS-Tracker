@@ -30,9 +30,9 @@ class City extends ModelAbstract
     /**
      * @param \Illuminate\Database\Query\Builder $q
      *
-     * @return \Illuminate\Database\Eloquent\Builder|static
+     * @return \App\Domains\City\Model\Builder\City
      */
-    public function newEloquentBuilder($q)
+    public function newEloquentBuilder($q): Builder
     {
         return new Builder($q);
     }

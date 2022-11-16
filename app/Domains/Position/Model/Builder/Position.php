@@ -24,7 +24,7 @@ class Position extends BuilderAbstract
      */
     public function byCountryId(int $country_id): self
     {
-        return $this->whereIn('city_id', CityModel::select('id')->byCountryId($country_id));
+        return $this->whereIn('city_id', CityModel::query()->select('id')->byCountryId($country_id));
     }
 
     /**
@@ -64,7 +64,7 @@ class Position extends BuilderAbstract
      */
     public function byStateId(int $state_id): self
     {
-        return $this->whereIn('city_id', CityModel::select('id')->byStateId($state_id));
+        return $this->whereIn('city_id', CityModel::query()->select('id')->byStateId($state_id));
     }
 
     /**

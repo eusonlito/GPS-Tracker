@@ -2,7 +2,7 @@
 
 @section ('content')
 
-<form method="get" class="mt-4">
+<form method="get" class="mt-5">
     <div class="sm:flex sm:space-x-4">
         <div class="flex-grow mt-2 sm:mt-0">
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('device-update-device-alarm.filter') }}" data-table-search="#device-alarm-list-table" />
@@ -19,6 +19,7 @@
         <thead>
             <tr>
                 <th class="w-1">{{ __('device-update-device-alarm.type') }}</th>
+                <th class="text-left">{{ __('device-update-device-alarm.name') }}</th>
                 <th class="text-left">{{ __('device-update-device-alarm.config') }}</th>
                 <th class="w-1">{{ __('device-update-device-alarm.created_at') }}</th>
                 <th class="w-1">{{ __('device-update-device-alarm.enabled') }}</th>
@@ -32,7 +33,8 @@
 
             <tr>
                 <td class="w-1"><a href="{{ $route }}" class="block">{{ $each->typeFormat()->title() }}</a></td>
-                <td class="text-left"><a href="{{ $route }}" class="block whitespace-normal">@include ('domains.device-alarm.types.'.$each->type.'.config-values', ['config' => $each->config])</a></td>
+                <td class="text-left"><a href="{{ $route }}" class="block">{{ $each->name }}</a></td>
+                <td class="text-left"><a href="{{ $route }}" class="block whitespace-normal">@arrayAsBadges($each->typeFormat()->config())</a></td>
                 <td><a href="{{ $route }}" class="block">@dateWithTimezone($each->created_at, $row->timezone->zone)</a></td>
                 <td><a href="{{ route('device.update.device-alarm.update.boolean', [$row->id, $each->id, 'enabled']) }}" class="block" data-update-boolean="enabled">@status($each->enabled)</a></td>
             </tr>

@@ -43,9 +43,9 @@ class User extends ModelAbstract implements Authenticatable
     /**
      * @param \Illuminate\Database\Query\Builder $q
      *
-     * @return \Illuminate\Database\Eloquent\Builder|static
+     * @return \App\Domains\User\Model\Builder\User
      */
-    public function newEloquentBuilder($q)
+    public function newEloquentBuilder($q): Builder
     {
         return new Builder($q);
     }

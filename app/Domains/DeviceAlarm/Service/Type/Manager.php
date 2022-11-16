@@ -10,7 +10,7 @@ class Manager
     /**
      * @const
      */
-    protected const FORMATS = ['movement'];
+    protected const FORMATS = ['fence-in', 'fence-out', 'movement'];
 
     /**
      * @return self
@@ -26,6 +26,8 @@ class Manager
     public function titles(): array
     {
         return [
+            'fence-in' => __('device-alarm-type-fence-in.title'),
+            'fence-out' => __('device-alarm-type-fence-out.title'),
             'movement' => __('device-alarm-type-movement.title'),
         ];
     }
@@ -59,6 +61,8 @@ class Manager
     protected function class(string $code): string
     {
         return match ($code) {
+            'fence-in' => $this->classFormat('FenceIn'),
+            'fence-out' => $this->classFormat('FenceOut'),
             'movement' => $this->classFormat('Movement'),
             default => throw new UnexpectedValueException(__('device-alarm-type.error.invalid')),
         };

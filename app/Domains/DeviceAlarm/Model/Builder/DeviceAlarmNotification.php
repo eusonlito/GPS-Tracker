@@ -27,6 +27,16 @@ class DeviceAlarmNotification extends BuilderAbstract
     }
 
     /**
+     * @param array $device_ids
+     *
+     * @return self
+     */
+    public function byDeviceIds(array $device_ids): self
+    {
+        return $this->whereIntegerInRaw('device_id', $device_ids);
+    }
+
+    /**
      * @param bool $closed_at = false
      *
      * @return self
@@ -46,5 +56,29 @@ class DeviceAlarmNotification extends BuilderAbstract
     public function withAlarm(): self
     {
         return $this->with('alarm');
+    }
+
+    /**
+     * @return self
+     */
+    public function withDevice(): self
+    {
+        return $this->with('device');
+    }
+
+    /**
+     * @return self
+     */
+    public function withPosition(): self
+    {
+        return $this->with('position');
+    }
+
+    /**
+     * @return self
+     */
+    public function withTrip(): self
+    {
+        return $this->with('trip');
     }
 }

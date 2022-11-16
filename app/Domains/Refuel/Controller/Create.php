@@ -23,7 +23,7 @@ class Create extends ControllerAbstract
         $this->meta('title', __('refuel-create.meta-title'));
 
         return $this->page('refuel.create', [
-            'devices' => DeviceModel::byUserId($this->auth->id)->list()->get(),
+            'devices' => DeviceModel::query()->byUserId($this->auth->id)->list()->get(),
         ]);
     }
 
@@ -40,7 +40,8 @@ class Create extends ControllerAbstract
      */
     protected function previous(): Model
     {
-        return Model::select('distance_total', 'price')
+        return Model::query()
+            ->select('distance_total', 'price')
             ->byUserId($this->auth->id)
             ->orderByLast()
             ->firstOrNew();

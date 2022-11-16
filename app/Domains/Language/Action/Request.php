@@ -38,7 +38,7 @@ class Request extends ActionAbstract
             return null;
         }
 
-        return Model::byId($id)->first();
+        return Model::query()->byId($id)->first();
     }
 
     /**
@@ -46,7 +46,7 @@ class Request extends ActionAbstract
      */
     protected function rowCode(): ?Model
     {
-        return Model::byCode($this->rowCodeFromHeader())->first();
+        return Model::query()->byCode($this->rowCodeFromHeader())->first();
     }
 
     /**
@@ -66,7 +66,7 @@ class Request extends ActionAbstract
      */
     protected function rowDefault(): ?Model
     {
-        return Model::whereDefault(true)->first();
+        return Model::query()->whereDefault(true)->first();
     }
 
     /**

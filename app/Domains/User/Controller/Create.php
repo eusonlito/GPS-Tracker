@@ -20,7 +20,7 @@ class Create extends ControllerAbstract
         $this->meta('title', __('user-create.meta-title'));
 
         return $this->page('user.create', [
-            'languages' => LanguageModel::list()->get(),
+            'languages' => LanguageModel::query()->list()->get(),
         ]);
     }
 

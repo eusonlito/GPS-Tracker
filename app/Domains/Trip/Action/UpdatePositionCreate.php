@@ -140,7 +140,8 @@ class UpdatePositionCreate extends ActionAbstract
      */
     protected function saveNewPositions(): void
     {
-        PositionModel::byIds($this->positions->pluck('id')->all())
+        PositionModel::query()
+            ->byIds($this->positions->pluck('id')->all())
             ->update(['trip_id' => $this->new->id]);
     }
 

@@ -25,7 +25,7 @@ class State extends BuilderAbstract
      */
     public function byUserIdAndDays(int $user_id, ?int $days): self
     {
-        return $this->whereIn('id', CityModel::select('state_id')->byUserIdAndDays($user_id, $days));
+        return $this->whereIn('id', CityModel::query()->select('state_id')->byUserIdAndDays($user_id, $days));
     }
 
     /**
@@ -37,7 +37,7 @@ class State extends BuilderAbstract
      */
     public function byUserIdDaysAndStartEnd(int $user_id, ?int $days, ?string $start_end): self
     {
-        return $this->whereIn('id', CityModel::select('state_id')->byUserIdDaysAndStartEnd($user_id, $days, $start_end));
+        return $this->whereIn('id', CityModel::query()->select('state_id')->byUserIdDaysAndStartEnd($user_id, $days, $start_end));
     }
 
     /**

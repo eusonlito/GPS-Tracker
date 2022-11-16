@@ -3,6 +3,7 @@
 namespace App\Domains\User\Action;
 
 use Illuminate\Support\Facades\Hash;
+use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\User\Model\User as Model;
 use App\Exceptions\ValidatorException;
 
@@ -28,6 +29,7 @@ class Profile extends ActionAbstract
         $this->dataName();
         $this->dataEmail();
         $this->dataPassword();
+        $this->dataLanguageId();
     }
 
     /**
@@ -61,6 +63,14 @@ class Profile extends ActionAbstract
     /**
      * @return void
      */
+    protected function dataLanguageId(): void
+    {
+        $this->data['language_id'] = LanguageModel::query()->byId($this->data['language_id'])->firstOrFail()->id;
+    }
+
+    /**
+     * @return void
+     */
     protected function check(): void
     {
         $this->checkEmail();
@@ -71,7 +81,7 @@ class Profile extends ActionAbstract
      */
     protected function checkEmail(): void
     {
-        if (Model::byIdNot($this->row->id)->byEmail($this->data['email'])->count()) {
+        if (Model::query()->byIdNot($this->row->id)->byEmail($this->data['email'])->count()) {
             throw new ValidatorException(__('user-profile.error.email-exists'));
         }
     }
@@ -84,6 +94,7 @@ class Profile extends ActionAbstract
         $this->row->name = $this->data['name'];
         $this->row->email = $this->data['email'];
         $this->row->password = $this->data['password'];
+        $this->row->language_id = $this->data['language_id'];
 
         $this->row->save();
     }

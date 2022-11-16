@@ -15,7 +15,7 @@ class Index extends ControllerAbstract
         $this->meta('title', __('user-index.meta-title'));
 
         return $this->page('user.index', [
-            'list' => Model::list()->get(),
+            'list' => Model::query()->list()->get(),
         ]);
     }
 }

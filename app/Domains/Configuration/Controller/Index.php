@@ -15,7 +15,7 @@ class Index extends ControllerAbstract
         $this->meta('title', __('configuration-index.meta-title'));
 
         return $this->page('configuration.index', [
-            'list' => Model::list()->get(),
+            'list' => Model::query()->list()->get(),
         ]);
     }
 }

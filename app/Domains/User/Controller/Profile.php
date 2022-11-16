@@ -4,6 +4,7 @@ namespace App\Domains\User\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Domains\Language\Model\Language as LanguageModel;
 
 class Profile extends ControllerAbstract
 {
@@ -24,6 +25,7 @@ class Profile extends ControllerAbstract
 
         return $this->page('user.profile', [
             'row' => $this->row,
+            'languages' => LanguageModel::query()->list()->get(),
         ]);
     }
 

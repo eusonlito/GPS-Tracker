@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\DeviceAlarm\Model\Builder\DeviceAlarmNotification as Builder;
 use App\Domains\DeviceAlarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class DeviceAlarmNotification extends ModelAbstract
@@ -37,9 +39,9 @@ class DeviceAlarmNotification extends ModelAbstract
     /**
      * @param \Illuminate\Database\Query\Builder $q
      *
-     * @return \Illuminate\Database\Eloquent\Builder|static
+     * @return \App\Domains\DeviceAlarm\Model\Builder\DeviceAlarmNotification
      */
-    public function newEloquentBuilder($q)
+    public function newEloquentBuilder($q): Builder
     {
         return new Builder($q);
     }
@@ -58,5 +60,21 @@ class DeviceAlarmNotification extends ModelAbstract
     public function device(): BelongsTo
     {
         return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function position(): BelongsTo
+    {
+        return $this->belongsTo(PositionModel::class, PositionModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function trip(): BelongsTo
+    {
+        return $this->belongsTo(TripModel::class, TripModel::FOREIGN);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\DeviceAlarm\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 
 class Index extends ControllerAbstract
@@ -33,6 +34,7 @@ class Index extends ControllerAbstract
             'trip_next_id' => $this->tripNextId(),
             'trip_previous_id' => $this->tripPreviousId(),
             'positions' => $this->positions(),
+            'alarm_notifications' => $this->alarmNotifications(),
         ];
     }
 
@@ -41,7 +43,7 @@ class Index extends ControllerAbstract
      */
     protected function devices(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= DeviceModel::byUserId($this->auth->id)->list()->get();
+        return $this->cache[__FUNCTION__] ??= DeviceModel::query()->byUserId($this->auth->id)->list()->get();
     }
 
     /**
@@ -116,6 +118,26 @@ class Index extends ControllerAbstract
             ->positions()
             ->selectPointAsLatitudeLongitude()
             ->withCity()
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    protected function alarmNotifications(): Collection
+    {
+        if ($this->devices()->isEmpty()) {
+            return collect();
+        }
+
+        return $this->cache[__FUNCTION__] ??= DeviceAlarmNotificationModel::query()
+            ->byDeviceIds($this->devices()->pluck('id')->all())
+            ->whereClosedAt()
+            ->withAlarm()
+            ->withDevice()
+            ->withPosition()
+            ->withTrip()
             ->list()
             ->get();
     }

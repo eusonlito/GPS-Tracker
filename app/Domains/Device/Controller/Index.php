@@ -25,7 +25,8 @@ class Index extends ControllerAbstract
      */
     protected function list(): Collection
     {
-        return Model::byUserId($this->auth->id)
+        return Model::query()
+            ->byUserId($this->auth->id)
             ->withTimezone()
             ->withMessagesCount()
             ->withMessagesPendingCount()

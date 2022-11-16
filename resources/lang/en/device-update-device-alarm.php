@@ -5,5 +5,6 @@
     'created_at' => 'High',
     'enabled' => 'Active',
     'filter' => 'Filter...',
+    'name' => 'Name',
     'type' => 'Type',
 ];

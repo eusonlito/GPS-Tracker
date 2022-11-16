@@ -65,7 +65,7 @@ class Update extends ActionAbstract
      */
     protected function dataLanguageId(): void
     {
-        $this->data['language_id'] = LanguageModel::byId($this->data['language_id'])->firstOrFail()->id;
+        $this->data['language_id'] = LanguageModel::query()->byId($this->data['language_id'])->firstOrFail()->id;
     }
 
     /**
@@ -82,7 +82,7 @@ class Update extends ActionAbstract
      */
     protected function checkEmail(): void
     {
-        if (Model::byIdNot($this->row->id)->byEmail($this->data['email'])->count()) {
+        if (Model::query()->byIdNot($this->row->id)->byEmail($this->data['email'])->count()) {
             throw new ValidatorException(__('user-update.error.email-exists'));
         }
     }

@@ -23,6 +23,14 @@ class Movement extends FormatAbstract
     }
 
     /**
+     * @return string
+     */
+    public function message(): string
+    {
+        return __('device-alarm-type-movement.message');
+    }
+
+    /**
      * @return array
      */
     public function config(): array

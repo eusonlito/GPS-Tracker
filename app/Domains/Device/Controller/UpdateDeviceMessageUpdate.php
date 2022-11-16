@@ -19,7 +19,7 @@ class UpdateDeviceMessageUpdate extends ControllerAbstract
 
         $this->actionPost('updateDeviceMessageDelete');
 
-        return redirect()->route('device.update.device-message', $this->row->id);
+        return redirect()->back();
     }
 
     /**

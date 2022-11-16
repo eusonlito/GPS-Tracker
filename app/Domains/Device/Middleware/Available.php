@@ -16,7 +16,7 @@ class Available extends MiddlewareAbstract
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Model::byUserId($request->user()->id)->count() === 0) {
+        if (Model::query()->byUserId($request->user()->id)->count() === 0) {
             return redirect()->route('device.create');
         }
 

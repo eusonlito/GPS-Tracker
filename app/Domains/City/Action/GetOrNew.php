@@ -67,7 +67,8 @@ class GetOrNew extends ActionAbstract
      */
     protected function near(): Model
     {
-        return Model::selectDistance($this->data['latitude'], $this->data['longitude'])
+        return Model::query()
+            ->selectDistance($this->data['latitude'], $this->data['longitude'])
             ->orderByDistance()
             ->first();
     }

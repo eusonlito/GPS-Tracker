@@ -28,7 +28,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::byId($id)->firstOr(static function () {
+        $this->row = Model::query()->byId($id)->firstOr(static function () {
             throw new NotFoundException(__('user.error.not-found'));
         });
     }

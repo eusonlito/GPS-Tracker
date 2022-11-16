@@ -17,6 +17,11 @@ abstract class FormatAbstract
     abstract public function title(): string;
 
     /**
+     * @return string
+     */
+    abstract public function message(): string;
+
+    /**
      * @return array
      */
     abstract public function config(): array;

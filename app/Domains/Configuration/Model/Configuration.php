@@ -25,9 +25,9 @@ class Configuration extends ModelAbstract
     /**
      * @param \Illuminate\Database\Query\Builder $q
      *
-     * @return \Illuminate\Database\Eloquent\Builder|static
+     * @return \App\Domains\Configuration\Model\Builder\Configuration
      */
-    public function newEloquentBuilder($q)
+    public function newEloquentBuilder($q): Builder
     {
         return new Builder($q);
     }

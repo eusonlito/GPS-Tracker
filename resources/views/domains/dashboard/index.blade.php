@@ -20,7 +20,9 @@
 
 @else
 
-<form>
+@each ('domains.device-alarm-notification.molecules.alert', $alarm_notifications, 'row')
+
+<form method="GET">
     <div class="lg:flex lg:space-x-4">
         @if ($devices->count() > 1)
 

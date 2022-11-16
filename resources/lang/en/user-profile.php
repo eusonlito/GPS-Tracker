@@ -3,6 +3,7 @@
     'error' => [
         'email-exists' => 'Another user with the same email already exists',
     ],
+    'language' => 'Language',
     'meta-title' => 'Profile Update',
     'name' => 'Name',
     'password' => 'Password',

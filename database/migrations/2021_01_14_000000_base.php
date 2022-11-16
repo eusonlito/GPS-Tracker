@@ -87,6 +87,7 @@ return new class extends MigrationAbstract
         Schema::create('device_alarm', function (Blueprint $table) {
             $table->id();
 
+            $table->string('name');
             $table->string('type');
 
             $table->jsonb('config')->nullable();
@@ -101,6 +102,7 @@ return new class extends MigrationAbstract
         Schema::create('device_alarm_notification', function (Blueprint $table) {
             $table->id();
 
+            $table->string('name');
             $table->string('type');
 
             $table->jsonb('config')->nullable();

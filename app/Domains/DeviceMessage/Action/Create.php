@@ -40,7 +40,8 @@ class Create extends ActionAbstract
      */
     protected function dataDeviceId(): void
     {
-        $this->data['device_id'] = DeviceModel::select('id')
+        $this->data['device_id'] = DeviceModel::query()
+            ->select('id')
             ->byId($this->data['device_id'])
             ->byUserId($this->auth->id)
             ->firstOrFail()
