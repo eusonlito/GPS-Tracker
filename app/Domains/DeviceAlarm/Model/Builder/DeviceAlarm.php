@@ -2,8 +2,8 @@
 
 namespace App\Domains\DeviceAlarm\Model\Builder;
 
-use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 
 class DeviceAlarm extends BuilderAbstract
 {
@@ -35,6 +35,16 @@ class DeviceAlarm extends BuilderAbstract
     public function byDeviceSerial(string $serial): self
     {
         return $this->whereIn('device_id', DeviceModel::query()->select('id')->bySerial($serial));
+    }
+
+    /**
+     * @param int $user_id
+     *
+     * @return self
+     */
+    public function byUserId(int $user_id): self
+    {
+        return $this->whereIn('device_id', DeviceModel::query()->select('id')->byUserId($user_id));
     }
 
     /**

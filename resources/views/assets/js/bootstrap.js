@@ -17,3 +17,4 @@ import './mobile-menu.js';
 import './data-map-fence.js';
 import './modal.js';
 import './alert.js';
+import './device-alarm-notification.js';

@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\DeviceAlarm\Model;
+namespace App\Domains\DeviceAlarmNotification\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Domains\DeviceAlarm\Model\Builder\DeviceAlarmNotification as Builder;
+use App\Domains\DeviceAlarmNotification\Model\Builder\DeviceAlarmNotification as Builder;
 use App\Domains\DeviceAlarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
 use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\Trip\Model\Trip as TripModel;
 
 class DeviceAlarmNotification extends ModelAbstract
 {
@@ -39,7 +40,7 @@ class DeviceAlarmNotification extends ModelAbstract
     /**
      * @param \Illuminate\Database\Query\Builder $q
      *
-     * @return \App\Domains\DeviceAlarm\Model\Builder\DeviceAlarmNotification
+     * @return \App\Domains\DeviceAlarmNotification\Model\Builder\DeviceAlarmNotification
      */
     public function newEloquentBuilder($q): Builder
     {
@@ -51,7 +52,7 @@ class DeviceAlarmNotification extends ModelAbstract
      */
     public function alarm(): BelongsTo
     {
-        return $this->belongsTo(DeviceAlarm::class, DeviceAlarm::FOREIGN);
+        return $this->belongsTo(DeviceAlarmModel::class, DeviceAlarmModel::FOREIGN);
     }
 
     /**

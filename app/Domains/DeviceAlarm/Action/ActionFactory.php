@@ -3,7 +3,7 @@
 namespace App\Domains\DeviceAlarm\Action;
 
 use App\Domains\DeviceAlarm\Model\DeviceAlarm as Model;
-use App\Domains\DeviceAlarm\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
+use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
 
 class ActionFactory extends ActionFactoryAbstract
@@ -38,7 +38,7 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return \App\Domains\DeviceAlarm\Model\DeviceAlarmNotification
+     * @return \App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification
      */
     public function notificationUpdateClosedAt(): DeviceAlarmNotificationModel
     {

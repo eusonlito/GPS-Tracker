@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\DeviceAlarm\Model\Builder\DeviceAlarm as Builder;
 use App\Domains\DeviceAlarm\Model\Traits\TypeFormat as TypeFormatTrait;
+use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class DeviceAlarm extends ModelAbstract
@@ -59,6 +60,6 @@ class DeviceAlarm extends ModelAbstract
      */
     public function notifications(): HasMany
     {
-        return $this->hasMany(DeviceAlarmNotification::class, static::FOREIGN);
+        return $this->hasMany(DeviceAlarmNotificationModel::class, static::FOREIGN);
     }
 }

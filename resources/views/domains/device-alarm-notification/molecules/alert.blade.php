@@ -23,7 +23,7 @@
 
     <a href="{{ route('device.update.device-alarm-notification', $row->device->id) }}">{{ $row->typeFormat()->message() }}</a>
 
-    <a href="{{ route('device.update.device-alarm-notification.update.closed-at', [$row->device->id, $row->id]) }}" class="btn-close">
+    <a href="{{ route('device-alarm-notification.update.closed-at', $row->id) }}" class="btn-close">
         @icon('x', 'w-4 h-4')
     </a>
 </app-message>

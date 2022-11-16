@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Device\Model\Builder\Device as Builder;
 use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
-use App\Domains\DeviceAlarm\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
+use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;

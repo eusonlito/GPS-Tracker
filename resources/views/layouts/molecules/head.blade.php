@@ -16,7 +16,15 @@
 
 <link rel="icon" href="@asset('favicon.ico')" type="image/png">
 
-<script>const WWW = '{{ rtrim(asset('/'), '/') }}';</script>
+<script>
+const WWW = '{{ rtrim(asset('/'), '/') }}';
+
+const ROUTER = {
+    'device-alarm.index': '{{ route('device-alarm.index') }}',
+    'device-alarm-notification.index': '{{ route('device-alarm-notification.index') }}',
+    'device-alarm-notification.update.sent-at': '{{ route('device-alarm-notification.update.sent-at', '0') }}',
+};
+</script>
 
 <link rel="manifest" href="https://tracker.lito.com.es/manifest.json" defer="defer"/>
 

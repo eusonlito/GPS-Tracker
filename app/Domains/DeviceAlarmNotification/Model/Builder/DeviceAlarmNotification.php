@@ -1,7 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\DeviceAlarm\Model\Builder;
+namespace App\Domains\DeviceAlarmNotification\Model\Builder;
 
+use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 
 class DeviceAlarmNotification extends BuilderAbstract
@@ -37,6 +38,16 @@ class DeviceAlarmNotification extends BuilderAbstract
     }
 
     /**
+     * @param int $user_id
+     *
+     * @return self
+     */
+    public function byUserId(int $user_id): self
+    {
+        return $this->whereIn('device_id', DeviceModel::query()->select('id')->byUserId($user_id));
+    }
+
+    /**
      * @param bool $closed_at = false
      *
      * @return self
@@ -47,6 +58,20 @@ class DeviceAlarmNotification extends BuilderAbstract
             $closed_at,
             static fn ($q) => $q->whereNotNull('closed_at'),
             static fn ($q) => $q->whereNull('closed_at')
+        );
+    }
+
+    /**
+     * @param bool $sent_at = false
+     *
+     * @return self
+     */
+    public function whereSentAt(bool $sent_at = false): self
+    {
+        return $this->when(
+            $sent_at,
+            static fn ($q) => $q->whereNotNull('sent_at'),
+            static fn ($q) => $q->whereNull('sent_at')
         );
     }
 

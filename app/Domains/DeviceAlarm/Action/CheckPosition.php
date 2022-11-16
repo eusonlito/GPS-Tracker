@@ -5,7 +5,7 @@ namespace App\Domains\DeviceAlarm\Action;
 use Illuminate\Support\Collection;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\DeviceAlarm\Model\DeviceAlarm as Model;
-use App\Domains\DeviceAlarm\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
+use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
 use App\Domains\Position\Model\Position as PositionModel;
 
 class CheckPosition extends ActionAbstract

@@ -4,7 +4,7 @@ namespace App\Domains\Device\Controller;
 
 use App\Domains\Device\Model\Device as Model;
 use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
-use App\Domains\DeviceAlarm\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
+use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\Shared\Controller\ControllerWebAbstract;
 use App\Exceptions\NotFoundException;
@@ -22,7 +22,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     protected ?DeviceAlarmModel $alarm;
 
     /**
-     * @var ?\App\Domains\DeviceAlarm\Model\DeviceAlarmNotification
+     * @var ?\App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification
      */
     protected ?DeviceAlarmNotificationModel $alarmNotification;
 

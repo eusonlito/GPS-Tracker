@@ -30,7 +30,7 @@
                     @if ($each->closed_at)
                     <span class="block">@status(true)</span>
                     @else
-                    <a href="{{ route('device.update.device-alarm-notification.update.closed-at', [$row->id, $each->id]) }}" class="block">@status(false)</a>
+                    <a href="{{ route('device-alarm-notification.update.closed-at', $each->id) }}" class="block">@status(false)</a>
                     @endif
                 </td>
             </tr>

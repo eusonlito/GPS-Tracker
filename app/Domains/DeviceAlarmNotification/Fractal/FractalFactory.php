@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\DeviceAlarm\Fractal;
+namespace App\Domains\DeviceAlarmNotification\Fractal;
 
 use App\Domains\Shared\Fractal\FractalAbstract;
-use App\Domains\DeviceAlarm\Model\DeviceAlarm as Model;
+use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as Model;
 
 class FractalFactory extends FractalAbstract
 {
     /**
-     * @param \App\Domains\DeviceAlarm\Model\DeviceAlarm $row
+     * @param \App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification $row
      *
      * @return array
      */
@@ -18,8 +18,10 @@ class FractalFactory extends FractalAbstract
             'id' => $row->id,
             'name' => $row->name,
             'type' => $row->type,
-            'enabled' => $row->enabled,
+            'title' => $row->typeFormat()->title(),
+            'message' => $row->typeFormat()->message(),
             'device' => $this->fromIfLoaded('Device', 'simple', $row, 'device'),
+            'alarm' => $this->fromIfLoaded('DeviceAlarm', 'simple', $row, 'alarm'),
         ];
     }
 }
