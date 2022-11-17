@@ -52,10 +52,12 @@ let paths = {
         images: './images/',
         theme: './theme/',
         manifest: './manifest/',
+        publish: './publish/',
         vendor: './node_modules/'
     },
 
     to: {
+        public: target + '/../',
         build: target + '/',
         css: target + '/css/',
         js: target + '/js/',
@@ -161,6 +163,11 @@ const images = function() {
         .pipe(dest(paths.to.images));
 };
 
+const publish = function() {
+    return src(paths.from.publish + '**/*')
+        .pipe(dest(paths.to.public));
+};
+
 const version = function() {
     return src([
             paths.to.css + 'main.min.css',
@@ -177,7 +184,8 @@ const taskWatch = function() {
     watch(paths.from.scss + '**/*.scss', css);
     watch(paths.from.js + '**/*.js', js);
     watch(paths.from.images + '**', images);
+    watch(paths.from.publish + '**', publish);
 };
 
-exports.build = series(clean, directories, parallel(css, js, images), version);
-exports.watch = series(clean, directories, parallel(css, js, images), version, taskWatch);
+exports.build = series(clean, directories, parallel(css, js, images, publish), version);
+exports.watch = series(clean, directories, parallel(css, js, images, publish), version, taskWatch);

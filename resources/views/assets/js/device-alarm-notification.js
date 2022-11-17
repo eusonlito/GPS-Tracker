@@ -1,10 +1,11 @@
 import Ajax from './ajax';
+import Router from './router';
 
 (function () {
     'use strict';
 
     const deviceAlarmRequest = function () {
-        new Ajax(ROUTER['device-alarm.index'], 'GET')
+        new Ajax(Router.get('device-alarm.index'), 'GET')
             .setAjax(true)
             .setJsonResponse(true)
             .setCallback(deviceAlarmCheck)
@@ -13,48 +14,23 @@ import Ajax from './ajax';
 
     const deviceAlarmCheck = function (alarms) {
         if (alarms.length) {
-            deviceAlarmNotificationRequest();
+            deviceAlarmNotificationServiceWoker();
         }
     };
 
-    const deviceAlarmNotificationRequest = function () {
-        new Ajax(ROUTER['device-alarm-notification.index'], 'GET')
-            .setAjax(true)
-            .setJsonResponse(true)
-            .setCallback(deviceAlarmNotificationCheck)
-            .send();
+    const deviceAlarmNotificationServiceWoker = function () {
+        navigator.serviceWorker.ready.then((worker) => worker.active.postMessage({ action: 'deviceAlarmNotification' }));
+        navigator.serviceWorker.addEventListener('message', event => navigatorServiceWorkerMessage(event.data));
     };
 
-    const deviceAlarmNotificationCheck = function (notifications) {
-        if (!notifications.length) {
-            return;
-        }
-
-        notifications.forEach(notification => {
-            deviceAlarmNotificationNotify(notification);
-            deviceAlarmNotificationSentAt(notification);
-        })
-    };
-
-    const deviceAlarmNotificationNotify = function (notification) {
-        new Notification(deviceAlarmNotificationNotifyMessage(notification)).onclick = function(e) {
-            window.location.reload();
+    const navigatorServiceWorkerMessage = function (data) {
+        switch (data.action) {
+            case 'reload': return navigatorServiceWorkerMessageReload();
         };
     };
 
-    const deviceAlarmNotificationNotifyMessage = function (notification) {
-        return `${notification.device.name} - ${notification.name} - ${notification.title} - ${notification.message}`;
-    };
-
-    const deviceAlarmNotificationSentAt = function (notification) {
-        new Ajax(deviceAlarmNotificationSentAtUrl(notification), 'GET')
-            .setAjax(true)
-            .setJson(true)
-            .send();
-    };
-
-    const deviceAlarmNotificationSentAtUrl = function (notification) {
-        return ROUTER['device-alarm-notification.update.sent-at'].replace('/0/', '/' + notification.id + '/');
+    const navigatorServiceWorkerMessageReload = function (data) {
+        return window.location.reload();
     };
 
     const notificationPermission = function () {
@@ -63,7 +39,7 @@ import Ajax from './ajax';
                 deviceAlarmRequest();
             };
         });
-    }
+    };
 
     notificationPermission();
 })();

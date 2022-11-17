@@ -18,24 +18,18 @@
 
 <script>
 const WWW = '{{ rtrim(asset('/'), '/') }}';
-
-const ROUTER = {
-    'device-alarm.index': '{{ route('device-alarm.index') }}',
-    'device-alarm-notification.index': '{{ route('device-alarm-notification.index') }}',
-    'device-alarm-notification.update.sent-at': '{{ route('device-alarm-notification.update.sent-at', '0') }}',
-};
 </script>
 
-<link rel="manifest" href="https://tracker.lito.com.es/manifest.json" defer="defer"/>
+<link rel="manifest" href="/manifest.json" defer="defer"/>
 
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="application-name" content="GPS Tracker" />
 <meta name="theme-color" content="white" />
 
-<link rel="shortcut icon" type="image/png" href="https://tracker.lito.com.es/build/images/webapp/logo.png" />
+<link rel="shortcut icon" type="image/png" href="/build/images/webapp/logo.png" />
 
 <meta name="apple-mobile-web-app-title" content="GPS Tracker" />
 <meta name="apple-mobile-web-app-status-bar-style" content="white-translucent">
 
-<link rel="apple-touch-icon" type="image/png" href="https://tracker.lito.com.es/build/images/webapp/logo.png" />
-<link rel="apple-touch-startup-image" type="image/png" href="https://tracker.lito.com.es/build/images/webapp/startup.png" />
+<link rel="apple-touch-icon" type="image/png" href="/build/images/webapp/logo.png" />
+<link rel="apple-touch-startup-image" type="image/png" href="/build/images/webapp/startup.png" />
