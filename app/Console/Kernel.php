@@ -43,7 +43,7 @@ class Kernel extends KernelVendor
             return;
         }
 
-        $schedule->command('queue:work', ['--tries' => 3, '--stop-when-empty'])
+        $schedule->command('queue:work', ['--tries' => 3, '--max-time' => 3600])
             ->withoutOverlapping()
             ->runInBackground()
             ->appendOutputTo($this->log())
