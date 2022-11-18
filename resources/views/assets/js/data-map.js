@@ -160,7 +160,7 @@ import Feather from './feather';
         map.invalidateSize();
     }
 
-    element.querySelectorAll('[data-map-point]').forEach(point => {
+    document.querySelectorAll('[data-map-point]').forEach(point => {
         point.addEventListener('click', (e) => mapPointClick(e, point));
     });
 

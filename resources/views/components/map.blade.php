@@ -1,7 +1,9 @@
 <app-map class="map" data-map data-map-id="{{ $trip->id }}" data-map-positions="{{ $json }}" data-map-positions-url="{{ route('trip.update.position', $trip->id) }}" {{ $attributes }}>
-    <div class="map-map">
+    <div class="map-map {{ $sidebarHidden ? 'w-full' : '' }}">
         <div class="map-map-render" data-map-render></div>
     </div>
+
+    @if ($sidebarHidden === false)
 
     <div class="map-list box px-5 py-2">
         <div class="flex items-center text-center">
@@ -33,4 +35,6 @@
             </tbody>
         </table>
     </div>
+
+    @endif
 </app-map>

@@ -31,6 +31,7 @@ class UpdateDeviceAlarmNotification extends ControllerAbstract
     {
         return $this->row->alarmsNotifications()
             ->withAlarm()
+            ->withTrip()
             ->list()
             ->get();
     }

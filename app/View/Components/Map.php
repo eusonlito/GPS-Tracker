@@ -13,10 +13,15 @@ class Map extends Component
     /**
      * @param \App\Domains\Trip\Model\Trip $trip
      * @param \Illuminate\Support\Collection $positions
+     * @param bool $sidebarHidden = false
      *
      * @return self
      */
-    public function __construct(readonly public TripModel $trip, readonly public Collection $positions)
+    public function __construct(
+        readonly public TripModel $trip,
+        readonly public Collection $positions,
+        readonly public bool $sidebarHidden = false,
+    )
     {
     }
 

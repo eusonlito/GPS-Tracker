@@ -6,4 +6,5 @@
     'filter' => 'Filter...',
     'message' => 'Message',
     'name' => 'Name',
+    'trip' => 'Travel',
 ];
