@@ -21,8 +21,7 @@ class Map extends Component
         readonly public TripModel $trip,
         readonly public Collection $positions,
         readonly public bool $sidebarHidden = false,
-    )
-    {
+    ) {
     }
 
     /**
