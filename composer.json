@@ -109,6 +109,7 @@
             "@php artisan migrate --force --ansi",
             "@php artisan db:seed --class=\"Database\\Seeders\\Database\"",
             "@php artisan maintenance:migration:clean",
+            "@php artisan server:manifest:generate",
             "@composer artisan-cache-clear"
         ],
 
