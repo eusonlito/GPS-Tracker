@@ -20,16 +20,16 @@
 const WWW = '{{ rtrim(asset('/'), '/') }}';
 </script>
 
-<link rel="manifest" href="/manifest.json" defer="defer"/>
+<link rel="manifest" href="@asset('manifest.json')" defer="defer"/>
 
 <meta name="mobile-web-app-capable" content="yes" />
-<meta name="application-name" content="GPS Tracker" />
+<meta name="application-name" content="{{ config('app.name') }}" />
 <meta name="theme-color" content="white" />
 
-<link rel="shortcut icon" type="image/png" href="/build/images/webapp/logo.png" />
+<link rel="shortcut icon" type="image/png" href="@asset('build/images/webapp/logo.png')" />
 
-<meta name="apple-mobile-web-app-title" content="GPS Tracker" />
+<meta name="apple-mobile-web-app-title" content="{{ config('app.name') }}" />
 <meta name="apple-mobile-web-app-status-bar-style" content="white-translucent">
 
-<link rel="apple-touch-icon" type="image/png" href="/build/images/webapp/logo.png" />
-<link rel="apple-touch-startup-image" type="image/png" href="/build/images/webapp/startup.png" />
+<link rel="apple-touch-icon" type="image/png" href="@asset('build/images/webapp/logo.png')" />
+<link rel="apple-touch-startup-image" type="image/png" href="@asset('build/images/webapp/startup.png')" />
