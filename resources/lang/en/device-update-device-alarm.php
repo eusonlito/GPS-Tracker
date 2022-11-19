@@ -6,5 +6,6 @@
     'enabled' => 'Active',
     'filter' => 'Filter...',
     'name' => 'Name',
+    'notifications-enable' => 'Activate Notifications',
     'type' => 'Type',
 ];

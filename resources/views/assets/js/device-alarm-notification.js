@@ -34,11 +34,9 @@ import Router from './router';
     };
 
     const notificationPermission = function () {
-        Notification.requestPermission().then(result => {
-            if (result === 'granted') {
-                deviceAlarmRequest();
-            };
-        });
+        if (Notification.permission === 'granted') {
+            deviceAlarmRequest();
+        }
     };
 
     notificationPermission();
