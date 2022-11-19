@@ -31,6 +31,26 @@ class FenceOut extends FormatAbstract
     }
 
     /**
+     * @return void
+     */
+    public function validate(): void
+    {
+        $config = $this->config();
+
+        if (empty($config['latitude'])) {
+            $this->validateException(__('device-alarm-type-fence-out.error.latitude'));
+        }
+
+        if (empty($config['longitude'])) {
+            $this->validateException(__('device-alarm-type-fence-out.error.longitude'));
+        }
+
+        if (empty($config['radius'])) {
+            $this->validateException(__('device-alarm-type-fence-out.error.radius'));
+        }
+    }
+
+    /**
      * @return array
      */
     public function config(): array
@@ -49,17 +69,21 @@ class FenceOut extends FormatAbstract
      */
     public function checkPosition(PositionModel $position): bool
     {
-        if (empty($this->config['latitude']) || empty($this->config['longitude']) || empty($this->config['radius'])) {
-            return false;
-        }
+        return $this->checkPositionDistance($position) >= $this->config()['radius'];
+    }
 
-        $meters = helper()->coordinatesDistance(
+    /**
+     * @param \App\Domains\Position\Model\Position $position
+     *
+     * @return float
+     */
+    public function checkPositionDistance(PositionModel $position): float
+    {
+        return helper()->coordinatesDistance(
             $position->latitude,
             $position->longitude,
-            $this->config['latitude'],
-            $this->config['longitude'],
-        );
-
-        return ($meters / 1000) >= $this->config['radius'];
+            $this->config()['latitude'],
+            $this->config()['longitude'],
+        ) / 1000;
     }
 }

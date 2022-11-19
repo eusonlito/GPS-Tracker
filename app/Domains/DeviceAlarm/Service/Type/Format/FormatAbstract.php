@@ -3,6 +3,7 @@
 namespace App\Domains\DeviceAlarm\Service\Type\Format;
 
 use App\Domains\Position\Model\Position as PositionModel;
+use App\Exceptions\ValidatorException;
 
 abstract class FormatAbstract
 {
@@ -20,6 +21,11 @@ abstract class FormatAbstract
      * @return string
      */
     abstract public function message(): string;
+
+    /**
+     * @return void
+     */
+    abstract public function validate(): void;
 
     /**
      * @return array
@@ -48,5 +54,15 @@ abstract class FormatAbstract
      */
     public function __construct(protected array $config)
     {
+    }
+
+    /**
+     * @param string $message
+     *
+     * @return void
+     */
+    protected function validateException(string $message): void
+    {
+        throw new ValidatorException($message);
     }
 }

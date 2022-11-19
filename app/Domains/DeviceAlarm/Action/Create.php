@@ -20,6 +20,7 @@ class Create extends ActionAbstract
     public function handle(): Model
     {
         $this->type();
+        $this->check();
         $this->data();
         $this->save();
 
@@ -32,6 +33,22 @@ class Create extends ActionAbstract
     protected function type(): void
     {
         $this->type = TypeManager::new()->factory($this->data['type'], $this->data['config']);
+    }
+
+    /**
+     * @return void
+     */
+    protected function check(): void
+    {
+        $this->checkType();
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkType(): void
+    {
+        $this->type->validate();
     }
 
     /**

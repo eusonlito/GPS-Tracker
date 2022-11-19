@@ -4,14 +4,14 @@ namespace App\Domains\DeviceAlarm\Service\Type\Format;
 
 use App\Domains\Position\Model\Position as PositionModel;
 
-class Movement extends FormatAbstract
+class Overspeed extends FormatAbstract
 {
     /**
      * @return string
      */
     public function code(): string
     {
-        return 'movement';
+        return 'overspeed';
     }
 
     /**
@@ -19,7 +19,7 @@ class Movement extends FormatAbstract
      */
     public function title(): string
     {
-        return __('device-alarm-type-movement.title');
+        return __('device-alarm-type-overspeed.title');
     }
 
     /**
@@ -27,7 +27,7 @@ class Movement extends FormatAbstract
      */
     public function message(): string
     {
-        return __('device-alarm-type-movement.message');
+        return __('device-alarm-type-overspeed.message');
     }
 
     /**
@@ -35,6 +35,9 @@ class Movement extends FormatAbstract
      */
     public function validate(): void
     {
+        if ($this->config()['speed'] === 0) {
+            $this->validateException(__('device-alarm-type-overspeed.error.speed'));
+        }
     }
 
     /**
@@ -42,7 +45,9 @@ class Movement extends FormatAbstract
      */
     public function config(): array
     {
-        return [];
+        return [
+            'speed' => intval($this->config['speed'] ?? 0),
+        ];
     }
 
     /**
@@ -52,6 +57,6 @@ class Movement extends FormatAbstract
      */
     public function checkPosition(PositionModel $position): bool
     {
-        return (bool)$position->speed;
+        return $position->speed > $this->config()['speed'];
     }
 }

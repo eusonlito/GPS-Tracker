@@ -10,7 +10,7 @@ class Manager
     /**
      * @const
      */
-    protected const FORMATS = ['fence-in', 'fence-out', 'movement'];
+    protected const FORMATS = ['fence-in', 'fence-out', 'movement', 'overspeed'];
 
     /**
      * @return self
@@ -29,6 +29,7 @@ class Manager
             'fence-in' => __('device-alarm-type-fence-in.title'),
             'fence-out' => __('device-alarm-type-fence-out.title'),
             'movement' => __('device-alarm-type-movement.title'),
+            'overspeed' => __('device-alarm-type-overspeed.title'),
         ];
     }
 
@@ -64,6 +65,7 @@ class Manager
             'fence-in' => $this->classFormat('FenceIn'),
             'fence-out' => $this->classFormat('FenceOut'),
             'movement' => $this->classFormat('Movement'),
+            'overspeed' => $this->classFormat('Overspeed'),
             default => throw new UnexpectedValueException(__('device-alarm-type.error.invalid')),
         };
     }
