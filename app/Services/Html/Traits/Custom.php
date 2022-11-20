@@ -59,7 +59,7 @@ trait Custom
     public static function arrayAsBadges(?array $data, string $class = 'border text-slate-600'): string
     {
         return implode(array_map(static function ($key, $value) use ($class) {
-            return '<span class="px-2 py-1 rounded-full '.$class.' mr-2">'.ucfirst($key).': '.strval($value).'</span>';
+            return '<span class="px-2 py-1 rounded-full whitespace-nowrap mr-2 '.$class.'">'.ucfirst($key).': '.strval($value).'</span>';
         }, array_keys($data), $data));
     }
 }
