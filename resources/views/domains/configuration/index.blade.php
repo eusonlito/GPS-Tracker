@@ -18,7 +18,7 @@
     <table id="configuration-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>
-                <th class="text-left">{{ __('configuration-index.key') }}</th>
+                <th class="text-left w-1">{{ __('configuration-index.key') }}</th>
                 <th>{{ __('configuration-index.value') }}</th>
                 <th class="text-left">{{ __('configuration-index.description') }}</th>
             </tr>
@@ -30,9 +30,9 @@
             @php ($link = route('configuration.update', $row->id))
 
             <tr>
-                <td><a href="{{ $link }}" class="block text-left">{{ $row->key }}</a></td>
+                <td class="text-left w-1"><a href="{{ $link }}" class="block">{{ $row->key }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->value }}</a></td>
-                <td><a href="{{ $link }}" class="block truncate text-left">{{ $row->description }}</a></td>
+                <td class="text-left"><a href="{{ $link }}" class="d-t-m-o">{{ $row->description }}</a></td>
             </tr>
 
             @endforeach

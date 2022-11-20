@@ -85,7 +85,7 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->device->name }}</a></td>
                 @endif
 
-                <td><a href="{{ $link }}" class="block text-left">{{ $row->name }}</a></td>
+                <td class="text-left"><a href="{{ $link }}" class="d-t-m-o max-w-md" title="{{ $row->name }}">{{ $row->name }}</a></td>
 
                 <td><a href="{{ $link }}" class="block">{{ $row->start_at }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->end_at }}</a></td>

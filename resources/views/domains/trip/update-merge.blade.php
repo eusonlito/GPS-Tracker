@@ -25,7 +25,7 @@
                     @php ($link = route('trip.update.map', $each->id))
 
                     <tr>
-                        <td><a href="{{ $link }}" class="block text-left">{{ $each->name }}</a></td>
+                        <td class="text-left"><a href="{{ $link }}" class="d-t-m-o max-w-md" title="{{ $each->name }}">{{ $each->name }}</a></td>
                         <td><a href="{{ $link }}" class="block">{{ $each->start_at }}</a></td>
                         <td><a href="{{ $link }}" class="block">{{ $each->end_at }}</a></td>
                         <td data-table-sort-value="{{ $each->distance }}"><a href="{{ $link }}" class="block">@distanceHuman($each->distance)</a></td>
