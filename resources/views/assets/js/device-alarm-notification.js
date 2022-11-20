@@ -25,19 +25,18 @@ import Router from './router';
 
     const navigatorServiceWorkerMessage = function (data) {
         switch (data.action) {
+            case 'dashboard': return navigatorServiceWorkerMessageDashboard();
             case 'reload': return navigatorServiceWorkerMessageReload();
         };
     };
 
-    const navigatorServiceWorkerMessageReload = function (data) {
+    const navigatorServiceWorkerMessageDashboard = function () {
+        return window.location.href = Router.get('dashboard.index');
+    };
+
+    const navigatorServiceWorkerMessageReload = function () {
         return window.location.reload();
     };
 
-    const notificationPermission = function () {
-        if (Notification.permission === 'granted') {
-            deviceAlarmRequest();
-        }
-    };
-
-    notificationPermission();
+    deviceAlarmRequest();
 })();

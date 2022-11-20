@@ -6,6 +6,8 @@
     'enabled' => 'Activa',
     'filter' => 'Filtrar...',
     'name' => 'Nombre',
+    'notifications-denied' => 'Notificaciones Desactivadas',
     'notifications-enable' => 'Activar Notificaciones',
+    'notifications-granted' => 'Notificaciones Activadas',
     'type' => 'Tipo',
 ];

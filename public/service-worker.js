@@ -34,7 +34,9 @@ const deviceAlarmNotification = function (data) {
         notifications.forEach(notification => {
             notify(notification);
             updateSentAt(notification);
-        })
+        });
+
+        self.dispatchEvent(new Event('notificationclick'));
     };
 
     const notify = function (notification) {
@@ -71,7 +73,7 @@ self.addEventListener('notificationclick', (event) => {
             }
 
             client.focus();
-            client.postMessage({ action: 'reload' });
+            client.postMessage({ action: 'dashboard' });
 
             return client;
         }
@@ -81,5 +83,7 @@ self.addEventListener('notificationclick', (event) => {
         }
     }));
 
-    event.notification.close();
+    if (event.notification) {
+        event.notification.close();
+    }
 });

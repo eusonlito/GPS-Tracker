@@ -8,7 +8,7 @@
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('device-update-device-alarm.filter') }}" data-table-search="#device-alarm-list-table" />
         </div>
 
-        <button type="button" class="sm:ml-4 mt-2 sm:mt-0 bg-white hidden btn form-control-lg" data-notification-request>{{ __('device-update-device-alarm.notifications-enable') }}</button>
+        <button type="button" class="sm:ml-4 mt-2 sm:mt-0 bg-white btn form-control-lg" data-notification-request data-notification-request-granted="{{ __('device-update-device-alarm.notifications-granted') }}" data-notification-request-denied="{{ __('device-update-device-alarm.notifications-denied') }}">{{ __('device-update-device-alarm.notifications-enable') }}</button>
 
         <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
             <a href="{{ route('device.update.device-alarm.create', $row->id) }}" class="btn form-control-lg">{{ __('device-update-device-alarm.create') }}</a>

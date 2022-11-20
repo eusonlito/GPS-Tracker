@@ -20,7 +20,8 @@
     --color-slate-900: 15 23 42;
 }
 
-.btn-outline-danger:hover {
+.btn-outline-danger:hover,
+.btn-outline-success:hover {
     color: white;
 }
 

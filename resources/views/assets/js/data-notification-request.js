@@ -1,16 +1,25 @@
 (function () {
     'use strict';
 
-    if ((Notification.permission === 'granted') || (Notification.permission === 'denied')) {
-        return;
-    }
+    const permission = Notification.permission;
 
     document.querySelectorAll('[data-notification-request]').forEach(element => {
-        element.classList.remove('hidden');
+        if (permission === 'granted') {
+            element.textContent = element.dataset.notificationRequestGranted;
+            element.classList.add('btn-outline-success');
+        }
+
+        if (permission === 'denied') {
+            element.textContent = element.dataset.notificationRequestDenied;
+            element.classList.add('btn-outline-danger');
+        }
 
         element.addEventListener('click', (e) => {
             e.preventDefault();
-            Notification.requestPermission();
+
+            if ((permission !== 'granted') && (permission !== 'denied')) {
+                Notification.requestPermission();
+            }
         });
     });
 })();
