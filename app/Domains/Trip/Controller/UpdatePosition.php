@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
+use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
 use App\Domains\Trip\Model\Trip as Model;
 
 class UpdatePosition extends UpdateAbstract
@@ -31,6 +32,7 @@ class UpdatePosition extends UpdateAbstract
 
         return $this->page('trip.update-position', [
             'positions' => $this->positions(),
+            'alarms' => $this->alarms(),
         ]);
     }
 
@@ -64,6 +66,18 @@ class UpdatePosition extends UpdateAbstract
             ->selectPointAsLatitudeLongitude()
             ->withCity()
             ->orderByDateUtcAtDesc()
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    protected function alarms(): Collection
+    {
+        return DeviceAlarmModel::query()
+            ->byDeviceId($this->row->device->id)
+            ->enabled()
+            ->list()
             ->get();
     }
 

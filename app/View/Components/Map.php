@@ -13,6 +13,7 @@ class Map extends Component
     /**
      * @param \App\Domains\Trip\Model\Trip $trip
      * @param \Illuminate\Support\Collection $positions
+     * @param ?\Illuminate\Support\Collection $alarms = null
      * @param bool $sidebarHidden = false
      *
      * @return self
@@ -20,6 +21,7 @@ class Map extends Component
     public function __construct(
         readonly public TripModel $trip,
         readonly public Collection $positions,
+        readonly public ?Collection $alarms = null,
         readonly public bool $sidebarHidden = false,
     ) {
     }
@@ -34,16 +36,17 @@ class Map extends Component
         }
 
         return view('components.map', [
-            'json' => $this->json(),
+            'positionsJson' => $this->positionsJson(),
+            'alarmsJson' => $this->alarmsJson(),
         ]);
     }
 
     /**
      * @return string
      */
-    protected function json(): string
+    protected function positionsJson(): string
     {
-        return $this->positions->map(fn ($position) => $this->jsonMap($position))->toJson();
+        return $this->positions->map(fn ($position) => $this->positionsJsonMap($position))->toJson();
     }
 
     /**
@@ -51,9 +54,17 @@ class Map extends Component
      *
      * @return array
      */
-    protected function jsonMap(PositionModel $position): array
+    protected function positionsJsonMap(PositionModel $position): array
     {
         return $position->only('id', 'date_at', 'latitude', 'longitude', 'speed', 'signal', 'created_at')
             + ['city' => $position->city->name, 'state' => $position->city->state->name];
+    }
+
+    /**
+     * @return ?string
+     */
+    protected function alarmsJson(): ?string
+    {
+        return $this->alarms?->whereIn('type', ['fence-in', 'fence-out'])->toJson();
     }
 }

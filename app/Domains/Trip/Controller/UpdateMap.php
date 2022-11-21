@@ -4,6 +4,8 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
+use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
 
 class UpdateMap extends UpdateAbstract
 {
@@ -19,7 +21,32 @@ class UpdateMap extends UpdateAbstract
         $this->meta('title', $this->row->name);
 
         return $this->page('trip.update-map', [
-            'positions' => $this->row->positions()->selectPointAsLatitudeLongitude()->withCity()->list()->get(),
+            'positions' => $this->positions(),
+            'alarms' => $this->alarms(),
         ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    protected function positions(): Collection
+    {
+        return $this->row->positions()
+            ->selectPointAsLatitudeLongitude()
+            ->withCity()
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    protected function alarms(): Collection
+    {
+        return DeviceAlarmModel::query()
+            ->byDeviceId($this->row->device->id)
+            ->enabled()
+            ->list()
+            ->get();
     }
 }

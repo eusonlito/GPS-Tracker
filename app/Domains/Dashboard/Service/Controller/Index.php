@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
 use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 
@@ -34,6 +35,7 @@ class Index extends ControllerAbstract
             'trip_next_id' => $this->tripNextId(),
             'trip_previous_id' => $this->tripPreviousId(),
             'positions' => $this->positions(),
+            'alarms' => $this->alarms(),
             'alarm_notifications' => $this->alarmNotifications(),
         ];
     }
@@ -118,6 +120,22 @@ class Index extends ControllerAbstract
             ->positions()
             ->selectPointAsLatitudeLongitude()
             ->withCity()
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    protected function alarms(): Collection
+    {
+        if ($this->device() === null) {
+            return collect();
+        }
+
+        return $this->cache[__FUNCTION__] ??= DeviceAlarmModel::query()
+            ->byDeviceId($this->device()->id)
+            ->enabled()
             ->list()
             ->get();
     }

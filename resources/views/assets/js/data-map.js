@@ -34,9 +34,17 @@ import Feather from './feather';
         return;
     }
 
+    let alarms = [];
+
+    try {
+        alarms = JSON.parse(element.dataset.mapAlarms || '[]');
+    } catch (e) {
+        alarms = [];
+    }
+
     const ucfirst = function(string) {
         return string[0].toUpperCase() + string.slice(1);
-    }
+    };
 
     const polylineAdd = function (positions, color) {
         line = L.polyline(positions, {
@@ -44,17 +52,36 @@ import Feather from './feather';
             weight: 3,
             opacity: 1
         }).arrowheads({ size: '5px', fill: true }).addTo(layer);
-    }
+    };
 
     const trackAdd = function (point) {
         track.push([point.latitude, point.longitude]);
-    }
+    };
 
     const markerAdd = function (point) {
         return markers[point.id] = L.circleMarker([point.latitude, point.longitude], { radius: 10, fillOpacity: 0.2, opacity: 0.3 })
             .bindPopup(jsonToHtml(point))
             .addTo(layer);
-    }
+    };
+
+    const alarmAdd = function (alarm) {
+        const type = alarm.type;
+        const lat = parseFloat(alarm.config.latitude);
+        const lng = parseFloat(alarm.config.longitude);
+        const radius = parseInt(alarm.config.radius);
+
+        if (!type || isNaN(lat) || isNaN(lng) || isNaN(radius) || !lat || !lng || !radius) {
+            return;
+        }
+
+        L.circle({ lat, lng }, {
+            radius: radius * 1000,
+            fillOpacity: 0.05,
+            opacity: 0.3,
+            color: (type === 'fence-in') ? 'red' : 'green',
+            fillColor: (type === 'fence-in') ? 'red' : 'green',
+        }).addTo(map);
+    };
 
     const jsonToHtml = function(json) {
         let html = '';
@@ -64,15 +91,15 @@ import Feather from './feather';
         });
 
         return html;
-    }
+    };
 
-    function mapPointClick(e, point) {
+    const mapPointClick = function (e, point) {
         e.preventDefault();
 
         markerShow(point.dataset.mapPoint);
-    }
+    };
 
-    function markerShow(id) {
+    const markerShow = function (id) {
         if (marker) {
             marker.closePopup();
         }
@@ -86,9 +113,9 @@ import Feather from './feather';
         map.flyTo(marker.getLatLng());
 
         marker.openPopup();
-    }
+    };
 
-    function iconAdd(point, name) {
+    const iconAdd = function (point, name) {
         if (icon[name]) {
             map.removeLayer(icon[name]);
         }
@@ -100,7 +127,7 @@ import Feather from './feather';
                 iconAnchor: [15, 42],
             })
         }).addTo(map);
-    }
+    };
 
     const layers = {
         OpenStreetMap: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -137,6 +164,10 @@ import Feather from './feather';
     const markers = {};
     const total = positions.length;
     const layer = new L.FeatureGroup();
+
+    alarms.forEach(function (alarm) {
+        alarmAdd(alarm);
+    });
 
     positions.forEach(function (point) {
         trackAdd(point);

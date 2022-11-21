@@ -4,7 +4,7 @@
 
 <div class="grid grid-cols-12 gap-6">
     <div class="col-span-12 lg:col-span-5 mt-5">
-        <x-map :trip="$row" :positions="$positions" sidebar-hidden></x-map>
+        <x-map :trip="$row" :positions="$positions" :alarms="$alarms" sidebar-hidden></x-map>
     </div>
 
     <div class="col-span-12 lg:col-span-7 mt-5">

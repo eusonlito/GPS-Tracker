@@ -5,7 +5,7 @@
 @if ($positions->isNotEmpty())
 
 <div class="box p-5 mt-5">
-    <x-map :trip="$row" :positions="$positions"></x-map>
+    <x-map :trip="$row" :positions="$positions" :alarms="$alarms"></x-map>
 </div>
 
 @endif

@@ -28,6 +28,16 @@ class DeviceAlarm extends BuilderAbstract
     }
 
     /**
+     * @param array $device_ids
+     *
+     * @return self
+     */
+    public function byDeviceIds(array $device_ids): self
+    {
+        return $this->whereIntegerInRaw('device_id', $device_ids);
+    }
+
+    /**
      * @param string $serial
      *
      * @return self
