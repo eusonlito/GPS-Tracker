@@ -13,6 +13,32 @@ self.addEventListener('message', (event) => {
 
 let deviceAlarmNotificationInterval;
 
+const clientsPostMessage = function (message, isEvent) {
+    const url = self.registration.scope;
+
+    return clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clients => {
+        for (const i = 0; i < clients.length; i++) {
+            const client = clients[i];
+
+            if (!client.url.startsWith(url) || !('focus' in client)) {
+                continue;
+            }
+
+            if (isEvent) {
+                client.focus();
+            }
+
+            client.postMessage({ message });
+
+            return client;
+        }
+
+        if (isEvent && clients.openWindow) {
+            return clients.openWindow(url);
+        }
+    });
+};
+
 const deviceAlarmNotification = function (data) {
     if (deviceAlarmNotification) {
         clearInterval(deviceAlarmNotificationInterval);
@@ -36,7 +62,7 @@ const deviceAlarmNotification = function (data) {
             updateSentAt(notification);
         });
 
-        self.dispatchEvent(new Event('notificationclick'));
+        clientsPostMessage('dashboard');
     };
 
     const notify = function (notification) {
@@ -62,40 +88,7 @@ const deviceAlarmNotification = function (data) {
 };
 
 self.addEventListener('notificationclick', (event) => {
-    const url = self.registration.scope;
+    event.notification.close();
 
-    const taskWait = (resolve) => setTimeout(resolve, 1000);
-
-    const taskClients = () => {
-        return clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clients => {
-            for (const i = 0; i < clients.length; i++) {
-                const client = clients[i];
-
-                if (!client.url.startsWith(url) || !('focus' in client)) {
-                    continue;
-                }
-
-                client.focus();
-                client.postMessage({ action: 'dashboard' });
-
-                return client;
-            }
-
-            if (clients.openWindow) {
-                return clients.openWindow(url);
-            }
-        });
-    };
-
-    const task = () => new Promise(taskWait).then(taskClients);
-
-    if (event.notification) {
-        event.notification.close();
-    }
-
-    if (typeof event.waitUntil === 'function') {
-        return event.waitUntil(task);
-    }
-
-    return task();
+    return event.waitUntil(() => clientsPostMessage('dashboard', true));
 });
