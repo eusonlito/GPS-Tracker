@@ -65,6 +65,6 @@ class Map extends Component
      */
     protected function alarmsJson(): ?string
     {
-        return $this->alarms?->whereIn('type', ['fence-in', 'fence-out'])->toJson();
+        return $this->alarms?->whereIn('type', ['fence-in', 'fence-out'])->values()->toJson();
     }
 }
