@@ -64,26 +64,38 @@ const deviceAlarmNotification = function (data) {
 self.addEventListener('notificationclick', (event) => {
     const url = self.registration.scope;
 
-    event.waitUntil(clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clients => {
-        for (const i = 0; i < clients.length; i++) {
-            const client = clients[i];
+    const taskWait = (resolve) => setTimeout(resolve, 1000);
 
-            if (!client.url.startsWith(url) || !('focus' in client)) {
-                continue;
+    const taskClients = () => {
+        return clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clients => {
+            for (const i = 0; i < clients.length; i++) {
+                const client = clients[i];
+
+                if (!client.url.startsWith(url) || !('focus' in client)) {
+                    continue;
+                }
+
+                client.focus();
+                client.postMessage({ action: 'dashboard' });
+
+                return client;
             }
 
-            client.focus();
-            client.postMessage({ action: 'dashboard' });
+            if (clients.openWindow) {
+                return clients.openWindow(url);
+            }
+        });
+    };
 
-            return client;
-        }
-
-        if (clients.openWindow) {
-            return clients.openWindow(url);
-        }
-    }));
+    const task = () => new Promise(taskWait).then(taskClients);
 
     if (event.notification) {
         event.notification.close();
     }
+
+    if (typeof event.waitUntil === 'function') {
+        return event.waitUntil(task);
+    }
+
+    return task();
 });
