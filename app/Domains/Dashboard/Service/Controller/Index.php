@@ -135,7 +135,6 @@ class Index extends ControllerAbstract
 
         return $this->cache[__FUNCTION__] ??= DeviceAlarmModel::query()
             ->byDeviceId($this->device()->id)
-            ->enabled()
             ->list()
             ->get();
     }
