@@ -11,7 +11,7 @@
 
     <div class="flex-1 p-2">
         <label for="device-device-alarm-type-fence-in-radius" class="form-label">{{ __('device-alarm-type-fence-in.radius') }}</label>
-        <input type="number" name="config[radius]" class="form-control form-control-lg" id="device-device-alarm-type-fence-in-radius" value="{{ $REQUEST->input('config.radius') ?: 5 }}" step="1" required>
+        <input type="number" name="config[radius]" class="form-control form-control-lg" id="device-device-alarm-type-fence-in-radius" value="{{ $REQUEST->input('config.radius') ?: 5 }}" step="0.1" required>
     </div>
 </div>
 

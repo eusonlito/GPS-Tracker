@@ -58,7 +58,7 @@ class FenceOut extends FormatAbstract
         return [
             'latitude' => floatval($this->config['latitude'] ?? 0),
             'longitude' => floatval($this->config['longitude'] ?? 0),
-            'radius' => intval($this->config['radius'] ?? 0),
+            'radius' => floatval($this->config['radius'] ?? 0),
         ];
     }
 

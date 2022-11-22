@@ -68,7 +68,7 @@ import Feather from './feather';
         const type = alarm.type;
         const lat = parseFloat(alarm.config.latitude);
         const lng = parseFloat(alarm.config.longitude);
-        const radius = parseInt(alarm.config.radius);
+        const radius = parseFloat(alarm.config.radius);
 
         if (!type || isNaN(lat) || isNaN(lng) || isNaN(radius) || !lat || !lng || !radius) {
             return;
