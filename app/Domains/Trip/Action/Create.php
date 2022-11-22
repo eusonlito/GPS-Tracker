@@ -36,7 +36,8 @@ class Create extends ActionAbstract
      */
     protected function device(): void
     {
-        $this->device = DeviceModel::findOrFail($this->data['device_id']);
+        $this->device = DeviceModel::query()
+            ->findOrFail($this->data['device_id']);
     }
 
     /**
@@ -44,7 +45,9 @@ class Create extends ActionAbstract
      */
     protected function timezone(): void
     {
-        $this->timezone = TimezoneModel::query()->select('id', 'zone')->findOrFail($this->data['timezone_id']);
+        $this->timezone = TimezoneModel::query()
+            ->select('id', 'zone')
+            ->findOrFail($this->data['timezone_id']);
     }
 
     /**

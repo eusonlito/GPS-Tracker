@@ -91,7 +91,7 @@ class Position extends BuilderAbstract
      */
     public function byTripStartUtcAtDateBeforeAfter(?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at): self
     {
-        return $this->whereIn('trip_id', TripModel::select('id')->whenStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at));
+        return $this->whereIn('trip_id', TripModel::query()->select('id')->whenStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at));
     }
 
     /**

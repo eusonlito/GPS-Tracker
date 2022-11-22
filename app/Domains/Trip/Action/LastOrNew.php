@@ -35,7 +35,8 @@ class LastOrNew extends ActionAbstract
      */
     protected function device(): void
     {
-        $this->device = DeviceModel::findOrFail($this->data['device_id']);
+        $this->device = DeviceModel::query()
+            ->findOrFail($this->data['device_id']);
     }
 
     /**

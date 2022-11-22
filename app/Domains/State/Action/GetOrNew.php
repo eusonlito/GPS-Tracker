@@ -28,7 +28,8 @@ class GetOrNew extends ActionAbstract
      */
     protected function country(): void
     {
-        $this->country = CountryModel::findOrFail($this->data['country_id']);
+        $this->country = CountryModel::query()
+            ->findOrFail($this->data['country_id']);
     }
 
     /**

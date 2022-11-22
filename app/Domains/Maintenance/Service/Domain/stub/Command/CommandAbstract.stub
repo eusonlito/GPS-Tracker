@@ -17,7 +17,7 @@ abstract class CommandAbstract extends CommandAbstractSahred
      */
     protected function row(): void
     {
-        $this->row = Model::findOrFail($this->checkOption('id'));
+        $this->row = Model::query()->findOrFail($this->checkOption('id'));
         $this->actingAs($this->row);
     }
 }

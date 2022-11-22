@@ -119,7 +119,7 @@ abstract class CommandAbstract extends Command
         if (is_null($user)) {
             $user = new $model();
         } elseif (is_numeric($user)) {
-            $user = $model::findOrFail($user);
+            $user = $model::query()->findOrFail($user);
         }
 
         Auth::login($user);
