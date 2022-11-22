@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as KernelVendor;
 use App\Domains\Maintenance\Schedule\Manager as MaintenanceScheduleManager;
+use App\Domains\Position\Schedule\Manager as PositionScheduleManager;
 use App\Domains\Socket\Schedule\Manager as SocketScheduleManager;
 
 class Kernel extends KernelVendor
@@ -29,6 +30,7 @@ class Kernel extends KernelVendor
         $this->scheduleQueue($schedule);
 
         (new SocketScheduleManager($schedule))->handle();
+        (new PositionScheduleManager($schedule))->handle();
         (new MaintenanceScheduleManager($schedule))->handle();
     }
 
