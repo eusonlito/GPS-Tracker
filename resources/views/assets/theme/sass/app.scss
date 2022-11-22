@@ -72,8 +72,6 @@
 @import "node_modules/@left4code/tw-starter/dist/scss/tab";
 @import "node_modules/@left4code/tw-starter/dist/scss/table";
 @import "node_modules/@left4code/tw-starter/dist/scss/box";
-@import "node_modules/tippy.js/dist/tippy";
-@import "node_modules/tippy.js/animations/shift-away";
 @import "node_modules/tom-select/src/scss/tom-select";
 
 /*
@@ -86,7 +84,6 @@
  */
 @import "components/global";
 @import "components/main";
-@import "components/ads-box";
 @import "components/breadcrumb";
 @import "components/notification-content";
 @import "components/notification";
@@ -95,17 +92,9 @@
 @import "components/side-nav";
 @import "components/top-nav";
 @import "components/content";
-@import "components/report-box";
-@import "components/report-box-2";
 @import "components/table-report";
-@import "components/boxed-tabs";
 @import "components/mobile-menu";
-@import "components/inbox-filter";
-@import "components/inbox";
-@import "components/pricing-tabs";
 @import "components/login";
 @import "components/error-page";
-@import "components/litepicker";
-@import "components/tabulator";
-@import "components/tippy";
 @import "components/tom-select";
+@import "components/litepicker";
