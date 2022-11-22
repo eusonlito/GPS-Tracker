@@ -29,8 +29,20 @@ class Index extends ControllerAbstract
      */
     protected function filters(): void
     {
-        if ($this->request->input('year') || $this->request->input('month')) {
-            $this->request->merge(['last' => '']);
+        $this->filtersDates();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersDates(): void
+    {
+        if (preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/', (string)$this->request->input('start_at')) === 0) {
+            $this->request->merge(['start_at' => date('Y-m-d', strtotime('-30 days'))]);
+        }
+
+        if (preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/', (string)$this->request->input('end_at')) === 0) {
+            $this->request->merge(['end_at' => '']);
         }
     }
 
@@ -43,16 +55,13 @@ class Index extends ControllerAbstract
             'devices' => $this->devices(),
             'devices_multiple' => ($this->devices()->count() > 1),
             'device' => $this->device(),
-            'lasts' => $this->lasts(),
-            'last' => $this->last(),
             'countries' => $this->countries(),
             'country' => $this->country(),
             'states' => $this->states(),
             'state' => $this->state(),
             'cities' => $this->cities(),
             'city' => $this->city(),
-            'years' => $this->years(),
-            'months' => $this->months(),
+            'date_min' => $this->dateMin(),
             'starts_ends' => $this->startsEnds(),
             'list' => $this->list(),
         ];
@@ -79,50 +88,14 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return array
-     */
-    protected function lasts(): array
-    {
-        return $this->cache[__FUNCTION__] ??= [
-            7 => __('trip-index.last-week'),
-            30 => __('trip-index.last-month'),
-            90 => __('trip-index.last-months', ['month' => 3]),
-            180 => __('trip-index.last-months', ['month' => 6]),
-            360 => __('trip-index.last-months', ['month' => 12]),
-        ];
-    }
-
-    /**
-     * @return ?int
-     */
-    protected function last(): ?int
-    {
-        if (array_key_exists(__FUNCTION__, $this->cache)) {
-            return $this->cache[__FUNCTION__];
-        }
-
-        $last = $this->request->input('last');
-        $lasts = array_keys($this->lasts());
-
-        if ($last === null) {
-            $last = $lasts[0];
-        } elseif (empty($last)) {
-            $last = null;
-        } else {
-            $last = intval(in_array($last, $lasts) ? $last : $lasts[0]);
-        }
-
-        $this->request->merge(['last' => $last]);
-
-        return $this->cache[__FUNCTION__] = $last;
-    }
-
-    /**
      * @return \Illuminate\Support\Collection
      */
     protected function countries(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= CountryModel::query()->list()->get();
+        return $this->cache[__FUNCTION__] ??= CountryModel::query()
+            ->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($this->device()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+            ->list()
+            ->get();
     }
 
     /**
@@ -130,7 +103,8 @@ class Index extends ControllerAbstract
      */
     protected function country(): ?CountryModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->countries()->firstWhere('id', $this->request->input('country_id'));
+        return $this->cache[__FUNCTION__] ??= $this->countries()
+            ->firstWhere('id', $this->request->input('country_id'));
     }
 
     /**
@@ -144,7 +118,7 @@ class Index extends ControllerAbstract
 
         return $this->cache[__FUNCTION__] ??= StateModel::query()
             ->byCountryId($country_id)
-            ->byUserIdDaysAndStartEnd($this->auth->id, $this->last(), $this->request->input('start_end'))
+            ->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($this->device()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
             ->list()
             ->get();
     }
@@ -168,7 +142,7 @@ class Index extends ControllerAbstract
 
         return $this->cache[__FUNCTION__] ??= CityModel::query()
             ->byStateId($state_id)
-            ->byUserIdDaysAndStartEnd($this->auth->id, $this->last(), $this->request->input('start_end'))
+            ->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($this->device()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
             ->list()
             ->get();
     }
@@ -182,22 +156,11 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return array
+     * @return ?string
      */
-    protected function years(): array
+    protected function dateMin(): ?string
     {
-        $first = Model::query()->byUserId($this->auth->id)->orderByStartAtAsc()->rawValue('YEAR(`start_at`)');
-        $last = Model::query()->byUserId($this->auth->id)->orderByStartAtDesc()->rawValue('YEAR(`start_at`)');
-
-        return $first ? range($first, $last) : [];
-    }
-
-    /**
-     * @return array
-     */
-    protected function months(): array
-    {
-        return helper()->months();
+        return Model::query()->byDeviceId($this->device()->id)->orderByStartAtAsc()->rawValue('DATE(`start_utc_at`)');
     }
 
     /**
@@ -217,12 +180,10 @@ class Index extends ControllerAbstract
     protected function list(): Collection
     {
         return $this->cache[__FUNCTION__] ??= Model::query()
-            ->byUserId($this->auth->id)
-            ->withDevice()
-            ->whenLastDays($this->last())
-            ->whenYear((int)$this->request->input('year'))
-            ->whenMonth((int)$this->request->input('month'))
+            ->byDeviceId($this->device()->id)
+            ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
             ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
+            ->withDevice()
             ->list()
             ->get();
     }

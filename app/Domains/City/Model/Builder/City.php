@@ -39,26 +39,16 @@ class City extends BuilderAbstract
     }
 
     /**
-     * @param int $user_id
-     * @param ?int $days
+     * @param int $device_id
+     * @param ?string $trip_before_start_utc_at
+     * @param ?string $trip_after_start_utc_at
+     * @param ?string $trip_start_end
      *
      * @return self
      */
-    public function byUserIdAndDays(int $user_id, ?int $days): self
+    public function byDeviceIdWhenTripStartUtcAtDateBeforeAfter(int $device_id, ?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at, ?string $trip_start_end): self
     {
-        return $this->whereIn('id', PositionModel::query()->select('city_id')->byUserId($user_id)->whenLastDays($days));
-    }
-
-    /**
-     * @param int $user_id
-     * @param ?int $days
-     * @param ?string $start_end
-     *
-     * @return self
-     */
-    public function byUserIdDaysAndStartEnd(int $user_id, ?int $days, ?string $start_end): self
-    {
-        return $this->whereIn('id', PositionModel::query()->select('city_id')->byUserId($user_id)->whenLastDays($days)->whenStartEnd($start_end));
+        return $this->whereIn('id', PositionModel::query()->select('city_id')->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($device_id, $trip_before_start_utc_at, $trip_after_start_utc_at, $trip_start_end));
     }
 
     /**

@@ -12,29 +12,9 @@ class DeviceAlarm extends BuilderAbstract
      *
      * @return self
      */
-    public function byDeviceId(int $device_id): self
-    {
-        return $this->where('device_id', $device_id);
-    }
-
-    /**
-     * @param int $device_id
-     *
-     * @return self
-     */
     public function byDeviceIdEnabled(int $device_id): self
     {
         return $this->whereIn('device_id', DeviceModel::query()->select('id')->byId($device_id)->enabled());
-    }
-
-    /**
-     * @param array $device_ids
-     *
-     * @return self
-     */
-    public function byDeviceIds(array $device_ids): self
-    {
-        return $this->whereIntegerInRaw('device_id', $device_ids);
     }
 
     /**

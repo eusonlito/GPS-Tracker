@@ -4,6 +4,7 @@ namespace App\Domains\Position\Model\Builder;
 
 use App\Domains\City\Model\City as CityModel;
 use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
+use App\Domains\Trip\Model\Trip as TripModel;
 
 class Position extends BuilderAbstract
 {
@@ -39,22 +40,17 @@ class Position extends BuilderAbstract
 
     /**
      * @param int $device_id
+     * @param ?string $trip_before_start_utc_at
+     * @param ?string $trip_after_start_utc_at
+     * @param ?string $trip_start_end
      *
      * @return self
      */
-    public function byDeviceId(int $device_id): self
+    public function byDeviceIdWhenTripStartUtcAtDateBeforeAfter(int $device_id, ?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at, ?string $trip_start_end): self
     {
-        return $this->where('device_id', $device_id);
-    }
-
-    /**
-     * @param int $days
-     *
-     * @return self
-     */
-    public function byLastDays(int $days): self
-    {
-        return $this->where('date_utc_at', '>=', date('Y-m-d H:i:s', strtotime('-'.$days.' days')));
+        return $this->byDeviceId($device_id)
+            ->whenTripStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at)
+            ->whenStartEnd($trip_start_end);
     }
 
     /**
@@ -85,6 +81,17 @@ class Position extends BuilderAbstract
     public function byTripIds(array $trip_ids): self
     {
         return $this->whereIntegerInRaw('trip_id', $trip_ids);
+    }
+
+    /**
+     * @param ?string $trip_before_start_utc_at
+     * @param ?string $trip_after_start_utc_at
+     *
+     * @return self
+     */
+    public function byTripStartUtcAtDateBeforeAfter(?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at): self
+    {
+        return $this->whereIn('trip_id', TripModel::select('id')->whenStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at));
     }
 
     /**
@@ -144,16 +151,6 @@ class Position extends BuilderAbstract
     }
 
     /**
-     * @param ?int $days
-     *
-     * @return self
-     */
-    public function whenLastDays(?int $days): self
-    {
-        return $this->when($days, static fn ($q) => $q->byLastDays($days));
-    }
-
-    /**
      * @param ?string $start_end
      *
      * @return self
@@ -165,6 +162,17 @@ class Position extends BuilderAbstract
             'end' => $this->whereEnd(),
             default => $this,
         };
+    }
+
+    /**
+     * @param ?string $trip_before_start_utc_at
+     * @param ?string $trip_after_start_utc_at
+     *
+     * @return self
+     */
+    public function whenTripStartUtcAtDateBeforeAfter(?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at): self
+    {
+        return $this->when($trip_before_start_utc_at || $trip_after_start_utc_at, static fn ($q) => $q->byTripStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at));
     }
 
     /**

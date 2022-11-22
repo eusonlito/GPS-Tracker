@@ -8,16 +8,6 @@ use App\Domains\Device\Model\Device as DeviceModel;
 class DeviceMessage extends BuilderAbstract
 {
     /**
-     * @param int $device_id
-     *
-     * @return self
-     */
-    public function byDeviceId(int $device_id): self
-    {
-        return $this->where('device_id', $device_id);
-    }
-
-    /**
      * @param string $serial
      *
      * @return self

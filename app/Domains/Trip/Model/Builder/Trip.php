@@ -30,33 +30,23 @@ class Trip extends BuilderAbstract
     }
 
     /**
-     * @param int $device_id
+     * @param string $start_utc_at
      *
      * @return self
      */
-    public function byDeviceId(int $device_id): self
+    public function byStartUtcAtDateAfter(string $start_utc_at): self
     {
-        return $this->where('device_id', $device_id);
+        return $this->whereDate('start_utc_at', '>=', $start_utc_at);
     }
 
     /**
-     * @param int $days
+     * @param string $start_utc_at
      *
      * @return self
      */
-    public function byLastDays(int $days): self
+    public function byStartUtcAtDateBefore(string $start_utc_at): self
     {
-        return $this->where('end_utc_at', '>=', date('Y-m-d H:i:s', strtotime('-'.$days.' days')));
-    }
-
-    /**
-     * @param int $month
-     *
-     * @return self
-     */
-    public function byMonth(int $month): self
-    {
-        return $this->whereMonth('start_at', $month);
+        return $this->whereDate('start_utc_at', '<=', $start_utc_at);
     }
 
     /**
@@ -88,16 +78,6 @@ class Trip extends BuilderAbstract
     public function byStateId(int $state_id, ?string $start_end = null): self
     {
         return $this->whereIn('id', PositionModel::query()->select('trip_id')->byStateId($state_id)->whenStartEnd($start_end));
-    }
-
-    /**
-     * @param int $year
-     *
-     * @return self
-     */
-    public function byYear(int $year): self
-    {
-        return $this->whereYear('start_at', $year);
     }
 
     /**
@@ -169,33 +149,34 @@ class Trip extends BuilderAbstract
     }
 
     /**
-     * @param ?int $days
+     * @param ?string $before_start_utc_at
+     * @param ?string $after_start_utc_at
      *
      * @return self
      */
-    public function whenLastDays(?int $days): self
+    public function whenStartUtcAtDateBeforeAfter(?string $before_start_utc_at, ?string $after_start_utc_at): self
     {
-        return $this->when($days, static fn ($q) => $q->byLastDays($days));
+        return $this->whenStartUtcAtDateBefore($before_start_utc_at)->whenStartUtcAtDateAfter($after_start_utc_at);
     }
 
     /**
-     * @param ?int $month
+     * @param ?string $start_utc_at
      *
      * @return self
      */
-    public function whenMonth(?int $month): self
+    public function whenStartUtcAtDateAfter(?string $start_utc_at): self
     {
-        return $this->when($month, static fn ($q) => $q->byMonth($month));
+        return $this->when($start_utc_at, static fn ($q) => $q->byStartUtcAtDateAfter($start_utc_at));
     }
 
     /**
-     * @param ?int $year
+     * @param ?string $start_utc_at
      *
      * @return self
      */
-    public function whenYear(?int $year): self
+    public function whenStartUtcAtDateBefore(?string $start_utc_at): self
     {
-        return $this->when($year, static fn ($q) => $q->byYear($year));
+        return $this->when($start_utc_at, static fn ($q) => $q->byStartUtcAtDateBefore($start_utc_at));
     }
 
     /**

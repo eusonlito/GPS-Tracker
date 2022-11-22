@@ -19,6 +19,29 @@ class Index extends ControllerAbstract
      */
     public function __construct(protected Request $request, protected Authenticatable $auth)
     {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->filtersDates();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersDates(): void
+    {
+        if (preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/', (string)$this->request->input('start_at')) === 0) {
+            $this->request->merge(['start_at' => '']);
+        }
+
+        if (preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/', (string)$this->request->input('end_at')) === 0) {
+            $this->request->merge(['end_at' => '']);
+        }
     }
 
     /**
@@ -30,8 +53,7 @@ class Index extends ControllerAbstract
             'list' => $this->list(),
             'devices' => $this->devices(),
             'devices_multiple' => ($this->devices()->count() > 1),
-            'years' => $this->years(),
-            'months' => $this->months(),
+            'date_min' => $this->dateMin(),
             'totals' => $this->totals(),
         ];
     }
@@ -45,8 +67,7 @@ class Index extends ControllerAbstract
             ->list()
             ->byUserId($this->auth->id)
             ->whenDeviceId((int)$this->request->input('device_id'))
-            ->whenYear((int)$this->request->input('year'))
-            ->whenMonth((int)$this->request->input('month'))
+            ->whenDateAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
             ->withDevice()
             ->get();
     }
@@ -63,22 +84,11 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return array
+     * @return ?string
      */
-    protected function years(): array
+    protected function dateMin(): ?string
     {
-        $first = Model::query()->byUserId($this->auth->id)->orderByDateAtAsc()->rawValue('YEAR(`date_at`)');
-        $last = Model::query()->byUserId($this->auth->id)->orderByDateAtDesc()->rawValue('YEAR(`date_at`)');
-
-        return $first ? range($first, $last) : [];
-    }
-
-    /**
-     * @return array
-     */
-    protected function months(): array
-    {
-        return helper()->months();
+        return Model::query()->byUserId($this->auth->id)->orderByDateAtAsc()->rawValue('DATE(`date_at`)');
     }
 
     /**

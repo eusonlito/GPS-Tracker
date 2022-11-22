@@ -7,33 +7,23 @@ use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 class Refuel extends BuilderAbstract
 {
     /**
-     * @param int $device_id
+     * @param string $date_at
      *
      * @return self
      */
-    public function byDeviceId(int $device_id): self
+    public function byDateAtDateAfter(string $date_at): self
     {
-        return $this->where('device_id', $device_id);
+        return $this->whereDate('date_at', '>=', $date_at);
     }
 
     /**
-     * @param int $month
+     * @param string $date_at
      *
      * @return self
      */
-    public function byMonth(int $month): self
+    public function byDateAtDateBefore(string $date_at): self
     {
-        return $this->whereMonth('date_at', $month);
-    }
-
-    /**
-     * @param int $year
-     *
-     * @return self
-     */
-    public function byYear(int $year): self
-    {
-        return $this->whereYear('date_at', $year);
+        return $this->whereDate('date_at', '<=', $date_at);
     }
 
     /**
@@ -61,33 +51,34 @@ class Refuel extends BuilderAbstract
     }
 
     /**
-     * @param ?int $device_id
+     * @param ?string $before_date_at
+     * @param ?string $after_date_at
      *
      * @return self
      */
-    public function whenDeviceId(?int $device_id): self
+    public function whenDateAtDateBeforeAfter(?string $before_date_at, ?string $after_date_at): self
     {
-        return $this->when($device_id, static fn ($q) => $q->byDeviceId($device_id));
+        return $this->whenDateAtDateBefore($before_date_at)->whenDateAtDateAfter($after_date_at);
     }
 
     /**
-     * @param ?int $month
+     * @param ?string $date_at
      *
      * @return self
      */
-    public function whenMonth(?int $month): self
+    public function whenDateAtDateAfter(?string $date_at): self
     {
-        return $this->when($month, static fn ($q) => $q->byMonth($month));
+        return $this->when($date_at, static fn ($q) => $q->byDateAtDateAfter($date_at));
     }
 
     /**
-     * @param ?int $year
+     * @param ?string $date_at
      *
      * @return self
      */
-    public function whenYear(?int $year): self
+    public function whenDateAtDateBefore(?string $date_at): self
     {
-        return $this->when($year, static fn ($q) => $q->byYear($year));
+        return $this->when($date_at, static fn ($q) => $q->byDateAtDateBefore($date_at));
     }
 
     /**

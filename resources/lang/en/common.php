@@ -7,7 +7,5 @@
         'query' => 'System Error',
         'system' => 'System Error',
     ],
-    'month' => 'Month',
     'show' => 'Show',
-    'year' => 'Year',
 ];
