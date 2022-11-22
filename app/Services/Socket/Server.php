@@ -325,6 +325,6 @@ class Server
      */
     protected function errorIsReportable(Throwable $e): bool
     {
-        return str_contains($e->getMessage(), 'closed socket') === false;
+        return str_contains($e->getMessage(), ' closed ') === false;
     }
 }
