@@ -10,6 +10,11 @@ use Throwable;
 class Server
 {
     /**
+     * @const int
+     */
+    protected const SOCKET_TIMEOUT = 600;
+
+    /**
      * @var ?\Socket
      */
     protected ?Socket $socket;
@@ -250,7 +255,7 @@ class Server
                 continue;
             }
 
-            if ((time() - $client->timestamp) < 600) {
+            if ((time() - $client->timestamp) < static::SOCKET_TIMEOUT) {
                 continue;
             }
 
@@ -308,6 +313,18 @@ class Server
      */
     protected function error(Throwable $e): void
     {
-        report($e);
+        if ($this->errorIsReportable($e)) {
+            report($e);
+        }
+    }
+
+    /**
+     * @param \Throwable $e
+     *
+     * @return bool
+     */
+    protected function errorIsReportable(Throwable $e): bool
+    {
+        return str_contains($e->getMessage(), 'closed socket') === false;
     }
 }
