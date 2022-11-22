@@ -304,6 +304,9 @@ class Server
         if ($this->socket) {
             $this->close($this->socket);
         }
+
+        $this->clients = [];
+        $this->socket = null;
     }
 
     /**
