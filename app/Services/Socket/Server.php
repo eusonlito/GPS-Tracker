@@ -291,14 +291,14 @@ class Server
     {
         pcntl_async_signals(false);
 
-        pcntl_signal(SIGINT, [$this, 'killHandler']);
-        pcntl_signal(SIGTERM, [$this, 'killHandler']);
+        pcntl_signal(SIGINT, [$this, 'gracefulShutdownHandler']);
+        pcntl_signal(SIGTERM, [$this, 'gracefulShutdownHandler']);
     }
 
     /**
      * @return void
      */
-    protected function killHandler(): void
+    protected function gracefulShutdownHandler(): void
     {
         $this->stop();
         exit;
