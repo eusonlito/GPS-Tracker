@@ -10,4 +10,5 @@
     'password_current' => 'Current Password',
     'save' => 'Save',
     'success' => 'Your profile has been successfully updated',
+    'telegram' => 'Telegram',
 ];

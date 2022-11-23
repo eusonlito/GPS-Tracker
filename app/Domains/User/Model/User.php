@@ -32,6 +32,7 @@ class User extends ModelAbstract implements Authenticatable
      * @var array
      */
     protected $casts = [
+        'telegram' => 'array',
         'enabled' => 'boolean',
     ];
 

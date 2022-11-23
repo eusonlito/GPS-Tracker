@@ -1,6 +1,6 @@
-@extends ('layouts.in')
+@extends ('domains.user.profile-layout')
 
-@section ('body')
+@section ('content')
 
 <form method="post">
     <input type="hidden" name="_action" value="profile" />

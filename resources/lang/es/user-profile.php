@@ -10,4 +10,5 @@
     'password_current' => 'Contraseña Actual',
     'save' => 'Guardar',
     'success' => 'Tu perfil ha sido actualizado correctmente',
+    'telegram' => 'Telegram',
 ];
