@@ -4,7 +4,7 @@ namespace App\Domains\Trip\Controller;
 
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class Export extends ControllerAbstract
+class UpdateExport extends ControllerAbstract
 {
     /**
      * @param int $id
@@ -15,6 +15,6 @@ class Export extends ControllerAbstract
     {
         $this->row($id);
 
-        return $this->action()->export();
+        return $this->action()->updateExport();
     }
 }

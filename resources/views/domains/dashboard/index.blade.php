@@ -57,8 +57,8 @@
             <a href="{{ route('trip.update', $trip->id) }}" class="btn bg-white mr-2">@icon('edit', 'w-4 h-4 sm:w-6 sm:h-6')</a>
             <a href="{{ route('trip.update.map', $trip->id) }}" class="btn bg-white mr-2">@icon('map', 'w-4 h-4 sm:w-6 sm:h-6')</a>
             <a href="{{ route('trip.update.position', $trip->id) }}" class="btn bg-white mr-2">@icon('map-pin', 'w-4 h-4 sm:w-6 sm:h-6')</a>
+            <a href="{{ route('trip.update.device-alarm-notification', $trip->id) }}" class="btn bg-white mr-2">@icon('bell', 'w-4 h-4 sm:w-6 sm:h-6')</a>
             <a href="{{ route('trip.update.merge', $trip->id) }}" class="btn bg-white mr-2">@icon('git-merge', 'w-4 h-4 sm:w-6 sm:h-6')</a>
-            <a href="{{ route('trip.export', $trip->id) }}" class="btn bg-white">@icon('package', 'w-4 h-4 sm:w-6 sm:h-6')</a>
         </div>
     </div>
 </form>

@@ -11,7 +11,7 @@
     }
 
     const getHighestZindex = function () {
-        let zIndex = 52;
+        let zIndex = 999;
 
         modals.forEach(element => {
             const current = element.style.zIndex;
@@ -100,7 +100,7 @@
                 modal.style.paddingLeft = getScrollbarWidth(modal) + 'px';
             });
 
-            if (getHighestZindex() === 52) {
+            if (getHighestZindex() === 999) {
                 body.classList.remove('overflow-y-hidden');
                 body.style.paddingRight = 0;
             }

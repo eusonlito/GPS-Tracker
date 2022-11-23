@@ -6,7 +6,7 @@ use Throwable;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use App\Services\Gpx\Gpx as GpxService;
 
-class Export extends ActionAbstract
+class UpdateExport extends ActionAbstract
 {
     /**
      * @return ?\Symfony\Component\HttpFoundation\StreamedResponse

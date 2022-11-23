@@ -95,9 +95,11 @@
                     <span class="mx-2"></span>
                     <a href="{{ route('trip.update.position', $row->id) }}">@icon('map-pin', 'w-4 h-4')</a>
                     <span class="mx-2"></span>
+                    <a href="{{ route('trip.update.device-alarm-notification', $row->id) }}">@icon('bell', 'w-4 h-4')</a>
+                    <span class="mx-2"></span>
                     <a href="{{ route('trip.update.merge', $row->id) }}">@icon('git-merge', 'w-4 h-4')</a>
                     <span class="mx-2"></span>
-                    <a href="{{ route('trip.export', $row->id) }}">@icon('package', 'w-4 h-4')</a>
+                    <a href="{{ route('trip.update.export', $row->id) }}">@icon('package', 'w-4 h-4')</a>
                 </td>
             </tr>
 

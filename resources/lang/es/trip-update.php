@@ -1,4 +1,5 @@
 <?php return [
+    'alarms' => 'Alarmas',
     'delete-button' => 'Borrar',
     'delete-success' => 'El viaje ha sido borrado correctamente',
     'export' => 'Exportar',

@@ -18,6 +18,16 @@ class DeviceAlarmNotification extends BuilderAbstract
     }
 
     /**
+     * @param int $trip_id
+     *
+     * @return self
+     */
+    public function byTripId(int $trip_id): self
+    {
+        return $this->where('trip_id', $trip_id);
+    }
+
+    /**
      * @param int $user_id
      *
      * @return self

@@ -22,14 +22,6 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return ?\Symfony\Component\HttpFoundation\StreamedResponse
-     */
-    public function export(): ?StreamedResponse
-    {
-        return $this->actionHandle(Export::class);
-    }
-
-    /**
      * @return void
      */
     public function delete(): void
@@ -51,6 +43,14 @@ class ActionFactory extends ActionFactoryAbstract
     public function update(): Model
     {
         return $this->actionHandle(Update::class, $this->validate()->update());
+    }
+
+    /**
+     * @return ?\Symfony\Component\HttpFoundation\StreamedResponse
+     */
+    public function updateExport(): ?StreamedResponse
+    {
+        return $this->actionHandle(UpdateExport::class);
     }
 
     /**
