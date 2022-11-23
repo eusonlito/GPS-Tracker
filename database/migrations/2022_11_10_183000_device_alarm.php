@@ -70,23 +70,6 @@ return new class extends MigrationAbstract
     /**
      * @return void
      */
-    protected function keys()
-    {
-        Schema::table('device_alarm', function (Blueprint $table) {
-            $this->foreignOnDeleteCascade($table, 'device');
-        });
-
-        Schema::table('device_alarm_notification', function (Blueprint $table) {
-            $this->foreignOnDeleteCascade($table, 'device');
-            $this->foreignOnDeleteCascade($table, 'device_alarm');
-            $this->foreignOnDeleteSetNull($table, 'position');
-            $this->foreignOnDeleteSetNull($table, 'trip');
-        });
-    }
-
-    /**
-     * @return void
-     */
     public function down()
     {
         Schema::drop('device_alarm_notification');
