@@ -291,10 +291,17 @@ class Server
     {
         pcntl_async_signals(false);
 
-        pcntl_signal(SIGINT, function () {
-            $this->stop();
-            exit;
-        });
+        pcntl_signal(SIGINT, [$this, 'killHandler']);
+        pcntl_signal(SIGTERM, [$this, 'killHandler']);
+    }
+
+    /**
+     * @return void
+     */
+    protected function killHandler(): void
+    {
+        $this->stop();
+        exit;
     }
 
     /**
