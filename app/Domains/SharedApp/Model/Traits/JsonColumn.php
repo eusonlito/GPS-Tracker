@@ -7,7 +7,7 @@ trait JsonColumn
     /**
      * @var array
      */
-    protected array $jsonColumn = [];
+    protected array $jsonColumnCache = [];
 
     /**
      * @param string $column
@@ -20,12 +20,14 @@ trait JsonColumn
     {
         $cacheKey = md5(json_encode(func_get_args()));
 
-        if (isset($this->jsonColumn[$cacheKey])) {
-            return $this->jsonColumn[$cacheKey];
+        if (array_key_exists($cacheKey, $this->jsonColumnCache)) {
+            return $this->jsonColumnCache[$cacheKey] ?: $default;
         }
 
-        if (empty($value = $this->attributes[$column])) {
-            return $this->jsonColumnCache($cacheKey, $default);
+        $value = $this->attributes[$column] ?? null;
+
+        if (empty($value)) {
+            return $this->jsonColumnCache($cacheKey, $value, $default);
         }
 
         if (is_string($value)) {
@@ -33,24 +35,27 @@ trait JsonColumn
         }
 
         if (is_array($value) === false) {
-            return $this->jsonColumnCache($cacheKey, $default);
+            return $this->jsonColumnCache($cacheKey, null, $default);
         }
 
         if (str_contains($key, '.')) {
-            return $this->jsonColumnCache($cacheKey, data_get($value, $key, $default));
+            return $this->jsonColumnCache($cacheKey, data_get($value, $key), $default);
         }
 
-        return $this->jsonColumnCache($cacheKey, $value[$key] ?? $default);
+        return $this->jsonColumnCache($cacheKey, $value[$key] ?? null, $default);
     }
 
     /**
      * @param string $key
      * @param mixed $value
+     * @param mixed $default
      *
      * @return mixed
      */
-    protected function jsonColumnCache(string $key, mixed $value): mixed
+    protected function jsonColumnCache(string $key, mixed $value, mixed $default): mixed
     {
-        return $this->jsonColumn[$key] = $value;
+        $this->jsonColumnCache[$key] = $value;
+
+        return $value ?: $default;
     }
 }

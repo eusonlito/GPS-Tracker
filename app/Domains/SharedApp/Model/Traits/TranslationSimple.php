@@ -12,7 +12,7 @@ trait TranslationSimple
      *
      * @return mixed
      */
-    public function translation(?string $key = null, $default = null)
+    public function translation(?string $key = null, mixed $default = null): mixed
     {
         return $this->jsonColumn('translation', $key, $default);
     }

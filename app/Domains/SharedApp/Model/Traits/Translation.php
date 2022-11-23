@@ -18,38 +18,37 @@ trait Translation
      *
      * @return mixed
      */
-    public function translation(?string $key, string|bool|null $lang = null, $default = null): mixed
+    public function translation(?string $key, string|bool|null $lang = null, mixed $default = null): mixed
     {
         $cacheKey = md5(json_encode(func_get_args()));
 
-        if (isset($this->translationCache[$cacheKey])) {
-            return $this->translationCache[$cacheKey];
+        if (array_key_exists($cacheKey, $this->translationCache)) {
+            return $this->translationCache[$cacheKey] ?: $default;
         }
 
         if ($lang === false) {
-            return $this->translationCache($cacheKey, $this->translationAny($key, $default));
+            return $this->translationCache($cacheKey, $this->translationAny($key), $default);
         }
 
         $translation = $this->translate('translation', $lang, []);
 
         if ($key === null) {
-            return $this->translationCache($cacheKey, $translation);
+            return $this->translationCache($cacheKey, $translation, $default);
         }
 
         if (str_contains($key, '.')) {
-            return $this->translationCache($cacheKey, data_get($translation, $key, $default));
+            return $this->translationCache($cacheKey, data_get($translation, $key), $default);
         }
 
-        return $this->translationCache($cacheKey, $translation[$key] ?? $default);
+        return $this->translationCache($cacheKey, $translation[$key] ?? null, $default);
     }
 
     /**
      * @param string $key
-     * @param mixed $default = null
      *
      * @return mixed
      */
-    protected function translationAny(string $key, $default = null)
+    protected function translationAny(string $key): mixed
     {
         if ($translation = $this->translation($key, null)) {
             return $translation;
@@ -65,17 +64,20 @@ trait Translation
             }
         }
 
-        return $default;
+        return null;
     }
 
     /**
      * @param string $key
      * @param mixed $value
+     * @param mixed $default
      *
      * @return mixed
      */
-    protected function translationCache(string $key, mixed $value): mixed
+    protected function translationCache(string $key, mixed $value, mixed $default): mixed
     {
-        return $this->translationCache[$key] = $value;
+        $this->translationCache[$key] = $value;
+
+        return $value ?: $default;
     }
 }
