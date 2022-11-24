@@ -42,7 +42,7 @@ class DeviceAlarm extends BuilderAbstract
      */
     public function withDevice(): self
     {
-        return $this->with('device');
+        return $this->with(['device' => static fn ($q) => $q->withTimeZone()]);
     }
 
     /**
