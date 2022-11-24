@@ -9,11 +9,19 @@
 
             <span class="mx-2">-</span>
 
+            @if ($row->alarm)
+
             <a href="{{ route('device.update.device-alarm.update', [$row->device->id, $row->alarm->id]) }}">
                 {{ $row->alarm->name }}
                 -
                 {{ $row->typeFormat()->title() }}
             </a>
+
+            @else
+
+            <span>{{ $row->typeFormat()->title() }}</span>
+
+            @endif
 
             @if ($row->trip)
             <span class="mx-2">-</span>

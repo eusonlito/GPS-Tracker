@@ -43,6 +43,10 @@ class UpdateClosedAt extends ActionAbstract
      */
     protected function saveAlarm(): void
     {
+        if (empty($this->row->alarm)) {
+            return;
+        }
+
         $this->row->alarm->enabled = true;
         $this->row->alarm->save();
     }

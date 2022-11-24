@@ -23,7 +23,14 @@
             @foreach ($notifications as $each)
 
             <tr>
-                <td class="text-left w-1"><a href="{{ route('device.update.device-alarm.update', [$row->id, $each->alarm->id]) }}" class="block">{{ $each->typeFormat()->title() }}</a></td>
+
+                <td class="text-left w-1">
+                    @if ($each->alarm)
+                    <a href="{{ route('device.update.device-alarm.update', [$row->id, $each->alarm->id]) }}" class="block">{{ $each->typeFormat()->title() }}</a>
+                    @else
+                    {{ $each->typeFormat()->title() }}
+                    @endif
+                </td>
                 <td class="text-left w-1"><span class="d-t-m-o max-w-2xs" title="{{ $each->name }}">{{ $each->name }}</span></td>
                 <td class="text-left"><span class="d-t-m-o max-w-2xs" title="{{ $each->typeFormat()->message() }}">{{ $each->typeFormat()->message() }}</span></td>
                 <td class="text-left"><span class="d-t-m-o max-w-2xs" title="@arrayAsText($each->typeFormat()->config())">@arrayAsBadges($each->typeFormat()->config())</span></td>
