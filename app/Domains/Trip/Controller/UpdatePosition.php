@@ -41,21 +41,27 @@ class UpdatePosition extends UpdateAbstract
      */
     protected function responseJson(): JsonResponse
     {
-        return $this->json($this->factory()->fractal('map', $this->responseJsonRowWithPositions()));
+        return $this->json($this->factory()->fractal('map', $this->responseJsonList()));
     }
 
     /**
      * @return \App\Domains\Trip\Model\Trip
      */
-    protected function responseJsonRowWithPositions(): Model
+    protected function responseJsonList(): Model
     {
-        return $this->row->setRelation('positions',
-            $this->row->positions()
-                ->byIdNext((int)$this->request->input('id_from'))
-                ->withCity()
-                ->list()
-                ->get()
-        );
+        return $this->row->setRelation('positions', $this->responseJsonListPositions());
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    protected function responseJsonListPositions(): Collection
+    {
+        return $this->row->positions()
+            ->byIdNext((int)$this->request->input('id_from'))
+            ->withCity()
+            ->list()
+            ->get();
     }
 
     /**
