@@ -188,6 +188,18 @@ class Client
      */
     protected function error(Throwable $e): void
     {
-        report($e);
+        if ($this->errorIsReportable($e)) {
+            report($e);
+        }
+    }
+
+    /**
+     * @param \Throwable $e
+     *
+     * @return bool
+     */
+    protected function errorIsReportable(Throwable $e): bool
+    {
+        return str_contains($e->getMessage(), ' closed ') === false;
     }
 }
