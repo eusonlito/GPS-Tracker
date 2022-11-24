@@ -1,4 +1,5 @@
 <?php return [
+    'alarms' => 'Alarmas',
     'configuration' => 'Configuración',
     'dashboard' => 'Dashboard',
     'devices' => 'Dispositivos',
