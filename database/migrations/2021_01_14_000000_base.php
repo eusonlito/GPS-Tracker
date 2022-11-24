@@ -92,6 +92,8 @@ return new class extends MigrationAbstract
 
             $table->jsonb('config')->nullable();
 
+            $table->boolean('telegram')->default(0);
+
             $table->boolean('enabled')->default(0);
 
             $this->timestamps($table);
@@ -106,6 +108,8 @@ return new class extends MigrationAbstract
             $table->string('type');
 
             $table->jsonb('config')->nullable();
+
+            $table->boolean('telegram')->default(0);
 
             $table->dateTime('closed_at')->nullable();
             $table->dateTime('sent_at')->nullable();

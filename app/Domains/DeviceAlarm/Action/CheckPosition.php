@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\DeviceAlarm\Model\DeviceAlarm as Model;
 use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
+use App\Domains\DeviceAlarmNotification\Job\Notify as DeviceAlarmNotificationNotifyJob;
 use App\Domains\Position\Model\Position as PositionModel;
 
 class CheckPosition extends ActionAbstract
@@ -91,7 +92,7 @@ class CheckPosition extends ActionAbstract
     protected function save(Model $row): void
     {
         $this->saveRow($row);
-        $this->saveNotification($row);
+        $this->saveJob($this->saveNotification($row));
     }
 
     /**
@@ -108,19 +109,31 @@ class CheckPosition extends ActionAbstract
     /**
      * @param \App\Domains\DeviceAlarm\Model\DeviceAlarm $row
      *
-     * @return void
+     * @return \App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification
      */
-    protected function saveNotification(Model $row): void
+    protected function saveNotification(Model $row): DeviceAlarmNotificationModel
     {
-        DeviceAlarmNotificationModel::insert([
+        return DeviceAlarmNotificationModel::create([
             'name' => $row->name,
             'type' => $row->type,
-            'config' => json_encode($row->config),
+            'config' => $row->config,
+
+            'telegram' => $row->telegram,
 
             'device_id' => $this->device->id,
             'device_alarm_id' => $row->id,
             'position_id' => $this->position->id,
             'trip_id' => $this->position->trip->id,
         ]);
+    }
+
+    /**
+     * @param \App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification $notification
+     *
+     * @return void
+     */
+    protected function saveJob(DeviceAlarmNotificationModel $notification): void
+    {
+        DeviceAlarmNotificationNotifyJob::dispatch($notification->id);
     }
 }

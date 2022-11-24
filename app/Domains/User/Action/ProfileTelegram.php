@@ -22,15 +22,26 @@ class ProfileTelegram extends ActionAbstract
      */
     protected function data(): void
     {
-        $this->dataName();
+        $this->dataUsername();
+        $this->dataChatId();
     }
 
     /**
      * @return void
      */
-    protected function dataName(): void
+    protected function dataUsername(): void
     {
         $this->data['telegram']['username'] = trim(str_replace('@', '', $this->data['telegram']['username']));
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataChatId(): void
+    {
+        if (empty($this->data['telegram']['username'])) {
+            $this->data['telegram']['chat_id'] = null;
+        }
     }
 
     /**

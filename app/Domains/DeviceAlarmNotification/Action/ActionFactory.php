@@ -23,6 +23,14 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return \App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification
      */
+    public function notify(): Model
+    {
+        return $this->actionHandle(Notify::class);
+    }
+
+    /**
+     * @return \App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification
+     */
     public function updateClosedAt(): Model
     {
         return $this->actionHandle(UpdateClosedAt::class);

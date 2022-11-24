@@ -6,7 +6,7 @@
     <div class="box p-5 mt-5">
         <div class="p-2">
             <label for="user-telegram-username" class="form-label">{{ __('user-profile-telegram.username') }}</label>
-            <input type="text" name="telegram[username]" class="form-control form-control-lg" id="user-telegram-username" value="{{ $REQUEST->input('telegram.username') }}" required>
+            <input type="text" name="telegram[username]" class="form-control form-control-lg" id="user-telegram-username" value="{{ $REQUEST->input('telegram.username') }}">
         </div>
     </div>
 

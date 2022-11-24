@@ -72,6 +72,7 @@ class Update extends ActionAbstract
     {
         $this->row->name = $this->data['name'];
         $this->row->config = $this->data['config'];
+        $this->row->telegram = $this->data['telegram'];
         $this->row->enabled = $this->data['enabled'];
 
         $this->row->save();

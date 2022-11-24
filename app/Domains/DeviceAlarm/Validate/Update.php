@@ -14,6 +14,7 @@ class Update extends ValidateAbstract
         return [
             'name' => ['bail', 'required'],
             'config' => ['bail', 'array'],
+            'telegram' => ['bail', 'boolean'],
             'enabled' => ['bail', 'boolean'],
         ];
     }

@@ -6,5 +6,6 @@
     'filter' => 'Filtrar...',
     'message' => 'Mensaje',
     'name' => 'Nombre',
+    'telegram' => 'Telegram',
     'trip' => 'Viaje',
 ];

@@ -1,7 +1,7 @@
 <?php return [
     'admin' => 'Admin',
     'create' => 'Crear',
-    'created_at' => 'Alta',
+    'created_at' => 'Creada',
     'email' => 'Email',
     'enabled' => 'Activo',
     'filter' => 'Filtrar...',

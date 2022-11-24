@@ -187,6 +187,7 @@ return [
     */
 
     'aliases' => [
+        'Html' => App\Services\Html\Html::class,
     ],
 
 ];

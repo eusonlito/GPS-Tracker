@@ -26,6 +26,10 @@ class View extends ServiceProvider
             return "<?= \App\Services\Html\Html::arrayAsBadges($expression); ?>";
         });
 
+        Blade::directive('arrayAsText', function (string $expression) {
+            return "<?= \App\Services\Html\Html::arrayAsText($expression); ?>";
+        });
+
         Blade::directive('asset', function (string $expression) {
             return "<?= \App\Services\Html\Html::asset($expression); ?>";
         });

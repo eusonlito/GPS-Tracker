@@ -289,8 +289,6 @@ class Server
      */
     protected function gracefulShutdown(): void
     {
-        pcntl_async_signals(false);
-
         pcntl_signal(SIGINT, [$this, 'gracefulShutdownHandler']);
         pcntl_signal(SIGTERM, [$this, 'gracefulShutdownHandler']);
     }

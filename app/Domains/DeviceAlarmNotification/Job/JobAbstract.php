@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\DeviceAlarm\Job;
+namespace App\Domains\DeviceAlarmNotification\Job;
 
 use Illuminate\Queue\Middleware\WithoutOverlapping;
-use App\Domains\DeviceAlarm\Model\DeviceAlarm as Model;
+use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as Model;
 use App\Domains\Shared\Job\JobAbstract as JobAbstractShared;
 
 abstract class JobAbstract extends JobAbstractShared
@@ -26,7 +26,7 @@ abstract class JobAbstract extends JobAbstractShared
     }
 
     /**
-     * @return \App\Domains\DeviceAlarm\Model\DeviceAlarm
+     * @return \App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification
      */
     protected function row(): Model
     {

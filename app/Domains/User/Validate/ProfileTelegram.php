@@ -13,7 +13,7 @@ class ProfileTelegram extends ValidateAbstract
     {
         return [
             'telegram' => ['bail', 'required', 'array'],
-            'telegram.username' => ['bail', 'required'],
+            'telegram.username' => ['bail', 'string'],
             'password_current' => ['bail', 'required', 'current_password'],
         ];
     }

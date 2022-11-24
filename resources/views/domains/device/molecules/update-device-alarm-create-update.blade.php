@@ -10,6 +10,13 @@
             <label for="device-update-device-alarm-create-enabled" class="form-check-label">{{ __('device-update-device-alarm-create.enabled') }}</label>
         </div>
     </div>
+
+    <div class="p-2">
+        <div class="form-check">
+            <input type="checkbox" name="telegram" value="1" class="form-check-switch" id="device-update-device-alarm-create-telegram" {{ $REQUEST->input('telegram') ? 'checked' : '' }}>
+            <label for="device-update-device-alarm-create-telegram" class="form-check-label">{{ __('device-update-device-alarm-create.telegram') }}</label>
+        </div>
+    </div>
 </div>
 
 @include ('domains.device-alarm.types.'.$type.'.create')

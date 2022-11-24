@@ -99,6 +99,7 @@ class Create extends ActionAbstract
             'type' => $this->data['type'],
             'name' => $this->data['name'],
             'config' => $this->data['config'],
+            'telegram' => $this->data['enabled'],
             'enabled' => $this->data['enabled'],
             'device_id' => $this->data['device_id'],
         ]);

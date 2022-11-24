@@ -13,9 +13,9 @@ class ProfileTelegram extends ControllerAbstract
      */
     public function __invoke(): Response|RedirectResponse
     {
-        $service = new TelegramClient();
+        $client = new TelegramClient();
 
-        if ($service->enabled() !== true) {
+        if ($client->enabled() !== true) {
             return redirect()->back();
         }
 
@@ -34,8 +34,8 @@ class ProfileTelegram extends ControllerAbstract
             'telegram' => true,
             'telegram_username' => $this->row->telegram['username'] ?? false,
             'telegram_chat_id' => $this->row->telegram['chat_id'] ?? false,
-            'telegram_bot' => $service->config('bot'),
-            'telegram_bot_link' => $service->botLink(),
+            'telegram_bot' => $client->config('bot'),
+            'telegram_bot_link' => $client->botLink(),
         ]);
     }
 

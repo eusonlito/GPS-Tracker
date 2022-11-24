@@ -9,5 +9,6 @@
     'notifications-denied' => 'Notifications Disabled',
     'notifications-enable' => 'Activate Notifications',
     'notifications-granted' => 'Notifications Activated',
+    'telegram' => 'Telegram',
     'type' => 'Type',
 ];

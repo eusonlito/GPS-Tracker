@@ -11,6 +11,7 @@ use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
+use App\Domains\User\Model\User as UserModel;
 
 class Device extends ModelAbstract
 {
@@ -77,5 +78,13 @@ class Device extends ModelAbstract
     public function trips(): HasMany
     {
         return $this->hasMany(TripModel::class, static::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(UserModel::class, UserModel::FOREIGN);
     }
 }

@@ -35,6 +35,7 @@ class DeviceAlarmNotification extends ModelAbstract
      */
     protected $casts = [
         'config' => 'array',
+        'telegram' => 'boolean',
     ];
 
     /**
