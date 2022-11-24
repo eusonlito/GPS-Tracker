@@ -27,7 +27,7 @@ class State extends BuilderAbstract
      */
     public function byDeviceIdWhenTripStartUtcAtDateBeforeAfter(int $device_id, ?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at, ?string $trip_start_end): self
     {
-        return $this->whereIn('id', CityModel::query()->select('state_id')->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($device_id, $trip_before_start_utc_at, $trip_after_start_utc_at, $trip_start_end));
+        return $this->whereIn('id', CityModel::query()->selectOnly('state_id')->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($device_id, $trip_before_start_utc_at, $trip_after_start_utc_at, $trip_start_end));
     }
 
     /**

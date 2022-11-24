@@ -31,9 +31,8 @@ class UpdateDeviceAlarmNotification extends UpdateAbstract
     protected function positions(): Collection
     {
         return $this->row->positions()
-            ->selectPointAsLatitudeLongitude()
             ->withCity()
-            ->orderByDateUtcAtDesc()
+            ->list()
             ->get();
     }
 

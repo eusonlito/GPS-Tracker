@@ -15,7 +15,7 @@ class City extends BuilderAbstract
      */
     public function byCountryId(int $country_id): self
     {
-        return $this->whereIn('state_id', StateModel::query()->select('id')->byCountryId($country_id));
+        return $this->whereIn('state_id', StateModel::query()->selectOnly('id')->byCountryId($country_id));
     }
 
     /**
@@ -48,7 +48,7 @@ class City extends BuilderAbstract
      */
     public function byDeviceIdWhenTripStartUtcAtDateBeforeAfter(int $device_id, ?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at, ?string $trip_start_end): self
     {
-        return $this->whereIn('id', PositionModel::query()->select('city_id')->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($device_id, $trip_before_start_utc_at, $trip_after_start_utc_at, $trip_start_end));
+        return $this->whereIn('id', PositionModel::query()->selectOnly('city_id')->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($device_id, $trip_before_start_utc_at, $trip_after_start_utc_at, $trip_start_end));
     }
 
     /**
@@ -56,7 +56,7 @@ class City extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->select('id', 'name', 'state_id')->orderBy('name', 'ASC');
+        return $this->selectOnly('id', 'name', 'state_id')->orderBy('name', 'ASC');
     }
 
     /**
@@ -79,13 +79,23 @@ class City extends BuilderAbstract
     }
 
     /**
+     * @param string ...$columns
+     *
+     * @return self
+     */
+    public function selectOnly(string ...$columns): self
+    {
+        return $this->withoutGlobalScope('selectPointAsLatitudeLongitude')->select($columns);
+    }
+
+    /**
      * @return self
      */
     public function selectPointAsLatitudeLongitude(): self
     {
         return $this->selectRaw('
             `id`, `name`, `created_at`, `updated_at`, `state_id`,
-            ROUND(ST_X(`point`), 5) AS `longitude`, ROUND(ST_Y(`point`), 5) AS `latitude`,
+            ROUND(ST_X(`point`), 5) AS `longitude`, ROUND(ST_Y(`point`), 5) AS `latitude`
         ');
     }
 

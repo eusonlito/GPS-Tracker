@@ -36,6 +36,13 @@
         </li>
 
         <li>
+            <a href="{{ route('device-alarm-notification.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'device-alarm-notification.') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('alert-triangle')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.notifications') }}</div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('user.profile') }}" class="side-menu {{ ($ROUTE === 'user.profile') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('user')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.profile') }}</div>

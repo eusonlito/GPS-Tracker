@@ -34,6 +34,8 @@ import Feather from './feather';
         return;
     }
 
+    positions.sort((a, b) => b.date_at > a.date_at ? -1 : 1);
+
     let alarms = [];
 
     try {

@@ -46,7 +46,11 @@ class Map extends Component
      */
     protected function positionsJson(): string
     {
-        return $this->positions->map(fn ($position) => $this->positionsJsonMap($position))->toJson();
+        return $this->positions
+            ->map(fn ($position) => $this->positionsJsonMap($position))
+            ->sortByDesc('date_at')
+            ->values()
+            ->toJson();
     }
 
     /**
@@ -65,6 +69,8 @@ class Map extends Component
      */
     protected function alarmsJson(): ?string
     {
-        return $this->alarms?->whereIn('type', ['fence-in', 'fence-out'])->values()->toJson();
+        return $this->alarms?->whereIn('type', ['fence-in', 'fence-out'])
+            ->values()
+            ->toJson();
     }
 }

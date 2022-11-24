@@ -5,6 +5,7 @@
     'devices' => 'Devices',
     'logout' => 'Exit',
     'logs' => 'Logs',
+    'notifications' => 'Notifications',
     'profile' => 'Profile',
     'refuel' => 'Refuels',
     'sockets' => 'Sockets',

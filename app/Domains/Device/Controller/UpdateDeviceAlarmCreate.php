@@ -30,7 +30,7 @@ class UpdateDeviceAlarmCreate extends ControllerAbstract
             'row' => $this->row,
             'types' => $typeService->titles(),
             'type' => $typeService->selected($this->request->input('type')),
-            'position' => PositionModel::query()->selectPointAsLatitudeLongitude()->byUserId($this->auth->id)->orderByDateUtcAtDesc()->first(),
+            'position' => PositionModel::query()->byUserId($this->auth->id)->orderByDateUtcAtDesc()->first(),
         ]);
     }
 

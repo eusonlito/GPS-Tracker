@@ -25,7 +25,7 @@ class Language extends ModelAbstract
     /**
      * @return void
      */
-    protected static function booted()
+    protected static function booted(): void
     {
         static::addGlobalScope('enabled', static fn (Builder $q) => $q->where(static::TABLE.'.enabled', true));
     }

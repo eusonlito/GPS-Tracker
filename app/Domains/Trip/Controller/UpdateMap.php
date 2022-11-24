@@ -32,7 +32,6 @@ class UpdateMap extends UpdateAbstract
     protected function positions(): Collection
     {
         return $this->row->positions()
-            ->selectPointAsLatitudeLongitude()
             ->withCity()
             ->list()
             ->get();

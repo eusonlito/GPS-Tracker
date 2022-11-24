@@ -2,7 +2,7 @@
 
 @section ('body')
 
-<form method="get" class="mt-5">
+<form method="get">
     <div class="sm:flex sm:space-x-4">
         <div class="flex-grow mt-2 sm:mt-0">
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('device-alarm-index.filter') }}" data-table-search="#device-alarm-list-table" />
@@ -13,10 +13,10 @@
 </form>
 
 <div class="overflow-auto header-sticky">
-    <table id="device-alarm-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
+    <table id="device-alarm-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
-                @if ($devices->count() > 1)
+                @if ($devices_multiple)
                 <th class="w-1">{{ __('device-alarm-index.device') }}</th>
                 @endif
 
@@ -35,7 +35,7 @@
             @php ($route = route('device.update.device-alarm.update', [$row->device->id, $row->id]))
 
             <tr>
-                @if ($devices->count() > 1)
+                @if ($devices_multiple)
                 <td class="w-1"><a href="{{ route('device.update', $row->device->id) }}" class="block">{{ $row->device->name }}</a></td>
                 @endif
 

@@ -42,6 +42,14 @@ class Position extends ModelAbstract
     ];
 
     /**
+     * @return void
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope('selectPointAsLatitudeLongitude', static fn (Builder $q) => $q->selectPointAsLatitudeLongitude());
+    }
+
+    /**
      * @param \Illuminate\Database\Query\Builder $q
      *
      * @return \App\Domains\Position\Model\Builder\Position
@@ -72,7 +80,7 @@ class Position extends ModelAbstract
      */
     public function timezone(): BelongsTo
     {
-        return $this->belongsTo(TimezoneModel::class, TimezoneModel::FOREIGN)->select('id', 'zone');
+        return $this->belongsTo(TimezoneModel::class, TimezoneModel::FOREIGN);
     }
 
     /**

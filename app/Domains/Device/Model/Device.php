@@ -69,7 +69,7 @@ class Device extends ModelAbstract
      */
     public function timezone(): BelongsTo
     {
-        return $this->belongsTo(TimezoneModel::class, TimezoneModel::FOREIGN)->select('id', 'zone');
+        return $this->belongsTo(TimezoneModel::class, TimezoneModel::FOREIGN);
     }
 
     /**

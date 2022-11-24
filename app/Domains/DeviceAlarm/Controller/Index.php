@@ -21,7 +21,8 @@ class Index extends ControllerAbstract
 
         return $this->page('device-alarm.index', [
             'list' => $this->list(),
-            'devices' => $this->devices(),
+            'devices' => ($devices = $this->devices()),
+            'devices_multiple' => ($devices->count() > 1),
         ]);
     }
 

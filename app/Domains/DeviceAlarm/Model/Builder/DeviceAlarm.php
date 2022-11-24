@@ -14,7 +14,7 @@ class DeviceAlarm extends BuilderAbstract
      */
     public function byDeviceIdEnabled(int $device_id): self
     {
-        return $this->whereIn('device_id', DeviceModel::query()->select('id')->byId($device_id)->enabled());
+        return $this->whereIn('device_id', DeviceModel::query()->selectOnly('id')->byId($device_id)->enabled());
     }
 
     /**
@@ -24,7 +24,7 @@ class DeviceAlarm extends BuilderAbstract
      */
     public function byDeviceSerial(string $serial): self
     {
-        return $this->whereIn('device_id', DeviceModel::query()->select('id')->bySerial($serial));
+        return $this->whereIn('device_id', DeviceModel::query()->selectOnly('id')->bySerial($serial));
     }
 
     /**
@@ -34,7 +34,7 @@ class DeviceAlarm extends BuilderAbstract
      */
     public function byUserId(int $user_id): self
     {
-        return $this->whereIn('device_id', DeviceModel::query()->select('id')->byUserId($user_id));
+        return $this->whereIn('device_id', DeviceModel::query()->selectOnly('id')->byUserId($user_id));
     }
 
     /**

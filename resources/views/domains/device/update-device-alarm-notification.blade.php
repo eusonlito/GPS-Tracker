@@ -5,7 +5,7 @@
 <input type="search" class="form-control form-control-lg mt-5" placeholder="{{ __('device-update-device-alarm-update-device-alarm-notification.filter') }}" data-table-search="#device-alarm-notification-list-table" />
 
 <div class="overflow-auto header-sticky">
-    <table id="device-alarm-notification-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
+    <table id="device-alarm-notification-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
                 <th class="text-left w-1">{{ __('device-update-device-alarm-update-device-alarm-notification.alarm') }}</th>
@@ -36,7 +36,7 @@
                 <td class="text-left"><span class="d-t-m-o max-w-2xs" title="@arrayAsText($each->typeFormat()->config())">@arrayAsBadges($each->typeFormat()->config())</span></td>
                 <td class="text-left">
                     @if ($each->trip)
-                    <a href="{{ route('trip.update.map', $each->trip->id) }}#position-id-{{ $each->position?->id }}" title="{{ $each->trip->name }}" class="d-t-m-o max-w-2xs">{{ $each->trip->name }}</a>
+                    <a href="{{ route('trip.update.device-alarm-notification', $each->trip->id) }}#position-id-{{ $each->position?->id }}" title="{{ $each->trip->name }}" class="d-t-m-o max-w-2xs">{{ $each->trip->name }}</a>
                     @endif
                 </td>
                 <td class="w-1"><div class="d-t-m-o max-w-xs">@dateWithTimezone($each->created_at, $row->timezone->zone)</div></td>

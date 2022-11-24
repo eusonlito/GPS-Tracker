@@ -214,6 +214,16 @@ abstract class BuilderAbstract extends Builder
     }
 
     /**
+     * @param string ...$columns
+     *
+     * @return self
+     */
+    public function selectOnly(string ...$columns): self
+    {
+        return $this->select($columns);
+    }
+
+    /**
      * @param array $ids
      *
      * @return self

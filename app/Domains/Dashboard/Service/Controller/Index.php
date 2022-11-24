@@ -118,7 +118,6 @@ class Index extends ControllerAbstract
 
         return $this->cache[__FUNCTION__] ??= $this->trip()
             ->positions()
-            ->selectPointAsLatitudeLongitude()
             ->withCity()
             ->list()
             ->get();

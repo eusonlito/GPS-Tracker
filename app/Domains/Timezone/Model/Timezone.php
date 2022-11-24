@@ -26,6 +26,14 @@ class Timezone extends ModelAbstract
     public const FOREIGN = 'timezone_id';
 
     /**
+     * @return void
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope('selectIdZone', static fn (Builder $q) => $q->selectOnly('id', 'zone'));
+    }
+
+    /**
      * @param \Illuminate\Database\Query\Builder $q
      *
      * @return \App\Domains\Timezone\Model\Builder\Timezone

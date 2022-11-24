@@ -49,12 +49,13 @@ class UpdatePosition extends UpdateAbstract
      */
     protected function responseJsonRowWithPositions(): Model
     {
-        return $this->row->setRelation('positions', $this->row->positions()
-            ->selectPointAsLatitudeLongitude()
-            ->byIdNext((int)$this->request->input('id_from'))
-            ->withCity()
-            ->list()
-            ->get());
+        return $this->row->setRelation('positions',
+            $this->row->positions()
+                ->byIdNext((int)$this->request->input('id_from'))
+                ->withCity()
+                ->list()
+                ->get()
+        );
     }
 
     /**
@@ -63,9 +64,8 @@ class UpdatePosition extends UpdateAbstract
     protected function positions(): Collection
     {
         return $this->row->positions()
-            ->selectPointAsLatitudeLongitude()
             ->withCity()
-            ->orderByDateUtcAtDesc()
+            ->list()
             ->get();
     }
 

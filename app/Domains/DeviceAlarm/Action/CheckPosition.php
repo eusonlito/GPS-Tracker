@@ -37,7 +37,6 @@ class CheckPosition extends ActionAbstract
     protected function position(): void
     {
         $this->position = PositionModel::query()
-            ->selectPointAsLatitudeLongitude()
             ->withDevice()
             ->withTrip()
             ->findOrFail($this->data['position_id']);

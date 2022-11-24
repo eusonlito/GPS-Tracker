@@ -12,7 +12,7 @@
 
 <div class="box p-5 mt-5">
     <div class="overflow-auto header-sticky">
-        <table id="device-alarm-notification-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
+        <table id="device-alarm-notification-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
             <thead>
                 <tr>
                     <th class="text-left w-1">{{ __('trip-update-device-alarm-notification.alarm') }}</th>

@@ -37,6 +37,16 @@ class Timezone extends BuilderAbstract
     }
 
     /**
+     * @param string ...$columns
+     *
+     * @return self
+     */
+    public function selectOnly(string ...$columns): self
+    {
+        return $this->withoutGlobalScope('selectIdZone')->select($columns);
+    }
+
+    /**
      * @return self
      */
     public function whereGeojson(): self

@@ -34,7 +34,7 @@ class DeviceAlarmNotification extends BuilderAbstract
      */
     public function byUserId(int $user_id): self
     {
-        return $this->whereIn('device_id', DeviceModel::query()->select('id')->byUserId($user_id));
+        return $this->whereIn('device_id', DeviceModel::query()->selectOnly('id')->byUserId($user_id));
     }
 
     /**

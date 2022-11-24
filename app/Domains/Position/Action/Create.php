@@ -101,7 +101,6 @@ class Create extends ActionAbstract
         }
 
         return TimezoneModel::query()
-            ->select('id', 'zone')
             ->byLatitudeLongitude($this->data['latitude'], $this->data['longitude'])
             ->first();
     }
@@ -116,7 +115,6 @@ class Create extends ActionAbstract
         }
 
         return TimezoneModel::query()
-            ->select('id', 'zone')
             ->byZone($this->data['timezone'])
             ->first();
     }
@@ -154,7 +152,6 @@ class Create extends ActionAbstract
         $this->previous = Model::query()
             ->byDeviceId($this->device->id)
             ->nearToDateUtcAt($this->data['date_utc_at'])
-            ->selectPointAsLatitudeLongitude()
             ->first();
     }
 

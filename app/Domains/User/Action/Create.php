@@ -80,7 +80,7 @@ class Create extends ActionAbstract
     protected function dataLanguageId(): void
     {
         $this->data['language_id'] = LanguageModel::query()
-            ->select('id')
+            ->selectOnly('id')
             ->when(
                 $this->data['language_id'],
                 fn ($q) => $q->byId($this->data['language_id']),

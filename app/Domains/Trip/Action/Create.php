@@ -46,7 +46,6 @@ class Create extends ActionAbstract
     protected function timezone(): void
     {
         $this->timezone = TimezoneModel::query()
-            ->select('id', 'zone')
             ->findOrFail($this->data['timezone_id']);
     }
 

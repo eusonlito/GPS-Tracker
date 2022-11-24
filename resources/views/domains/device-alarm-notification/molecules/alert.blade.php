@@ -26,7 +26,7 @@
             @if ($row->trip)
             <span class="mx-2">-</span>
 
-            <a href="{{ route('trip.update.map', $row->trip->id) }}#position-id-{{ $row->position?->id }}">{{ $row->trip->name }}</a>
+            <a href="{{ route('trip.update.device-alarm-notification', $row->trip->id) }}#position-id-{{ $row->position?->id }}">{{ $row->trip->name }}</a>
             @endif
         </strong>
 

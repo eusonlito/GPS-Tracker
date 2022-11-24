@@ -24,7 +24,7 @@ class {{ domain }} extends BuilderAbstract
      */
     public function byTeamId(int $team_id): self
     {
-        return $this->whereIn('id', TeamUserModel::query()->select('user_id')->where('team_id', $team_id));
+        return $this->whereIn('id', TeamUserModel::query()->selectOnly('user_id')->where('team_id', $team_id));
     }
 
     /**

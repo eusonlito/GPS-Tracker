@@ -30,6 +30,6 @@ abstract class JobAbstract extends JobAbstractShared
      */
     protected function row(): Model
     {
-        return Model::query()->selectPointAsLatitudeLongitude()->findOrFail($this->id);
+        return Model::query()->findOrFail($this->id);
     }
 }

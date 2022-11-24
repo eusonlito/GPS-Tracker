@@ -38,6 +38,14 @@ class City extends ModelAbstract
     }
 
     /**
+     * @return void
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope('selectPointAsLatitudeLongitude', static fn (Builder $q) => $q->selectPointAsLatitudeLongitude());
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function state(): BelongsTo

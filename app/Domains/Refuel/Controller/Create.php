@@ -41,7 +41,7 @@ class Create extends ControllerAbstract
     protected function previous(): Model
     {
         return Model::query()
-            ->select('distance_total', 'price')
+            ->selectOnly('distance_total', 'price')
             ->byUserId($this->auth->id)
             ->orderByLast()
             ->firstOrNew();

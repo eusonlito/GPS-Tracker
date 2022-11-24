@@ -25,7 +25,7 @@ class Position extends BuilderAbstract
      */
     public function byCountryId(int $country_id): self
     {
-        return $this->whereIn('city_id', CityModel::query()->select('id')->byCountryId($country_id));
+        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byCountryId($country_id));
     }
 
     /**
@@ -60,7 +60,7 @@ class Position extends BuilderAbstract
      */
     public function byStateId(int $state_id): self
     {
-        return $this->whereIn('city_id', CityModel::query()->select('id')->byStateId($state_id));
+        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byStateId($state_id));
     }
 
     /**
@@ -91,7 +91,7 @@ class Position extends BuilderAbstract
      */
     public function byTripStartUtcAtDateBeforeAfter(?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at): self
     {
-        return $this->whereIn('trip_id', TripModel::query()->select('id')->whenStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at));
+        return $this->whereIn('trip_id', TripModel::query()->selectOnly('id')->whenStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at));
     }
 
     /**
@@ -136,6 +136,16 @@ class Position extends BuilderAbstract
     public function orderByDateUtcAtDesc(): self
     {
         return $this->orderBy('date_utc_at', 'DESC');
+    }
+
+    /**
+     * @param string ...$columns
+     *
+     * @return self
+     */
+    public function selectOnly(string ...$columns): self
+    {
+        return $this->withoutGlobalScope('selectPointAsLatitudeLongitude')->select($columns);
     }
 
     /**

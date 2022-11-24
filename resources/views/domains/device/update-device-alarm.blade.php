@@ -17,7 +17,7 @@
 </form>
 
 <div class="overflow-auto header-sticky">
-    <table id="device-alarm-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
+    <table id="device-alarm-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
                 <th class="w-1">{{ __('device-update-device-alarm.type') }}</th>

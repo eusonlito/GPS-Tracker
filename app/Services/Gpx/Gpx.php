@@ -98,7 +98,6 @@ class Gpx
         static $cache;
 
         return $cache ??= $this->trip->positions()
-            ->selectPointAsLatitudeLongitude()
             ->orderByDateUtcAtAsc()
             ->withTimezone()
             ->get();

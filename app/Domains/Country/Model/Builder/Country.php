@@ -17,7 +17,7 @@ class Country extends BuilderAbstract
      */
     public function byDeviceIdWhenTripStartUtcAtDateBeforeAfter(int $device_id, ?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at, ?string $trip_start_end): self
     {
-        return $this->whereIn('id', StateModel::query()->select('country_id')->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($device_id, $trip_before_start_utc_at, $trip_after_start_utc_at, $trip_start_end));
+        return $this->whereIn('id', StateModel::query()->selectOnly('country_id')->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($device_id, $trip_before_start_utc_at, $trip_after_start_utc_at, $trip_start_end));
     }
 
     /**
