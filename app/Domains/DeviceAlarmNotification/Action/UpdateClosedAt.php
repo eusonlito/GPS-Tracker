@@ -25,29 +25,7 @@ class UpdateClosedAt extends ActionAbstract
             return;
         }
 
-        $this->saveRow();
-        $this->saveAlarm();
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveRow(): void
-    {
         $this->row->closed_at = date('Y-m-d H:i:s');
         $this->row->save();
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveAlarm(): void
-    {
-        if (empty($this->row->alarm)) {
-            return;
-        }
-
-        $this->row->alarm->enabled = true;
-        $this->row->alarm->save();
     }
 }

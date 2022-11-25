@@ -78,9 +78,41 @@ class CheckPosition extends ActionAbstract
      */
     protected function check(Model $row): void
     {
-        if ($row->typeFormat()->checkPosition($this->position)) {
-            $this->save($row);
+        if ($this->checkLast($row) === false) {
+            return;
         }
+
+        if ($this->checkFormat($row) === false) {
+            return;
+        }
+
+        $this->save($row);
+    }
+
+    /**
+     * @param \App\Domains\DeviceAlarm\Model\DeviceAlarm $row
+     *
+     * @return bool
+     */
+    protected function checkLast(Model $row): bool
+    {
+        $notification = DeviceAlarmNotificationModel::query()
+            ->selectOnly('closed_at')
+            ->byDeviceAlarmId($row->id)
+            ->orderByLast()
+            ->first();
+
+        return empty($notification) || $notification->closed_at;
+    }
+
+    /**
+     * @param \App\Domains\DeviceAlarm\Model\DeviceAlarm $row
+     *
+     * @return bool
+     */
+    protected function checkFormat(Model $row): bool
+    {
+        return $row->typeFormat()->checkPosition($this->position);
     }
 
     /**
@@ -90,19 +122,7 @@ class CheckPosition extends ActionAbstract
      */
     protected function save(Model $row): void
     {
-        $this->saveRow($row);
         $this->saveJob($this->saveNotification($row));
-    }
-
-    /**
-     * @param \App\Domains\DeviceAlarm\Model\DeviceAlarm $row
-     *
-     * @return void
-     */
-    protected function saveRow(Model $row): void
-    {
-        $row->enabled = false;
-        $row->save();
     }
 
     /**

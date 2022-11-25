@@ -44,6 +44,7 @@ class UpdateMap extends UpdateAbstract
     {
         return DeviceAlarmModel::query()
             ->byDeviceId($this->row->device->id)
+            ->enabled()
             ->list()
             ->get();
     }
