@@ -29,14 +29,14 @@
         </li>
 
         <li>
-            <a href="{{ route('device-alarm.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'device-alarm.') ? 'side-menu--active' : '' }}">
+            <a href="{{ route('alarm.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'alarm.') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('bell')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.alarms') }}</div>
             </a>
         </li>
 
         <li>
-            <a href="{{ route('device-alarm-notification.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'device-alarm-notification.') ? 'side-menu--active' : '' }}">
+            <a href="{{ route('alarm-notification.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'alarm-notification.') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('alert-triangle')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.notifications') }}</div>
             </a>

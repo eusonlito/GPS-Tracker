@@ -6,7 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
-use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
+use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\Trip\Model\Trip as Model;
 
 class UpdatePosition extends UpdateAbstract
@@ -80,7 +80,7 @@ class UpdatePosition extends UpdateAbstract
      */
     protected function alarms(): Collection
     {
-        return DeviceAlarmModel::query()
+        return AlarmModel::query()
             ->byDeviceId($this->row->device->id)
             ->enabled()
             ->list()

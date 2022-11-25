@@ -79,10 +79,10 @@ CREATE TABLE `device` (
   CONSTRAINT `device_user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-DROP TABLE IF EXISTS `device_alarm`;
+DROP TABLE IF EXISTS `alarm`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `device_alarm` (
+CREATE TABLE `alarm` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -94,10 +94,10 @@ CREATE TABLE `device_alarm` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-DROP TABLE IF EXISTS `device_alarm_notification`;
+DROP TABLE IF EXISTS `alarm_notification`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `device_alarm_notification` (
+CREATE TABLE `alarm_notification` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -107,7 +107,7 @@ CREATE TABLE `device_alarm_notification` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `device_id` bigint unsigned NOT NULL,
-  `device_alarm_id` bigint unsigned NOT NULL,
+  `alarm_id` bigint unsigned NOT NULL,
   `position_id` bigint unsigned DEFAULT NULL,
   `trip_id` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -369,4 +369,4 @@ INSERT INTO `migrations` VALUES (27,'2022_11_05_220000_position_trip_id',15);
 INSERT INTO `migrations` VALUES (28,'2022_11_07_183000_device_message',16);
 INSERT INTO `migrations` VALUES (29,'2022_11_08_190000_device_message_response',17);
 INSERT INTO `migrations` VALUES (30,'2022_11_09_183000_device_phone_number',18);
-INSERT INTO `migrations` VALUES (37,'2022_11_10_183000_device_alarm',19);
+INSERT INTO `migrations` VALUES (37,'2022_11_10_183000_alarm',19);

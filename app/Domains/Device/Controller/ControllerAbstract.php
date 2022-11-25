@@ -3,8 +3,8 @@
 namespace App\Domains\Device\Controller;
 
 use App\Domains\Device\Model\Device as Model;
-use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
-use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
+use App\Domains\Alarm\Model\Alarm as AlarmModel;
+use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\Shared\Controller\ControllerWebAbstract;
 use App\Exceptions\NotFoundException;
@@ -17,14 +17,14 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     protected ?Model $row;
 
     /**
-     * @var ?\App\Domains\DeviceAlarm\Model\DeviceAlarm
+     * @var ?\App\Domains\Alarm\Model\Alarm
      */
-    protected ?DeviceAlarmModel $alarm;
+    protected ?AlarmModel $alarm;
 
     /**
-     * @var ?\App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification
+     * @var ?\App\Domains\AlarmNotification\Model\AlarmNotification
      */
-    protected ?DeviceAlarmNotificationModel $alarmNotification;
+    protected ?AlarmNotificationModel $alarmNotification;
 
     /**
      * @var ?\App\Domains\DeviceMessage\Model\DeviceMessage
@@ -44,14 +44,14 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     }
 
     /**
-     * @param int $device_alarm_id
+     * @param int $alarm_id
      *
      * @return void
      */
-    protected function alarm(int $device_alarm_id): void
+    protected function alarm(int $alarm_id): void
     {
-        $this->alarm = DeviceAlarmModel::query()
-            ->byId($device_alarm_id)
+        $this->alarm = AlarmModel::query()
+            ->byId($alarm_id)
             ->byDeviceId($this->row->id)
             ->firstOr(static function () {
                 throw new NotFoundException(__('device.error.not-found'));
@@ -59,14 +59,14 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     }
 
     /**
-     * @param int $device_alarm_notification_id
+     * @param int $alarm_notification_id
      *
      * @return void
      */
-    protected function alarmNotification(int $device_alarm_notification_id): void
+    protected function alarmNotification(int $alarm_notification_id): void
     {
-        $this->alarmNotification = DeviceAlarmNotificationModel::query()
-            ->byId($device_alarm_notification_id)
+        $this->alarmNotification = AlarmNotificationModel::query()
+            ->byId($alarm_notification_id)
             ->byDeviceId($this->row->id)
             ->firstOr(static function () {
                 throw new NotFoundException(__('device.error.not-found'));

@@ -3,7 +3,7 @@
 namespace App\Domains\Position\Action;
 
 use App\Domains\Device\Model\Device as DeviceModel;
-use App\Domains\DeviceAlarm\Job\CheckPosition as DeviceAlarmCheckPositionJob;
+use App\Domains\Alarm\Job\CheckPosition as AlarmCheckPositionJob;
 use App\Domains\Position\Job\UpdateCity as UpdateCityJob;
 use App\Domains\Position\Model\Position as Model;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
@@ -291,6 +291,6 @@ class Create extends ActionAbstract
     protected function job(): void
     {
         UpdateCityJob::dispatch($this->row->id);
-        DeviceAlarmCheckPositionJob::dispatch($this->row->id);
+        AlarmCheckPositionJob::dispatch($this->row->id);
     }
 }

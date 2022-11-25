@@ -5,8 +5,8 @@ namespace App\Domains\Device\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Device\Model\Builder\Device as Builder;
-use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
-use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
+use App\Domains\Alarm\Model\Alarm as AlarmModel;
+use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
@@ -45,7 +45,7 @@ class Device extends ModelAbstract
      */
     public function alarms(): HasMany
     {
-        return $this->hasMany(DeviceAlarmModel::class, static::FOREIGN);
+        return $this->hasMany(AlarmModel::class, static::FOREIGN);
     }
 
     /**
@@ -53,7 +53,7 @@ class Device extends ModelAbstract
      */
     public function alarmsNotifications(): HasMany
     {
-        return $this->hasMany(DeviceAlarmNotificationModel::class, static::FOREIGN);
+        return $this->hasMany(AlarmNotificationModel::class, static::FOREIGN);
     }
 
     /**

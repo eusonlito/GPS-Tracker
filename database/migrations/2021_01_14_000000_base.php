@@ -117,7 +117,7 @@ return new class extends MigrationAbstract
             $this->timestamps($table);
 
             $table->unsignedBigInteger('device_id');
-            $table->unsignedBigInteger('device_alarm_id');
+            $table->unsignedBigInteger('device_alarm_id')->nullable();
             $table->unsignedBigInteger('position_id')->nullable();
             $table->unsignedBigInteger('trip_id')->nullable();
         });
@@ -310,7 +310,7 @@ return new class extends MigrationAbstract
 
         Schema::table('device_alarm_notification', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'device');
-            $this->foreignOnDeleteCascade($table, 'device_alarm');
+            $this->foreignOnDeleteSetNull($table, 'device_alarm');
             $this->foreignOnDeleteSetNull($table, 'position');
             $this->foreignOnDeleteSetNull($table, 'trip');
         });

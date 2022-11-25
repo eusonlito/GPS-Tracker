@@ -45,7 +45,7 @@ const deviceAlarmNotification = function (data) {
     }
 
     deviceAlarmNotificationInterval = setInterval(() => {
-        new Ajax(Router.get('device-alarm-notification.index'), 'GET')
+        new Ajax(Router.get('alarm-notification.index'), 'GET')
             .setAjax(true)
             .setJsonResponse(true)
             .setCallback(check)
@@ -83,7 +83,7 @@ const deviceAlarmNotification = function (data) {
     };
 
     const updateSentAtUrl = function (notification) {
-        return Router.get('device-alarm-notification.update.sent-at', notification.id);
+        return Router.get('alarm-notification.update.sent-at', notification.id);
     };
 };
 

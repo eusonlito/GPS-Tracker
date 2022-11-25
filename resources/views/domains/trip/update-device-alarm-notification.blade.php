@@ -7,21 +7,21 @@
 </div>
 
 <form method="get" class="mt-5">
-    <input type="search" class="form-control form-control-lg" placeholder="{{ __('trip-update-device-alarm-notification.filter') }}" data-table-search="#device-alarm-notification-list-table"/>
+    <input type="search" class="form-control form-control-lg" placeholder="{{ __('trip-update-alarm-notification.filter') }}" data-table-search="#alarm-notification-list-table"/>
 </form>
 
 <div class="box p-5 mt-5">
     <div class="overflow-auto header-sticky">
-        <table id="device-alarm-notification-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
+        <table id="alarm-notification-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
             <thead>
                 <tr>
-                    <th class="text-left w-1">{{ __('trip-update-device-alarm-notification.alarm') }}</th>
-                    <th class="text-left w-1">{{ __('trip-update-device-alarm-notification.name') }}</th>
-                    <th class="text-left">{{ __('trip-update-device-alarm-notification.message') }}</th>
-                    <th class="text-left">{{ __('trip-update-device-alarm-notification.config') }}</th>
-                    <th class="w-1">{{ __('trip-update-device-alarm-notification.telegram') }}</th>
-                    <th class="w-1">{{ __('trip-update-device-alarm-notification.created_at') }}</th>
-                    <th class="w-1">{{ __('trip-update-device-alarm-notification.closed_at') }}</th>
+                    <th class="text-left w-1">{{ __('trip-update-alarm-notification.alarm') }}</th>
+                    <th class="text-left w-1">{{ __('trip-update-alarm-notification.name') }}</th>
+                    <th class="text-left">{{ __('trip-update-alarm-notification.message') }}</th>
+                    <th class="text-left">{{ __('trip-update-alarm-notification.config') }}</th>
+                    <th class="w-1">{{ __('trip-update-alarm-notification.telegram') }}</th>
+                    <th class="w-1">{{ __('trip-update-alarm-notification.created_at') }}</th>
+                    <th class="w-1">{{ __('trip-update-alarm-notification.closed_at') }}</th>
                 </tr>
             </thead>
 
@@ -31,7 +31,7 @@
                 <tr>
                     <td class="text-left w-1">
                         @if ($each->alarm)
-                        <a href="{{ route('device.update.device-alarm.update', [$row->id, $each->alarm->id]) }}" class="block">{{ $each->typeFormat()->title() }}</a>
+                        <a href="{{ route('device.update.alarm.update', [$row->id, $each->alarm->id]) }}" class="block">{{ $each->typeFormat()->title() }}</a>
                         @else
                         {{ $each->typeFormat()->title() }}
                         @endif
@@ -45,7 +45,7 @@
                         @if ($each->closed_at)
                         @status(true)
                         @else
-                        <a href="{{ route('device-alarm-notification.update.closed-at', $each->id) }}" class="block">@status(false)</a>
+                        <a href="{{ route('alarm-notification.update.closed-at', $each->id) }}" class="block">@status(false)</a>
                         @endif
                     </td>
                 </tr>

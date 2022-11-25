@@ -5,7 +5,7 @@ namespace App\Domains\Trip\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
-use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
+use App\Domains\Alarm\Model\Alarm as AlarmModel;
 
 class UpdateMap extends UpdateAbstract
 {
@@ -42,7 +42,7 @@ class UpdateMap extends UpdateAbstract
      */
     protected function alarms(): Collection
     {
-        return DeviceAlarmModel::query()
+        return AlarmModel::query()
             ->byDeviceId($this->row->device->id)
             ->enabled()
             ->list()

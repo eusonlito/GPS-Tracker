@@ -20,7 +20,7 @@ import './data-input-insert.js';
 import './data-update-boolean.js';
 import './data-notification-request.js';
 import './data-datepicker.js';
-import './device-alarm-notification.js';
+import './alarm-notification.js';
 import './modal.js';
 import './alert.js';
 import './service-worker.js';

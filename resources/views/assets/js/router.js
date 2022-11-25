@@ -8,9 +8,9 @@ export default class {
     static list() {
         return {
             'dashboard.index': '/',
-            'device-alarm.index': '/device-alarm',
-            'device-alarm-notification.index': '/device-alarm-notification',
-            'device-alarm-notification.update.sent-at': '/device-alarm-notification/0/sent-at',
+            'alarm.index': '/alarm',
+            'alarm-notification.index': '/alarm-notification',
+            'alarm-notification.update.sent-at': '/alarm-notification/0/sent-at',
         };
     }
 

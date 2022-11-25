@@ -6,8 +6,8 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Domains\Device\Model\Device as DeviceModel;
-use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
-use App\Domains\DeviceAlarmNotification\Model\DeviceAlarmNotification as DeviceAlarmNotificationModel;
+use App\Domains\Alarm\Model\Alarm as AlarmModel;
+use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 
 class Index extends ControllerAbstract
@@ -132,7 +132,7 @@ class Index extends ControllerAbstract
             return collect();
         }
 
-        return $this->cache[__FUNCTION__] ??= DeviceAlarmModel::query()
+        return $this->cache[__FUNCTION__] ??= AlarmModel::query()
             ->byDeviceId($this->device()->id)
             ->enabled()
             ->list()
@@ -148,7 +148,7 @@ class Index extends ControllerAbstract
             return collect();
         }
 
-        return $this->cache[__FUNCTION__] ??= DeviceAlarmNotificationModel::query()
+        return $this->cache[__FUNCTION__] ??= AlarmNotificationModel::query()
             ->byDeviceIds($this->devices()->pluck('id')->all())
             ->whereClosedAt()
             ->withAlarm()

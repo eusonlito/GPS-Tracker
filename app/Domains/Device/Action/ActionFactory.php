@@ -3,7 +3,7 @@
 namespace App\Domains\Device\Action;
 
 use App\Domains\Device\Model\Device as Model;
-use App\Domains\DeviceAlarm\Model\DeviceAlarm as DeviceAlarmModel;
+use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
 
@@ -39,11 +39,11 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return \App\Domains\DeviceAlarm\Model\DeviceAlarm
+     * @return \App\Domains\Alarm\Model\Alarm
      */
-    public function updateDeviceAlarmCreate(): DeviceAlarmModel
+    public function updateAlarmCreate(): AlarmModel
     {
-        return $this->actionHandle(UpdateDeviceAlarmCreate::class);
+        return $this->actionHandle(UpdateAlarmCreate::class);
     }
 
     /**

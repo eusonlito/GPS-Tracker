@@ -7,7 +7,7 @@
         <a href="{{ route('trip.update', $row->id) }}" class="p-4 {{ ($ROUTE === 'trip.update') ? 'active' : '' }}" role="tab">{{ $row->name }}</a>
         <a href="{{ route('trip.update.map', $row->id) }}" class="p-4 {{ ($ROUTE === 'trip.update.map') ? 'active' : '' }}" role="tab">{{ __('trip-update.map') }}</a>
         <a href="{{ route('trip.update.position', $row->id) }}" class="p-4 {{ ($ROUTE === 'trip.update.position') ? 'active' : '' }}" role="tab">{{ __('trip-update.positions') }}</a>
-        <a href="{{ route('trip.update.device-alarm-notification', $row->id) }}" class="p-4 {{ ($ROUTE === 'trip.update.device-alarm-notification') ? 'active' : '' }}" role="tab">{{ __('trip-update.alarms') }}</a>
+        <a href="{{ route('trip.update.alarm-notification', $row->id) }}" class="p-4 {{ ($ROUTE === 'trip.update.alarm-notification') ? 'active' : '' }}" role="tab">{{ __('trip-update.alarms') }}</a>
         <a href="{{ route('trip.update.merge', $row->id) }}" class="p-4 {{ ($ROUTE === 'trip.update.merge') ? 'active' : '' }}" role="tab">{{ __('trip-update.merge') }}</a>
         <a href="{{ route('trip.update.export', $row->id) }}" class="p-4" role="tab">{{ __('trip-update.export') }}</a>
 
