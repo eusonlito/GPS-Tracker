@@ -35,7 +35,7 @@ class Index extends ControllerAbstract
     {
         return Model::query()
             ->byUserId($this->auth->id)
-            ->withDevice()
+            ->withDevices()
             ->withNotificationsCount()
             ->withNotificationsPendingCount()
             ->list()

@@ -2,20 +2,20 @@
 
 @section ('content')
 
-<input type="search" class="form-control form-control-lg mt-5" placeholder="{{ __('device-update-alarm-update-alarm-notification.filter') }}" data-table-search="#alarm-notification-list-table" />
+<input type="search" class="form-control form-control-lg mt-5" placeholder="{{ __('alarm-update-alarm-notification.filter') }}" data-table-search="#alarm-notification-list-table" />
 
 <div class="overflow-auto header-sticky">
     <table id="alarm-notification-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
-                <th class="text-left w-1">{{ __('device-update-alarm-update-alarm-notification.alarm') }}</th>
-                <th class="text-left w-1">{{ __('device-update-alarm-update-alarm-notification.name') }}</th>
-                <th class="text-left">{{ __('device-update-alarm-update-alarm-notification.message') }}</th>
-                <th class="text-left">{{ __('device-update-alarm-update-alarm-notification.config') }}</th>
-                <th class="text-left">{{ __('device-update-alarm-update-alarm-notification.trip') }}</th>
-                <th class="w-1">{{ __('device-update-alarm-update-alarm-notification.created_at') }}</th>
-                <th class="w-1">{{ __('device-update-alarm-update-alarm-notification.telegram') }}</th>
-                <th class="w-1">{{ __('device-update-alarm-update-alarm-notification.closed_at') }}</th>
+                <th class="text-left w-1">{{ __('alarm-update-alarm-notification.alarm') }}</th>
+                <th class="text-left w-1">{{ __('alarm-update-alarm-notification.name') }}</th>
+                <th class="text-left">{{ __('alarm-update-alarm-notification.message') }}</th>
+                <th class="text-left">{{ __('alarm-update-alarm-notification.config') }}</th>
+                <th class="text-left">{{ __('alarm-update-alarm-notification.trip') }}</th>
+                <th class="w-1">{{ __('alarm-update-alarm-notification.created_at') }}</th>
+                <th class="w-1">{{ __('alarm-update-alarm-notification.telegram') }}</th>
+                <th class="w-1">{{ __('alarm-update-alarm-notification.closed_at') }}</th>
             </tr>
         </thead>
 
@@ -26,7 +26,7 @@
 
                 <td class="text-left w-1">
                     @if ($each->alarm)
-                    <a href="{{ route('device.update.alarm.update', [$row->id, $each->alarm->id]) }}" class="block">{{ $each->typeFormat()->title() }}</a>
+                    <a href="{{ route('alarm.update', $each->alarm->id) }}" class="block">{{ $each->typeFormat()->title() }}</a>
                     @else
                     {{ $each->typeFormat()->title() }}
                     @endif

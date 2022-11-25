@@ -17,7 +17,6 @@ class Create extends ValidateAbstract
             'config' => ['bail', 'array'],
             'telegram' => ['bail', 'boolean'],
             'enabled' => ['bail', 'boolean'],
-            'device_id' => ['bail', 'required', 'integer'],
         ];
     }
 }

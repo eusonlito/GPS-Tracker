@@ -31,7 +31,7 @@
                 <tr>
                     <td class="text-left w-1">
                         @if ($each->alarm)
-                        <a href="{{ route('device.update.alarm.update', [$row->id, $each->alarm->id]) }}" class="block">{{ $each->typeFormat()->title() }}</a>
+                        <a href="{{ route('alarm.update', $each->alarm->id) }}" class="block">{{ $each->typeFormat()->title() }}</a>
                         @else
                         {{ $each->typeFormat()->title() }}
                         @endif

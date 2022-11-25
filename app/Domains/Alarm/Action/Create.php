@@ -58,7 +58,6 @@ class Create extends ActionAbstract
     {
         $this->dataType();
         $this->dataConfig();
-        $this->dataDeviceId();
     }
 
     /**
@@ -80,19 +79,6 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
-    protected function dataDeviceId(): void
-    {
-        $this->data['device_id'] = DeviceModel::query()
-            ->selectOnly('id')
-            ->byId($this->data['device_id'])
-            ->byUserId($this->auth->id)
-            ->firstOrFail()
-            ->id;
-    }
-
-    /**
-     * @return void
-     */
     protected function save(): void
     {
         $this->row = Model::create([
@@ -101,7 +87,6 @@ class Create extends ActionAbstract
             'config' => $this->data['config'],
             'telegram' => $this->data['enabled'],
             'enabled' => $this->data['enabled'],
-            'device_id' => $this->data['device_id'],
         ]);
     }
 }

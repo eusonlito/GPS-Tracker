@@ -87,18 +87,18 @@ class Html
 
     /**
      * @param ?string $date
-     * @param ?string $timezone
+     * @param ?string $timezone = null
      * @param string $format = 'd/m/Y H:i'
      *
      * @return string
      */
-    public static function dateWithTimezone(?string $date, ?string $timezone, string $format = 'd/m/Y H:i'): string
+    public static function dateWithTimezone(?string $date, ?string $timezone = null, string $format = 'd/m/Y H:i'): string
     {
-        if (empty($date) || empty($timezone)) {
+        if (empty($date)) {
             return $date ?: '';
         }
 
-        return helper()->dateUtcToTimezone('Y-m-d H:i:s', $date, $timezone, $format);
+        return helper()->dateUtcToTimezone('Y-m-d H:i:s', $date, $timezone ?: app('configuration')->string('timezone_default'), $format);
     }
 
     /**

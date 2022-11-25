@@ -39,14 +39,6 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return \App\Domains\Alarm\Model\Alarm
-     */
-    public function updateAlarmCreate(): AlarmModel
-    {
-        return $this->actionHandle(UpdateAlarmCreate::class);
-    }
-
-    /**
      * @return \App\Domains\DeviceMessage\Model\DeviceMessage
      */
     public function updateDeviceMessageCreate(): DeviceMessageModel

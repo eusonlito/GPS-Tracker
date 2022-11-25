@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Device\Controller;
+namespace App\Domains\Alarm\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Alarm\Service\Type\Manager as AlarmTypeManager;
+use App\Domains\Alarm\Service\Type\Manager as TypeManager;
 use App\Domains\Position\Model\Position as PositionModel;
 
-class UpdateAlarmCreate extends ControllerAbstract
+class Create extends ControllerAbstract
 {
     /**
      * @param int $id
@@ -22,12 +22,11 @@ class UpdateAlarmCreate extends ControllerAbstract
             return $response;
         }
 
-        $typeService = AlarmTypeManager::new();
+        $typeService = TypeManager::new();
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('alarm-create.meta-title'));
 
-        return $this->page('device.update-alarm-create', [
-            'row' => $this->row,
+        return $this->page('alarm.create', [
             'types' => $typeService->titles(),
             'type' => $typeService->selected($this->request->input('type')),
             'position' => PositionModel::query()->byUserId($this->auth->id)->orderByDateUtcAtDesc()->first(),
@@ -39,10 +38,10 @@ class UpdateAlarmCreate extends ControllerAbstract
      */
     protected function updateAlarmCreate(): RedirectResponse
     {
-        $this->action()->updateAlarmCreate();
+        $this->action()->create();
 
-        $this->sessionMessage('success', __('device-update-alarm.create-success'));
+        $this->sessionMessage('success', __('alarm-create.success'));
 
-        return redirect()->route('device.update.alarm', $this->row->id);
+        return redirect()->route('alarm.update', $this->row->id);
     }
 }

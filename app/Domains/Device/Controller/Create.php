@@ -17,7 +17,7 @@ class Create extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow(data: ['timezone' => 'Europe/Madrid']);
+        $this->requestMergeWithRow(data: ['timezone' => app('configuration')->string('timezone_default')]);
 
         $this->meta('title', __('device-create.meta-title'));
 

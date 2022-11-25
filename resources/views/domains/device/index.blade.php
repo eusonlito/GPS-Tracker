@@ -42,9 +42,9 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->timezone->zone }}</a></td>
                 <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->connected_at, $row->timezone->zone, 'Y-m-d H:i:s')</a></td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}" class="w-1">@status($row->enabled)</td>
-                <td class="w-1"><a href="{{ route('device.update.alarm', $row->id) }}">{{ $row->alarms_count }}</a></td>
+                <td class="w-1"><a href="{{ route('alarm', $row->id) }}">{{ $row->alarms_count }}</a></td>
                 <td class="w-1">
-                    <a href="{{ route('device.update.alarm-notification', $row->id) }}" class="{{ $row->alarms_notifications_pending_count ? 'text-warning' : 'text-success' }}">
+                    <a href="{{ route('alarm-notification', $row->id) }}" class="{{ $row->alarms_notifications_pending_count ? 'text-warning' : 'text-success' }}">
                         {{ $row->alarms_notifications_count.($row->alarms_notifications_pending_count ? ('/'.$row->alarms_notifications_pending_count) : '') }}
                     </a>
                 </td>

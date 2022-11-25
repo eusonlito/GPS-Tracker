@@ -21,5 +21,11 @@
         "key": "position_filter_signal",
         "value": 1,
         "description": "Descartar posiciones que no contengan una señal válida"
+    },
+
+    {
+        "key": "timezone_default",
+        "value": "Europe/Madrid",
+        "description": "Zona Horaria por defecto de la Plataforma"
     }
 ]

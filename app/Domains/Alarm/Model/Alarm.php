@@ -2,7 +2,7 @@
 
 namespace App\Domains\Alarm\Model;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Alarm\Model\Builder\Alarm as Builder;
@@ -49,11 +49,11 @@ class Alarm extends ModelAbstract
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function device(): BelongsTo
+    public function devices(): BelongsToMany
     {
-        return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN);
+        return $this->belongsToMany(DeviceModel::class, AlarmDevice::TABLE);
     }
 
     /**

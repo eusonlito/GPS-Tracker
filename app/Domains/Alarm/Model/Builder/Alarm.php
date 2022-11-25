@@ -2,6 +2,7 @@
 
 namespace App\Domains\Alarm\Model\Builder;
 
+use App\Domains\Alarm\Model\AlarmDevice as AlarmDeviceModel;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 
@@ -12,9 +13,19 @@ class Alarm extends BuilderAbstract
      *
      * @return self
      */
+    public function byDeviceId(int $device_id): self
+    {
+        return $this->whereIn('id', AlarmDeviceModel::query()->selectOnly('alarm_id')->byDeviceId($device_id));
+    }
+
+    /**
+     * @param int $device_id
+     *
+     * @return self
+     */
     public function byDeviceIdEnabled(int $device_id): self
     {
-        return $this->whereIn('device_id', DeviceModel::query()->selectOnly('id')->byId($device_id)->enabled());
+        return $this->whereIn('id', AlarmDeviceModel::query()->selectOnly('alarm_id')->byDeviceIdEnabled($device_id));
     }
 
     /**
@@ -24,7 +35,7 @@ class Alarm extends BuilderAbstract
      */
     public function byDeviceSerial(string $serial): self
     {
-        return $this->whereIn('device_id', DeviceModel::query()->selectOnly('id')->bySerial($serial));
+        return $this->whereIn('id', AlarmDeviceModel::query()->selectOnly('alarm_id')->byDeviceSerial($serial));
     }
 
     /**
@@ -34,15 +45,15 @@ class Alarm extends BuilderAbstract
      */
     public function byUserId(int $user_id): self
     {
-        return $this->whereIn('device_id', DeviceModel::query()->selectOnly('id')->byUserId($user_id));
+        return $this->whereIn('id', AlarmDeviceModel::query()->selectOnly('alarm_id')->byUserId($user_id));
     }
 
     /**
      * @return self
      */
-    public function withDevice(): self
+    public function withDevices(): self
     {
-        return $this->with(['device' => static fn ($q) => $q->withTimeZone()]);
+        return $this->with(['devices' => static fn ($q) => $q->withTimeZone()]);
     }
 
     /**

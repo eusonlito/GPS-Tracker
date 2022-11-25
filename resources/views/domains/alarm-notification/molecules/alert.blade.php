@@ -11,7 +11,7 @@
 
             @if ($row->alarm)
 
-            <a href="{{ route('device.update.alarm.update', [$row->device->id, $row->alarm->id]) }}">
+            <a href="{{ route('alarm.update', $row->alarm->id) }}">
                 {{ $row->alarm->name }}
                 -
                 {{ $row->typeFormat()->title() }}
@@ -32,7 +32,7 @@
 
         <span class="mx-2">-</span>
 
-        <a href="{{ route('device.update.alarm-notification', $row->device->id) }}">{{ $row->typeFormat()->message() }}</a>
+        <a href="{{ route('alarm-notification', $row->device->id) }}">{{ $row->typeFormat()->message() }}</a>
     </div>
 
     <a href="{{ route('alarm-notification.update.closed-at', $row->id) }}" class="btn-close">
