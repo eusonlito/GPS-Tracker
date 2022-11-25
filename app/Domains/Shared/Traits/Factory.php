@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Service\Factory\Factory as FactoryService;
 
 trait Factory

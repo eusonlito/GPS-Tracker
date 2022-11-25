@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\ValidatorException;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Traits\Factory;
 
 abstract class ActionAbstract

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
 use App\Domains\Shared\Mail\MailFactoryAbstract;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Validate\ValidateFactoryAbstract;
 
 class Factory

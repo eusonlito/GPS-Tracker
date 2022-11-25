@@ -7,7 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Traits\Factory;
 use App\Exceptions\NotFoundException;
 

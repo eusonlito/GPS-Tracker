@@ -3,7 +3,7 @@
 namespace App\Domains\Shared\Fractal;
 
 use Illuminate\Support\Collection;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Traits\Factory;
 
 abstract class FractalAbstract

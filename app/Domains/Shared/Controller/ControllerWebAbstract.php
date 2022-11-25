@@ -6,7 +6,7 @@ use Closure;
 use Throwable;
 use Illuminate\Http\Response;
 use Eusonlito\LaravelMeta\Facade as Meta;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\Shared\Model\ModelAbstract;
 use App\Services\Html\Alert;
 use App\Services\Request\Response as ResponseService;
 
