@@ -6,6 +6,7 @@
     'device' => 'Dispositivo',
     'filter' => 'Filtrar...',
     'message' => 'Mensaje',
+    'meta-title' => 'Notificaciones',
     'name' => 'Nombre',
     'telegram' => 'Telegram',
     'trip' => 'Viaje',

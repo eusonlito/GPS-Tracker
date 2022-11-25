@@ -4,6 +4,7 @@
     'device' => 'Device',
     'enabled' => 'Enabled',
     'filter' => 'Filter...',
+    'meta-title' => 'Alarms',
     'name' => 'Name',
     'notifications-denied' => 'Notifications Disabled',
     'notifications-enable' => 'Enable Notifications',

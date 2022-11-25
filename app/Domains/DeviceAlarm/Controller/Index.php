@@ -19,6 +19,8 @@ class Index extends ControllerAbstract
             return $this->responseJson();
         }
 
+        $this->meta('title', __('device-alarm-index.meta-title'));
+
         return $this->page('device-alarm.index', [
             'list' => $this->list(),
             'devices' => ($devices = $this->devices()),

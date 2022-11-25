@@ -4,6 +4,7 @@
     'device' => 'Dispositivo',
     'enabled' => 'Activa',
     'filter' => 'Filtrar...',
+    'meta-title' => 'Alarmas',
     'name' => 'Nombre',
     'notifications-denied' => 'Notificaciones Desactivadas',
     'notifications-enable' => 'Activar Notificaciones',
