@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Domains\Shared\Migration\MigrationAbstract;
+use App\Domains\SharedApp\Migration\MigrationAbstract;
 
 return new class extends MigrationAbstract
 {
@@ -64,6 +64,8 @@ return new class extends MigrationAbstract
             $table->string('type');
 
             $table->jsonb('config')->nullable();
+
+            $table->point('point', 4326)->index();
 
             $table->boolean('telegram')->default(0);
 

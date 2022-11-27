@@ -2,7 +2,7 @@
 
 use App\Domains\Configuration\Seeder\Configuration as ConfigurationSeeder;
 use App\Domains\Language\Seeder\Language as LanguageSeeder;
-use App\Domains\Shared\Migration\MigrationAbstract;
+use App\Domains\SharedApp\Migration\MigrationAbstract;
 use App\Domains\Timezone\Seeder\Timezone as TimezoneSeeder;
 
 return new class extends MigrationAbstract

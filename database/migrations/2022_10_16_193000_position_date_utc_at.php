@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Domains\Shared\Migration\MigrationAbstract;
+use App\Domains\SharedApp\Migration\MigrationAbstract;
 
 return new class extends MigrationAbstract
 {
@@ -15,7 +15,7 @@ return new class extends MigrationAbstract
             return;
         }
 
-        $this->map();
+        $this->defineTypePoint();
         $this->tables();
         $this->upFinish();
     }
@@ -26,17 +26,6 @@ return new class extends MigrationAbstract
     protected function upMigrated(): bool
     {
         return Schema::hasColumn('position', 'date_utc_at');
-    }
-
-    /**
-     * @return void
-     */
-    protected function map()
-    {
-        $this->db()
-            ->getDoctrineSchemaManager()
-            ->getDatabasePlatform()
-            ->registerDoctrineTypeMapping('point', 'string');
     }
 
     /**

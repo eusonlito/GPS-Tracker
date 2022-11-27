@@ -15,6 +15,7 @@ return new class extends MigrationAbstract
             return;
         }
 
+        $this->defineTypePoint();
         $this->tables();
         $this->upFinish();
     }
@@ -24,7 +25,7 @@ return new class extends MigrationAbstract
      */
     protected function upMigrated(): bool
     {
-        return Schema::hasColumn('alarm_notification', 'date_at');
+        return Schema::hasColumn('alarm_notification', 'point');
     }
 
     /**
@@ -33,22 +34,17 @@ return new class extends MigrationAbstract
     protected function tables()
     {
         Schema::table('alarm_notification', function (Blueprint $table) {
-            $table->dateTime('date_at')->nullable();
-            $table->dateTime('date_utc_at')->nullable();
+            $table->point('point', 4326)->nullable();
         });
 
         $this->db()->statement('
             UPDATE `alarm_notification`
-            JOIN `device` ON (`device`.`id` = `alarm_notification`.`device_id`)
-            JOIN `timezone` ON (`timezone`.`id` = `device`.`timezone_id`)
-            SET
-                `alarm_notification`.`date_utc_at` = `alarm_notification`.`created_at`,
-                `alarm_notification`.`date_at` = CONVERT_TZ(`alarm_notification`.`created_at`, "UTC", `timezone`.`zone`);
+            JOIN `position` ON (`position`.`id` = `alarm_notification`.`position_id`)
+            SET `alarm_notification`.`point` = `position`.`point`;
         ');
 
         Schema::table('alarm_notification', function (Blueprint $table) {
-            $table->dateTime('date_at')->nullable(false)->change();
-            $table->dateTime('date_utc_at')->nullable(false)->change();
+            $table->point('point', 4326)->nullable(false)->change();
         });
     }
 
@@ -58,8 +54,7 @@ return new class extends MigrationAbstract
     public function down()
     {
         Schema::table('alarm_notification', function (Blueprint $table) {
-            $table->dropColumn('date_at');
-            $table->dropColumn('date_utc_at');
+            $table->dropColumn('point');
         });
     }
 };

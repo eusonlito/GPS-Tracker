@@ -38,6 +38,19 @@ class AlarmNotification extends BuilderAbstract
     }
 
     /**
+     * @return self
+     */
+    public function selectPointAsLatitudeLongitude(): self
+    {
+        return $this->selectRaw('
+            `id`, `name`, `type`, `config`, `closed_at`, `sent_at`, `created_at`, `updated_at`,
+            `telegram`, `date_at`, `date_utc_at`,
+            `device_id`, `alarm_id`, `position_id`, `trip_id`,
+            ROUND(ST_X(`point`), 5) AS `longitude`, ROUND(ST_Y(`point`), 5) AS `latitude`
+        ');
+    }
+
+    /**
      * @param bool $closed_at = false
      *
      * @return self

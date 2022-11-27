@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Domains\Shared\Migration\MigrationAbstract;
+use App\Domains\SharedApp\Migration\MigrationAbstract;
 
 return new class extends MigrationAbstract
 {
@@ -15,7 +15,6 @@ return new class extends MigrationAbstract
             return;
         }
 
-        $this->map();
         $this->tables();
         $this->keys();
         $this->upFinish();
@@ -27,17 +26,6 @@ return new class extends MigrationAbstract
     protected function upMigrated(): bool
     {
         return Schema::hasColumn('position', 'timezone_id');
-    }
-
-    /**
-     * @return void
-     */
-    protected function map()
-    {
-        $this->db()
-            ->getDoctrineSchemaManager()
-            ->getDatabasePlatform()
-            ->registerDoctrineTypeMapping('point', 'string');
     }
 
     /**

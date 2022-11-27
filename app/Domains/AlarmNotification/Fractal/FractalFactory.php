@@ -20,6 +20,8 @@ class FractalFactory extends FractalAbstract
             'type' => $row->type,
             'title' => $row->typeFormat()->title(),
             'message' => $row->typeFormat()->message(),
+            'latitude' => $row->latitude,
+            'longitude' => $row->longitude,
             'device' => $this->fromIfLoaded('Device', 'simple', $row, 'device'),
             'alarm' => $this->fromIfLoaded('Alarm', 'simple', $row, 'alarm'),
         ];
