@@ -21,6 +21,8 @@
                 <th class="text-left w-1">{{ __('configuration-index.key') }}</th>
                 <th>{{ __('configuration-index.value') }}</th>
                 <th class="text-left">{{ __('configuration-index.description') }}</th>
+                <th>{{ __('configuration-index.created_at') }}</th>
+                <th>{{ __('configuration-index.updated_at') }}</th>
             </tr>
         </thead>
 
@@ -33,6 +35,8 @@
                 <td class="text-left w-1"><a href="{{ $link }}" class="block">{{ $row->key }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->value }}</a></td>
                 <td class="text-left"><a href="{{ $link }}" class="d-t-m-o">{{ $row->description }}</a></td>
+                <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->created_at)</a></td>
+                <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->updated_at)</a></td>
             </tr>
 
             @endforeach

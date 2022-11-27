@@ -35,8 +35,8 @@
             <tr>
                 <td class="text-left"><a href="{{ $link }}" class="block">{{ $row->name }}</a></td>
                 <td class="text-left"><a href="{{ $link }}" class="block">{{ $row->email }}</a></td>
-                <td><a href="{{ $link }}" class="block">{{ $row->created_at }}</a></td>
-                <td><a href="{{ $link }}" class="block">{{ $row->updated_at }}</a></td>
+                <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->created_at)</a></td>
+                <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->updated_at)</a></td>
                 <td data-table-sort-value="{{ (int)$row->admin }}">@status($row->admin)</td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}">@status($row->enabled)</td>
             </tr>
