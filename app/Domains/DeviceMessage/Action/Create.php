@@ -53,7 +53,7 @@ class Create extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->row = Model::create([
+        $this->row = Model::query()->create([
             'message' => $this->data['message'],
             'device_id' => $this->data['device_id'],
         ]);

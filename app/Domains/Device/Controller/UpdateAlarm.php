@@ -35,7 +35,8 @@ class UpdateAlarm extends ControllerAbstract
      */
     protected function alarms(): Collection
     {
-        return AlarmModel::list()
+        return AlarmModel::query()
+            ->list()
             ->withDevicePivot($this->row->id)
             ->get()
             ->sortByDesc('devicePivot');

@@ -23,7 +23,7 @@ class UpdateDevice extends ActionAbstract
      */
     protected function data(): void
     {
-        $this->data['related'] = DeviceModel::byIds($this->data['related'])->pluck('id')->all();
+        $this->data['related'] = DeviceModel::query()->byIds($this->data['related'])->pluck('id')->all();
     }
 
     /**

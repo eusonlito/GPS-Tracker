@@ -33,7 +33,7 @@ class Timezone extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->orderBy('zone', 'ASC');
+        return $this->orderBy('default', 'DESC')->orderBy('zone', 'ASC');
     }
 
     /**
@@ -44,6 +44,16 @@ class Timezone extends BuilderAbstract
     public function selectOnly(string ...$columns): self
     {
         return $this->withoutGlobalScope('selectIdZone')->select($columns);
+    }
+
+    /**
+     * @param bool $default = true
+     *
+     * @return self
+     */
+    public function whereDefault(bool $default = true): self
+    {
+        return $this->where('default', $default);
     }
 
     /**

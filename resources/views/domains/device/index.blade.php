@@ -15,7 +15,7 @@
 </form>
 
 <div class="overflow-auto lg:overflow-visible header-sticky">
-    <table id="device-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
+    <table id="device-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
                 <th>{{ __('device-index.name') }}</th>

@@ -35,7 +35,8 @@ class UpdateDevice extends ControllerAbstract
      */
     protected function devices(): Collection
     {
-        return DeviceModel::list()
+        return DeviceModel::query()
+            ->list()
             ->withAlarmPivot($this->row->id)
             ->withTimeZone()
             ->get()

@@ -81,11 +81,9 @@ class Create extends ActionAbstract
     {
         $this->data['language_id'] = LanguageModel::query()
             ->selectOnly('id')
-            ->when(
-                $this->data['language_id'],
-                fn ($q) => $q->byId($this->data['language_id']),
-                fn ($q) => $q->whereDefault(true)
-            )->firstOrFail()->id;
+            ->whenIdOrDefault((int)$this->data['language_id'])
+            ->firstOrFail()
+            ->id;
     }
 
     /**
@@ -111,7 +109,7 @@ class Create extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->row = Model::create([
+        $this->row = Model::query()->create([
             'name' => $this->data['name'],
             'email' => $this->data['email'],
             'password' => $this->data['password'],

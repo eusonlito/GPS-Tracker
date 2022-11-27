@@ -30,7 +30,7 @@ class Fail extends ActionAbstract
      */
     protected function save(): void
     {
-        Model::insert([
+        Model::query()->insert([
             'auth' => $this->data['auth'],
             'ip' => $this->ip,
             'success' => false,

@@ -11,7 +11,7 @@ class Create extends CreateUpdateAbstract
      */
     protected function save(): void
     {
-        $this->row = Model::create([
+        $this->row = Model::query()->create([
             'key' => $this->data['key'],
             'value' => $this->data['value'],
             'description' => $this->data['description'],

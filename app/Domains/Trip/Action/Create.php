@@ -88,7 +88,7 @@ class Create extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->row = Model::create([
+        $this->row = Model::query()->create([
             'name' => $this->data['name'],
             'start_at' => $this->data['start_at'],
             'start_utc_at' => $this->data['start_utc_at'],

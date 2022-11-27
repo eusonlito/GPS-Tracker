@@ -61,7 +61,10 @@ class Create extends ActionAbstract
      */
     protected function device(): void
     {
-        $this->device = DeviceModel::query()->bySerial($this->data['serial'])->enabled()->first();
+        $this->device = DeviceModel::query()
+            ->bySerial($this->data['serial'])
+            ->enabled()
+            ->first();
     }
 
     /**
@@ -262,7 +265,7 @@ class Create extends ActionAbstract
      */
     protected function saveRow(): void
     {
-        $this->row = Model::create([
+        $this->row = Model::query()->create([
             'point' => Model::pointFromLatitudeLongitude($this->data['latitude'], $this->data['longitude']),
             'speed' => $this->data['speed'],
             'direction' => $this->data['direction'],

@@ -29,7 +29,7 @@ class Success extends ActionAbstract
      */
     protected function save(): void
     {
-        Model::create([
+        Model::query()->create([
             'auth' => $this->data['auth'],
             'ip' => $this->request->ip(),
             'success' => true,

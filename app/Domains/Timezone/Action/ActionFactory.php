@@ -19,4 +19,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         $this->actionHandle(Geojson::class, $this->validate()->geojson());
     }
+
+    /**
+     * @return \App\Domains\Timezone\Model\Timezone
+     */
+    public function UpdateDefault(): Model
+    {
+        return $this->actionHandle(UpdateDefault::class);
+    }
 }

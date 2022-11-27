@@ -37,7 +37,7 @@ class GetOrNew extends ActionAbstract
      */
     protected function row(): void
     {
-        $this->row = Model::firstOrCreate([
+        $this->row = Model::query()->firstOrCreate([
             'name' => $this->data['name'],
             'country_id' => $this->country->id,
         ]);

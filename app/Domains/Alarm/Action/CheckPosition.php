@@ -132,7 +132,7 @@ class CheckPosition extends ActionAbstract
      */
     protected function saveNotification(Model $row): AlarmNotificationModel
     {
-        return AlarmNotificationModel::create([
+        return AlarmNotificationModel::query()->create([
             'name' => $row->name,
             'type' => $row->type,
             'config' => $row->config,

@@ -17,13 +17,23 @@ class Create extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow(data: ['timezone' => app('configuration')->string('timezone_default')]);
+        $this->requestMergeWithRow(data: $this->requestMergeWithRowData());
 
         $this->meta('title', __('device-create.meta-title'));
 
         return $this->page('device.create', [
             'timezones' => TimezoneModel::query()->list()->get(),
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function requestMergeWithRowData(): array
+    {
+        return [
+            'timezone_id' => TimezoneModel::query()->whereDefault()->value('id'),
+        ];
     }
 
     /**

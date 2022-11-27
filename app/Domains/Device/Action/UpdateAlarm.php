@@ -23,7 +23,7 @@ class UpdateAlarm extends ActionAbstract
      */
     protected function data(): void
     {
-        $this->data['related'] = AlarmModel::byIds($this->data['related'])->pluck('id')->all();
+        $this->data['related'] = AlarmModel::query()->byIds($this->data['related'])->pluck('id')->all();
     }
 
     /**

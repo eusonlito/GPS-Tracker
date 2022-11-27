@@ -2,6 +2,7 @@
 
 namespace App\Services\Html;
 
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Services\Html\Traits\Custom as CustomTrait;
 
 class Html
@@ -94,11 +95,17 @@ class Html
      */
     public static function dateWithTimezone(?string $date, ?string $timezone = null, string $format = 'd/m/Y H:i'): string
     {
+        static $timezone_default;
+
         if (empty($date)) {
             return $date ?: '';
         }
 
-        return helper()->dateUtcToTimezone('Y-m-d H:i:s', $date, $timezone ?: app('configuration')->string('timezone_default'), $format);
+        if (empty($timezone)) {
+            $timezone_default = TimezoneModel::query()->whereDefault()->value('zone');
+        }
+
+        return helper()->dateUtcToTimezone('Y-m-d H:i:s', $date, $timezone ?: $timezone_default, $format);
     }
 
     /**

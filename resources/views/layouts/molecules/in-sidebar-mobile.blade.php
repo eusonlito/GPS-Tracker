@@ -85,6 +85,13 @@
             </a>
         </li>
 
+        <li>
+            <a href="{{ route('timezone.index') }}" class="menu {{ str_starts_with($ROUTE, 'timezone.') ? 'menu--active' : '' }}">
+                <div class="menu__icon">@icon('globe')</div>
+                <div class="menu__title">{{ __('in-sidebar.timezones') }}</div>
+            </a>
+        </li>
+
         @endif
 
         <li>

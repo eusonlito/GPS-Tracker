@@ -9,6 +9,7 @@
     'profile' => 'Perfil',
     'refuel' => 'Repostajes',
     'sockets' => 'Sockets',
+    'timezones' => 'Zonas Horarias',
     'trips' => 'Viajes',
     'users' => 'Usuarios',
 ];

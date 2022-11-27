@@ -26,7 +26,7 @@ class Request extends ActionAbstract
      */
     public function getter(): void
     {
-        $this->getter = new GetterService(Model::pluck('value', 'key')->all());
+        $this->getter = new GetterService(Model::query()->pluck('value', 'key')->all());
     }
 
     /**

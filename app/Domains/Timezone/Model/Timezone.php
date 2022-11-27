@@ -26,11 +26,18 @@ class Timezone extends ModelAbstract
     public const FOREIGN = 'timezone_id';
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'default' => 'boolean',
+    ];
+
+    /**
      * @return void
      */
     protected static function booted(): void
     {
-        static::addGlobalScope('selectIdZone', static fn (Builder $q) => $q->selectOnly('id', 'zone'));
+        static::addGlobalScope('selectIdZone', static fn (Builder $q) => $q->selectOnly('id', 'zone', 'default'));
     }
 
     /**

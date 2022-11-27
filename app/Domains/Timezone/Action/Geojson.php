@@ -146,7 +146,7 @@ class Geojson extends ActionAbstract
      */
     protected function zoneUpdateOrInsert(stdClass $zone, float $simplify): void
     {
-        Model::updateOrInsert(
+        Model::query()->updateOrInsert(
             ['zone' => $zone->properties->tzid],
             ['geojson' => Model::geomFromGeoJSON($zone->geometry, $simplify)]
         );
