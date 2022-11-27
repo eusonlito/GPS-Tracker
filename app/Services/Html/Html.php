@@ -102,7 +102,7 @@ class Html
         }
 
         if (empty($timezone)) {
-            $timezone_default = TimezoneModel::query()->whereDefault()->value('zone');
+            $timezone_default ??= TimezoneModel::query()->whereDefault()->value('zone');
         }
 
         return helper()->dateUtcToTimezone('Y-m-d H:i:s', $date, $timezone ?: $timezone_default, $format);
