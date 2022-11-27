@@ -30,6 +30,54 @@ return new class extends MigrationAbstract
      */
     protected function tables()
     {
+        Schema::create('alarm', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name');
+            $table->string('type');
+
+            $table->jsonb('config')->nullable();
+
+            $table->boolean('telegram')->default(0);
+
+            $table->boolean('enabled')->default(0);
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('device_id');
+            $table->unsignedBigInteger('user_id');
+        });
+
+        Schema::create('alarm_device', function (Blueprint $table) {
+            $table->id();
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('alarm_id');
+            $table->unsignedBigInteger('device_id');
+        });
+
+        Schema::create('alarm_notification', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name');
+            $table->string('type');
+
+            $table->jsonb('config')->nullable();
+
+            $table->boolean('telegram')->default(0);
+
+            $table->dateTime('closed_at')->nullable();
+            $table->dateTime('sent_at')->nullable();
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('device_id');
+            $table->unsignedBigInteger('alarm_id')->nullable();
+            $table->unsignedBigInteger('position_id')->nullable();
+            $table->unsignedBigInteger('trip_id')->nullable();
+        });
+
         Schema::create('city', function (Blueprint $table) {
             $table->id();
 
@@ -82,44 +130,6 @@ return new class extends MigrationAbstract
 
             $table->unsignedBigInteger('timezone_id');
             $table->unsignedBigInteger('user_id');
-        });
-
-        Schema::create('device_alarm', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('name');
-            $table->string('type');
-
-            $table->jsonb('config')->nullable();
-
-            $table->boolean('telegram')->default(0);
-
-            $table->boolean('enabled')->default(0);
-
-            $this->timestamps($table);
-
-            $table->unsignedBigInteger('device_id');
-        });
-
-        Schema::create('device_alarm_notification', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('name');
-            $table->string('type');
-
-            $table->jsonb('config')->nullable();
-
-            $table->boolean('telegram')->default(0);
-
-            $table->dateTime('closed_at')->nullable();
-            $table->dateTime('sent_at')->nullable();
-
-            $this->timestamps($table);
-
-            $table->unsignedBigInteger('device_id');
-            $table->unsignedBigInteger('device_alarm_id')->nullable();
-            $table->unsignedBigInteger('position_id')->nullable();
-            $table->unsignedBigInteger('trip_id')->nullable();
         });
 
         Schema::create('device_message', function (Blueprint $table) {
@@ -293,6 +303,23 @@ return new class extends MigrationAbstract
      */
     protected function keys()
     {
+        Schema::table('alarm', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'device');
+            $this->foreignOnDeleteCascade($table, 'user');
+        });
+
+        Schema::table('alarm_device', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'alarm');
+            $this->foreignOnDeleteCascade($table, 'device');
+        });
+
+        Schema::table('alarm_notification', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'device');
+            $this->foreignOnDeleteSetNull($table, 'alarm');
+            $this->foreignOnDeleteSetNull($table, 'position');
+            $this->foreignOnDeleteSetNull($table, 'trip');
+        });
+
         Schema::table('city', function (Blueprint $table) {
             $table->spatialIndex('point');
 
@@ -302,17 +329,6 @@ return new class extends MigrationAbstract
         Schema::table('device', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'timezone');
             $this->foreignOnDeleteCascade($table, 'user');
-        });
-
-        Schema::table('device_alarm', function (Blueprint $table) {
-            $this->foreignOnDeleteCascade($table, 'device');
-        });
-
-        Schema::table('device_alarm_notification', function (Blueprint $table) {
-            $this->foreignOnDeleteCascade($table, 'device');
-            $this->foreignOnDeleteSetNull($table, 'device_alarm');
-            $this->foreignOnDeleteSetNull($table, 'position');
-            $this->foreignOnDeleteSetNull($table, 'trip');
         });
 
         Schema::table('device_message', function (Blueprint $table) {
