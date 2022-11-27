@@ -32,7 +32,7 @@
 
         <span class="mx-2">-</span>
 
-        <a href="{{ route('alarm-notification', $row->device->id) }}">{{ $row->typeFormat()->message() }}</a>
+        <a href="{{ route('device.update.alarm-notification', $row->device->id) }}">{{ $row->typeFormat()->message() }}</a>
     </div>
 
     <a href="{{ route('alarm-notification.update.closed-at', $row->id) }}" class="btn-close">

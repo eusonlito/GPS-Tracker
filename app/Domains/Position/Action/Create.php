@@ -290,7 +290,23 @@ class Create extends ActionAbstract
      */
     protected function job(): void
     {
+        $this->jobCity();
+        $this->jobAlarm();
+    }
+
+    /**
+     * @return void
+     */
+    protected function jobCity(): void
+    {
         UpdateCityJob::dispatch($this->row->id);
+    }
+
+    /**
+     * @return void
+     */
+    protected function jobAlarm(): void
+    {
         AlarmCheckPositionJob::dispatch($this->row->id);
     }
 }

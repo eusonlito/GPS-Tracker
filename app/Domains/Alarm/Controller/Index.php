@@ -5,7 +5,6 @@ namespace App\Domains\Alarm\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Alarm\Model\Alarm as Model;
 
 class Index extends ControllerAbstract
@@ -23,8 +22,6 @@ class Index extends ControllerAbstract
 
         return $this->page('alarm.index', [
             'list' => $this->list(),
-            'devices' => ($devices = $this->devices()),
-            'devices_multiple' => ($devices->count() > 1),
         ]);
     }
 
@@ -38,17 +35,6 @@ class Index extends ControllerAbstract
             ->withDevicesCount()
             ->withNotificationsCount()
             ->withNotificationsPendingCount()
-            ->list()
-            ->get();
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    protected function devices(): Collection
-    {
-        return DeviceModel::query()
-            ->byUserId($this->auth->id)
             ->list()
             ->get();
     }
