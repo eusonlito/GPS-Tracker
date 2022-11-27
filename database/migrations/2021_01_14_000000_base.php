@@ -67,6 +67,8 @@ return new class extends MigrationAbstract
 
             $table->boolean('telegram')->default(0);
 
+            $table->dateTime('date_at');
+            $table->dateTime('date_utc_at');
             $table->dateTime('closed_at')->nullable();
             $table->dateTime('sent_at')->nullable();
 

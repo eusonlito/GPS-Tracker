@@ -139,6 +139,9 @@ class CheckPosition extends ActionAbstract
 
             'telegram' => $row->telegram,
 
+            'date_at' => $this->position->date_at,
+            'date_utc_at' => $this->position->date_utc_at,
+
             'device_id' => $this->device->id,
             'alarm_id' => $row->id,
             'position_id' => $this->position->id,

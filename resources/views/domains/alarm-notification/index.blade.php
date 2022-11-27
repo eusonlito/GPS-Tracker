@@ -46,7 +46,7 @@
                     <a href="{{ route('trip.update.alarm-notification', $row->trip->id) }}#position-id-{{ $row->position?->id }}" title="{{ $row->trip->name }}" class="d-t-m-o max-w-2xs">{{ $row->trip->name }}</a>
                     @endif
                 </td>
-                <td class="w-1"><div class="d-t-m-o max-w-xs">@dateWithTimezone($row->created_at, $row->device->timezone->zone)</div></td>
+                <td class="w-1">@dateLocal($row->date_at)</td>
                 <td class="w-1">@status($row->telegram)</td>
                 <td class="w-1">
                     @if ($row->closed_at)

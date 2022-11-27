@@ -4,6 +4,10 @@
     </div>
 
     <div class="mr-4">
+        <td class="w-1">@dateLocal($row->date_at)</td>
+
+        <span class="mx-2">-</span>
+
         <strong>
             <a href="{{ route('device.update', $row->device->id) }}">{{ $row->device->name }}</a>
 
