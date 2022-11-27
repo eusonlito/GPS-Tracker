@@ -2,7 +2,6 @@
 
 namespace App\Domains\Alarm\Action;
 
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Alarm\Model\Alarm as Model;
 use App\Domains\Alarm\Service\Type\Manager as TypeManager;
 use App\Domains\Alarm\Service\Type\Format\FormatAbstract as TypeFormatAbstract;
@@ -87,6 +86,7 @@ class Create extends ActionAbstract
             'config' => $this->data['config'],
             'telegram' => $this->data['enabled'],
             'enabled' => $this->data['enabled'],
+            'user_id' => $this->auth->id,
         ]);
     }
 }

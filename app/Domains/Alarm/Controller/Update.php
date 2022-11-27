@@ -27,9 +27,8 @@ class Update extends ControllerAbstract
 
         return $this->page('alarm.update', [
             'row' => $this->row,
-            'alarm' => $this->alarm,
             'types' => TypeManager::new()->titles(),
-            'type' => $this->alarm->type,
+            'type' => $this->row->type,
         ]);
     }
 
@@ -45,11 +44,11 @@ class Update extends ControllerAbstract
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function updateAlarmUpdate(): RedirectResponse
+    protected function update(): RedirectResponse
     {
         $this->action()->update();
 
-        $this->sessionMessage('success', __('alarm-update.update-success'));
+        $this->sessionMessage('success', __('alarm-update.success'));
 
         return redirect()->route('alarm.update', $this->row->id);
     }
@@ -57,12 +56,12 @@ class Update extends ControllerAbstract
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function updateAlarmDelete(): RedirectResponse
+    protected function delete(): RedirectResponse
     {
         $this->action()->delete();
 
         $this->sessionMessage('success', __('alarm-update.delete-success'));
 
-        return redirect()->route('alarm.update', $this->row->id);
+        return redirect()->route('alarm.index');
     }
 }

@@ -7,5 +7,5 @@
     'message' => 'Message',
     'name' => 'Name',
     'telegram' => 'Telegram',
-    'trip' => 'Travel',
+    'trip' => 'Trip',
 ];

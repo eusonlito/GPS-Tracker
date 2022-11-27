@@ -8,13 +8,23 @@ use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 class AlarmDevice extends BuilderAbstract
 {
     /**
+     * @param int $alarm_id
+     *
+     * @return self
+     */
+    public function byAlarmId(int $alarm_id): self
+    {
+        return $this->where('alarm_id', $alarm_id);
+    }
+
+    /**
      * @param int $device_id
      *
      * @return self
      */
     public function byDeviceId(int $device_id): self
     {
-        return $this->whereIn('device_id', DeviceModel::query()->selectOnly('id')->byId($device_id));
+        return $this->where('device_id', $device_id);
     }
 
     /**

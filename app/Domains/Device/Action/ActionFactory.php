@@ -3,7 +3,6 @@
 namespace App\Domains\Device\Action;
 
 use App\Domains\Device\Model\Device as Model;
-use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
 
@@ -36,6 +35,14 @@ class ActionFactory extends ActionFactoryAbstract
     public function update(): Model
     {
         return $this->actionHandle(Update::class, $this->validate()->update());
+    }
+
+    /**
+     * @return \App\Domains\Device\Model\Device
+     */
+    public function updateAlarm(): Model
+    {
+        return $this->actionHandle(UpdateAlarm::class, $this->validate()->updateAlarm());
     }
 
     /**

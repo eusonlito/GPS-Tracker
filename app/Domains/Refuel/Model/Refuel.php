@@ -39,6 +39,6 @@ class Refuel extends ModelAbstract
      */
     public function device(): BelongsTo
     {
-        return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN);
+        return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN)->withTimeZone();
     }
 }

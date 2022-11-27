@@ -10,15 +10,11 @@ use App\Domains\Position\Model\Position as PositionModel;
 class Create extends ControllerAbstract
 {
     /**
-     * @param int $id
-     *
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function __invoke(int $id): Response|RedirectResponse
+    public function __invoke(): Response|RedirectResponse
     {
-        $this->row($id);
-
-        if ($response = $this->actionPost('updateAlarmCreate')) {
+        if ($response = $this->actionPost('create')) {
             return $response;
         }
 
@@ -36,9 +32,9 @@ class Create extends ControllerAbstract
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function updateAlarmCreate(): RedirectResponse
+    protected function create(): RedirectResponse
     {
-        $this->action()->create();
+        $this->row = $this->action()->create();
 
         $this->sessionMessage('success', __('alarm-create.success'));
 

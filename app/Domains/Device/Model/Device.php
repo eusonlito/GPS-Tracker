@@ -3,9 +3,12 @@
 namespace App\Domains\Device\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Domains\Device\Model\Builder\Device as Builder;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
+use App\Domains\Alarm\Model\AlarmDevice as AlarmDeviceModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
@@ -41,11 +44,19 @@ class Device extends ModelAbstract
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function alarms(): HasMany
+    public function alarmPivot(): HasOne
     {
-        return $this->hasMany(AlarmModel::class, static::FOREIGN);
+        return $this->hasOne(AlarmDeviceModel::class, static::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function alarms(): BelongsToMany
+    {
+        return $this->belongsToMany(AlarmModel::class, AlarmDeviceModel::TABLE);
     }
 
     /**

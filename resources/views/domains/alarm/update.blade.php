@@ -1,9 +1,9 @@
-@extends ('domains.device.update-layout')
+@extends ('domains.alarm.update-layout')
 
 @section ('content')
 
 <form method="post">
-    <input type="hidden" name="_action" value="updateAlarmUpdate" />
+    <input type="hidden" name="_action" value="update" />
 
     <div class="box p-5 mt-5">
         <div class="p-2">
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    @include ('domains.device.molecules.update-alarm-create-update')
+    @include ('domains.alarm.molecules.create-update')
 
     <div class="box p-5 mt-5">
         <div class="text-right">
@@ -22,7 +22,7 @@
 </form>
 
 @include ('molecules.delete-modal', [
-    'action' => 'updateAlarmDelete'
+    'action' => 'delete'
 ])
 
 @stop

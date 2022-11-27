@@ -17,6 +17,16 @@ class Device extends BuilderAbstract
     }
 
     /**
+     * @param int $alarm_id
+     *
+     * @return self
+     */
+    public function withAlarmPivot(int $alarm_id): self
+    {
+        return $this->with(['alarmPivot' => static fn ($q) => $q->byAlarmId($alarm_id)]);
+    }
+
+    /**
      * @return self
      */
     public function withAlarmsCount(): self

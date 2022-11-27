@@ -33,6 +33,20 @@ return new class extends MigrationAbstract
      */
     protected function tables()
     {
+        Schema::table('alarm', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->nullable();
+        });
+
+        $this->db()->statement('
+            UPDATE `alarm`
+            SET `user_id` = (
+                SELECT `user_id`
+                FROM `device`
+                WHERE `device`.`id` = `alarm`.`device_id`
+                LIMIT 1
+            );
+        ');
+
         Schema::create('alarm_device', function (Blueprint $table) {
             $table->id();
 
@@ -54,6 +68,10 @@ return new class extends MigrationAbstract
         Schema::table('alarm', function (Blueprint $table) {
             $this->tableDropForeign($table, 'device', 'fk_');
 
+            $table->unsignedBigInteger('user_id')->nullable(false)->change();
+        });
+
+        Schema::table('alarm', function (Blueprint $table) {
             $table->dropColumn('device_id');
         });
     }
@@ -63,6 +81,10 @@ return new class extends MigrationAbstract
      */
     protected function keys()
     {
+        Schema::table('alarm', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'user');
+        });
+
         Schema::table('alarm_device', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'alarm');
             $this->foreignOnDeleteCascade($table, 'device');
@@ -76,6 +98,8 @@ return new class extends MigrationAbstract
     {
         Schema::table('alarm', function (Blueprint $table) {
             $table->unsignedBigInteger('device_id')->nullable();
+
+            $this->tableDropForeign($table, 'user', 'fk_');
         });
 
         $this->db()->statement('
@@ -90,6 +114,8 @@ return new class extends MigrationAbstract
 
         Schema::table('alarm', function (Blueprint $table) {
             $table->unsignedBigInteger('device_id')->nullable(false)->change();
+
+            $table->dropColumn('user_id');
         });
 
         Schema::table('alarm', function (Blueprint $table) {

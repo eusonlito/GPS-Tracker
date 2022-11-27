@@ -3,7 +3,6 @@
 namespace App\Domains\Alarm\Action;
 
 use App\Domains\Alarm\Model\Alarm as Model;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
 
 class ActionFactory extends ActionFactoryAbstract
@@ -38,14 +37,6 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return \App\Domains\AlarmNotification\Model\AlarmNotification
-     */
-    public function notificationUpdateClosedAt(): AlarmNotificationModel
-    {
-        return $this->actionHandle(NotificationUpdateClosedAt::class, $this->validate()->notificationUpdateClosedAt());
-    }
-
-    /**
      * @return \App\Domains\Alarm\Model\Alarm
      */
     public function update(): Model
@@ -59,5 +50,13 @@ class ActionFactory extends ActionFactoryAbstract
     public function updateBoolean(): Model
     {
         return $this->actionHandle(UpdateBoolean::class, $this->validate()->updateBoolean());
+    }
+
+    /**
+     * @return \App\Domains\Alarm\Model\Alarm
+     */
+    public function updateDevice(): Model
+    {
+        return $this->actionHandle(UpdateDevice::class, $this->validate()->updateDevice());
     }
 }

@@ -3,11 +3,9 @@
 namespace App\Domains\Alarm\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Alarm\Model\Builder\AlarmDevice as Builder;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\SharedApp\Model\PivotAbstract;
 
 class AlarmDevice extends PivotAbstract
@@ -52,6 +50,6 @@ class AlarmDevice extends PivotAbstract
      */
     public function device(): BelongsTo
     {
-        return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN);
+        return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN)->withTimeZone();
     }
 }

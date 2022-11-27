@@ -3,7 +3,6 @@
 namespace App\Domains\Alarm\Model\Builder;
 
 use App\Domains\Alarm\Model\AlarmDevice as AlarmDeviceModel;
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 
 class Alarm extends BuilderAbstract
@@ -29,6 +28,16 @@ class Alarm extends BuilderAbstract
     }
 
     /**
+     * @param int $device_id
+     *
+     * @return self
+     */
+    public function withDevicePivot(int $device_id): self
+    {
+        return $this->with(['devicePivot' => static fn ($q) => $q->byDeviceId($device_id)]);
+    }
+
+    /**
      * @param string $serial
      *
      * @return self
@@ -39,21 +48,19 @@ class Alarm extends BuilderAbstract
     }
 
     /**
-     * @param int $user_id
-     *
      * @return self
      */
-    public function byUserId(int $user_id): self
+    public function withDevices(): self
     {
-        return $this->whereIn('id', AlarmDeviceModel::query()->selectOnly('alarm_id')->byUserId($user_id));
+        return $this->with('devices');
     }
 
     /**
      * @return self
      */
-    public function withDevices(): self
+    public function withDevicesCount(): self
     {
-        return $this->with(['devices' => static fn ($q) => $q->withTimeZone()]);
+        return $this->withCount('devices');
     }
 
     /**

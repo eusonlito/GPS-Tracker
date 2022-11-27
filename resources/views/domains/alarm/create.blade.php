@@ -1,6 +1,6 @@
-@extends ('domains.device.update-layout')
+@extends ('layouts.in')
 
-@section ('content')
+@section ('body')
 
 <div class="box p-5 mt-5">
     <div class="p-2">

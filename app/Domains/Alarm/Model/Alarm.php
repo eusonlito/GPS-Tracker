@@ -4,6 +4,7 @@ namespace App\Domains\Alarm\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Alarm\Model\Builder\Alarm as Builder;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
@@ -49,11 +50,19 @@ class Alarm extends ModelAbstract
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function devicePivot(): HasOne
+    {
+        return $this->hasOne(AlarmDevice::class, static::FOREIGN);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function devices(): BelongsToMany
     {
-        return $this->belongsToMany(DeviceModel::class, AlarmDevice::TABLE);
+        return $this->belongsToMany(DeviceModel::class, AlarmDevice::TABLE)->withTimeZone();
     }
 
     /**
