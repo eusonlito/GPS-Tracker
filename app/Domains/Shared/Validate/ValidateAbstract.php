@@ -2,11 +2,22 @@
 
 namespace App\Domains\Shared\Validate;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 use App\Services\Validator\ValidatorAbstract;
 
-abstract class ValidateAbstract extends ValidatorAbstract implements ValidateInterface
+abstract class ValidateAbstract extends ValidatorAbstract
 {
+    /**
+     * @param ?\Illuminate\Http\Request $request
+     * @param array $data
+     *
+     * @return self
+     */
+    final public function __construct(protected ?Request $request, protected array $data)
+    {
+    }
+
     /**
      * @param \Illuminate\Support\MessageBag $errors
      *

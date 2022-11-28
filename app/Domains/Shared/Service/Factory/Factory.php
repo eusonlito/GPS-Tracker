@@ -67,7 +67,7 @@ class Factory
      */
     public function validate(array $data = []): ValidateFactoryAbstract
     {
-        return $this->new($this->classFactory('Validate'), $this->data($data));
+        return $this->new($this->classFactory('Validate'), $this->request, $this->data($data));
     }
 
     /**

@@ -4,22 +4,18 @@ namespace App\Domains\Shared\Validate;
 
 use BadMethodCallException;
 use ReflectionClass;
+use Illuminate\Http\Request;
 
 abstract class ValidateFactoryAbstract
 {
     /**
-     * @var array
-     */
-    protected array $data;
-
-    /**
+     * @param ?\Illuminate\Http\Request $request
      * @param array $data
      *
      * @return self
      */
-    final public function __construct(array $data)
+    final public function __construct(protected ?Request $request, protected array $data)
     {
-        $this->data = $data;
     }
 
     /**
@@ -29,7 +25,7 @@ abstract class ValidateFactoryAbstract
      */
     final protected function handle(string $class): array
     {
-        return (new $class($this->data))->handle();
+        return $class::new($this->request, $this->data)->handle();
     }
 
     /**
