@@ -139,7 +139,7 @@ class CheckPosition extends ActionAbstract
 
             'telegram' => $row->telegram,
 
-            'point' => $this->position->point,
+            'point' => AlarmNotificationModel::pointFromLatitudeLongitude($this->position->latitude, $this->position->longitude),
 
             'date_at' => $this->position->date_at,
             'date_utc_at' => $this->position->date_utc_at,

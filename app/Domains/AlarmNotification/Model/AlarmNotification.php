@@ -9,10 +9,12 @@ use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;
 use App\Domains\Trip\Model\Trip as TripModel;
 
 class AlarmNotification extends ModelAbstract
 {
+    use GisTrait;
     use TypeFormatTrait;
 
     /**
