@@ -296,7 +296,7 @@ class Server
     /**
      * @return void
      */
-    protected function gracefulShutdownHandler(): void
+    public function gracefulShutdownHandler(): void
     {
         $this->stop();
         exit;
