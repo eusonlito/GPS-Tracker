@@ -105,7 +105,7 @@ abstract class ValidatorAbstract
      */
     protected function exceptionMessage(ValidatorService $validator): string
     {
-        if ($this->request->wantsJson()) {
+        if ($this->request?->wantsJson()) {
             return $this->exceptionMessageJson($validator);
         }
 

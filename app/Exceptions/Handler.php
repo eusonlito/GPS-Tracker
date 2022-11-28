@@ -5,7 +5,8 @@ namespace App\Exceptions;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as HandlerVendor;
 use Illuminate\Http\JsonResponse;
-use Symfony\Component\HttpFoundation\Response as ResponseSymfony;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response as ResponseVendor;
 use App\Domains\Error\Controller\Index as ErrorController;
 use App\Services\Request\Logger;
 
@@ -64,52 +65,65 @@ class Handler extends HandlerVendor
     }
 
     /**
-     * @param mixed $request
+     * @param \Illuminate\Http\Request $request
      * @param \Throwable $e
      *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
-    public function render($request, Throwable $e)
+    public function render($request, Throwable $e): ResponseVendor|JsonResponse
     {
-        if (config('app.debug')) {
-            return $this->renderDebug($request, $e);
-        }
-
         $e = Response::fromException($e);
 
-        if ($request->ajax() || $request->expectsJson()) {
-            return $this->renderJson($e);
+        if ($request->ajax() || $request->wantsJson()) {
+            return $this->renderJson($request, $e);
+        }
+
+        if (config('app.debug')) {
+            return parent::render($request, $e);
         }
 
         return app(ErrorController::class)($e);
     }
 
     /**
-     * @param mixed $request
+     * @param \Illuminate\Http\Request $request
      * @param \Throwable $e
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    protected function renderDebug($request, Throwable $e): ResponseSymfony
+    protected function renderJson(Request $request, Throwable $e): JsonResponse
     {
-        if ($request->ajax() || $request->expectsJson()) {
-            return $this->renderJson(Response::fromException($e));
+        return response()->json($this->renderJsonResponse($request, $e), $e->getCode());
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Throwable $e
+     *
+     * @return array
+     */
+    protected function renderJsonResponse(Request $request, Throwable $e): array
+    {
+        $data = $this->renderJsonResponseData($e);
+
+        if ($request->wantsJson()) {
+            $data['message'] = json_decode($data['message']);
         }
 
-        return parent::render($request, $e);
+        return $data;
     }
 
     /**
      * @param \Throwable $e
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return array
      */
-    protected function renderJson(Throwable $e): JsonResponse
+    protected function renderJsonResponseData(Throwable $e): array
     {
-        return response()->json([
+        return [
             'code' => $e->getCode(),
             'status' => $e->getStatus(),
             'message' => $e->getMessage(),
-        ], $e->getCode());
+        ];
     }
 }
