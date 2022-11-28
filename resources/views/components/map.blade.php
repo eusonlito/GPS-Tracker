@@ -1,4 +1,4 @@
-<app-map class="map" data-map data-map-id="{{ $trip->id }}" data-map-positions="{{ $positionsJson }}" data-map-alarms="{{ $alarmsJson }}" data-map-positions-url="{{ route('trip.update.position', $trip->id) }}" {{ $attributes }}>
+<app-map class="map" data-map data-map-id="{{ $trip->id }}" data-map-positions="{{ $positionsJson }}" data-map-alarms="{{ $alarmsJson }}" data-map-notifications="{{ $notificationsJson }}" data-map-positions-url="{{ route('trip.update.position', $trip->id) }}" {{ $attributes }}>
     <div class="map-map {{ $sidebarHidden ? 'w-full' : '' }}">
         <div class="map-map-render" data-map-render></div>
     </div>

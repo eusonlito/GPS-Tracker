@@ -44,6 +44,14 @@ import Feather from './feather';
         alarms = [];
     }
 
+    let notifications = [];
+
+    try {
+        notifications = JSON.parse(element.dataset.mapNotifications || '[]');
+    } catch (e) {
+        notifications = [];
+    }
+
     const ucfirst = function(string) {
         return string[0].toUpperCase() + string.slice(1);
     };
@@ -67,12 +75,15 @@ import Feather from './feather';
     };
 
     const alarmAdd = function (alarm) {
-        const type = alarm.type;
+        if (!['fence-in', 'fence-out'].includes(alarm.type)) {
+            return;
+        }
+
         const lat = parseFloat(alarm.config.latitude);
         const lng = parseFloat(alarm.config.longitude);
         const radius = parseFloat(alarm.config.radius);
 
-        if (!type || isNaN(lat) || isNaN(lng) || isNaN(radius) || !lat || !lng || !radius) {
+        if (isNaN(lat) || isNaN(lng) || isNaN(radius) || !lat || !lng || !radius) {
             return;
         }
 
@@ -80,8 +91,25 @@ import Feather from './feather';
             radius: radius * 1000,
             fillOpacity: 0.05,
             opacity: 0.3,
-            color: (type === 'fence-in') ? 'red' : 'green',
-            fillColor: (type === 'fence-in') ? 'red' : 'green',
+            color: (alarm.type === 'fence-in') ? 'red' : 'green',
+            fillColor: (alarm.type === 'fence-in') ? 'red' : 'green',
+        }).addTo(map);
+    };
+
+    const notificationAdd = function (notification) {
+        const lat = parseFloat(notification.latitude);
+        const lng = parseFloat(notification.longitude);
+
+        if (!notification.type || isNaN(lat) || isNaN(lng) || !lat || !lng) {
+            return;
+        }
+
+        new L.Marker({ lat, lng }, {
+            icon: L.icon({
+                iconUrl: '/build/images/map-notification-' + notification.type + '.svg',
+                iconSize: [30, 42],
+                iconAnchor: [15, 42],
+            })
         }).addTo(map);
     };
 
@@ -169,6 +197,10 @@ import Feather from './feather';
 
     alarms.forEach(function (alarm) {
         alarmAdd(alarm);
+    });
+
+    notifications.forEach(function (notification) {
+        notificationAdd(notification);
     });
 
     positions.forEach(function (point) {

@@ -144,13 +144,12 @@ class Index extends ControllerAbstract
      */
     protected function alarmNotifications(): Collection
     {
-        if ($this->devices()->isEmpty()) {
+        if ($this->trip() === null) {
             return collect();
         }
 
         return $this->cache[__FUNCTION__] ??= AlarmNotificationModel::query()
-            ->byDeviceIds($this->devices()->pluck('id')->all())
-            ->whereClosedAt()
+            ->byTripId($this->trip()->id)
             ->withAlarm()
             ->withDevice()
             ->withPosition()

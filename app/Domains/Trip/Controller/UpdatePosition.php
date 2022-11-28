@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
+use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\Trip\Model\Trip as Model;
 
 class UpdatePosition extends UpdateAbstract
@@ -33,6 +34,7 @@ class UpdatePosition extends UpdateAbstract
         return $this->page('trip.update-position', [
             'positions' => $this->positions(),
             'alarms' => $this->alarms(),
+            'notifications' => $this->notifications(),
         ]);
     }
 
@@ -83,6 +85,17 @@ class UpdatePosition extends UpdateAbstract
         return AlarmModel::query()
             ->byDeviceId($this->row->device->id)
             ->enabled()
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    protected function notifications(): Collection
+    {
+        return AlarmNotificationModel::query()
+            ->byTripId($this->row->id)
             ->list()
             ->get();
     }

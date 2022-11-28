@@ -20,7 +20,7 @@
 
 @else
 
-@each ('domains.alarm-notification.molecules.alert', $alarm_notifications, 'row')
+@each ('domains.alarm-notification.molecules.alert', $alarm_notifications->whereNull('closed_at'), 'row')
 
 <form method="GET">
     <div class="lg:flex lg:space-x-4">
@@ -63,7 +63,7 @@
     </div>
 </form>
 
-<x-map :trip="$trip" :positions="$positions" :alarms="$alarms" data-map-show-last="true"></x-map>
+<x-map :trip="$trip" :positions="$positions" :alarms="$alarms" :notifications="$alarm_notifications" data-map-show-last="true"></x-map>
 
 @endif
 

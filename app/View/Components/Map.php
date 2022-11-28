@@ -14,6 +14,7 @@ class Map extends Component
      * @param \App\Domains\Trip\Model\Trip $trip
      * @param \Illuminate\Support\Collection $positions
      * @param ?\Illuminate\Support\Collection $alarms = null
+     * @param ?\Illuminate\Support\Collection $notifications = null
      * @param bool $sidebarHidden = false
      *
      * @return self
@@ -22,6 +23,7 @@ class Map extends Component
         readonly public TripModel $trip,
         readonly public Collection $positions,
         readonly public ?Collection $alarms = null,
+        readonly public ?Collection $notifications = null,
         readonly public bool $sidebarHidden = false,
     ) {
     }
@@ -38,6 +40,7 @@ class Map extends Component
         return view('components.map', [
             'positionsJson' => $this->positionsJson(),
             'alarmsJson' => $this->alarmsJson(),
+            'notificationsJson' => $this->notificationsJson(),
         ]);
     }
 
@@ -69,8 +72,14 @@ class Map extends Component
      */
     protected function alarmsJson(): ?string
     {
-        return $this->alarms?->whereIn('type', ['fence-in', 'fence-out'])
-            ->values()
-            ->toJson();
+        return $this->alarms->toJson();
+    }
+
+    /**
+     * @return ?string
+     */
+    protected function notificationsJson(): ?string
+    {
+        return $this->notifications->map->only('id', 'type', 'date_at', 'latitude', 'longitude')->toJson();
     }
 }
