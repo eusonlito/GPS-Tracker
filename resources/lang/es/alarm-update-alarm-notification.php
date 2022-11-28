@@ -1,5 +1,5 @@
 <?php return [
-    'alarm' => 'Alarma',
+    'actions' => 'Acciones',
     'closed_at' => 'Cerrada',
     'config' => 'Configuración',
     'created_at' => 'Creada',

@@ -17,7 +17,7 @@ class UpdateDefault extends ControllerAbstract
     {
         $this->row($id);
 
-        $this->actionCall('execute');
+        $this->actionCall('updateDefault');
 
         if ($this->request->wantsJson()) {
             return $this->responseJson();
@@ -29,7 +29,7 @@ class UpdateDefault extends ControllerAbstract
     /**
      * @return \App\Domains\Timezone\Model\Timezone
      */
-    protected function execute(): Model
+    protected function updateDefault(): Model
     {
         return $this->action()->updateDefault();
     }

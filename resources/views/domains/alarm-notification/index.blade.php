@@ -20,6 +20,7 @@
                 <th class="w-1">{{ __('alarm-notification-index.created_at') }}</th>
                 <th class="w-1">{{ __('alarm-notification-index.telegram') }}</th>
                 <th class="w-1">{{ __('alarm-notification-index.closed_at') }}</th>
+                <th class="w-1">{{ __('alarm-notification-index.actions') }}</th>
             </tr>
         </thead>
 
@@ -55,11 +56,20 @@
                     <a href="{{ route('alarm-notification.update.closed-at', $row->id) }}" class="block">@status(false)</a>
                     @endif
                 </td>
+                <td class="w-1">
+                    <a href="{{ route('alarm-notification.update', $row->id) }}" data-toggle="modal" data-target="#delete-modal" data-delete-modal-one class="text-danger">
+                        @icon('trash', 'w-4 h-4')
+                    </a>
+                </td>
             </tr>
 
             @endforeach
         </tbody>
     </table>
 </div>
+
+@include ('molecules.delete-modal', [
+    'action' => 'delete'
+])
 
 @stop

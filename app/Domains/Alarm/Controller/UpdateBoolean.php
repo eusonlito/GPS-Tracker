@@ -16,13 +16,13 @@ class UpdateBoolean extends ControllerAbstract
     {
         $this->row($id);
 
-        return $this->json($this->fractal($this->actionCall('execute')));
+        return $this->json($this->fractal($this->actionCall('updateBoolean')));
     }
 
     /**
      * @return \App\Domains\Alarm\Model\Alarm
      */
-    protected function execute(): Model
+    protected function updateBoolean(): Model
     {
         return $this->action()->updateBoolean();
     }

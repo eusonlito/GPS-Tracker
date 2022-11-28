@@ -16,7 +16,7 @@ class UpdateClosedAt extends ControllerAbstract
     {
         $this->row($id);
 
-        $this->actionCall('execute');
+        $this->actionCall('updateClosedAt');
 
         if ($this->request->wantsJson()) {
             return $this->json($this->factory()->fractal('simple', $this->row));
@@ -28,7 +28,7 @@ class UpdateClosedAt extends ControllerAbstract
     /**
      * @return void
      */
-    protected function execute(): void
+    protected function updateClosedAt(): void
     {
         $this->factory()->action()->updateClosedAt();
     }
