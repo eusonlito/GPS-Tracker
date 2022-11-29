@@ -22,6 +22,14 @@ class Data
     protected bool $all = true;
 
     /**
+     * @return self
+     */
+    public static function new(): self
+    {
+        return new static(...func_get_args());
+    }
+
+    /**
      * @param array $data
      * @param array $rules
      * @param bool $all = true

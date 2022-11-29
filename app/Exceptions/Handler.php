@@ -5,7 +5,6 @@ namespace App\Exceptions;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as HandlerVendor;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response as ResponseVendor;
 use App\Domains\Error\Controller\Index as ErrorController;
 use App\Services\Request\Logger;
@@ -72,10 +71,10 @@ class Handler extends HandlerVendor
      */
     public function render($request, Throwable $e): ResponseVendor|JsonResponse
     {
-        $e = Response::fromException($e);
+        $e = Response::new($e)->exception();
 
         if ($request->ajax() || $request->wantsJson()) {
-            return $this->renderJson($request, $e);
+            return $this->renderJson($e);
         }
 
         if (config('app.debug')) {
@@ -86,31 +85,13 @@ class Handler extends HandlerVendor
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
      * @param \Throwable $e
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function renderJson(Request $request, Throwable $e): JsonResponse
+    protected function renderJson(Throwable $e): JsonResponse
     {
-        return response()->json($this->renderJsonResponse($request, $e), $e->getCode());
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Throwable $e
-     *
-     * @return array
-     */
-    protected function renderJsonResponse(Request $request, Throwable $e): array
-    {
-        $data = $this->renderJsonResponseData($e);
-
-        if ($request->wantsJson()) {
-            $data['message'] = json_decode($data['message']);
-        }
-
-        return $data;
+        return response()->json($this->renderJsonData($e), $e->getCode());
     }
 
     /**
@@ -118,12 +99,13 @@ class Handler extends HandlerVendor
      *
      * @return array
      */
-    protected function renderJsonResponseData(Throwable $e): array
+    protected function renderJsonData(Throwable $e): array
     {
         return [
             'code' => $e->getCode(),
             'status' => $e->getStatus(),
             'message' => $e->getMessage(),
+            'details' => $e->getDetails(),
         ];
     }
 }

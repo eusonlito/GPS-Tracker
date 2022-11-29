@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator as ValidatorService;
+use App\Exceptions\ValidatorException;
 
 abstract class ValidatorAbstract
 {
@@ -57,7 +58,7 @@ abstract class ValidatorAbstract
 
         $this->check($validator);
 
-        return (new Data($validator->validated(), $this->rules()))->get();
+        return Data::new($validator->validated(), $this->rules())->get();
     }
 
     /**
@@ -95,7 +96,12 @@ abstract class ValidatorAbstract
      */
     protected function throwException(ValidatorService $validator): void
     {
-        throw new Exception($this->exceptionMessage($validator), null, null, $this->exceptionStatus());
+        throw new ValidatorException(
+            message: $this->exceptionMessage($validator),
+            code: $this->exceptionCode(),
+            status: $this->exceptionStatus(),
+            details: $this->exceptionDetails($validator)
+        );
     }
 
     /**
@@ -105,29 +111,41 @@ abstract class ValidatorAbstract
      */
     protected function exceptionMessage(ValidatorService $validator): string
     {
-        if ($this->request?->wantsJson()) {
-            return $this->exceptionMessageJson($validator);
-        }
+        return implode("\n", array_merge([], ...array_values($validator->errors()->messages())));
+    }
 
-        return $this->exceptionMessageString($validator);
+    /**
+     * @return int
+     */
+    protected function exceptionCode(): int
+    {
+        return 422;
+    }
+
+    /**
+     * @return string
+     */
+    protected function exceptionStatus(): string
+    {
+        return 'validator';
     }
 
     /**
      * @param \Illuminate\Validation\Validator $validator
      *
-     * @return string
+     * @return array
      */
-    protected function exceptionMessageJson(ValidatorService $validator): string
+    protected function exceptionDetails(ValidatorService $validator): array
     {
         $failed = $validator->failed();
 
         $response = [];
 
         foreach ($validator->errors()->messages() as $key => $messages) {
-            $response[] = $this->exceptionMessageJsonError($key, $failed[$key] ?? [], $messages);
+            $response[] = $this->exceptionDetailsMessages($key, $failed[$key] ?? [], $messages);
         }
 
-        return json_encode($response);
+        return $response;
     }
 
     /**
@@ -137,30 +155,11 @@ abstract class ValidatorAbstract
      *
      * @return array
      */
-    protected function exceptionMessageJsonError(string $key, array $codes, array $messages): array
+    protected function exceptionDetailsMessages(string $key, array $codes, array $messages): array
     {
         return [
             'key' => $key,
-            'codes' => array_map('str_slug', array_keys($codes)),
-            'messages' => $messages,
+            'messages' => array_combine(array_map('str_slug', array_keys($codes)), $messages),
         ];
-    }
-
-    /**
-     * @param \Illuminate\Validation\Validator $validator
-     *
-     * @return string
-     */
-    protected function exceptionMessageString(ValidatorService $validator): string
-    {
-        return implode("\n", array_merge([], ...array_values($validator->errors()->messages())));
-    }
-
-    /**
-     * @return string
-     */
-    protected function exceptionStatus(): string
-    {
-        return 'validator';
     }
 }

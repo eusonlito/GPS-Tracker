@@ -12,131 +12,155 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 class Response
 {
     /**
+     * @return self
+     */
+    public static function new(): self
+    {
+        return new static(...func_get_args());
+    }
+
+    /**
      * @param \Throwable $e
      *
-     * @return \App\Exceptions\GenericException
+     * @return self
      */
-    public static function fromException(Throwable $e): GenericException
+    public function __construct(protected Throwable $e)
     {
-        if ($e instanceof GenericException) {
-            $class = $e::class;
+        if ($this->e instanceof GenericException) {
+            $class = $this->e::class;
         } else {
             $class = GenericException::class;
         }
-
-        return new $class(static::message($e), static::code($e), $e, static::status($e));
     }
 
     /**
-     * @param \Throwable $e
-     *
-     * @return string
+     * @return \App\Exceptions\GenericException
      */
-    protected static function message(Throwable $e): string
+    public function exception(): GenericException
     {
-        if (config('app.debug')) {
-            return $e->getMessage();
+        $class = $this->class();
+
+        return new $class($this->message(), $this->code(), $this->e, $this->status(), $this->e?->getDetails());
+    }
+
+    /**
+     * @return self
+     */
+    protected function class(): string
+    {
+        if ($this->e instanceof GenericException) {
+            return $this->e::class;
         }
 
-        if ($e instanceof AuthenticationExceptionVendor) {
+        return GenericException::class;
+    }
+
+    /**
+     * @return string
+     */
+    protected function message(): string
+    {
+        $message = $this->e->getMessage();
+
+        if (config('app.debug')) {
+            return $message;
+        }
+
+        if ($this->e instanceof AuthenticationExceptionVendor) {
             return __('user-auth.error.empty');
         }
 
-        if ($e instanceof AuthenticationException) {
-            return $e->getMessage() ?: __('user-auth.error.auth');
+        if ($this->e instanceof AuthenticationException) {
+            return $message ?: __('user-auth.error.auth');
         }
 
-        if ($e instanceof NotFoundHttpException) {
-            return $e->getMessage() ?: __('common.error.not-found');
+        if ($this->e instanceof NotFoundHttpException) {
+            return $message ?: __('common.error.not-found');
         }
 
-        if ($e instanceof ModelNotFoundException) {
-            return $e->getMessage() ?: __('common.error.not-found-model');
+        if ($this->e instanceof ModelNotFoundException) {
+            return $message ?: __('common.error.not-found-model');
         }
 
-        if ($e instanceof MethodNotAllowedHttpException) {
+        if ($this->e instanceof MethodNotAllowedHttpException) {
             return __('common.error.method-not-allowed');
         }
 
-        if ($e instanceof QueryException) {
+        if ($this->e instanceof QueryException) {
             return __('common.error.query');
         }
 
-        if (static::isExceptionSystem($e)) {
+        if ($this->isExceptionSystem()) {
             return __('common.error.system');
         }
 
-        return $e->getMessage();
+        return $message;
     }
 
     /**
-     * @param \Throwable $e
-     *
      * @return int
      */
-    protected static function code(Throwable $e): int
+    protected function code(): int
     {
-        if (static::isExceptionNotFound($e)) {
+        if ($this->isExceptionNotFound()) {
             return 404;
         }
 
-        if (static::isExceptionAuth($e)) {
+        if ($this->isExceptionAuth()) {
             return 401;
         }
 
-        if (method_exists($e, 'getStatusCode')) {
-            $code = (int)$e->getStatusCode();
+        if (method_exists($this->e, 'getStatusCode')) {
+            $code = (int)$this->e->getStatusCode();
         } else {
-            $code = (int)$e->getCode();
+            $code = (int)$this->e->getCode();
         }
 
         return (($code >= 400) && ($code < 600)) ? $code : 500;
     }
 
     /**
-     * @param \Throwable $e
-     *
      * @return string
      */
-    protected static function status(Throwable $e): string
+    protected function status(): string
     {
-        if (method_exists($e, 'getStatus') && ($status = $e->getStatus())) {
+        if (method_exists($this->e, 'getStatus') && ($status = $this->e->getStatus())) {
             return $status;
         }
 
-        if ($e instanceof AuthenticationExceptionVendor) {
+        if ($this->e instanceof AuthenticationExceptionVendor) {
             return 'user_auth';
         }
 
-        if ($e instanceof AuthenticationException) {
+        if ($this->e instanceof AuthenticationException) {
             return 'user_error';
         }
 
-        if ($e instanceof NotFoundHttpException) {
+        if ($this->e instanceof NotFoundHttpException) {
             return 'not_found';
         }
 
-        if ($e instanceof ModelNotFoundException) {
+        if ($this->e instanceof ModelNotFoundException) {
             return 'not_available';
         }
 
-        if ($e instanceof MethodNotAllowedHttpException) {
+        if ($this->e instanceof MethodNotAllowedHttpException) {
             return 'method_not_allowed';
         }
 
-        if ($e instanceof NotAllowedException) {
+        if ($this->e instanceof NotAllowedException) {
             return 'not_allowed';
         }
 
-        if ($e instanceof ValidatorException) {
+        if ($this->e instanceof ValidatorException) {
             return 'validator_error';
         }
 
-        if ($e instanceof QueryException) {
+        if ($this->e instanceof QueryException) {
             return 'query_error';
         }
 
-        if (static::isExceptionSystem($e)) {
+        if ($this->isExceptionSystem()) {
             return 'system_error';
         }
 
@@ -144,34 +168,28 @@ class Response
     }
 
     /**
-     * @param \Throwable $e
-     *
      * @return bool
      */
-    protected static function isExceptionNotFound(Throwable $e): bool
+    protected function isExceptionNotFound(): bool
     {
-        return ($e instanceof ModelNotFoundException)
-            || ($e instanceof NotFoundHttpException);
+        return ($this->e instanceof ModelNotFoundException)
+            || ($this->e instanceof NotFoundHttpException);
     }
 
     /**
-     * @param \Throwable $e
-     *
      * @return bool
      */
-    protected static function isExceptionAuth(Throwable $e): bool
+    protected function isExceptionAuth(): bool
     {
-        return ($e instanceof AuthenticationExceptionVendor)
-            || ($e instanceof AuthenticationException);
+        return ($this->e instanceof AuthenticationExceptionVendor)
+            || ($this->e instanceof AuthenticationException);
     }
 
     /**
-     * @param \Throwable $e
-     *
      * @return bool
      */
-    protected static function isExceptionSystem(Throwable $e): bool
+    protected function isExceptionSystem(): bool
     {
-        return helper()->isExceptionSystem($e);
+        return helper()->isExceptionSystem();
     }
 }
