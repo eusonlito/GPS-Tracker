@@ -7,8 +7,9 @@
     'pid' => 'PID',
     'port' => 'Puerto',
     'protocol' => 'Protocolo',
+    'restart' => 'Iniciar/Reiniciar',
     'select' => 'Seleccionar',
     'server-success' => 'Los Sockets han sido iniciados correctamente',
-    'start' => 'Iniciar/Reiniciar',
+    'start' => 'Inicio',
     'time' => 'Tiempo',
 ];

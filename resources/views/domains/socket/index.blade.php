@@ -68,7 +68,7 @@
     <div class="box p-5 mt-5">
         <div class="text-right">
             <button type="submit" name="_action" value="killPorts" class="btn btn-outline-danger mr-5">{{ __('socket-index.kill') }}</button>
-            <button type="submit" name="_action" value="serverPorts" class="btn btn-primary mr-5">{{ __('socket-index.start') }}</button>
+            <button type="submit" name="_action" value="serverPorts" class="btn btn-primary mr-5">{{ __('socket-index.restart') }}</button>
         </div>
     </div>
 </form>
