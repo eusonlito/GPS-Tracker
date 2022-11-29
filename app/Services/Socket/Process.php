@@ -42,7 +42,7 @@ class Process
      */
     protected function listExec(): string
     {
-        return trim((string)shell_exec('ps -ef | grep "artisan socket:server" | grep -v "grep"'));
+        return trim((string)shell_exec('ps -ef | grep "artisan socket:server " | grep "port=" | grep -v "grep"'));
     }
 
     /**
