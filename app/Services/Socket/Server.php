@@ -122,7 +122,7 @@ class Server
             }
 
             foreach ($sockets as $socket) {
-                $this->readClient($socket, $handler);
+                $this->clientRead($socket, $handler);
             }
         } while (true);
     }
@@ -156,12 +156,23 @@ class Server
     }
 
     /**
+     * @return void
+     */
+    protected function clientAccept(): void
+    {
+        $this->clients[] = (object)[
+            'socket' => socket_accept($this->socket),
+            'timestamp' => time(),
+        ];
+    }
+
+    /**
      * @param \Socket $socket
      * @param \Closure $handler
      *
      * @return void
      */
-    protected function readClient(Socket $socket, Closure $handler): void
+    protected function clientRead(Socket $socket, Closure $handler): void
     {
         $client = $this->clientBySocket($socket);
 
@@ -206,17 +217,6 @@ class Server
     protected function listen(): void
     {
         socket_listen($this->socket);
-    }
-
-    /**
-     * @return void
-     */
-    protected function clientAccept(): void
-    {
-        $this->clients[] = (object)[
-            'socket' => socket_accept($this->socket),
-            'timestamp' => time(),
-        ];
     }
 
     /**
