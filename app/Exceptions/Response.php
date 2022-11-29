@@ -40,7 +40,7 @@ class Response
     {
         $class = $this->class();
 
-        return new $class($this->message(), $this->code(), $this->e, $this->status(), $this->e?->getDetails());
+        return new $class($this->message(), $this->code(), $this->parent(), $this->status(), $this->details());
     }
 
     /**
@@ -120,6 +120,18 @@ class Response
     }
 
     /**
+     * @return ?\Throwable
+     */
+    protected function parent(): ?Throwable
+    {
+        if ($this->e instanceof GenericException) {
+            return null;
+        }
+
+        return $this->e;
+    }
+
+    /**
      * @return string
      */
     protected function status(): string
@@ -168,6 +180,18 @@ class Response
     }
 
     /**
+     * @return ?array
+     */
+    protected function details(): ?array
+    {
+        if (method_exists($this->e, 'getDetails')) {
+            return $this->e->getDetails();
+        }
+
+        return null;
+    }
+
+    /**
      * @return bool
      */
     protected function isExceptionNotFound(): bool
@@ -190,6 +214,6 @@ class Response
      */
     protected function isExceptionSystem(): bool
     {
-        return helper()->isExceptionSystem();
+        return helper()->isExceptionSystem($this->e);
     }
 }
