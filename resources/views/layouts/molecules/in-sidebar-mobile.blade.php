@@ -49,7 +49,7 @@
         </li>
 
         <li>
-            <a href="{{ route('user.profile') }}" class="menu {{ ($ROUTE === 'user.profile') ? 'menu--active' : '' }}">
+            <a href="{{ route('user.profile') }}" class="menu {{ str_starts_with($ROUTE, 'user.profile') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('user')</div>
                 <div class="menu__title">{{ __('in-sidebar.profile') }}</div>
             </a>
@@ -65,7 +65,7 @@
         </li>
 
         <li>
-            <a href="{{ route('user.index') }}" class="menu {{ (str_starts_with($ROUTE, 'user.') && ($ROUTE !== 'user.profile')) ? 'menu--active' : '' }}">
+            <a href="{{ route('user.index') }}" class="menu {{ (str_starts_with($ROUTE, 'user.') && (str_starts_with($ROUTE, 'user.profile') === false)) ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('users')</div>
                 <div class="menu__title">{{ __('in-sidebar.users') }}</div>
             </a>
