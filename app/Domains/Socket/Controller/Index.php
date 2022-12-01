@@ -4,7 +4,7 @@ namespace App\Domains\Socket\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Services\Socket\Process as SocketProcess;
+use App\Services\Server\Process as ServerProcess;
 
 class Index extends ControllerAbstract
 {
@@ -20,7 +20,7 @@ class Index extends ControllerAbstract
         $this->meta('title', __('socket-index.meta-title'));
 
         return $this->page('socket.index', [
-            'process' => SocketProcess::new()->list(),
+            'process' => ServerProcess::new()->list(),
             'sockets' => config('sockets'),
         ]);
     }

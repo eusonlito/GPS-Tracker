@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Services\SocketWeb;
+namespace App\Services\Server\Http;
 
 use Closure;
 use stdClass;

@@ -6,7 +6,7 @@ use App\Services\Filesystem\Directory;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\ProtocolFactory;
 use App\Services\Protocol\Resource\ResourceAbstract;
-use App\Services\SocketWeb\Server as SocketWebServer;
+use App\Services\Server\ServerAbstract;
 
 class Server extends ActionAbstract
 {
@@ -21,9 +21,9 @@ class Server extends ActionAbstract
     protected ProtocolAbstract $protocol;
 
     /**
-     * @var \App\Services\SocketWeb\Server
+     * @var \App\Services\Server\ServerAbstract
      */
-    protected SocketWebServer $socket;
+    protected ServerAbstract $server;
 
     /**
      * @return void
@@ -31,14 +31,14 @@ class Server extends ActionAbstract
     public function handle(): void
     {
         $this->debug();
-        $this->socket();
+        $this->protocol();
+        $this->server();
         $this->kill();
 
         if ($this->isBusy()) {
             return;
         }
 
-        $this->protocol();
         $this->serve();
     }
 
@@ -47,33 +47,7 @@ class Server extends ActionAbstract
      */
     protected function debug(): void
     {
-        $this->debug = app('configuration')->bool('socket_debug');
-    }
-
-    /**
-     * @return void
-     */
-    protected function socket(): void
-    {
-        $this->socket = SocketWebServer::new($this->data['port']);
-    }
-
-    /**
-     * @return void
-     */
-    protected function kill(): void
-    {
-        if ($this->data['reset']) {
-            $this->socket->kill();
-        }
-    }
-
-    /**
-     * @return bool
-     */
-    protected function isBusy(): bool
-    {
-        return $this->socket->isBusy();
+        $this->debug = app('configuration')->bool('server_debug');
     }
 
     /**
@@ -87,9 +61,35 @@ class Server extends ActionAbstract
     /**
      * @return void
      */
+    protected function server(): void
+    {
+        $this->server = $this->protocol->server($this->data['port']);
+    }
+
+    /**
+     * @return void
+     */
+    protected function kill(): void
+    {
+        if ($this->data['reset']) {
+            $this->server->kill();
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isBusy(): bool
+    {
+        return $this->server->isBusy();
+    }
+
+    /**
+     * @return void
+     */
     protected function serve(): void
     {
-        $this->socket->accept(fn (string $body) => $this->store($body));
+        $this->server->accept(fn (string $body) => $this->store($body));
     }
 
     /**
@@ -112,43 +112,6 @@ class Server extends ActionAbstract
         }
 
         return $resources;
-    }
-
-    /**
-     * @param string $body
-     *
-     * @return void
-     */
-    protected function logDebug(string $body): void
-    {
-        if ($this->debug) {
-            $this->log($body, '-debug');
-        }
-    }
-
-    /**
-     * @param string $body
-     * @param string $suffix = ''
-     *
-     * @return void
-     */
-    protected function log(string $body, string $suffix = ''): void
-    {
-        $file = $this->logFile($suffix);
-
-        Directory::create($file, true);
-
-        file_put_contents($file, $this->logContent($body), LOCK_EX | FILE_APPEND);
-    }
-
-    /**
-     * @param string $suffix = ''
-     *
-     * @return string
-     */
-    protected function logFile(string $suffix = ''): string
-    {
-        return base_path('storage/logs/socket/'.date('Y-m-d').'/'.$this->data['port'].$suffix.'.log');
     }
 
     /**
@@ -192,5 +155,42 @@ class Server extends ActionAbstract
             'date_utc_at' => $resource->datetime(),
             'timezone' => $resource->timezone(),
         ];
+    }
+
+    /**
+     * @param string $body
+     *
+     * @return void
+     */
+    protected function logDebug(string $body): void
+    {
+        if ($this->debug) {
+            $this->log($body, '-debug');
+        }
+    }
+
+    /**
+     * @param string $body
+     * @param string $suffix = ''
+     *
+     * @return void
+     */
+    protected function log(string $body, string $suffix = ''): void
+    {
+        $file = $this->logFile($suffix);
+
+        Directory::create($file, true);
+
+        file_put_contents($file, $this->logContent($body), LOCK_EX | FILE_APPEND);
+    }
+
+    /**
+     * @param string $suffix = ''
+     *
+     * @return string
+     */
+    protected function logFile(string $suffix = ''): string
+    {
+        return base_path('storage/logs/socket/'.date('Y-m-d').'/'.$this->data['port'].$suffix.'.log');
     }
 }

@@ -1,12 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace App\Services\SocketWeb;
+namespace App\Services\Server\Socket;
 
 use Closure;
+use Socket;
 use stdClass;
 use Throwable;
+use App\Services\Server\ServerAbstract;
 
-class Server
+class Server extends ServerAbstract
 {
     /**
      * @const int
@@ -14,65 +16,14 @@ class Server
     protected const SOCKET_TIMEOUT = 600;
 
     /**
-     * @var ?resource
+     * @var ?\Socket
      */
-    protected $socket;
+    protected ?Socket $socket;
 
     /**
      * @var array
      */
     protected array $clients = [];
-
-    /**
-     * @return self
-     */
-    public static function new(): self
-    {
-        return new static(...func_get_args());
-    }
-
-    /**
-     * @param int $port
-     *
-     * @return self
-     */
-    public function __construct(protected int $port)
-    {
-    }
-
-    /**
-     * @return void
-     */
-    public function kill(): void
-    {
-        if ($this->isBusy() === false) {
-            return;
-        }
-
-        shell_exec('fuser -k -SIGINT '.$this->port.'/tcp > /dev/null 2>&1');
-
-        $count = 0;
-
-        while (($count < 5) && $this->isBusy()) {
-            sleep(++$count);
-        }
-    }
-
-    /**
-     * @return bool
-     */
-    public function isBusy(): bool
-    {
-        try {
-            $fp = fsockopen('0.0.0.0', $this->port);
-        } catch (Throwable $e) {
-            return false;
-        }
-
-        fclose($fp);
-
-        return true;
-    }
 
     /**
      * @param \Closure $handler
@@ -82,6 +33,9 @@ class Server
     public function accept(Closure $handler): void
     {
         $this->create();
+        $this->reuse();
+        $this->bind();
+        $this->listen();
 
         set_time_limit(0);
 
@@ -134,7 +88,7 @@ class Server
 
         array_push($sockets, $this->socket);
 
-        return intval(stream_select($sockets, $write, $except, null));
+        return intval(socket_select($sockets, $write, $except, null));
     }
 
     /**
@@ -157,18 +111,18 @@ class Server
     protected function clientAccept(): void
     {
         $this->clients[] = (object)[
-            'socket' => stream_socket_accept($this->socket),
+            'socket' => socket_accept($this->socket),
             'timestamp' => time(),
         ];
     }
 
     /**
-     * @param resource $socket
+     * @param \Socket $socket
      * @param \Closure $handler
      *
      * @return void
      */
-    protected function clientRead($socket, Closure $handler): void
+    protected function clientRead(Socket $socket, Closure $handler): void
     {
         $client = $this->clientBySocket($socket);
 
@@ -176,7 +130,11 @@ class Server
             return;
         }
 
-        Client::new($client, $handler)->handle();
+        $response = Client::new($client, $handler)->handle();
+
+        if ($response === false) {
+            $this->close($client->socket);
+        }
     }
 
     /**
@@ -184,15 +142,39 @@ class Server
      */
     protected function create(): void
     {
-        $this->socket = stream_socket_server('tcp://0.0.0.0:'.$this->port);
+        $this->socket = socket_create(AF_INET, SOCK_STREAM, 0);
     }
 
     /**
-     * @param resource $socket
+     * @return void
+     */
+    protected function reuse(): void
+    {
+        socket_set_option($this->socket, SOL_SOCKET, SO_REUSEADDR, 1);
+    }
+
+    /**
+     * @return void
+     */
+    protected function bind(): void
+    {
+        socket_bind($this->socket, '0.0.0.0', $this->port);
+    }
+
+    /**
+     * @return void
+     */
+    protected function listen(): void
+    {
+        socket_listen($this->socket);
+    }
+
+    /**
+     * @param \Socket $socket
      *
      * @return ?\stdClass
      */
-    protected function clientBySocket($socket): ?stdClass
+    protected function clientBySocket(Socket $socket): ?stdClass
     {
         foreach ($this->clients as $client) {
             if ($client->socket === $socket) {
@@ -236,15 +218,15 @@ class Server
     }
 
     /**
-     * @param ?resource &$socket
+     * @param ?\Socket &$socket
      *
      * @return void
      */
-    protected function close(&$socket): void
+    protected function close(?Socket &$socket): void
     {
         if ($socket) {
             try {
-                fclose($socket);
+                socket_close($socket);
             } catch (Throwable $e) {
             }
         }

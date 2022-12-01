@@ -7,6 +7,7 @@ use App\Services\Protocol\H02\Parser\Location as LocationParser;
 use App\Services\Protocol\H02\Parser\Sms as SmsParser;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\Resource\ResourceAbstract;
+use App\Services\Server\Socket\Server;
 
 class Manager extends ProtocolAbstract
 {
@@ -33,6 +34,16 @@ class Manager extends ProtocolAbstract
     public function name(): string
     {
         return 'H02';
+    }
+
+    /**
+     * @param int $port
+     *
+     * @return \App\Services\Server\Socket\Server
+     */
+    public function server(int $port): Server
+    {
+        return Server::new($port);
     }
 
     /**

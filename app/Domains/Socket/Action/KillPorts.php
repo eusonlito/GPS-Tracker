@@ -3,17 +3,31 @@
 namespace App\Domains\Socket\Action;
 
 use stdClass;
-use App\Services\Socket\Process as SocketProcess;
-use App\Services\Socket\Server as SocketServer;
+use App\Services\Protocol\ProtocolFactory;
+use App\Services\Server\Process as ServerProcess;
 
 class KillPorts extends ActionAbstract
 {
+    /**
+     * @var array
+     */
+    protected array $config;
+
     /**
      * @return void
      */
     public function handle(): void
     {
+        $this->config();
         $this->iterate();
+    }
+
+    /**
+     * @return void
+     */
+    protected function config(): void
+    {
+        $this->config = config('sockets');
     }
 
     /**
@@ -21,7 +35,7 @@ class KillPorts extends ActionAbstract
      */
     protected function iterate(): void
     {
-        foreach (SocketProcess::new()->list() as $process) {
+        foreach (ServerProcess::new()->list() as $process) {
             $this->kill($process);
         }
     }
@@ -33,9 +47,11 @@ class KillPorts extends ActionAbstract
      */
     protected function kill(stdClass $process): void
     {
-        if ($this->isValidProcess($process)) {
-            SocketServer::new($process->port)->kill();
+        if ($this->isValidProcess($process) === false) {
+            return;
         }
+
+        ProtocolFactory::fromPort($process->port)->server($process->port)->kill();
     }
 
     /**
@@ -45,6 +61,7 @@ class KillPorts extends ActionAbstract
      */
     protected function isValidProcess(stdClass $process): bool
     {
-        return in_array($process->port, $this->data['ports']);
+        return (empty($this->config[$process->port]) === false)
+            && in_array($process->port, $this->data['ports']);
     }
 }

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Services\Socket;
+namespace App\Services\Server\Socket;
 
 use Closure;
 use Socket;
