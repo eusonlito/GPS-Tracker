@@ -6,7 +6,7 @@ use App\Services\Filesystem\Directory;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\ProtocolFactory;
 use App\Services\Protocol\Resource\ResourceAbstract;
-use App\Services\Socket\Server as SocketServer;
+use App\Services\SocketWeb\Server as SocketWebServer;
 
 class Server extends ActionAbstract
 {
@@ -21,9 +21,9 @@ class Server extends ActionAbstract
     protected ProtocolAbstract $protocol;
 
     /**
-     * @var \App\Services\Socket\Server
+     * @var \App\Services\SocketWeb\Server
      */
-    protected SocketServer $socket;
+    protected SocketWebServer $socket;
 
     /**
      * @return void
@@ -55,7 +55,7 @@ class Server extends ActionAbstract
      */
     protected function socket(): void
     {
-        $this->socket = SocketServer::new($this->data['port']);
+        $this->socket = SocketWebServer::new($this->data['port']);
     }
 
     /**
@@ -106,8 +106,6 @@ class Server extends ActionAbstract
         if (empty($resources)) {
             return [];
         }
-
-        $this->log($body);
 
         foreach ($resources as $resource) {
             $this->save($resource);
@@ -170,6 +168,8 @@ class Server extends ActionAbstract
      */
     protected function save(ResourceAbstract $resource): void
     {
+        $this->log($resource->body());
+
         if ($resource->format() === 'location') {
             $this->factory('Position')->action($this->saveData($resource))->create();
         }

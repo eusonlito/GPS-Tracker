@@ -66,9 +66,9 @@ class Location extends ParserAbstract
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    protected function maker(): string
+    protected function maker(): ?string
     {
         return $this->values[0];
     }
@@ -82,9 +82,9 @@ class Location extends ParserAbstract
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    protected function type(): string
+    protected function type(): ?string
     {
         return $this->values[2];
     }

@@ -27,17 +27,7 @@ abstract class ResourceAbstract
     /**
      * @return string
      */
-    abstract protected function maker(): string;
-
-    /**
-     * @return string
-     */
     abstract protected function serial(): string;
-
-    /**
-     * @return string
-     */
-    abstract protected function type(): string;
 
     /**
      * @return string

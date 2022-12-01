@@ -25,9 +25,7 @@ class Location extends ResourceAbstract
      */
     public function isValid(): bool
     {
-        return $this->maker()
-            && $this->serial()
-            && $this->type()
+        return $this->serial()
             && $this->latitude()
             && $this->longitude()
             && $this->datetime();
@@ -42,9 +40,9 @@ class Location extends ResourceAbstract
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function maker(): string
+    public function maker(): ?string
     {
         return $this->attribute(__FUNCTION__);
     }
@@ -58,9 +56,9 @@ class Location extends ResourceAbstract
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function type(): string
+    public function type(): ?string
     {
         return $this->attribute(__FUNCTION__);
     }
