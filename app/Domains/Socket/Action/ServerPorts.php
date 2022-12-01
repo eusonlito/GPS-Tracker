@@ -19,7 +19,7 @@ class ServerPorts extends ActionAbstract
      */
     protected function iterate(): void
     {
-        foreach (array_keys(config('sockets')) as $port) {
+        foreach (array_keys(config('servers')) as $port) {
             $this->command($port);
         }
     }

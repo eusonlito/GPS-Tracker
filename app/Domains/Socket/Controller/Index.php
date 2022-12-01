@@ -21,7 +21,7 @@ class Index extends ControllerAbstract
 
         return $this->page('socket.index', [
             'process' => ServerProcess::new()->list(),
-            'sockets' => config('sockets'),
+            'servers' => config('servers'),
         ]);
     }
 

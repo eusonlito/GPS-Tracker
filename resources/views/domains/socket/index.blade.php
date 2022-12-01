@@ -51,7 +51,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($sockets as $port => $protocol)
+                    @foreach ($servers as $port => $protocol)
 
                     <tr>
                         <td>{{ $port }}</td>

@@ -27,7 +27,7 @@ class KillPorts extends ActionAbstract
      */
     protected function config(): void
     {
-        $this->config = config('sockets');
+        $this->config = config('servers');
     }
 
     /**

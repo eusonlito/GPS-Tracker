@@ -47,7 +47,7 @@ class ProtocolFactory
      */
     protected static function classFromPort(int $port): ?string
     {
-        return config('protocols')[config('sockets')[$port] ?? null] ?? null;
+        return config('protocols')[config('servers')[$port] ?? null] ?? null;
     }
 
     /**
