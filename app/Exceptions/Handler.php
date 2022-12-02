@@ -6,13 +6,14 @@ use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as HandlerVendor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response as ResponseVendor;
+use Sentry\Laravel\Integration as SentryIntegration;
 use App\Domains\Error\Controller\Index as ErrorController;
-use App\Services\Request\Logger;
+use App\Services\Request\Logger as RequestLogger;
 
 class Handler extends HandlerVendor
 {
     /**
-     * @var array<int, class-string<Throwable>>
+     * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
         \Illuminate\Auth\Access\AuthorizationException::class,
@@ -22,6 +23,13 @@ class Handler extends HandlerVendor
         \App\Exceptions\GenericException::class,
     ];
 
+    public function register()
+    {
+        $this->reportable(static function (Throwable $e) {
+            SentryIntegration::captureUnhandledException($e);
+        });
+    }
+
     /**
      * @param \Throwable $e
      *
@@ -29,13 +37,18 @@ class Handler extends HandlerVendor
      */
     public function report(Throwable $e)
     {
+        $this->reportParent($e);
         $this->reportRequest($e);
+    }
 
+    /**
+     * @param \Throwable $e
+     *
+     * @return void
+     */
+    protected function reportParent(Throwable $e)
+    {
         parent::report($e);
-
-        if ($this->shouldReport($e)) {
-            $this->reportSentry($e);
-        }
     }
 
     /**
@@ -46,19 +59,7 @@ class Handler extends HandlerVendor
     protected function reportRequest(Throwable $e)
     {
         if (config('logging.channels.request.enabled')) {
-            Logger::fromException(request(), $e);
-        }
-    }
-
-    /**
-     * @param \Throwable $e
-     *
-     * @return void
-     */
-    protected function reportSentry(Throwable $e)
-    {
-        if (app()->bound('sentry')) {
-            app('sentry')->captureException($e);
+            RequestLogger::fromException(request(), $e);
         }
     }
 
@@ -77,7 +78,7 @@ class Handler extends HandlerVendor
         }
 
         if (config('app.debug')) {
-            return parent::render($request, $e);
+            return parent::render($request, $e->getPrevious() ?: $e);
         }
 
         return app(ErrorController::class)($e);

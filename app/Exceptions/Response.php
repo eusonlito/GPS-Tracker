@@ -35,7 +35,7 @@ class Response
     {
         $class = $this->class();
 
-        return new $class($this->message(), $this->code(), $this->parent(), $this->status(), $this->details());
+        return new $class($this->message(), $this->code(), $this->previous(), $this->status(), $this->details());
     }
 
     /**
@@ -115,14 +115,10 @@ class Response
     }
 
     /**
-     * @return ?\Throwable
+     * @return \Throwable
      */
-    protected function parent(): ?Throwable
+    protected function previous(): Throwable
     {
-        if ($this->e instanceof GenericException) {
-            return null;
-        }
-
         return $this->e;
     }
 
