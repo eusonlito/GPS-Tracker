@@ -39,6 +39,14 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return void
      */
+    public function manifestGenerate(): void
+    {
+        $this->actionHandle(ManifestGenerate::class);
+    }
+
+    /**
+     * @return void
+     */
     public function startAll(): void
     {
         $this->actionHandle(StartAll::class, $this->validate()->startAll());
