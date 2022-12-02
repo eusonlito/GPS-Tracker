@@ -6,7 +6,6 @@ import './data-current-datetime.js';
 import './nav-tabs.js';
 
 // Events on Listener
-import './mobile-menu.js';
 import './data-table-sort.js';
 import './data-table-search.js';
 import './data-change-submit.js';
@@ -21,6 +20,8 @@ import './data-update-boolean.js';
 import './data-notification-request.js';
 import './data-datepicker.js';
 import './alarm-notification.js';
+import './mobile-menu.js';
+import './side-menu.js';
 import './modal.js';
 import './alert.js';
 import './service-worker.js';

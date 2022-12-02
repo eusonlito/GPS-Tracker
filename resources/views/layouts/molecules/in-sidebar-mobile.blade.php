@@ -72,10 +72,35 @@
         </li>
 
         <li>
-            <a href="{{ route('server.index') }}" class="menu {{ str_starts_with($ROUTE, 'server.') ? 'menu--active' : '' }}">
+            <a href="javascript:;" class="menu {{ str_starts_with($ROUTE, 'server.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('radio')</div>
-                <div class="menu__title">{{ __('in-sidebar.servers') }}</div>
+                <div class="menu__title">
+                    {{ __('in-sidebar.servers') }} <div class="menu__sub-icon">@icon('chevron-down')</div>
+                </div>
             </a>
+
+            <ul class="{{ str_starts_with($ROUTE, 'server.') ? 'menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('server.index') }}" class="menu {{ in_array($ROUTE, ['server.index', 'server.create', 'server.update']) ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('list')</div>
+                        <div class="menu__title">{{ __('in-sidebar.servers-list') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('server.status') }}" class="menu {{ ($ROUTE === 'server.status') ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('activity')</div>
+                        <div class="menu__title">{{ __('in-sidebar.servers-status') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('server.log') }}" class="menu {{ ($ROUTE === 'server.log') ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('file-text')</div>
+                        <div class="menu__title">{{ __('in-sidebar.servers-logs') }}</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         <li>

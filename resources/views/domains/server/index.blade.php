@@ -8,16 +8,10 @@
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('server-index.filter') }}" data-table-search="#server-list-table" />
         </div>
 
-        <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
-            <a href="{{ route('server.status') }}" class="btn form-control-lg">{{ __('server-index.status') }}</a>
-        </div>
-
-        <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
-            <a href="{{ route('server.log') }}" class="btn form-control-lg">{{ __('server-index.logs') }}</a>
-        </div>
-
-        <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
-            <a href="{{ route('server.create') }}" class="btn form-control-lg">{{ __('server-index.create') }}</a>
+        <div class="sm:ml-4 mt-2 sm:mt-0 text-center">
+            <a href="{{ route('server.status') }}" class="btn form-control-lg bg-white">{{ __('server-index.status') }}</a>
+            <a href="{{ route('server.log') }}" class="btn form-control-lg bg-white ml-2">{{ __('server-index.logs') }}</a>
+            <a href="{{ route('server.create') }}" class="btn form-control-lg bg-white ml-2">{{ __('server-index.create') }}</a>
         </div>
     </div>
 </form>
