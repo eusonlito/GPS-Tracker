@@ -26,7 +26,7 @@ class Handler extends HandlerVendor
     public function register()
     {
         $this->reportable(static function (Throwable $e) {
-            SentryIntegration::captureUnhandledException($e);
+            SentryIntegration::captureException($e);
         });
     }
 

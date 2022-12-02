@@ -65,15 +65,17 @@
             </a>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'server.'))
+
         <li>
-            <a href="javascript:;" class="side-menu {{ str_starts_with($ROUTE, 'server.') ? 'side-menu--active' : '' }}">
+            <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('radio')</div>
                 <div class="side-menu__title">
-                    {{ __('in-sidebar.servers') }} <div class="side-menu__sub-icon">@icon('chevron-down')</div>
+                    {{ __('in-sidebar.servers') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
                 </div>
             </a>
 
-            <ul class="{{ str_starts_with($ROUTE, 'server.') ? 'side-menu__sub-open' : '' }}">
+            <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
                 <li>
                     <a href="{{ route('server.index') }}" class="side-menu {{ in_array($ROUTE, ['server.index', 'server.create', 'server.update']) ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">@icon('list')</div>
