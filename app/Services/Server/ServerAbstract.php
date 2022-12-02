@@ -3,10 +3,14 @@
 namespace App\Services\Server;
 
 use Closure;
-use Throwable;
 
 abstract class ServerAbstract
 {
+    /**
+     * @var \App\Services\Server\Process
+     */
+    protected Process $process;
+
     /**
      * @param \Closure $handler
      *
@@ -15,8 +19,6 @@ abstract class ServerAbstract
     abstract public function accept(Closure $handler): void;
 
     /**
-     * @param \Closure $handler
-     *
      * @return void
      */
     abstract public function stop(): void;
@@ -43,17 +45,7 @@ abstract class ServerAbstract
      */
     public function kill(): void
     {
-        if ($this->isBusy() === false) {
-            return;
-        }
-
-        shell_exec('fuser -k -SIGINT '.$this->port.'/tcp > /dev/null 2>&1');
-
-        $count = 0;
-
-        while (($count < 5) && $this->isBusy()) {
-            sleep(++$count);
-        }
+        $this->process()->kill($this->port);
     }
 
     /**
@@ -61,14 +53,14 @@ abstract class ServerAbstract
      */
     public function isBusy(): bool
     {
-        try {
-            $fp = fsockopen('0.0.0.0', $this->port);
-        } catch (Throwable $e) {
-            return false;
-        }
+        return $this->process()->isBusy($this->port);
+    }
 
-        fclose($fp);
-
-        return true;
+    /**
+     * @return \App\Services\Server\Process
+     */
+    protected function process(): Process
+    {
+        return $this->process ??= new Process();
     }
 }

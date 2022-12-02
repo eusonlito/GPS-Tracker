@@ -73,9 +73,9 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 
 13. Profit!
 
-### Socket connection
+### Server connection
 
-The opened port for the connection of devices with H02 protocol is `8091` made by default, but it can be customized by changing the `config/sockets.php` file.
+The default port for devices with H02 protocol is `8091`, but it can be customized on configuration panel (as admin).
 
 To configure your device via SMS you can do it with the following command:
 
@@ -174,7 +174,7 @@ This command performs the following actions:
 "@php artisan migrate --force --ansi",
 "@php artisan db:seed --force --ansi --class=\"Database\\Seeders\\Database\"",
 "@php artisan maintenance:migration:clean",
-"@php artisan socket:server:all --reset"
+"@php artisan server:start:all --reset"
 ```
 
 ### Platform Commands
@@ -185,20 +185,20 @@ This command performs the following actions:
 php artisan user:create {--email=} {--name=} {--password=} {--enabled} {--admin}
 ```
 
-#### Start or Restart all configured sockets:
+#### Start or Restart all configured servers:
 
 The `reset` option allows you to reset the port in case it is being used.
 
 ```bash
-php artisan socket:server:all {--reset}
+php artisan server:start:all {--reset}
 ```
 
-#### Start or Restart only one socket port:
+#### Start or Restart only one server port:
 
 The `reset` option allows you to reset the port in case it is being used.
 
 ```bash
-php artisan socket:server {--port=} {--reset}
+php artisan server:start {--port=} {--reset}
 ```
 
 ### Screenshots

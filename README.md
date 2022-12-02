@@ -75,7 +75,7 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 
 ### Conexión vía Socket
 
-El puerto abierto para la conexión de dispositivos con protocolo H02 se realiza por defecto en el puerto `8091`, pero puede ser personalizado cambiando el fichero `config/sockets.php`.
+El puerto abierto para la conexión de dispositivos con protocolo H02 se realiza por defecto en el puerto `8091`, pero puede ser personalizado desde el panel de configuración (como administrador).
 
 Para configurar tu dispositivo vía SMS puedes hacerlo con el siguiente comando:
 
@@ -174,7 +174,7 @@ Este comando realiza las siguientes acciones:
 "@php artisan migrate --force --ansi",
 "@php artisan db:seed --force --ansi --class=\"Database\\Seeders\\Database\"",
 "@php artisan maintenance:migration:clean",
-"@php artisan socket:server:all --reset"
+"@php artisan server:start:all --reset"
 ```
 
 ### Comandos
@@ -185,20 +185,20 @@ Este comando realiza las siguientes acciones:
 php artisan user:create {--email=} {--name=} {--password=} {--enabled} {--admin}
 ```
 
-#### Iniciar/Reiniciar todos los sockets configurados:
+#### Iniciar/Reiniciar todos los servidores configurados:
 
 La opción de `reset` permite reiniciar el puerto en caso de que esté siendo usado.
 
 ```bash
-php artisan socket:server:all {--reset}
+php artisan server:start:all {--reset}
 ```
 
-#### Iniciar/Reiniciar socket en un puerto en concreto:
+#### Iniciar/Reiniciar servidor en un puerto en concreto:
 
 La opción de `reset` permite reiniciar el puerto en caso de que esté siendo usado.
 
 ```bash
-php artisan socket:server {--port=} {--reset}
+php artisan server:start {--port=} {--reset}
 ```
 
 ### Capturas

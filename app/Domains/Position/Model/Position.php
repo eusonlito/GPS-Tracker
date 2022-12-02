@@ -31,7 +31,7 @@ class Position extends ModelAbstract
     public const FOREIGN = 'position_id';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'latitude' => 'float',

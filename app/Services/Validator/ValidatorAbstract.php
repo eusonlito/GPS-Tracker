@@ -64,7 +64,7 @@ abstract class ValidatorAbstract
     /**
      * @param \Illuminate\Validation\Validator $validator
      *
-     * @throws \App\Services\Validator\Exception
+     * @throws \App\Exceptions\ValidatorException
      *
      * @return void
      */
@@ -90,7 +90,7 @@ abstract class ValidatorAbstract
     /**
      * @param \Illuminate\Validation\Validator $validator
      *
-     * @throws \App\Services\Validator\Exception
+     * @throws \App\Exceptions\ValidatorException
      *
      * @return void
      */

@@ -1,0 +1,32 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Command;
+
+class StartAll extends CommandAbstract
+{
+    /**
+     * @var string
+     */
+    protected $signature = 'server:start:all {--reset}';
+
+    /**
+     * @var string
+     */
+    protected $description = 'Start All Configured Servers with {--reset} option.';
+
+    /**
+     * @return void
+     */
+    public function handle()
+    {
+        $this->info('START');
+
+        $this->middlewares();
+
+        $this->requestWithOptions();
+
+        $this->factory()->action()->startAll();
+
+        $this->info('END');
+    }
+}

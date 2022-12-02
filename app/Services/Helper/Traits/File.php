@@ -27,6 +27,7 @@ trait File
         try {
             mkdir($dir, 0o755, true);
         } catch (Exception $e) {
+            report($e);
         }
 
         return $dir;

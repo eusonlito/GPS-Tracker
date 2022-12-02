@@ -29,7 +29,7 @@ class User extends ModelAbstract implements Authenticatable
     public const FOREIGN = 'user_id';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'telegram' => 'array',
@@ -37,7 +37,7 @@ class User extends ModelAbstract implements Authenticatable
     ];
 
     /**
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = ['password'];
 

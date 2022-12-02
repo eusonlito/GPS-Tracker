@@ -12,9 +12,9 @@
     },
 
     {
-        "key": "socket_debug",
+        "key": "server_debug",
         "value": "",
-        "description": "Activar el modo debug para la lectura del Socket"
+        "description": "Activar el modo debug para la lectura de Servidores"
     },
 
     {

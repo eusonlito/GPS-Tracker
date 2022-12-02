@@ -228,6 +228,7 @@ class Server extends ServerAbstract
             try {
                 socket_close($socket);
             } catch (Throwable $e) {
+                $this->error($e);
             }
         }
 

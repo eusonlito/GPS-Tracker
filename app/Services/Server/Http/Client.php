@@ -122,6 +122,7 @@ class Client
             try {
                 fclose($this->client->socket);
             } catch (Throwable $e) {
+                $this->error($e);
             }
         }
 

@@ -8,7 +8,7 @@ use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
 abstract class ActionAbstract extends ActionAbstractShared
 {
     /**
-     * @var ?\App\Domains\AlarmNotification\Model\Alarm
+     * @var ?\App\Domains\AlarmNotification\Model\AlarmNotification
      */
     protected ?Model $row;
 }

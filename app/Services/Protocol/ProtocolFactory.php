@@ -7,23 +7,13 @@ use App\Exceptions\UnexpectedValueException;
 class ProtocolFactory
 {
     /**
-     * @param int $port
-     *
-     * @return \App\Services\Protocol\ProtocolAbstract
-     */
-    public static function fromPort(int $port): ProtocolAbstract
-    {
-        return static::new(static::classFromPort($port));
-    }
-
-    /**
      * @param string $code
      *
      * @return \App\Services\Protocol\ProtocolAbstract
      */
-    public static function fromCode(string $code): ProtocolAbstract
+    public static function get(string $code): ProtocolAbstract
     {
-        return static::new(static::classFromCode($code));
+        return static::new(static::class($code));
     }
 
     /**
@@ -41,21 +31,11 @@ class ProtocolFactory
     }
 
     /**
-     * @param int $port
-     *
-     * @return ?string
-     */
-    protected static function classFromPort(int $port): ?string
-    {
-        return config('protocols')[config('servers')[$port] ?? null] ?? null;
-    }
-
-    /**
      * @param string $code
      *
      * @return ?string
      */
-    protected static function classFromCode(string $code): ?string
+    protected static function class(string $code): ?string
     {
         return config('protocols')[$code] ?? null;
     }

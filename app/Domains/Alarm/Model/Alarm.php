@@ -31,7 +31,7 @@ class Alarm extends ModelAbstract
     public const FOREIGN = 'alarm_id';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'config' => 'array',

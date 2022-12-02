@@ -12,7 +12,7 @@ abstract class ResourceAbstract
     /**
      * @return string
      */
-    abstract protected function format(): string;
+    abstract public function format(): string;
 
     /**
      * @return bool
@@ -22,17 +22,17 @@ abstract class ResourceAbstract
     /**
      * @return string
      */
-    abstract protected function body(): string;
+    abstract public function body(): string;
 
     /**
      * @return string
      */
-    abstract protected function serial(): string;
+    abstract public function serial(): string;
 
     /**
      * @return string
      */
-    abstract protected function response(): string;
+    abstract public function response(): string;
 
     /**
      * @return self

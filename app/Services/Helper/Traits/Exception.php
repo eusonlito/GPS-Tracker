@@ -21,7 +21,7 @@ trait Exception
      */
     public function notFound(string $message = '', string $code = ''): void
     {
-        throw new NotFoundException($message ?: __('common.error.not-found'), null, null, $code);
+        throw new NotFoundException($message ?: __('common.error.not-found'), 404, null, $code);
     }
 
     /**

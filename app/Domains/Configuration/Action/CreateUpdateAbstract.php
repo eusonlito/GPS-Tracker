@@ -19,7 +19,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         $this->data();
         $this->check();
         $this->save();
-        $this->socket();
+        $this->server();
 
         return $this->row;
     }
@@ -53,8 +53,8 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     /**
      * @return void
      */
-    protected function socket(): void
+    protected function server(): void
     {
-        $this->factory('Socket')->action(['reset' => true])->serverAll();
+        $this->factory('Server')->action(['reset' => true])->startAll();
     }
 }

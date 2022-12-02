@@ -26,7 +26,7 @@ class Timezone extends ModelAbstract
     public const FOREIGN = 'timezone_id';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'default' => 'boolean',

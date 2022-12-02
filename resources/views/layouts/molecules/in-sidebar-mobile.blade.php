@@ -72,16 +72,9 @@
         </li>
 
         <li>
-            <a href="{{ route('socket.index') }}" class="menu {{ str_starts_with($ROUTE, 'socket.') ? 'menu--active' : '' }}">
+            <a href="{{ route('server.index') }}" class="menu {{ str_starts_with($ROUTE, 'server.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('radio')</div>
-                <div class="menu__title">{{ __('in-sidebar.sockets') }}</div>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('server.log') }}" class="menu {{ str_starts_with($ROUTE, 'server.log') ? 'menu--active' : '' }}">
-                <div class="menu__icon">@icon('file')</div>
-                <div class="menu__title">{{ __('in-sidebar.logs') }}</div>
+                <div class="menu__title">{{ __('in-sidebar.servers') }}</div>
             </a>
         </li>
 

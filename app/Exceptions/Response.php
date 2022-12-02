@@ -26,11 +26,6 @@ class Response
      */
     public function __construct(protected Throwable $e)
     {
-        if ($this->e instanceof GenericException) {
-            $class = $this->e::class;
-        } else {
-            $class = GenericException::class;
-        }
     }
 
     /**
@@ -44,7 +39,7 @@ class Response
     }
 
     /**
-     * @return self
+     * @return string
      */
     protected function class(): string
     {

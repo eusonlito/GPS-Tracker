@@ -23,7 +23,7 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return \App\Domains\Timezone\Model\Timezone
      */
-    public function UpdateDefault(): Model
+    public function updateDefault(): Model
     {
         return $this->actionHandle(UpdateDefault::class);
     }

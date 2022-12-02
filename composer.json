@@ -99,7 +99,7 @@
             "@php artisan db:seed --force --ansi --class=\"Database\\Seeders\\Database\"",
             "@php artisan maintenance:migration:clean",
             "@php artisan server:manifest:generate",
-            "@php artisan socket:server:all --reset"
+            "@php artisan server:start:all --reset"
         ],
 
         "deploy-dev": [

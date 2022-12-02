@@ -12,7 +12,7 @@ use App\Services\Request\Logger;
 class Handler extends HandlerVendor
 {
     /**
-     * @var array
+     * @var array<int, class-string<Throwable>>
      */
     protected $dontReport = [
         \Illuminate\Auth\Access\AuthorizationException::class,
@@ -20,7 +20,6 @@ class Handler extends HandlerVendor
         \Illuminate\Validation\ValidationException::class,
         \Symfony\Component\HttpKernel\Exception\HttpException::class,
         \App\Exceptions\GenericException::class,
-        \App\Services\Validator\Exception::class,
     ];
 
     /**

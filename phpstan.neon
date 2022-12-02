@@ -8,10 +8,18 @@ parameters:
     level: 5
 
     ignoreErrors:
-        - '#Call to an undefined method App\\Domains\\Shared\\Action\\ActionFactoryAbstract#'
-        - '#Call to an undefined method App\\Domains\\Shared\\Model\\Builder\\BuilderAbstract#'
-        - '#Call to an undefined method App\\Domains\\Shared\\Validate\\ValidateFactoryAbstract#'
+        - '#Access to an undefined property Illuminate\\Contracts\\Auth\\Authenticatable#'
+        - '#Access to an undefined property object::#'
+        - '#Access to an undefined property .*Abstract#'
+        - '#Access to an undefined property .*\\Model#'
+        - '#Access to undefined .*Abstract#'
+        - '#App\\Domains\\User\\Model\\User.* does not accept Illuminate\\Contracts\\Auth\\Authenticatable#'
+        - '#Call to an undefined .*Abstract#'
+        - '#expects App\\Domains\\Shared\\Model\\ModelAbstract\|null, Illuminate\\Contracts\\Auth\\Authenticatable\|null given#'
         - '#of parent class Illuminate\\Database\\Eloquent\\Builder#'
         - '#of parent class Illuminate\\Database\\Eloquent\\Relations#'
-        - '#is not subtype of native type App\\Domains\\SharedApp\\Model\\ModelAbstract#'
+        -' #Property App\\Domains\\.* does not accept Illuminate\\Database\\Eloquent#'
+        - '#returns .*Abstract.#'
+        - '#should return App\\Domains\\.*\\Model.* but returns Illuminate\\Database\\Eloquent\\Model#'
+        - '#\\Domains.*\\Model\\.*Illuminate\\Database\\Eloquent\\Model given#'
         - '#Unsafe usage of new static#'

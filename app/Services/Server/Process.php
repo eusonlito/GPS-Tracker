@@ -3,6 +3,7 @@
 namespace App\Services\Server;
 
 use stdClass;
+use Throwable;
 use Illuminate\Support\Collection;
 
 class Process
@@ -42,7 +43,7 @@ class Process
      */
     protected function listExec(): string
     {
-        return trim((string)shell_exec('ps -ef | grep "artisan socket:server " | grep "port=" | grep -v "grep"'));
+        return trim((string)shell_exec('ps -ef | grep -- "artisan server:start:port.*--port=" | grep -v "grep"'));
     }
 
     /**
@@ -64,5 +65,43 @@ class Process
             'command' => $process[7],
             'port' => (int)$port[1],
         ];
+    }
+
+    /**
+     * @param int $port
+     *
+     * @return void
+     */
+    public function kill(int $port): void
+    {
+        if ($this->isBusy($port) === false) {
+            return;
+        }
+
+        shell_exec('fuser -k -SIGINT '.$port.'/tcp > /dev/null 2>&1');
+
+        $count = 0;
+
+        while (($count < 5) && $this->isBusy($port)) {
+            sleep(++$count);
+        }
+    }
+
+    /**
+     * @param int $port
+     *
+     * @return bool
+     */
+    public function isBusy(int $port): bool
+    {
+        try {
+            $fp = fsockopen('0.0.0.0', $port);
+        } catch (Throwable $e) {
+            return false;
+        }
+
+        fclose($fp);
+
+        return true;
     }
 }

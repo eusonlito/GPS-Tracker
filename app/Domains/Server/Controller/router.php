@@ -5,5 +5,9 @@ namespace App\Domains\Server\Controller;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['user-auth-admin']], static function () {
+    Route::any('/server', Index::class)->name('server.index');
+    Route::any('/server/create', Create::class)->name('server.create');
+    Route::any('/server/{id}', Update::class)->name('server.update');
+    Route::any('/server/status', Status::class)->name('server.status');
     Route::any('/server/log', Log::class)->name('server.log');
 });

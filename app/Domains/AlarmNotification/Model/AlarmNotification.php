@@ -33,7 +33,7 @@ class AlarmNotification extends ModelAbstract
     public const FOREIGN = 'alarm_notification_id';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'config' => 'array',

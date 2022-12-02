@@ -25,7 +25,7 @@ class {{ domain }}Tag extends PivotAbstract
     public const FOREIGN = '{{ table }}_tag_id';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'content' => 'array',

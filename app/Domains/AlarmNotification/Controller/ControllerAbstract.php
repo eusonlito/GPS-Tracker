@@ -9,7 +9,7 @@ use App\Exceptions\NotFoundException;
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
     /**
-     * @var ?\App\Domains\AlarmNotification\Model\Alarm
+     * @var ?\App\Domains\AlarmNotification\Model\AlarmNotification
      */
     protected ?Model $row;
 

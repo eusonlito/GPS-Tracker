@@ -8,7 +8,7 @@ use App\Domains\Shared\Action\ActionFactoryAbstract;
 class ActionFactory extends ActionFactoryAbstract
 {
     /**
-     * @var ?\App\Domains\AlarmNotification\Model\Alarm
+     * @var ?\App\Domains\AlarmNotification\Model\AlarmNotification
      */
     protected ?Model $row;
 
