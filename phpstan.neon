@@ -18,7 +18,7 @@ parameters:
         - '#expects App\\Domains\\Shared\\Model\\ModelAbstract\|null, Illuminate\\Contracts\\Auth\\Authenticatable\|null given#'
         - '#of parent class Illuminate\\Database\\Eloquent\\Builder#'
         - '#of parent class Illuminate\\Database\\Eloquent\\Relations#'
-        -' #Property App\\Domains\\.* does not accept Illuminate\\Database\\Eloquent#'
+        - '#Property App\\Domains\\.* does not accept Illuminate\\Database\\Eloquent#'
         - '#returns .*Abstract.#'
         - '#should return App\\Domains\\.*\\Model.* but returns Illuminate\\Database\\Eloquent\\Model#'
         - '#\\Domains.*\\Model\\.*Illuminate\\Database\\Eloquent\\Model given#'
