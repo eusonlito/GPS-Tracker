@@ -68,6 +68,7 @@ import value2color from './value2color';
             weight: 5,
             opacity: 1
         }).arrowheads({
+            yawn: 40,
             size: '5px',
             fill: true,
             fillOpacity: 0.7,
