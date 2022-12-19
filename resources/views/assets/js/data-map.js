@@ -4,8 +4,13 @@ import GeometryUtil from 'leaflet-geometryutil';
 
 L.GeometryUtil = GeometryUtil;
 
+import leafletPolycolor from 'leaflet-polycolor';
+
+leafletPolycolor(L);
+
 import Ajax from './ajax';
 import Feather from './feather';
+import value2color from './value2color';
 
 (function () {
     'use strict';
@@ -56,12 +61,18 @@ import Feather from './feather';
         return string[0].toUpperCase() + string.slice(1);
     };
 
-    const polylineAdd = function (positions, color) {
-        line = L.polyline(positions, {
-            color: color,
-            weight: 3,
+    const polylineAdd = function (positions, colors) {
+        line = L.polycolor(positions, {
+            colors: colors,
+            useGradient: true,
+            weight: 5,
             opacity: 1
-        }).arrowheads({ size: '5px', fill: true }).addTo(layer);
+        }).arrowheads({
+            size: '5px',
+            fill: true,
+            fillOpacity: 0.7,
+            opacity: 0.7
+        }).addTo(layer);
     };
 
     const trackAdd = function (point) {
@@ -69,9 +80,13 @@ import Feather from './feather';
     };
 
     const markerAdd = function (point) {
-        return markers[point.id] = L.circleMarker([point.latitude, point.longitude], { radius: 10, fillOpacity: 0.2, opacity: 0.3 })
-            .bindPopup(jsonToHtml(point))
-            .addTo(layer);
+        return markers[point.id] = L.circleMarker([point.latitude, point.longitude], {
+            radius: 20,
+            fillOpacity: 0,
+            opacity: 0,
+        })
+        .bindPopup(jsonToHtml(point))
+        .addTo(layer);
     };
 
     const alarmAdd = function (alarm) {
@@ -181,6 +196,7 @@ import Feather from './feather';
     let icon = {};
 
     const map = L.map(render, {
+        preferCanvas: true,
         attributionControl: false,
         zoomControl: true,
         zoomSnap: 1
@@ -195,6 +211,11 @@ import Feather from './feather';
     const total = positions.length;
     const layer = new L.FeatureGroup();
 
+    const speeds = positions.map(value => value.speed);
+    const speedMin = Math.min(...speeds);
+    const speedMax = Math.max(...speeds);
+    const colors = speeds.map(speed => value2color(speed, speedMin, speedMax));
+
     alarms.forEach(function (alarm) {
         alarmAdd(alarm);
     });
@@ -203,18 +224,17 @@ import Feather from './feather';
         notificationAdd(notification);
     });
 
-    positions.forEach(function (point) {
-        trackAdd(point);
-        markerAdd(point);
-    });
+    positions.forEach(trackAdd);
+
+    polylineAdd(track, colors);
+
+    positions.forEach(markerAdd);
 
     let positionFirst = positions[0];
     let positionLast = positions[positions.length - 1];
 
     iconAdd(markers[positionFirst.id], 'start');
     iconAdd(markers[positionLast.id], 'end');
-
-    polylineAdd(track, '#005EB8');
 
     layer.addTo(map);
 
