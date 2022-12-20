@@ -4,7 +4,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['user-auth', 'device.available']], static function () {
+Route::group(['middleware' => ['user-auth', 'vehicle.available']], static function () {
     Route::get('/trip', Index::class)->name('trip.index');
     Route::any('/trip/{id}', Update::class)->name('trip.update');
     Route::any('/trip/{id}/alarm-notification', UpdateAlarmNotification::class)->name('trip.update.alarm-notification');

@@ -44,7 +44,6 @@ return new class extends MigrationAbstract
 
             $this->timestamps($table);
 
-            $table->unsignedBigInteger('device_id');
             $table->unsignedBigInteger('user_id');
         });
 
@@ -308,7 +307,6 @@ return new class extends MigrationAbstract
     protected function keys()
     {
         Schema::table('alarm', function (Blueprint $table) {
-            $this->foreignOnDeleteCascade($table, 'device');
             $this->foreignOnDeleteCascade($table, 'user');
         });
 

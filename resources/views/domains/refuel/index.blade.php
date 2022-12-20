@@ -8,10 +8,10 @@
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('refuel-index.filter') }}" data-table-search="#refuel-list-table" />
         </div>
 
-        @if ($devices_multiple)
+        @if ($vehicles_multiple)
 
         <div class="flex-grow mt-2 lg:mt-0">
-            <x-select name="device_id" :options="$devices" value="id" text="name" :placeholder="__('refuel-index.device')" data-change-submit></x-select>
+            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" :placeholder="__('refuel-index.vehicle')" data-change-submit></x-select>
         </div>
 
         @endif
@@ -34,8 +34,8 @@
     <table id="refuel-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>
-                @if ($devices_multiple)
-                <th>{{ __('refuel-index.device') }}</th>
+                @if ($vehicles_multiple)
+                <th>{{ __('refuel-index.vehicle') }}</th>
                 @endif
 
                 <th>{{ __('refuel-index.date_at') }}</th>
@@ -53,8 +53,8 @@
             @php ($link = route('refuel.update', $row->id))
 
             <tr>
-                @if ($devices_multiple)
-                <td><a href="{{ $link }}" class="block">{{ $row->device->name }}</a></td>
+                @if ($vehicles_multiple)
+                <td><a href="{{ $link }}" class="block">{{ $row->vehicle->name }}</a></td>
                 @endif
 
                 <td><a href="{{ $link }}" class="block">{{ $row->date_at }}</a></td>
@@ -72,7 +72,7 @@
 
         <tfoot class="bg-white">
             <tr>
-                <th colspan="{{ $devices_multiple ? '3' : '2' }}"></th>
+                <th colspan="{{ $vehicles_multiple ? '3' : '2' }}"></th>
                 <th>@distanceHuman($totals->distance * 1000, 0)</th>
                 <th>@number($totals->quantity)</th>
                 <th>@money($totals->price, 3)</th>

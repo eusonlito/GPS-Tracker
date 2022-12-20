@@ -2,7 +2,7 @@
 
 namespace App\Domains\AlarmNotification\Model\Builder;
 
-use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 
 class AlarmNotification extends BuilderAbstract
@@ -34,7 +34,7 @@ class AlarmNotification extends BuilderAbstract
      */
     public function byUserId(int $user_id): self
     {
-        return $this->whereIn('device_id', DeviceModel::query()->selectOnly('id')->byUserId($user_id));
+        return $this->whereIn('vehicle_id', VehicleModel::query()->selectOnly('id')->byUserId($user_id));
     }
 
     /**
@@ -45,7 +45,7 @@ class AlarmNotification extends BuilderAbstract
         return $this->selectRaw('
             `id`, `name`, `type`, `config`, `closed_at`, `sent_at`, `created_at`, `updated_at`,
             `telegram`, `date_at`, `date_utc_at`,
-            `device_id`, `alarm_id`, `position_id`, `trip_id`,
+            `alarm_id`, `position_id`, `trip_id`, `vehicle_id`,
             ROUND(ST_X(`point`), 5) AS `longitude`, ROUND(ST_Y(`point`), 5) AS `latitude`
         ');
     }
@@ -89,9 +89,9 @@ class AlarmNotification extends BuilderAbstract
     /**
      * @return self
      */
-    public function withDevice(): self
+    public function withVehicle(): self
     {
-        return $this->with('device');
+        return $this->with('vehicle');
     }
 
     /**

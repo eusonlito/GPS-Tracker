@@ -4,12 +4,12 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as KernelVendor;
 use App\Domains\Configuration\Middleware\Request as ConfigurationRequest;
-use App\Domains\Device\Middleware\Available as DeviceAvailable;
 use App\Domains\Language\Middleware\Request as LanguageRequest;
 use App\Domains\User\Middleware\Admin as UserAdmin;
 use App\Domains\User\Middleware\AuthRedirect as UserAuthRedirect;
 use App\Domains\User\Middleware\Enabled as UserEnabled;
 use App\Domains\User\Middleware\Request as UserRequest;
+use App\Domains\Vehicle\Middleware\Available as VehicleAvailable;
 use App\Http\Middleware\MessagesShareFromSession;
 use App\Http\Middleware\RequestLogger;
 use App\Http\Middleware\Reset;
@@ -52,7 +52,7 @@ class Kernel extends KernelVendor
      * @var array
      */
     protected $routeMiddleware = [
-        'device.available' => DeviceAvailable::class,
+        'vehicle.available' => VehicleAvailable::class,
         'user.admin' => UserAdmin::class,
         'user.auth.redirect' => UserAuthRedirect::class,
         'user.enabled' => UserEnabled::class,

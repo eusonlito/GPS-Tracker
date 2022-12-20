@@ -3,7 +3,7 @@
 namespace App\Domains\Alarm\Action;
 
 use Illuminate\Support\Collection;
-use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\Alarm\Model\Alarm as Model;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\AlarmNotification\Job\Notify as AlarmNotificationNotifyJob;
@@ -17,9 +17,9 @@ class CheckPosition extends ActionAbstract
     protected PositionModel $position;
 
     /**
-     * @var \App\Domains\Device\Model\Device
+     * @var \App\Domains\Vehicle\Model\Vehicle
      */
-    protected DeviceModel $device;
+    protected VehicleModel $vehicle;
 
     /**
      * @return void
@@ -27,7 +27,7 @@ class CheckPosition extends ActionAbstract
     public function handle(): void
     {
         $this->position();
-        $this->device();
+        $this->vehicle();
         $this->iterate();
     }
 
@@ -37,7 +37,7 @@ class CheckPosition extends ActionAbstract
     protected function position(): void
     {
         $this->position = PositionModel::query()
-            ->withDevice()
+            ->withVehicle()
             ->withTrip()
             ->findOrFail($this->data['position_id']);
     }
@@ -45,9 +45,9 @@ class CheckPosition extends ActionAbstract
     /**
      * @return void
      */
-    protected function device(): void
+    protected function vehicle(): void
     {
-        $this->device = $this->position->device;
+        $this->vehicle = $this->position->vehicle;
     }
 
     /**
@@ -66,7 +66,7 @@ class CheckPosition extends ActionAbstract
     protected function list(): Collection
     {
         return Model::query()
-            ->byDeviceIdEnabled($this->device->id)
+            ->byVehicleIdEnabled($this->vehicle->id)
             ->enabled()
             ->get();
     }
@@ -144,10 +144,10 @@ class CheckPosition extends ActionAbstract
             'date_at' => $this->position->date_at,
             'date_utc_at' => $this->position->date_utc_at,
 
-            'device_id' => $this->device->id,
             'alarm_id' => $row->id,
             'position_id' => $this->position->id,
             'trip_id' => $this->position->trip->id,
+            'vehicle_id' => $this->vehicle->id,
         ]);
     }
 

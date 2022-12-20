@@ -83,7 +83,7 @@ class UpdatePosition extends UpdateAbstract
     protected function alarms(): Collection
     {
         return AlarmModel::query()
-            ->byDeviceId($this->row->device->id)
+            ->byVehicleId($this->row->vehicle->id)
             ->enabled()
             ->list()
             ->get();

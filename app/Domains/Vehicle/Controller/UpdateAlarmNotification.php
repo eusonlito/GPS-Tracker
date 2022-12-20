@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Device\Controller;
+namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Support\Collection;
 use Illuminate\Http\Response;
@@ -18,7 +18,7 @@ class UpdateAlarmNotification extends ControllerAbstract
 
         $this->meta('title', $this->row->name);
 
-        return $this->page('device.update-alarm-notification', [
+        return $this->page('vehicle.update-alarm-notification', [
             'row' => $this->row,
             'notifications' => $this->notifications(),
         ]);

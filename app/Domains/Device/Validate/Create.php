@@ -18,8 +18,7 @@ class Create extends ValidateAbstract
             'phone_number' => ['bail', 'string'],
             'password' => ['bail', 'string'],
             'port' => ['bail', 'integer'],
-            'timezone_id' => ['bail', 'required', 'integer'],
-            'timezone_auto' => ['bail', 'boolean'],
+            'vehicle_id' => ['bail', 'required', 'integer'],
             'enabled' => ['bail', 'boolean'],
         ];
     }

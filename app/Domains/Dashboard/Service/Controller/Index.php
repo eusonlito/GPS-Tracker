@@ -5,10 +5,10 @@ namespace App\Domains\Dashboard\Service\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\Trip\Model\Trip as TripModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
 {
@@ -28,8 +28,8 @@ class Index extends ControllerAbstract
     public function data(): array
     {
         return [
-            'devices' => $this->devices(),
-            'device' => $this->device(),
+            'vehicles' => $this->vehicles(),
+            'vehicle' => $this->vehicle(),
             'trips' => $this->trips(),
             'trip' => $this->trip(),
             'trip_next_id' => $this->tripNextId(),
@@ -43,18 +43,21 @@ class Index extends ControllerAbstract
     /**
      * @return \Illuminate\Support\Collection
      */
-    protected function devices(): Collection
+    protected function vehicles(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= DeviceModel::query()->byUserId($this->auth->id)->list()->get();
+        return $this->cache[__FUNCTION__] ??= VehicleModel::query()
+            ->byUserId($this->auth->id)
+            ->list()
+            ->get();
     }
 
     /**
-     * @return ?\App\Domains\Device\Model\Device
+     * @return ?\App\Domains\Vehicle\Model\Vehicle
      */
-    protected function device(): ?DeviceModel
+    protected function vehicle(): ?VehicleModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->devices()->firstWhere('id', $this->request->input('device_id'))
-            ?: $this->devices()->first();
+        return $this->cache[__FUNCTION__] ??= $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
+            ?: $this->vehicles()->first();
     }
 
     /**
@@ -62,11 +65,11 @@ class Index extends ControllerAbstract
      */
     protected function trips(): Collection
     {
-        if ($this->device() === null) {
+        if ($this->vehicle() === null) {
             return collect();
         }
 
-        return $this->cache[__FUNCTION__] ??= $this->device()->trips()->list()->limit(50)->get();
+        return $this->cache[__FUNCTION__] ??= $this->vehicle()->trips()->list()->limit(50)->get();
     }
 
     /**
@@ -128,12 +131,12 @@ class Index extends ControllerAbstract
      */
     protected function alarms(): Collection
     {
-        if ($this->device() === null) {
+        if ($this->vehicle() === null) {
             return collect();
         }
 
         return $this->cache[__FUNCTION__] ??= AlarmModel::query()
-            ->byDeviceId($this->device()->id)
+            ->byVehicleId($this->vehicle()->id)
             ->enabled()
             ->list()
             ->get();
@@ -151,7 +154,7 @@ class Index extends ControllerAbstract
         return $this->cache[__FUNCTION__] ??= AlarmNotificationModel::query()
             ->byTripId($this->trip()->id)
             ->withAlarm()
-            ->withDevice()
+            ->withVehicle()
             ->withPosition()
             ->withTrip()
             ->list()

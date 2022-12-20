@@ -22,6 +22,13 @@
         </li>
 
         <li>
+            <a href="{{ route('vehicle.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'vehicle.') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('truck')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.vehicles') }}</div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('device.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'device.') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('cpu')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.devices') }}</div>

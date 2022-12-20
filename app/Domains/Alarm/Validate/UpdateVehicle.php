@@ -4,7 +4,7 @@ namespace App\Domains\Alarm\Validate;
 
 use App\Domains\Shared\Validate\ValidateAbstract;
 
-class UpdateDevice extends ValidateAbstract
+class UpdateVehicle extends ValidateAbstract
 {
     /**
      * @return array

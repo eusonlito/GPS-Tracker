@@ -5,9 +5,9 @@ namespace App\Domains\Alarm\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
-use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
-class UpdateDevice extends ControllerAbstract
+class UpdateVehicle extends ControllerAbstract
 {
     /**
      * @param int $id
@@ -18,27 +18,26 @@ class UpdateDevice extends ControllerAbstract
     {
         $this->row($id);
 
-        if ($response = $this->actionPost('updateDevice')) {
+        if ($response = $this->actionPost('updateVehicle')) {
             return $response;
         }
 
         $this->meta('title', $this->row->name);
 
-        return $this->page('alarm.update-device', [
+        return $this->page('alarm.update-vehicle', [
             'row' => $this->row,
-            'devices' => $this->devices(),
+            'vehicles' => $this->vehicles(),
         ]);
     }
 
     /**
      * @return \Illuminate\Support\Collection
      */
-    protected function devices(): Collection
+    protected function vehicles(): Collection
     {
-        return DeviceModel::query()
+        return VehicleModel::query()
             ->list()
             ->withAlarmPivot($this->row->id)
-            ->withTimeZone()
             ->get()
             ->sortByDesc('alarmPivot');
     }
@@ -46,12 +45,12 @@ class UpdateDevice extends ControllerAbstract
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function updateDevice(): RedirectResponse
+    protected function updateVehicle(): RedirectResponse
     {
-        $this->action()->updateDevice();
+        $this->action()->updateVehicle();
 
-        $this->sessionMessage('success', __('alarm-update-device.success'));
+        $this->sessionMessage('success', __('alarm-update-vehicle.success'));
 
-        return redirect()->route('alarm.update.device', $this->row->id);
+        return redirect()->route('alarm.update.vehicle', $this->row->id);
     }
 }

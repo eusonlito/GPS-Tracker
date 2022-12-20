@@ -1,22 +1,22 @@
-@extends ('domains.device.update-layout')
+@extends ('domains.vehicle.update-layout')
 
 @section ('content')
 
-<input type="search" class="form-control form-control-lg mt-5" placeholder="{{ __('device-update-alarm-notification.filter') }}" data-table-search="#alarm-notification-list-table" />
+<input type="search" class="form-control form-control-lg mt-5" placeholder="{{ __('vehicle-update-alarm-notification.filter') }}" data-table-search="#alarm-notification-list-table" />
 
 <div class="overflow-auto header-sticky">
     <table id="alarm-notification-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
-                <th class="text-left w-1">{{ __('device-update-alarm-notification.alarm') }}</th>
-                <th class="text-left w-1">{{ __('device-update-alarm-notification.name') }}</th>
-                <th class="text-left">{{ __('device-update-alarm-notification.message') }}</th>
-                <th class="text-left">{{ __('device-update-alarm-notification.config') }}</th>
-                <th class="text-left">{{ __('device-update-alarm-notification.trip') }}</th>
-                <th class="w-1">{{ __('device-update-alarm-notification.created_at') }}</th>
-                <th class="w-1">{{ __('device-update-alarm-notification.telegram') }}</th>
-                <th class="w-1">{{ __('device-update-alarm-notification.closed_at') }}</th>
-                <th class="w-1">{{ __('device-update-alarm-notification.actions') }}</th>
+                <th class="text-left w-1">{{ __('vehicle-update-alarm-notification.alarm') }}</th>
+                <th class="text-left w-1">{{ __('vehicle-update-alarm-notification.name') }}</th>
+                <th class="text-left">{{ __('vehicle-update-alarm-notification.message') }}</th>
+                <th class="text-left">{{ __('vehicle-update-alarm-notification.config') }}</th>
+                <th class="text-left">{{ __('vehicle-update-alarm-notification.trip') }}</th>
+                <th class="w-1">{{ __('vehicle-update-alarm-notification.created_at') }}</th>
+                <th class="w-1">{{ __('vehicle-update-alarm-notification.telegram') }}</th>
+                <th class="w-1">{{ __('vehicle-update-alarm-notification.closed_at') }}</th>
+                <th class="w-1">{{ __('vehicle-update-alarm-notification.actions') }}</th>
             </tr>
         </thead>
 

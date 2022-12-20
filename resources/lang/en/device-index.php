@@ -7,5 +7,5 @@
     'meta-title' => 'Devices',
     'name' => 'Name',
     'port' => 'Port',
-    'timezone' => 'Time Zone',
+    'vehicle' => 'Vehicle',
 ];

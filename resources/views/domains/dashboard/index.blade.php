@@ -2,12 +2,12 @@
 
 @section ('body')
 
-@if ($devices->isEmpty())
+@if ($vehicles->isEmpty())
 
-<img class="m-auto mt-10 lg:mt-20 h-60" src="@asset('build/images/device.svg')">
+<img class="m-auto mt-10 lg:mt-20 h-60" src="@asset('build/images/vehicle.svg')">
 
 <div class="mt-10 text-center">
-    <a href="{{ route('device.create') }}" class="btn bg-white py-3 px-4">{{ __('dashboard-index.device-create') }}</a>
+    <a href="{{ route('vehicle.create') }}" class="btn bg-white py-3 px-4">{{ __('dashboard-index.vehicle-create') }}</a>
 </div>
 
 @elseif ($trips->isEmpty())
@@ -24,10 +24,10 @@
 
 <form method="GET">
     <div class="lg:flex lg:space-x-4">
-        @if ($devices->count() > 1)
+        @if ($vehicles->count() > 1)
 
         <div class="flex-1 mb-4">
-            <x-select name="device_id" :options="$devices" value="id" text="name" data-change-submit></x-select>
+            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" data-change-submit></x-select>
         </div>
 
         @endif

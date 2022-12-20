@@ -20,7 +20,7 @@ class FractalFactory extends FractalAbstract
             'type' => $row->type,
             'telegram' => $row->telegram,
             'enabled' => $row->enabled,
-            'device' => $this->fromIfLoaded('Device', 'simple', $row, 'device'),
+            'vehicle' => $this->fromIfLoaded('Vehicle', 'simple', $row, 'vehicle'),
         ];
     }
 }

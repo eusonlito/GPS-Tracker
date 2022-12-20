@@ -10,6 +10,7 @@ use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Position extends ModelAbstract
 {
@@ -72,7 +73,7 @@ class Position extends ModelAbstract
      */
     public function device(): BelongsTo
     {
-        return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN)->withTimeZone();
+        return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN);
     }
 
     /**
@@ -89,5 +90,13 @@ class Position extends ModelAbstract
     public function trip(): BelongsTo
     {
         return $this->belongsTo(TripModel::class, TripModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function vehicle(): BelongsTo
+    {
+        return $this->belongsTo(VehicleModel::class, VehicleModel::FOREIGN)->withTimezone();
     }
 }

@@ -3,34 +3,34 @@
 namespace App\Domains\Alarm\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Domains\Device\Model\Device as DeviceModel;
-use App\Domains\Alarm\Model\Builder\AlarmDevice as Builder;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+use App\Domains\Alarm\Model\Builder\AlarmVehicle as Builder;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\SharedApp\Model\PivotAbstract;
 
-class AlarmDevice extends PivotAbstract
+class AlarmVehicle extends PivotAbstract
 {
     use TypeFormatTrait;
 
     /**
      * @var string
      */
-    protected $table = 'alarm_device';
+    protected $table = 'alarm_vehicle';
 
     /**
      * @const string
      */
-    public const TABLE = 'alarm_device';
+    public const TABLE = 'alarm_vehicle';
 
     /**
      * @const string
      */
-    public const FOREIGN = 'alarm_device_id';
+    public const FOREIGN = 'alarm_vehicle_id';
 
     /**
      * @param \Illuminate\Database\Query\Builder $q
      *
-     * @return \App\Domains\Alarm\Model\Builder\AlarmDevice
+     * @return \App\Domains\Alarm\Model\Builder\AlarmVehicle
      */
     public function newEloquentBuilder($q): Builder
     {
@@ -48,8 +48,8 @@ class AlarmDevice extends PivotAbstract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function device(): BelongsTo
+    public function vehicle(): BelongsTo
     {
-        return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN)->withTimeZone();
+        return $this->belongsTo(VehicleModel::class, VehicleModel::FOREIGN)->withTimezone();
     }
 }

@@ -3,18 +3,13 @@
 namespace App\Domains\Device\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Domains\Device\Model\Builder\Device as Builder;
-use App\Domains\Alarm\Model\Alarm as AlarmModel;
-use App\Domains\Alarm\Model\AlarmDevice as AlarmDeviceModel;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\User\Model\User as UserModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Device extends ModelAbstract
 {
@@ -44,43 +39,11 @@ class Device extends ModelAbstract
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function alarmPivot(): HasOne
-    {
-        return $this->hasOne(AlarmDeviceModel::class, static::FOREIGN);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function alarms(): BelongsToMany
-    {
-        return $this->belongsToMany(AlarmModel::class, AlarmDeviceModel::TABLE);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function alarmsNotifications(): HasMany
-    {
-        return $this->hasMany(AlarmNotificationModel::class, static::FOREIGN);
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function messages(): HasMany
     {
         return $this->hasMany(DeviceMessageModel::class, static::FOREIGN);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function timezone(): BelongsTo
-    {
-        return $this->belongsTo(TimezoneModel::class, TimezoneModel::FOREIGN);
     }
 
     /**
@@ -97,5 +60,13 @@ class Device extends ModelAbstract
     public function user(): BelongsTo
     {
         return $this->belongsTo(UserModel::class, UserModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function vehicle(): BelongsTo
+    {
+        return $this->belongsTo(VehicleModel::class, VehicleModel::FOREIGN);
     }
 }

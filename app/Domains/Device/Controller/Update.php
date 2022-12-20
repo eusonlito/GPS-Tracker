@@ -4,7 +4,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Update extends ControllerAbstract
 {
@@ -27,7 +27,7 @@ class Update extends ControllerAbstract
 
         return $this->page('device.update', [
             'row' => $this->row,
-            'timezones' => TimezoneModel::query()->list()->get(),
+            'vehicles' => VehicleModel::query()->list()->get(),
         ]);
     }
 

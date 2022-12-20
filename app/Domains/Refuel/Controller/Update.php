@@ -4,7 +4,7 @@ namespace App\Domains\Refuel\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Update extends ControllerAbstract
 {
@@ -27,7 +27,7 @@ class Update extends ControllerAbstract
 
         return $this->page('refuel.update', [
             'row' => $this->row,
-            'devices' => DeviceModel::query()->byUserId($this->auth->id)->list()->get(),
+            'vehicles' => VehicleModel::query()->byUserId($this->auth->id)->list()->get(),
         ]);
     }
 

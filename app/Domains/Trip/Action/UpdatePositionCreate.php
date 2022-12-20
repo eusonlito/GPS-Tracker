@@ -74,6 +74,7 @@ class UpdatePositionCreate extends ActionAbstract
             'device_id' => $this->row->device_id,
             'timezone_id' => $this->row->timezone_id,
             'user_id' => $this->row->user_id,
+            'vehicle_id' => $this->row->vehicle_id,
         ];
     }
 

@@ -17,40 +17,6 @@ class Device extends BuilderAbstract
     }
 
     /**
-     * @param int $alarm_id
-     *
-     * @return self
-     */
-    public function withAlarmPivot(int $alarm_id): self
-    {
-        return $this->with(['alarmPivot' => static fn ($q) => $q->byAlarmId($alarm_id)]);
-    }
-
-    /**
-     * @return self
-     */
-    public function withAlarmsCount(): self
-    {
-        return $this->withCount('alarms');
-    }
-
-    /**
-     * @return self
-     */
-    public function withAlarmsNotificationsCount(): self
-    {
-        return $this->withCount('alarmsNotifications as alarms_notifications_count');
-    }
-
-    /**
-     * @return self
-     */
-    public function withAlarmsNotificationsPendingCount(): self
-    {
-        return $this->withCount(['alarmsNotifications as alarms_notifications_pending_count' => static fn ($q) => $q->whereClosedAt()]);
-    }
-
-    /**
      * @return self
      */
     public function withMessagesCount(): self
@@ -69,8 +35,8 @@ class Device extends BuilderAbstract
     /**
      * @return self
      */
-    public function withTimezone(): self
+    public function withVehicle(): self
     {
-        return $this->with('timezone');
+        return $this->with(['vehicle' => static fn ($q) => $q->withTimezone()]);
     }
 }

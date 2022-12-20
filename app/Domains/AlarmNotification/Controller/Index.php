@@ -5,7 +5,7 @@ namespace App\Domains\AlarmNotification\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
-use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
 
 class Index extends ControllerAbstract
@@ -23,8 +23,8 @@ class Index extends ControllerAbstract
 
         return $this->page('alarm-notification.index', [
             'list' => $this->list(),
-            'devices' => ($devices = $this->devices()),
-            'devices_multiple' => ($devices->count() > 1),
+            'vehicles' => ($vehicles = $this->vehicles()),
+            'vehicles_multiple' => ($vehicles->count() > 1),
         ]);
     }
 
@@ -36,9 +36,9 @@ class Index extends ControllerAbstract
         return Model::query()
             ->byUserId($this->auth->id)
             ->withAlarm()
-            ->withDevice()
             ->withPosition()
             ->withTrip()
+            ->withVehicle()
             ->list()
             ->get();
     }
@@ -46,9 +46,9 @@ class Index extends ControllerAbstract
     /**
      * @return \Illuminate\Support\Collection
      */
-    protected function devices(): Collection
+    protected function vehicles(): Collection
     {
-        return DeviceModel::query()
+        return VehicleModel::query()
             ->byUserId($this->auth->id)
             ->list()
             ->get();
@@ -72,7 +72,7 @@ class Index extends ControllerAbstract
             ->whereClosedAt()
             ->whereSentAt()
             ->withAlarm()
-            ->withDevice()
+            ->withVehicle()
             ->get();
     }
 }

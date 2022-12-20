@@ -22,7 +22,7 @@ class FractalFactory extends FractalAbstract
             'message' => $row->typeFormat()->message(),
             'latitude' => $row->latitude,
             'longitude' => $row->longitude,
-            'device' => $this->fromIfLoaded('Device', 'simple', $row, 'device'),
+            'vehicle' => $this->fromIfLoaded('Vehicle', 'simple', $row, 'vehicle'),
             'alarm' => $this->fromIfLoaded('Alarm', 'simple', $row, 'alarm'),
         ];
     }

@@ -44,7 +44,7 @@ class UpdateAlarmNotification extends UpdateAbstract
         return AlarmNotificationModel::query()
             ->byTripId($this->row->id)
             ->withAlarm()
-            ->withDevice()
+            ->withVehicle()
             ->list()
             ->get();
     }

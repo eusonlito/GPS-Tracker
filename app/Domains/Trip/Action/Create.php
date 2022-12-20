@@ -5,6 +5,7 @@ namespace App\Domains\Trip\Action;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as Model;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Create extends ActionAbstract
 {
@@ -12,6 +13,11 @@ class Create extends ActionAbstract
      * @var \App\Domains\Device\Model\Device
      */
     protected DeviceModel $device;
+
+    /**
+     * @var \App\Domains\Vehicle\Model\Vehicle
+     */
+    protected VehicleModel $vehicle;
 
     /**
      * @var \App\Domains\Timezone\Model\Timezone
@@ -24,6 +30,7 @@ class Create extends ActionAbstract
     public function handle(): Model
     {
         $this->device();
+        $this->vehicle();
         $this->timezone();
         $this->data();
         $this->save();
@@ -38,6 +45,14 @@ class Create extends ActionAbstract
     {
         $this->device = DeviceModel::query()
             ->findOrFail($this->data['device_id']);
+    }
+
+    /**
+     * @return void
+     */
+    protected function vehicle(): void
+    {
+        $this->vehicle = $this->device->vehicle;
     }
 
     /**
@@ -97,6 +112,7 @@ class Create extends ActionAbstract
             'device_id' => $this->device->id,
             'timezone_id' => $this->timezone->id,
             'user_id' => $this->device->user_id,
+            'vehicle_id' => $this->vehicle->id,
         ]);
     }
 }

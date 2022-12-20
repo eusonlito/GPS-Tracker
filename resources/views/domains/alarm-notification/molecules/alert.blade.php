@@ -9,7 +9,7 @@
         <span class="mx-2">-</span>
 
         <strong>
-            <a href="{{ route('device.update', $row->device->id) }}">{{ $row->device->name }}</a>
+            <a href="{{ route('vehicle.update', $row->vehicle->id) }}">{{ $row->vehicle->name }}</a>
 
             <span class="mx-2">-</span>
 
@@ -36,7 +36,7 @@
 
         <span class="mx-2">-</span>
 
-        <a href="{{ route('device.update.alarm-notification', $row->device->id) }}">{{ $row->typeFormat()->message() }}</a>
+        <a href="{{ route('vehicle.update.alarm-notification', $row->vehicle->id) }}">{{ $row->typeFormat()->message() }}</a>
     </div>
 
     <a href="{{ route('alarm-notification.update.closed-at', $row->id) }}" class="btn-close">

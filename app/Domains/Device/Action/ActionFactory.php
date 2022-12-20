@@ -38,14 +38,6 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return \App\Domains\Device\Model\Device
-     */
-    public function updateAlarm(): Model
-    {
-        return $this->actionHandle(UpdateAlarm::class, $this->validate()->updateAlarm());
-    }
-
-    /**
      * @return \App\Domains\DeviceMessage\Model\DeviceMessage
      */
     public function updateDeviceMessageCreate(): DeviceMessageModel

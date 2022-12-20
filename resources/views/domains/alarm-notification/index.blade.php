@@ -8,8 +8,8 @@
     <table id="alarm-notification-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
-                @if ($devices_multiple)
-                <th class="w-1">{{ __('alarm-notification-index.device') }}</th>
+                @if ($vehicles_multiple)
+                <th class="w-1">{{ __('alarm-notification-index.vehicle') }}</th>
                 @endif
 
                 <th class="text-left w-1">{{ __('alarm-notification-index.alarm') }}</th>
@@ -28,8 +28,8 @@
             @foreach ($list as $row)
 
             <tr>
-                @if ($devices_multiple)
-                <td class="w-1"><a href="{{ route('device.update', $row->device->id) }}" class="block">{{ $row->device->name }}</a></td>
+                @if ($vehicles_multiple)
+                <td class="w-1"><a href="{{ route('vehicle.update', $row->vehicle->id) }}" class="block">{{ $row->vehicle->name }}</a></td>
                 @endif
 
                 <td class="text-left w-1">

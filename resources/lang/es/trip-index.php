@@ -3,7 +3,6 @@
     'alarms' => 'Alarmas',
     'city' => 'Ciudad',
     'country' => 'País',
-    'device' => 'Dispositivo',
     'distance' => 'Distancia',
     'end' => 'Llegada',
     'end-at' => 'Fin',
@@ -19,4 +18,5 @@
     'start_end' => 'Trayecto',
     'state' => 'Provincia',
     'time' => 'Duración',
+    'vehicle' => 'Vehículo',
 ];
