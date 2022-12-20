@@ -55,8 +55,8 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return \App\Domains\Alarm\Model\Alarm
      */
-    public function updateDevice(): Model
+    public function updateVehicle(): Model
     {
-        return $this->actionHandle(UpdateDevice::class, $this->validate()->updateDevice());
+        return $this->actionHandle(UpdateVehicle::class, $this->validate()->updateVehicle());
     }
 }

@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Device\Action;
+namespace App\Domains\Vehicle\Action;
 
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
-use App\Domains\Device\Model\Device as Model;
+use App\Domains\Vehicle\Model\Vehicle as Model;
 
 class UpdateAlarm extends ActionAbstract
 {
     /**
-     * @return \App\Domains\Device\Model\Device
+     * @return \App\Domains\Vehicle\Model\Vehicle
      */
     public function handle(): Model
     {

@@ -2,39 +2,39 @@
 
 namespace App\Domains\Alarm\Model\Builder;
 
-use App\Domains\Alarm\Model\AlarmDevice as AlarmDeviceModel;
+use App\Domains\Alarm\Model\AlarmVehicle as AlarmVehicleModel;
 use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 
 class Alarm extends BuilderAbstract
 {
     /**
-     * @param int $device_id
+     * @param int $vehicle_id
      *
      * @return self
      */
-    public function byDeviceId(int $device_id): self
+    public function byVehicleId(int $vehicle_id): self
     {
-        return $this->whereIn('id', AlarmDeviceModel::query()->selectOnly('alarm_id')->byDeviceId($device_id));
+        return $this->whereIn('id', AlarmVehicleModel::query()->selectOnly('alarm_id')->byVehicleId($vehicle_id));
     }
 
     /**
-     * @param int $device_id
+     * @param int $vehicle_id
      *
      * @return self
      */
-    public function byDeviceIdEnabled(int $device_id): self
+    public function byVehicleIdEnabled(int $vehicle_id): self
     {
-        return $this->whereIn('id', AlarmDeviceModel::query()->selectOnly('alarm_id')->byDeviceIdEnabled($device_id));
+        return $this->whereIn('id', AlarmVehicleModel::query()->selectOnly('alarm_id')->byVehicleIdEnabled($vehicle_id));
     }
 
     /**
-     * @param int $device_id
+     * @param int $vehicle_id
      *
      * @return self
      */
-    public function withDevicePivot(int $device_id): self
+    public function withVehiclePivot(int $vehicle_id): self
     {
-        return $this->with(['devicePivot' => static fn ($q) => $q->byDeviceId($device_id)]);
+        return $this->with(['vehiclePivot' => static fn ($q) => $q->byVehicleId($vehicle_id)]);
     }
 
     /**
@@ -42,25 +42,25 @@ class Alarm extends BuilderAbstract
      *
      * @return self
      */
-    public function byDeviceSerial(string $serial): self
+    public function byVehicleSerial(string $serial): self
     {
-        return $this->whereIn('id', AlarmDeviceModel::query()->selectOnly('alarm_id')->byDeviceSerial($serial));
+        return $this->whereIn('id', AlarmVehicleModel::query()->selectOnly('alarm_id')->byVehicleSerial($serial));
     }
 
     /**
      * @return self
      */
-    public function withDevices(): self
+    public function withVehicles(): self
     {
-        return $this->with('devices');
+        return $this->with('vehicles');
     }
 
     /**
      * @return self
      */
-    public function withDevicesCount(): self
+    public function withVehiclesCount(): self
     {
-        return $this->withCount('devices');
+        return $this->withCount('vehicles');
     }
 
     /**

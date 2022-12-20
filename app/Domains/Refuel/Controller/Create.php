@@ -4,7 +4,7 @@ namespace App\Domains\Refuel\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\Refuel\Model\Refuel as Model;
 
 class Create extends ControllerAbstract
@@ -23,7 +23,7 @@ class Create extends ControllerAbstract
         $this->meta('title', __('refuel-create.meta-title'));
 
         return $this->page('refuel.create', [
-            'devices' => DeviceModel::query()->byUserId($this->auth->id)->list()->get(),
+            'vehicles' => VehicleModel::query()->byUserId($this->auth->id)->list()->get(),
         ]);
     }
 

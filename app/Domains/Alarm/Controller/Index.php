@@ -32,7 +32,7 @@ class Index extends ControllerAbstract
     {
         return Model::query()
             ->byUserId($this->auth->id)
-            ->withDevicesCount()
+            ->withVehiclesCount()
             ->withNotificationsCount()
             ->withNotificationsPendingCount()
             ->list()

@@ -1,7 +1,6 @@
 <?php return [
     'create' => 'Crear',
     'date_at' => 'Fecha',
-    'device' => 'Dispositivo',
     'distance' => 'Distancia',
     'distance_total' => 'Distancia total',
     'end-at' => 'Fin',
@@ -11,4 +10,5 @@
     'quantity' => 'Cantidad',
     'start-at' => 'Inicio',
     'total' => 'Importe Total',
+    'vehicle' => 'Vehículo',
 ];

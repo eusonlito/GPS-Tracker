@@ -19,7 +19,7 @@ class Create extends ValidateAbstract
             'price' => ['bail', 'required', 'numeric'],
             'total' => ['bail', 'required', 'numeric'],
             'date_at' => ['bail', 'required', 'date_format:Y-m-d H:i:s'],
-            'device_id' => ['bail', 'required', 'integer'],
+            'vehicle_id' => ['bail', 'required', 'integer'],
         ];
     }
 }

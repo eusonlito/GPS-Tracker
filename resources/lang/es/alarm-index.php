@@ -2,7 +2,6 @@
     'config' => 'Configuración',
     'create' => 'Crear',
     'created_at' => 'Creada',
-    'devices' => 'Dispositivos',
     'enabled' => 'Activa',
     'filter' => 'Filtrar...',
     'meta-title' => 'Alarmas',
@@ -13,4 +12,5 @@
     'notifications-granted' => 'Notificaciones Activadas',
     'telegram' => 'Telegram',
     'type' => 'Tipo',
+    'vehicles' => 'Vehículos',
 ];

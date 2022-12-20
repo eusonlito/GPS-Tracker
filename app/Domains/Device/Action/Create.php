@@ -15,7 +15,7 @@ class Create extends CreateUpdateAbstract
         $this->dataMaker();
         $this->dataSerial();
         $this->dataPassword();
-        $this->dataTimeZoneId();
+        $this->dataVehicleId();
     }
 
     /**
@@ -38,9 +38,8 @@ class Create extends CreateUpdateAbstract
             'phone_number' => $this->data['phone_number'],
             'password' => $this->data['password'],
             'port' => $this->data['port'],
-            'timezone_auto' => $this->data['timezone_auto'],
             'enabled' => $this->data['enabled'],
-            'timezone_id' => $this->data['timezone_id'],
+            'vehicle_id' => $this->data['vehicle_id'],
             'user_id' => $this->auth->id,
         ]);
     }

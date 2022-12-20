@@ -1,10 +1,9 @@
 <?php return [
     'enabled' => 'Activo',
     'filter' => 'Filtrar...',
-    'maker' => 'Fabricante',
     'name' => 'Nombre',
-    'port' => 'Puerto',
+    'plate' => 'Matrícula',
     'relate' => 'Relacionar',
-    'success' => 'Las relaciones han sido actualizadas correctamente',
+    'success' => 'Las alarmas han sido actualizadas correctamente',
     'timezone' => 'Zona Horaria',
 ];

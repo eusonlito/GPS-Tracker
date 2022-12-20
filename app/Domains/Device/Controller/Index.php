@@ -27,12 +27,9 @@ class Index extends ControllerAbstract
     {
         return Model::query()
             ->byUserId($this->auth->id)
-            ->withTimezone()
             ->withMessagesCount()
             ->withMessagesPendingCount()
-            ->withAlarmsCount()
-            ->withAlarmsNotificationsCount()
-            ->withAlarmsNotificationsPendingCount()
+            ->withVehicle()
             ->list()
             ->get();
     }

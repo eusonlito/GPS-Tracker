@@ -2,15 +2,15 @@
 
 namespace App\Domains\Refuel\Action;
 
-use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\Refuel\Model\Refuel as Model;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
 {
     /**
-     * @var \App\Domains\Device\Model\Device
+     * @var \App\Domains\Vehicle\Model\Vehicle
      */
-    protected DeviceModel $device;
+    protected VehicleModel $vehicle;
 
     /**
      * @return void
@@ -22,7 +22,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     public function handle(): Model
     {
-        $this->device();
+        $this->vehicle();
         $this->save();
 
         return $this->row;
@@ -31,9 +31,9 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     /**
      * @return void
      */
-    protected function device(): void
+    protected function vehicle(): void
     {
-        $this->device = DeviceModel::query()
-            ->findOrFail($this->data['device_id']);
+        $this->vehicle = VehicleModel::query()
+            ->findOrFail($this->data['vehicle_id']);
     }
 }

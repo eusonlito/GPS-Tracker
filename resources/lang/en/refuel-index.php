@@ -1,7 +1,6 @@
 <?php return [
     'create' => 'Create',
     'date_at' => 'Date',
-    'device' => 'Device',
     'distance' => 'Distance',
     'distance_total' => 'Total distance',
     'end-at' => 'End',
@@ -11,4 +10,5 @@
     'quantity' => 'Quantity',
     'start-at' => 'Home',
     'total' => 'Total Amount',
+    'vehicle' => 'Vehicle',
 ];

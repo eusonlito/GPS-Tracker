@@ -194,4 +194,12 @@ class Trip extends BuilderAbstract
     {
         return $this->with('timezone');
     }
+
+    /**
+     * @return self
+     */
+    public function withVehicle(): self
+    {
+        return $this->with('vehicle');
+    }
 }

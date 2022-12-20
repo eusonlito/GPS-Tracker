@@ -21,6 +21,19 @@ class Country extends BuilderAbstract
     }
 
     /**
+     * @param int $vehicle_id
+     * @param ?string $trip_before_start_utc_at
+     * @param ?string $trip_after_start_utc_at
+     * @param ?string $trip_start_end
+     *
+     * @return self
+     */
+    public function byVehicleIdWhenTripStartUtcAtDateBeforeAfter(int $vehicle_id, ?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at, ?string $trip_start_end): self
+    {
+        return $this->whereIn('id', StateModel::query()->selectOnly('country_id')->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($vehicle_id, $trip_before_start_utc_at, $trip_after_start_utc_at, $trip_start_end));
+    }
+
+    /**
      * @return self
      */
     public function list(): self

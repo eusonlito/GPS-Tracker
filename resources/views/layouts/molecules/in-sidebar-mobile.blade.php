@@ -28,6 +28,13 @@
         </li>
 
         <li>
+            <a href="{{ route('vehicle.index') }}" class="menu {{ str_starts_with($ROUTE, 'vehicle.') ? 'menu--active' : '' }}">
+                <div class="menu__icon">@icon('truck')</div>
+                <div class="menu__title">{{ __('in-sidebar.vehicles') }}</div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('device.index') }}" class="menu {{ str_starts_with($ROUTE, 'device.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('cpu')</div>
                 <div class="menu__title">{{ __('in-sidebar.devices') }}</div>

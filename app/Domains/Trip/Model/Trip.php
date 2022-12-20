@@ -9,6 +9,7 @@ use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Builder\Trip as Builder;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Trip extends ModelAbstract
 {
@@ -47,7 +48,7 @@ class Trip extends ModelAbstract
      */
     public function device(): BelongsTo
     {
-        return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN)->withTimeZone();
+        return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN);
     }
 
     /**
@@ -64,6 +65,14 @@ class Trip extends ModelAbstract
     public function timezone(): BelongsTo
     {
         return $this->belongsTo(TimezoneModel::class, TimezoneModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function vehicle(): BelongsTo
+    {
+        return $this->belongsTo(VehicleModel::class, VehicleModel::FOREIGN)->withTimezone();
     }
 
     /**

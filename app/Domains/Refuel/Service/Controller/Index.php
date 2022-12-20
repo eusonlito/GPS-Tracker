@@ -6,7 +6,7 @@ use stdClass;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\Refuel\Model\Refuel as Model;
 
 class Index extends ControllerAbstract
@@ -51,8 +51,8 @@ class Index extends ControllerAbstract
     {
         return [
             'list' => $this->list(),
-            'devices' => $this->devices(),
-            'devices_multiple' => ($this->devices()->count() > 1),
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => ($this->vehicles()->count() > 1),
             'date_min' => $this->dateMin(),
             'totals' => $this->totals(),
         ];
@@ -66,18 +66,18 @@ class Index extends ControllerAbstract
         return $this->cache[__FUNCTION__] ??= Model::query()
             ->list()
             ->byUserId($this->auth->id)
-            ->whenDeviceId((int)$this->request->input('device_id'))
+            ->whenVehicleId((int)$this->request->input('vehicle_id'))
             ->whenDateAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
-            ->withDevice()
+            ->withVehicle()
             ->get();
     }
 
     /**
      * @return \Illuminate\Support\Collection
      */
-    protected function devices(): Collection
+    protected function vehicles(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= DeviceModel::query()
+        return $this->cache[__FUNCTION__] ??= VehicleModel::query()
             ->byUserId($this->auth->id)
             ->list()
             ->get();

@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Domains\City\Model\City as CityModel;
 use App\Domains\Country\Model\Country as CountryModel;
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\State\Model\State as StateModel;
 use App\Domains\Trip\Model\Trip as Model;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
 {
@@ -52,9 +52,9 @@ class Index extends ControllerAbstract
     public function data(): array
     {
         return [
-            'devices' => $this->devices(),
-            'devices_multiple' => ($this->devices()->count() > 1),
-            'device' => $this->device(),
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => ($this->vehicles()->count() > 1),
+            'vehicle' => $this->vehicle(),
             'countries' => $this->countries(),
             'country' => $this->country(),
             'states' => $this->states(),
@@ -70,21 +70,21 @@ class Index extends ControllerAbstract
     /**
      * @return \Illuminate\Support\Collection
      */
-    protected function devices(): Collection
+    protected function vehicles(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= DeviceModel::query()
+        return $this->cache[__FUNCTION__] ??= VehicleModel::query()
             ->byUserId($this->auth->id)
             ->list()
             ->get();
     }
 
     /**
-     * @return \App\Domains\Device\Model\Device
+     * @return \App\Domains\Vehicle\Model\Vehicle
      */
-    protected function device(): DeviceModel
+    protected function vehicle(): VehicleModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->devices()->firstWhere('id', $this->request->input('device_id'))
-            ?: $this->devices()->first();
+        return $this->cache[__FUNCTION__] ??= $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
+            ?: $this->vehicles()->first();
     }
 
     /**
@@ -93,7 +93,7 @@ class Index extends ControllerAbstract
     protected function countries(): Collection
     {
         return $this->cache[__FUNCTION__] ??= CountryModel::query()
-            ->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($this->device()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+            ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
             ->list()
             ->get();
     }
@@ -118,7 +118,7 @@ class Index extends ControllerAbstract
 
         return $this->cache[__FUNCTION__] ??= StateModel::query()
             ->byCountryId($country_id)
-            ->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($this->device()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+            ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
             ->list()
             ->get();
     }
@@ -142,7 +142,7 @@ class Index extends ControllerAbstract
 
         return $this->cache[__FUNCTION__] ??= CityModel::query()
             ->byStateId($state_id)
-            ->byDeviceIdWhenTripStartUtcAtDateBeforeAfter($this->device()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+            ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
             ->list()
             ->get();
     }
@@ -160,7 +160,7 @@ class Index extends ControllerAbstract
      */
     protected function dateMin(): ?string
     {
-        return Model::query()->byDeviceId($this->device()->id)->orderByStartAtAsc()->rawValue('DATE(`start_utc_at`)');
+        return Model::query()->byVehicleId($this->vehicle()->id)->orderByStartAtAsc()->rawValue('DATE(`start_utc_at`)');
     }
 
     /**
@@ -180,10 +180,10 @@ class Index extends ControllerAbstract
     protected function list(): Collection
     {
         return $this->cache[__FUNCTION__] ??= Model::query()
-            ->byDeviceId($this->device()->id)
+            ->byVehicleId($this->vehicle()->id)
             ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
             ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
-            ->withDevice()
+            ->withVehicle()
             ->list()
             ->get();
     }

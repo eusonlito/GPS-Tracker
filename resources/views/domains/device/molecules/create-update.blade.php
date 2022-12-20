@@ -34,14 +34,7 @@
     </div>
 
     <div class="p-2">
-        <x-select name="timezone_id" :options="$timezones" value="id" text="zone" id="device-create-timezone" :label="__('device-create.timezone')" required></x-select>
-    </div>
-
-    <div class="p-2">
-        <div class="form-check">
-            <input type="checkbox" name="timezone_auto" value="1" class="form-check-switch" id="device-timezone_auto" {{ $REQUEST->input('timezone_auto') ? 'checked' : '' }}>
-            <label for="device-timezone_auto" class="form-check-label">{{ __('device-create.timezone_auto') }}</label>
-        </div>
+        <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" id="device-create-vehicle" :label="__('device-create.vehicle')" required></x-select>
     </div>
 
     <div class="p-2">

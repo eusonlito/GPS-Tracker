@@ -8,6 +8,7 @@ use App\Domains\Position\Job\UpdateCity as UpdateCityJob;
 use App\Domains\Position\Model\Position as Model;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Create extends ActionAbstract
 {
@@ -15,6 +16,11 @@ class Create extends ActionAbstract
      * @var ?\App\Domains\Device\Model\Device
      */
     protected ?DeviceModel $device;
+
+    /**
+     * @var \App\Domains\Vehicle\Model\Vehicle
+     */
+    protected VehicleModel $vehicle;
 
     /**
      * @var \App\Domains\Timezone\Model\Timezone
@@ -43,6 +49,7 @@ class Create extends ActionAbstract
         }
 
         $this->deviceConnected();
+        $this->vehicle();
         $this->timezone();
         $this->data();
         $this->previous();
@@ -72,7 +79,7 @@ class Create extends ActionAbstract
      */
     protected function isValidDevice(): bool
     {
-        return (bool)$this->device;
+        return boolval($this->device?->vehicle?->enabled);
     }
 
     /**
@@ -87,11 +94,19 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
+    protected function vehicle(): void
+    {
+        $this->vehicle = $this->device->vehicle;
+    }
+
+    /**
+     * @return void
+     */
     protected function timezone(): void
     {
         $this->timezone = $this->timezoneByLatitudeLongitude()
             ?: $this->timezoneByZone()
-            ?: $this->device->timezone;
+            ?: $this->vehicle->timezone;
     }
 
     /**
@@ -99,7 +114,7 @@ class Create extends ActionAbstract
      */
     protected function timezoneByLatitudeLongitude(): ?TimezoneModel
     {
-        if ($this->device->timezone_auto === false) {
+        if ($this->vehicle->timezone_auto === false) {
             return null;
         }
 
@@ -113,7 +128,7 @@ class Create extends ActionAbstract
      */
     protected function timezoneByZone(): ?TimezoneModel
     {
-        if ($this->device->timezone_auto === false) {
+        if ($this->vehicle->timezone_auto === false) {
             return null;
         }
 
@@ -277,6 +292,7 @@ class Create extends ActionAbstract
             'timezone_id' => $this->timezone->id,
             'trip_id' => $this->trip->id,
             'user_id' => $this->device->user_id,
+            'vehicle_id' => $this->vehicle->id,
         ]);
     }
 

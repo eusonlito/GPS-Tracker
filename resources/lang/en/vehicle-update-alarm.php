@@ -1,11 +1,11 @@
 <?php return [
     'config' => 'Configuration',
-    'created_at' => 'High',
+    'created_at' => 'Created',
     'enabled' => 'Active',
     'filter' => 'Filter...',
     'name' => 'Name',
-    'relate' => 'Relate',
-    'success' => 'The relations have been successfully updated',
+    'relate' => 'Related',
+    'success' => 'The relations have been updated successfully',
     'telegram' => 'Telegram',
     'type' => 'Type',
 ];

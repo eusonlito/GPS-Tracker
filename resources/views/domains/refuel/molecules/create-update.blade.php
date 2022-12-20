@@ -1,7 +1,7 @@
 <div class="box p-5 mt-5">
     <div class="lg:flex">
         <div class="flex-1 p-2">
-            <x-select name="device_id" :options="$devices" value="id" text="name" id="refuel-create-device" :label="__('refuel-create.device')" required></x-select>
+            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" id="refuel-create-vehicle" :label="__('refuel-create.vehicle')" required></x-select>
         </div>
 
         <div class="flex-1 p-2">

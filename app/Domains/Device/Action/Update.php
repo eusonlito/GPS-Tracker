@@ -13,7 +13,7 @@ class Update extends CreateUpdateAbstract
         $this->dataMaker();
         $this->dataSerial();
         $this->dataPassword();
-        $this->dataTimeZoneId();
+        $this->dataVehicleId();
     }
 
     /**
@@ -35,9 +35,8 @@ class Update extends CreateUpdateAbstract
         $this->row->phone_number = $this->data['phone_number'];
         $this->row->password = $this->data['password'];
         $this->row->port = $this->data['port'];
-        $this->row->timezone_auto = $this->data['timezone_auto'];
         $this->row->enabled = $this->data['enabled'];
-        $this->row->timezone_id = $this->data['timezone_id'];
+        $this->row->vehicle_id = $this->data['vehicle_id'];
 
         $this->row->save();
     }

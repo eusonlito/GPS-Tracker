@@ -3,7 +3,7 @@
 namespace App\Domains\Device\Action;
 
 use App\Domains\Device\Model\Device as Model;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
 {
@@ -71,9 +71,9 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     /**
      * @return void
      */
-    protected function dataTimeZoneId(): void
+    protected function dataVehicleId(): void
     {
-        $this->data['timezone_id'] = TimezoneModel::query()->selectOnly('id')->findOrFail($this->data['timezone_id'])->id;
+        $this->data['vehicle_id'] = VehicleModel::query()->selectOnly('id')->findOrFail($this->data['vehicle_id'])->id;
     }
 
     /**

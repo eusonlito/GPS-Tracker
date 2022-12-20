@@ -95,6 +95,21 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @param int $vehicle_id
+     * @param ?string $trip_before_start_utc_at
+     * @param ?string $trip_after_start_utc_at
+     * @param ?string $trip_start_end
+     *
+     * @return self
+     */
+    public function byVehicleIdWhenTripStartUtcAtDateBeforeAfter(int $vehicle_id, ?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at, ?string $trip_start_end): self
+    {
+        return $this->byVehicleId($vehicle_id)
+            ->whenTripStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at)
+            ->whenStartEnd($trip_start_end);
+    }
+
+    /**
      * @return self
      */
     public function list(): self
@@ -156,7 +171,7 @@ class Position extends BuilderAbstract
         return $this->selectRaw('
             `id`, `speed`, `direction`, `signal`, `date_at`, `date_utc_at`, `created_at`, `updated_at`,
             ROUND(ST_X(`point`), 5) AS `longitude`, ROUND(ST_Y(`point`), 5) AS `latitude`,
-            `city_id`, `device_id`, `timezone_id`, `trip_id`, `user_id`
+            `city_id`, `device_id`, `timezone_id`, `trip_id`, `user_id`, `vehicle_id`
         ');
     }
 
@@ -204,14 +219,6 @@ class Position extends BuilderAbstract
     /**
      * @return self
      */
-    public function withDevice(): self
-    {
-        return $this->with('device');
-    }
-
-    /**
-     * @return self
-     */
     public function withCity(): self
     {
         return $this->with(['city' => static fn ($q) => $q->withState()]);
@@ -228,6 +235,14 @@ class Position extends BuilderAbstract
     /**
      * @return self
      */
+    public function withDevice(): self
+    {
+        return $this->with('device');
+    }
+
+    /**
+     * @return self
+     */
     public function withTimezone(): self
     {
         return $this->with('timezone');
@@ -239,5 +254,13 @@ class Position extends BuilderAbstract
     public function withTrip(): self
     {
         return $this->with('trip');
+    }
+
+    /**
+     * @return self
+     */
+    public function withVehicle(): self
+    {
+        return $this->with('vehicle');
     }
 }

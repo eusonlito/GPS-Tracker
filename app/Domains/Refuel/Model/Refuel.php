@@ -4,8 +4,8 @@ namespace App\Domains\Refuel\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Refuel\Model\Builder\Refuel as Builder;
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Refuel extends ModelAbstract
 {
@@ -37,8 +37,8 @@ class Refuel extends ModelAbstract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function device(): BelongsTo
+    public function vehicle(): BelongsTo
     {
-        return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN)->withTimeZone();
+        return $this->belongsTo(VehicleModel::class, VehicleModel::FOREIGN)->withTimezone();
     }
 }

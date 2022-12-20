@@ -12,6 +12,5 @@
     'save' => 'Create',
     'serial' => 'Serial Number',
     'success' => 'The device has been successfully registered',
-    'timezone' => 'Time Zone',
-    'timezone_auto' => 'Automatic Timezone',
+    'vehicle' => 'Vehicle',
 ];

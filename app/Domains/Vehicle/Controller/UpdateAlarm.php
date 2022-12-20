@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Device\Controller;
+namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -24,7 +24,7 @@ class UpdateAlarm extends ControllerAbstract
 
         $this->meta('title', $this->row->name);
 
-        return $this->page('device.update-alarm', [
+        return $this->page('vehicle.update-alarm', [
             'row' => $this->row,
             'alarms' => $this->alarms(),
         ]);
@@ -37,9 +37,9 @@ class UpdateAlarm extends ControllerAbstract
     {
         return AlarmModel::query()
             ->list()
-            ->withDevicePivot($this->row->id)
+            ->withVehiclePivot($this->row->id)
             ->get()
-            ->sortByDesc('devicePivot');
+            ->sortByDesc('vehiclePivot');
     }
 
     /**
@@ -49,8 +49,8 @@ class UpdateAlarm extends ControllerAbstract
     {
         $this->action()->updateAlarm();
 
-        $this->sessionMessage('success', __('device-update-alarm.success'));
+        $this->sessionMessage('success', __('vehicle-update-alarm.success'));
 
-        return redirect()->route('device.update.alarm', $this->row->id);
+        return redirect()->route('vehicle.update.alarm', $this->row->id);
     }
 }

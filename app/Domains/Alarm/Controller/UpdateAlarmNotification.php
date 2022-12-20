@@ -31,7 +31,7 @@ class UpdateAlarmNotification extends ControllerAbstract
     protected function notifications(): Collection
     {
         return $this->row->notifications()
-            ->withDevice()
+            ->withVehicle()
             ->withPosition()
             ->withTrip()
             ->list()

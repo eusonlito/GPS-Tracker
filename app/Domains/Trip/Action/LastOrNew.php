@@ -5,6 +5,7 @@ namespace App\Domains\Trip\Action;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as Model;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class LastOrNew extends ActionAbstract
 {
@@ -12,6 +13,11 @@ class LastOrNew extends ActionAbstract
      * @var \App\Domains\Device\Model\Device
      */
     protected DeviceModel $device;
+
+    /**
+     * @var \App\Domains\Vehicle\Model\Vehicle
+     */
+    protected VehicleModel $vehicle;
 
     /**
      * @var ?string
@@ -24,6 +30,7 @@ class LastOrNew extends ActionAbstract
     public function handle(): Model
     {
         $this->device();
+        $this->vehicle();
         $this->row();
         $this->createIfPositionInvalid();
 
@@ -37,6 +44,14 @@ class LastOrNew extends ActionAbstract
     {
         $this->device = DeviceModel::query()
             ->findOrFail($this->data['device_id']);
+    }
+
+    /**
+     * @return void
+     */
+    protected function vehicle(): void
+    {
+        $this->vehicle = $this->device->vehicle;
     }
 
     /**
@@ -60,6 +75,7 @@ class LastOrNew extends ActionAbstract
             'start_utc_at' => $this->data['date_utc_at'],
             'device_id' => $this->device->id,
             'timezone_id' => $this->data['timezone_id'],
+            'vehicle_id' => $this->vehicle->id,
         ])->create();
     }
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Device\Validate;
+namespace App\Domains\Vehicle\Validate;
 
 use App\Domains\Shared\Validate\ValidateAbstract;
 

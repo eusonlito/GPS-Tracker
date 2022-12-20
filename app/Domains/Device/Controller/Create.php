@@ -4,7 +4,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Create extends ControllerAbstract
 {
@@ -17,23 +17,13 @@ class Create extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow(data: $this->requestMergeWithRowData());
+        $this->requestMergeWithRow();
 
         $this->meta('title', __('device-create.meta-title'));
 
         return $this->page('device.create', [
-            'timezones' => TimezoneModel::query()->list()->get(),
+            'vehicles' => VehicleModel::query()->list()->get(),
         ]);
-    }
-
-    /**
-     * @return array
-     */
-    protected function requestMergeWithRowData(): array
-    {
-        return [
-            'timezone_id' => TimezoneModel::query()->whereDefault()->value('id'),
-        ];
     }
 
     /**

@@ -40,7 +40,7 @@ class Notify extends ActionAbstract
             return null;
         }
 
-        $telegram = $this->row->device->user->telegram;
+        $telegram = $this->row->vehicle->user->telegram;
 
         if (empty($telegram['username'])) {
             return null;
@@ -56,7 +56,7 @@ class Notify extends ActionAbstract
     {
         return __('alarm-notification-notify.telegram.message', [
             'alarm' => $this->row->alarm->name,
-            'device' => $this->row->device->name,
+            'vehicle' => $this->row->vehicle->name,
             'message' => $this->row->typeFormat()->message(),
             'trip' => $this->row->trip->name,
             'trip_link' => route('trip.update.alarm-notification', $this->row->trip->id),

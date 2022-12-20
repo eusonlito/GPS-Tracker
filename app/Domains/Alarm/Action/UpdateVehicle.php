@@ -3,9 +3,9 @@
 namespace App\Domains\Alarm\Action;
 
 use App\Domains\Alarm\Model\Alarm as Model;
-use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
-class UpdateDevice extends ActionAbstract
+class UpdateVehicle extends ActionAbstract
 {
     /**
      * @return \App\Domains\Alarm\Model\Alarm
@@ -23,7 +23,7 @@ class UpdateDevice extends ActionAbstract
      */
     protected function data(): void
     {
-        $this->data['related'] = DeviceModel::query()->byIds($this->data['related'])->pluck('id')->all();
+        $this->data['related'] = VehicleModel::query()->byIds($this->data['related'])->pluck('id')->all();
     }
 
     /**
@@ -31,6 +31,6 @@ class UpdateDevice extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->row->devices()->sync($this->data['related']);
+        $this->row->vehicles()->sync($this->data['related']);
     }
 }
