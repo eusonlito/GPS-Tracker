@@ -99,6 +99,7 @@
             "@php artisan db:seed --force --ansi --class=\"Database\\Seeders\\Database\"",
             "@php artisan maintenance:migration:clean",
             "@php artisan server:manifest:generate",
+            "@php artisan queue:restart --ansi",
             "@php artisan server:start:all --reset"
         ],
 
@@ -110,7 +111,8 @@
             "@php artisan db:seed --class=\"Database\\Seeders\\Database\"",
             "@php artisan maintenance:migration:clean",
             "@php artisan server:manifest:generate",
-            "@composer artisan-cache-clear"
+            "@composer artisan-cache-clear",
+            "@php artisan queue:restart --ansi"
         ],
 
         "fix": [
