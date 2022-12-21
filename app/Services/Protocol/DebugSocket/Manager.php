@@ -31,7 +31,9 @@ class Manager extends ProtocolAbstract
      */
     public function server(int $port): Server
     {
-        return Server::new($port);
+        return Server::new($port)
+            ->socketType('raw')
+            ->socketProtocol('tcp');
     }
 
     /**

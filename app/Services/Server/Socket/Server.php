@@ -3,6 +3,7 @@
 namespace App\Services\Server\Socket;
 
 use Closure;
+use Exception;
 use Socket;
 use stdClass;
 use Throwable;
@@ -21,9 +22,52 @@ class Server extends ServerAbstract
     protected ?Socket $socket;
 
     /**
+     * @var int
+     */
+    protected int $socketType = 1;
+
+    /**
+     * @var int
+     */
+    protected int $socketProtocol = 0;
+
+    /**
      * @var array
      */
     protected array $clients = [];
+
+    /**
+     * @param string $type
+     *
+     * @return self
+     */
+    public function socketType(string $type): self
+    {
+        $this->socketType = match ($type) {
+            'stream' => SOCK_STREAM,
+            'raw' => SOCK_RAW,
+            default => throw new Exception(sprintf('Invalid Socket Type %s', $type)),
+        };
+
+        return $this;
+    }
+
+    /**
+     * @param string $protocol
+     *
+     * @return self
+     */
+    public function socketProtocol(string $protocol): self
+    {
+        $this->socketProtocol = match ($protocol) {
+            'ip' => 0,
+            'tcp' => 6,
+            'udp' => 17,
+            default => throw new Exception(sprintf('Invalid Socket Protocol %s', $protocol)),
+        };
+
+        return $this;
+    }
 
     /**
      * @param \Closure $handler
@@ -142,7 +186,7 @@ class Server extends ServerAbstract
      */
     protected function create(): void
     {
-        $this->socket = socket_create(AF_INET, SOCK_STREAM, 0);
+        $this->socket = socket_create(AF_INET, $this->socketType, $this->socketProtocol);
     }
 
     /**
