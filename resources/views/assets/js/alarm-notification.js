@@ -4,22 +4,22 @@ import Router from './router';
 (function () {
     'use strict';
 
-    const deviceAlarmRequest = function () {
+    const alarmRequest = function () {
         new Ajax(Router.get('alarm.index'), 'GET')
             .setAjax(true)
             .setJsonResponse(true)
-            .setCallback(deviceAlarmCheck)
+            .setCallback(alarmCheck)
             .send();
     };
 
-    const deviceAlarmCheck = function (alarms) {
+    const alarmCheck = function (alarms) {
         if (alarms.length) {
-            deviceAlarmNotificationServiceWoker();
+            alarmNotificationServiceWoker();
         }
     };
 
-    const deviceAlarmNotificationServiceWoker = function () {
-        navigator.serviceWorker.ready.then((worker) => worker.active.postMessage({ action: 'deviceAlarmNotification' }));
+    const alarmNotificationServiceWoker = function () {
+        navigator.serviceWorker.ready.then((worker) => worker.active.postMessage({ action: 'alarmNotification' }));
         navigator.serviceWorker.addEventListener('message', event => navigatorServiceWorkerMessage(event.data));
     };
 
@@ -38,5 +38,5 @@ import Router from './router';
         return window.location.reload();
     };
 
-    deviceAlarmRequest();
+    alarmRequest();
 })();

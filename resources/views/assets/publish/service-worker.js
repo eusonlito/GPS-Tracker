@@ -7,11 +7,11 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('message', (event) => {
     switch (event.data.action) {
-        case 'deviceAlarmNotification': return deviceAlarmNotification(event.data);
+        case 'alarmNotification': return alarmNotification(event.data);
     };
 });
 
-let deviceAlarmNotificationInterval;
+let alarmNotificationInterval;
 
 const clientsPostMessage = function (message, isEvent) {
     const url = self.registration.scope;
@@ -39,12 +39,12 @@ const clientsPostMessage = function (message, isEvent) {
     });
 };
 
-const deviceAlarmNotification = function (data) {
-    if (deviceAlarmNotification) {
-        clearInterval(deviceAlarmNotificationInterval);
+const alarmNotification = function (data) {
+    if (alarmNotificationInterval) {
+        clearInterval(alarmNotificationInterval);
     }
 
-    deviceAlarmNotificationInterval = setInterval(() => {
+    alarmNotificationInterval = setInterval(() => {
         new Ajax(Router.get('alarm-notification.index'), 'GET')
             .setAjax(true)
             .setJsonResponse(true)
@@ -72,7 +72,7 @@ const deviceAlarmNotification = function (data) {
     };
 
     const notifyMessage = function (notification) {
-        return `${notification.device.name} - ${notification.name} - ${notification.title} - ${notification.message}`;
+        return `${notification.vehicle.name} - ${notification.name} - ${notification.title} - ${notification.message}`;
     };
 
     const updateSentAt = function (notification) {
