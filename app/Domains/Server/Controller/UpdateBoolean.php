@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Alarm\Controller;
+namespace App\Domains\Server\Controller;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Alarm\Model\Alarm as Model;
+use App\Domains\Server\Model\Server as Model;
 
 class UpdateBoolean extends ControllerAbstract
 {
@@ -20,7 +20,7 @@ class UpdateBoolean extends ControllerAbstract
     }
 
     /**
-     * @return \App\Domains\Alarm\Model\Alarm
+     * @return \App\Domains\Server\Model\Server
      */
     protected function updateBoolean(): Model
     {
@@ -28,7 +28,7 @@ class UpdateBoolean extends ControllerAbstract
     }
 
     /**
-     * @param \App\Domains\Alarm\Model\Alarm $row
+     * @param \App\Domains\Server\Model\Server $row
      *
      * @return array
      */

@@ -91,4 +91,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(Update::class, $this->validate()->update());
     }
+
+    /**
+     * @return \App\Domains\Server\Model\Server
+     */
+    public function updateBoolean(): Model
+    {
+        return $this->actionHandle(UpdateBoolean::class, $this->validate()->updateBoolean());
+    }
 }

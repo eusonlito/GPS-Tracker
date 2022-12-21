@@ -35,8 +35,8 @@
             <tr>
                 <td><a href="{{ $link }}" class="block">{{ $row->port }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->protocol }}</a></td>
-                <td data-table-sort-value="{{ (int)$row->enabled }}" class="w-1">@status($row->enabled)</td>
-                <td class="w-1"><a href="{{ $link }}" class="block">@dateLocal($row->created_at)</a></td>
+                <td class="w-1" data-table-sort-value="{{ (int)$row->enabled }}"><a href="{{ route('server.update.boolean', [$row->id, 'enabled']) }}" class="block" data-update-boolean="enabled">@status($row->enabled)</a></td>
+                <td class="w-1" data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->created_at)</a></td>
             </tr>
 
             @endforeach

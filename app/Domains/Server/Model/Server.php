@@ -23,6 +23,13 @@ class Server extends ModelAbstract
     public const FOREIGN = 'server_id';
 
     /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'enabled' => 'boolean',
+    ];
+
+    /**
      * @param \Illuminate\Database\Query\Builder $q
      *
      * @return \App\Domains\Server\Model\Builder\Server
