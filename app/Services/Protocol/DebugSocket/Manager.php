@@ -32,7 +32,7 @@ class Manager extends ProtocolAbstract
     public function server(int $port): Server
     {
         return Server::new($port)
-            ->socketType('raw')
+            ->socketType('stream')
             ->socketProtocol('tcp');
     }
 

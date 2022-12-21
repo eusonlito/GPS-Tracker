@@ -45,7 +45,6 @@ class Server extends ServerAbstract
     {
         $this->socketType = match ($type) {
             'stream' => SOCK_STREAM,
-            'raw' => SOCK_RAW,
             default => throw new Exception(sprintf('Invalid Socket Type %s', $type)),
         };
 
