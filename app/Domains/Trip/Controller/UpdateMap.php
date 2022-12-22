@@ -58,6 +58,7 @@ class UpdateMap extends UpdateAbstract
     {
         return AlarmNotificationModel::query()
             ->byTripId($this->row->id)
+            ->withAlarm()
             ->list()
             ->get();
     }

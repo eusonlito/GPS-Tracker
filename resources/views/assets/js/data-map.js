@@ -60,7 +60,7 @@ import value2color from './value2color';
     const alarmsIds = alarms.map(alarm => alarm.id);
 
     notifications.forEach(notification => {
-        if (alarmsIds.includes(notification.alarm.id)) {
+        if (!notification.alarm || alarmsIds.includes(notification.alarm.id)) {
             return;
         }
 
