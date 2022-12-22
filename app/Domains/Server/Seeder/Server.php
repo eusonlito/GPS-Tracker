@@ -13,6 +13,10 @@ class Server extends SeederAbstract
      */
     public function run()
     {
+        if (Model::query()->count()) {
+            return;
+        }
+
         $this->insertWithoutDuplicates(Model::class, $this->json('server'), 'port');
     }
 }
