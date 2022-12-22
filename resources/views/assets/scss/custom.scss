@@ -54,7 +54,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     width: 100%;
-    height: 85vh;
+    height: 84vh;
 
     .map-map {
         flex-grow: 1;
@@ -69,6 +69,11 @@
 
     .map-map-render {
         height: 100%;
+
+        .leaflet-container:focus,
+        .leaflet-container:focus-visible {
+            outline: none;
+        }
     }
 
     .map-list {
