@@ -80,6 +80,6 @@ class Map extends Component
      */
     protected function notificationsJson(): ?string
     {
-        return $this->notifications->map->only('id', 'type', 'date_at', 'latitude', 'longitude')->toJson();
+        return $this->notifications->map->only('id', 'type', 'date_at', 'latitude', 'longitude', 'alarm')->toJson();
     }
 }

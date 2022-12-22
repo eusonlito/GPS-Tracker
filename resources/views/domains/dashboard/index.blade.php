@@ -71,7 +71,7 @@
     </div>
 </form>
 
-<x-map :trip="$trip" :positions="$positions" :alarms="$alarms" :notifications="$alarm_notifications" data-map-show-last="true"></x-map>
+<x-map :trip="$trip" :positions="$positions" :alarms="$alarms" :notifications="$trip_alarm_notifications" data-map-show-last="true"></x-map>
 
 @endif
 

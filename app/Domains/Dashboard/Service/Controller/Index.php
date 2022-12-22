@@ -35,6 +35,7 @@ class Index extends ControllerAbstract
             'trip' => $this->trip(),
             'trip_next_id' => $this->tripNextId(),
             'trip_previous_id' => $this->tripPreviousId(),
+            'trip_alarm_notifications' => $this->tripAlarmNotifications(),
             'positions' => $this->positions(),
             'alarms' => $this->alarms(),
             'alarm_notifications' => $this->alarmNotifications(),
@@ -121,6 +122,22 @@ class Index extends ControllerAbstract
         return $this->cache[__FUNCTION__] ??= $this->trips()
             ->firstWhere('start_utc_at', '<', $this->trip()->start_utc_at)
             ->id ?? null;
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    protected function tripAlarmNotifications(): Collection
+    {
+        if ($this->trip() === null) {
+            return collect();
+        }
+
+        return $this->cache[__FUNCTION__] ??= AlarmNotificationModel::query()
+            ->byTripId($this->trip()->id)
+            ->withAlarm()
+            ->list()
+            ->get();
     }
 
     /**

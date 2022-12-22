@@ -57,6 +57,17 @@ import value2color from './value2color';
         notifications = [];
     }
 
+    const alarmsIds = alarms.map(alarm => alarm.id);
+
+    notifications.forEach(notification => {
+        if (alarmsIds.includes(notification.alarm.id)) {
+            return;
+        }
+
+        alarms.push(notification.alarm);
+        alarmsIds.push(notification.alarm.id);
+    });
+
     const ucfirst = function(string) {
         return string[0].toUpperCase() + string.slice(1);
     };
@@ -217,13 +228,9 @@ import value2color from './value2color';
     const speedMax = Math.max(...speeds);
     const colors = speeds.map(speed => value2color(speed, speedMin, speedMax));
 
-    alarms.forEach(function (alarm) {
-        alarmAdd(alarm);
-    });
+    alarms.forEach(alarmAdd);
 
-    notifications.forEach(function (notification) {
-        notificationAdd(notification);
-    });
+    notifications.forEach(notificationAdd);
 
     positions.forEach(trackAdd);
 
