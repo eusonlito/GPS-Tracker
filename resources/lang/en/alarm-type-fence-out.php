@@ -6,7 +6,7 @@
     ],
     'latitude' => 'Latitude',
     'longitude' => 'Longitude',
-    'message' => 'The device has left the geofence',
+    'message' => 'The vehicle has left the geofence',
     'radius' => 'Radius in KM',
     'title' => 'Geofence (Exit)',
 ];

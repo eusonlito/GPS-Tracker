@@ -6,7 +6,7 @@
     ],
     'latitude' => 'Latitud',
     'longitude' => 'Longitud',
-    'message' => 'El dispositivo ha entrado en la geovalla',
+    'message' => 'El vehículo ha entrado en la geovalla',
     'radius' => 'Radio en KM',
     'title' => 'Geovalla (Entrada)',
 ];

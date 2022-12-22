@@ -1,4 +1,4 @@
 <?php return [
-    'message' => 'Device motion detected',
+    'message' => 'Vehicle motion detected',
     'title' => 'Motion',
 ];
