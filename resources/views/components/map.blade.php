@@ -1,14 +1,17 @@
-<app-map class="map" data-map data-map-id="{{ $trip->id }}" data-map-positions="{{ $positionsJson }}" data-map-alarms="{{ $alarmsJson }}" data-map-notifications="{{ $notificationsJson }}" data-map-positions-url="{{ route('trip.update.position', $trip->id) }}" {{ $attributes }}>
-    <div class="map-map {{ $sidebarHidden ? 'w-full' : '' }}">
+<app-map class="map map-list-hidden" data-map data-map-id="{{ $trip->id }}" data-map-positions="{{ $positionsJson }}" data-map-alarms="{{ $alarmsJson }}" data-map-notifications="{{ $notificationsJson }}" data-map-positions-url="{{ route('trip.update.position', $trip->id) }}" {{ $attributes }}>
+    <div class="map-map {{ $sidebarHidden ? 'w-full' : '' }}" data-map-map>
         <div class="map-map-render" data-map-render></div>
     </div>
 
     @if ($sidebarHidden === false)
 
-    <div class="map-list box px-5 py-2">
+    <div class="map-list box px-5 py-2" data-map-list>
         <div class="flex items-center text-center">
-            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600" map-list-distance>@distanceHuman($trip->distance)</div>
-            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600" map-list-time>@timeHuman($trip->time)</div>
+            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600" data-map-list-distance>@distanceHuman($trip->distance)</div>
+            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600" data-map-list-time>@timeHuman($trip->time)</div>
+            <a href="#" class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600 map-list-toggle" data-map-list-toggle>
+                ⟻
+            </a>
         </div>
 
         <table class="table table-report font-medium text-center whitespace-nowrap text-xs" data-table-sort>

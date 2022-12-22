@@ -34,7 +34,6 @@ class Update extends CreateUpdateAbstract
         $this->row->serial = $this->data['serial'];
         $this->row->phone_number = $this->data['phone_number'];
         $this->row->password = $this->data['password'];
-        $this->row->port = $this->data['port'];
         $this->row->enabled = $this->data['enabled'];
         $this->row->vehicle_id = $this->data['vehicle_id'];
 

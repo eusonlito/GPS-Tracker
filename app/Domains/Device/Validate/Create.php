@@ -17,7 +17,6 @@ class Create extends ValidateAbstract
             'serial' => ['bail', 'required'],
             'phone_number' => ['bail', 'string'],
             'password' => ['bail', 'string'],
-            'port' => ['bail', 'integer'],
             'vehicle_id' => ['bail', 'required', 'integer'],
             'enabled' => ['bail', 'boolean'],
         ];

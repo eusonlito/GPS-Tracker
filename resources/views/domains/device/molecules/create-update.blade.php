@@ -29,11 +29,6 @@
     </div>
 
     <div class="p-2">
-        <label for="device-port" class="form-label">{{ __('device-create.port') }}</label>
-        <input type="number" name="port" class="form-control form-control-lg" id="device-port" value="{{ $REQUEST->input('port') }}" min="0" step="1">
-    </div>
-
-    <div class="p-2">
         <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" id="device-create-vehicle" :label="__('device-create.vehicle')" required></x-select>
     </div>
 

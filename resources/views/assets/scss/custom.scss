@@ -51,12 +51,16 @@
 .map {
     display: flex;
     flex-flow: row;
+    flex-direction: row;
+    flex-wrap: nowrap;
     width: 100%;
     height: 85vh;
 
     .map-map {
+        flex-grow: 1;
         width: 75%;
         height: 100%;
+        transition: width 0.3s linear;
 
         &.w-full {
             width: 100%;
@@ -71,6 +75,8 @@
         width: 25%;
         height: 100%;
         overflow: auto;
+        transition: width 0.3s linear;
+        position: relative;
 
         table {
             width: 100%;
@@ -93,16 +99,45 @@
         }
     }
 
+    &.map-list-hidden {
+        .map-map {
+            width: 97%;
+        }
+
+        .map-list {
+            width: 3%;
+            overflow: hidden;
+
+            .map-list-toggle {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                border: 0;
+                background: white;
+                border-radius: 0;
+                padding-top: 1rem;
+            }
+        }
+    }
+
     @media (max-width: 768px) {
         display: block;
         height: 70vh;
 
         .map-map {
-            width: 100%;
+            width: 100% !important;
         }
 
         .map-list {
-            width: 100%;
+            width: 100% !important;
+            overflow: auto !important;
+        }
+
+        .map-list-toggle {
+            display: none;
         }
     }
 }

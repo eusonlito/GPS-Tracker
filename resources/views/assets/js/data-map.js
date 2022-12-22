@@ -256,14 +256,34 @@ import value2color from './value2color';
         markerShow(anchor.split('-').pop());
     }
 
+    const mapListToggle = element.querySelector('[data-map-list-toggle]');
+
+    if (mapListToggle) {
+        mapListToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const hide = element.classList.contains('map-list-hidden');
+
+            element.classList.add('map-list-moving');
+            element.classList.toggle('map-list-hidden');
+
+            mapListToggle.innerHTML = hide ? '⟼' : '⟻';
+
+            setTimeout(() => {
+                element.classList.remove('map-list-moving');
+                map.invalidateSize();
+            }, 500);
+        });
+    }
+
     const live = document.querySelector('[data-map-live]');
 
     if (!live) {
         return;
     }
 
-    const distance = document.querySelector('[map-list-distance]');
-    const time = document.querySelector('[map-list-time]');
+    const distance = document.querySelector('[data-map-list-distance]');
+    const time = document.querySelector('[data-map-list-time]');
 
     let interval;
 

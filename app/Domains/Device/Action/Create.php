@@ -37,7 +37,6 @@ class Create extends CreateUpdateAbstract
             'serial' => $this->data['serial'],
             'phone_number' => $this->data['phone_number'],
             'password' => $this->data['password'],
-            'port' => $this->data['port'],
             'enabled' => $this->data['enabled'],
             'vehicle_id' => $this->data['vehicle_id'],
             'user_id' => $this->auth->id,
