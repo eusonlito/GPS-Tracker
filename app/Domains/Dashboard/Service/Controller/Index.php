@@ -30,6 +30,7 @@ class Index extends ControllerAbstract
         return [
             'vehicles' => $this->vehicles(),
             'vehicle' => $this->vehicle(),
+            'devices' => $this->devices(),
             'trips' => $this->trips(),
             'trip' => $this->trip(),
             'trip_next_id' => $this->tripNextId(),
@@ -58,6 +59,18 @@ class Index extends ControllerAbstract
     {
         return $this->cache[__FUNCTION__] ??= $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
             ?: $this->vehicles()->first();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    protected function devices(): Collection
+    {
+        if ($this->vehicle() === null) {
+            return collect();
+        }
+
+        return $this->cache[__FUNCTION__] ??= $this->vehicle()->devices()->list()->get();
     }
 
     /**

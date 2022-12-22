@@ -11,7 +11,19 @@ return new class extends MigrationAbstract
      */
     public function up()
     {
+        if ($this->upMigrated()) {
+            return;
+        }
+
         $this->keys();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function upMigrated(): bool
+    {
+        return Schema::hasTable('device_alarm_notification') === false;
     }
 
     /**

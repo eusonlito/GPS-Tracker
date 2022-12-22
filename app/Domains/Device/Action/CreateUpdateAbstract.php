@@ -73,7 +73,11 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     protected function dataVehicleId(): void
     {
-        $this->data['vehicle_id'] = VehicleModel::query()->selectOnly('id')->findOrFail($this->data['vehicle_id'])->id;
+        if ($this->data['vehicle_id']) {
+            $this->data['vehicle_id'] = VehicleModel::query()->selectOnly('id')->findOrFail($this->data['vehicle_id'])->id;
+        } else {
+            $this->data['vehicle_id'] = null;
+        }
     }
 
     /**

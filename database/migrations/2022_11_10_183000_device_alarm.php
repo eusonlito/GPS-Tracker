@@ -24,7 +24,7 @@ return new class extends MigrationAbstract
      */
     protected function upMigrated(): bool
     {
-        return Schema::hasTable('device_alarm');
+        return Schema::hasTable('alarm');
     }
 
     /**

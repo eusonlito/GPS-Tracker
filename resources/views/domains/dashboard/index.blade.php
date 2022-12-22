@@ -10,6 +10,14 @@
     <a href="{{ route('vehicle.create') }}" class="btn bg-white py-3 px-4">{{ __('dashboard-index.vehicle-create') }}</a>
 </div>
 
+@elseif ($devices->isEmpty())
+
+<img class="m-auto mt-10 lg:mt-20 h-60" src="@asset('build/images/device.svg')">
+
+<div class="mt-10 text-center">
+    <a href="{{ route('device.create') }}" class="btn bg-white py-3 px-4">{{ __('dashboard-index.device-create') }}</a>
+</div>
+
 @elseif ($trips->isEmpty())
 
 <img class="m-auto mt-10 lg:mt-20 h-60" src="@asset('build/images/trip.svg')">

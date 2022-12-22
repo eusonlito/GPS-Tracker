@@ -6,6 +6,5 @@
     'maker' => 'Fabricante',
     'meta-title' => 'Dispositivos',
     'name' => 'Nombre',
-    'port' => 'Puerto',
     'vehicle' => 'Vehículo',
 ];

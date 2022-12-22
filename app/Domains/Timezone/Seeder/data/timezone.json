@@ -1,1355 +1,1806 @@
 [
     {
-        "zone": "Africa/Abidjan"
+        "zone": "Africa/Abidjan",
+        "default": false
     },
     {
-        "zone": "Africa/Accra"
+        "zone": "Africa/Accra",
+        "default": false
     },
     {
-        "zone": "Africa/Addis_Ababa"
+        "zone": "Africa/Addis_Ababa",
+        "default": false
     },
     {
-        "zone": "Africa/Algiers"
+        "zone": "Africa/Algiers",
+        "default": false
     },
     {
-        "zone": "Africa/Asmara"
+        "zone": "Africa/Asmara",
+        "default": false
     },
     {
-        "zone": "Africa/Bamako"
+        "zone": "Africa/Bamako",
+        "default": false
     },
     {
-        "zone": "Africa/Bangui"
+        "zone": "Africa/Bangui",
+        "default": false
     },
     {
-        "zone": "Africa/Banjul"
+        "zone": "Africa/Banjul",
+        "default": false
     },
     {
-        "zone": "Africa/Bissau"
+        "zone": "Africa/Bissau",
+        "default": false
     },
     {
-        "zone": "Africa/Blantyre"
+        "zone": "Africa/Blantyre",
+        "default": false
     },
     {
-        "zone": "Africa/Brazzaville"
+        "zone": "Africa/Brazzaville",
+        "default": false
     },
     {
-        "zone": "Africa/Bujumbura"
+        "zone": "Africa/Bujumbura",
+        "default": false
     },
     {
-        "zone": "Africa/Cairo"
+        "zone": "Africa/Cairo",
+        "default": false
     },
     {
-        "zone": "Africa/Casablanca"
+        "zone": "Africa/Casablanca",
+        "default": false
     },
     {
-        "zone": "Africa/Ceuta"
+        "zone": "Africa/Ceuta",
+        "default": false
     },
     {
-        "zone": "Africa/Conakry"
+        "zone": "Africa/Conakry",
+        "default": false
     },
     {
-        "zone": "Africa/Dakar"
+        "zone": "Africa/Dakar",
+        "default": false
     },
     {
-        "zone": "Africa/Dar_es_Salaam"
+        "zone": "Africa/Dar_es_Salaam",
+        "default": false
     },
     {
-        "zone": "Africa/Djibouti"
+        "zone": "Africa/Djibouti",
+        "default": false
     },
     {
-        "zone": "Africa/Douala"
+        "zone": "Africa/Douala",
+        "default": false
     },
     {
-        "zone": "Africa/El_Aaiun"
+        "zone": "Africa/El_Aaiun",
+        "default": false
     },
     {
-        "zone": "Africa/Freetown"
+        "zone": "Africa/Freetown",
+        "default": false
     },
     {
-        "zone": "Africa/Gaborone"
+        "zone": "Africa/Gaborone",
+        "default": false
     },
     {
-        "zone": "Africa/Harare"
+        "zone": "Africa/Harare",
+        "default": false
     },
     {
-        "zone": "Africa/Johannesburg"
+        "zone": "Africa/Johannesburg",
+        "default": false
     },
     {
-        "zone": "Africa/Juba"
+        "zone": "Africa/Juba",
+        "default": false
     },
     {
-        "zone": "Africa/Kampala"
+        "zone": "Africa/Kampala",
+        "default": false
     },
     {
-        "zone": "Africa/Khartoum"
+        "zone": "Africa/Khartoum",
+        "default": false
     },
     {
-        "zone": "Africa/Kigali"
+        "zone": "Africa/Kigali",
+        "default": false
     },
     {
-        "zone": "Africa/Kinshasa"
+        "zone": "Africa/Kinshasa",
+        "default": false
     },
     {
-        "zone": "Africa/Lagos"
+        "zone": "Africa/Lagos",
+        "default": false
     },
     {
-        "zone": "Africa/Libreville"
+        "zone": "Africa/Libreville",
+        "default": false
     },
     {
-        "zone": "Africa/Lome"
+        "zone": "Africa/Lome",
+        "default": false
     },
     {
-        "zone": "Africa/Luanda"
+        "zone": "Africa/Luanda",
+        "default": false
     },
     {
-        "zone": "Africa/Lubumbashi"
+        "zone": "Africa/Lubumbashi",
+        "default": false
     },
     {
-        "zone": "Africa/Lusaka"
+        "zone": "Africa/Lusaka",
+        "default": false
     },
     {
-        "zone": "Africa/Malabo"
+        "zone": "Africa/Malabo",
+        "default": false
     },
     {
-        "zone": "Africa/Maputo"
+        "zone": "Africa/Maputo",
+        "default": false
     },
     {
-        "zone": "Africa/Maseru"
+        "zone": "Africa/Maseru",
+        "default": false
     },
     {
-        "zone": "Africa/Mbabane"
+        "zone": "Africa/Mbabane",
+        "default": false
     },
     {
-        "zone": "Africa/Mogadishu"
+        "zone": "Africa/Mogadishu",
+        "default": false
     },
     {
-        "zone": "Africa/Monrovia"
+        "zone": "Africa/Monrovia",
+        "default": false
     },
     {
-        "zone": "Africa/Nairobi"
+        "zone": "Africa/Nairobi",
+        "default": false
     },
     {
-        "zone": "Africa/Ndjamena"
+        "zone": "Africa/Ndjamena",
+        "default": false
     },
     {
-        "zone": "Africa/Niamey"
+        "zone": "Africa/Niamey",
+        "default": false
     },
     {
-        "zone": "Africa/Nouakchott"
+        "zone": "Africa/Nouakchott",
+        "default": false
     },
     {
-        "zone": "Africa/Ouagadougou"
+        "zone": "Africa/Ouagadougou",
+        "default": false
     },
     {
-        "zone": "Africa/Porto-Novo"
+        "zone": "Africa/Porto-Novo",
+        "default": false
     },
     {
-        "zone": "Africa/Sao_Tome"
+        "zone": "Africa/Sao_Tome",
+        "default": false
     },
     {
-        "zone": "Africa/Tripoli"
+        "zone": "Africa/Tripoli",
+        "default": false
     },
     {
-        "zone": "Africa/Tunis"
+        "zone": "Africa/Tunis",
+        "default": false
     },
     {
-        "zone": "Africa/Windhoek"
+        "zone": "Africa/Windhoek",
+        "default": false
     },
     {
-        "zone": "America/Adak"
+        "zone": "America/Adak",
+        "default": false
     },
     {
-        "zone": "America/Anchorage"
+        "zone": "America/Anchorage",
+        "default": false
     },
     {
-        "zone": "America/Anguilla"
+        "zone": "America/Anguilla",
+        "default": false
     },
     {
-        "zone": "America/Antigua"
+        "zone": "America/Antigua",
+        "default": false
     },
     {
-        "zone": "America/Araguaina"
+        "zone": "America/Araguaina",
+        "default": false
     },
     {
-        "zone": "America/Argentina/Buenos_Aires"
+        "zone": "America/Argentina/Buenos_Aires",
+        "default": false
     },
     {
-        "zone": "America/Argentina/Catamarca"
+        "zone": "America/Argentina/Catamarca",
+        "default": false
     },
     {
-        "zone": "America/Argentina/Cordoba"
+        "zone": "America/Argentina/Cordoba",
+        "default": false
     },
     {
-        "zone": "America/Argentina/Jujuy"
+        "zone": "America/Argentina/Jujuy",
+        "default": false
     },
     {
-        "zone": "America/Argentina/La_Rioja"
+        "zone": "America/Argentina/La_Rioja",
+        "default": false
     },
     {
-        "zone": "America/Argentina/Mendoza"
+        "zone": "America/Argentina/Mendoza",
+        "default": false
     },
     {
-        "zone": "America/Argentina/Rio_Gallegos"
+        "zone": "America/Argentina/Rio_Gallegos",
+        "default": false
     },
     {
-        "zone": "America/Argentina/Salta"
+        "zone": "America/Argentina/Salta",
+        "default": false
     },
     {
-        "zone": "America/Argentina/San_Juan"
+        "zone": "America/Argentina/San_Juan",
+        "default": false
     },
     {
-        "zone": "America/Argentina/San_Luis"
+        "zone": "America/Argentina/San_Luis",
+        "default": false
     },
     {
-        "zone": "America/Argentina/Tucuman"
+        "zone": "America/Argentina/Tucuman",
+        "default": false
     },
     {
-        "zone": "America/Argentina/Ushuaia"
+        "zone": "America/Argentina/Ushuaia",
+        "default": false
     },
     {
-        "zone": "America/Aruba"
+        "zone": "America/Aruba",
+        "default": false
     },
     {
-        "zone": "America/Asuncion"
+        "zone": "America/Asuncion",
+        "default": false
     },
     {
-        "zone": "America/Atikokan"
+        "zone": "America/Atikokan",
+        "default": false
     },
     {
-        "zone": "America/Bahia"
+        "zone": "America/Bahia",
+        "default": false
     },
     {
-        "zone": "America/Bahia_Banderas"
+        "zone": "America/Bahia_Banderas",
+        "default": false
     },
     {
-        "zone": "America/Barbados"
+        "zone": "America/Barbados",
+        "default": false
     },
     {
-        "zone": "America/Belem"
+        "zone": "America/Belem",
+        "default": false
     },
     {
-        "zone": "America/Belize"
+        "zone": "America/Belize",
+        "default": false
     },
     {
-        "zone": "America/Blanc-Sablon"
+        "zone": "America/Blanc-Sablon",
+        "default": false
     },
     {
-        "zone": "America/Boa_Vista"
+        "zone": "America/Boa_Vista",
+        "default": false
     },
     {
-        "zone": "America/Bogota"
+        "zone": "America/Bogota",
+        "default": false
     },
     {
-        "zone": "America/Boise"
+        "zone": "America/Boise",
+        "default": false
     },
     {
-        "zone": "America/Cambridge_Bay"
+        "zone": "America/Cambridge_Bay",
+        "default": false
     },
     {
-        "zone": "America/Campo_Grande"
+        "zone": "America/Campo_Grande",
+        "default": false
     },
     {
-        "zone": "America/Cancun"
+        "zone": "America/Cancun",
+        "default": false
     },
     {
-        "zone": "America/Caracas"
+        "zone": "America/Caracas",
+        "default": false
     },
     {
-        "zone": "America/Cayenne"
+        "zone": "America/Cayenne",
+        "default": false
     },
     {
-        "zone": "America/Cayman"
+        "zone": "America/Cayman",
+        "default": false
     },
     {
-        "zone": "America/Chicago"
+        "zone": "America/Chicago",
+        "default": false
     },
     {
-        "zone": "America/Chihuahua"
+        "zone": "America/Chihuahua",
+        "default": false
     },
     {
-        "zone": "America/Costa_Rica"
+        "zone": "America/Costa_Rica",
+        "default": false
     },
     {
-        "zone": "America/Creston"
+        "zone": "America/Creston",
+        "default": false
     },
     {
-        "zone": "America/Cuiaba"
+        "zone": "America/Cuiaba",
+        "default": false
     },
     {
-        "zone": "America/Curacao"
+        "zone": "America/Curacao",
+        "default": false
     },
     {
-        "zone": "America/Danmarkshavn"
+        "zone": "America/Danmarkshavn",
+        "default": false
     },
     {
-        "zone": "America/Dawson"
+        "zone": "America/Dawson",
+        "default": false
     },
     {
-        "zone": "America/Dawson_Creek"
+        "zone": "America/Dawson_Creek",
+        "default": false
     },
     {
-        "zone": "America/Denver"
+        "zone": "America/Denver",
+        "default": false
     },
     {
-        "zone": "America/Detroit"
+        "zone": "America/Detroit",
+        "default": false
     },
     {
-        "zone": "America/Dominica"
+        "zone": "America/Dominica",
+        "default": false
     },
     {
-        "zone": "America/Edmonton"
+        "zone": "America/Edmonton",
+        "default": false
     },
     {
-        "zone": "America/Eirunepe"
+        "zone": "America/Eirunepe",
+        "default": false
     },
     {
-        "zone": "America/El_Salvador"
+        "zone": "America/El_Salvador",
+        "default": false
     },
     {
-        "zone": "America/Fort_Nelson"
+        "zone": "America/Fort_Nelson",
+        "default": false
     },
     {
-        "zone": "America/Fortaleza"
+        "zone": "America/Fortaleza",
+        "default": false
     },
     {
-        "zone": "America/Glace_Bay"
+        "zone": "America/Glace_Bay",
+        "default": false
     },
     {
-        "zone": "America/Goose_Bay"
+        "zone": "America/Goose_Bay",
+        "default": false
     },
     {
-        "zone": "America/Grand_Turk"
+        "zone": "America/Grand_Turk",
+        "default": false
     },
     {
-        "zone": "America/Grenada"
+        "zone": "America/Grenada",
+        "default": false
     },
     {
-        "zone": "America/Guadeloupe"
+        "zone": "America/Guadeloupe",
+        "default": false
     },
     {
-        "zone": "America/Guatemala"
+        "zone": "America/Guatemala",
+        "default": false
     },
     {
-        "zone": "America/Guayaquil"
+        "zone": "America/Guayaquil",
+        "default": false
     },
     {
-        "zone": "America/Guyana"
+        "zone": "America/Guyana",
+        "default": false
     },
     {
-        "zone": "America/Halifax"
+        "zone": "America/Halifax",
+        "default": false
     },
     {
-        "zone": "America/Havana"
+        "zone": "America/Havana",
+        "default": false
     },
     {
-        "zone": "America/Hermosillo"
+        "zone": "America/Hermosillo",
+        "default": false
     },
     {
-        "zone": "America/Indiana/Indianapolis"
+        "zone": "America/Indiana/Indianapolis",
+        "default": false
     },
     {
-        "zone": "America/Indiana/Knox"
+        "zone": "America/Indiana/Knox",
+        "default": false
     },
     {
-        "zone": "America/Indiana/Marengo"
+        "zone": "America/Indiana/Marengo",
+        "default": false
     },
     {
-        "zone": "America/Indiana/Petersburg"
+        "zone": "America/Indiana/Petersburg",
+        "default": false
     },
     {
-        "zone": "America/Indiana/Tell_City"
+        "zone": "America/Indiana/Tell_City",
+        "default": false
     },
     {
-        "zone": "America/Indiana/Vevay"
+        "zone": "America/Indiana/Vevay",
+        "default": false
     },
     {
-        "zone": "America/Indiana/Vincennes"
+        "zone": "America/Indiana/Vincennes",
+        "default": false
     },
     {
-        "zone": "America/Indiana/Winamac"
+        "zone": "America/Indiana/Winamac",
+        "default": false
     },
     {
-        "zone": "America/Inuvik"
+        "zone": "America/Inuvik",
+        "default": false
     },
     {
-        "zone": "America/Iqaluit"
+        "zone": "America/Iqaluit",
+        "default": false
     },
     {
-        "zone": "America/Jamaica"
+        "zone": "America/Jamaica",
+        "default": false
     },
     {
-        "zone": "America/Juneau"
+        "zone": "America/Juneau",
+        "default": false
     },
     {
-        "zone": "America/Kentucky/Louisville"
+        "zone": "America/Kentucky/Louisville",
+        "default": false
     },
     {
-        "zone": "America/Kentucky/Monticello"
+        "zone": "America/Kentucky/Monticello",
+        "default": false
     },
     {
-        "zone": "America/Kralendijk"
+        "zone": "America/Kralendijk",
+        "default": false
     },
     {
-        "zone": "America/La_Paz"
+        "zone": "America/La_Paz",
+        "default": false
     },
     {
-        "zone": "America/Lima"
+        "zone": "America/Lima",
+        "default": false
     },
     {
-        "zone": "America/Los_Angeles"
+        "zone": "America/Los_Angeles",
+        "default": false
     },
     {
-        "zone": "America/Lower_Princes"
+        "zone": "America/Lower_Princes",
+        "default": false
     },
     {
-        "zone": "America/Maceio"
+        "zone": "America/Maceio",
+        "default": false
     },
     {
-        "zone": "America/Managua"
+        "zone": "America/Managua",
+        "default": false
     },
     {
-        "zone": "America/Manaus"
+        "zone": "America/Manaus",
+        "default": false
     },
     {
-        "zone": "America/Marigot"
+        "zone": "America/Marigot",
+        "default": false
     },
     {
-        "zone": "America/Martinique"
+        "zone": "America/Martinique",
+        "default": false
     },
     {
-        "zone": "America/Matamoros"
+        "zone": "America/Matamoros",
+        "default": false
     },
     {
-        "zone": "America/Mazatlan"
+        "zone": "America/Mazatlan",
+        "default": false
     },
     {
-        "zone": "America/Menominee"
+        "zone": "America/Menominee",
+        "default": false
     },
     {
-        "zone": "America/Merida"
+        "zone": "America/Merida",
+        "default": false
     },
     {
-        "zone": "America/Metlakatla"
+        "zone": "America/Metlakatla",
+        "default": false
     },
     {
-        "zone": "America/Mexico_City"
+        "zone": "America/Mexico_City",
+        "default": false
     },
     {
-        "zone": "America/Miquelon"
+        "zone": "America/Miquelon",
+        "default": false
     },
     {
-        "zone": "America/Moncton"
+        "zone": "America/Moncton",
+        "default": false
     },
     {
-        "zone": "America/Monterrey"
+        "zone": "America/Monterrey",
+        "default": false
     },
     {
-        "zone": "America/Montevideo"
+        "zone": "America/Montevideo",
+        "default": false
     },
     {
-        "zone": "America/Montserrat"
+        "zone": "America/Montserrat",
+        "default": false
     },
     {
-        "zone": "America/Nassau"
+        "zone": "America/Nassau",
+        "default": false
     },
     {
-        "zone": "America/New_York"
+        "zone": "America/New_York",
+        "default": false
     },
     {
-        "zone": "America/Nipigon"
+        "zone": "America/Nipigon",
+        "default": false
     },
     {
-        "zone": "America/Nome"
+        "zone": "America/Nome",
+        "default": false
     },
     {
-        "zone": "America/Noronha"
+        "zone": "America/Noronha",
+        "default": false
     },
     {
-        "zone": "America/North_Dakota/Beulah"
+        "zone": "America/North_Dakota/Beulah",
+        "default": false
     },
     {
-        "zone": "America/North_Dakota/Center"
+        "zone": "America/North_Dakota/Center",
+        "default": false
     },
     {
-        "zone": "America/North_Dakota/New_Salem"
+        "zone": "America/North_Dakota/New_Salem",
+        "default": false
     },
     {
-        "zone": "America/Nuuk"
+        "zone": "America/Nuuk",
+        "default": false
     },
     {
-        "zone": "America/Ojinaga"
+        "zone": "America/Ojinaga",
+        "default": false
     },
     {
-        "zone": "America/Panama"
+        "zone": "America/Panama",
+        "default": false
     },
     {
-        "zone": "America/Pangnirtung"
+        "zone": "America/Pangnirtung",
+        "default": false
     },
     {
-        "zone": "America/Paramaribo"
+        "zone": "America/Paramaribo",
+        "default": false
     },
     {
-        "zone": "America/Phoenix"
+        "zone": "America/Phoenix",
+        "default": false
     },
     {
-        "zone": "America/Port_of_Spain"
+        "zone": "America/Port_of_Spain",
+        "default": false
     },
     {
-        "zone": "America/Port-au-Prince"
+        "zone": "America/Port-au-Prince",
+        "default": false
     },
     {
-        "zone": "America/Porto_Velho"
+        "zone": "America/Porto_Velho",
+        "default": false
     },
     {
-        "zone": "America/Puerto_Rico"
+        "zone": "America/Puerto_Rico",
+        "default": false
     },
     {
-        "zone": "America/Punta_Arenas"
+        "zone": "America/Punta_Arenas",
+        "default": false
     },
     {
-        "zone": "America/Rainy_River"
+        "zone": "America/Rainy_River",
+        "default": false
     },
     {
-        "zone": "America/Rankin_Inlet"
+        "zone": "America/Rankin_Inlet",
+        "default": false
     },
     {
-        "zone": "America/Recife"
+        "zone": "America/Recife",
+        "default": false
     },
     {
-        "zone": "America/Regina"
+        "zone": "America/Regina",
+        "default": false
     },
     {
-        "zone": "America/Resolute"
+        "zone": "America/Resolute",
+        "default": false
     },
     {
-        "zone": "America/Rio_Branco"
+        "zone": "America/Rio_Branco",
+        "default": false
     },
     {
-        "zone": "America/Santarem"
+        "zone": "America/Santarem",
+        "default": false
     },
     {
-        "zone": "America/Santiago"
+        "zone": "America/Santiago",
+        "default": false
     },
     {
-        "zone": "America/Santo_Domingo"
+        "zone": "America/Santo_Domingo",
+        "default": false
     },
     {
-        "zone": "America/Sao_Paulo"
+        "zone": "America/Sao_Paulo",
+        "default": false
     },
     {
-        "zone": "America/Scoresbysund"
+        "zone": "America/Scoresbysund",
+        "default": false
     },
     {
-        "zone": "America/Sitka"
+        "zone": "America/Sitka",
+        "default": false
     },
     {
-        "zone": "America/St_Barthelemy"
+        "zone": "America/St_Barthelemy",
+        "default": false
     },
     {
-        "zone": "America/St_Johns"
+        "zone": "America/St_Johns",
+        "default": false
     },
     {
-        "zone": "America/St_Kitts"
+        "zone": "America/St_Kitts",
+        "default": false
     },
     {
-        "zone": "America/St_Lucia"
+        "zone": "America/St_Lucia",
+        "default": false
     },
     {
-        "zone": "America/St_Thomas"
+        "zone": "America/St_Thomas",
+        "default": false
     },
     {
-        "zone": "America/St_Vincent"
+        "zone": "America/St_Vincent",
+        "default": false
     },
     {
-        "zone": "America/Swift_Current"
+        "zone": "America/Swift_Current",
+        "default": false
     },
     {
-        "zone": "America/Tegucigalpa"
+        "zone": "America/Tegucigalpa",
+        "default": false
     },
     {
-        "zone": "America/Thule"
+        "zone": "America/Thule",
+        "default": false
     },
     {
-        "zone": "America/Thunder_Bay"
+        "zone": "America/Thunder_Bay",
+        "default": false
     },
     {
-        "zone": "America/Tijuana"
+        "zone": "America/Tijuana",
+        "default": false
     },
     {
-        "zone": "America/Toronto"
+        "zone": "America/Toronto",
+        "default": false
     },
     {
-        "zone": "America/Tortola"
+        "zone": "America/Tortola",
+        "default": false
     },
     {
-        "zone": "America/Vancouver"
+        "zone": "America/Vancouver",
+        "default": false
     },
     {
-        "zone": "America/Whitehorse"
+        "zone": "America/Whitehorse",
+        "default": false
     },
     {
-        "zone": "America/Winnipeg"
+        "zone": "America/Winnipeg",
+        "default": false
     },
     {
-        "zone": "America/Yakutat"
+        "zone": "America/Yakutat",
+        "default": false
     },
     {
-        "zone": "America/Yellowknife"
+        "zone": "America/Yellowknife",
+        "default": false
     },
     {
-        "zone": "Antarctica/Casey"
+        "zone": "Antarctica/Casey",
+        "default": false
     },
     {
-        "zone": "Antarctica/Davis"
+        "zone": "Antarctica/Davis",
+        "default": false
     },
     {
-        "zone": "Antarctica/DumontDUrville"
+        "zone": "Antarctica/DumontDUrville",
+        "default": false
     },
     {
-        "zone": "Antarctica/Macquarie"
+        "zone": "Antarctica/Macquarie",
+        "default": false
     },
     {
-        "zone": "Antarctica/Mawson"
+        "zone": "Antarctica/Mawson",
+        "default": false
     },
     {
-        "zone": "Antarctica/McMurdo"
+        "zone": "Antarctica/McMurdo",
+        "default": false
     },
     {
-        "zone": "Antarctica/Palmer"
+        "zone": "Antarctica/Palmer",
+        "default": false
     },
     {
-        "zone": "Antarctica/Rothera"
+        "zone": "Antarctica/Rothera",
+        "default": false
     },
     {
-        "zone": "Antarctica/Syowa"
+        "zone": "Antarctica/Syowa",
+        "default": false
     },
     {
-        "zone": "Antarctica/Troll"
+        "zone": "Antarctica/Troll",
+        "default": false
     },
     {
-        "zone": "Antarctica/Vostok"
+        "zone": "Antarctica/Vostok",
+        "default": false
     },
     {
-        "zone": "Arctic/Longyearbyen"
+        "zone": "Arctic/Longyearbyen",
+        "default": false
     },
     {
-        "zone": "Asia/Aden"
+        "zone": "Asia/Aden",
+        "default": false
     },
     {
-        "zone": "Asia/Almaty"
+        "zone": "Asia/Almaty",
+        "default": false
     },
     {
-        "zone": "Asia/Amman"
+        "zone": "Asia/Amman",
+        "default": false
     },
     {
-        "zone": "Asia/Anadyr"
+        "zone": "Asia/Anadyr",
+        "default": false
     },
     {
-        "zone": "Asia/Aqtau"
+        "zone": "Asia/Aqtau",
+        "default": false
     },
     {
-        "zone": "Asia/Aqtobe"
+        "zone": "Asia/Aqtobe",
+        "default": false
     },
     {
-        "zone": "Asia/Ashgabat"
+        "zone": "Asia/Ashgabat",
+        "default": false
     },
     {
-        "zone": "Asia/Atyrau"
+        "zone": "Asia/Atyrau",
+        "default": false
     },
     {
-        "zone": "Asia/Baghdad"
+        "zone": "Asia/Baghdad",
+        "default": false
     },
     {
-        "zone": "Asia/Bahrain"
+        "zone": "Asia/Bahrain",
+        "default": false
     },
     {
-        "zone": "Asia/Baku"
+        "zone": "Asia/Baku",
+        "default": false
     },
     {
-        "zone": "Asia/Bangkok"
+        "zone": "Asia/Bangkok",
+        "default": false
     },
     {
-        "zone": "Asia/Barnaul"
+        "zone": "Asia/Barnaul",
+        "default": false
     },
     {
-        "zone": "Asia/Beirut"
+        "zone": "Asia/Beirut",
+        "default": false
     },
     {
-        "zone": "Asia/Bishkek"
+        "zone": "Asia/Bishkek",
+        "default": false
     },
     {
-        "zone": "Asia/Brunei"
+        "zone": "Asia/Brunei",
+        "default": false
     },
     {
-        "zone": "Asia/Chita"
+        "zone": "Asia/Chita",
+        "default": false
     },
     {
-        "zone": "Asia/Choibalsan"
+        "zone": "Asia/Choibalsan",
+        "default": false
     },
     {
-        "zone": "Asia/Colombo"
+        "zone": "Asia/Colombo",
+        "default": false
     },
     {
-        "zone": "Asia/Damascus"
+        "zone": "Asia/Damascus",
+        "default": false
     },
     {
-        "zone": "Asia/Dhaka"
+        "zone": "Asia/Dhaka",
+        "default": false
     },
     {
-        "zone": "Asia/Dili"
+        "zone": "Asia/Dili",
+        "default": false
     },
     {
-        "zone": "Asia/Dubai"
+        "zone": "Asia/Dubai",
+        "default": false
     },
     {
-        "zone": "Asia/Dushanbe"
+        "zone": "Asia/Dushanbe",
+        "default": false
     },
     {
-        "zone": "Asia/Famagusta"
+        "zone": "Asia/Famagusta",
+        "default": false
     },
     {
-        "zone": "Asia/Gaza"
+        "zone": "Asia/Gaza",
+        "default": false
     },
     {
-        "zone": "Asia/Hebron"
+        "zone": "Asia/Hebron",
+        "default": false
     },
     {
-        "zone": "Asia/Ho_Chi_Minh"
+        "zone": "Asia/Ho_Chi_Minh",
+        "default": false
     },
     {
-        "zone": "Asia/Hong_Kong"
+        "zone": "Asia/Hong_Kong",
+        "default": false
     },
     {
-        "zone": "Asia/Hovd"
+        "zone": "Asia/Hovd",
+        "default": false
     },
     {
-        "zone": "Asia/Irkutsk"
+        "zone": "Asia/Irkutsk",
+        "default": false
     },
     {
-        "zone": "Asia/Jakarta"
+        "zone": "Asia/Jakarta",
+        "default": false
     },
     {
-        "zone": "Asia/Jayapura"
+        "zone": "Asia/Jayapura",
+        "default": false
     },
     {
-        "zone": "Asia/Jerusalem"
+        "zone": "Asia/Jerusalem",
+        "default": false
     },
     {
-        "zone": "Asia/Kabul"
+        "zone": "Asia/Kabul",
+        "default": false
     },
     {
-        "zone": "Asia/Kamchatka"
+        "zone": "Asia/Kamchatka",
+        "default": false
     },
     {
-        "zone": "Asia/Karachi"
+        "zone": "Asia/Karachi",
+        "default": false
     },
     {
-        "zone": "Asia/Kathmandu"
+        "zone": "Asia/Kathmandu",
+        "default": false
     },
     {
-        "zone": "Asia/Khandyga"
+        "zone": "Asia/Khandyga",
+        "default": false
     },
     {
-        "zone": "Asia/Kolkata"
+        "zone": "Asia/Kolkata",
+        "default": false
     },
     {
-        "zone": "Asia/Krasnoyarsk"
+        "zone": "Asia/Krasnoyarsk",
+        "default": false
     },
     {
-        "zone": "Asia/Kuala_Lumpur"
+        "zone": "Asia/Kuala_Lumpur",
+        "default": false
     },
     {
-        "zone": "Asia/Kuching"
+        "zone": "Asia/Kuching",
+        "default": false
     },
     {
-        "zone": "Asia/Kuwait"
+        "zone": "Asia/Kuwait",
+        "default": false
     },
     {
-        "zone": "Asia/Macau"
+        "zone": "Asia/Macau",
+        "default": false
     },
     {
-        "zone": "Asia/Magadan"
+        "zone": "Asia/Magadan",
+        "default": false
     },
     {
-        "zone": "Asia/Makassar"
+        "zone": "Asia/Makassar",
+        "default": false
     },
     {
-        "zone": "Asia/Manila"
+        "zone": "Asia/Manila",
+        "default": false
     },
     {
-        "zone": "Asia/Muscat"
+        "zone": "Asia/Muscat",
+        "default": false
     },
     {
-        "zone": "Asia/Nicosia"
+        "zone": "Asia/Nicosia",
+        "default": false
     },
     {
-        "zone": "Asia/Novokuznetsk"
+        "zone": "Asia/Novokuznetsk",
+        "default": false
     },
     {
-        "zone": "Asia/Novosibirsk"
+        "zone": "Asia/Novosibirsk",
+        "default": false
     },
     {
-        "zone": "Asia/Omsk"
+        "zone": "Asia/Omsk",
+        "default": false
     },
     {
-        "zone": "Asia/Oral"
+        "zone": "Asia/Oral",
+        "default": false
     },
     {
-        "zone": "Asia/Phnom_Penh"
+        "zone": "Asia/Phnom_Penh",
+        "default": false
     },
     {
-        "zone": "Asia/Pontianak"
+        "zone": "Asia/Pontianak",
+        "default": false
     },
     {
-        "zone": "Asia/Pyongyang"
+        "zone": "Asia/Pyongyang",
+        "default": false
     },
     {
-        "zone": "Asia/Qatar"
+        "zone": "Asia/Qatar",
+        "default": false
     },
     {
-        "zone": "Asia/Qostanay"
+        "zone": "Asia/Qostanay",
+        "default": false
     },
     {
-        "zone": "Asia/Qyzylorda"
+        "zone": "Asia/Qyzylorda",
+        "default": false
     },
     {
-        "zone": "Asia/Riyadh"
+        "zone": "Asia/Riyadh",
+        "default": false
     },
     {
-        "zone": "Asia/Sakhalin"
+        "zone": "Asia/Sakhalin",
+        "default": false
     },
     {
-        "zone": "Asia/Samarkand"
+        "zone": "Asia/Samarkand",
+        "default": false
     },
     {
-        "zone": "Asia/Seoul"
+        "zone": "Asia/Seoul",
+        "default": false
     },
     {
-        "zone": "Asia/Shanghai"
+        "zone": "Asia/Shanghai",
+        "default": false
     },
     {
-        "zone": "Asia/Singapore"
+        "zone": "Asia/Singapore",
+        "default": false
     },
     {
-        "zone": "Asia/Srednekolymsk"
+        "zone": "Asia/Srednekolymsk",
+        "default": false
     },
     {
-        "zone": "Asia/Taipei"
+        "zone": "Asia/Taipei",
+        "default": false
     },
     {
-        "zone": "Asia/Tashkent"
+        "zone": "Asia/Tashkent",
+        "default": false
     },
     {
-        "zone": "Asia/Tbilisi"
+        "zone": "Asia/Tbilisi",
+        "default": false
     },
     {
-        "zone": "Asia/Tehran"
+        "zone": "Asia/Tehran",
+        "default": false
     },
     {
-        "zone": "Asia/Thimphu"
+        "zone": "Asia/Thimphu",
+        "default": false
     },
     {
-        "zone": "Asia/Tokyo"
+        "zone": "Asia/Tokyo",
+        "default": false
     },
     {
-        "zone": "Asia/Tomsk"
+        "zone": "Asia/Tomsk",
+        "default": false
     },
     {
-        "zone": "Asia/Ulaanbaatar"
+        "zone": "Asia/Ulaanbaatar",
+        "default": false
     },
     {
-        "zone": "Asia/Urumqi"
+        "zone": "Asia/Urumqi",
+        "default": false
     },
     {
-        "zone": "Asia/Ust-Nera"
+        "zone": "Asia/Ust-Nera",
+        "default": false
     },
     {
-        "zone": "Asia/Vientiane"
+        "zone": "Asia/Vientiane",
+        "default": false
     },
     {
-        "zone": "Asia/Vladivostok"
+        "zone": "Asia/Vladivostok",
+        "default": false
     },
     {
-        "zone": "Asia/Yakutsk"
+        "zone": "Asia/Yakutsk",
+        "default": false
     },
     {
-        "zone": "Asia/Yangon"
+        "zone": "Asia/Yangon",
+        "default": false
     },
     {
-        "zone": "Asia/Yekaterinburg"
+        "zone": "Asia/Yekaterinburg",
+        "default": false
     },
     {
-        "zone": "Asia/Yerevan"
+        "zone": "Asia/Yerevan",
+        "default": false
     },
     {
-        "zone": "Atlantic/Azores"
+        "zone": "Atlantic/Azores",
+        "default": false
     },
     {
-        "zone": "Atlantic/Bermuda"
+        "zone": "Atlantic/Bermuda",
+        "default": false
     },
     {
-        "zone": "Atlantic/Canary"
+        "zone": "Atlantic/Canary",
+        "default": false
     },
     {
-        "zone": "Atlantic/Cape_Verde"
+        "zone": "Atlantic/Cape_Verde",
+        "default": false
     },
     {
-        "zone": "Atlantic/Faroe"
+        "zone": "Atlantic/Faroe",
+        "default": false
     },
     {
-        "zone": "Atlantic/Madeira"
+        "zone": "Atlantic/Madeira",
+        "default": false
     },
     {
-        "zone": "Atlantic/Reykjavik"
+        "zone": "Atlantic/Reykjavik",
+        "default": false
     },
     {
-        "zone": "Atlantic/South_Georgia"
+        "zone": "Atlantic/South_Georgia",
+        "default": false
     },
     {
-        "zone": "Atlantic/St_Helena"
+        "zone": "Atlantic/St_Helena",
+        "default": false
     },
     {
-        "zone": "Atlantic/Stanley"
+        "zone": "Atlantic/Stanley",
+        "default": false
     },
     {
-        "zone": "Australia/Adelaide"
+        "zone": "Australia/Adelaide",
+        "default": false
     },
     {
-        "zone": "Australia/Brisbane"
+        "zone": "Australia/Brisbane",
+        "default": false
     },
     {
-        "zone": "Australia/Broken_Hill"
+        "zone": "Australia/Broken_Hill",
+        "default": false
     },
     {
-        "zone": "Australia/Darwin"
+        "zone": "Australia/Darwin",
+        "default": false
     },
     {
-        "zone": "Australia/Eucla"
+        "zone": "Australia/Eucla",
+        "default": false
     },
     {
-        "zone": "Australia/Hobart"
+        "zone": "Australia/Hobart",
+        "default": false
     },
     {
-        "zone": "Australia/Lindeman"
+        "zone": "Australia/Lindeman",
+        "default": false
     },
     {
-        "zone": "Australia/Lord_Howe"
+        "zone": "Australia/Lord_Howe",
+        "default": false
     },
     {
-        "zone": "Australia/Melbourne"
+        "zone": "Australia/Melbourne",
+        "default": false
     },
     {
-        "zone": "Australia/Perth"
+        "zone": "Australia/Perth",
+        "default": false
     },
     {
-        "zone": "Australia/Sydney"
+        "zone": "Australia/Sydney",
+        "default": false
     },
     {
-        "zone": "Etc/GMT"
+        "zone": "Etc/GMT",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-1"
+        "zone": "Etc/GMT-1",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-10"
+        "zone": "Etc/GMT-10",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-11"
+        "zone": "Etc/GMT-11",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-12"
+        "zone": "Etc/GMT-12",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-2"
+        "zone": "Etc/GMT-2",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-3"
+        "zone": "Etc/GMT-3",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-4"
+        "zone": "Etc/GMT-4",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-5"
+        "zone": "Etc/GMT-5",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-6"
+        "zone": "Etc/GMT-6",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-7"
+        "zone": "Etc/GMT-7",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-8"
+        "zone": "Etc/GMT-8",
+        "default": false
     },
     {
-        "zone": "Etc/GMT-9"
+        "zone": "Etc/GMT-9",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+1"
+        "zone": "Etc/GMT+1",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+10"
+        "zone": "Etc/GMT+10",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+11"
+        "zone": "Etc/GMT+11",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+12"
+        "zone": "Etc/GMT+12",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+2"
+        "zone": "Etc/GMT+2",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+3"
+        "zone": "Etc/GMT+3",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+4"
+        "zone": "Etc/GMT+4",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+5"
+        "zone": "Etc/GMT+5",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+6"
+        "zone": "Etc/GMT+6",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+7"
+        "zone": "Etc/GMT+7",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+8"
+        "zone": "Etc/GMT+8",
+        "default": false
     },
     {
-        "zone": "Etc/GMT+9"
+        "zone": "Etc/GMT+9",
+        "default": false
     },
     {
-        "zone": "Etc/UTC"
+        "zone": "Etc/UTC",
+        "default": false
     },
     {
-        "zone": "Europe/Amsterdam"
+        "zone": "Europe/Amsterdam",
+        "default": false
     },
     {
-        "zone": "Europe/Andorra"
+        "zone": "Europe/Andorra",
+        "default": false
     },
     {
-        "zone": "Europe/Astrakhan"
+        "zone": "Europe/Astrakhan",
+        "default": false
     },
     {
-        "zone": "Europe/Athens"
+        "zone": "Europe/Athens",
+        "default": false
     },
     {
-        "zone": "Europe/Belgrade"
+        "zone": "Europe/Belgrade",
+        "default": false
     },
     {
-        "zone": "Europe/Berlin"
+        "zone": "Europe/Berlin",
+        "default": false
     },
     {
-        "zone": "Europe/Bratislava"
+        "zone": "Europe/Bratislava",
+        "default": false
     },
     {
-        "zone": "Europe/Brussels"
+        "zone": "Europe/Brussels",
+        "default": false
     },
     {
-        "zone": "Europe/Bucharest"
+        "zone": "Europe/Bucharest",
+        "default": false
     },
     {
-        "zone": "Europe/Budapest"
+        "zone": "Europe/Budapest",
+        "default": false
     },
     {
-        "zone": "Europe/Busingen"
+        "zone": "Europe/Busingen",
+        "default": false
     },
     {
-        "zone": "Europe/Chisinau"
+        "zone": "Europe/Chisinau",
+        "default": false
     },
     {
-        "zone": "Europe/Copenhagen"
+        "zone": "Europe/Copenhagen",
+        "default": false
     },
     {
-        "zone": "Europe/Dublin"
+        "zone": "Europe/Dublin",
+        "default": false
     },
     {
-        "zone": "Europe/Gibraltar"
+        "zone": "Europe/Gibraltar",
+        "default": false
     },
     {
-        "zone": "Europe/Guernsey"
+        "zone": "Europe/Guernsey",
+        "default": false
     },
     {
-        "zone": "Europe/Helsinki"
+        "zone": "Europe/Helsinki",
+        "default": false
     },
     {
-        "zone": "Europe/Isle_of_Man"
+        "zone": "Europe/Isle_of_Man",
+        "default": false
     },
     {
-        "zone": "Europe/Istanbul"
+        "zone": "Europe/Istanbul",
+        "default": false
     },
     {
-        "zone": "Europe/Jersey"
+        "zone": "Europe/Jersey",
+        "default": false
     },
     {
-        "zone": "Europe/Kaliningrad"
+        "zone": "Europe/Kaliningrad",
+        "default": false
     },
     {
-        "zone": "Europe/Kiev"
+        "zone": "Europe/Kiev",
+        "default": false
     },
     {
-        "zone": "Europe/Kirov"
+        "zone": "Europe/Kirov",
+        "default": false
     },
     {
-        "zone": "Europe/Kyiv"
+        "zone": "Europe/Kyiv",
+        "default": false
     },
     {
-        "zone": "Europe/Lisbon"
+        "zone": "Europe/Lisbon",
+        "default": false
     },
     {
-        "zone": "Europe/Ljubljana"
+        "zone": "Europe/Ljubljana",
+        "default": false
     },
     {
-        "zone": "Europe/London"
+        "zone": "Europe/London",
+        "default": false
     },
     {
-        "zone": "Europe/Luxembourg"
+        "zone": "Europe/Luxembourg",
+        "default": false
     },
     {
-        "zone": "Europe/Madrid"
+        "zone": "Europe/Madrid",
+        "default": true
     },
     {
-        "zone": "Europe/Malta"
+        "zone": "Europe/Malta",
+        "default": false
     },
     {
-        "zone": "Europe/Mariehamn"
+        "zone": "Europe/Mariehamn",
+        "default": false
     },
     {
-        "zone": "Europe/Minsk"
+        "zone": "Europe/Minsk",
+        "default": false
     },
     {
-        "zone": "Europe/Monaco"
+        "zone": "Europe/Monaco",
+        "default": false
     },
     {
-        "zone": "Europe/Moscow"
+        "zone": "Europe/Moscow",
+        "default": false
     },
     {
-        "zone": "Europe/Oslo"
+        "zone": "Europe/Oslo",
+        "default": false
     },
     {
-        "zone": "Europe/Paris"
+        "zone": "Europe/Paris",
+        "default": false
     },
     {
-        "zone": "Europe/Podgorica"
+        "zone": "Europe/Podgorica",
+        "default": false
     },
     {
-        "zone": "Europe/Prague"
+        "zone": "Europe/Prague",
+        "default": false
     },
     {
-        "zone": "Europe/Riga"
+        "zone": "Europe/Riga",
+        "default": false
     },
     {
-        "zone": "Europe/Rome"
+        "zone": "Europe/Rome",
+        "default": false
     },
     {
-        "zone": "Europe/Samara"
+        "zone": "Europe/Samara",
+        "default": false
     },
     {
-        "zone": "Europe/San_Marino"
+        "zone": "Europe/San_Marino",
+        "default": false
     },
     {
-        "zone": "Europe/Sarajevo"
+        "zone": "Europe/Sarajevo",
+        "default": false
     },
     {
-        "zone": "Europe/Saratov"
+        "zone": "Europe/Saratov",
+        "default": false
     },
     {
-        "zone": "Europe/Simferopol"
+        "zone": "Europe/Simferopol",
+        "default": false
     },
     {
-        "zone": "Europe/Skopje"
+        "zone": "Europe/Skopje",
+        "default": false
     },
     {
-        "zone": "Europe/Sofia"
+        "zone": "Europe/Sofia",
+        "default": false
     },
     {
-        "zone": "Europe/Stockholm"
+        "zone": "Europe/Stockholm",
+        "default": false
     },
     {
-        "zone": "Europe/Tallinn"
+        "zone": "Europe/Tallinn",
+        "default": false
     },
     {
-        "zone": "Europe/Tirane"
+        "zone": "Europe/Tirane",
+        "default": false
     },
     {
-        "zone": "Europe/Ulyanovsk"
+        "zone": "Europe/Ulyanovsk",
+        "default": false
     },
     {
-        "zone": "Europe/Uzhgorod"
+        "zone": "Europe/Uzhgorod",
+        "default": false
     },
     {
-        "zone": "Europe/Vaduz"
+        "zone": "Europe/Vaduz",
+        "default": false
     },
     {
-        "zone": "Europe/Vatican"
+        "zone": "Europe/Vatican",
+        "default": false
     },
     {
-        "zone": "Europe/Vienna"
+        "zone": "Europe/Vienna",
+        "default": false
     },
     {
-        "zone": "Europe/Vilnius"
+        "zone": "Europe/Vilnius",
+        "default": false
     },
     {
-        "zone": "Europe/Volgograd"
+        "zone": "Europe/Volgograd",
+        "default": false
     },
     {
-        "zone": "Europe/Warsaw"
+        "zone": "Europe/Warsaw",
+        "default": false
     },
     {
-        "zone": "Europe/Zagreb"
+        "zone": "Europe/Zagreb",
+        "default": false
     },
     {
-        "zone": "Europe/Zaporozhye"
+        "zone": "Europe/Zaporozhye",
+        "default": false
     },
     {
-        "zone": "Europe/Zurich"
+        "zone": "Europe/Zurich",
+        "default": false
     },
     {
-        "zone": "Indian/Antananarivo"
+        "zone": "Indian/Antananarivo",
+        "default": false
     },
     {
-        "zone": "Indian/Chagos"
+        "zone": "Indian/Chagos",
+        "default": false
     },
     {
-        "zone": "Indian/Christmas"
+        "zone": "Indian/Christmas",
+        "default": false
     },
     {
-        "zone": "Indian/Cocos"
+        "zone": "Indian/Cocos",
+        "default": false
     },
     {
-        "zone": "Indian/Comoro"
+        "zone": "Indian/Comoro",
+        "default": false
     },
     {
-        "zone": "Indian/Kerguelen"
+        "zone": "Indian/Kerguelen",
+        "default": false
     },
     {
-        "zone": "Indian/Mahe"
+        "zone": "Indian/Mahe",
+        "default": false
     },
     {
-        "zone": "Indian/Maldives"
+        "zone": "Indian/Maldives",
+        "default": false
     },
     {
-        "zone": "Indian/Mauritius"
+        "zone": "Indian/Mauritius",
+        "default": false
     },
     {
-        "zone": "Indian/Mayotte"
+        "zone": "Indian/Mayotte",
+        "default": false
     },
     {
-        "zone": "Indian/Reunion"
+        "zone": "Indian/Reunion",
+        "default": false
     },
     {
-        "zone": "Pacific/Apia"
+        "zone": "Pacific/Apia",
+        "default": false
     },
     {
-        "zone": "Pacific/Auckland"
+        "zone": "Pacific/Auckland",
+        "default": false
     },
     {
-        "zone": "Pacific/Bougainville"
+        "zone": "Pacific/Bougainville",
+        "default": false
     },
     {
-        "zone": "Pacific/Chatham"
+        "zone": "Pacific/Chatham",
+        "default": false
     },
     {
-        "zone": "Pacific/Chuuk"
+        "zone": "Pacific/Chuuk",
+        "default": false
     },
     {
-        "zone": "Pacific/Easter"
+        "zone": "Pacific/Easter",
+        "default": false
     },
     {
-        "zone": "Pacific/Efate"
+        "zone": "Pacific/Efate",
+        "default": false
     },
     {
-        "zone": "Pacific/Fakaofo"
+        "zone": "Pacific/Fakaofo",
+        "default": false
     },
     {
-        "zone": "Pacific/Fiji"
+        "zone": "Pacific/Fiji",
+        "default": false
     },
     {
-        "zone": "Pacific/Funafuti"
+        "zone": "Pacific/Funafuti",
+        "default": false
     },
     {
-        "zone": "Pacific/Galapagos"
+        "zone": "Pacific/Galapagos",
+        "default": false
     },
     {
-        "zone": "Pacific/Gambier"
+        "zone": "Pacific/Gambier",
+        "default": false
     },
     {
-        "zone": "Pacific/Guadalcanal"
+        "zone": "Pacific/Guadalcanal",
+        "default": false
     },
     {
-        "zone": "Pacific/Guam"
+        "zone": "Pacific/Guam",
+        "default": false
     },
     {
-        "zone": "Pacific/Honolulu"
+        "zone": "Pacific/Honolulu",
+        "default": false
     },
     {
-        "zone": "Pacific/Kanton"
+        "zone": "Pacific/Kanton",
+        "default": false
     },
     {
-        "zone": "Pacific/Kiritimati"
+        "zone": "Pacific/Kiritimati",
+        "default": false
     },
     {
-        "zone": "Pacific/Kosrae"
+        "zone": "Pacific/Kosrae",
+        "default": false
     },
     {
-        "zone": "Pacific/Kwajalein"
+        "zone": "Pacific/Kwajalein",
+        "default": false
     },
     {
-        "zone": "Pacific/Majuro"
+        "zone": "Pacific/Majuro",
+        "default": false
     },
     {
-        "zone": "Pacific/Marquesas"
+        "zone": "Pacific/Marquesas",
+        "default": false
     },
     {
-        "zone": "Pacific/Midway"
+        "zone": "Pacific/Midway",
+        "default": false
     },
     {
-        "zone": "Pacific/Nauru"
+        "zone": "Pacific/Nauru",
+        "default": false
     },
     {
-        "zone": "Pacific/Niue"
+        "zone": "Pacific/Niue",
+        "default": false
     },
     {
-        "zone": "Pacific/Norfolk"
+        "zone": "Pacific/Norfolk",
+        "default": false
     },
     {
-        "zone": "Pacific/Noumea"
+        "zone": "Pacific/Noumea",
+        "default": false
     },
     {
-        "zone": "Pacific/Pago_Pago"
+        "zone": "Pacific/Pago_Pago",
+        "default": false
     },
     {
-        "zone": "Pacific/Palau"
+        "zone": "Pacific/Palau",
+        "default": false
     },
     {
-        "zone": "Pacific/Pitcairn"
+        "zone": "Pacific/Pitcairn",
+        "default": false
     },
     {
-        "zone": "Pacific/Pohnpei"
+        "zone": "Pacific/Pohnpei",
+        "default": false
     },
     {
-        "zone": "Pacific/Port_Moresby"
+        "zone": "Pacific/Port_Moresby",
+        "default": false
     },
     {
-        "zone": "Pacific/Rarotonga"
+        "zone": "Pacific/Rarotonga",
+        "default": false
     },
     {
-        "zone": "Pacific/Saipan"
+        "zone": "Pacific/Saipan",
+        "default": false
     },
     {
-        "zone": "Pacific/Tahiti"
+        "zone": "Pacific/Tahiti",
+        "default": false
     },
     {
-        "zone": "Pacific/Tarawa"
+        "zone": "Pacific/Tarawa",
+        "default": false
     },
     {
-        "zone": "Pacific/Tongatapu"
+        "zone": "Pacific/Tongatapu",
+        "default": false
     },
     {
-        "zone": "Pacific/Wake"
+        "zone": "Pacific/Wake",
+        "default": false
     },
     {
-        "zone": "Pacific/Wallis"
+        "zone": "Pacific/Wallis",
+        "default": false
     }
 ]

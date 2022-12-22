@@ -29,7 +29,7 @@
     </div>
 
     <div class="p-2">
-        <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" id="device-create-vehicle" :label="__('device-create.vehicle')" required></x-select>
+        <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" id="device-create-vehicle" :label="__('device-create.vehicle')" :placeholder="__('device-create.vehicle-select')"></x-select>
     </div>
 
     <div class="p-2">

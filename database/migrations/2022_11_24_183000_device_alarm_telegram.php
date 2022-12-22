@@ -24,7 +24,8 @@ return new class extends MigrationAbstract
      */
     protected function upMigrated(): bool
     {
-        return Schema::hasColumn('device_alarm', 'telegram');
+        return (Schema::hasTable('device_alarm') === false)
+            || Schema::hasColumn('device_alarm', 'telegram');
     }
 
     /**

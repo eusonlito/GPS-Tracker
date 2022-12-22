@@ -47,15 +47,6 @@ return new class extends MigrationAbstract
             $table->unsignedBigInteger('user_id');
         });
 
-        Schema::create('alarm_device', function (Blueprint $table) {
-            $table->id();
-
-            $this->timestamps($table);
-
-            $table->unsignedBigInteger('alarm_id');
-            $table->unsignedBigInteger('device_id');
-        });
-
         Schema::create('alarm_notification', function (Blueprint $table) {
             $table->id();
 
@@ -75,10 +66,19 @@ return new class extends MigrationAbstract
 
             $this->timestamps($table);
 
-            $table->unsignedBigInteger('device_id');
             $table->unsignedBigInteger('alarm_id')->nullable();
             $table->unsignedBigInteger('position_id')->nullable();
             $table->unsignedBigInteger('trip_id')->nullable();
+            $table->unsignedBigInteger('vehicle_id');
+        });
+
+        Schema::create('alarm_vehicle', function (Blueprint $table) {
+            $table->id();
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('alarm_id');
+            $table->unsignedBigInteger('vehicle_id');
         });
 
         Schema::create('city', function (Blueprint $table) {
@@ -131,8 +131,8 @@ return new class extends MigrationAbstract
 
             $this->timestamps($table);
 
-            $table->unsignedBigInteger('timezone_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('vehicle_id')->nullable();
         });
 
         Schema::create('device_message', function (Blueprint $table) {
@@ -188,10 +188,11 @@ return new class extends MigrationAbstract
             $this->timestamps($table);
 
             $table->unsignedBigInteger('city_id')->nullable();
-            $table->unsignedBigInteger('device_id');
+            $table->unsignedBigInteger('device_id')->nullable();
             $table->unsignedBigInteger('timezone_id');
             $table->unsignedBigInteger('trip_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('vehicle_id');
         });
 
         Schema::create('queue_fail', function (Blueprint $table) {
@@ -222,8 +223,19 @@ return new class extends MigrationAbstract
 
             $this->timestamps($table);
 
-            $table->unsignedBigInteger('device_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('vehicle_id');
+        });
+
+        Schema::create('server', function (Blueprint $table) {
+            $table->id();
+
+            $table->unsignedInteger('port')->default(0);
+            $table->string('protocol');
+
+            $table->boolean('enabled')->default(0);
+
+            $this->timestamps($table);
         });
 
         Schema::create('timezone', function (Blueprint $table) {
@@ -231,6 +243,8 @@ return new class extends MigrationAbstract
 
             $table->string('zone')->index();
             $table->multiPolygon('geojson');
+
+            $table->boolean('default')->default(0);
 
             $this->timestamps($table);
         });
@@ -252,9 +266,10 @@ return new class extends MigrationAbstract
 
             $this->timestamps($table);
 
-            $table->unsignedBigInteger('device_id');
+            $table->unsignedBigInteger('device_id')->nullable();
             $table->unsignedBigInteger('timezone_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('vehicle_id');
         });
 
         Schema::create('state', function (Blueprint $table) {
@@ -297,6 +312,21 @@ return new class extends MigrationAbstract
 
             $table->unsignedBigInteger('user_id')->nullable();
         });
+
+        Schema::create('vehicle', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name')->index();
+            $table->string('plate');
+
+            $table->boolean('timezone_auto')->default(0);
+            $table->boolean('enabled')->default(0);
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('timezone_id');
+            $table->unsignedBigInteger('user_id');
+        });
     }
 
     /**
@@ -310,16 +340,16 @@ return new class extends MigrationAbstract
             $this->foreignOnDeleteCascade($table, 'user');
         });
 
-        Schema::table('alarm_device', function (Blueprint $table) {
-            $this->foreignOnDeleteCascade($table, 'alarm');
-            $this->foreignOnDeleteCascade($table, 'device');
-        });
-
         Schema::table('alarm_notification', function (Blueprint $table) {
-            $this->foreignOnDeleteCascade($table, 'device');
             $this->foreignOnDeleteSetNull($table, 'alarm');
             $this->foreignOnDeleteSetNull($table, 'position');
             $this->foreignOnDeleteSetNull($table, 'trip');
+            $this->foreignOnDeleteCascade($table, 'vehicle');
+        });
+
+        Schema::table('alarm_vehicle', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'alarm');
+            $this->foreignOnDeleteCascade($table, 'vehicle');
         });
 
         Schema::table('city', function (Blueprint $table) {
@@ -329,8 +359,8 @@ return new class extends MigrationAbstract
         });
 
         Schema::table('device', function (Blueprint $table) {
-            $this->foreignOnDeleteCascade($table, 'timezone');
             $this->foreignOnDeleteCascade($table, 'user');
+            $this->foreignOnDeleteSetNull($table, 'vehicle');
         });
 
         Schema::table('device_message', function (Blueprint $table) {
@@ -341,15 +371,16 @@ return new class extends MigrationAbstract
             $table->spatialIndex('point');
 
             $this->foreignOnDeleteSetNull($table, 'city');
-            $this->foreignOnDeleteCascade($table, 'device');
+            $this->foreignOnDeleteSetNull($table, 'device');
             $this->foreignOnDeleteCascade($table, 'timezone');
             $this->foreignOnDeleteCascade($table, 'trip');
             $this->foreignOnDeleteCascade($table, 'user');
+            $this->foreignOnDeleteCascade($table, 'vehicle');
         });
 
         Schema::table('refuel', function (Blueprint $table) {
-            $this->foreignOnDeleteCascade($table, 'device');
             $this->foreignOnDeleteCascade($table, 'user');
+            $this->foreignOnDeleteCascade($table, 'vehicle');
         });
 
         Schema::table('state', function (Blueprint $table) {
@@ -361,9 +392,10 @@ return new class extends MigrationAbstract
         });
 
         Schema::table('trip', function (Blueprint $table) {
-            $this->foreignOnDeleteCascade($table, 'device');
+            $this->foreignOnDeleteSetNull($table, 'device');
             $this->foreignOnDeleteCascade($table, 'timezone');
             $this->foreignOnDeleteCascade($table, 'user');
+            $this->foreignOnDeleteCascade($table, 'vehicle');
         });
 
         Schema::table('user', function (Blueprint $table) {
@@ -372,6 +404,11 @@ return new class extends MigrationAbstract
 
         Schema::table('user_session', function (Blueprint $table) {
             $this->foreignOnDeleteSetNull($table, 'user');
+        });
+
+        Schema::table('vehicle', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'timezone');
+            $this->foreignOnDeleteCascade($table, 'user');
         });
     }
 };

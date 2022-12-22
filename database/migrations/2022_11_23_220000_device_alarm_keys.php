@@ -11,14 +11,27 @@ return new class extends MigrationAbstract
      */
     public function up()
     {
-        $this->delete();
+        if ($this->upMigrated()) {
+            return;
+        }
+
+        $this->tables();
         $this->keys();
+        $this->upFinish();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function upMigrated(): bool
+    {
+        return Schema::hasTable('device_alarm') === false;
     }
 
     /**
      * @return void
      */
-    protected function delete()
+    protected function tables()
     {
         $this->db()->statement('
             DELETE FROM `device_alarm`

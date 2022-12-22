@@ -24,7 +24,8 @@ return new class extends MigrationAbstract
      */
     protected function upMigrated(): bool
     {
-        return Schema::hasColumn('device', 'timezone_auto');
+        return Schema::hasColumn('device', 'timezone_auto')
+            || Schema::hasTable('vehicle');
     }
 
     /**

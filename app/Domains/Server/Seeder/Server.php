@@ -1,0 +1,18 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Seeder;
+
+use Illuminate\Database\Query\Expression;
+use App\Domains\Server\Model\Server as Model;
+use App\Domains\Shared\Seeder\SeederAbstract;
+
+class Server extends SeederAbstract
+{
+    /**
+     * @return void
+     */
+    public function run()
+    {
+        $this->insertWithoutDuplicates(Model::class, $this->json('server'), 'port');
+    }
+}

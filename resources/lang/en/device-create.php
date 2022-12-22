@@ -8,9 +8,9 @@
     'name' => 'Name',
     'password' => 'Password',
     'phone_number' => 'Phone Number',
-    'port' => 'Port',
     'save' => 'Create',
     'serial' => 'Serial Number',
     'success' => 'The device has been successfully registered',
     'vehicle' => 'Vehicle',
+    'vehicle-select' => 'Select Vehicle',
 ];
