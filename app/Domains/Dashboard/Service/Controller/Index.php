@@ -160,12 +160,12 @@ class Index extends ControllerAbstract
      */
     protected function alarmNotifications(): Collection
     {
-        if ($this->trip() === null) {
+        if ($this->vehicle() === null) {
             return collect();
         }
 
         return $this->cache[__FUNCTION__] ??= AlarmNotificationModel::query()
-            ->byTripId($this->trip()->id)
+            ->byVehicleId($this->vehicle()->id)
             ->withAlarm()
             ->withVehicle()
             ->withPosition()
