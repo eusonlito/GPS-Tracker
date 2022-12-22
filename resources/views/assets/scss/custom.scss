@@ -48,6 +48,11 @@
     }
 }
 
+.leaflet-container:focus,
+.leaflet-container:focus-visible {
+    outline: none;
+}
+
 .map {
     display: flex;
     flex-flow: row;
@@ -69,11 +74,6 @@
 
     .map-map-render {
         height: 100%;
-
-        .leaflet-container:focus,
-        .leaflet-container:focus-visible {
-            outline: none;
-        }
     }
 
     .map-list {
