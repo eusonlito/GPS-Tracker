@@ -88,16 +88,16 @@
 
             <ul class="{{ str_starts_with($ROUTE, 'server.') ? 'menu__sub-open' : '' }}">
                 <li>
-                    <a href="{{ route('server.index') }}" class="menu {{ in_array($ROUTE, ['server.index', 'server.create', 'server.update']) ? 'menu--active' : '' }}">
-                        <div class="menu__icon">@icon('list')</div>
-                        <div class="menu__title">{{ __('in-sidebar.servers-list') }}</div>
+                    <a href="{{ route('server.status') }}" class="menu {{ ($ROUTE === 'server.status') ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('activity')</div>
+                        <div class="menu__title">{{ __('in-sidebar.servers-status') }}</div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('server.status') }}" class="menu {{ ($ROUTE === 'server.status') ? 'menu--active' : '' }}">
-                        <div class="menu__icon">@icon('activity')</div>
-                        <div class="menu__title">{{ __('in-sidebar.servers-status') }}</div>
+                    <a href="{{ route('server.index') }}" class="menu {{ in_array($ROUTE, ['server.index', 'server.create', 'server.update']) ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('list')</div>
+                        <div class="menu__title">{{ __('in-sidebar.servers-list') }}</div>
                     </a>
                 </li>
 
