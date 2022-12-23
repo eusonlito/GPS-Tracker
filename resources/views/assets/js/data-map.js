@@ -1,16 +1,6 @@
-import L from 'leaflet';
-import 'leaflet-arrowheads';
-import GeometryUtil from 'leaflet-geometryutil';
-
-L.GeometryUtil = GeometryUtil;
-
-import leafletPolycolor from 'leaflet-polycolor';
-
-leafletPolycolor(L);
-
 import Ajax from './ajax';
 import Feather from './feather';
-import value2color from './value2color';
+import Map from './map';
 
 (function () {
     'use strict';
@@ -30,7 +20,7 @@ import value2color from './value2color';
     let positions = [];
 
     try {
-        positions = JSON.parse(element.dataset.mapPositions);
+        positions = JSON.parse(element.dataset.mapPositions).sort((a, b) => b.date_at > a.date_at ? -1 : 1);
     } catch (e) {
         return;
     }
@@ -39,218 +29,39 @@ import value2color from './value2color';
         return;
     }
 
-    positions.sort((a, b) => b.date_at > a.date_at ? -1 : 1);
-
-    let alarms = [];
+    const map = new Map(render);
 
     try {
-        alarms = JSON.parse(element.dataset.mapAlarms || '[]');
+        map.setAlarms(JSON.parse(element.dataset.mapAlarms || '[]'));
     } catch (e) {
-        alarms = [];
     }
-
-    let notifications = [];
 
     try {
-        notifications = JSON.parse(element.dataset.mapNotifications || '[]');
+        map.setNotifications(JSON.parse(element.dataset.mapNotifications || '[]'));
     } catch (e) {
-        notifications = [];
     }
 
-    const alarmsIds = alarms.map(alarm => alarm.id);
-
-    notifications.forEach(notification => {
-        if (!notification.alarm || alarmsIds.includes(notification.alarm.id)) {
-            return;
-        }
-
-        alarms.push(notification.alarm);
-        alarmsIds.push(notification.alarm.id);
-    });
-
-    const ucfirst = function(string) {
-        return string[0].toUpperCase() + string.slice(1);
-    };
-
-    const polylineAdd = function (positions, colors) {
-        line = L.polycolor(positions, {
-            colors: colors,
-            useGradient: true,
-            weight: 5,
-            opacity: 1
-        }).arrowheads({
-            yawn: 40,
-            size: '5px',
-            fill: true,
-            fillOpacity: 0.7,
-            opacity: 0.7
-        }).addTo(layer);
-    };
-
-    const trackAdd = function (point) {
-        track.push([point.latitude, point.longitude]);
-    };
-
-    const markerAdd = function (point) {
-        return markers[point.id] = L.circleMarker([point.latitude, point.longitude], {
-            radius: 20,
-            fillOpacity: 0,
-            opacity: 0,
-        })
-        .bindPopup(jsonToHtml(point))
-        .addTo(layer);
-    };
-
-    const alarmAdd = function (alarm) {
-        if (!['fence-in', 'fence-out'].includes(alarm.type)) {
-            return;
-        }
-
-        const lat = parseFloat(alarm.config.latitude);
-        const lng = parseFloat(alarm.config.longitude);
-        const radius = parseFloat(alarm.config.radius);
-
-        if (isNaN(lat) || isNaN(lng) || isNaN(radius) || !lat || !lng || !radius) {
-            return;
-        }
-
-        L.circle({ lat, lng }, {
-            radius: radius * 1000,
-            fillOpacity: 0.05,
-            opacity: 0.3,
-            color: (alarm.type === 'fence-in') ? 'red' : 'green',
-            fillColor: (alarm.type === 'fence-in') ? 'red' : 'green',
-        }).addTo(map);
-    };
-
-    const notificationAdd = function (notification) {
-        const lat = parseFloat(notification.latitude);
-        const lng = parseFloat(notification.longitude);
-
-        if (!notification.type || isNaN(lat) || isNaN(lng) || !lat || !lng) {
-            return;
-        }
-
-        new L.Marker({ lat, lng }, {
-            icon: L.icon({
-                iconUrl: '/build/images/map-notification-' + notification.type + '.svg',
-                iconSize: [30, 42],
-                iconAnchor: [15, 42],
-            })
-        }).addTo(map);
-    };
-
-    const jsonToHtml = function(json) {
-        let html = '';
-
-        Object.keys(json).forEach(function(key) {
-            html += '<p style="margin: 0.5em 0 !important"><strong>' + ucfirst(key.replace(/_at$/, '')) + ':</strong> ' + json[key] + '</p>';
-        });
-
-        return html;
-    };
+    map.setPoints(positions);
+    map.setMarkers(positions);
 
     const mapPointClick = function (e, point) {
         e.preventDefault();
 
-        markerShow(point.dataset.mapPoint);
+        map.showMarker(point.dataset.mapPoint);
     };
-
-    const markerShow = function (id) {
-        if (marker) {
-            marker.closePopup();
-        }
-
-        marker = markers[id];
-
-        if (!marker) {
-            return;
-        }
-
-        map.flyTo(marker.getLatLng());
-
-        marker.openPopup();
-    };
-
-    const iconAdd = function (point, name) {
-        if (icon[name]) {
-            map.removeLayer(icon[name]);
-        }
-
-        icon[name] = new L.Marker(point.getLatLng(), {
-            icon: L.icon({
-                iconUrl: '/build/images/map-' + name + '.svg',
-                iconSize: [30, 42],
-                iconAnchor: [15, 42],
-            })
-        }).addTo(map);
-    };
-
-    const layers = {
-        OpenStreetMap: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxNativeZoom: 19,
-            maxZoom: 22
-        }),
-        GoogleStreets: L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            maxNativeZoom: 20,
-            maxZoom: 22,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        }),
-        GoogleSatellite: L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-            maxNativeZoom: 20,
-            maxZoom: 22,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        })
-    };
-
-    let line;
-    let marker;
-    let icon = {};
-
-    const map = L.map(render, {
-        preferCanvas: true,
-        attributionControl: false,
-        zoomControl: true,
-        zoomSnap: 1
-    });
-
-    L.control.layers({ ...layers }, null, { collapsed: true }).addTo(map);
-
-    layers.OpenStreetMap.addTo(map);
-
-    const track = [];
-    const markers = {};
-    const total = positions.length;
-    const layer = new L.FeatureGroup();
-
-    const speeds = positions.map(value => value.speed);
-    const speedMin = Math.min(...speeds);
-    const speedMax = Math.max(...speeds);
-    const colors = speeds.map(speed => value2color(speed, speedMin, speedMax));
-
-    alarms.forEach(alarmAdd);
-
-    notifications.forEach(notificationAdd);
-
-    positions.forEach(trackAdd);
-
-    polylineAdd(track, colors);
-
-    positions.forEach(markerAdd);
 
     let positionFirst = positions[0];
     let positionLast = positions[positions.length - 1];
 
-    iconAdd(markers[positionFirst.id], 'start');
-    iconAdd(markers[positionLast.id], 'end');
+    map.setIcon('start', positionFirst);
+    map.setIcon('end', positionLast);
 
-    layer.addTo(map);
+    map.render();
 
     if (element.dataset.mapShowLast) {
-        map.setView(markers[positionLast.id].getLatLng(), 17);
+        map.setView(positionLast, 17);
     } else {
-        map.fitBounds(layer.getBounds(), { animate: false, padding: [30, 30] });
-        map.invalidateSize();
+        map.fitBounds();
     }
 
     document.querySelectorAll('[data-map-point]').forEach(point => {
@@ -260,7 +71,7 @@ import value2color from './value2color';
     const anchor = window.location.hash.substr(1);
 
     if (anchor.match(/^position\-id\-[0-9]+$/)) {
-        markerShow(anchor.split('-').pop());
+        map.showMarker(anchor.split('-').pop());
     }
 
     const mapListToggle = element.querySelector('[data-map-list-toggle]');
@@ -339,15 +150,16 @@ import value2color from './value2color';
         }
 
         positions.forEach(position => {
-            line.addLatLng(markerAdd(position).getLatLng());
+            map.setPoint(position);
+            map.setMarker(position);
+
             tableAddPosition(position);
         });
 
         positionLast = positions[positions.length - 1];
 
-        iconAdd(markers[positionLast.id], 'end');
-
-        map.flyTo(markers[positionLast.id].getLatLng());
+        map.setIcon('end', positionLast);
+        map.flyTo(positionLast);
     };
 
     const tableAddPosition = function (position) {
