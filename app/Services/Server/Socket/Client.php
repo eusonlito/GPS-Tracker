@@ -60,7 +60,7 @@ class Client
             return null;
         }
 
-        if (($buffer = socket_read($this->client->socket, 2048)) === null) {
+        if (empty($buffer = socket_read($this->client->socket, 2048))) {
             return null;
         }
 

@@ -29,7 +29,7 @@ class UpdateMap extends UpdateAbstract
     }
 
     /**
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Support\Collection
      */
     protected function positions(): Collection
     {

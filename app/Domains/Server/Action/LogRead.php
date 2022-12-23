@@ -60,7 +60,7 @@ class LogRead extends ActionAbstract
      */
     protected function protocol(): void
     {
-        $this->protocol = ProtocolFactory::fromCode($this->data['protocol']);
+        $this->protocol = ProtocolFactory::get($this->data['protocol']);
     }
 
     /**

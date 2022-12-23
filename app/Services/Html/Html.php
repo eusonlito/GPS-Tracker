@@ -98,7 +98,7 @@ class Html
         static $timezone_default;
 
         if (empty($date)) {
-            return $date ?: '';
+            return '';
         }
 
         if (empty($timezone)) {

@@ -141,7 +141,7 @@ trait Date
         try {
             $datetime = $datetime ?: new DateTime($date, $timezone);
         } catch (Exception $e) {
-            $datetime = $datetime ?: new DateTime('now', $timezone);
+            $datetime = new DateTime('now', $timezone);
         }
 
         return $datetime->setTimezone($this->dateTimeZone($timezone_to))->format($format_to);
