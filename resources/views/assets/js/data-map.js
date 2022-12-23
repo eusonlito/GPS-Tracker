@@ -120,7 +120,7 @@ import Map from './map';
 
         interval = null;
 
-        live.innerHTML = Feather('play', 'w-6 h-6');
+        live.innerHTML = Feather('play', 'w-4 h-4 sm:w-6 sm:h-6');
     };
 
     const liveStart = function () {
@@ -128,7 +128,7 @@ import Map from './map';
 
         interval = setInterval(liveStartMap, 10000);
 
-        live.innerHTML = Feather('pause', 'w-6 h-6');
+        live.innerHTML = Feather('pause', 'w-4 h-4 sm:w-6 sm:h-6');
     };
 
     const liveStartMap = function () {
