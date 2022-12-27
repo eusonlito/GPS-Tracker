@@ -160,7 +160,7 @@ class StartPort extends ActionAbstract
      */
     protected function logDebug(string $body): void
     {
-        if (false) {
+        if ($this->row->debug) {
             $this->log($body, '-debug');
         }
     }
