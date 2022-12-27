@@ -233,6 +233,7 @@ return new class extends MigrationAbstract
             $table->unsignedInteger('port')->default(0);
             $table->string('protocol');
 
+            $table->boolean('debug')->default(0);
             $table->boolean('enabled')->default(0);
 
             $this->timestamps($table);

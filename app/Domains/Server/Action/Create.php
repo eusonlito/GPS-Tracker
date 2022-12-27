@@ -14,6 +14,7 @@ class Create extends CreateUpdateAbstract
         $this->row = Model::query()->create([
             'port' => $this->data['port'],
             'protocol' => $this->data['protocol'],
+            'debug' => $this->data['debug'],
             'enabled' => $this->data['enabled'],
         ]);
     }

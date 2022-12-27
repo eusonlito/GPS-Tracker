@@ -14,6 +14,7 @@ class Create extends ValidateAbstract
         return [
             'port' => ['bail', 'integer', 'required'],
             'protocol' => ['bail', 'string', 'required'],
+            'debug' => ['bail', 'boolean'],
             'enabled' => ['bail', 'boolean'],
         ];
     }

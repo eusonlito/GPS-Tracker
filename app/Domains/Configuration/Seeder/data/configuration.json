@@ -12,12 +12,6 @@
     },
 
     {
-        "key": "server_debug",
-        "value": "",
-        "description": "Activar el modo debug para la lectura de Servidores"
-    },
-
-    {
         "key": "position_filter_signal",
         "value": 1,
         "description": "Descartar posiciones que no contengan una señal válida"

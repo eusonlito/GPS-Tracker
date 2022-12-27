@@ -26,6 +26,7 @@ class Server extends ModelAbstract
      * @var array<string, string>
      */
     protected $casts = [
+        'debug' => 'boolean',
         'enabled' => 'boolean',
     ];
 

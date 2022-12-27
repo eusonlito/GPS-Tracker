@@ -22,8 +22,9 @@
             <tr>
                 <th>{{ __('server-index.port') }}</th>
                 <th>{{ __('server-index.protocol') }}</th>
-                <th class="w-1">{{ __('server-index.enabled') }}</th>
                 <th class="w-1">{{ __('server-index.created_at') }}</th>
+                <th class="w-1">{{ __('server-index.debug') }}</th>
+                <th class="w-1">{{ __('server-index.enabled') }}</th>
             </tr>
         </thead>
 
@@ -35,8 +36,9 @@
             <tr>
                 <td><a href="{{ $link }}" class="block">{{ $row->port }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->protocol }}</a></td>
-                <td class="w-1" data-table-sort-value="{{ (int)$row->enabled }}"><a href="{{ route('server.update.boolean', [$row->id, 'enabled']) }}" class="block" data-update-boolean="enabled">@status($row->enabled)</a></td>
                 <td class="w-1" data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->created_at)</a></td>
+                <td class="w-1" data-table-sort-value="{{ (int)$row->debug }}"><a href="{{ route('server.update.boolean', [$row->id, 'debug']) }}" class="block" data-update-boolean="debug">@status($row->debug)</a></td>
+                <td class="w-1" data-table-sort-value="{{ (int)$row->enabled }}"><a href="{{ route('server.update.boolean', [$row->id, 'enabled']) }}" class="block" data-update-boolean="enabled">@status($row->enabled)</a></td>
             </tr>
 
             @endforeach

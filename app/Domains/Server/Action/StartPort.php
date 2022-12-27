@@ -12,11 +12,6 @@ use App\Services\Server\ServerAbstract;
 class StartPort extends ActionAbstract
 {
     /**
-     * @var bool
-     */
-    protected bool $debug;
-
-    /**
      * @var \App\Services\Protocol\ProtocolAbstract
      */
     protected ProtocolAbstract $protocol;
@@ -32,7 +27,6 @@ class StartPort extends ActionAbstract
     public function handle(): void
     {
         $this->row();
-        $this->debug();
         $this->protocol();
         $this->server();
         $this->kill();
@@ -50,14 +44,6 @@ class StartPort extends ActionAbstract
     protected function row(): void
     {
         $this->row = Model::query()->byPort($this->data['port'])->firstOrFail();
-    }
-
-    /**
-     * @return void
-     */
-    protected function debug(): void
-    {
-        $this->debug = app('configuration')->bool('server_debug');
     }
 
     /**
@@ -174,7 +160,7 @@ class StartPort extends ActionAbstract
      */
     protected function logDebug(string $body): void
     {
-        if ($this->debug) {
+        if ($this->server->debug) {
             $this->log($body, '-debug');
         }
     }

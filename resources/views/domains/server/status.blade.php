@@ -54,6 +54,8 @@
                     <tr>
                         <th>{{ __('server-status.port') }}</th>
                         <th>{{ __('server-status.protocol') }}</th>
+                        <th>{{ __('server-status.debug') }}</th>
+                        <th>{{ __('server-status.enabled') }}</th>
                         <th class="w-1"><input type="checkbox" data-checkall="#server-status-list-table > tbody" /></th>
                     </tr>
                 </thead>
@@ -64,7 +66,9 @@
                     <tr>
                         <td>{{ $row->port }}</td>
                         <td>{{ $row->protocol }}</td>
-                        <td class="w-1"><input type="checkbox" name="ports[]" value="{{ $row->port }}" /></td>
+                        <td data-table-sort-value="{{ (int)$row->debug }}"><span class="block">@status($row->debug)</span></td>
+                        <td data-table-sort-value="{{ (int)$row->enabled }}"><span class="block">@status($row->enabled)</span></td>
+                        <td class="w-1">@if ($row->enabled) <input type="checkbox" name="ports[]" value="{{ $row->port }}" /> @endif</td>
                     </tr>
 
                     @endforeach

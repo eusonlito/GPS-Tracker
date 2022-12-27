@@ -10,6 +10,13 @@
 
     <div class="p-2">
         <div class="form-check">
+            <input type="checkbox" name="debug" value="1" class="form-check-switch" id="server-debug" {{ $REQUEST->input('debug') ? 'checked' : '' }}>
+            <label for="server-debug" class="form-check-label">{{ __('server-create.debug') }}</label>
+        </div>
+    </div>
+
+    <div class="p-2">
+        <div class="form-check">
             <input type="checkbox" name="enabled" value="1" class="form-check-switch" id="server-enabled" {{ $REQUEST->input('enabled') ? 'checked' : '' }}>
             <label for="server-enabled" class="form-check-label">{{ __('server-create.enabled') }}</label>
         </div>

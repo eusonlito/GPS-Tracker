@@ -1,6 +1,7 @@
 <?php return [
     'create' => 'Create',
     'created_at' => 'Created',
+    'debug' => 'Debug',
     'enabled' => 'Active',
     'filter' => 'Filter...',
     'logs' => 'Logs',

@@ -1,5 +1,7 @@
 <?php return [
     'command' => 'Command',
+    'debug' => 'Debug',
+    'enabled' => 'Active',
     'meta-title' => 'Servers',
     'owner' => 'Owner',
     'pid' => 'PID',

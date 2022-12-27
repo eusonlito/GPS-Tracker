@@ -1,4 +1,5 @@
 <?php return [
+    'debug' => 'Debug',
     'enabled' => 'Active',
     'error' => [
         'port-exists' => 'The port is already configured for another protocol',

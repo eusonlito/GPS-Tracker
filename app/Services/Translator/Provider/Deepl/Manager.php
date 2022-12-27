@@ -103,6 +103,7 @@ class Manager extends ProviderAbstract
             'split_sentences' => 1,
             'preserve_formatting' => 1,
             'formality' => 'prefer_less',
+            'tag_handling' => 'xml',
             'ignore_tags' => 'key',
         ];
     }
