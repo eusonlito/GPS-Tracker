@@ -12,6 +12,8 @@ class MySQL extends DatabaseAbstract
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param string $table
      * @param bool $execute = false
      *
@@ -23,6 +25,8 @@ class MySQL extends DatabaseAbstract
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param string $table
      * @param bool $execute = false
      *

@@ -27,6 +27,7 @@ class StartPort extends ActionAbstract
     public function handle(): void
     {
         $this->row();
+        $this->data();
         $this->protocol();
         $this->server();
         $this->kill();
@@ -44,6 +45,22 @@ class StartPort extends ActionAbstract
     protected function row(): void
     {
         $this->row = Model::query()->byPort($this->data['port'])->firstOrFail();
+    }
+
+    /**
+     * @return void
+     */
+    protected function data(): void
+    {
+        $this->dataDebug();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataDebug(): void
+    {
+        $this->data['debug'] = $this->data['debug'] || $this->row->debug;
     }
 
     /**
@@ -160,7 +177,7 @@ class StartPort extends ActionAbstract
      */
     protected function logDebug(string $body): void
     {
-        if ($this->row->debug) {
+        if ($this->data['debug']) {
             $this->log($body, '-debug');
         }
     }

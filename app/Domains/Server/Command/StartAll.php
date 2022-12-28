@@ -7,12 +7,12 @@ class StartAll extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'server:start:all {--reset}';
+    protected $signature = 'server:start:all {--reset} {--debug}';
 
     /**
      * @var string
      */
-    protected $description = 'Start All Configured Servers with {--reset} option.';
+    protected $description = 'Start All Configured Servers with {--reset} and  {--debug} options.';
 
     /**
      * @return void

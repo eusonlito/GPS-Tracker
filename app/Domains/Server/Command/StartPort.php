@@ -7,12 +7,12 @@ class StartPort extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'server:start:port {--port=} {--reset}';
+    protected $signature = 'server:start:port {--port=} {--reset} {--debug}';
 
     /**
      * @var string
      */
-    protected $description = 'Create a Server on {--port=} with {--reset} option.';
+    protected $description = 'Create a Server on {--port=} with {--reset} and {--debug} options.';
 
     /**
      * @return void

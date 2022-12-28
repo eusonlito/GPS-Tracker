@@ -14,6 +14,7 @@ class StartPort extends ValidateAbstract
         return [
             'port' => ['bail', 'integer', 'required'],
             'reset' => ['bail', 'boolean'],
+            'debug' => ['bail', 'boolean'],
         ];
     }
 }

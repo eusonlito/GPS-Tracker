@@ -5,6 +5,8 @@ namespace App\Domains\Shared\Model\Traits;
 trait MutatorDisabled
 {
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param string $key
      *
      * @return bool
@@ -15,6 +17,8 @@ trait MutatorDisabled
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param string $key
      *
      * @return bool

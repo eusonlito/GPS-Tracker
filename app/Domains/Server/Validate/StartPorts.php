@@ -12,9 +12,10 @@ class StartPorts extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'reset' => ['bail', 'boolean'],
             'ports' => ['bail', 'required', 'array'],
             'ports.*' => ['bail', 'required', 'integer'],
+            'reset' => ['bail', 'boolean'],
+            'debug' => ['bail', 'boolean'],
         ];
     }
 }

@@ -13,6 +13,8 @@ trait DateDisabled
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param string $key
      *
      * @return bool
@@ -23,6 +25,8 @@ trait DateDisabled
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param string $key
      *
      * @return bool

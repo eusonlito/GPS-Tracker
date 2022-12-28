@@ -35,6 +35,8 @@ class Manager extends ProtocolAbstract
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param string $body
      *
      * @return array
@@ -45,6 +47,8 @@ class Manager extends ProtocolAbstract
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param string $body
      *
      * @return ?\App\Services\Protocol\Resource\ResourceAbstract

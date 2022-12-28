@@ -284,7 +284,7 @@ class Curl
     /**
      * @param string $name
      * @param string $file
-     * @param  ?string $mime = null
+     * @param ?string $mime = null
      *
      * @return self
      */
@@ -351,7 +351,7 @@ class Curl
     }
 
     /**
-     * @param  ?string $token
+     * @param ?string $token
      * @param bool $bearer = true
      *
      * @return self
@@ -446,18 +446,29 @@ class Curl
     {
         $this->setHeader('Content-Type', 'application/octet-stream');
 
-        $this->setOption(CURLOPT_WRITEFUNCTION, function ($curl, $string) {
-            echo $string;
-
-            return strlen($string);
-        });
+        $this->setOption(CURLOPT_WRITEFUNCTION, [$this, 'setStreamWriteFunction']);
 
         return $this;
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
+     * @param \CurlHandle $curl
+     * @param string $string
+     *
+     * @return int
+     */
+    protected function setStreamWriteFunction(CurlHandle $curl, string $string): int
+    {
+        echo $string;
+
+        return strlen($string);
+    }
+
+    /**
      * @param resource $fp
-     * @param  ?int $size = null
+     * @param ?int $size = null
      *
      * @return self
      */
@@ -571,7 +582,7 @@ class Curl
     }
 
     /**
-     * @param  ?callable $sendSuccess
+     * @param ?callable $sendSuccess
      *
      * @return self
      */
@@ -717,7 +728,7 @@ class Curl
     }
 
     /**
-     * @param  ?string $format = null
+     * @param ?string $format = null
      *
      * @return mixed
      */
@@ -1002,7 +1013,7 @@ class Curl
     }
 
     /**
-     * @param  \App\Services\Http\Curl\CurlException $e
+     * @param \App\Services\Http\Curl\CurlException $e
      *
      * @return void
      */
@@ -1124,7 +1135,7 @@ class Curl
 
     /**
      * @param string $status = 'success'
-     * @param  ?\Throwable $e = null
+     * @param ?\Throwable $e = null
      *
      * @return void
      */

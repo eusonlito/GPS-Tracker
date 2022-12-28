@@ -13,6 +13,7 @@ class StartAll extends ValidateAbstract
     {
         return [
             'reset' => ['bail', 'boolean'],
+            'debug' => ['bail', 'boolean'],
         ];
     }
 }

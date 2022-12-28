@@ -8,6 +8,8 @@ use Illuminate\Contracts\Validation\Rule as RuleContract;
 class CSRF implements RuleContract
 {
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param string $attribute
      * @param mixed $value
      *

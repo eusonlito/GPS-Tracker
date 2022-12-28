@@ -8,6 +8,7 @@ use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenPrivateMethods;
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenTraits;
 use NunoMaduro\PhpInsights\Domain\Sniffs\ForbiddenSetterSniff;
 use NunoMaduro\PhpInsights\Domain\Metrics\Architecture\Classes;
+use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\ForLoopWithTestFunctionCallSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterCastSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff;
@@ -29,7 +30,7 @@ use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\AssignmentInConditionSniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEmptySniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\DisallowShortTernaryOperatorSniff;
-use SlevomatCodingStandard\Sniffs\Files\FunctionLengthSniff;
+use SlevomatCodingStandard\Sniffs\Functions\FunctionLengthSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\UseSpacingSniff;
 use SlevomatCodingStandard\Sniffs\Operators\RequireOnlyStandaloneIncrementAndDecrementOperatorsSniff;
@@ -99,7 +100,6 @@ return [
     'remove' => [
         AlphabeticallySortedUsesSniff::class,
         AssignmentInConditionSniff::class,
-        BinaryOperatorSpacesFixer::class,
         CastSpacesFixer::class,
         CyclomaticComplexityIsHigh::class,
         DeclareStrictTypesSniff::class,
@@ -113,7 +113,7 @@ return [
         ForbiddenPublicPropertySniff::class,
         ForbiddenSetterSniff::class,
         ForbiddenTraits::class,
-        FunctionLengthSniff::class,
+        ForLoopWithTestFunctionCallSniff::class,
         LineLengthSniff::class,
         ModernClassNameReferenceSniff::class,
         OrderedClassElementsFixer::class,
@@ -139,6 +139,9 @@ return [
         ForbiddenPrivateMethods::class => [
             'title' => 'The usage of private methods is not idiomatic in Laravel.',
         ],
-    ],
 
+        FunctionLengthSniff::class => [
+            'maxLinesLength' => 50,
+        ],
+    ],
 ];

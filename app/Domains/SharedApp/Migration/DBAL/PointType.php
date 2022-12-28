@@ -16,6 +16,8 @@ class PointType extends Type
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param array $column
      * @param \Doctrine\DBAL\Platforms\AbstractPlatform $platform
      *
@@ -27,6 +29,8 @@ class PointType extends Type
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param \Doctrine\DBAL\Platforms\AbstractPlatform $platform
      *
      * @return array

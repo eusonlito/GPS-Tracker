@@ -4,6 +4,7 @@ namespace App\Domains\Server\Action;
 
 use Illuminate\Support\Collection;
 use App\Domains\Server\Model\Server as Model;
+use App\Domains\Server\Service\Command\Generator as CommandGenerator;
 use App\Services\Command\Artisan;
 
 class StartPorts extends ActionAbstract
@@ -22,8 +23,8 @@ class StartPorts extends ActionAbstract
      */
     protected function iterate(): void
     {
-        foreach ($this->list() as $port) {
-            $this->command($port);
+        foreach ($this->list() as $row) {
+            $this->command($row);
         }
     }
 
@@ -35,27 +36,27 @@ class StartPorts extends ActionAbstract
         return Model::query()
             ->byPorts($this->data['ports'])
             ->enabled()
-            ->pluck('port');
+            ->get();
     }
 
     /**
-     * @param int $port
+     * @param \App\Domains\Server\Model\Server $row
      *
      * @return void
      */
-    protected function command(int $port): void
+    protected function command(Model $row): void
     {
-        Artisan::new($this->commandString($port))->exec();
+        Artisan::new($this->commandString($row))->exec();
     }
 
     /**
-     * @param int $port
+     * @param \App\Domains\Server\Model\Server $row
      *
      * @return string
      */
-    protected function commandString(int $port): string
+    protected function commandString(Model $row): string
     {
-        return 'server:start:port --port='.$port.' --reset';
+        return CommandGenerator::serverStartPort($row->port, true, $this->data['debug'] || $row->debug);
     }
 
     /**

@@ -29,6 +29,8 @@ abstract class ValidateFactoryAbstract
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param string $name
      * @param array $arguments
      *
