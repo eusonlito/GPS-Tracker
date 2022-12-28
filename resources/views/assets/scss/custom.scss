@@ -156,6 +156,12 @@
     max-width: 15rem;
 }
 
+.progress-bar {
+    background-color: rgb(var(--color-primary) / var(--tw-bg-opacity));
+    justify-content: left;
+    font-weight: 700;
+}
+
 .table .w-1 {
     width: 1%;
     white-space: nowrap;

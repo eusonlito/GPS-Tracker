@@ -84,4 +84,20 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(UpdatePositionDelete::class, $this->validate()->updatePositionDelete());
     }
+
+    /**
+     * @return \App\Domains\Trip\Model\Trip
+     */
+    public function updateStats(): Model
+    {
+        return $this->actionHandle(UpdateStats::class);
+    }
+
+    /**
+     * @return void
+     */
+    public function updateStatsAll(): void
+    {
+        $this->actionHandle(UpdateStatsAll::class);
+    }
 }

@@ -34,6 +34,13 @@ class Trip extends ModelAbstract
     protected const DATE_REGEXP = '[0-9]{4}\-[0-9]{2}\-[0-9]{2}\s[0-9]{2}:[0-9]{2}:[0-9]{2}';
 
     /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'stats' => 'array',
+    ];
+
+    /**
      * @param \Illuminate\Database\Query\Builder $q
      *
      * @return \App\Domains\Trip\Model\Builder\Trip

@@ -5,6 +5,7 @@
 <div class="box flex items-center px-5">
     <div class="nav nav-tabs flex overflow-auto whitespace-nowrap" role="tablist">
         <a href="{{ route('trip.update', $row->id) }}" class="p-4 {{ ($ROUTE === 'trip.update') ? 'active' : '' }}" role="tab">{{ $row->name }}</a>
+        <a href="{{ route('trip.update.stat', $row->id) }}" class="p-4 {{ ($ROUTE === 'trip.update.stat') ? 'active' : '' }}" role="tab">{{ __('trip-update.stats') }}</a>
         <a href="{{ route('trip.update.map', $row->id) }}" class="p-4 {{ ($ROUTE === 'trip.update.map') ? 'active' : '' }}" role="tab">{{ __('trip-update.map') }}</a>
         <a href="{{ route('trip.update.position', $row->id) }}" class="p-4 {{ ($ROUTE === 'trip.update.position') ? 'active' : '' }}" role="tab">{{ __('trip-update.positions') }}</a>
         <a href="{{ route('trip.update.alarm-notification', $row->id) }}" class="p-4 {{ ($ROUTE === 'trip.update.alarm-notification') ? 'active' : '' }}" role="tab">{{ __('trip-update.alarms') }}</a>

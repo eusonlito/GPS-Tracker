@@ -12,4 +12,5 @@ Route::group(['middleware' => ['user-auth', 'vehicle.available']], static functi
     Route::any('/trip/{id}/map', UpdateMap::class)->name('trip.update.map');
     Route::any('/trip/{id}/merge', UpdateMerge::class)->name('trip.update.merge');
     Route::any('/trip/{id}/position', UpdatePosition::class)->name('trip.update.position');
+    Route::any('/trip/{id}/stat', UpdateStat::class)->name('trip.update.stat');
 });
