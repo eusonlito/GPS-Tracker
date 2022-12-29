@@ -3,10 +3,10 @@
 namespace App\Domains\Alarm\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\Alarm\Model\Builder\AlarmVehicle as Builder;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\SharedApp\Model\PivotAbstract;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class AlarmVehicle extends PivotAbstract
 {

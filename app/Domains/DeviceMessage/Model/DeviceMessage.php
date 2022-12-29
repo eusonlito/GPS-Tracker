@@ -3,8 +3,8 @@
 namespace App\Domains\DeviceMessage\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Domains\DeviceMessage\Model\Builder\DeviceMessage as Builder;
 use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\DeviceMessage\Model\Builder\DeviceMessage as Builder;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class DeviceMessage extends ModelAbstract

@@ -2,8 +2,8 @@
 
 namespace App\Domains\Alarm\Model\Builder;
 
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class AlarmVehicle extends BuilderAbstract
 {

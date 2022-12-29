@@ -5,8 +5,8 @@ namespace App\Domains\AlarmNotification\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
 {

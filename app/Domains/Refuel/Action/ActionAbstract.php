@@ -2,8 +2,8 @@
 
 namespace App\Domains\Refuel\Action;
 
-use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
 use App\Domains\Refuel\Model\Refuel as Model;
+use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
 
 abstract class ActionAbstract extends ActionAbstractShared
 {

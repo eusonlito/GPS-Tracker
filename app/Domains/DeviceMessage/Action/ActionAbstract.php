@@ -2,8 +2,8 @@
 
 namespace App\Domains\DeviceMessage\Action;
 
-use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
 use App\Domains\DeviceMessage\Model\DeviceMessage as Model;
+use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
 
 abstract class ActionAbstract extends ActionAbstractShared
 {

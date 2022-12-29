@@ -3,9 +3,9 @@
 namespace App\Domains\State\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Domains\State\Model\Builder\State as Builder;
 use App\Domains\Country\Model\Country as CountryModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\State\Model\Builder\State as Builder;
 
 class State extends ModelAbstract
 {

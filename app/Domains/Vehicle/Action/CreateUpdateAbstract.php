@@ -2,8 +2,8 @@
 
 namespace App\Domains\Vehicle\Action;
 
-use App\Domains\Vehicle\Model\Vehicle as Model;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+use App\Domains\Vehicle\Model\Vehicle as Model;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
 {

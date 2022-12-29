@@ -2,15 +2,15 @@
 
 namespace App\Domains\Shared\Action;
 
-use Throwable;
 use Closure;
+use Throwable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Exceptions\NotFoundException;
-use App\Exceptions\ValidatorException;
 use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Traits\Factory;
+use App\Exceptions\NotFoundException;
+use App\Exceptions\ValidatorException;
 
 abstract class ActionAbstract
 {

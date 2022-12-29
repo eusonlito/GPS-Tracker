@@ -6,8 +6,8 @@ use stdClass;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\Refuel\Model\Refuel as Model;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
 {

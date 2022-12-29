@@ -2,8 +2,8 @@
 
 namespace App\Domains\Alarm\Fractal;
 
-use App\Domains\Shared\Fractal\FractalAbstract;
 use App\Domains\Alarm\Model\Alarm as Model;
+use App\Domains\Shared\Fractal\FractalAbstract;
 
 class FractalFactory extends FractalAbstract
 {

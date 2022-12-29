@@ -4,12 +4,12 @@ namespace App\Services\Gpx;
 
 use DateTime;
 use DateTimeZone;
+use Illuminate\Support\Collection;
 use phpGPX\Models\GpxFile;
 use phpGPX\Models\Metadata;
 use phpGPX\Models\Point;
 use phpGPX\Models\Segment;
 use phpGPX\Models\Track;
-use Illuminate\Support\Collection;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 

@@ -4,8 +4,8 @@ namespace App\Domains\Refuel\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\Refuel\Model\Refuel as Model;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Create extends ControllerAbstract
 {

@@ -2,8 +2,8 @@
 
 namespace App\Domains\Country\Action;
 
-use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
 use App\Domains\Country\Model\Country as Model;
+use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
 
 abstract class ActionAbstract extends ActionAbstractShared
 {

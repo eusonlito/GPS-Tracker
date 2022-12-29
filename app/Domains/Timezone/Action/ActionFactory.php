@@ -2,8 +2,8 @@
 
 namespace App\Domains\Timezone\Action;
 
-use App\Domains\Timezone\Model\Timezone as Model;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
+use App\Domains\Timezone\Model\Timezone as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {

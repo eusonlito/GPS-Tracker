@@ -2,8 +2,8 @@
 
 namespace App\Domains\Timezone\Controller;
 
-use App\Domains\Timezone\Model\Timezone as Model;
 use App\Domains\Shared\Controller\ControllerWebAbstract;
+use App\Domains\Timezone\Model\Timezone as Model;
 use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract

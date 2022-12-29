@@ -2,8 +2,8 @@
 
 namespace App\Domains\Vehicle\Action;
 
-use App\Domains\Vehicle\Model\Vehicle as Model;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
+use App\Domains\Vehicle\Model\Vehicle as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {

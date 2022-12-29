@@ -5,11 +5,11 @@ namespace App\Domains\Alarm\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\Alarm\Model\Builder\Alarm as Builder;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Alarm extends ModelAbstract
 {

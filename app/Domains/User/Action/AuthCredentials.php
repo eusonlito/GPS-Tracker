@@ -4,8 +4,8 @@ namespace App\Domains\User\Action;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Exceptions\AuthenticationException;
 use App\Domains\User\Model\User as Model;
+use App\Exceptions\AuthenticationException;
 
 class AuthCredentials extends ActionAbstract
 {

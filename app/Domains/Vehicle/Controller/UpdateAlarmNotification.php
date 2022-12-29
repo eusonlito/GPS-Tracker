@@ -2,8 +2,8 @@
 
 namespace App\Domains\Vehicle\Controller;
 
-use Illuminate\Support\Collection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 
 class UpdateAlarmNotification extends ControllerAbstract
 {

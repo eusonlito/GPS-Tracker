@@ -2,8 +2,8 @@
 
 namespace App\Domains\Trip\Controller;
 
-use App\Domains\Trip\Model\Trip as Model;
 use App\Domains\Shared\Controller\ControllerWebAbstract;
+use App\Domains\Trip\Model\Trip as Model;
 use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract

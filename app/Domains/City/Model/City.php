@@ -4,9 +4,9 @@ namespace App\Domains\City\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\City\Model\Builder\City as Builder;
-use App\Domains\State\Model\State as StateModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;
+use App\Domains\State\Model\State as StateModel;
 
 class City extends ModelAbstract
 {

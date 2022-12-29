@@ -3,9 +3,9 @@
 namespace App\Domains\AlarmNotification\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Domains\AlarmNotification\Model\Builder\AlarmNotification as Builder;
-use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
+use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
+use App\Domains\AlarmNotification\Model\Builder\AlarmNotification as Builder;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;

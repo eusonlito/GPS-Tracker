@@ -2,9 +2,9 @@
 
 namespace App\Domains\Device\Controller;
 
-use App\Domains\Device\Model\Device as Model;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
+use App\Domains\Device\Model\Device as Model;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\Shared\Controller\ControllerWebAbstract;
 use App\Exceptions\NotFoundException;

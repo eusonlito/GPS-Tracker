@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use App\Domains\Vehicle\Model\Builder\Vehicle as Builder;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\Alarm\Model\AlarmVehicle as AlarmVehicleModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
@@ -15,6 +14,7 @@ use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\User\Model\User as UserModel;
+use App\Domains\Vehicle\Model\Builder\Vehicle as Builder;
 
 class Vehicle extends ModelAbstract
 {

@@ -2,8 +2,8 @@
 
 namespace App\Domains\Alarm\Action;
 
-use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
 use App\Domains\Alarm\Model\Alarm as Model;
+use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
 
 abstract class ActionAbstract extends ActionAbstractShared
 {

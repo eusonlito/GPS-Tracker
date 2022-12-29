@@ -2,8 +2,8 @@
 
 namespace App\Domains\DeviceMessage\Model\Builder;
 
-use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 
 class DeviceMessage extends BuilderAbstract
 {

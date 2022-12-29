@@ -2,8 +2,8 @@
 
 namespace App\Domains\City\Action;
 
-use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
 use App\Domains\City\Model\City as Model;
+use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
 
 abstract class ActionAbstract extends ActionAbstractShared
 {

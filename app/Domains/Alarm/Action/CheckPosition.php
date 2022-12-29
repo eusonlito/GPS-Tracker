@@ -3,11 +3,11 @@
 namespace App\Domains\Alarm\Action;
 
 use Illuminate\Support\Collection;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\Alarm\Model\Alarm as Model;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\AlarmNotification\Job\Notify as AlarmNotificationNotifyJob;
+use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class CheckPosition extends ActionAbstract
 {

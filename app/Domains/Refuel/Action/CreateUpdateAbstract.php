@@ -2,8 +2,8 @@
 
 namespace App\Domains\Refuel\Action;
 
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\Refuel\Model\Refuel as Model;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
 {

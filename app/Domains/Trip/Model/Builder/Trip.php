@@ -2,8 +2,8 @@
 
 namespace App\Domains\Trip\Model\Builder;
 
-use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 
 class Trip extends BuilderAbstract
 {

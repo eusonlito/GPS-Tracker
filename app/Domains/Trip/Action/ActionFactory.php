@@ -3,8 +3,8 @@
 namespace App\Domains\Trip\Action;
 
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use App\Domains\Trip\Model\Trip as Model;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
+use App\Domains\Trip\Model\Trip as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {

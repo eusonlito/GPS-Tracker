@@ -2,8 +2,8 @@
 
 namespace App\Domains\UserSession\Action;
 
-use App\Domains\UserSession\Model\UserSession as Model;
 use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
+use App\Domains\UserSession\Model\UserSession as Model;
 
 abstract class ActionAbstract extends ActionAbstractShared
 {

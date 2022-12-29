@@ -3,8 +3,8 @@
 namespace App\Domains\Alarm\Action;
 
 use App\Domains\Alarm\Model\Alarm as Model;
-use App\Domains\Alarm\Service\Type\Manager as TypeManager;
 use App\Domains\Alarm\Service\Type\Format\FormatAbstract as TypeFormatAbstract;
+use App\Domains\Alarm\Service\Type\Manager as TypeManager;
 
 class Create extends ActionAbstract
 {
