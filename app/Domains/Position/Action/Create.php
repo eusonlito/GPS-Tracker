@@ -7,8 +7,8 @@ use App\Domains\Alarm\Job\CheckPosition as AlarmCheckPositionJob;
 use App\Domains\Position\Job\UpdateCity as UpdateCityJob;
 use App\Domains\Position\Model\Position as Model;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
-use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Trip\Job\UpdateStats as TripUpdateStatsJob;
+use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Create extends ActionAbstract
