@@ -98,6 +98,6 @@ class ActionFactory extends ActionFactoryAbstract
      */
     public function updateStatsAll(): void
     {
-        $this->actionHandle(UpdateStatsAll::class);
+        $this->actionHandle(UpdateStatsAll::class, $this->validate()->updateStatsAll());
     }
 }

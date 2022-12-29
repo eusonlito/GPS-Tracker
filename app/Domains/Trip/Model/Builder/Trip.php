@@ -182,6 +182,14 @@ class Trip extends BuilderAbstract
     /**
      * @return self
      */
+    public function whenStatsEmpty(): self
+    {
+        return $this->whereNull('stats');
+    }
+
+    /**
+     * @return self
+     */
     public function withDevice(): self
     {
         return $this->with('device');

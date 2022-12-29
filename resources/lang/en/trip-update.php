@@ -10,5 +10,6 @@
     'positions' => 'Coordinates',
     'previous' => 'Previous',
     'save' => 'Save',
+    'stats' => 'Statistics',
     'success' => 'The trip has been successfully updated',
 ];

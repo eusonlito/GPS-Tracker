@@ -66,7 +66,7 @@ class UpdateStats extends ActionAbstract
     protected function positions(): void
     {
         $this->positions = PositionModel::query()
-            ->select('speed', 'date_at')
+            ->selectOnly('speed', 'date_at')
             ->byTripId($this->row->id)
             ->orderByDateUtcAtAsc()
             ->get();

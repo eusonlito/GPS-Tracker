@@ -2,7 +2,7 @@
 
 namespace App\Domains\Trip\Action;
 
-use App\Domains\Trip\Job\UpdateStats as UpdateStatsJob;
+use Illuminate\Support\Collection;
 use App\Domains\Trip\Model\Trip as Model;
 
 class UpdateStatsAll extends ActionAbstract
@@ -20,16 +20,22 @@ class UpdateStatsAll extends ActionAbstract
      */
     protected function iterate(): void
     {
-        foreach ($this->ids() as $id) {
-            UpdateStatsJob::dispatch($id);
+        foreach ($this->list() as $row) {
+            $this->factory(row: $row)->action()->updateStats();
         }
     }
 
     /**
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
-    protected function ids(): array
+    protected function list(): Collection
     {
-        return Model::query()->pluck('id')->all();
+        $q = Model::query();
+
+        if ($this->data['overwrite'] === false) {
+            $q->whenStatsEmpty();
+        }
+
+        return $q->get();
     }
 }

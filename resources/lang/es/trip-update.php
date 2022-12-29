@@ -10,5 +10,6 @@
     'positions' => 'Coordenadas',
     'previous' => 'Anterior',
     'save' => 'Guardar',
+    'stats' => 'Estadísticas',
     'success' => 'El viaje ha sido actualizado correctamente',
 ];

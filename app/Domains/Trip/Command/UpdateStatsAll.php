@@ -7,12 +7,12 @@ class UpdateStatsAll extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'trip:update:stats:all';
+    protected $signature = 'trip:update:stats:all {--overwrite}';
 
     /**
      * @var string
      */
-    protected $description = 'Update All Trip Stats';
+    protected $description = 'Update All Trip Stats with {--overwrite}';
 
     /**
      * @return void
@@ -21,6 +21,7 @@ class UpdateStatsAll extends CommandAbstract
     {
         $this->info('[START]');
 
+        $this->requestWithOptions();
         $this->factory()->action()->updateStatsAll();
 
         $this->info('[END]');

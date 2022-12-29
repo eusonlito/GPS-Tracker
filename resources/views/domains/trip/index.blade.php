@@ -91,6 +91,8 @@
                 <td class="w-1">
                     <a href="{{ route('trip.update', $row->id) }}">@icon('edit', 'w-4 h-4')</a>
                     <span class="mx-2"></span>
+                    <a href="{{ route('trip.update.stat', $row->id) }}">@icon('bar-chart-2', 'w-4 h-4')</a>
+                    <span class="mx-2"></span>
                     <a href="{{ $link }}">@icon('map', 'w-4 h-4')</a>
                     <span class="mx-2"></span>
                     <a href="{{ route('trip.update.position', $row->id) }}">@icon('map-pin', 'w-4 h-4')</a>

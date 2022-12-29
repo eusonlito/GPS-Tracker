@@ -4,9 +4,6 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
-use App\Domains\Alarm\Model\Alarm as AlarmModel;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 
 class UpdateStat extends UpdateAbstract
 {
@@ -19,10 +16,22 @@ class UpdateStat extends UpdateAbstract
     {
         $this->load($id);
 
+        if (empty($this->row->stats)) {
+            $this->actionCall('updateStats');
+        }
+
         $this->meta('title', $this->row->name);
 
         return $this->page('trip.update-stat', [
             'stats' => $this->row->stats,
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    protected function updateStats(): void
+    {
+        $this->factory()->action()->updateStats();
     }
 }

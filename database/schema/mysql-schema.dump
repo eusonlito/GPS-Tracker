@@ -282,6 +282,7 @@ CREATE TABLE `server` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `port` int unsigned NOT NULL DEFAULT '0',
   `protocol` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `debug` tinyint(1) NOT NULL DEFAULT '0',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -458,3 +459,5 @@ INSERT INTO `migrations` VALUES (38,'2022_12_02_183000_server',1);
 INSERT INTO `migrations` VALUES (39,'2022_12_20_183000_vehicle',1);
 INSERT INTO `migrations` VALUES (40,'2022_12_22_223000_configuration_socket_debug',1);
 INSERT INTO `migrations` VALUES (41,'2022_12_22_223000_device_port',1);
+INSERT INTO `migrations` VALUES (42,'2022_12_27_183000_server_debug',1);
+INSERT INTO `migrations` VALUES (43,'2022_12_29_220000_trip_stats',1);
