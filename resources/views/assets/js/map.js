@@ -34,7 +34,6 @@ export default class {
         this.icons = {};
 
         this.alarms = [];
-        this.alarmsIds = [];
 
         this.notifications = [];
 
@@ -202,11 +201,7 @@ export default class {
             return this;
         }
 
-        if (this.alarmsIds.includes(alarm.id)) {
-            return this;
-        }
-
-        this.alarmsIds.push(alarm.id);
+        this.alarms.push(alarm);
 
         L.circle(this.getLatLng(alarm.config), this.getAlarmOptions(alarm, options)).addTo(this.getMap());
 
@@ -216,7 +211,25 @@ export default class {
     isValidAlarm(alarm) {
         return alarm && alarm.type && alarm.id && alarm.config
             && alarm.config.latitude && alarm.config.longitude && alarm.config.radius
-            && ['fence-in', 'fence-out'].includes(alarm.type);
+            && ['fence-in', 'fence-out'].includes(alarm.type)
+            && this.isValidAlarmNotLoaded(alarm);
+    }
+
+    isValidAlarmNotLoaded(alarm) {
+        for (const i = 0; i < this.alarms.length; i++) {
+            if (this.isSameAlarm(this.alarms[i], alarm)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    isSameAlarm(loaded, current) {
+        return (loaded.type === current.type)
+            && (loaded.config.latitude === current.config.latitude)
+            && (loaded.config.longitude === current.config.longitude)
+            && (loaded.config.radius === current.config.radius);
     }
 
     getAlarmOptions(alarm, options) {
@@ -242,11 +255,9 @@ export default class {
             return this;
         }
 
-        new L.Marker(this.getLatLng(notification), this.getNotificationOptions(notification, options)).addTo(this.getMap());
+        this.setAlarm(notification);
 
-        if (notification.alarm) {
-            this.setAlarm(notification.alarm);
-        }
+        new L.Marker(this.getLatLng(notification), this.getNotificationOptions(notification, options)).addTo(this.getMap());
 
         return this;
     }
