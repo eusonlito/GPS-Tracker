@@ -5,6 +5,7 @@
     ],
     'speed' => [
         'avg' => 'Media',
+        'avg_movement' => 'Media en Movimiento',
         'max' => 'Máxima',
         'min' => 'Mínima',
         'title' => 'Velocidad',

@@ -42,10 +42,12 @@ class UpdateStats extends ActionAbstract
                 'max' => 0,
                 'min' => 0,
                 'avg' => 0,
+                'avg_movement' => 0,
 
                 'max_percent' => 0,
                 'min_percent' => 0,
                 'avg_percent' => 0,
+                'avg_movement_percent' => 0,
             ],
 
             'time' => [
@@ -112,6 +114,10 @@ class UpdateStats extends ActionAbstract
      */
     protected function finish(): void
     {
+        if (empty($this->row->distance) || empty($this->row->time)) {
+            return;
+        }
+
         $this->finishSpeed();
         $this->finishTime();
     }
@@ -122,16 +128,19 @@ class UpdateStats extends ActionAbstract
     protected function finishSpeed(): void
     {
         $max = round($this->positions->max('speed') ?: 0, 2);
-        $min = round($this->positions->min('speed') ?: 0, 2);
-        $avg = round($this->positions->avg('speed') ?: 0, 2);
 
         if ($max === 0.0) {
             return;
         }
 
+        $min = round($this->positions->min('speed') ?: 0, 2);
+        $avg = round($this->row->distance / $this->row->time * 3.6, 2);
+        $avg_movement = round($this->positions->where('speed')->avg('speed') ?: 0, 2);
+
         $max_percent = 100;
         $min_percent = (int)round($min * 100 / $max, 0);
         $avg_percent = (int)round($avg * 100 / $max, 0);
+        $avg_movement_percent = (int)round($avg_movement * 100 / $max, 0);
 
         $this->stats['speed'] = get_defined_vars();
     }

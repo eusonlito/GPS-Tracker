@@ -22,6 +22,10 @@
     </div>
 
     <div class="progress h-6 mt-2">
+        <div class="progress-bar p-3 whitespace-nowrap" style="width: {{ $stats['speed']['avg_movement_percent'] }}%" role="progressbar" aria-valuenow="{{ $stats['speed']['avg_movement_percent'] }}" aria-valuemin="0" aria-valuemax="100">{{ __('trip-update-stat.speed.avg_movement') }}: {{ $stats['speed']['avg_movement'] }} km/h</div>
+    </div>
+
+    <div class="progress h-6 mt-2">
         <div class="progress-bar p-3 whitespace-nowrap" style="width: {{ $stats['speed']['min_percent'] }}%" role="progressbar" aria-valuenow="{{ $stats['speed']['min_percent'] }}" aria-valuemin="0" aria-valuemax="100">{{ __('trip-update-stat.speed.min') }}: {{ $stats['speed']['min'] }} km/h</div>
     </div>
 </div>
