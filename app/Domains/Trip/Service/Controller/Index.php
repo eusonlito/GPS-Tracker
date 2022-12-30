@@ -180,6 +180,7 @@ class Index extends ControllerAbstract
     protected function list(): Collection
     {
         return $this->cache[__FUNCTION__] ??= Model::query()
+            ->selectOnly('id', 'name', 'start_at', 'end_at', 'time', 'distance')
             ->byVehicleId($this->vehicle()->id)
             ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
             ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
