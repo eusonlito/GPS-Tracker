@@ -16,7 +16,7 @@ trait Date
      */
     public function timeHuman(int $seconds): string
     {
-        return sprintf('%02d:%02d:%02d', floor($seconds / 3600), floor($seconds / 60 % 60), floor($seconds % 60));
+        return sprintf('%02d:%02d:%02d', floor($seconds / 3600), fmod(floor($seconds / 60), 60), floor(fmod($seconds, 60)));
     }
 
     /**
