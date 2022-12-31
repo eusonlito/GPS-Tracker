@@ -34,8 +34,16 @@
     <div class="lg:flex lg:space-x-4">
         @if ($vehicles->count() > 1)
 
-        <div class="flex-1 mb-4">
+        <div class="mb-2">
             <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" data-change-submit></x-select>
+        </div>
+
+        @endif
+
+        @if ($vehicles->count() > 1)
+
+        <div class="mb-2">
+            <x-select name="device_id" :options="$devices" value="id" text="name" data-change-submit></x-select>
         </div>
 
         @endif
