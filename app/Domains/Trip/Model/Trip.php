@@ -104,7 +104,7 @@ class Trip extends ModelAbstract
     public function next(): ?Trip
     {
         return self::query()
-            ->byDeviceId($this->device->id)
+            ->byVehicleId($this->vehicle->id)
             ->byStartUtcAtNext($this->start_utc_at)
             ->first();
     }
@@ -115,7 +115,7 @@ class Trip extends ModelAbstract
     public function previous(): ?Trip
     {
         return self::query()
-            ->byDeviceId($this->device->id)
+            ->byVehicleId($this->vehicle->id)
             ->byStartUtcAtPrevious($this->start_utc_at)
             ->first();
     }
