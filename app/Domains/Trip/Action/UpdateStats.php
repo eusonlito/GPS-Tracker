@@ -118,8 +118,8 @@ class UpdateStats extends ActionAbstract
             return;
         }
 
-        $this->finishSpeed();
         $this->finishTime();
+        $this->finishSpeed();
     }
 
     /**
@@ -135,7 +135,7 @@ class UpdateStats extends ActionAbstract
 
         $min = round($this->positions->min('speed') ?: 0, 2);
         $avg = round($this->row->distance / $this->row->time * 3.6, 2);
-        $avg_movement = round($this->positions->where('speed')->avg('speed') ?: 0, 2);
+        $avg_movement = round($this->row->distance / $this->stats['time']['movement'] * 3.6, 2);
 
         $max_percent = 100;
         $min_percent = (int)round($min * 100 / $max, 0);
