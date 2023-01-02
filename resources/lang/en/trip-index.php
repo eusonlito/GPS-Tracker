@@ -3,6 +3,7 @@
     'alarms' => 'Alarms',
     'city' => 'City',
     'country' => 'Country',
+    'device' => 'Device',
     'distance' => 'Distance',
     'end' => 'Arrival',
     'end-at' => 'End',
