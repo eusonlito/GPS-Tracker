@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Domains\City\Model\City as CityModel;
 use App\Domains\Country\Model\Country as CountryModel;
+use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\State\Model\State as StateModel;
 use App\Domains\Trip\Model\Trip as Model;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
@@ -55,6 +56,9 @@ class Index extends ControllerAbstract
             'vehicles' => $this->vehicles(),
             'vehicles_multiple' => ($this->vehicles()->count() > 1),
             'vehicle' => $this->vehicle(),
+            'devices' => $this->devices(),
+            'devices_multiple' => ($this->devices()->count() > 1),
+            'device' => $this->device(),
             'countries' => $this->countries(),
             'country' => $this->country(),
             'states' => $this->states(),
@@ -85,6 +89,27 @@ class Index extends ControllerAbstract
     {
         return $this->cache[__FUNCTION__] ??= $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
             ?: $this->vehicles()->first();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    protected function devices(): Collection
+    {
+        if ($this->vehicle() === null) {
+            return collect();
+        }
+
+        return $this->cache[__FUNCTION__] ??= $this->vehicle()->devices()->list()->get();
+    }
+
+    /**
+     * @return ?\App\Domains\Device\Model\Device
+     */
+    protected function device(): ?DeviceModel
+    {
+        return $this->cache[__FUNCTION__] ??= $this->devices()->firstWhere('id', $this->request->input('device_id'))
+            ?: $this->devices()->first();
     }
 
     /**
@@ -179,11 +204,17 @@ class Index extends ControllerAbstract
      */
     protected function list(): Collection
     {
+        if ($this->vehicle() === null) {
+            return collect();
+        }
+
         return $this->cache[__FUNCTION__] ??= Model::query()
-            ->selectOnly('id', 'name', 'start_at', 'end_at', 'time', 'distance')
+            ->selectOnly('id', 'name', 'start_at', 'start_utc_at', 'end_at', 'end_utc_at', 'time', 'distance', 'device_id', 'vehicle_id')
             ->byVehicleId($this->vehicle()->id)
+            ->whenDeviceId($this->device()->id ?? null)
             ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
             ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
+            ->withDevice()
             ->withVehicle()
             ->list()
             ->get();

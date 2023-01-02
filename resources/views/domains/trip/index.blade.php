@@ -16,6 +16,14 @@
 
         @endif
 
+        @if ($devices_multiple)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="device_id" :options="$devices" value="id" text="name" data-change-submit></x-select>
+        </div>
+
+        @endif
+
         <div class="flex-grow mt-2 lg:mt-0">
             <input type="text" name="start_at" value="{{ $REQUEST->input('start_at') }}" class="form-control form-control-lg" placeholder="{{ __('trip-index.start-at') }}" data-datepicker data-datepicker-min-date="{{ $date_min }}" data-change-submit />
         </div>
@@ -62,6 +70,10 @@
                 <th>{{ __('trip-index.vehicle') }}</th>
                 @endif
 
+                @if ($devices_multiple)
+                <th>{{ __('trip-index.device') }}</th>
+                @endif
+
                 <th class="text-left">{{ __('trip-index.name') }}</th>
                 <th>{{ __('trip-index.start_at') }}</th>
                 <th>{{ __('trip-index.end_at') }}</th>
@@ -79,6 +91,10 @@
             <tr>
                 @if ($vehicles_multiple)
                 <td><a href="{{ $link }}" class="block">{{ $row->vehicle->name }}</a></td>
+                @endif
+
+                @if ($devices_multiple)
+                <td><a href="{{ $link }}" class="block">{{ $row->device->name }}</a></td>
                 @endif
 
                 <td class="text-left"><a href="{{ $link }}" class="d-t-m-o max-w-md" title="{{ $row->name }}">{{ $row->name }}</a></td>

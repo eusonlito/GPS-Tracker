@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
+use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
@@ -75,6 +76,15 @@ class Index extends ControllerAbstract
     }
 
     /**
+     * @return ?\App\Domains\Device\Model\Device
+     */
+    protected function device(): ?DeviceModel
+    {
+        return $this->cache[__FUNCTION__] ??= $this->devices()->firstWhere('id', $this->request->input('device_id'))
+            ?: $this->devices()->first();
+    }
+
+    /**
      * @return \Illuminate\Support\Collection
      */
     protected function trips(): Collection
@@ -83,7 +93,13 @@ class Index extends ControllerAbstract
             return collect();
         }
 
-        return $this->cache[__FUNCTION__] ??= $this->vehicle()->trips()->list()->limit(50)->get();
+        return $this->cache[__FUNCTION__] ??= TripModel::query()
+            ->selectOnly('id', 'name', 'start_at', 'start_utc_at', 'end_at', 'end_utc_at', 'time', 'distance', 'device_id', 'vehicle_id')
+            ->byVehicleId($this->vehicle()->id)
+            ->whenDeviceId($this->device()->id ?? null)
+            ->list()
+            ->limit(50)
+            ->get();
     }
 
     /**
