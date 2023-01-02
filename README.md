@@ -132,13 +132,43 @@ Puedes configurar el servidor de conexión en el dispositivo usando o bien la IP
 #### Configurar tiempo de espera antes de pasar a modo SLEEP con el coche parado
 
 ```
-SLEEP{PASSWORD} {SEGUNDOS}
+SLEEP{PASSWORD} {MINUTOS}
 ```
 
-#### Desactivar llamada en caso de alarma
+#### Activar llamadas de eventos (Batería baja, reporte diario, aviso grúa, salida geovalla, contacto, SOS)
+
+```
+150{PASSWORD}
+```
+
+#### Desactivar llamadas de eventos (Batería baja, reporte diario, aviso grúa, salida geovalla, contacto, SOS)
 
 ```
 151{PASSWORD}
+```
+
+#### Activar SMS de Alarma de Batería baja
+
+```
+011{PASSWORD}
+```
+
+#### Desactivar SMS de Alarma de Batería baja
+
+```
+010{PASSWORD}
+```
+
+#### Activar SMS de Eventos (Batería baja, SLEEP, reporte diario, aviso grúa, salida geovalla, contacto)
+
+```
+712{PASSWORD}
+```
+
+#### Desactivar SMS de Eventos (Batería baja, SLEEP, reporte diario, aviso grúa, salida geovalla, contacto)
+
+```
+713{PASSWORD}
 ```
 
 #### Cambiar Contraseña

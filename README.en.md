@@ -132,13 +132,25 @@ You can configure the connection server in the device using either the IP or a H
 #### Set timeout before switching to SLEEP mode when the car is stopped
 
 ```
-SLEEP{PASSWORD} {SECONDS}
+SLEEP{PASSWORD} {MINUTES}
 ```
 
 #### Deactivate call in case of alarm
 
 ```
 151{PASSWORD}
+```
+
+#### Enable Device Low Battery SMS
+
+```
+011{PASSWORD}
+```
+
+#### Disable Device Low Battery SMS
+
+```
+010{PASSWORD}
 ```
 
 #### Password change
