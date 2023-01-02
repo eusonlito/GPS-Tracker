@@ -31,6 +31,7 @@ class Index extends ControllerAbstract
     protected function filters(): void
     {
         $this->filtersDates();
+        $this->filtersIds();
     }
 
     /**
@@ -45,6 +46,17 @@ class Index extends ControllerAbstract
         if (preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/', (string)$this->request->input('end_at')) === 0) {
             $this->request->merge(['end_at' => '']);
         }
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersIds(): void
+    {
+        $this->request->merge([
+            'vehicle_id' => $this->auth->preference('vehicle_id', $this->request->input('vehicle_id')),
+            'device_id' => $this->auth->preference('device_id', $this->request->input('device_id')),
+        ]);
     }
 
     /**

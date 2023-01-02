@@ -21,6 +21,18 @@ class Index extends ControllerAbstract
      */
     public function __construct(protected Request $request, protected Authenticatable $auth)
     {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->request->merge([
+            'vehicle_id' => $this->auth->preference('vehicle_id', $this->request->input('vehicle_id')),
+            'device_id' => $this->auth->preference('device_id', $this->request->input('device_id')),
+        ]);
     }
 
     /**
