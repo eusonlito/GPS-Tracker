@@ -15,6 +15,7 @@ use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Builder\Vehicle as Builder;
+use App\Domains\Vehicle\Model\Collection\Vehicle as Collection;
 
 class Vehicle extends ModelAbstract
 {
@@ -32,6 +33,16 @@ class Vehicle extends ModelAbstract
      * @const string
      */
     public const FOREIGN = 'vehicle_id';
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

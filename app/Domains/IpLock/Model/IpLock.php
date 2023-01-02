@@ -3,6 +3,7 @@
 namespace App\Domains\IpLock\Model;
 
 use App\Domains\IpLock\Model\Builder\IpLock as Builder;
+use App\Domains\IpLock\Model\Collection\IpLock as Collection;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class IpLock extends ModelAbstract
@@ -21,6 +22,16 @@ class IpLock extends ModelAbstract
      * @const string
      */
     public const FOREIGN = 'ip_lock_id';
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\IpLock\Model\Collection\IpLock
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

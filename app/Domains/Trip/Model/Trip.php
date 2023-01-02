@@ -9,6 +9,7 @@ use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Builder\Trip as Builder;
+use App\Domains\Trip\Model\Collection\Trip as Collection;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Trip extends ModelAbstract
@@ -39,6 +40,16 @@ class Trip extends ModelAbstract
     protected $casts = [
         'stats' => 'array',
     ];
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Trip\Model\Collection\Trip
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q
@@ -104,6 +115,7 @@ class Trip extends ModelAbstract
     public function next(): ?Trip
     {
         return self::query()
+            ->selectOnly('id', 'name', 'start_at', 'start_utc_at', 'end_at', 'end_utc_at', 'time', 'distance', 'device_id', 'vehicle_id')
             ->byVehicleId($this->vehicle->id)
             ->byStartUtcAtNext($this->start_utc_at)
             ->first();
@@ -115,6 +127,7 @@ class Trip extends ModelAbstract
     public function previous(): ?Trip
     {
         return self::query()
+            ->selectOnly('id', 'name', 'start_at', 'start_utc_at', 'end_at', 'end_utc_at', 'time', 'distance', 'device_id', 'vehicle_id')
             ->byVehicleId($this->vehicle->id)
             ->byStartUtcAtPrevious($this->start_utc_at)
             ->first();

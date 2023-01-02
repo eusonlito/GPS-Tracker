@@ -4,6 +4,7 @@ namespace App\Domains\Alarm\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Alarm\Model\Builder\AlarmVehicle as Builder;
+use App\Domains\Alarm\Model\Collection\AlarmVehicle as Collection;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\SharedApp\Model\PivotAbstract;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
@@ -26,6 +27,16 @@ class AlarmVehicle extends PivotAbstract
      * @const string
      */
     public const FOREIGN = 'alarm_vehicle_id';
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Alarm\Model\Collection\AlarmVehicle
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\User\Model\Builder\User as Builder;
+use App\Domains\User\Model\Collection\User as Collection;
 
 class User extends ModelAbstract implements Authenticatable
 {
@@ -40,6 +41,16 @@ class User extends ModelAbstract implements Authenticatable
      * @var array<int, string>
      */
     protected $hidden = ['password'];
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\User\Model\Collection\User
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

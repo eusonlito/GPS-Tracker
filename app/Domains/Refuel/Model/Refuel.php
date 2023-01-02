@@ -4,6 +4,7 @@ namespace App\Domains\Refuel\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Refuel\Model\Builder\Refuel as Builder;
+use App\Domains\Refuel\Model\Collection\Refuel as Collection;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
@@ -23,6 +24,16 @@ class Refuel extends ModelAbstract
      * @const string
      */
     public const FOREIGN = 'refuel_id';
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Refuel\Model\Collection\Refuel
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

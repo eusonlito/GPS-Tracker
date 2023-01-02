@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Country\Model\Country as CountryModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\State\Model\Builder\State as Builder;
+use App\Domains\State\Model\Collection\State as Collection;
 
 class State extends ModelAbstract
 {
@@ -23,6 +24,16 @@ class State extends ModelAbstract
      * @const string
      */
     public const FOREIGN = 'state_id';
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\State\Model\Collection\State
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

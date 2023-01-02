@@ -5,6 +5,7 @@ namespace App\Domains\Device\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Device\Model\Builder\Device as Builder;
+use App\Domains\Device\Model\Collection\Device as Collection;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Trip\Model\Trip as TripModel;
@@ -27,6 +28,16 @@ class Device extends ModelAbstract
      * @const string
      */
     public const FOREIGN = 'device_id';
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Device\Model\Collection\Device
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

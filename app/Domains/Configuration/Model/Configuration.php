@@ -3,6 +3,7 @@
 namespace App\Domains\Configuration\Model;
 
 use App\Domains\Configuration\Model\Builder\Configuration as Builder;
+use App\Domains\Configuration\Model\Collection\Configuration as Collection;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class Configuration extends ModelAbstract
@@ -21,6 +22,16 @@ class Configuration extends ModelAbstract
      * @const string
      */
     public const FOREIGN = 'configuration_id';
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Configuration\Model\Collection\Configuration
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

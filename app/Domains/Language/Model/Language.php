@@ -3,6 +3,7 @@
 namespace App\Domains\Language\Model;
 
 use App\Domains\Language\Model\Builder\Language as Builder;
+use App\Domains\Language\Model\Collection\Language as Collection;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class Language extends ModelAbstract
@@ -28,6 +29,16 @@ class Language extends ModelAbstract
     protected static function booted(): void
     {
         static::addGlobalScope('enabled', static fn (Builder $q) => $q->where(static::TABLE.'.enabled', true));
+    }
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Language\Model\Collection\Language
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
     }
 
     /**

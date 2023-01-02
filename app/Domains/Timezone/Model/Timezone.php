@@ -5,6 +5,7 @@ namespace App\Domains\Timezone\Model;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;
 use App\Domains\Timezone\Model\Builder\Timezone as Builder;
+use App\Domains\Timezone\Model\Collection\Timezone as Collection;
 
 class Timezone extends ModelAbstract
 {
@@ -38,6 +39,16 @@ class Timezone extends ModelAbstract
     protected static function booted(): void
     {
         static::addGlobalScope('selectIdZone', static fn (Builder $q) => $q->selectOnly('id', 'zone', 'default'));
+    }
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Timezone\Model\Collection\Timezone
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
     }
 
     /**

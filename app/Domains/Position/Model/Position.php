@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\City\Model\City as CityModel;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Model\Builder\Position as Builder;
+use App\Domains\Position\Model\Collection\Position as Collection;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
@@ -48,6 +49,16 @@ class Position extends ModelAbstract
     protected static function booted(): void
     {
         static::addGlobalScope('selectPointAsLatitudeLongitude', static fn (Builder $q) => $q->selectPointAsLatitudeLongitude());
+    }
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Position\Model\Collection\Position
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
     }
 
     /**

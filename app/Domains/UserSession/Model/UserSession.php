@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\UserSession\Model\Builder\UserSession as Builder;
+use App\Domains\UserSession\Model\Collection\UserSession as Collection;
 
 class UserSession extends ModelAbstract
 {
@@ -23,6 +24,16 @@ class UserSession extends ModelAbstract
      * @const string
      */
     public const FOREIGN = 'user_session_id';
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\UserSession\Model\Collection\UserSession
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

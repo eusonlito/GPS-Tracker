@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\AlarmNotification\Model\Builder\AlarmNotification as Builder;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as Collection;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;
@@ -46,6 +47,16 @@ class AlarmNotification extends ModelAbstract
     protected static function booted(): void
     {
         static::addGlobalScope('selectPointAsLatitudeLongitude', static fn (Builder $q) => $q->selectPointAsLatitudeLongitude());
+    }
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
     }
 
     /**

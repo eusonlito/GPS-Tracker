@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Domains\Alarm\Model\Builder\Alarm as Builder;
+use App\Domains\Alarm\Model\Collection\Alarm as Collection;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
@@ -38,6 +39,16 @@ class Alarm extends ModelAbstract
         'telegram' => 'boolean',
         'enabled' => 'boolean',
     ];
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Alarm\Model\Collection\Alarm
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

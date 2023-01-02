@@ -5,6 +5,7 @@ namespace App\Domains\DeviceMessage\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\DeviceMessage\Model\Builder\DeviceMessage as Builder;
+use App\Domains\DeviceMessage\Model\Collection\DeviceMessage as Collection;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class DeviceMessage extends ModelAbstract
@@ -23,6 +24,16 @@ class DeviceMessage extends ModelAbstract
      * @const string
      */
     public const FOREIGN = 'device_message_id';
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\DeviceMessage\Model\Collection\DeviceMessage
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

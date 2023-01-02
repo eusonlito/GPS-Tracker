@@ -3,6 +3,7 @@
 namespace App\Domains\Server\Model;
 
 use App\Domains\Server\Model\Builder\Server as Builder;
+use App\Domains\Server\Model\Collection\Server as Collection;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class Server extends ModelAbstract
@@ -29,6 +30,16 @@ class Server extends ModelAbstract
         'debug' => 'boolean',
         'enabled' => 'boolean',
     ];
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Server\Model\Collection\Server
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q
