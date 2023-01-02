@@ -18,14 +18,6 @@
     <a href="{{ route('device.create') }}" class="btn bg-white py-3 px-4">{{ __('dashboard-index.device-create') }}</a>
 </div>
 
-@elseif ($trips->isEmpty())
-
-<img class="m-auto mt-10 lg:mt-20 h-60" src="@asset('build/images/trip.svg')">
-
-<div class="mt-10 text-center">
-    <div class="text-xl lg:text-2xl font-medium">{{ __('dashboard-index.trip-wating') }}</div>
-</div>
-
 @else
 
 @each ('domains.alarm-notification.molecules.alert', $alarm_notifications->whereNull('closed_at'), 'row')
@@ -34,19 +26,21 @@
     <div class="lg:flex lg:space-x-4">
         @if ($vehicles->count() > 1)
 
-        <div class="mb-2">
+        <div class="flex-1 mb-2">
             <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" data-change-submit></x-select>
         </div>
 
         @endif
 
-        @if ($vehicles->count() > 1)
+        @if ($devices->count() > 1)
 
-        <div class="mb-2">
+        <div class="flex-1 mb-2">
             <x-select name="device_id" :options="$devices" value="id" text="name" data-change-submit></x-select>
         </div>
 
         @endif
+
+        @if ($trips->isNotEmpty())
 
         <div class="flex-1 mb-4">
             <div class="flex">
@@ -76,10 +70,24 @@
             <a href="{{ route('trip.update.alarm-notification', $trip->id) }}" class="btn bg-white mr-2">@icon('bell', 'w-4 h-4 sm:w-6 sm:h-6')</a>
             <a href="{{ route('trip.update.merge', $trip->id) }}" class="btn bg-white">@icon('git-merge', 'w-4 h-4 sm:w-6 sm:h-6')</a>
         </div>
+
+        @endif
     </div>
 </form>
 
+@if ($trip)
+
 <x-map :trip="$trip" :positions="$positions" :alarms="$alarms" :notifications="$trip_alarm_notifications" data-map-show-last="true"></x-map>
+
+@else
+
+<img class="m-auto mt-10 lg:mt-20 h-60" src="@asset('build/images/trip.svg')">
+
+<div class="mt-10 text-center">
+    <div class="text-xl lg:text-2xl font-medium">{{ __('dashboard-index.trip-wating') }}</div>
+</div>
+
+@endif
 
 @endif
 
