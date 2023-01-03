@@ -19,6 +19,7 @@ import './data-input-insert.js';
 import './data-update-boolean.js';
 import './data-notification-request.js';
 import './data-datepicker.js';
+import './data-link-to-post.js';
 import './alarm-notification.js';
 import './mobile-menu.js';
 import './side-menu.js';

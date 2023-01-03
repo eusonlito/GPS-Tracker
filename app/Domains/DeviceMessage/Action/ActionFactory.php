@@ -27,4 +27,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         $this->actionHandle(Delete::class);
     }
+
+    /**
+     * @return \App\Domains\DeviceMessage\Model\DeviceMessage
+     */
+    public function duplicate(): Model
+    {
+        return $this->actionHandle(Duplicate::class);
+    }
 }

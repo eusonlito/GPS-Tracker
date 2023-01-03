@@ -309,7 +309,8 @@ export default class {
             colors: this.getColors(),
             useGradient: true,
             weight: 5,
-            opacity: 1
+            opacity: 1,
+            smoothFactor: 3
         };
 
         return this.merge(defaults, options);

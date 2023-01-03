@@ -17,9 +17,17 @@ class UpdateDeviceMessageUpdate extends ControllerAbstract
         $this->row($id);
         $this->message($device_message_id);
 
-        $this->actionPost('updateDeviceMessageDelete');
+        $this->actions();
 
         return redirect()->back();
+    }
+
+    /**
+     * @return void
+     */
+    protected function actions(): void
+    {
+        $this->actionPost('updateDeviceMessageDelete') ?: $this->actionPost('updateDeviceMessageDuplicate');
     }
 
     /**
@@ -30,5 +38,15 @@ class UpdateDeviceMessageUpdate extends ControllerAbstract
         $this->factory('DeviceMessage', $this->message)->action()->delete();
 
         $this->sessionMessage('success', __('device-update-device-message-update.delete-success'));
+    }
+
+    /**
+     * @return void
+     */
+    protected function updateDeviceMessageDuplicate(): void
+    {
+        $this->factory('DeviceMessage', $this->message)->action()->duplicate();
+
+        $this->sessionMessage('success', __('device-update-device-message-update.duplicate-success'));
     }
 }

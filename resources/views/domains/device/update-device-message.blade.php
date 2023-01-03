@@ -39,6 +39,8 @@
         <tbody>
             @foreach ($messages as $each)
 
+            @php ($link = route('device.update.device-message.update', [$row->id, $each->id]))
+
             <tr>
                 <td class="text-left w-1"><span class="d-t-m-o max-w-sm" title="{{ $each->message }}">{{ $each->message }}</span></td>
                 <td class="text-left"><span class="block whitespace-normal">{{ $each->response }}</span></td>
@@ -46,9 +48,13 @@
                 <td class="w-1"><span class="block">@dateWithTimezone($each->sent_at, null, 'Y-m-d H:i:s')</span></td>
                 <td class="w-1"><span class="block">@dateWithTimezone($each->response_at, null, 'Y-m-d H:i:s')</span></td>
                 <td class="w-1">
-                    <a href="{{ route('device.update.device-message.update', [$row->id, $each->id]) }}" data-toggle="modal" data-target="#delete-modal" data-delete-modal-one class="text-danger">
+                    <a href="{{ $link }}" data-toggle="modal" data-target="#delete-modal" data-delete-modal-one class="text-danger">
                         @icon('trash', 'w-4 h-4')
                     </a>
+
+                    <span class="mx-2"></span>
+
+                    <a href="{{ $link }}" data-link-to-post='@json(['_action' => 'updateDeviceMessageDuplicate'])'>@icon('send', 'w-4 h-4')</a>
                 </td>
             </tr>
 
