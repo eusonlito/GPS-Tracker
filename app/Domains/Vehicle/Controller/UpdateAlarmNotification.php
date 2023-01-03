@@ -3,7 +3,7 @@
 namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
 
 class UpdateAlarmNotification extends ControllerAbstract
 {
@@ -25,9 +25,9 @@ class UpdateAlarmNotification extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
      */
-    protected function notifications(): Collection
+    protected function notifications(): AlarmNotificationCollection
     {
         return $this->row->alarmsNotifications()
             ->withAlarm()

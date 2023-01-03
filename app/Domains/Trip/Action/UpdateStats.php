@@ -2,7 +2,7 @@
 
 namespace App\Domains\Trip\Action;
 
-use Illuminate\Support\Collection;
+use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as Model;
 
@@ -14,9 +14,9 @@ class UpdateStats extends ActionAbstract
     protected array $stats;
 
     /**
-     * @var \Illuminate\Support\Collection
+     * @var \App\Domains\Position\Model\Collection\Position
      */
-    protected Collection $positions;
+    protected PositionCollection $positions;
 
     /**
      * @return \App\Domains\Trip\Model\Trip

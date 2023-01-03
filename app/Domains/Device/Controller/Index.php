@@ -3,8 +3,8 @@
 namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
 use App\Domains\Device\Model\Device as Model;
+use App\Domains\Device\Model\Collection\Device as Collection;
 
 class Index extends ControllerAbstract
 {
@@ -21,7 +21,7 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Device\Model\Collection\Device
      */
     protected function list(): Collection
     {

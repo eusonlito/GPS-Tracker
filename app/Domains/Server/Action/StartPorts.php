@@ -2,7 +2,7 @@
 
 namespace App\Domains\Server\Action;
 
-use Illuminate\Support\Collection;
+use App\Domains\Server\Model\Collection\Server as Collection;
 use App\Domains\Server\Model\Server as Model;
 use App\Domains\Server\Service\Command\Generator as CommandGenerator;
 use App\Services\Command\Artisan;
@@ -29,7 +29,7 @@ class StartPorts extends ActionAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Server\Model\Collection\Server
      */
     protected function list(): Collection
     {

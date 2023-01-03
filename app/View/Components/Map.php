@@ -2,9 +2,11 @@
 
 namespace App\View\Components;
 
-use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
+use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 
@@ -12,18 +14,18 @@ class Map extends Component
 {
     /**
      * @param \App\Domains\Trip\Model\Trip $trip
-     * @param \Illuminate\Support\Collection $positions
-     * @param ?\Illuminate\Support\Collection $alarms = null
-     * @param ?\Illuminate\Support\Collection $notifications = null
+     * @param \App\Domains\Position\Model\Collection\Position $positions
+     * @param ?\App\Domains\Alarm\Model\Collection\Alarm $alarms = null
+     * @param ?\App\Domains\AlarmNotification\Model\Collection\AlarmNotification $notifications = null
      * @param bool $sidebarHidden = false
      *
      * @return self
      */
     public function __construct(
         readonly public TripModel $trip,
-        readonly public Collection $positions,
-        readonly public ?Collection $alarms = null,
-        readonly public ?Collection $notifications = null,
+        readonly public PositionCollection $positions,
+        readonly public ?AlarmCollection $alarms = null,
+        readonly public ?AlarmNotificationCollection $notifications = null,
         readonly public bool $sidebarHidden = false,
     ) {
     }

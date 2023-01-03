@@ -5,9 +5,10 @@ namespace App\Domains\Refuel\Service\Controller;
 use stdClass;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use App\Domains\Refuel\Model\Refuel as Model;
+use App\Domains\Refuel\Model\Collection\Refuel as Collection;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
 
 class Index extends ControllerAbstract
 {
@@ -59,7 +60,7 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Refuel\Model\Collection\Refuel
      */
     protected function list(): Collection
     {
@@ -73,9 +74,9 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
      */
-    protected function vehicles(): Collection
+    protected function vehicles(): VehicleCollection
     {
         return $this->cache[__FUNCTION__] ??= VehicleModel::query()
             ->byUserId($this->auth->id)

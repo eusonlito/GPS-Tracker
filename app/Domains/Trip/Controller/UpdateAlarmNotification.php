@@ -3,8 +3,9 @@
 namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
+use App\Domains\Position\Model\Collection\Position as PositionCollection;
 
 class UpdateAlarmNotification extends UpdateAbstract
 {
@@ -26,9 +27,9 @@ class UpdateAlarmNotification extends UpdateAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Position\Model\Collection\Position
      */
-    protected function positions(): Collection
+    protected function positions(): PositionCollection
     {
         return $this->row->positions()
             ->withCity()
@@ -37,9 +38,9 @@ class UpdateAlarmNotification extends UpdateAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
      */
-    protected function notifications(): Collection
+    protected function notifications(): AlarmNotificationCollection
     {
         return AlarmNotificationModel::query()
             ->byTripId($this->row->id)

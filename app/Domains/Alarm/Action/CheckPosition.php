@@ -2,8 +2,8 @@
 
 namespace App\Domains\Alarm\Action;
 
-use Illuminate\Support\Collection;
 use App\Domains\Alarm\Model\Alarm as Model;
+use App\Domains\Alarm\Model\Collection\Alarm as Collection;
 use App\Domains\AlarmNotification\Job\Notify as AlarmNotificationNotifyJob;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\Position\Model\Position as PositionModel;
@@ -61,7 +61,7 @@ class CheckPosition extends ActionAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Alarm\Model\Collection\Alarm
      */
     protected function list(): Collection
     {

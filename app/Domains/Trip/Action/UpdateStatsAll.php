@@ -2,7 +2,7 @@
 
 namespace App\Domains\Trip\Action;
 
-use Illuminate\Support\Collection;
+use App\Domains\Trip\Model\Collection\Trip as Collection;
 use App\Domains\Trip\Model\Trip as Model;
 
 class UpdateStatsAll extends ActionAbstract
@@ -26,7 +26,7 @@ class UpdateStatsAll extends ActionAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Trip\Model\Collection\Trip
      */
     protected function list(): Collection
     {

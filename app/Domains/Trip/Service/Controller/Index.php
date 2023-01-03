@@ -4,12 +4,17 @@ namespace App\Domains\Trip\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use App\Domains\City\Model\City as CityModel;
+use App\Domains\City\Model\Collection\City as CityCollection;
+use App\Domains\Country\Model\Collection\Country as CountryCollection;
 use App\Domains\Country\Model\Country as CountryModel;
+use App\Domains\Device\Model\Collection\Device as DeviceCollection;
 use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\State\Model\Collection\State as StateCollection;
 use App\Domains\State\Model\State as StateModel;
+use App\Domains\Trip\Model\Collection\Trip as Collection;
 use App\Domains\Trip\Model\Trip as Model;
+use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
@@ -84,9 +89,9 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
      */
-    protected function vehicles(): Collection
+    protected function vehicles(): VehicleCollection
     {
         return $this->cache[__FUNCTION__] ??= VehicleModel::query()
             ->byUserId($this->auth->id)
@@ -104,14 +109,10 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Device\Model\Collection\Device
      */
-    protected function devices(): Collection
+    protected function devices(): DeviceCollection
     {
-        if ($this->vehicle() === null) {
-            return collect();
-        }
-
         return $this->cache[__FUNCTION__] ??= $this->vehicle()->devices()->list()->get();
     }
 
@@ -125,9 +126,9 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Country\Model\Collection\Country
      */
-    protected function countries(): Collection
+    protected function countries(): CountryCollection
     {
         return $this->cache[__FUNCTION__] ??= CountryModel::query()
             ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
@@ -145,12 +146,12 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\State\Model\Collection\State
      */
-    protected function states(): Collection
+    protected function states(): StateCollection
     {
         if (empty($country_id = intval($this->country()?->id))) {
-            return collect();
+            return new StateCollection();
         }
 
         return $this->cache[__FUNCTION__] ??= StateModel::query()
@@ -169,12 +170,12 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\City\Model\Collection\City
      */
-    protected function cities(): Collection
+    protected function cities(): CityCollection
     {
         if (empty($state_id = intval($this->state()?->id))) {
-            return collect();
+            return new CityCollection();
         }
 
         return $this->cache[__FUNCTION__] ??= CityModel::query()
@@ -212,14 +213,10 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Trip\Model\Collection\Trip
      */
     protected function list(): Collection
     {
-        if ($this->vehicle() === null) {
-            return collect();
-        }
-
         return $this->cache[__FUNCTION__] ??= Model::query()
             ->selectOnly('id', 'name', 'start_at', 'start_utc_at', 'end_at', 'end_utc_at', 'time', 'distance', 'device_id', 'vehicle_id')
             ->byVehicleId($this->vehicle()->id)

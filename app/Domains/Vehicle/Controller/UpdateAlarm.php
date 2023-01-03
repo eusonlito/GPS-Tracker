@@ -4,8 +4,8 @@ namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
+use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
 
 class UpdateAlarm extends ControllerAbstract
 {
@@ -31,9 +31,9 @@ class UpdateAlarm extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Alarm\Model\Collection\Alarm
      */
-    protected function alarms(): Collection
+    protected function alarms(): AlarmCollection
     {
         return AlarmModel::query()
             ->list()

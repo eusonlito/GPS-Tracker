@@ -4,8 +4,8 @@ namespace App\Domains\Alarm\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
 use App\Domains\Alarm\Model\Alarm as Model;
+use App\Domains\Alarm\Model\Collection\Alarm as Collection;
 
 class Index extends ControllerAbstract
 {
@@ -26,7 +26,7 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Alarm\Model\Collection\Alarm
      */
     protected function list(): Collection
     {
@@ -48,7 +48,7 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Alarm\Model\Collection\Alarm
      */
     protected function responseJsonList(): Collection
     {

@@ -3,7 +3,7 @@
 namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\Response;
-use Illuminate\Support\Collection;
+use App\Domains\Vehicle\Model\Collection\Vehicle as Collection;
 use App\Domains\Vehicle\Model\Vehicle as Model;
 
 class Index extends ControllerAbstract
@@ -21,7 +21,7 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
      */
     protected function list(): Collection
     {

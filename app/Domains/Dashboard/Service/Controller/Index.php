@@ -4,11 +4,16 @@ namespace App\Domains\Dashboard\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
+use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
+use App\Domains\Device\Model\Collection\Device as DeviceCollection;
 use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Position\Model\Collection\Position as PositionCollection;
+use App\Domains\Trip\Model\Collection\Trip as TripCollection;
 use App\Domains\Trip\Model\Trip as TripModel;
+use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
@@ -56,9 +61,9 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
      */
-    protected function vehicles(): Collection
+    protected function vehicles(): VehicleCollection
     {
         return $this->cache[__FUNCTION__] ??= VehicleModel::query()
             ->byUserId($this->auth->id)
@@ -76,12 +81,12 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Device\Model\Collection\Device
      */
-    protected function devices(): Collection
+    protected function devices(): DeviceCollection
     {
         if ($this->vehicle() === null) {
-            return collect();
+            return new DeviceCollection();
         }
 
         return $this->cache[__FUNCTION__] ??= $this->vehicle()->devices()->list()->get();
@@ -97,12 +102,12 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Trip\Model\Collection\Trip
      */
-    protected function trips(): Collection
+    protected function trips(): TripCollection
     {
         if ($this->vehicle() === null) {
-            return collect();
+            return new TripCollection();
         }
 
         return $this->cache[__FUNCTION__] ??= TripModel::query()
@@ -153,12 +158,12 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
      */
-    protected function tripAlarmNotifications(): Collection
+    protected function tripAlarmNotifications(): AlarmNotificationCollection
     {
         if ($this->trip() === null) {
-            return collect();
+            return new AlarmNotificationCollection();
         }
 
         return $this->cache[__FUNCTION__] ??= AlarmNotificationModel::query()
@@ -169,12 +174,12 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Position\Model\Collection\Position
      */
-    protected function positions(): Collection
+    protected function positions(): PositionCollection
     {
         if ($this->trip() === null) {
-            return collect();
+            return new PositionCollection();
         }
 
         return $this->cache[__FUNCTION__] ??= $this->trip()
@@ -185,12 +190,12 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\Alarm\Model\Collection\Alarm
      */
-    protected function alarms(): Collection
+    protected function alarms(): AlarmCollection
     {
         if ($this->vehicle() === null) {
-            return collect();
+            return new AlarmCollection();
         }
 
         return $this->cache[__FUNCTION__] ??= AlarmModel::query()
@@ -201,12 +206,12 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
      */
-    protected function alarmNotifications(): Collection
+    protected function alarmNotifications(): AlarmNotificationCollection
     {
         if ($this->vehicle() === null) {
-            return collect();
+            return new AlarmNotificationCollection();
         }
 
         return $this->cache[__FUNCTION__] ??= AlarmNotificationModel::query()
