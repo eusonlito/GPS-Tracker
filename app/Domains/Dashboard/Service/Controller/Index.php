@@ -111,7 +111,7 @@ class Index extends ControllerAbstract
         }
 
         return $this->cache[__FUNCTION__] ??= TripModel::query()
-            ->selectOnly('id', 'name', 'start_at', 'start_utc_at', 'end_at', 'end_utc_at', 'time', 'distance', 'device_id', 'vehicle_id')
+            ->selectSimple()
             ->byVehicleId($this->vehicle()->id)
             ->whenDeviceId($this->device()->id ?? null)
             ->list()

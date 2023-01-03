@@ -131,6 +131,14 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @return self
+     */
+    public function selectSimple(): self
+    {
+        return $this->selectOnly('id', 'name', 'start_at', 'start_utc_at', 'end_at', 'end_utc_at', 'time', 'distance', 'device_id', 'vehicle_id');
+    }
+
+    /**
      * @param ?int $city_id
      * @param ?int $state_id
      * @param ?int $country_id

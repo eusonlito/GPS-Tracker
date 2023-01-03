@@ -4,6 +4,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Domains\Trip\Model\Collection\Trip as Collection;
 use App\Domains\Trip\Model\Trip as Model;
 
 class UpdateMerge extends UpdateAbstract
@@ -24,8 +25,20 @@ class UpdateMerge extends UpdateAbstract
         $this->meta('title', $this->row->name);
 
         return $this->page('trip.update-merge', [
-            'list' => Model::query()->byUserId($this->auth->id)->list()->get(),
+            'list' => $this->list(),
         ]);
+    }
+
+    /**
+     * @return \App\Domains\Trip\Model\Collection\Trip
+     */
+    protected function list(): Collection
+    {
+        return Model::query()
+            ->selectSimple()
+            ->byUserId($this->auth->id)
+            ->list()
+            ->get();
     }
 
     /**

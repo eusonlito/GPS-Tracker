@@ -115,7 +115,7 @@ class Trip extends ModelAbstract
     public function next(): ?Trip
     {
         return self::query()
-            ->selectOnly('id', 'name', 'start_at', 'start_utc_at', 'end_at', 'end_utc_at', 'time', 'distance', 'device_id', 'vehicle_id')
+            ->selectSimple()
             ->byVehicleId($this->vehicle->id)
             ->byStartUtcAtNext($this->start_utc_at)
             ->first();
@@ -127,7 +127,7 @@ class Trip extends ModelAbstract
     public function previous(): ?Trip
     {
         return self::query()
-            ->selectOnly('id', 'name', 'start_at', 'start_utc_at', 'end_at', 'end_utc_at', 'time', 'distance', 'device_id', 'vehicle_id')
+            ->selectSimple()
             ->byVehicleId($this->vehicle->id)
             ->byStartUtcAtPrevious($this->start_utc_at)
             ->first();
