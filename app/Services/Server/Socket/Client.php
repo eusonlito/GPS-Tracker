@@ -44,7 +44,13 @@ class Client
             return true;
         }
 
-        foreach ($this->readHandle($buffer) as $resource) {
+        $resources = $this->readHandle($buffer);
+
+        if (empty($resources)) {
+            return (bool)$this->writeEmpty();
+        }
+
+        foreach ($resources as $resource) {
             $this->readResource($resource);
         }
 
@@ -83,6 +89,14 @@ class Client
         }
 
         return [];
+    }
+
+    /**
+     * @return int
+     */
+    protected function writeEmpty(): int
+    {
+        return (int)socket_write($this->client->socket, 'OK', 2);
     }
 
     /**

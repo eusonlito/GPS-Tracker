@@ -48,20 +48,20 @@ class Location extends ParserAbstract
     protected function bodyIsValidRegExp(): string
     {
         return '/^'
-            .'\*[A-Z]{2},'         //  0 - maker
-            .'[0-9]+,'             //  1 - serial
-            .'V1,'                 //  2 - type
-            .'[0-9]{6},'           //  3 - time
-            .'[VA],'               //  4 - signal
-            .'[0-9]{4}\.[0-9]{4},' //  5 - latitude
-            .'[NS],'               //  6 - latitude direction
-            .'[0-9]{5}\.[0-9]{4},' //  7 - longitude
-            .'[EW],'               //  8 - longitude direction
-            .'[0-9]{3}\.[0-9]{2},' //  9 - speed
-            .'[0-9]{3},'           // 10 - direction
-            .'[0-9]{6},'           // 11 - date
-            .'[0-9A-F]{8},'        // 12 - status
-            .'[0-9]+,'             // 13 - mcc
+            .'\*[A-Z]{2},'           //  0 - maker
+            .'[0-9]+,'               //  1 - serial
+            .'V1,'                   //  2 - type
+            .'[0-9]{6},'             //  3 - time
+            .'[VA],'                 //  4 - signal
+            .'[0-9]{4}\.[0-9]{4},'   //  5 - latitude
+            .'[NS],'                 //  6 - latitude direction
+            .'[0-9]{5}\.[0-9]{4},'   //  7 - longitude
+            .'[EW],'                 //  8 - longitude direction
+            .'[0-9]{0,3}\.[0-9]{2},' //  9 - speed
+            .'[0-9]{0,3},'           // 10 - direction
+            .'[0-9]{6},'             // 11 - date
+            .'[0-9a-fA-F]{8},'       // 12 - status
+            .'[0-9]+,'               // 13 - mcc
             .'/';
     }
 
