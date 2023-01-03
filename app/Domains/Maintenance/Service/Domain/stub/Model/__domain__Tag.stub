@@ -4,6 +4,7 @@ namespace App\Domains\{{ domain }}\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\{{ domain }}\Model\Builder\{{ domain }}Tag as Builder;
+use App\Domains\{{ domain }}\Model\Collection\{{ domain }}Tag as Collection;
 use App\Domains\Shared\Model\PivotAbstract;
 use App\Domains\Tag\Model\Tag as TagModel;
 
@@ -31,6 +32,16 @@ class {{ domain }}Tag extends PivotAbstract
         'content' => 'array',
         'config' => 'array',
     ];
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\{{ domain }}\Model\Collection\{{ domain }}Tag
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

@@ -2,8 +2,8 @@
 
 namespace App\Domains\Device\Model\Collection;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
 
-class Device extends Collection
+class Device extends CollectionAbstract
 {
 }

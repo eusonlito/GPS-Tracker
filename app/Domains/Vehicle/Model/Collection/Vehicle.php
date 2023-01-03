@@ -2,8 +2,8 @@
 
 namespace App\Domains\Vehicle\Model\Collection;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
 
-class Vehicle extends Collection
+class Vehicle extends CollectionAbstract
 {
 }

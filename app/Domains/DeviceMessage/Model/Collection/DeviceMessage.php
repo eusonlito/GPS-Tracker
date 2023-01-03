@@ -2,8 +2,8 @@
 
 namespace App\Domains\DeviceMessage\Model\Collection;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
 
-class DeviceMessage extends Collection
+class DeviceMessage extends CollectionAbstract
 {
 }

@@ -2,8 +2,8 @@
 
 namespace App\Domains\User\Model\Collection;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
 
-class User extends Collection
+class User extends CollectionAbstract
 {
 }

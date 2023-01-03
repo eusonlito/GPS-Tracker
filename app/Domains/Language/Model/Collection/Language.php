@@ -2,8 +2,8 @@
 
 namespace App\Domains\Language\Model\Collection;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
 
-class Language extends Collection
+class Language extends CollectionAbstract
 {
 }

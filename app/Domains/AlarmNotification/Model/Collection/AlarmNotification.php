@@ -2,8 +2,8 @@
 
 namespace App\Domains\AlarmNotification\Model\Collection;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
 
-class AlarmNotification extends Collection
+class AlarmNotification extends CollectionAbstract
 {
 }

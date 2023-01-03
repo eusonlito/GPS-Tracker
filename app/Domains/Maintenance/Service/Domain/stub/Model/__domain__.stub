@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Domains\{{ domain }}\Model\Builder\{{ domain }} as Builder;
+use App\Domains\{{ domain }}\Model\Collection\{{ domain }} as Collection;
 use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\Post\Model\Post as PostModel;
 use App\Domains\Tag\Model\Tag as TagModel;
@@ -27,6 +28,16 @@ class {{ domain }} extends ModelAbstract
      * @const string
      */
     public const FOREIGN = '{{ table }}_id';
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\{{ domain }}\Model\Collection\{{ domain }}
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
 
     /**
      * @param \Illuminate\Database\Query\Builder $q

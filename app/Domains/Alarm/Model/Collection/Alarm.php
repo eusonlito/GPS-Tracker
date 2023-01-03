@@ -2,8 +2,8 @@
 
 namespace App\Domains\Alarm\Model\Collection;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
 
-class Alarm extends Collection
+class Alarm extends CollectionAbstract
 {
 }

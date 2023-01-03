@@ -2,8 +2,8 @@
 
 namespace App\Domains\Refuel\Model\Collection;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
 
-class Refuel extends Collection
+class Refuel extends CollectionAbstract
 {
 }

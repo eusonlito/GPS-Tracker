@@ -2,8 +2,8 @@
 
 namespace App\Domains\State\Model\Collection;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
 
-class State extends Collection
+class State extends CollectionAbstract
 {
 }

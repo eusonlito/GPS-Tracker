@@ -2,8 +2,8 @@
 
 namespace App\Domains\Trip\Model\Collection;
 
-use Illuminate\Database\Eloquent\Collection;
+use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
 
-class Trip extends Collection
+class Trip extends CollectionAbstract
 {
 }
