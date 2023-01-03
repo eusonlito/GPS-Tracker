@@ -3,6 +3,7 @@
 namespace App\Domains\Trip\Action;
 
 use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Trip\Job\UpdateStats as UpdateStatsJob;
 use App\Domains\Trip\Model\Trip as Model;
 
 class UpdateNameDistanceTime extends ActionAbstract
@@ -16,7 +17,7 @@ class UpdateNameDistanceTime extends ActionAbstract
         $this->endAt();
         $this->name();
         $this->save();
-        $this->saveDistanceTime();
+        $this->job();
 
         return $this->row;
     }
@@ -35,6 +36,18 @@ class UpdateNameDistanceTime extends ActionAbstract
     }
 
     /**
+     * @return ?\App\Domains\Position\Model\Position
+     */
+    protected function positionFirst(): ?PositionModel
+    {
+        return PositionModel::query()
+            ->selectOnly('date_at', 'date_utc_at')
+            ->byTripId($this->row->id)
+            ->orderByDateUtcAtAsc()
+            ->first();
+    }
+
+    /**
      * @return void
      */
     protected function endAt(): void
@@ -45,6 +58,18 @@ class UpdateNameDistanceTime extends ActionAbstract
 
         $this->row->end_at = $position->date_at;
         $this->row->end_utc_at = $position->date_utc_at;
+    }
+
+    /**
+     * @return ?\App\Domains\Position\Model\Position
+     */
+    protected function positionLast(): ?PositionModel
+    {
+        return PositionModel::query()
+            ->selectOnly('date_at', 'date_utc_at')
+            ->byTripId($this->row->id)
+            ->orderByDateUtcAtDesc()
+            ->first();
     }
 
     /**
@@ -62,6 +87,15 @@ class UpdateNameDistanceTime extends ActionAbstract
      */
     protected function save(): void
     {
+        $this->saveRow();
+        $this->saveDistanceTime();
+    }
+
+    /**
+     * @return void
+     */
+    protected function saveRow(): void
+    {
         $this->row->save();
     }
 
@@ -74,26 +108,10 @@ class UpdateNameDistanceTime extends ActionAbstract
     }
 
     /**
-     * @return ?\App\Domains\Position\Model\Position
+     * @return void
      */
-    protected function positionFirst(): ?PositionModel
+    protected function job(): void
     {
-        return PositionModel::query()
-            ->selectOnly('date_at', 'date_utc_at')
-            ->byTripId($this->row->id)
-            ->orderByDateUtcAtAsc()
-            ->first();
-    }
-
-    /**
-     * @return ?\App\Domains\Position\Model\Position
-     */
-    protected function positionLast(): ?PositionModel
-    {
-        return PositionModel::query()
-            ->selectOnly('date_at', 'date_utc_at')
-            ->byTripId($this->row->id)
-            ->orderByDateUtcAtDesc()
-            ->first();
+        UpdateStatsJob::dispatch($this->row->id);
     }
 }

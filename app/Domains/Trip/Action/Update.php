@@ -11,8 +11,7 @@ class Update extends ActionAbstract
      */
     public function handle(): Model
     {
-        $this->saveName();
-        $this->saveNameDistanceTime();
+        $this->save();
 
         return $this->row;
     }
@@ -20,17 +19,9 @@ class Update extends ActionAbstract
     /**
      * @return void
      */
-    protected function saveName(): void
+    protected function save(): void
     {
         $this->row->name = $this->data['name'];
         $this->row->save();
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveNameDistanceTime(): void
-    {
-        $this->factory()->action()->updateNameDistanceTime();
     }
 }

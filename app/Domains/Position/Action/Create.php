@@ -7,7 +7,6 @@ use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Job\UpdateCity as UpdateCityJob;
 use App\Domains\Position\Model\Position as Model;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
-use App\Domains\Trip\Job\UpdateStats as TripUpdateStatsJob;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
@@ -311,7 +310,6 @@ class Create extends ActionAbstract
     protected function job(): void
     {
         $this->jobCity();
-        $this->jobTrip();
         $this->jobAlarm();
     }
 
@@ -321,14 +319,6 @@ class Create extends ActionAbstract
     protected function jobCity(): void
     {
         UpdateCityJob::dispatch($this->row->id);
-    }
-
-    /**
-     * @return void
-     */
-    protected function jobTrip(): void
-    {
-        TripUpdateStatsJob::dispatch($this->trip->id);
     }
 
     /**
