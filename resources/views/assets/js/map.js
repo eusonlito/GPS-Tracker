@@ -128,7 +128,9 @@ export default class {
             preferCanvas: true,
             attributionControl: false,
             zoomControl: true,
-            zoomSnap: 1
+            zoomSnap: 0.5,
+            zoomDelta: 0.5,
+            wheelPxPerZoomLevel: 200
         };
 
         return this.merge(defaults, options || this.mapOptions);
