@@ -310,7 +310,7 @@ export default class {
             useGradient: true,
             weight: 5,
             opacity: 1,
-            smoothFactor: 3
+            smoothFactor: 2
         };
 
         return this.merge(defaults, options);
