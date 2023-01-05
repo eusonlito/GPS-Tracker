@@ -27,6 +27,9 @@ export default class {
         this.map = null;
         this.mapOptions = {};
 
+        this.layer = null;
+        this.layerMarkers = null;
+
         this.point = [];
 
         this.speeds = [];
@@ -43,6 +46,14 @@ export default class {
         return this;
     }
 
+    getMap() {
+        if (!this.map) {
+            this.setMap();
+        }
+
+        return this.map;
+    }
+
     setMap() {
         this.map = L.map(this.getElement(), this.getMapOptions());
 
@@ -52,16 +63,59 @@ export default class {
         return this;
     }
 
-    getMap() {
-        if (!this.map) {
-            this.setMap();
+    getLayer() {
+        if (!this.layer) {
+            this.setLayer();
         }
 
-        return this.map;
+        return this.layer;
     }
 
-    setLayers() {
-        L.control.layers({ ...this.getLayers() }, null, { collapsed: true }).addTo(this.getMap());
+    setLayer() {
+        this.layer = new L.FeatureGroup()
+
+        this.layer.addTo(this.getMap());
+        this.layer.bringToFront();
+
+        return this;
+    }
+
+    getLayerMarkers() {
+        if (!this.layerMarkers) {
+            this.setLayerMarkers();
+        }
+
+        return this.layerMarkers;
+    }
+
+    setLayerMarkers() {
+        this.layerMarkers = new L.FeatureGroup();
+
+        this.layerMarkers.addTo(this.getMap());
+        this.layerMarkers.bringToBack();
+
+        this.setLayerMarkersZoomEnd();
+
+        return this;
+    }
+
+    setLayerMarkersZoomEnd() {
+        const map = this.getMap();
+        const layerMarkers = this.getLayerMarkers();
+
+        map.on('zoomend', () => {
+            const zoomNear = map.getZoom() > 13;
+            const hasLayer = map.hasLayer(layerMarkers);
+
+            if (zoomNear) {
+                if (!hasLayer) {
+                    layerMarkers.addTo(map);
+                    layerMarkers.bringToBack();
+                }
+            } else if (hasLayer) {
+                map.removeLayer(layerMarkers);
+            }
+        });
 
         return this;
     }
@@ -85,36 +139,26 @@ export default class {
         };
     }
 
+    setLayers() {
+        L.control.layers({ ...this.getLayers() }, null, { collapsed: true }).addTo(this.getMap());
+
+        return this;
+    }
+
     setLayerDefault() {
         this.getLayers().OpenStreetMap.addTo(this.getMap());
 
         return this;
     }
 
-    setLayer() {
-        this.layer = new L.FeatureGroup()
-
-        this.layer.addTo(this.getMap());
-
-        return this;
-    }
-
-    getLayer() {
-        if (!this.layer) {
-            this.setLayer();
-        }
-
-        return this.layer;
+    getElement() {
+        return this.element;
     }
 
     setElement(element) {
         this.element = element;
 
         return this;
-    }
-
-    getElement() {
-        return this.element;
     }
 
     setMapOptions(options) {
@@ -136,6 +180,10 @@ export default class {
         return this.merge(defaults, options || this.mapOptions);
     }
 
+    getPoints() {
+        return this.points;
+    }
+
     setPoints(points) {
         this.points = this.array(points).filter(this.isValidPoint);
 
@@ -143,10 +191,6 @@ export default class {
         this.setLinePoints(this.points);
 
         return this;
-    }
-
-    getPoints() {
-        return this.points;
     }
 
     setPoint(point) {
@@ -167,6 +211,10 @@ export default class {
         return point && point.id && point.latitude && point.longitude;
     }
 
+    getSpeeds() {
+        return this.speeds;
+    }
+
     setSpeeds(speeds) {
         this.speeds =  this.getPoints().map(point => point.speed);
 
@@ -178,18 +226,14 @@ export default class {
         return this;
     }
 
-    getSpeeds() {
-        return this.speeds;
+    getColors() {
+        return this.colors;
     }
 
     setColors(colors) {
         this.colors = this.array(colors);
 
         return this;
-    }
-
-    getColors() {
-        return this.colors;
     }
 
     setAlarms(alarms, options) {
@@ -323,6 +367,13 @@ export default class {
         return this;
     }
 
+    setLinePointsGroup(points) {
+
+        this.getLine().setLatLngs(this.getLatLng(points));
+
+        return this;
+    }
+
     getLine() {
         if (!this.line) {
             this.setLine();
@@ -342,7 +393,12 @@ export default class {
             return this;
         }
 
-        this.markers[marker.id] = L.marker(this.getLatLng(marker), this.getMarkerOptions(marker, options, optionsIcon))
+        const latLng = this.getLatLng(marker);
+
+        L.marker(latLng, this.getMarkerOptions(marker, options, optionsIcon))
+            .addTo(this.getLayerMarkers());
+
+        this.markers[marker.id] = L.circleMarker(latLng, { radius: 15, opacity: 0, fillOpacity: 0 })
             .bindPopup(this.jsonToHtml(marker))
             .addTo(this.getLayer());
 
@@ -355,9 +411,9 @@ export default class {
 
     getMarkerOptions(marker, options, optionsIcon) {
         const defaults = {
-            rotationAngle: marker.direction,
+            rotationAngle: marker.direction || 0,
             rotationOrigin: 'center',
-            opacity: 0.7
+            opacity: 0.95
         };
 
         const defaultsIcon = {
