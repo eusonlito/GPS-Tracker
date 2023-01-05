@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import 'leaflet-arrowheads';
+import 'leaflet-rotatedmarker';
 import GeometryUtil from 'leaflet-geometryutil';
 
 L.GeometryUtil = GeometryUtil;
@@ -298,9 +298,8 @@ export default class {
         return { icon: L.icon(this.merge(defaults, options)) };
     }
 
-    setLine(lineOptions, arrowOptions) {
+    setLine(lineOptions) {
         this.line = L.polycolor([], this.getLineOptions(lineOptions))
-            .arrowheads(this.getArrowOptions(arrowOptions))
             .addTo(this.getLayer());
 
         return this;
@@ -313,18 +312,6 @@ export default class {
             weight: 5,
             opacity: 1,
             smoothFactor: 1
-        };
-
-        return this.merge(defaults, options);
-    }
-
-    getArrowOptions(options) {
-        const defaults = {
-            yawn: 40,
-            size: '5px',
-            fill: true,
-            fillOpacity: 0.7,
-            opacity: 0.7
         };
 
         return this.merge(defaults, options);
@@ -350,12 +337,12 @@ export default class {
         return this;
     }
 
-    setMarker(marker, options) {
+    setMarker(marker, options, optionsIcon) {
         if (!this.isValidMarker(marker)) {
             return this;
         }
 
-        this.markers[marker.id] = L.circleMarker(this.getLatLng(marker), this.getMarkerOptions(marker, options))
+        this.markers[marker.id] = L.marker(this.getLatLng(marker), this.getMarkerOptions(marker, options, optionsIcon))
             .bindPopup(this.jsonToHtml(marker))
             .addTo(this.getLayer());
 
@@ -366,14 +353,23 @@ export default class {
         return marker && marker.id && marker.latitude && marker.longitude;
     }
 
-    getMarkerOptions(options) {
+    getMarkerOptions(marker, options, optionsIcon) {
         const defaults = {
-            radius: 20,
-            fillOpacity: 0,
-            opacity: 0,
+            rotationAngle: marker.direction,
+            rotationOrigin: 'center',
+            opacity: 0.7
         };
 
-        return this.merge(defaults, options);
+        const defaultsIcon = {
+            iconUrl: WWW + '/build/images/map-direction.svg',
+            iconSize: [12, 12],
+            iconAnchor: [6, 6]
+        };
+
+        return {
+            ...this.merge(defaults, options),
+            icon: L.icon(this.merge(defaultsIcon, optionsIcon))
+        };
     }
 
     showMarker(id) {

@@ -43,8 +43,8 @@
         "yargs-parser": "^21.1.1"
     },
     "dependencies": {
-        "leaflet-arrowheads": "^1.4.0",
         "leaflet-geometryutil": "^0.10.1",
-        "leaflet-polycolor": "^2.0.3"
+        "leaflet-polycolor": "^2.0.3",
+        "leaflet-rotatedmarker": "^0.2.0"
     }
 }

@@ -65,7 +65,7 @@ class Map extends Component
      */
     protected function positionsJsonMap(PositionModel $position): array
     {
-        return $position->only('id', 'date_at', 'latitude', 'longitude', 'speed', 'signal', 'created_at')
+        return $position->only('id', 'date_at', 'latitude', 'longitude', 'speed', 'direction', 'created_at')
             + ['city' => $position->city->name, 'state' => $position->city->state->name];
     }
 
