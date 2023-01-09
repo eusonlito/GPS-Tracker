@@ -418,8 +418,8 @@ export default class {
 
         const defaultsIcon = {
             iconUrl: WWW + '/build/images/map-direction.svg',
-            iconSize: [12, 12],
-            iconAnchor: [6, 6]
+            iconSize: [10, 10],
+            iconAnchor: [5, 5]
         };
 
         return {

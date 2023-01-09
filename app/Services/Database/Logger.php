@@ -153,7 +153,7 @@ class Logger
             if ($binding instanceof DateTime) {
                 $bindings[$i] = $binding->format('Y-m-d H:i:s');
             } elseif (is_string($binding)) {
-                $bindings[$i] = "'${binding}'";
+                $bindings[$i] = "'{$binding}'";
             } elseif (is_bool($binding)) {
                 $bindings[$i] = $binding ? 'true' : 'false';
             }
