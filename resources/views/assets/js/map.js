@@ -359,13 +359,14 @@ export default class {
         return { icon: L.icon(this.merge(defaults, options)) };
     }
 
-    setLinePolycolor(lineOptions) {
-        if (this.line) {
-            this.getMap().removeLayer(this.line);
-        }
+    setLinePoints() {
+        this.setLine(this.getPointsLatLng());
 
-        this.line = L.polycolor([], this.getLineOptions(lineOptions))
-            .addTo(this.getLayer());
+        return this;
+    }
+
+    setLine(points) {
+        this.setLinePolycolor(points);
 
         return this;
     }
@@ -391,18 +392,6 @@ export default class {
         };
 
         return this.merge(defaults, options);
-    }
-
-    setLinePoints() {
-        this.setLine(this.getPointsLatLng());
-
-        return this;
-    }
-
-    setLine(points) {
-        this.setLinePolycolor(points);
-
-        return this;
     }
 
     setMarkers(markers, options) {
