@@ -172,7 +172,6 @@ import Map from './map';
         tableAddPositionDate(tds[0], position);
         tableAddPositionLatitudeLongitude(tds[1], position);
         tableAddPositionSpeed(tds[2], position);
-        tableAddPositionSignal(tds[3], position);
 
         tbody.insertBefore(clone, tr);
     };
@@ -191,10 +190,6 @@ import Map from './map';
 
     const tableAddPositionSpeed = function (td, position) {
         td.innerHTML = position.speed;
-    };
-
-    const tableAddPositionSignal = function (td, position) {
-        td.innerHTML = Feather(position.signal ? 'check-square' : 'square', '', !!position.signal);
     };
 
     const distanceHuman = function (meters) {

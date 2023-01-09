@@ -1,5 +1,8 @@
 import L from 'leaflet';
+
 import 'leaflet-rotatedmarker';
+import { spline } from 'leaflet-spline';
+
 import GeometryUtil from 'leaflet-geometryutil';
 
 L.GeometryUtil = GeometryUtil;
@@ -31,6 +34,7 @@ export default class {
         this.layerMarkers = null;
 
         this.point = [];
+        this.pointLatLng = [];
 
         this.speeds = [];
 
@@ -39,6 +43,8 @@ export default class {
         this.alarms = [];
 
         this.notifications = [];
+
+        this.points = [];
 
         this.marker = null;
         this.markers = {};
@@ -140,7 +146,8 @@ export default class {
     }
 
     setLayers() {
-        L.control.layers({ ...this.getLayers() }, null, { collapsed: true }).addTo(this.getMap());
+        L.control.layers({ ...this.getLayers() }, null, { collapsed: true })
+            .addTo(this.getMap());
 
         return this;
     }
@@ -184,11 +191,17 @@ export default class {
         return this.points;
     }
 
+    getPointsLatLng() {
+        return this.pointsLatLng;
+    }
+
     setPoints(points) {
         this.points = this.array(points).filter(this.isValidPoint);
+        this.pointsLatLng = this.getLatLng(this.points);
 
         this.setSpeeds();
-        this.setLinePoints(this.points);
+
+        this.setLinePoints();
 
         return this;
     }
@@ -199,10 +212,11 @@ export default class {
         }
 
         this.getPoints().push(point);
+        this.getPointsLatLng().push(this.getLatLng(point));
+
         this.setSpeeds();
 
-        this.setLine();
-        this.setLinePoints(this.getPoints());
+        this.setLinePoints();
 
         return this;
     }
@@ -249,7 +263,8 @@ export default class {
 
         this.alarms.push(alarm);
 
-        L.circle(this.getLatLng(alarm.config), this.getAlarmOptions(alarm, options)).addTo(this.getMap());
+        L.circle(this.getLatLng(alarm.config), this.getAlarmOptions(alarm, options))
+            .addTo(this.getMap());
 
         return this;
     }
@@ -303,7 +318,8 @@ export default class {
 
         this.setAlarm(notification);
 
-        new L.Marker(this.getLatLng(notification), this.getNotificationOptions(notification, options)).addTo(this.getMap());
+        new L.Marker(this.getLatLng(notification), this.getNotificationOptions(notification, options))
+            .addTo(this.getMap());
 
         return this;
     }
@@ -327,7 +343,8 @@ export default class {
             this.getMap().removeLayer(this.icons[name]);
         }
 
-        this.icons[name] = new L.Marker(this.getLatLng(point), this.getIconOptions(name, options)).addTo(this.getMap());
+        this.icons[name] = new L.Marker(this.getLatLng(point), this.getIconOptions(name, options))
+            .addTo(this.getMap());
 
         return this;
     }
@@ -342,8 +359,23 @@ export default class {
         return { icon: L.icon(this.merge(defaults, options)) };
     }
 
-    setLine(lineOptions) {
+    setLinePolycolor(lineOptions) {
+        if (this.line) {
+            this.getMap().removeLayer(this.line);
+        }
+
         this.line = L.polycolor([], this.getLineOptions(lineOptions))
+            .addTo(this.getLayer());
+
+        return this;
+    }
+
+    setLinePolycolor(points, lineOptions) {
+        if (this.line) {
+            this.getMap().removeLayer(this.line);
+        }
+
+        this.line = L.polycolor(points, this.getLineOptions(lineOptions))
             .addTo(this.getLayer());
 
         return this;
@@ -361,25 +393,16 @@ export default class {
         return this.merge(defaults, options);
     }
 
-    setLinePoints(points) {
-        this.getLine().setLatLngs(this.getLatLng(points));
+    setLinePoints() {
+        this.setLine(this.getPointsLatLng());
 
         return this;
     }
 
-    setLinePointsGroup(points) {
-
-        this.getLine().setLatLngs(this.getLatLng(points));
+    setLine(points) {
+        this.setLinePolycolor(points);
 
         return this;
-    }
-
-    getLine() {
-        if (!this.line) {
-            this.setLine();
-        }
-
-        return this.line;
     }
 
     setMarkers(markers, options) {

@@ -45,6 +45,7 @@
     "dependencies": {
         "leaflet-geometryutil": "^0.10.1",
         "leaflet-polycolor": "^2.0.3",
-        "leaflet-rotatedmarker": "^0.2.0"
+        "leaflet-rotatedmarker": "^0.2.0",
+        "leaflet-spline": "^0.1.3"
     }
 }
