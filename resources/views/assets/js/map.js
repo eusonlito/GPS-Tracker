@@ -1,7 +1,6 @@
 import L from 'leaflet';
 
 import 'leaflet-rotatedmarker';
-import { spline } from 'leaflet-spline';
 
 import GeometryUtil from 'leaflet-geometryutil';
 
