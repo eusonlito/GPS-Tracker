@@ -110,6 +110,17 @@ class Trip extends ModelAbstract
     }
 
     /**
+     * @return bool
+     */
+    public function finished(): bool
+    {
+        $wait = app('configuration')->int('trip_wait_minutes');
+        $time = strtotime($this->end_utc_at);
+
+        return $wait >= ((time() - $time) / 60);
+    }
+
+    /**
      * @return ?\App\Domains\Trip\Model\Trip
      */
     public function next(): ?Trip
