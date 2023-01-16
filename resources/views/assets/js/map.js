@@ -12,6 +12,7 @@ leafletPolycolor(L);
 
 import Ajax from './ajax';
 import Feather from './feather';
+import LocalStorage from './local-storage';
 import value2color from './value2color';
 
 export default class {
@@ -47,6 +48,8 @@ export default class {
 
         this.marker = null;
         this.markers = {};
+
+        this.localStorage = new LocalStorage('map');
 
         return this;
     }
@@ -145,14 +148,20 @@ export default class {
     }
 
     setLayers() {
-        L.control.layers({ ...this.getLayers() }, null, { collapsed: true })
+        L.control.layers(this.getLayers(), null, { collapsed: true })
             .addTo(this.getMap());
+
+        this.getMap().on('baselayerchange', (e) => {
+            this.localStorage.set('layer', e.name);
+        });
 
         return this;
     }
 
     setLayerDefault() {
-        this.getLayers().OpenStreetMap.addTo(this.getMap());
+        const name = this.localStorage.get('layer') || 'OpenStreetMap';
+
+        this.getLayers()[name].addTo(this.getMap());
 
         return this;
     }
