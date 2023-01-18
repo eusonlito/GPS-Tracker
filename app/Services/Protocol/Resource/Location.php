@@ -5,12 +5,15 @@ namespace App\Services\Protocol\Resource;
 class Location extends ResourceAbstract
 {
     /**
-     * @const array
+     * @return array
      */
-    protected const ATTRIBUTES = [
-        'body', 'maker', 'serial', 'type', 'latitude', 'longitude', 'speed',
-        'signal', 'direction', 'datetime', 'timezone', 'country', 'response',
-    ];
+    protected function attributesAvailable(): array
+    {
+        return [
+            'body', 'maker', 'serial', 'type', 'latitude', 'longitude', 'speed',
+            'signal', 'direction', 'datetime', 'timezone', 'country', 'response',
+        ];
+    }
 
     /**
      * @return string

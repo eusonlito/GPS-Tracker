@@ -5,9 +5,12 @@ namespace App\Services\Protocol\Resource;
 class Command extends ResourceAbstract
 {
     /**
-     * @const array
+     * @return array
      */
-    protected const ATTRIBUTES = ['body', 'maker', 'serial', 'type', 'payload', 'response'];
+    protected function attributesAvailable(): array
+    {
+        return ['body', 'maker', 'serial', 'type', 'payload', 'response'];
+    }
 
     /**
      * @return string

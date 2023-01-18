@@ -35,6 +35,11 @@ abstract class ResourceAbstract
     abstract public function response(): string;
 
     /**
+     * @return array
+     */
+    abstract protected function attributesAvailable(): array;
+
+    /**
      * @return self
      */
     public static function new(): self
@@ -59,7 +64,7 @@ abstract class ResourceAbstract
      */
     protected function attributes(array $attributes): void
     {
-        array_map(fn ($key) => $this->attributes[$key] = $attributes[$key] ?? null, static::ATTRIBUTES);
+        array_map(fn ($key) => $this->attributes[$key] = $attributes[$key] ?? null, $this->attributesAvailable());
     }
 
     /**
