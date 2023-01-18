@@ -31,7 +31,7 @@ abstract class CommandAbstract extends Command
      *
      * @return void
      */
-    final public function info($string, $verbosity = false)
+    final public function info($string, $verbosity = null)
     {
         if (is_string($string) === false) {
             $string = print_r($string, true);
@@ -46,7 +46,7 @@ abstract class CommandAbstract extends Command
      *
      * @return void
      */
-    final public function error($string, $verbosity = false)
+    final public function error($string, $verbosity = null)
     {
         if (is_string($string) === false) {
             $string = print_r($string, true);

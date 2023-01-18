@@ -15,7 +15,7 @@ class Cache extends Builder
     /**
      * @return array
      */
-    protected function runSelect()
+    protected function runSelect(): array
     {
         return $this->cacheResult(fn () => parent::runSelect());
     }

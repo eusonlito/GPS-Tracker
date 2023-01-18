@@ -10,7 +10,7 @@ use App\Domains\Alarm\Model\Collection\Alarm as Collection;
 class Index extends ControllerAbstract
 {
     /**
-     * @return \Illuminate\Http\Response\\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
     public function __invoke(): Response|JsonResponse
     {

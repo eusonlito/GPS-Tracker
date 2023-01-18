@@ -12,7 +12,7 @@ use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 class Index extends ControllerAbstract
 {
     /**
-     * @return \Illuminate\Http\Response\\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
     public function __invoke(): Response|JsonResponse
     {

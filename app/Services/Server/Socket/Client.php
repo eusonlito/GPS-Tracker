@@ -20,12 +20,12 @@ class Client
     }
 
     /**
-     * @param \stdClass &$client
+     * @param \stdClass $client
      * @param \Closure $handler
      *
      * @return self
      */
-    public function __construct(protected stdClass &$client, protected Closure $handler)
+    public function __construct(protected stdClass $client, protected Closure $handler)
     {
     }
 
