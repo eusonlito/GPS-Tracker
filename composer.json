@@ -23,7 +23,9 @@
         "nunomaduro/collision": "^6.1",
         "nunomaduro/larastan": "^2.0",
         "nunomaduro/phpinsights": "dev-master",
-        "spatie/laravel-ignition": "^1.0"
+        "psalm/plugin-laravel": "^2.2",
+        "spatie/laravel-ignition": "^1.0",
+        "vimeo/psalm": "^5.4"
     },
     "config": {
         "optimize-autoloader": true,
