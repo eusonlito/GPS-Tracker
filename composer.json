@@ -49,32 +49,15 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "pre-install-cmd": [
-            "@composer artisan-cache-clear --ansi"
-        ],
-
         "post-install-cmd": [
             "@composer dump-autoload",
             "@composer artisan-cache --ansi",
             "@php artisan queue:restart --ansi"
         ],
 
-        "pre-update-cmd": [
-            "@composer artisan-cache-clear --ansi"
-        ],
-
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
-        ],
-
-        "post-root-package-install": [
-            "@php -r \"is_file('.env') || copy('.env.example', '.env');\"",
-            "@composer install --no-scripts"
-        ],
-
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
         ],
 
         "artisan-cache-clear": [
@@ -105,7 +88,6 @@
 
         "deploy-dev": [
             "rm -f bootstrap/cache/*.php",
-            "@composer install --no-scripts",
             "@composer install --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
             "@php artisan db:seed --class=\"Database\\Seeders\\Database\"",
