@@ -15,8 +15,6 @@ abstract class FractalAbstract
      * @param mixed $value
      * @param mixed ...$args
      *
-     * @throws \InvalidArgumentException
-     *
      * @return ?array
      */
     final public function transform(string $function, $value, ...$args): ?array
