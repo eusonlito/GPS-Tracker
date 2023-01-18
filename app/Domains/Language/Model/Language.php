@@ -42,12 +42,12 @@ class Language extends ModelAbstract
     }
 
     /**
-     * @param \Illuminate\Database\Query\Builder $q
+     * @param \Illuminate\Database\Query\Builder $query
      *
      * @return \App\Domains\Language\Model\Builder\Language
      */
-    public function newEloquentBuilder($q): Builder
+    public function newEloquentBuilder($query): Builder
     {
-        return new Builder($q);
+        return new Builder($query);
     }
 }

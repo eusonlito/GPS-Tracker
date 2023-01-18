@@ -45,13 +45,13 @@ class Vehicle extends ModelAbstract
     }
 
     /**
-     * @param \Illuminate\Database\Query\Builder $q
+     * @param \Illuminate\Database\Query\Builder $query
      *
      * @return \App\Domains\Vehicle\Model\Builder\Vehicle
      */
-    public function newEloquentBuilder($q): Builder
+    public function newEloquentBuilder($query): Builder
     {
-        return new Builder($q);
+        return new Builder($query);
     }
 
     /**

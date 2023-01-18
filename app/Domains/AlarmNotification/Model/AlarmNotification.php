@@ -60,13 +60,13 @@ class AlarmNotification extends ModelAbstract
     }
 
     /**
-     * @param \Illuminate\Database\Query\Builder $q
+     * @param \Illuminate\Database\Query\Builder $query
      *
      * @return \App\Domains\AlarmNotification\Model\Builder\AlarmNotification
      */
-    public function newEloquentBuilder($q): Builder
+    public function newEloquentBuilder($query): Builder
     {
-        return new Builder($q);
+        return new Builder($query);
     }
 
     /**

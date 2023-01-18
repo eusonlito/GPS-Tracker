@@ -51,13 +51,13 @@ class Alarm extends ModelAbstract
     }
 
     /**
-     * @param \Illuminate\Database\Query\Builder $q
+     * @param \Illuminate\Database\Query\Builder $query
      *
      * @return \App\Domains\Alarm\Model\Builder\Alarm
      */
-    public function newEloquentBuilder($q): Builder
+    public function newEloquentBuilder($query): Builder
     {
-        return new Builder($q);
+        return new Builder($query);
     }
 
     /**
