@@ -30,7 +30,7 @@
         "merge2": "^1.4.1",
         "nth-check": "^2.1.1",
         "path-parse": "^1.0.7",
-        "postcss": "^8.4.20",
+        "postcss": "^8.4.21",
         "sass": "^1.57.1",
         "semver-regex": "^4.0.5",
         "tailwindcss": "^2.2.19",
