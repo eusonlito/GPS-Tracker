@@ -418,14 +418,9 @@ export default class {
             return this;
         }
 
-        const latLng = this.getLatLng(marker);
-
-        L.marker(latLng, this.getMarkerOptions(marker, options, optionsIcon))
-            .addTo(this.getLayerMarkers());
-
-        this.markers[marker.id] = L.circleMarker(latLng, { radius: 15, opacity: 0, fillOpacity: 0 })
+        this.markers[marker.id] = L.marker(this.getLatLng(marker), this.getMarkerOptions(marker, options, optionsIcon))
             .bindPopup(this.jsonToHtml(marker))
-            .addTo(this.getLayer());
+            .addTo(this.getLayerMarkers());
 
         return this;
     }
