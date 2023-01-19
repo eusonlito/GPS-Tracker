@@ -162,7 +162,7 @@ export default class {
         const layers = this.getLayers();
         let name = this.localStorage.get('layer');
 
-        if (!layers[name]) {
+        if (!name || !layers[name]) {
             name = Object.keys(layers)[0];
         }
 
