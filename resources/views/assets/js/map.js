@@ -148,20 +148,25 @@ export default class {
     }
 
     setLayers() {
-        L.control.layers(this.getLayers(), null, { collapsed: true })
-            .addTo(this.getMap());
-
         this.getMap().on('baselayerchange', (e) => {
             this.localStorage.set('layer', e.name);
         });
+
+        L.control.layers(this.getLayers(), null, { collapsed: true })
+            .addTo(this.getMap());
 
         return this;
     }
 
     setLayerDefault() {
-        const name = this.localStorage.get('layer') || 'OpenStreetMap';
+        const layers = this.getLayers();
+        let name = this.localStorage.get('layer');
 
-        this.getLayers()[name].addTo(this.getMap());
+        if (!layers[name]) {
+            name = Object.keys(layers)[0];
+        }
+
+        layers[name].addTo(this.getMap());
 
         return this;
     }
