@@ -87,11 +87,6 @@ const css = function(cb) {
     return src(loadManifest('scss'))
         .pipe(sass())
         .pipe(postcss([ tailwindcss('./tailwind.config.js') ]))
-        .pipe(mode.production(cleancss({
-            specialComments: 0,
-            level: 2,
-            inline: ['all']
-        })))
         .pipe(mode.production(purgecss({
             defaultExtractor: content => content.match(/[\w\.\-\/:]+(?<!:)/g) || [],
             content: [
@@ -103,6 +98,12 @@ const css = function(cb) {
                 paths.from.view + 'domains/**/*.php',
                 paths.from.view + 'layouts/**/*.php'
             ]
+        })))
+        .pipe(src(loadManifest('css')))
+        .pipe(mode.production(cleancss({
+            specialComments: 0,
+            level: 2,
+            inline: ['all']
         })))
         .pipe(postcss([ autoprefixer() ]))
         .pipe(concat('main.min.css'))

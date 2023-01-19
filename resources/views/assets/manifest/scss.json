@@ -1,6 +1,5 @@
 [
     "scss|feather.scss",
-    "vendor|leaflet/dist/leaflet.css",
     "theme|sass/app.scss",
     "scss|bootstrap.scss",
     "scss|custom.scss"
