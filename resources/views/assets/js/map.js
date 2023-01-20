@@ -543,7 +543,7 @@ export default class {
     getFitBoundsOptions(options) {
         const defaults = {
             animate: false,
-            padding: [30, 30]
+            padding: [40, 40]
         };
 
         return this.merge(defaults, options);
