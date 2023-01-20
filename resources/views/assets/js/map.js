@@ -65,8 +65,7 @@ export default class {
     setMap() {
         this.map = L.map(this.getElement(), this.getMapOptions());
 
-        this.setLayers();
-        this.setLayerDefault();
+        this.setControls();
 
         return this;
     }
@@ -102,33 +101,16 @@ export default class {
         this.layerMarkers.addTo(this.getMap());
         this.layerMarkers.bringToBack();
 
-        this.setLayerMarkersZoomEnd();
-
         return this;
     }
 
-    setLayerMarkersZoomEnd() {
-        const map = this.getMap();
-        const layerMarkers = this.getLayerMarkers();
-
-        map.on('zoomend', () => {
-            const zoomNear = map.getZoom() > 13;
-            const hasLayer = map.hasLayer(layerMarkers);
-
-            if (zoomNear) {
-                if (!hasLayer) {
-                    layerMarkers.addTo(map);
-                    layerMarkers.bringToBack();
-                }
-            } else if (hasLayer) {
-                map.removeLayer(layerMarkers);
-            }
-        });
-
-        return this;
+    setControls() {
+        this.setControlLayers();
+        this.setControlLayerDefault();
+        this.setControlMarkers();
     }
 
-    getLayers() {
+    getControlLayers() {
         return {
             OpenStreetMap: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxNativeZoom: 19,
@@ -147,19 +129,19 @@ export default class {
         };
     }
 
-    setLayers() {
+    setControlLayers() {
+        L.control.layers(this.getControlLayers(), null, { position: 'topright', collapsed: true })
+            .addTo(this.getMap());
+
         this.getMap().on('baselayerchange', (e) => {
             this.localStorage.set('layer', e.name);
         });
 
-        L.control.layers(this.getLayers(), null, { collapsed: true })
-            .addTo(this.getMap());
-
         return this;
     }
 
-    setLayerDefault() {
-        const layers = this.getLayers();
+    setControlLayerDefault() {
+        const layers = this.getControlLayers();
         let name = this.localStorage.get('layer');
 
         if (!name || !layers[name]) {
@@ -167,6 +149,60 @@ export default class {
         }
 
         layers[name].addTo(this.getMap());
+
+        return this;
+    }
+
+    setControlMarkers() {
+        this.setControlMarkersCreate();
+        this.setControlMarkersLoad();
+    }
+
+    setControlMarkersCreate() {
+        const self = this;
+
+        L.Control.Markers = L.Control.extend({
+            onAdd: function() {
+                const container = L.DomUtil.create('div', 'leaflet-control-layers leaflet-control');
+                const img = L.DomUtil.create('img', null, container);
+
+                img.src = WWW + '/build/images/map-direction.svg';
+                img.style.width = '44px';
+                img.style.height = '44px';
+                img.style.background = '#A3EA9A';
+                img.style.padding = '10px';
+
+                container.onclick = (e) => {
+                    e.stopPropagation();
+
+                    const map = self.getMap();
+                    const layerMarkers = self.getLayerMarkers();
+
+                    if (map.hasLayer(layerMarkers)) {
+                        img.style.background = '#CCC';
+
+                        map.removeLayer(layerMarkers);
+                    } else {
+                        img.style.background = '#A3EA9A';
+
+                        layerMarkers.addTo(map);
+                        layerMarkers.bringToBack();
+                    }
+                };
+
+                container.ondblclick = container.onclick;
+
+                return container;
+            }
+        });
+
+        L.control.markers = (options) => new L.Control.Markers(options);
+
+        return this;
+    }
+
+    setControlMarkersLoad() {
+        L.control.markers({ position: 'topright' }).addTo(this.getMap());
 
         return this;
     }
