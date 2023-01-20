@@ -32,6 +32,8 @@ abstract class LocateAbstract
      */
     public function __construct(protected float $latitude, protected float $longitude)
     {
+        $this->latitude = round($latitude, 3);
+        $this->longitude = round($longitude, 3);
     }
 
     /**
