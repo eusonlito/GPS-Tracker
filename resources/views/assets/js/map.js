@@ -161,46 +161,59 @@ export default class {
     }
 
     setControlMarkersCreate() {
-        const self = this;
+        const container = this.setControlMarkersCreateContainer();
 
-        L.Control.Markers = L.Control.extend({
-            onAdd: function() {
-                const container = L.DomUtil.create('div', 'leaflet-control-layers leaflet-control');
-                const img = L.DomUtil.create('img', null, container);
-
-                img.src = WWW + '/build/images/map-direction.svg';
-                img.style.width = '44px';
-                img.style.height = '44px';
-                img.style.background = '#CCC';
-                img.style.padding = '10px';
-
-                container.onclick = (e) => {
-                    e.stopPropagation();
-
-                    const map = self.getMap();
-                    const layerMarkers = self.getLayerMarkers();
-
-                    if (map.hasLayer(layerMarkers)) {
-                        img.style.background = '#CCC';
-
-                        map.removeLayer(layerMarkers);
-                    } else {
-                        img.style.background = '#A3EA9A';
-
-                        layerMarkers.addTo(map);
-                        layerMarkers.bringToBack();
-                    }
-                };
-
-                container.ondblclick = container.onclick;
-
-                return container;
-            }
-        });
-
+        L.Control.Markers = L.Control.extend({ onAdd: () => container });
         L.control.markers = (options) => new L.Control.Markers(options);
 
+        if (this.localStorage.get('markers') === true) {
+            container.dispatchEvent(new Event('click'));
+        }
+
         return this;
+    }
+
+    setControlMarkersCreateContainer() {
+        const container =  L.DomUtil.create('div', 'leaflet-control-layers leaflet-control');
+        const img = this.setControlMarkersCreateImg(container);
+
+        const map = this.getMap();
+        const layerMarkers = this.getLayerMarkers();
+
+        container.onclick = (e) => {
+            e.stopPropagation();
+
+            if (map.hasLayer(layerMarkers)) {
+                img.style.background = '#CCC';
+
+                map.removeLayer(layerMarkers);
+
+                this.localStorage.set('markers', false);
+            } else {
+                img.style.background = '#A3EA9A';
+
+                layerMarkers.addTo(map);
+                layerMarkers.bringToBack();
+
+                this.localStorage.set('markers', true);
+            }
+        };
+
+        container.ondblclick = container.onclick;
+
+        return container;
+    }
+
+    setControlMarkersCreateImg(container) {
+        const img = L.DomUtil.create('img', null, container);
+
+        img.src = WWW + '/build/images/map-direction.svg';
+        img.style.width = '44px';
+        img.style.height = '44px';
+        img.style.background = '#CCC';
+        img.style.padding = '10px';
+
+        return img;
     }
 
     setControlMarkersLoad() {
