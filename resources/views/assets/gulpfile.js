@@ -83,7 +83,19 @@ const directories = function(cb) {
     cb();
 };
 
-const css = function(cb) {
+const styles = function(cb) {
+    return merge(stylesScss(), stylesCss())
+        .pipe(mode.production(cleancss({
+            specialComments: 0,
+            level: 2,
+            inline: ['all']
+        })))
+        .pipe(postcss([ autoprefixer() ]))
+        .pipe(concat('main.min.css'))
+        .pipe(dest(paths.to.css));
+};
+
+const stylesScss = function(cb) {
     return src(loadManifest('scss'))
         .pipe(sass())
         .pipe(postcss([ tailwindcss('./tailwind.config.js') ]))
@@ -98,16 +110,12 @@ const css = function(cb) {
                 paths.from.view + 'domains/**/*.php',
                 paths.from.view + 'layouts/**/*.php'
             ]
-        })))
-        .pipe(src(loadManifest('css')))
-        .pipe(mode.production(cleancss({
-            specialComments: 0,
-            level: 2,
-            inline: ['all']
-        })))
-        .pipe(postcss([ autoprefixer() ]))
-        .pipe(concat('main.min.css'))
-        .pipe(dest(paths.to.css));
+        })));
+};
+
+const stylesCss = function(cb) {
+    return src(loadManifest('css'))
+        .pipe(sass());
 };
 
 const jsLint = function(cb) {
@@ -124,7 +132,7 @@ const jsLint = function(cb) {
         .pipe(jshint.reporter(stylish));
 };
 
-const js = series(jsLint, function() {
+const javascript = series(jsLint, function() {
     return src(loadManifest('js'))
         .pipe(webpack({
             mode: mode.production() ? 'production' : 'development',
@@ -182,11 +190,11 @@ const version = function() {
 };
 
 const taskWatch = function() {
-    watch(paths.from.scss + '**/*.scss', css);
-    watch(paths.from.js + '**/*.js', js);
+    watch(paths.from.scss + '**/*.scss', styles);
+    watch(paths.from.js + '**/*.js', javascript);
     watch(paths.from.images + '**', images);
     watch(paths.from.publish + '**', publish);
 };
 
-exports.build = series(clean, directories, parallel(css, js, images, publish), version);
-exports.watch = series(clean, directories, parallel(css, js, images, publish), version, taskWatch);
+exports.build = series(clean, directories, parallel(styles, javascript, images, publish), version);
+exports.watch = series(clean, directories, parallel(styles, javascript, images, publish), version, taskWatch);
