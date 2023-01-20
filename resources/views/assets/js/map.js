@@ -122,6 +122,11 @@ export default class {
                 maxNativeZoom: 20,
                 maxZoom: 22,
                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+            }),
+            CartoDBVoyager: L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
+                maxNativeZoom: 20,
+                maxZoom: 22,
+                subdomains: 'abcd'
             })
         };
     }
