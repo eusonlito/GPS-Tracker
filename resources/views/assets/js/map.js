@@ -98,9 +98,6 @@ export default class {
     setLayerMarkers() {
         this.layerMarkers = new L.FeatureGroup();
 
-        this.layerMarkers.addTo(this.getMap());
-        this.layerMarkers.bringToBack();
-
         return this;
     }
 
@@ -169,7 +166,7 @@ export default class {
                 img.src = WWW + '/build/images/map-direction.svg';
                 img.style.width = '44px';
                 img.style.height = '44px';
-                img.style.background = '#A3EA9A';
+                img.style.background = '#CCC';
                 img.style.padding = '10px';
 
                 container.onclick = (e) => {
