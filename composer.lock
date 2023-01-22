@@ -2704,16 +2704,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.12.1",
+            "version": "3.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "b934123c1f11ada6363d057d691e3065fa6d6d49"
+                "reference": "f6377c709d2275ed6feaf63e44be7a7162b0e77f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b934123c1f11ada6363d057d691e3065fa6d6d49",
-                "reference": "b934123c1f11ada6363d057d691e3065fa6d6d49",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f6377c709d2275ed6feaf63e44be7a7162b0e77f",
+                "reference": "f6377c709d2275ed6feaf63e44be7a7162b0e77f",
                 "shasum": ""
             },
             "require": {
@@ -2775,7 +2775,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.12.1"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.12.2"
             },
             "funding": [
                 {
@@ -2791,7 +2791,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-06T16:34:48+00:00"
+            "time": "2023-01-19T12:02:19+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -10684,16 +10684,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.9.13",
+            "version": "1.9.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "a0922426da3a7d0d9334e99a363f7f9f6e23e84f"
+                "reference": "e5fcc96289cf737304286a9b505fbed091f02e58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a0922426da3a7d0d9334e99a363f7f9f6e23e84f",
-                "reference": "a0922426da3a7d0d9334e99a363f7f9f6e23e84f",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e5fcc96289cf737304286a9b505fbed091f02e58",
+                "reference": "e5fcc96289cf737304286a9b505fbed091f02e58",
                 "shasum": ""
             },
             "require": {
@@ -10723,7 +10723,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.9.13"
+                "source": "https://github.com/phpstan/phpstan/tree/1.9.14"
             },
             "funding": [
                 {
@@ -10739,7 +10739,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-18T15:26:53+00:00"
+            "time": "2023-01-19T10:47:09+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -11216,16 +11216,16 @@
         },
         {
             "name": "psalm/plugin-laravel",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/psalm-plugin-laravel.git",
-                "reference": "1c85f599be5f26a6835d453fe5bd3b3ec36044bf"
+                "reference": "722b929f6cb2212f9c77a971324c9409fac6a889"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/psalm-plugin-laravel/zipball/1c85f599be5f26a6835d453fe5bd3b3ec36044bf",
-                "reference": "1c85f599be5f26a6835d453fe5bd3b3ec36044bf",
+                "url": "https://api.github.com/repos/psalm/psalm-plugin-laravel/zipball/722b929f6cb2212f9c77a971324c9409fac6a889",
+                "reference": "722b929f6cb2212f9c77a971324c9409fac6a889",
                 "shasum": ""
             },
             "require": {
@@ -11280,9 +11280,9 @@
             "homepage": "https://github.com/psalm/psalm-plugin-laravel",
             "support": {
                 "issues": "https://github.com/psalm/psalm-plugin-laravel/issues",
-                "source": "https://github.com/psalm/psalm-plugin-laravel/tree/v2.2.0"
+                "source": "https://github.com/psalm/psalm-plugin-laravel/tree/v2.3.0"
             },
-            "time": "2023-01-18T14:57:57+00:00"
+            "time": "2023-01-22T15:22:58+00:00"
         },
         {
             "name": "sebastian/cli-parser",

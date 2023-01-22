@@ -2,6 +2,7 @@
 
 namespace App\Domains\Maintenance\Schedule;
 
+use App\Domains\Maintenance\Command\CurlCacheClean as CurlCacheCleanCommand;
 use App\Domains\Maintenance\Command\FileDeleteOlder as FileDeleteOlderCommand;
 use App\Domains\Maintenance\Command\FileZip as FileZipCommand;
 use App\Domains\Shared\Schedule\ScheduleAbstract;
@@ -13,8 +14,17 @@ class Manager extends ScheduleAbstract
      */
     public function handle(): void
     {
+        $this->curlCacheClean();
         $this->fileDeleteOlder();
         $this->fileZip();
+    }
+
+    /**
+     * @return void
+     */
+    protected function curlCacheClean(): void
+    {
+        $this->command(CurlCacheCleanCommand::class, 'maintenance-curl-cache-clean')->dailyAt('01:10');
     }
 
     /**

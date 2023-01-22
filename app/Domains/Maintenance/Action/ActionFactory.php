@@ -9,6 +9,14 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return void
      */
+    public function curlCacheClean(): void
+    {
+        $this->actionHandle(CurlCacheClean::class);
+    }
+
+    /**
+     * @return void
+     */
     public function domainCreate(): void
     {
         $this->actionHandle(DomainCreate::class, $this->validate()->domainCreate());
