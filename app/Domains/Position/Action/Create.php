@@ -234,6 +234,10 @@ class Create extends ActionAbstract
             return true;
         }
 
+        if ($this->isValidPreviousNotNearMovement()) {
+            return true;
+        }
+
         $meters = helper()->coordinatesDistance(
             $this->previous->latitude,
             $this->previous->longitude,
@@ -242,6 +246,14 @@ class Create extends ActionAbstract
         );
 
         return $meters > $distance;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isValidPreviousNotNearMovement(): bool
+    {
+        return boolval($this->previous->speed) !== boolval($this->data['speed']);
     }
 
     /**
