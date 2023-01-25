@@ -32,7 +32,7 @@ class UpdateStatsAll extends ActionAbstract
     {
         $q = Model::query();
 
-        if ($this->data['overwrite'] === false) {
+        if ($this->data['force'] === false) {
             $q->whenStatsEmpty();
         }
 

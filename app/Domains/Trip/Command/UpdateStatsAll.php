@@ -7,12 +7,12 @@ class UpdateStatsAll extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'trip:update:stats:all {--overwrite}';
+    protected $signature = 'trip:update:stats:all {--force}';
 
     /**
      * @var string
      */
-    protected $description = 'Update All Trip Stats with {--overwrite}';
+    protected $description = 'Update All Trip Stats with {--force}';
 
     /**
      * @return void

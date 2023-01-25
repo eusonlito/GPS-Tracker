@@ -12,7 +12,7 @@ class UpdateStatsAll extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'overwrite' => ['bail', 'boolean'],
+            'force' => ['bail', 'boolean'],
         ];
     }
 }
