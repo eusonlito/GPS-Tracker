@@ -102,7 +102,7 @@ class UpdateStats extends ActionAbstract
             $seconds = 0;
         }
 
-        if ($position->speed) {
+        if (($previous ?: $position)->speed) {
             $this->stats['time']['movement'] += $seconds;
         } else {
             $this->stats['time']['stopped'] += $seconds;
