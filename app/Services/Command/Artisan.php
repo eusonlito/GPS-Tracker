@@ -30,7 +30,7 @@ class Artisan
     }
 
     /**
-     * @param  string  $command
+     * @param string $command
      *
      * @return self
      */
