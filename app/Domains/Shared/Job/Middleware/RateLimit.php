@@ -22,8 +22,7 @@ class RateLimit
         int $block = 30,
         int $allow = 1,
         int $every = 10
-    )
-    {
+    ) {
         Redis::throttle('RateLimitJob')
             ->block($block)
             ->allow($allow)
