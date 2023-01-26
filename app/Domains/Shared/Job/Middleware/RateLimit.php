@@ -10,15 +10,24 @@ class RateLimit
     /**
      * @param \Illuminate\Contracts\Queue\ShouldQueue $job
      * @param callable $next
+     * @param int $block = 30
+     * @param int $allow = 1
+     * @param int $every = 10
      *
      * @return void
      */
-    final public function handle(ShouldQueue $job, callable $next)
+    final public function handle(
+        ShouldQueue $job,
+        callable $next,
+        int $block = 30,
+        int $allow = 1,
+        int $every = 10
+    )
     {
         Redis::throttle('RateLimitJob')
-            ->block(30)
-            ->allow(1)
-            ->every(10)
+            ->block($block)
+            ->allow($allow)
+            ->every($every)
             ->then(
                 fn () => $this->send($job, $next),
                 fn () => $this->fail($job),
