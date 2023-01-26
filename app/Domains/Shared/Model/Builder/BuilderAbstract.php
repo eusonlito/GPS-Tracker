@@ -242,24 +242,4 @@ abstract class BuilderAbstract extends Builder
     {
         return $this->when($id, static fn ($q) => $q->byIdNext($id));
     }
-
-    /**
-     * @param array $ids
-     *
-     * @return array
-     */
-    protected function ids(array $ids): array
-    {
-        return array_unique(array_filter(array_map('intval', $ids)));
-    }
-
-    /**
-     * @param array $ids
-     *
-     * @return string
-     */
-    protected function idsIn(array $ids): string
-    {
-        return 'IN ('.implode(', ', $this->ids($ids) ?: [0]).')';
-    }
 }
