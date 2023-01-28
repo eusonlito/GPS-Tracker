@@ -11216,16 +11216,16 @@
         },
         {
             "name": "psalm/plugin-laravel",
-            "version": "v2.4.0",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/psalm-plugin-laravel.git",
-                "reference": "e6eaed7d935663acce940fc70ca2c7bd2ddb2d8e"
+                "reference": "70e9f16c5b35c1f3404914532f23a792159fa369"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/psalm-plugin-laravel/zipball/e6eaed7d935663acce940fc70ca2c7bd2ddb2d8e",
-                "reference": "e6eaed7d935663acce940fc70ca2c7bd2ddb2d8e",
+                "url": "https://api.github.com/repos/psalm/psalm-plugin-laravel/zipball/70e9f16c5b35c1f3404914532f23a792159fa369",
+                "reference": "70e9f16c5b35c1f3404914532f23a792159fa369",
                 "shasum": ""
             },
             "require": {
@@ -11250,6 +11250,7 @@
                 "codeception/module-cli": "^2.0",
                 "codeception/module-filesystem": "^3.0",
                 "codeception/module-phpbrowser": "^3.0",
+                "phpunit/phpunit": "^9.5",
                 "ramsey/collection": "^1.3",
                 "slevomat/coding-standard": "^8.8",
                 "squizlabs/php_codesniffer": "*",
@@ -11280,9 +11281,9 @@
             "homepage": "https://github.com/psalm/psalm-plugin-laravel",
             "support": {
                 "issues": "https://github.com/psalm/psalm-plugin-laravel/issues",
-                "source": "https://github.com/psalm/psalm-plugin-laravel/tree/v2.4.0"
+                "source": "https://github.com/psalm/psalm-plugin-laravel/tree/v2.5.0"
             },
-            "time": "2023-01-23T16:54:33+00:00"
+            "time": "2023-01-27T08:35:04+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -12674,16 +12675,16 @@
         },
         {
             "name": "spatie/laravel-ray",
-            "version": "1.32.0",
+            "version": "1.32.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ray.git",
-                "reference": "05fc99dba671c5d7478cb0400fe7152d7f00712e"
+                "reference": "8ecf893a7af385e72b1f63cbd318fb00e2dca340"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/05fc99dba671c5d7478cb0400fe7152d7f00712e",
-                "reference": "05fc99dba671c5d7478cb0400fe7152d7f00712e",
+                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/8ecf893a7af385e72b1f63cbd318fb00e2dca340",
+                "reference": "8ecf893a7af385e72b1f63cbd318fb00e2dca340",
                 "shasum": ""
             },
             "require": {
@@ -12743,7 +12744,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-ray/issues",
-                "source": "https://github.com/spatie/laravel-ray/tree/1.32.0"
+                "source": "https://github.com/spatie/laravel-ray/tree/1.32.1"
             },
             "funding": [
                 {
@@ -12755,7 +12756,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2023-01-11T10:37:27+00:00"
+            "time": "2023-01-26T13:02:05+00:00"
         },
         {
             "name": "spatie/macroable",
