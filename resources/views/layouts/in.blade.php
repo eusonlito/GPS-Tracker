@@ -4,7 +4,7 @@
         @include ('layouts.molecules.head')
     </head>
 
-    <body class="main body-{{ str_replace('.', '-', $ROUTE) }}">
+    <body class="main body-{{ str_replace('.', '-', $ROUTE) }} authenticated">
         @include ('layouts.molecules.in-sidebar-mobile')
 
         <div class="wrapper">

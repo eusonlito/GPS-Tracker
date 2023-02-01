@@ -13,6 +13,6 @@ Route::group(['middleware' => ['user-auth', 'vehicle.available']], static functi
     Route::any('/trip/{id}/merge', UpdateMerge::class)->name('trip.update.merge');
     Route::any('/trip/{id}/position', UpdatePosition::class)->name('trip.update.position');
     Route::any('/trip/{id}/stat', UpdateStat::class)->name('trip.update.stat');
-
-    Route::get('/trip/{uuid}', Shared::class)->name('trip.shared');
 });
+
+Route::get('/trip/{uuid}', Shared::class)->name('trip.shared');

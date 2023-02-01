@@ -5,6 +5,10 @@ import Router from './router';
     'use strict';
 
     const alarmRequest = function () {
+        if (!document.body.classList.contains('authenticated')) {
+            return;
+        }
+
         new Ajax(Router.get('alarm.index'), 'GET')
             .setAjax(true)
             .setJsonResponse(true)
