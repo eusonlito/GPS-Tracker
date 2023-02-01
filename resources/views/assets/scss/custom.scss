@@ -68,6 +68,11 @@
     color: rgb(var(--color-danger) / var(--tw-text-opacity));
 }
 
+.text-primary {
+    --tw-text-opacity: 1;
+    color: rgb(var(--color-primary) / var(--tw-text-opacity));
+}
+
 .text-success {
     --tw-text-opacity: 1;
     color: rgb(var(--color-success) / var(--tw-text-opacity));

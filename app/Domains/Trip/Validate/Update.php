@@ -13,6 +13,7 @@ class Update extends ValidateAbstract
     {
         return [
             'name' => ['bail', 'required', 'string'],
+            'shared' => ['bail', 'boolean'],
         ];
     }
 }

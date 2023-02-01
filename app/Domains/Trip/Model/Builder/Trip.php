@@ -19,6 +19,16 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @param string $code
+     *
+     * @return self
+     */
+    public function byCode(string $code): self
+    {
+        return $this->where('code', $code);
+    }
+
+    /**
      * @param int $country_id
      * @param ?string $start_end = null
      *
@@ -193,6 +203,16 @@ class Trip extends BuilderAbstract
     public function whenStatsEmpty(): self
     {
         return $this->whereNull('stats');
+    }
+
+    /**
+     * @param bool $shared = true
+     *
+     * @return self
+     */
+    public function whereShared(bool $shared = true): self
+    {
+        return $this->where('shared', $shared);
     }
 
     /**

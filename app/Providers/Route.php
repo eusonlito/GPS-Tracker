@@ -23,6 +23,7 @@ class Route extends RouteServiceProvider
     protected function patterns(): void
     {
         RouteFacade::pattern('id', '[0-9]+');
+        RouteFacade::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
     }
 
     /**

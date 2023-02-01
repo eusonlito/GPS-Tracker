@@ -10,7 +10,24 @@
             <label for="trip-name" class="form-label">{{ __('trip-update.name') }}</label>
             <input type="text" name="name" class="form-control form-control-lg" id="trip-name" value="{{ $REQUEST->input('name') }}" required>
         </div>
+
+        <div class="p-2">
+            <div class="form-check">
+                <input type="checkbox" name="shared" value="1" class="form-check-switch" id="trip-shared" {{ $REQUEST->input('shared') ? 'checked' : '' }}>
+                <label for="trip-shared" class="form-check-label">{{ __('trip-update.shared') }}</label>
+            </div>
+        </div>
     </div>
+
+    @if ($row->shared)
+
+    <div class="box p-5 mt-5">
+        <div class="p-2">
+            <span class="font-medium">{{ __('trip-update.shared-url') }}</span> <a href="{{ route('trip.shared', $row->code) }}" class="text-primary" target="_blank">{{ route('trip.shared', $row->code) }}</a>
+        </div>
+    </div>
+
+    @endif
 
     <div class="box p-5 mt-5">
         <div class="text-right">

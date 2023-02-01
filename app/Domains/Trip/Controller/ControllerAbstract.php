@@ -24,4 +24,16 @@ abstract class ControllerAbstract extends ControllerWebAbstract
             throw new NotFoundException(__('trip.error.not-found'));
         });
     }
+
+    /**
+     * @param string $code
+     *
+     * @return void
+     */
+    protected function rowShared(string $code): void
+    {
+        $this->row = Model::query()->byCode($code)->whereShared()->firstOr(static function () {
+            throw new NotFoundException(__('trip.error.not-found'));
+        });
+    }
 }

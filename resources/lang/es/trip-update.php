@@ -10,6 +10,8 @@
     'positions' => 'Coordenadas',
     'previous' => 'Anterior',
     'save' => 'Guardar',
+    'shared' => 'Compartir Viaje',
+    'shared-url' => 'URL Pública:',
     'stats' => 'Estadísticas',
     'success' => 'El viaje ha sido actualizado correctamente',
 ];

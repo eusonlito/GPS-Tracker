@@ -3,8 +3,13 @@ import Velocity from 'velocity-animate';
 (function () {
     'use strict';
 
-    const mobileMenu = document.querySelector('.mobile-menu'),
-        mobileMenuUl = mobileMenu.querySelector('ul');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    if (!mobileMenu) {
+        return;
+    }
+
+    const mobileMenuUl = mobileMenu.querySelector('ul');
 
     document.getElementById('mobile-menu-toggler').addEventListener('click', (e) => {
         e.preventDefault();

@@ -10,6 +10,8 @@
     'positions' => 'Coordinates',
     'previous' => 'Previous',
     'save' => 'Save',
+    'shared' => 'Share Trip',
+    'shared-url' => 'Public URL:',
     'stats' => 'Statistics',
     'success' => 'The trip has been successfully updated',
 ];
