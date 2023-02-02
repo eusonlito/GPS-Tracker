@@ -33,6 +33,10 @@
         </div>
 
         <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="shared" :options="$shared" data-change-submit></x-select>
+        </div>
+
+        <div class="flex-grow mt-2 lg:mt-0">
             <x-select name="country_id" :options="$countries" value="id" text="name" placeholder="{{ __('trip-index.country') }}" data-change-submit></x-select>
         </div>
 

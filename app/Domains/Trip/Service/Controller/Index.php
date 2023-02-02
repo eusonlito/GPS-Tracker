@@ -84,6 +84,7 @@ class Index extends ControllerAbstract
             'city' => $this->city(),
             'date_min' => $this->dateMin(),
             'starts_ends' => $this->startsEnds(),
+            'shared' => $this->shared(),
             'list' => $this->list(),
         ];
     }
@@ -206,9 +207,21 @@ class Index extends ControllerAbstract
      */
     protected function startsEnds(): array
     {
-        return $this->cache[__FUNCTION__] ??= [
+        return [
             'start' => __('trip-index.start'),
             'end' => __('trip-index.end'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function shared(): array
+    {
+        return [
+            '' => __('trip-index.shared-all'),
+            '1' => __('trip-index.shared-yes'),
+            '0' => __('trip-index.shared-no'),
         ];
     }
 
@@ -223,9 +236,21 @@ class Index extends ControllerAbstract
             ->whenDeviceId($this->device()->id ?? null)
             ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
             ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
+            ->whenShared($this->listWhenShared())
             ->withDevice()
             ->withVehicle()
             ->list()
             ->get();
+    }
+
+    /**
+     * @return ?bool
+     */
+    protected function listWhenShared(): ?bool
+    {
+        return match ($shared = $this->request->input('shared')) {
+            '1', '0' => boolval($shared),
+            default => null,
+        };
     }
 }

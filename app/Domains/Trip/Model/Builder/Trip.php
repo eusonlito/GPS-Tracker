@@ -167,6 +167,16 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @param ?bool $shared
+     *
+     * @return self
+     */
+    public function whenShared(?bool $shared): self
+    {
+        return $this->when(is_bool($shared), static fn ($q) => $q->whereShared($shared));
+    }
+
+    /**
      * @param ?string $before_start_utc_at
      * @param ?string $after_start_utc_at
      *
