@@ -24,6 +24,7 @@
                 <th>{{ __('user-index.updated_at') }}</th>
                 <th>{{ __('user-index.admin') }}</th>
                 <th>{{ __('user-index.enabled') }}</th>
+                <th>{{ __('user-index.actions') }}</th>
             </tr>
         </thead>
 
@@ -39,6 +40,9 @@
                 <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->updated_at)</a></td>
                 <td data-table-sort-value="{{ (int)$row->admin }}">@status($row->admin)</td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}">@status($row->enabled)</td>
+                <td class="w-1">
+                    <a href="{{ route('user.update.user-session', $row->id) }}">@icon('log-in', 'w-4 h-4')</a>
+                </td>
             </tr>
 
             @endforeach

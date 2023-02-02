@@ -1,4 +1,5 @@
 <?php return [
+    'actions' => 'Actions',
     'admin' => 'Admin',
     'create' => 'Create',
     'created_at' => 'Created',

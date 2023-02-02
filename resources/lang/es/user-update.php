@@ -15,5 +15,6 @@
     'name' => 'Nombre',
     'password' => 'Contraseña',
     'save' => 'Guardar',
+    'sessions' => 'Sesiones',
     'success' => 'Los datos del usuario han sido actualizados correctamente',
 ];

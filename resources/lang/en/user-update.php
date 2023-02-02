@@ -15,5 +15,6 @@
     'name' => 'Name',
     'password' => 'Password',
     'save' => 'Save',
+    'sessions' => 'Sessions',
     'success' => 'The user data has been successfully updated',
 ];
