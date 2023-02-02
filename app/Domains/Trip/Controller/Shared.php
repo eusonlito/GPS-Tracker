@@ -21,6 +21,7 @@ class Shared extends ControllerAbstract
         return $this->page('trip.shared', [
             'row' => $this->row,
             'positions' => $this->positions(),
+            'stats' => $this->row->stats,
         ]);
     }
 
