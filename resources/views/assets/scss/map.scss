@@ -80,10 +80,11 @@
 
     @media (max-width: 768px) {
         display: block;
-        height: 70vh;
+        height: auto;
 
         .map-map {
             width: 100% !important;
+            height: 70vh;
         }
 
         .map-list {
