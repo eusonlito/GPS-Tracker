@@ -5,16 +5,15 @@ namespace App\Domains\User\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use App\Domains\Language\Model\Language as LanguageModel;
-use App\Services\Telegram\Client as TelegramClient;
 
-class Profile extends ControllerAbstract
+class Profile extends ProfileAbstract
 {
     /**
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function __invoke(): Response|RedirectResponse
     {
-        $this->rowAuth();
+        $this->load();
 
         if ($response = $this->actionPost('profile')) {
             return $response;
@@ -25,9 +24,7 @@ class Profile extends ControllerAbstract
         $this->meta('title', __('user-profile.meta-title'));
 
         return $this->page('user.profile', [
-            'row' => $this->row,
             'languages' => LanguageModel::query()->list()->get(),
-            'telegram' => TelegramClient::new()->enabled(),
         ]);
     }
 

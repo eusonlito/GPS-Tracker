@@ -253,6 +253,7 @@ return new class extends MigrationAbstract
         Schema::create('trip', function (Blueprint $table) {
             $table->id();
 
+            $table->string('code')->index()->nullable();
             $table->string('name')->index();
 
             $table->unsignedInteger('distance')->default(0);
@@ -264,6 +265,8 @@ return new class extends MigrationAbstract
             $table->dateTime('start_utc_at');
             $table->dateTime('end_at');
             $table->dateTime('end_utc_at');
+
+            $table->boolean('shared')->default(0);
 
             $this->timestamps($table);
 

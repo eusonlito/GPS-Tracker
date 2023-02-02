@@ -5,11 +5,13 @@ namespace App\Domains\User\Model;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\User\Model\Builder\User as Builder;
 use App\Domains\User\Model\Collection\User as Collection;
 use App\Domains\User\Model\Traits\Preferences as PreferencesTrait;
+use App\Domains\UserSession\Model\UserSession as UserSessionModel;
 
 class User extends ModelAbstract implements Authenticatable
 {
@@ -71,5 +73,13 @@ class User extends ModelAbstract implements Authenticatable
     public function language(): BelongsTo
     {
         return $this->belongsTo(LanguageModel::class, LanguageModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sessions(): HasMany
+    {
+        return $this->hasMany(UserSessionModel::class, static::FOREIGN);
     }
 }

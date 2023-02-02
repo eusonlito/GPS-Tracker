@@ -12,7 +12,6 @@ parameters:
         - '#Access to an undefined property object::#'
         - '#Access to an undefined property .*Abstract#'
         - '#Access to an undefined property .*\\Model#'
-        - '#Access to undefined .*Abstract#'
         - '#App\\Domains\\User\\Model\\User.* does not accept Illuminate\\Contracts\\Auth\\Authenticatable#'
         - '#Call to an undefined .*Abstract#'
         - '#expects App\\Domains\\Shared\\Model\\ModelAbstract\|null, Illuminate\\Contracts\\Auth\\Authenticatable\|null given#'

@@ -17,7 +17,7 @@ use App\Http\Middleware\Reset;
 class Kernel extends KernelVendor
 {
     /**
-     * @var array
+     * @var array<int, string>
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
@@ -33,7 +33,7 @@ class Kernel extends KernelVendor
     ];
 
     /**
-     * @var array
+     * @var array<string, array<int, string>>
      */
     protected $middlewareGroups = [
         'user-auth' => [
@@ -49,7 +49,7 @@ class Kernel extends KernelVendor
     ];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $routeMiddleware = [
         'vehicle.available' => VehicleAvailable::class,

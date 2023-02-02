@@ -336,12 +336,15 @@ CREATE TABLE `trip` (
   `end_utc_at` datetime NOT NULL,
   `timezone_id` bigint unsigned NOT NULL,
   `vehicle_id` bigint unsigned NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shared` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `trip_name_index` (`name`),
   KEY `trip_device_fk` (`device_id`),
   KEY `trip_user_fk` (`user_id`),
   KEY `trip_timezone_fk` (`timezone_id`),
   KEY `trip_vehicle_fk` (`vehicle_id`),
+  KEY `trip_code_index` (`code`),
   CONSTRAINT `trip_device_fk` FOREIGN KEY (`device_id`) REFERENCES `device` (`id`) ON DELETE SET NULL,
   CONSTRAINT `trip_timezone_fk` FOREIGN KEY (`timezone_id`) REFERENCES `timezone` (`id`) ON DELETE CASCADE,
   CONSTRAINT `trip_user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
@@ -460,3 +463,4 @@ INSERT INTO `migrations` VALUES (44,'2022_12_22_223000_configuration_socket_debu
 INSERT INTO `migrations` VALUES (45,'2022_12_27_183000_server_debug',31);
 INSERT INTO `migrations` VALUES (46,'2022_12_29_220000_trip_stats',32);
 INSERT INTO `migrations` VALUES (47,'2023_01_02_230000_user_preferences',33);
+INSERT INTO `migrations` VALUES (48,'2023_02_01_230000_trip_shared',34);

@@ -3,6 +3,7 @@
 namespace App\Domains\UserSession\Model\Builder;
 
 use App\Domains\Shared\Model\Builder\BuilderAbstract;
+use App\Domains\User\Model\User as UserModel;
 
 class UserSession extends BuilderAbstract
 {
@@ -34,6 +35,18 @@ class UserSession extends BuilderAbstract
     public function byIp(string $ip): self
     {
         return $this->where('ip', $ip);
+    }
+
+    /**
+     * @param \App\Domains\User\Model\User $user
+     *
+     * @return self
+     */
+    public function byUser(UserModel $user): self
+    {
+        return $this->orWhere(static function ($q) use ($user) {
+            return $q->where('auth', $user->email)->orWhere('user_id', $user->id);
+        });
     }
 
     /**

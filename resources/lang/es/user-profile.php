@@ -9,6 +9,7 @@
     'password' => 'Contraseña',
     'password_current' => 'Contraseña Actual',
     'save' => 'Guardar',
+    'sessions' => 'Sesiones',
     'success' => 'Tu perfil ha sido actualizado correctmente',
     'telegram' => 'Telegram',
 ];

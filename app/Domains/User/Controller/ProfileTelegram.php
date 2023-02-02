@@ -6,7 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use App\Services\Telegram\Client as TelegramClient;
 
-class ProfileTelegram extends ControllerAbstract
+class ProfileTelegram extends ProfileAbstract
 {
     /**
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
@@ -19,7 +19,7 @@ class ProfileTelegram extends ControllerAbstract
             return redirect()->back();
         }
 
-        $this->rowAuth();
+        $this->load();
 
         if ($response = $this->actions()) {
             return $response;
@@ -30,8 +30,6 @@ class ProfileTelegram extends ControllerAbstract
         $this->meta('title', __('user-profile-telegram.meta-title'));
 
         return $this->page('user.profile-telegram', [
-            'row' => $this->row,
-            'telegram' => true,
             'telegram_username' => $this->row->telegram['username'] ?? false,
             'telegram_chat_id' => $this->row->telegram['chat_id'] ?? false,
             'telegram_bot' => $client->config('bot'),

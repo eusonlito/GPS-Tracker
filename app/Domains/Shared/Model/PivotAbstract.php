@@ -29,7 +29,7 @@ abstract class PivotAbstract extends Pivot
     public $timestamps = false;
 
     /**
-     * @var array<string>|bool
+     * @var array
      */
     protected $guarded = [];
 

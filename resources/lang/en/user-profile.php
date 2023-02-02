@@ -9,6 +9,7 @@
     'password' => 'Password',
     'password_current' => 'Current Password',
     'save' => 'Save',
+    'sessions' => 'Sessions',
     'success' => 'Your profile has been successfully updated',
     'telegram' => 'Telegram',
 ];
