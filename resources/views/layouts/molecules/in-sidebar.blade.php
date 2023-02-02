@@ -65,11 +65,31 @@
             </a>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'user.'))
+
         <li>
-            <a href="{{ route('user.index') }}" class="side-menu {{ (str_starts_with($ROUTE, 'user.') && (str_starts_with($ROUTE, 'user.profile') === false)) ? 'side-menu--active' : '' }}">
+            <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('users')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.users') }}</div>
+                <div class="side-menu__title">
+                    {{ __('in-sidebar.users') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                </div>
             </a>
+
+            <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('user.index') }}" class="side-menu {{ ($active && (str_starts_with($ROUTE, 'user.profile') === false)) ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('list')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.users-list') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('user.user-session') }}" class="side-menu {{ ($ROUTE === 'user.user-session') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('key')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.users-sessions') }}</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         @php ($active = str_starts_with($ROUTE, 'server.'))

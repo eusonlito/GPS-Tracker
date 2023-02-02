@@ -2,7 +2,7 @@
 
 namespace App\Domains\User\Model\Builder;
 
-use App\Domains\Shared\Model\Builder\BuilderAbstract;
+use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 
 class User extends BuilderAbstract
 {

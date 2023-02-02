@@ -3,7 +3,7 @@
 namespace App\Domains\{{ domain }}\Model\Builder;
 
 use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
-use App\Domains\Shared\Model\Builder\BuilderAbstract;
+use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 use App\Domains\Tag\Model\Tag as TagModel;
 
 class {{ domain }}Tag extends BuilderAbstract

@@ -15,7 +15,7 @@ Route::group(['middleware' => ['user.request']], static function () {
 Route::group(['middleware' => ['user-auth']], static function () {
     Route::any('/user/profile', Profile::class)->name('user.profile');
     Route::any('/user/profile/telegram', ProfileTelegram::class)->name('user.profile.telegram');
-    Route::any('/user/profile/user-session', ProfileUserSession::class)->name('user.profile.user-session');
+    Route::get('/user/profile/user-session', ProfileUserSession::class)->name('user.profile.user-session');
     Route::any('/user/disabled', Disabled::class)->name('user.disabled');
 });
 
@@ -23,5 +23,6 @@ Route::group(['middleware' => ['user-auth-admin']], static function () {
     Route::get('/user', Index::class)->name('user.index');
     Route::any('/user/create', Create::class)->name('user.create');
     Route::any('/user/{id}', Update::class)->name('user.update');
-    Route::any('/user/{id}/user-session', UpdateUserSession::class)->name('user.update.user-session');
+    Route::get('/user/{id}/user-session', UpdateUserSession::class)->name('user.update.user-session');
+    Route::get('/user/user-session', UserSession::class)->name('user.user-session');
 });

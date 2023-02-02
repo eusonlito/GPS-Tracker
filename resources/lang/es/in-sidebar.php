@@ -14,5 +14,7 @@
     'timezones' => 'Zonas Horarias',
     'trips' => 'Viajes',
     'users' => 'Usuarios',
+    'users-list' => 'Lista',
+    'users-sessions' => 'Sesiones',
     'vehicles' => 'Vehículos',
 ];

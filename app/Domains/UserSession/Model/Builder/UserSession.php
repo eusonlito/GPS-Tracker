@@ -2,7 +2,7 @@
 
 namespace App\Domains\UserSession\Model\Builder;
 
-use App\Domains\Shared\Model\Builder\BuilderAbstract;
+use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 use App\Domains\User\Model\User as UserModel;
 
 class UserSession extends BuilderAbstract
@@ -50,6 +50,14 @@ class UserSession extends BuilderAbstract
     }
 
     /**
+     * @return self
+     */
+    public function list(): self
+    {
+        return $this->orderByCreatedAtDesc();
+    }
+
+    /**
      * @param bool $success
      *
      * @return self
@@ -57,5 +65,13 @@ class UserSession extends BuilderAbstract
     public function whereSuccess(bool $success = true): self
     {
         return $this->where('success', $success);
+    }
+
+    /**
+     * @return self
+     */
+    public function withUser(): self
+    {
+        return $this->with('user');
     }
 }

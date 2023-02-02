@@ -71,11 +71,31 @@
             </a>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'user.'))
+
         <li>
-            <a href="{{ route('user.index') }}" class="menu {{ (str_starts_with($ROUTE, 'user.') && (str_starts_with($ROUTE, 'user.profile') === false)) ? 'menu--active' : '' }}">
+            <a href="javascript:;" class="menu {{ $active ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('users')</div>
-                <div class="menu__title">{{ __('in-sidebar.users') }}</div>
+                <div class="menu__title">
+                    {{ __('in-sidebar.users') }} <div class="menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                </div>
             </a>
+
+            <ul class="{{ $active ? 'menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('user.index') }}" class="menu {{ ($active && (str_starts_with($ROUTE, 'user.profile') === false)) ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('list')</div>
+                        <div class="menu__title">{{ __('in-sidebar.users-list') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('user.user-session') }}" class="menu {{ ($ROUTE === 'user.user-session') ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('key')</div>
+                        <div class="menu__title">{{ __('in-sidebar.users-sessions') }}</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         <li>

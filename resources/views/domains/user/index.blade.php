@@ -41,7 +41,7 @@
                 <td data-table-sort-value="{{ (int)$row->admin }}">@status($row->admin)</td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}">@status($row->enabled)</td>
                 <td class="w-1">
-                    <a href="{{ route('user.update.user-session', $row->id) }}">@icon('log-in', 'w-4 h-4')</a>
+                    <a href="{{ route('user.update.user-session', $row->id) }}">@icon('key', 'w-4 h-4')</a>
                 </td>
             </tr>
 
