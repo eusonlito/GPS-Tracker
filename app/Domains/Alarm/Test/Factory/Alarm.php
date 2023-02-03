@@ -8,14 +8,14 @@ use App\Domains\Alarm\Model\Alarm as Model;
 class Alarm extends FactoryEloquent
 {
     /**
-     * @var string
+     * @var class-string<Illuminate\Database\Eloquent\Model>
      */
     protected $model = Model::class;
 
     /**
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'name' => $this->faker->name,
