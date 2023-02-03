@@ -187,6 +187,10 @@ return [
     */
 
     'aliases' => [
+        // psalm-plugin-laravel requiriments
+        // https://github.com/psalm/psalm-plugin-laravel/issues/271
+        'Eloquent' => Illuminate\Database\Eloquent\Model::class,
+
         'Html' => App\Services\Html\Html::class,
     ],
 
