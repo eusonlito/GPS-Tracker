@@ -52,6 +52,25 @@ return [
             'log' => (bool)env('DB_LOG', false),
             'log_backtrace' => (bool)env('DB_LOG_BACKTRACE'),
         ],
+
+        'test' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'forge').'_test',
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'timezone' => '+00:00',
+            'options' => [],
+            'log' => false,
+            'log_backtrace' => false,
+        ],
     ],
 
     /*

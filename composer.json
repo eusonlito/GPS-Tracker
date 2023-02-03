@@ -10,7 +10,7 @@
         "eusonlito/captcha": "^1.1.1",
         "eusonlito/laravel-meta": "^3.2.3",
         "eusonlito/laravel-packer": "^2.2.6",
-        "laravel/framework": "^9.50.1",
+        "laravel/framework": "^9.50.2",
         "laravel/helpers": "^1.6",
         "predis/predis": "^2.1.1",
         "sentry/sentry-laravel": "^3.2",
@@ -18,11 +18,13 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
+        "brianium/paratest": "^6.8",
         "friendsofphp/php-cs-fixer": "^3.14.3",
         "laravel/pint": "^1.4.1",
         "nunomaduro/collision": "^6.4",
         "nunomaduro/larastan": "^2.4",
         "nunomaduro/phpinsights": "dev-master",
+        "phpunit/phpunit": "^9.6.1",
         "psalm/plugin-laravel": "^2.7",
         "spatie/laravel-ignition": "^1.6.4",
         "vimeo/psalm": "^5.6"
@@ -47,6 +49,11 @@
         "files": [
             "app/Services/Helper/functions.php"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

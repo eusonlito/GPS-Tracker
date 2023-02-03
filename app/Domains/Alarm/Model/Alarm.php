@@ -2,18 +2,21 @@
 
 namespace App\Domains\Alarm\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Domains\Alarm\Model\Builder\Alarm as Builder;
 use App\Domains\Alarm\Model\Collection\Alarm as Collection;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
+use App\Domains\Alarm\Test\Factory\Alarm as TestFactory;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Alarm extends ModelAbstract
 {
+    use HasFactory;
     use TypeFormatTrait;
 
     /**
@@ -58,6 +61,14 @@ class Alarm extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\Alarm\Test\Factory\Alarm
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 
     /**

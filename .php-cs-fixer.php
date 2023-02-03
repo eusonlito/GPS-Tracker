@@ -13,4 +13,4 @@ return (new Config())
         'no_unused_imports' => true,
         'phpdoc_separation' => true,
     ])
-    ->setFinder(Finder::create()->in(['app', 'database', 'config']));
+    ->setFinder(Finder::create()->in(['app', 'config', 'database', 'tests']));

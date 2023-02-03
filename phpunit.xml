@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        bootstrap="vendor/autoload.php"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        processIsolation="false"
+        stopOnFailure="true">
+
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./app</directory>
+        </include>
+    </coverage>
+
+    <testsuites>
+        <testsuite name="Feature">
+            <directory suffix=".php">./app/Domains/Alarm/Test/Feature</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <server name="APP_DEBUG" value="0" />
+        <server name="APP_ENV" value="testing" />
+        <server name="APP_LOCALE" value="es" />
+        <server name="AUTH_CHECK_ALLOWED" value="3" />
+        <server name="BCRYPT_ROUNDS" value="4" />
+        <server name="CACHE_DRIVER" value="array" />
+        <server name="DB_CONNECTION" value="test" />
+        <server name="DEBUGBAR_ENABLED" value="0" />
+        <server name="MAIL_DRIVER" value="array" />
+        <server name="QUEUE_CONNECTION" value="sync" />
+        <server name="SESSION_DRIVER" value="array" />
+    </php>
+</phpunit>

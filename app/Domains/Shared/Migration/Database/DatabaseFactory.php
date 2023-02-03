@@ -17,6 +17,7 @@ class DatabaseFactory
         return match ($db->getDriverName()) {
             'pgsql' => new PostgreSQL($db),
             'mysql' => new MySQL($db),
+            'sqlite' => new SQLite($db),
             default => throw new LogicException('Invalid Database Driver'),
         };
     }
