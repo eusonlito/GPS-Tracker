@@ -53,30 +53,6 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return \App\Domains\User\Model\User
-     */
-    public function profile(): Model
-    {
-        return $this->actionHandleTransaction(Profile::class, $this->validate()->profile());
-    }
-
-    /**
-     * @return \App\Domains\User\Model\User
-     */
-    public function profileTelegram(): Model
-    {
-        return $this->actionHandleTransaction(ProfileTelegram::class, $this->validate()->profileTelegram());
-    }
-
-    /**
-     * @return \App\Domains\User\Model\User
-     */
-    public function profileTelegramChatId(): Model
-    {
-        return $this->actionHandleTransaction(ProfileTelegramChatId::class);
-    }
-
-    /**
      * @return void
      */
     public function request(): void

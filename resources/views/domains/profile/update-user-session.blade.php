@@ -1,4 +1,4 @@
-@extends ('domains.user.profile-layout')
+@extends ('domains.profile.update-layout')
 
 @section ('content')
 
@@ -6,9 +6,9 @@
     <table id="user-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-pagination="user-list-table-pagination" data-table-sort>
         <thead>
             <tr>
-                <th>{{ __('user-profile-user-session.created_at') }}</th>
-                <th>{{ __('user-profile-user-session.ip') }}</th>
-                <th>{{ __('user-profile-user-session.success') }}</th>
+                <th>{{ __('profile-update-user-session.created_at') }}</th>
+                <th>{{ __('profile-update-user-session.ip') }}</th>
+                <th>{{ __('profile-update-user-session.success') }}</th>
             </tr>
         </thead>
 

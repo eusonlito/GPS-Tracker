@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Action;
+namespace App\Domains\Profile\Action;
 
 use App\Domains\User\Model\User as Model;
 
-class ProfileTelegram extends ActionAbstract
+class UpdateTelegram extends ActionAbstract
 {
     /**
      * @return \App\Domains\User\Model\User

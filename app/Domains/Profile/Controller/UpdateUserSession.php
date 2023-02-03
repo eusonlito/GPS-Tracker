@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Controller;
+namespace App\Domains\Profile\Controller;
 
 use Illuminate\Http\Response;
 use App\Domains\UserSession\Model\UserSession as UserSessionModel;
 use App\Domains\UserSession\Model\Collection\UserSession as UserSessionCollection;
 
-class ProfileUserSession extends ProfileAbstract
+class UpdateUserSession extends ControllerAbstract
 {
     /**
      * @return \Illuminate\Http\Response
@@ -15,9 +15,9 @@ class ProfileUserSession extends ProfileAbstract
     {
         $this->load();
 
-        $this->meta('title', __('user-profile-user-session.meta-title'));
+        $this->meta('title', __('profile-update-user-session.meta-title'));
 
-        return $this->page('user.profile-user-session', [
+        return $this->page('profile.update-user-session', [
             'sessions' => $this->sessions(),
         ]);
     }

@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Action;
+namespace App\Domains\Profile\Action;
 
 use App\Domains\User\Model\User as Model;
 use App\Services\Telegram\Client as TelegramClient;
 
-class ProfileTelegramChatId extends ActionAbstract
+class UpdateTelegramChatId extends ActionAbstract
 {
     /**
      * @return \App\Domains\User\Model\User

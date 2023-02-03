@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Validate;
+namespace App\Domains\Profile\Validate;
 
 use App\Domains\Shared\Validate\ValidateAbstract;
 
-class ProfileTelegram extends ValidateAbstract
+class UpdateTelegram extends ValidateAbstract
 {
     /**
      * @return array

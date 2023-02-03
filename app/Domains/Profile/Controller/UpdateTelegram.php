@@ -1,21 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Controller;
+namespace App\Domains\Profile\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Services\Telegram\Client as TelegramClient;
 
-class ProfileTelegram extends ProfileAbstract
+class UpdateTelegram extends ControllerAbstract
 {
     /**
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function __invoke(): Response|RedirectResponse
     {
-        $client = new TelegramClient();
+        $telegram = $this->telegram();
 
-        if ($client->enabled() !== true) {
+        if ($telegram->enabled() !== true) {
             return redirect()->back();
         }
 
@@ -27,13 +26,13 @@ class ProfileTelegram extends ProfileAbstract
 
         $this->requestMergeWithRow();
 
-        $this->meta('title', __('user-profile-telegram.meta-title'));
+        $this->meta('title', __('profile-update-telegram.meta-title'));
 
-        return $this->page('user.profile-telegram', [
+        return $this->page('profile.update-telegram', [
             'telegram_username' => $this->row->telegram['username'] ?? false,
             'telegram_chat_id' => $this->row->telegram['chat_id'] ?? false,
-            'telegram_bot' => $client->config('bot'),
-            'telegram_bot_link' => $client->botLink(),
+            'telegram_bot' => $telegram->config('bot'),
+            'telegram_bot_link' => $telegram->botLink(),
         ]);
     }
 
@@ -42,18 +41,18 @@ class ProfileTelegram extends ProfileAbstract
      */
     protected function actions(): RedirectResponse|false|null
     {
-        return $this->actionPost('profileTelegramChatId')
-            ?: $this->actionPost('profileTelegram');
+        return $this->actionPost('updateTelegramChatId')
+            ?: $this->actionPost('updateTelegram');
     }
 
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function profileTelegramChatId(): RedirectResponse
+    protected function updateTelegramChatId(): RedirectResponse
     {
-        $this->action()->profileTelegramChatId();
+        $this->action()->updateTelegramChatId();
 
-        $this->sessionMessage('success', __('user-profile-telegram.success'));
+        $this->sessionMessage('success', __('profile-update-telegram.success'));
 
         return redirect()->back();
     }
@@ -61,11 +60,11 @@ class ProfileTelegram extends ProfileAbstract
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function profileTelegram(): RedirectResponse
+    protected function updateTelegram(): RedirectResponse
     {
-        $this->action()->profileTelegram();
+        $this->action()->updateTelegram();
 
-        $this->sessionMessage('success', __('user-profile-telegram.success'));
+        $this->sessionMessage('success', __('profile-update-telegram.success'));
 
         return redirect()->back();
     }

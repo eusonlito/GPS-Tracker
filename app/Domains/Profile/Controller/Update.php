@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Controller;
+namespace App\Domains\Profile\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use App\Domains\Language\Model\Language as LanguageModel;
 
-class Profile extends ProfileAbstract
+class Update extends ControllerAbstract
 {
     /**
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
@@ -15,15 +15,15 @@ class Profile extends ProfileAbstract
     {
         $this->load();
 
-        if ($response = $this->actionPost('profile')) {
+        if ($response = $this->actionPost('update')) {
             return $response;
         }
 
         $this->requestMergeWithRow();
 
-        $this->meta('title', __('user-profile.meta-title'));
+        $this->meta('title', __('profile-update.meta-title'));
 
-        return $this->page('user.profile', [
+        return $this->page('profile.update', [
             'languages' => LanguageModel::query()->list()->get(),
         ]);
     }
@@ -31,12 +31,12 @@ class Profile extends ProfileAbstract
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function profile(): RedirectResponse
+    protected function update(): RedirectResponse
     {
-        $this->action()->profile();
+        $this->action()->update();
 
-        $this->sessionMessage('success', __('user-profile.success'));
+        $this->sessionMessage('success', __('profile-update.success'));
 
-        return redirect()->route('user.profile');
+        return redirect()->route('profile.update');
     }
 }

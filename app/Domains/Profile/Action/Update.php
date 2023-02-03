@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Action;
+namespace App\Domains\Profile\Action;
 
 use Illuminate\Support\Facades\Hash;
 use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\User\Model\User as Model;
 use App\Exceptions\ValidatorException;
 
-class Profile extends ActionAbstract
+class Update extends ActionAbstract
 {
     /**
      * @return \App\Domains\User\Model\User
@@ -82,7 +82,7 @@ class Profile extends ActionAbstract
     protected function checkEmail(): void
     {
         if (Model::query()->byIdNot($this->row->id)->byEmail($this->data['email'])->count()) {
-            throw new ValidatorException(__('user-profile.error.email-exists'));
+            throw new ValidatorException(__('profile-update.error.email-exists'));
         }
     }
 

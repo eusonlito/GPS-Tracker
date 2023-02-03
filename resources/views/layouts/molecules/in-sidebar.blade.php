@@ -50,7 +50,7 @@
         </li>
 
         <li>
-            <a href="{{ route('user.profile') }}" class="side-menu {{ str_starts_with($ROUTE, 'user.profile') ? 'side-menu--active' : '' }}">
+            <a href="{{ route('profile.update') }}" class="side-menu {{ str_starts_with($ROUTE, 'profile.update') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('user')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.profile') }}</div>
             </a>
@@ -77,7 +77,7 @@
 
             <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
                 <li>
-                    <a href="{{ route('user.index') }}" class="side-menu {{ ($active && (str_starts_with($ROUTE, 'user.profile') === false)) ? 'side-menu--active' : '' }}">
+                    <a href="{{ route('user.index') }}" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">@icon('list')</div>
                         <div class="side-menu__title">{{ __('in-sidebar.users-list') }}</div>
                     </a>
