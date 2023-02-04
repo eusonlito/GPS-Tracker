@@ -2,10 +2,16 @@
 
 namespace App\Domains\Shared\Test\Feature;
 
+use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Test\TestAbstract;
 
 abstract class FeatureAbstract extends TestAbstract
 {
+    /**
+     * @return string
+     */
+    abstract protected function getModelClass(): string;
+
     /**
      * @var string
      */
@@ -17,6 +23,14 @@ abstract class FeatureAbstract extends TestAbstract
     protected string $action;
 
     /**
+     * @return \App\Domains\Shared\Model\ModelAbstract
+     */
+    protected function factoryCreateModel(): ModelAbstract
+    {
+        return $this->factoryCreate($this->getModelClass());
+    }
+
+    /**
      * @param ?string $name = null
      * @param mixed ...$params
      *
@@ -25,6 +39,16 @@ abstract class FeatureAbstract extends TestAbstract
     protected function route(?string $name = null, ...$params): string
     {
         return (string)route($this->route.($name ? ('.'.$name) : ''), $params);
+    }
+
+    /**
+     * @param mixed ...$params
+     *
+     * @return string
+     */
+    protected function routeFactoryCreateModelId(...$params): string
+    {
+        return $this->route(null, $this->factoryCreateModel()->id, ...$params);
     }
 
     /**

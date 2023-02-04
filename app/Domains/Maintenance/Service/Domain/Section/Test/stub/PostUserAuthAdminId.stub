@@ -1,0 +1,53 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Test\Feature;
+
+class {{ controller }} extends FeatureAbstract
+{
+    /**
+     * @var string
+     */
+    protected string $route = '{{ route }}';
+
+    /**
+     * @return void
+     */
+    public function testPostUnauthorizedFail(): void
+    {
+        $this->post($this->routeFactoryCreateModelId())
+            ->assertStatus(302)
+            ->assertRedirect(route('user.auth.credentials'));
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetUnauthorizedFail(): void
+    {
+        $this->get($this->routeFactoryCreateModelId())
+            ->assertStatus(405);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostUserFailed(): void
+    {
+        $this->authUser();
+
+        $this->post($this->routeFactoryCreateModelId())
+            ->assertStatus(302)
+            ->assertRedirect(route('user.auth.credentials'));
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostSuccess(): void
+    {
+        $this->authUserAdmin();
+
+        $this->post($this->routeFactoryCreateModelId())
+            ->assertStatus(200);
+    }
+}

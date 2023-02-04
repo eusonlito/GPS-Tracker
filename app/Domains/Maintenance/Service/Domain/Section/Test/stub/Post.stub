@@ -1,0 +1,40 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Test\Feature;
+
+class {{ controller }} extends FeatureAbstract
+{
+    /**
+     * @var string
+     */
+    protected string $route = '{{ route }}';
+
+    /**
+     * @return void
+     */
+    public function testGetFail(): void
+    {
+        $this->get($this->route())
+            ->assertStatus(405);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostEmptySuccess(): void
+    {
+        $this->post($this->route())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostSuccess(): void
+    {
+        $this->factoryCreateModel();
+
+        $this->post($this->route())
+            ->assertStatus(200);
+    }
+}

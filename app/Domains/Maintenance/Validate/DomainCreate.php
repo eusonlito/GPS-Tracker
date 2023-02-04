@@ -22,6 +22,7 @@ class DomainCreate extends ValidateAbstract
             'model' => ['bail', 'boolean'],
             'schedule' => ['bail', 'boolean'],
             'seeder' => ['bail', 'boolean'],
+            'test' => ['bail', 'boolean'],
             'validate' => ['bail', 'boolean'],
         ];
     }

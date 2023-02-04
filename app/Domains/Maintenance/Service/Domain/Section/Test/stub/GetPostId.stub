@@ -1,0 +1,29 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Test\Feature;
+
+class {{ controller }} extends FeatureAbstract
+{
+    /**
+     * @var string
+     */
+    protected string $route = '{{ route }}';
+
+    /**
+     * @return void
+     */
+    public function testGetSuccess(): void
+    {
+        $this->get($this->routeFactoryCreateModelId())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostSuccess(): void
+    {
+        $this->post($this->routeFactoryCreateModelId())
+            ->assertStatus(200);
+    }
+}

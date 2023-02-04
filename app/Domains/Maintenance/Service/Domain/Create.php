@@ -11,7 +11,7 @@ class Create
     /**
      * @const
      */
-    public const SECTIONS = ['Action', 'Command', 'Controller', 'Fractal', 'Mail', 'Middleware', 'Model', 'Schedule', 'Seeder', 'Validate'];
+    public const SECTIONS = ['Action', 'Command', 'Controller', 'Fractal', 'Mail', 'Middleware', 'Model', 'Schedule', 'Seeder', 'Test', 'Validate'];
 
     /**
      * @var string
@@ -34,6 +34,14 @@ class Create
     protected string $table;
 
     /**
+     * @return self
+     */
+    public static function new(): self
+    {
+        return new static(...func_get_args());
+    }
+
+    /**
      * @param string $domain
      * @param string $section
      *
@@ -43,6 +51,15 @@ class Create
     {
         $this->check();
         $this->config();
+    }
+
+    /**
+     * @return void
+     */
+    public function handle(): void
+    {
+        $this->copy();
+        $this->section();
     }
 
     /**
@@ -88,7 +105,7 @@ class Create
     /**
      * @return void
      */
-    public function copy(): void
+    protected function copy(): void
     {
         foreach (Directory::files($this->base.'/'.$this->section) as $file) {
             $this->file($file);
@@ -144,5 +161,17 @@ class Create
             '{{ table }}' => $this->table,
             '__table__' => $this->table,
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    protected function section(): void
+    {
+        $class = __NAMESPACE__.'\\Section\\'.$this->section.'\\Create';
+
+        if (class_exists($class)) {
+            $class::new($this->domain)->handle();
+        }
     }
 }

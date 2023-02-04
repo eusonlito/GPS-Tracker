@@ -16,15 +16,7 @@ class UpdateBoolean extends ControllerAbstract
     {
         $this->row($id);
 
-        return $this->json($this->fractal($this->actionCall('updateBoolean')));
-    }
-
-    /**
-     * @return \App\Domains\Alarm\Model\Alarm
-     */
-    protected function updateBoolean(): Model
-    {
-        return $this->action()->updateBoolean();
+        return $this->json($this->fractal($this->action()->updateBoolean()));
     }
 
     /**

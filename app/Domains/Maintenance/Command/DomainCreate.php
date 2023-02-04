@@ -7,12 +7,12 @@ class DomainCreate extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'maintenance:domain:create {--name=} {--action} {--command} {--controller} {--fractal} {--mail} {--middleware} {--model} {--schedule} {--seeder} {--validate}';
+    protected $signature = 'maintenance:domain:create {--name=} {--action} {--command} {--controller} {--fractal} {--mail} {--middleware} {--model} {--schedule} {--seeder} {--test} {--validate}';
 
     /**
      * @var string
      */
-    protected $description = 'Create a Domain {--name=} with {--action} {--command} {--controller} {--fractal} {--mail} {--middleware} {--model} {--schedule} {--seeder} {--validate}';
+    protected $description = 'Create a Domain {--name=} with {--action} {--command} {--controller} {--fractal} {--mail} {--middleware} {--model} {--schedule} {--seeder} {--test} {--validate}';
 
     /**
      * @return void

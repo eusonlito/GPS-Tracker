@@ -1,28 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Alarm\Test\Feature;
+namespace App\Domains\{{ domain }}\Test\Feature;
 
-class Index extends FeatureAbstract
+class {{ controller }} extends FeatureAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'alarm.index';
+    protected string $route = '{{ route }}';
 
     /**
      * @return void
      */
-    public function testGetUnauthorizedFail(): void
-    {
-        $this->get($this->route())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
-    }
-
-    /**
-     * @return void
-     */
-    public function testPostUnauthorizedFail(): void
+    public function testPostFail(): void
     {
         $this->post($this->route())
             ->assertStatus(405);
@@ -33,8 +23,6 @@ class Index extends FeatureAbstract
      */
     public function testGetEmptySuccess(): void
     {
-        $this->authUser();
-
         $this->get($this->route())
             ->assertStatus(200);
     }
@@ -44,7 +32,6 @@ class Index extends FeatureAbstract
      */
     public function testGetSuccess(): void
     {
-        $this->authUser();
         $this->factoryCreateModel();
 
         $this->get($this->route())

@@ -1,12 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Alarm\Test\Factory;
+namespace App\Domains\{{ domain }}\Test\Factory;
 
 use Illuminate\Database\Eloquent\Factories\Factory as FactoryEloquent;
-use App\Domains\Alarm\Model\Alarm as Model;
-use App\Domains\User\Model\User as UserModel;
+use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
 
-class Alarm extends FactoryEloquent
+class {{ domain }} extends FactoryEloquent
 {
     /**
      * @var class-string<Illuminate\Database\Eloquent\Model>
@@ -20,13 +19,10 @@ class Alarm extends FactoryEloquent
     {
         return [
             'name' => $this->faker->name,
-            'type' => 'movement',
             'enabled' => true,
 
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
-
-            'user_id' => static fn () => UserModel::first() ?: UserModel::factory(),
         ];
     }
 }

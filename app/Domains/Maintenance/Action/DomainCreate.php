@@ -43,7 +43,7 @@ class DomainCreate extends ActionAbstract
     protected function section(string $section): void
     {
         if ($this->data[strtolower($section)] ?? false) {
-            (new CreateService($this->data['name'], $section))->copy();
+            CreateService::new($this->data['name'], $section)->handle();
         }
     }
 }

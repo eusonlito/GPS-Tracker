@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Alarm\Test\Feature;
+namespace App\Domains\{{ domain }}\Test\Feature;
 
-class Index extends FeatureAbstract
+class {{ controller }} extends FeatureAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'alarm.index';
+    protected string $route = '{{ route }}';
 
     /**
      * @return void

@@ -19,6 +19,6 @@ trait TypeFormat
      */
     public function typeFormat(?array $config = null): TypeFormatAbstract
     {
-        return $this->typeFormat ??= TypeManager::new()->factory($this->type, $config ?? $this->config);
+        return $this->typeFormat ??= TypeManager::new()->factory($this->type, $config ?? $this->config ?? []);
     }
 }
