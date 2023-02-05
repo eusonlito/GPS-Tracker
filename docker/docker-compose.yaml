@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0.32
+    restart: always
+    hostname: mysql
+    environment:
+      - MYSQL_DATABASE=tracker
+      - MYSQL_USER=tracker
+      - MYSQL_PASSWORD=tracker
+    volumes:
+      - mysql:/var/lib/mysql/
+
+  redis:
+    image: redis:7.0.8-alpine
+    restart: always
+    hostname: redis
+
+  gps-tracker:
+    image: ghcr.io/eusonlito/gps-tracker:latest
+    restart: always
+    depends_on:
+      - mysql
+      - redis
+    ports:
+      - "8080:8080"
+      - "8091:8091"
+    volumes:
+      - logs:/var/www/html/storage/logs
+    environment:
+     - DEFAULT_ADMIN_CREATE=true
+     - DEFAULT_LANGUAGE=en
+     - DEFAULT_TIMEZONE=Europe/Berlin
+     - APP_APP_NAME="GPS-Tracker"
+     - APP_APP_ENV=develop
+     - APP_APP_DEBUG=true
+
+     - APP_DB_HOST=mysql
+     - APP_DB_PORT=3306
+     - APP_DB_DATABASE=tracker
+     - APP_DB_USERNAME=tracker
+     - APP_DB_PASSWORD=tracker
+
+     - APP_QUEUE_CONNECTION=redis
+     - APP_QUEUE_SCHEDULE=true
+
+     - APP_CACHE_ENABLED=true
+     - APP_CACHE_DRIVER=redis
+     - APP_CACHE_PREFIX=tracker-cache-
+     - APP_CACHE_VERSION=1
+     - APP_CACHE_TTL=3600
+
+     - APP_REDIS_CLIENT=phpredis
+     - APP_REDIS_HOST=redis
+     - APP_REDIS_PASSWORD=null
+     - APP_REDIS_PORT=6379
+     - APP_REDIS_QUEUE=tracker
+     - APP_REDIS_PREFIX=tracker-
+     - SESSION_DRIVER=redis
+
+     - APP_DEBUGBAR_ENABLED=true
+
+volumes:
+  mysql:
+  logs:
