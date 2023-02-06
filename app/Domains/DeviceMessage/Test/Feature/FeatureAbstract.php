@@ -3,7 +3,7 @@
 namespace App\Domains\DeviceMessage\Test\Feature;
 
 use App\Domains\DeviceMessage\Model\DeviceMessage as Model;
-use App\Domains\Shared\Test\Feature\FeatureAbstract as FeatureAbstractShared;
+use App\Domains\SharedApp\Test\Feature\FeatureAbstract as FeatureAbstractShared;
 
 abstract class FeatureAbstract extends FeatureAbstractShared
 {

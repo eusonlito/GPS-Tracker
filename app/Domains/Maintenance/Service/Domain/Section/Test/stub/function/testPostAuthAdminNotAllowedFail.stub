@@ -1,0 +1,10 @@
+/**
+ * @return void
+ */
+public function testPostAuthAdminNotAllowedFail(): void
+{
+    $this->authUserAdmin();
+
+    $this->post($this->routeToController())
+        ->assertStatus(405);
+}

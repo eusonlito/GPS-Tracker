@@ -22,7 +22,7 @@ abstract class TestAbstract extends TestsAbstract
     /**
      * @var string
      */
-    protected $seeder = DatabaseSeed::class;
+    protected string $seeder = DatabaseSeed::class;
 
     /**
      * @var \Faker\Generator
@@ -33,6 +33,21 @@ abstract class TestAbstract extends TestsAbstract
      * @var ?\Illuminate\Contracts\Auth\Authenticatable
      */
     protected ?Authenticatable $auth = null;
+
+    /**
+     * @var string
+     */
+    protected string $action;
+
+    /**
+     * @return string
+     */
+    abstract protected function getModelClass(): string;
+
+    /**
+     * @return string
+     */
+    abstract protected function getUserClass(): string;
 
     /**
      * @param \Illuminate\Contracts\Auth\Authenticatable $user = null
@@ -53,7 +68,10 @@ abstract class TestAbstract extends TestsAbstract
      */
     protected function user(): UserModel
     {
-        return UserModel::orderBy('id', 'ASC')->first() ?: $this->factoryCreate(UserModel::class);
+        $model = $this->getUserClass();
+
+        return $model::orderBy('id', 'ASC')->first()
+            ?: $this->factoryCreate($model);
     }
 
     /**
@@ -61,17 +79,23 @@ abstract class TestAbstract extends TestsAbstract
      */
     protected function userLast(): UserModel
     {
-        return UserModel::orderBy('id', 'DESC')->first() ?: $this->factoryCreate(UserModel::class);
+        $model = $this->getUserClass();
+
+        return $model::orderBy('id', 'DESC')->first()
+            ?: $this->factoryCreate($model);
     }
 
     /**
-     * @param string $class
+     * @param ?string $model = null
      *
      * @return \App\Domains\Shared\Model\ModelAbstract
      */
-    protected function rowLast(string $class): ModelAbstract
+    protected function rowLast(?string $model = null): ModelAbstract
     {
-        return $class::orderBy('id', 'DESC')->first() ?: $class::factory()->create();
+        $model = $model ?: $this->getModelClass();
+
+        return $model::orderBy('id', 'DESC')->first()
+            ?: $model::factory()->create();
     }
 
     /**
@@ -83,33 +107,43 @@ abstract class TestAbstract extends TestsAbstract
     }
 
     /**
-     * @param string $class
+     * @param ?string $model = null
      *
      * @return \App\Domains\Shared\Model\ModelAbstract
      */
-    protected function factoryCreate(string $class): ModelAbstract
+    protected function factoryCreate(?string $model = null): ModelAbstract
     {
-        return $class::factory()->create();
+        return ($model ?: $this->getModelClass())::factory()->create();
     }
 
     /**
-     * @param string $class
+     * @param ?string $model = null
      *
      * @return \App\Domains\Shared\Model\ModelAbstract
      */
-    protected function factoryMake(string $class): ModelAbstract
+    protected function factoryCreateModel(?string $model = null): ModelAbstract
     {
-        return $class::factory()->make();
+        return $this->factoryCreate($model ?: $this->getModelClass());
     }
 
     /**
-     * @param string $class
+     * @param ?string $model = null
+     *
+     * @return \App\Domains\Shared\Model\ModelAbstract
+     */
+    protected function factoryMake(?string $model = null): ModelAbstract
+    {
+        return ($model ?: $this->getModelClass())::factory()->make();
+    }
+
+    /**
+     * @param ?string $model = null
      * @param array $whitelist = []
      * @param string|bool $action = ''
      *
      * @return array
      */
-    protected function factoryWhitelist(string $class, array $whitelist = [], $action = ''): array
+    protected function factoryWhitelist(?string $model = null, array $whitelist = [], $action = ''): array
     {
         return $this->whitelist($this->factoryMake($class)->toArray(), $whitelist, $action);
     }
@@ -125,11 +159,11 @@ abstract class TestAbstract extends TestsAbstract
     /**
      * @param array $data
      * @param array $whitelist = []
-     * @param string|bool $action = ''
+     * @param string|bool $action = null
      *
      * @return array
      */
-    protected function whitelist(array $data, array $whitelist = [], $action = ''): array
+    protected function whitelist(array $data, array $whitelist = [], string|bool|null $action = null): array
     {
         if ($whitelist) {
             $values = array_intersect_key($data, array_flip($whitelist));
@@ -146,6 +180,16 @@ abstract class TestAbstract extends TestsAbstract
         }
 
         return $values;
+    }
+
+    /**
+     * @param ?string $action = null
+     *
+     * @return array
+     */
+    protected function action(?string $action = null): array
+    {
+        return ['_action' => $action ?: $this->action];
     }
 
     /**

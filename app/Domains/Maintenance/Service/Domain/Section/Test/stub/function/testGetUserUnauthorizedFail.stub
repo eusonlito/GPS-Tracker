@@ -1,0 +1,11 @@
+/**
+ * @return void
+ */
+public function testGetAuthUnauthorizedFail(): void
+{
+    $this->authUser();
+
+    $this->get($this->routeToController())
+        ->assertStatus(302)
+        ->assertRedirect(route('user.auth.credentials'));
+}

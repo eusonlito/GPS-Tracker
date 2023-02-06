@@ -3,7 +3,7 @@
 namespace App\Domains\Position\Test\Feature;
 
 use App\Domains\Position\Model\Position as Model;
-use App\Domains\Shared\Test\Feature\FeatureAbstract as FeatureAbstractShared;
+use App\Domains\SharedApp\Test\Feature\FeatureAbstract as FeatureAbstractShared;
 
 abstract class FeatureAbstract extends FeatureAbstractShared
 {

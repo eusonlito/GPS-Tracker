@@ -1,0 +1,10 @@
+/**
+ * @return void
+ */
+public function testPostAuthSuccess(): void
+{
+    $this->authUser();
+    $this->factoryCreateModel();
+
+    {{ code/postSucess }}
+}

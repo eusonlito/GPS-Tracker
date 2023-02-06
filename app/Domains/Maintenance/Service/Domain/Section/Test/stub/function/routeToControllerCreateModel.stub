@@ -1,0 +1,7 @@
+/**
+ * @return string
+ */
+protected function routeToController(): string
+{
+    return $this->routeFactoryCreateModel();
+}

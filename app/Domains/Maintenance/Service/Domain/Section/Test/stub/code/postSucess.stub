@@ -1,0 +1,13 @@
+$this->factoryCreateModel();
+
+$data = $this->factoryMake()->toArray();
+
+$this->post($this->routeToController(), $data + $this->action())
+    ->assertStatus(302)
+    ->assertRedirect(route('{{ name }}.update', $this->rowLast()->id));
+
+$row = $this->rowLast();
+
+foreach ($data as $key => $value) {
+    $this->assertEquals($row->$key, $value);
+}

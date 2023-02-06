@@ -1,0 +1,10 @@
+/**
+ * @return void
+ */
+public function testGetAuthAdminEmptySuccess(): void
+{
+    $this->authUserAdmin();
+
+    $this->get($this->routeToController())
+        ->assertStatus(200);
+}

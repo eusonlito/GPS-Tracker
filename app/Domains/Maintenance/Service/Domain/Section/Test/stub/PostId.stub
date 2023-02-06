@@ -10,20 +10,15 @@ class {{ controller }} extends FeatureAbstract
     protected string $route = '{{ route }}';
 
     /**
-     * @return void
+     * @var string
      */
-    public function testGetFail(): void
-    {
-        $this->get($this->routeFactoryCreateModel())
-            ->assertStatus(405);
-    }
+    protected string $action = '{{ action }}';
 
-    /**
-     * @return void
-     */
-    public function testPostSuccess(): void
-    {
-        $this->post($this->routeFactoryCreateModel())
-            ->assertStatus(200);
-    }
+    {{ function/testGetGuestNotAllowedFail }}
+
+    {{ function/testPostGuestEmptySuccess }}
+
+    {{ function/testPostGuestSuccess }}
+
+    {{ function/routeToControllerCreateModel }}
 }

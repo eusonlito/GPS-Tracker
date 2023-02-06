@@ -3,7 +3,7 @@
 namespace App\Domains\City\Test\Feature;
 
 use App\Domains\City\Model\City as Model;
-use App\Domains\Shared\Test\Feature\FeatureAbstract as FeatureAbstractShared;
+use App\Domains\SharedApp\Test\Feature\FeatureAbstract as FeatureAbstractShared;
 
 abstract class FeatureAbstract extends FeatureAbstractShared
 {

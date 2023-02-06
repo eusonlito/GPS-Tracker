@@ -1,0 +1,8 @@
+/**
+ * @return void
+ */
+public function testPostGuestNotAllowedFail(): void
+{
+    $this->post($this->routeToController())
+        ->assertStatus(405);
+}

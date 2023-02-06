@@ -1,0 +1,30 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Test\Feature;
+
+class {{ controller }} extends FeatureAbstract
+{
+    /**
+     * @var string
+     */
+    protected string $route = '{{ route }}';
+
+    /**
+     * @var string
+     */
+    protected string $action = '{{ action }}';
+
+    {{ function/testGetGuestUnauthorizedFail }}
+
+    {{ function/testPostGuestUnauthorizedFail }}
+
+    {{ function/testGetAuthEmptySuccess }}
+
+    {{ function/testGetAuthSuccess }}
+
+    {{ function/testPostAuthEmptySuccess }}
+
+    {{ function/testPostAuthSuccess }}
+
+    {{ function/routeToControllerCreateModel }}
+}
