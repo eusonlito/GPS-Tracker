@@ -2,12 +2,16 @@
 
 namespace App\Domains\Server\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Domains\Server\Model\Builder\Server as Builder;
 use App\Domains\Server\Model\Collection\Server as Collection;
+use App\Domains\Server\Test\Factory\Server as TestFactory;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class Server extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -49,5 +53,13 @@ class Server extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\Server\Test\Factory\Server
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 }

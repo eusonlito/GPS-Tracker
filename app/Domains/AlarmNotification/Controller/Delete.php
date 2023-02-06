@@ -4,7 +4,7 @@ namespace App\Domains\AlarmNotification\Controller;
 
 use Illuminate\Http\RedirectResponse;
 
-class Update extends ControllerAbstract
+class Delete extends ControllerAbstract
 {
     /**
      * @param int $id

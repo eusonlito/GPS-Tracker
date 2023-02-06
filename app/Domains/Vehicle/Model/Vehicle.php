@@ -2,6 +2,7 @@
 
 namespace App\Domains\Vehicle\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,9 +17,12 @@ use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Builder\Vehicle as Builder;
 use App\Domains\Vehicle\Model\Collection\Vehicle as Collection;
+use App\Domains\Vehicle\Test\Factory\Vehicle as TestFactory;
 
 class Vehicle extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -52,6 +56,14 @@ class Vehicle extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\Vehicle\Test\Factory\Vehicle
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 
     /**

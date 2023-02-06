@@ -2,11 +2,13 @@
 
 namespace App\Domains\AlarmNotification\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\AlarmNotification\Model\Builder\AlarmNotification as Builder;
 use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as Collection;
+use App\Domains\AlarmNotification\Test\Factory\AlarmNotification as TestFactory;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;
@@ -16,6 +18,7 @@ use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 class AlarmNotification extends ModelAbstract
 {
     use GisTrait;
+    use HasFactory;
     use TypeFormatTrait;
 
     /**
@@ -67,6 +70,14 @@ class AlarmNotification extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\AlarmNotification\Test\Factory\AlarmNotification
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 
     /**

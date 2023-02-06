@@ -2,14 +2,18 @@
 
 namespace App\Domains\UserSession\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\UserSession\Model\Builder\UserSession as Builder;
 use App\Domains\UserSession\Model\Collection\UserSession as Collection;
+use App\Domains\UserSession\Test\Factory\UserSession as TestFactory;
 
 class UserSession extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -43,6 +47,14 @@ class UserSession extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\UserSession\Test\Factory\UserSession
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 
     /**

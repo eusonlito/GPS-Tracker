@@ -23,11 +23,13 @@ abstract class FeatureAbstract extends TestAbstract
     protected string $action;
 
     /**
+     * @param ?string $model = null
+     *
      * @return \App\Domains\Shared\Model\ModelAbstract
      */
-    protected function factoryCreateModel(): ModelAbstract
+    protected function factoryCreateModel(?string $model = null): ModelAbstract
     {
-        return $this->factoryCreate($this->getModelClass());
+        return $this->factoryCreate($model ?? $this->getModelClass());
     }
 
     /**
@@ -42,13 +44,14 @@ abstract class FeatureAbstract extends TestAbstract
     }
 
     /**
+     * @param ?string $model = null
      * @param mixed ...$params
      *
      * @return string
      */
-    protected function routeFactoryCreateModelId(...$params): string
+    protected function routeFactoryCreateModel(?string $model = null, ...$params): string
     {
-        return $this->route(null, $this->factoryCreateModel()->id, ...$params);
+        return $this->route(null, $this->factoryCreateModel($model)->id, ...$params);
     }
 
     /**

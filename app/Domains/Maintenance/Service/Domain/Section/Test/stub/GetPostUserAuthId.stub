@@ -14,7 +14,7 @@ class {{ controller }} extends FeatureAbstract
      */
     public function testGetUnauthorizedFail(): void
     {
-        $this->get($this->routeFactoryCreateModelId())
+        $this->get($this->routeFactoryCreateModel())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -24,7 +24,7 @@ class {{ controller }} extends FeatureAbstract
      */
     public function testPostUnauthorizedFail(): void
     {
-        $this->post($this->routeFactoryCreateModelId())
+        $this->post($this->routeFactoryCreateModel())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -36,7 +36,7 @@ class {{ controller }} extends FeatureAbstract
     {
         $this->authUser();
 
-        $this->get($this->routeFactoryCreateModelId())
+        $this->get($this->routeFactoryCreateModel())
             ->assertStatus(200);
     }
 
@@ -47,7 +47,7 @@ class {{ controller }} extends FeatureAbstract
     {
         $this->authUser();
 
-        $this->post($this->routeFactoryCreateModelId())
+        $this->post($this->routeFactoryCreateModel())
             ->assertStatus(200);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Domains\{{ domain }}\Test\Factory;
 
-use Illuminate\Database\Eloquent\Factories\Factory as FactoryEloquent;
+use App\Domains\Shared\Test\Factory\FactoryAbstract;
 use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
 
-class {{ domain }} extends FactoryEloquent
+class {{ domain }} extends FactoryAbstract
 {
     /**
      * @var class-string<Illuminate\Database\Eloquent\Model>
@@ -18,7 +18,7 @@ class {{ domain }} extends FactoryEloquent
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->name(),
             'enabled' => true,
 
             'created_at' => date('Y-m-d H:i:s'),

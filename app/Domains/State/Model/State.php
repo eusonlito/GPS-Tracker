@@ -2,14 +2,18 @@
 
 namespace App\Domains\State\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Country\Model\Country as CountryModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\State\Model\Builder\State as Builder;
 use App\Domains\State\Model\Collection\State as Collection;
+use App\Domains\State\Test\Factory\State as TestFactory;
 
 class State extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -43,6 +47,14 @@ class State extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\State\Test\Factory\State
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 
     /**

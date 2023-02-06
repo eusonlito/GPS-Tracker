@@ -2,14 +2,18 @@
 
 namespace App\Domains\Refuel\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Refuel\Model\Builder\Refuel as Builder;
 use App\Domains\Refuel\Model\Collection\Refuel as Collection;
+use App\Domains\Refuel\Test\Factory\Refuel as TestFactory;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Refuel extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -43,6 +47,14 @@ class Refuel extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\Refuel\Test\Factory\Refuel
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 
     /**

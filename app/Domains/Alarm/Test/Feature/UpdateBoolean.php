@@ -14,7 +14,7 @@ class UpdateBoolean extends FeatureAbstract
      */
     public function testGetUnauthorizedFail(): void
     {
-        $this->get($this->routeFactoryCreateModelId('enabled'))
+        $this->get($this->routeFactoryCreateModel(null, 'enabled'))
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -24,7 +24,7 @@ class UpdateBoolean extends FeatureAbstract
      */
     public function testPostUnauthorizedFail(): void
     {
-        $this->post($this->routeFactoryCreateModelId('enabled'))
+        $this->post($this->routeFactoryCreateModel(null, 'enabled'))
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -36,7 +36,7 @@ class UpdateBoolean extends FeatureAbstract
     {
         $this->authUser();
 
-        $this->get($this->routeFactoryCreateModelId('invalid'))
+        $this->get($this->routeFactoryCreateModel(null, 'invalid'))
             ->assertStatus(422);
     }
 
@@ -47,7 +47,7 @@ class UpdateBoolean extends FeatureAbstract
     {
         $this->authUser();
 
-        $this->post($this->routeFactoryCreateModelId('invalid'))
+        $this->post($this->routeFactoryCreateModel(null, 'invalid'))
             ->assertStatus(422);
     }
 
@@ -58,7 +58,7 @@ class UpdateBoolean extends FeatureAbstract
     {
         $this->authUser();
 
-        $this->get($this->routeFactoryCreateModelId('enabled'))
+        $this->get($this->routeFactoryCreateModel(null, 'enabled'))
             ->assertStatus(200);
     }
 
@@ -69,7 +69,7 @@ class UpdateBoolean extends FeatureAbstract
     {
         $this->authUser();
 
-        $this->post($this->routeFactoryCreateModelId('enabled'))
+        $this->post($this->routeFactoryCreateModel(null, 'enabled'))
             ->assertStatus(200);
     }
 }

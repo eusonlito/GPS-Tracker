@@ -2,12 +2,16 @@
 
 namespace App\Domains\IpLock\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Domains\IpLock\Model\Builder\IpLock as Builder;
 use App\Domains\IpLock\Model\Collection\IpLock as Collection;
+use App\Domains\IpLock\Test\Factory\IpLock as TestFactory;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class IpLock extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -41,5 +45,13 @@ class IpLock extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\IpLock\Test\Factory\IpLock
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 }

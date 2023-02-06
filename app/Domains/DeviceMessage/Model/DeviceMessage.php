@@ -2,14 +2,18 @@
 
 namespace App\Domains\DeviceMessage\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\DeviceMessage\Model\Builder\DeviceMessage as Builder;
 use App\Domains\DeviceMessage\Model\Collection\DeviceMessage as Collection;
+use App\Domains\DeviceMessage\Test\Factory\DeviceMessage as TestFactory;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class DeviceMessage extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -43,6 +47,14 @@ class DeviceMessage extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\DeviceMessage\Test\Factory\DeviceMessage
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 
     /**

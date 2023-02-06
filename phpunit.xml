@@ -20,6 +20,25 @@
     <testsuites>
         <testsuite name="Feature">
             <directory suffix=".php">./app/Domains/Alarm/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/AlarmNotification/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/City/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Configuration/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Country/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Dashboard/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Device/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/DeviceMessage/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/IpLock/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Language/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Position/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Profile/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Refuel/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Server/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/State/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Timezone/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Trip/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/User/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/UserSession/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/Vehicle/Test/Feature</directory>
         </testsuite>
     </testsuites>
 

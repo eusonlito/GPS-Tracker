@@ -2,12 +2,16 @@
 
 namespace App\Domains\Language\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Domains\Language\Model\Builder\Language as Builder;
 use App\Domains\Language\Model\Collection\Language as Collection;
+use App\Domains\Language\Test\Factory\Language as TestFactory;
 use App\Domains\SharedApp\Model\ModelAbstract;
 
 class Language extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -49,5 +53,13 @@ class Language extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\Language\Test\Factory\Language
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 }

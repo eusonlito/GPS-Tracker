@@ -2,6 +2,7 @@
 
 namespace App\Domains\Trip\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Device\Model\Device as DeviceModel;
@@ -10,10 +11,13 @@ use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Builder\Trip as Builder;
 use App\Domains\Trip\Model\Collection\Trip as Collection;
+use App\Domains\Trip\Test\Factory\Trip as TestFactory;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Trip extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -59,6 +63,14 @@ class Trip extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\Trip\Test\Factory\Trip
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 
     /**

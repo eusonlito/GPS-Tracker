@@ -2,15 +2,18 @@
 
 namespace App\Domains\Alarm\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\Alarm\Model\Builder\AlarmVehicle as Builder;
 use App\Domains\Alarm\Model\Collection\AlarmVehicle as Collection;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
+use App\Domains\Alarm\Test\Factory\AlarmVehicle as TestFactory;
 use App\Domains\SharedApp\Model\PivotAbstract;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class AlarmVehicle extends PivotAbstract
 {
+    use HasFactory;
     use TypeFormatTrait;
 
     /**
@@ -46,6 +49,14 @@ class AlarmVehicle extends PivotAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\Alarm\Test\Factory\AlarmVehicle
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 
     /**

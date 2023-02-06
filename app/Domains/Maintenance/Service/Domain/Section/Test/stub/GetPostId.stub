@@ -14,7 +14,7 @@ class {{ controller }} extends FeatureAbstract
      */
     public function testGetSuccess(): void
     {
-        $this->get($this->routeFactoryCreateModelId())
+        $this->get($this->routeFactoryCreateModel())
             ->assertStatus(200);
     }
 
@@ -23,7 +23,7 @@ class {{ controller }} extends FeatureAbstract
      */
     public function testPostSuccess(): void
     {
-        $this->post($this->routeFactoryCreateModelId())
+        $this->post($this->routeFactoryCreateModel())
             ->assertStatus(200);
     }
 }

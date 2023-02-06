@@ -2,10 +2,12 @@
 
 namespace App\Domains\Device\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Device\Model\Builder\Device as Builder;
 use App\Domains\Device\Model\Collection\Device as Collection;
+use App\Domains\Device\Test\Factory\Device as TestFactory;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\SharedApp\Model\ModelAbstract;
 use App\Domains\Trip\Model\Trip as TripModel;
@@ -14,6 +16,8 @@ use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Device extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -47,6 +51,14 @@ class Device extends ModelAbstract
     public function newEloquentBuilder($query): Builder
     {
         return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\Device\Test\Factory\Device
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
     }
 
     /**

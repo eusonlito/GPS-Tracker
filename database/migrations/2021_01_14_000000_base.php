@@ -122,8 +122,6 @@ return new class extends MigrationAbstract
             $table->string('phone_number')->nullable();
             $table->string('password')->default('');
 
-            $table->unsignedInteger('port')->default(0);
-
             $table->boolean('timezone_auto')->default(0);
             $table->boolean('enabled')->default(0);
 
@@ -239,6 +237,17 @@ return new class extends MigrationAbstract
             $this->timestamps($table);
         });
 
+        Schema::create('state', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name')->index();
+            $table->jsonb('alias')->nullable();
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('country_id');
+        });
+
         Schema::create('timezone', function (Blueprint $table) {
             $table->id();
 
@@ -274,17 +283,6 @@ return new class extends MigrationAbstract
             $table->unsignedBigInteger('timezone_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vehicle_id');
-        });
-
-        Schema::create('state', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('name')->index();
-            $table->jsonb('alias')->nullable();
-
-            $this->timestamps($table);
-
-            $table->unsignedBigInteger('country_id');
         });
 
         Schema::create('user', function (Blueprint $table) {

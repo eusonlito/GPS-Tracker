@@ -41,7 +41,7 @@
                     @endif
                 </td>
                 <td class="w-1">
-                    <a href="{{ route('alarm-notification.update', $each->id) }}" data-toggle="modal" data-target="#delete-modal" data-delete-modal-one class="text-danger">
+                    <a href="{{ route('alarm-notification.delete', $each->id) }}" data-toggle="modal" data-target="#delete-modal" data-delete-modal-one class="text-danger">
                         @icon('trash', 'w-4 h-4')
                     </a>
                 </td>

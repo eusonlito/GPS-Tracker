@@ -2,11 +2,11 @@
 
 namespace App\Domains\User\Test\Factory;
 
-use Illuminate\Database\Eloquent\Factories\Factory as FactoryEloquent;
+use App\Domains\Shared\Test\Factory\FactoryAbstract;
 use Illuminate\Support\Facades\Hash;
 use App\Domains\User\Model\User as Model;
 
-class User extends FactoryEloquent
+class User extends FactoryAbstract
 {
     /**
      * @var class-string<Illuminate\Database\Eloquent\Model>
@@ -19,8 +19,8 @@ class User extends FactoryEloquent
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
-            'email' => ($email = $this->faker->unique()->companyEmail),
+            'name' => $this->faker->name(),
+            'email' => ($email = $this->faker->companyEmail()),
             'password' => Hash::make($email),
             'admin' => false,
             'enabled' => true,
