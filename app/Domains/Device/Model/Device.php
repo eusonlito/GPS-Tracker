@@ -34,6 +34,13 @@ class Device extends ModelAbstract
     public const FOREIGN = 'device_id';
 
     /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'enabled' => 'boolean',
+    ];
+
+    /**
      * @param array $models
      *
      * @return \App\Domains\Device\Model\Collection\Device

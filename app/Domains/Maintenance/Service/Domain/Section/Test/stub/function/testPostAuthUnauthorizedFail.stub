@@ -1,0 +1,10 @@
+/**
+ * @return void
+ */
+public function testPostAuthUnauthorizedFail(): void
+{
+    $this->authUser();
+
+    $this->post($this->routeToController())
+        ->assertStatus(404);
+}

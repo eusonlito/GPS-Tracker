@@ -3,7 +3,7 @@
  */
 public function testGetGuestSuccess(): void
 {
-    $this->factoryCreateModel();
+    $this->factoryCreate();
 
     $this->get($this->routeToController())
         ->assertStatus(200);

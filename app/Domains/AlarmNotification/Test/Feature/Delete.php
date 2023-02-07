@@ -2,8 +2,6 @@
 
 namespace App\Domains\AlarmNotification\Test\Feature;
 
-use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
-
 class Delete extends FeatureAbstract
 {
     /**
@@ -12,11 +10,16 @@ class Delete extends FeatureAbstract
     protected string $route = 'alarm-notification.delete';
 
     /**
+     * @var string
+     */
+    protected string $action = 'delete';
+
+    /**
      * @return void
      */
-    public function testGetUnauthorizedFail(): void
+    public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->routeFactoryCreateModel())
+        $this->get($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -24,9 +27,9 @@ class Delete extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostUnauthorizedFail(): void
+    public function testGetGuestFail(): void
     {
-        $this->post($this->routeFactoryCreateModel())
+        $this->post($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -34,34 +37,58 @@ class Delete extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetSuccess(): void
+    public function testGetAuthEmptySuccess(): void
     {
         $this->authUser();
 
-        $route = $this->routeFactoryCreateModel();
-
-        $this->assertEquals(Model::count(), 1);
-
-        $this->get($route)
-            ->assertStatus(302);
-
-        $this->assertEquals(Model::count(), 0);
+        $this->get($this->routeToController())
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
     }
 
     /**
      * @return void
      */
-    public function testPostSuccess(): void
+    public function testGetAuthSuccess(): void
+    {
+        $this->authUser();
+        $this->factoryCreate();
+
+        $this->get($this->routeToController())
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostAuthEmptySuccess(): void
     {
         $this->authUser();
 
-        $route = $this->routeFactoryCreateModel();
+        $this->post($this->routeToController())
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
+    }
 
-        $this->assertEquals(Model::count(), 1);
+    /**
+     * @return void
+     */
+    public function testPostAuthSuccess(): void
+    {
+        $this->authUser();
+        $this->factoryCreate();
 
-        $this->post($route)
-            ->assertStatus(302);
+        $this->post($this->routeToController())
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
+    }
 
-        $this->assertEquals(Model::count(), 0);
+    /**
+     * @return string
+     */
+    protected function routeToController(): string
+    {
+        return $this->routeFactoryCreateModel();
     }
 }

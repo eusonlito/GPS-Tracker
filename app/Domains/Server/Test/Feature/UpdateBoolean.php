@@ -12,7 +12,7 @@ class UpdateBoolean extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetUnauthorizedFail(): void
+    public function testGetGuestUnauthorizedFail(): void
     {
         $this->get($this->routeToController())
             ->assertStatus(302)
@@ -22,7 +22,7 @@ class UpdateBoolean extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostUnauthorizedFail(): void
+    public function testGetGuestFail(): void
     {
         $this->post($this->routeToController())
             ->assertStatus(302)
@@ -32,7 +32,7 @@ class UpdateBoolean extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetUserFail(): void
+    public function testGetAuthUnauthorizedFail(): void
     {
         $this->authUser();
 
@@ -43,7 +43,7 @@ class UpdateBoolean extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostUserFail(): void
+    public function testPostAuthUnauthorizedFail(): void
     {
         $this->authUser();
 
@@ -54,7 +54,29 @@ class UpdateBoolean extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetSuccess(): void
+    public function testGetAuthInvalidFail(): void
+    {
+        $this->authUserAdmin();
+
+        $this->get($this->routeFactoryCreateModel(null, 'invalid'))
+            ->assertStatus(422);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostAuthInvalidFail(): void
+    {
+        $this->authUserAdmin();
+
+        $this->post($this->routeFactoryCreateModel(null, 'invalid'))
+            ->assertStatus(422);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetAuthEmptySuccess(): void
     {
         $this->authUserAdmin();
 
@@ -65,9 +87,33 @@ class UpdateBoolean extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostSuccess(): void
+    public function testGetAuthSuccess(): void
     {
         $this->authUserAdmin();
+        $this->factoryCreate();
+
+        $this->get($this->routeToController())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostAuthEmptySuccess(): void
+    {
+        $this->authUserAdmin();
+
+        $this->post($this->routeToController())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostAuthSuccess(): void
+    {
+        $this->authUserAdmin();
+        $this->factoryCreate();
 
         $this->post($this->routeToController())
             ->assertStatus(200);

@@ -12,6 +12,8 @@ class UpdateTelegramChatId extends ActionAbstract
      */
     public function handle(): Model
     {
+        $this->check();
+
         if ($this->isValid()) {
             return $this->row;
         }
@@ -20,6 +22,24 @@ class UpdateTelegramChatId extends ActionAbstract
         $this->save();
 
         return $this->row;
+    }
+
+    /**
+     * @return void
+     */
+    protected function check(): void
+    {
+        $this->checkUsername();
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkUsername(): void
+    {
+        if (empty($this->row->telegram['username'])) {
+            $this->exceptionValidator(__('profile-update-telegram-chat-id.username'));
+        }
     }
 
     /**

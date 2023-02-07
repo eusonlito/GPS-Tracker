@@ -1,5 +1,3 @@
-$this->factoryCreateModel();
-
 $data = $this->factoryMake()->toArray();
 
 $this->post($this->routeToController(), $data + $this->action())

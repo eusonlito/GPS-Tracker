@@ -22,6 +22,7 @@ class User extends FactoryAbstract
             'name' => $this->faker->name(),
             'email' => ($email = $this->faker->companyEmail()),
             'password' => Hash::make($email),
+            'telegram' => ['username' => 'Telegram'],
             'admin' => false,
             'enabled' => true,
             'created_at' => date('Y-m-d H:i:s'),

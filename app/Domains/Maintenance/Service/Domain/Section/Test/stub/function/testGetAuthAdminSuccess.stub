@@ -4,7 +4,7 @@
 public function testGetAuthAdminSuccess(): void
 {
     $this->authUserAdmin();
-    $this->factoryCreateModel();
+    $this->factoryCreate();
 
     $this->get($this->routeToController())
         ->assertStatus(200);

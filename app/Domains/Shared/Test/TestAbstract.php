@@ -121,16 +121,6 @@ abstract class TestAbstract extends TestsAbstract
      *
      * @return \App\Domains\Shared\Model\ModelAbstract
      */
-    protected function factoryCreateModel(?string $model = null): ModelAbstract
-    {
-        return $this->factoryCreate($model ?: $this->getModelClass());
-    }
-
-    /**
-     * @param ?string $model = null
-     *
-     * @return \App\Domains\Shared\Model\ModelAbstract
-     */
     protected function factoryMake(?string $model = null): ModelAbstract
     {
         return ($model ?: $this->getModelClass())::factory()->make();

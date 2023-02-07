@@ -30,7 +30,7 @@ abstract class FeatureAbstract extends TestAbstract
      */
     protected function routeFactoryCreateModel(?string $model = null, ...$params): string
     {
-        return $this->route(null, $this->factoryCreateModel($model)->id, ...$params);
+        return $this->route(null, $this->factoryCreate($model)->id, ...$params);
     }
 
     /**

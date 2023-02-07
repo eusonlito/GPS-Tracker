@@ -10,11 +10,16 @@ class Create extends FeatureAbstract
     protected string $route = 'server.create';
 
     /**
+     * @var string
+     */
+    protected string $action = 'create';
+
+    /**
      * @return void
      */
-    public function testGetUnauthorizedFail(): void
+    public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -22,9 +27,9 @@ class Create extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostUnauthorizedFail(): void
+    public function testGetGuestFail(): void
     {
-        $this->post($this->route())
+        $this->post($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -32,68 +37,94 @@ class Create extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetUserFail(): void
+    public function testGetAuthUnauthorizedFail(): void
     {
         $this->authUser();
 
-        $this->get($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(404);
     }
 
     /**
      * @return void
      */
-    public function testPostUserFail(): void
+    public function testPostAuthUnauthorizedFail(): void
     {
         $this->authUser();
 
-        $this->post($this->route())
+        $this->post($this->routeToController())
             ->assertStatus(404);
     }
 
     /**
      * @return void
      */
-    public function testGetEmptySuccess(): void
+    public function testGetAuthAdminEmptySuccess(): void
     {
         $this->authUserAdmin();
 
-        $this->get($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(200);
     }
 
     /**
      * @return void
      */
-    public function testGetSuccess(): void
+    public function testGetAuthAdminSuccess(): void
     {
         $this->authUserAdmin();
-        $this->factoryCreateModel();
+        $this->factoryCreate();
 
-        $this->get($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(200);
     }
 
     /**
      * @return void
      */
-    public function testPostEmptySuccess(): void
+    public function testPostAuthAdminEmptySuccess(): void
     {
         $this->authUserAdmin();
 
-        $this->post($this->route())
-            ->assertStatus(200);
+        $data = $this->factoryMake()->toArray();
+
+        $this->post($this->routeToController(), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route('server.update', $this->rowLast()->id));
+
+        $row = $this->rowLast();
+
+        foreach ($data as $key => $value) {
+            $this->assertEquals($row->$key, $value);
+        }
     }
 
     /**
      * @return void
      */
-    public function testPostSuccess(): void
+    public function testPostAuthAdminSuccess(): void
     {
         $this->authUserAdmin();
-        $this->factoryCreateModel();
+        $this->factoryCreate();
 
-        $this->post($this->route())
-            ->assertStatus(200);
+        $data = $this->factoryMake()->toArray();
+
+        $this->post($this->routeToController(), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route('server.update', $this->rowLast()->id));
+
+        $row = $this->rowLast();
+
+        foreach ($data as $key => $value) {
+            $this->assertEquals($row->$key, $value);
+        }
+    }
+
+    /**
+     * @return string
+     */
+    protected function routeToController(): string
+    {
+        return $this->route();
     }
 }

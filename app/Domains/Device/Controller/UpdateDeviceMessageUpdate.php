@@ -27,7 +27,7 @@ class UpdateDeviceMessageUpdate extends ControllerAbstract
      */
     protected function actions(): void
     {
-        $this->actionPost('updateDeviceMessageDelete') ?: $this->actionPost('updateDeviceMessageDuplicate');
+        $this->actionPost('updateDeviceMessageDuplicate') ?: $this->actionPost('updateDeviceMessageDelete');
     }
 
     /**

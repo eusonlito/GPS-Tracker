@@ -122,7 +122,6 @@ return new class extends MigrationAbstract
             $table->string('phone_number')->nullable();
             $table->string('password')->default('');
 
-            $table->boolean('timezone_auto')->default(0);
             $table->boolean('enabled')->default(0);
 
             $table->dateTimeTz('connected_at')->nullable();

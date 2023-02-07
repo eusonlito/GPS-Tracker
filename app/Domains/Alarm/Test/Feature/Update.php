@@ -51,7 +51,7 @@ class Update extends FeatureAbstract
     public function testGetAuthSuccess(): void
     {
         $this->authUser();
-        $this->factoryCreateModel();
+        $this->factoryCreate();
 
         $this->get($this->routeToController())
             ->assertStatus(200);
@@ -63,8 +63,6 @@ class Update extends FeatureAbstract
     public function testPostAuthEmptySuccess(): void
     {
         $this->authUser();
-
-        $this->factoryCreateModel();
 
         $data = $this->factoryMake()->toArray();
 
@@ -85,9 +83,7 @@ class Update extends FeatureAbstract
     public function testPostAuthSuccess(): void
     {
         $this->authUser();
-        $this->factoryCreateModel();
-
-        $this->factoryCreateModel();
+        $this->factoryCreate();
 
         $data = $this->factoryMake()->toArray();
 

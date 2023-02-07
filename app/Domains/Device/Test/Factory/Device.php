@@ -21,11 +21,10 @@ class Device extends FactoryAbstract
         return [
             'name' => $this->faker->name(),
             'maker' => $this->faker->name(),
-            'serial' => $this->faker->numberBetween(),
+            'serial' => strval($this->faker->numberBetween()),
             'phone_number' => $this->faker->phoneNumber(),
             'password' => $this->faker->name(),
 
-            'timezone_auto' => true,
             'enabled' => true,
 
             'connected_at' => date('Y-m-d H:i:s'),

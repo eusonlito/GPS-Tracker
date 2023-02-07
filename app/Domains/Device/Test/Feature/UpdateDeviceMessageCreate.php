@@ -2,6 +2,8 @@
 
 namespace App\Domains\Device\Test\Feature;
 
+use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
+
 class UpdateDeviceMessageCreate extends FeatureAbstract
 {
     /**
@@ -10,11 +12,16 @@ class UpdateDeviceMessageCreate extends FeatureAbstract
     protected string $route = 'device.update.device-message.create';
 
     /**
+     * @var string
+     */
+    protected string $action = 'updateDeviceMessageCreate';
+
+    /**
      * @return void
      */
-    public function testGetUnauthorizedFail(): void
+    public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->routeFactoryCreateModel())
+        $this->get($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -22,9 +29,9 @@ class UpdateDeviceMessageCreate extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostUnauthorizedFail(): void
+    public function testGetGuestFail(): void
     {
-        $this->post($this->routeFactoryCreateModel())
+        $this->post($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -32,22 +39,62 @@ class UpdateDeviceMessageCreate extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetSuccess(): void
+    public function testGetAuthEmptySuccess(): void
     {
         $this->authUser();
 
-        $this->get($this->routeFactoryCreateModel())
-            ->assertStatus(302);
+        $this->get($this->routeToController())
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
     }
 
     /**
      * @return void
      */
-    public function testPostSuccess(): void
+    public function testGetAuthSuccess(): void
+    {
+        $this->authUser();
+        $this->factoryCreate();
+
+        $this->get($this->routeToController())
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostAuthEmptySuccess(): void
     {
         $this->authUser();
 
-        $this->post($this->routeFactoryCreateModel())
-            ->assertStatus(302);
+        $data = $this->factoryMake(DeviceMessageModel::class)->toArray();
+
+        $this->post($this->routeToController(), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostAuthSuccess(): void
+    {
+        $this->authUser();
+        $this->factoryCreate();
+
+        $data = $this->factoryMake(DeviceMessageModel::class)->toArray();
+
+        $this->post($this->routeToController(), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
+    }
+
+    /**
+     * @return string
+     */
+    protected function routeToController(): string
+    {
+        return $this->routeFactoryCreateModel();
     }
 }

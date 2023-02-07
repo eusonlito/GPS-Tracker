@@ -1,9 +1,9 @@
 /**
  * @return void
  */
-public function testPostGuestEmptySuccess(): void
+public function testPostGuestSuccess(): void
 {
-    $this->factoryCreateModel();
+    $this->factoryCreate();
 
     {{ code/postSucess }}
 }

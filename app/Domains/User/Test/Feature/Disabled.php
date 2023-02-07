@@ -12,9 +12,9 @@ class Disabled extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetUnauthorizedFail(): void
+    public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -22,9 +22,9 @@ class Disabled extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostUnauthorizedFail(): void
+    public function testGetGuestFail(): void
     {
-        $this->post($this->route())
+        $this->post($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -32,11 +32,11 @@ class Disabled extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetNoDisabledFail(): void
+    public function testGetAuthEnabledFail(): void
     {
         $this->authUser();
 
-        $this->get($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('dashboard.index'));
     }
@@ -44,24 +44,11 @@ class Disabled extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetSuccess(): void
-    {
-        $row = $this->authUser();
-        $row->enabled = false;
-        $row->save();
-
-        $this->get($this->route())
-            ->assertStatus(200);
-    }
-
-    /**
-     * @return void
-     */
-    public function testPostNoDisabledFail(): void
+    public function testPostAuthEnabledFail(): void
     {
         $this->authUser();
 
-        $this->post($this->route())
+        $this->post($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('dashboard.index'));
     }
@@ -69,13 +56,64 @@ class Disabled extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostSuccess(): void
+    public function testGetAuthEmptySuccess(): void
     {
-        $row = $this->authUser();
-        $row->enabled = false;
-        $row->save();
+        $user = $this->authUser();
+        $user->enabled = false;
+        $user->save();
 
-        $this->post($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetAuthSuccess(): void
+    {
+        $user = $this->authUser();
+        $user->enabled = false;
+        $user->save();
+
+        $this->factoryCreate();
+
+        $this->get($this->routeToController())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostAuthEmptySuccess(): void
+    {
+        $user = $this->authUser();
+        $user->enabled = false;
+        $user->save();
+
+        $this->post($this->routeToController())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostAuthSuccess(): void
+    {
+        $user = $this->authUser();
+        $user->enabled = false;
+        $user->save();
+
+        $this->factoryCreate();
+
+        $this->post($this->routeToController())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return string
+     */
+    protected function routeToController(): string
+    {
+        return $this->route();
     }
 }

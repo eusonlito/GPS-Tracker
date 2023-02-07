@@ -10,11 +10,16 @@ class Update extends FeatureAbstract
     protected string $route = 'profile.update';
 
     /**
+     * @var string
+     */
+    protected string $action = 'update';
+
+    /**
      * @return void
      */
-    public function testGetUnauthorizedFail(): void
+    public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -22,9 +27,9 @@ class Update extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostUnauthorizedFail(): void
+    public function testGetGuestFail(): void
     {
-        $this->post($this->route())
+        $this->post($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -32,46 +37,46 @@ class Update extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetEmptySuccess(): void
+    public function testGetAuthEmptySuccess(): void
     {
         $this->authUser();
 
-        $this->get($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(200);
     }
 
     /**
      * @return void
      */
-    public function testGetSuccess(): void
+    public function testGetAuthSuccess(): void
     {
         $this->authUser();
-        $this->factoryCreateModel();
+        $this->factoryCreate();
 
-        $this->get($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(200);
     }
 
     /**
      * @return void
      */
-    public function testPostEmptySuccess(): void
+    public function testPostAuthSuccess(): void
     {
-        $this->authUser();
+        $user = $this->authUser();
 
-        $this->post($this->route())
-            ->assertStatus(200);
+        $data = $this->factoryMake()->toArray();
+        $data['password_current'] = $user->email;
+
+        $this->post($this->routeToController(), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect($this->routeToController());
     }
 
     /**
-     * @return void
+     * @return string
      */
-    public function testPostSuccess(): void
+    protected function routeToController(): string
     {
-        $this->authUser();
-        $this->factoryCreateModel();
-
-        $this->post($this->route())
-            ->assertStatus(200);
+        return $this->route();
     }
 }

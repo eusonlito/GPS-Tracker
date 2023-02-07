@@ -4,7 +4,7 @@
 public function testGetAuthSuccess(): void
 {
     $this->authUser();
-    $this->factoryCreateModel();
+    $this->factoryCreate();
 
     $this->get($this->routeToController())
         ->assertStatus(200);

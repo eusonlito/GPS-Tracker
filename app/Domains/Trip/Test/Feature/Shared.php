@@ -12,18 +12,26 @@ class Shared extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostFail(): void
+    public function testPostGuestNotAllowedFail(): void
     {
-        $this->post($this->route(null, $this->factoryCreateModel()->code))
+        $this->post($this->routeToController())
             ->assertStatus(405);
     }
 
     /**
      * @return void
      */
-    public function testGetSuccess(): void
+    public function testGetGuestSuccess(): void
     {
-        $this->get($this->route(null, $this->factoryCreateModel()->code))
+        $this->get($this->routeToController())
             ->assertStatus(200);
+    }
+
+    /**
+     * @return string
+     */
+    protected function routeToController(): string
+    {
+        return $this->route(null, $this->factoryCreate()->code);
     }
 }

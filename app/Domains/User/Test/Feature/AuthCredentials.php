@@ -10,31 +10,63 @@ class AuthCredentials extends FeatureAbstract
     protected string $route = 'user.auth.credentials';
 
     /**
+     * @var string
+     */
+    protected string $action = 'authCredentials';
+
+    /**
      * @return void
      */
-    public function testGetSuccess(): void
+    public function testGetGuestEmptySuccess(): void
     {
-        $this->get($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(200);
     }
 
     /**
      * @return void
      */
-    public function testPostEmptySuccess(): void
+    public function testGetGuestSuccess(): void
     {
-        $this->post($this->route())
+        $this->factoryCreate();
+
+        $this->get($this->routeToController())
             ->assertStatus(200);
     }
 
     /**
      * @return void
      */
-    public function testPostSuccess(): void
+    public function testPostGuestEmptySuccess(): void
     {
-        $this->factoryCreateModel();
+        $data = $this->factoryCreate()->toArray();
+        $data['password'] = $data['email'];
 
-        $this->post($this->route())
-            ->assertStatus(200);
+        $this->post($this->routeToController(), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostGuestSuccess(): void
+    {
+        $this->factoryCreate();
+
+        $data = $this->factoryCreate()->toArray();
+        $data['password'] = $data['email'];
+
+        $this->post($this->routeToController(), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
+    }
+
+    /**
+     * @return string
+     */
+    protected function routeToController(): string
+    {
+        return $this->route();
     }
 }

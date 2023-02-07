@@ -12,9 +12,9 @@ class Logout extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetUnauthorizedFail(): void
+    public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->route())
+        $this->get($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -22,21 +22,53 @@ class Logout extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostUnauthorizedFail(): void
+    public function testPostGuestNotAllowedFail(): void
     {
-        $this->post($this->route())
+        $this->post($this->routeToController())
             ->assertStatus(405);
     }
 
     /**
      * @return void
      */
-    public function testGetSuccess(): void
+    public function testPostAuthNotAllowedFail(): void
     {
         $this->authUser();
 
-        $this->get($this->route())
+        $this->post($this->routeToController())
+            ->assertStatus(405);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetAuthEmptySuccess(): void
+    {
+        $this->authUser();
+
+        $this->get($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetAuthSuccess(): void
+    {
+        $this->authUser();
+        $this->factoryCreate();
+
+        $this->get($this->routeToController())
+            ->assertStatus(302)
+            ->assertRedirect(route('user.auth.credentials'));
+    }
+
+    /**
+     * @return string
+     */
+    protected function routeToController(): string
+    {
+        return $this->route();
     }
 }
