@@ -8,7 +8,7 @@ use App\Domains\Server\Model\Server as Model;
 class Server extends FactoryAbstract
 {
     /**
-     * @var class-string<Illuminate\Database\Eloquent\Model>
+     * @var string
      */
     protected $model = Model::class;
 

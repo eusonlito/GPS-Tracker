@@ -135,7 +135,7 @@ abstract class TestAbstract extends TestsAbstract
      */
     protected function factoryWhitelist(?string $model = null, array $whitelist = [], $action = ''): array
     {
-        return $this->whitelist($this->factoryMake($class)->toArray(), $whitelist, $action);
+        return $this->whitelist($this->factoryMake($model)->toArray(), $whitelist, $action);
     }
 
     /**

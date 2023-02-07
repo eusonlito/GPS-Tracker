@@ -8,7 +8,7 @@ use App\Domains\IpLock\Model\IpLock as Model;
 class IpLock extends FactoryAbstract
 {
     /**
-     * @var class-string<Illuminate\Database\Eloquent\Model>
+     * @var string
      */
     protected $model = Model::class;
 

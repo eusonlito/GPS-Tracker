@@ -9,7 +9,7 @@ use App\Domains\DeviceMessage\Model\DeviceMessage as Model;
 class DeviceMessage extends FactoryAbstract
 {
     /**
-     * @var class-string<Illuminate\Database\Eloquent\Model>
+     * @var string
      */
     protected $model = Model::class;
 

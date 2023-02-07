@@ -8,7 +8,7 @@ use App\Domains\Language\Model\Language as Model;
 class Language extends FactoryAbstract
 {
     /**
-     * @var class-string<Illuminate\Database\Eloquent\Model>
+     * @var string
      */
     protected $model = Model::class;
 

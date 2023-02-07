@@ -9,9 +9,9 @@ use App\Domains\User\Model\User as UserModel;
 abstract class FactoryAbstract extends Factory
 {
     /**
-     * @var class-string<Illuminate\Database\Eloquent\Model>
+     * @var string
      */
-    protected $model = Model::class;
+    protected $model;
 
     /**
      * @param string $class

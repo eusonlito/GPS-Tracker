@@ -9,7 +9,7 @@ use App\Domains\User\Model\User as Model;
 class User extends FactoryAbstract
 {
     /**
-     * @var class-string<Illuminate\Database\Eloquent\Model>
+     * @var string
      */
     protected $model = Model::class;
 

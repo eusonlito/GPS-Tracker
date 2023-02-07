@@ -9,27 +9,27 @@ use App\Exceptions\UnexpectedValueException;
 class Stub
 {
     /**
-     * @param string
+     * @var string
      */
     protected string $name;
 
     /**
-     * @param string
+     * @var string
      */
     protected string $controller;
 
     /**
-     * @param string
+     * @var string
      */
     protected string $controllerFile;
 
     /**
-     * @param string
+     * @var string
      */
     protected string $action;
 
     /**
-     * @param string
+     * @var string
      */
     protected string $code;
 

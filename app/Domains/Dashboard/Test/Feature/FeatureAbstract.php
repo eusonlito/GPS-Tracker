@@ -2,7 +2,6 @@
 
 namespace App\Domains\Dashboard\Test\Feature;
 
-use App\Domains\Dashboard\Model\Dashboard as Model;
 use App\Domains\SharedApp\Test\Feature\FeatureAbstract as FeatureAbstractShared;
 
 abstract class FeatureAbstract extends FeatureAbstractShared
@@ -12,6 +11,6 @@ abstract class FeatureAbstract extends FeatureAbstractShared
      */
     protected function getModelClass(): string
     {
-        return Model::class;
+        return '';
     }
 }

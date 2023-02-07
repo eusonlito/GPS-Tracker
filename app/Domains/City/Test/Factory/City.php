@@ -9,7 +9,7 @@ use App\Domains\State\Model\State as StateModel;
 class City extends FactoryAbstract
 {
     /**
-     * @var class-string<Illuminate\Database\Eloquent\Model>
+     * @var string
      */
     protected $model = Model::class;
 

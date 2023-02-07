@@ -8,7 +8,7 @@ use App\Domains\Alarm\Model\Alarm as Model;
 class Alarm extends FactoryAbstract
 {
     /**
-     * @var class-string<Illuminate\Database\Eloquent\Model>
+     * @var string
      */
     protected $model = Model::class;
 
