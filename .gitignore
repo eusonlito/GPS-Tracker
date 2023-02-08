@@ -1,6 +1,7 @@
 /node_modules
 /public/manifest.json
 /public/hot
+/storage/docker
 /storage/tmp
 /vendor
 

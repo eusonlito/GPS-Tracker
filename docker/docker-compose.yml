@@ -1,0 +1,62 @@
+version: "3.9"
+
+services:
+    gpstracker-mariadb:
+        image: mariadb:10.4
+        container_name: gpstracker-mariadb
+        restart: always
+        ports:
+            - "3307:3306"
+        volumes:
+            - ./../storage/docker/db:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=gpstracker
+            - MYSQL_PASSWORD=gpstracker
+            - MYSQL_DATABASE=gpstracker
+        command:
+            - --character-set-server=utf8
+            - --collation-server=utf8_unicode_ci
+        networks:
+            - app
+        healthcheck:
+            test: mysqladmin ping -h localhost --password=root
+            interval: 1s
+            retries: 15
+
+    gpstracker-redis:
+        image: redis:7.0.8
+        container_name: gpstracker-redis
+        restart: always
+        ports:
+            - "6378:6379"
+        networks:
+            - app
+        healthcheck:
+            test: redis-cli ping
+            interval: 1s
+            retries: 15
+
+    gpstracker-app:
+        image: gpstracker-app:latest
+        container_name: gpstracker-app
+        depends_on:
+            gpstracker-mariadb:
+                condition: service_healthy
+            gpstracker-redis:
+                condition: service_healthy
+        build:
+            context: ..
+            dockerfile: ./docker/Dockerfile
+        ports:
+            - "8080:80"
+        volumes:
+            - ./../storage:/app/storage
+            - ./../public/storage:/app/public/storage
+        networks:
+            - app
+        tty: true
+
+networks:
+  app:
+    driver: bridge
