@@ -2,7 +2,7 @@
 
 namespace App\Domains\Timezone\Test\Feature;
 
-class UpdateBoolean extends FeatureAbstract
+class UpdateDefault extends FeatureAbstract
 {
     /**
      * @var string
