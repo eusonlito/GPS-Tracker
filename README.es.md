@@ -82,22 +82,22 @@ git clone https://github.com/eusonlito/GPS-Tracker.git
 
 2. Personalizamos el fichero `docker/.env`
 
-3. Realizamos el build (como root)
+3. Realizamos el build (pedirá la contraseña de sudo)
 
 ```bash
-sudo ./docker/build.sh
+./docker/build.sh
 ```
 
-4. Iniciamos los contenedores (como root)
+4. Iniciamos los contenedores (pedirá la contraseña de sudo)
 
 ```bash
-sudo ./docker/run.sh
+./docker/run.sh
 ```
 
-5. Creamos el usuario principal (como root)
+5. Creamos el usuario principal (pedirá la contraseña de sudo)
 
 ```bash
-sudo ./docker/user.sh
+./docker/user.sh
 ```
 
 6. Ya podemos acceder desde http://localhost:8080

@@ -82,22 +82,22 @@ git clone https://github.com/eusonlito/GPS-Tracker.git
 
 2. Adapt file `docker/.env`
 
-3. Build docker images (as root)
+3. Build docker images (will ask for the sudo password)
 
 ```bash
-sudo ./docker/build.sh
+./docker/build.sh
 ```
 
-4. Start containers (as root)
+4. Start containers (will ask for the sudo password)
 
 ```bash
-sudo ./docker/run.sh
+./docker/run.sh
 ```
 
-5. Create the admin user (as root)
+5. Create the admin user (will ask for the sudo password)
 
 ```bash
-sudo ./docker/user.sh
+./docker/user.sh
 ```
 
 6. Open your web browser and goto http://localhost:8080
