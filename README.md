@@ -1,198 +1,214 @@
-[English](README.en.md)
+[Castellano](README.md)
 
 # GPS Tracker (Laravel 9 + PHP 8.1 + MySQL 8)
 
-Plataforma de gestión de dispositivos Sinotrack ST-90x creada con Laravel 9 + PHP 8.1 y MySQL 8.
+Sinotrack ST-90x device management platform built with Laravel 9 + PHP 8.1 and MySQL 8.
 
-### Instalación
+### Installation
 
-1. Creamos la base de datos en MySQL.
+1. Create the database in MySQL.
 
-2. Clonamos el repositorio.
+2. Clone the repository.
 
 ```bash
 git clone https://github.com/eusonlito/GPS-Tracker.git
 ```
 
-3. Copia el fichero `.env.example` como `.env` y rellena las variables necesarias.
+3. Copy the `.env.example` file as `.env` and fill in the necessary variables.
 
 ```bash
 cp .env.example .env
 ```
 
-4. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.1).
+4. Install composer dependencies (remember that we always use the PHP 8.1 binary).
 
 ```bash
 composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
 ```
 
-5. Generamos la clave de aplicación.
+5. Generate the application key.
 
 ```bash
 php artisan key:generate
 ```
 
-6. Regeneramos las cachés.
+6. Regenerate the caches.
 
 ```bash
 composer artisan-cache
 ```
 
-7. Lanzamos la migración inicial.
+7. Launch the initial migration.
 
 ```bash
 php artisan migrate --path=database/migrations
 ```
 
-8. Lanzamos el seeder.
+8. Launch the seeder.
 
 ```bash
 php artisan db:seed --class=Database\\Seeders\\Database
 ```
 
-9. Generamos los GeoJSON para los Timezones.
+9. Fill Timezones GeoJSON.
 
 ```bash
 php artisan timezone:geojson
 ```
 
-10. Configuramos la tarea cron para el usuario relacionado con el proyecto:
+10. Configure the cron job for the user related to the project:
 
 ```
 * * * * * cd /var/www/tracker.domain.com && install -d storage/logs/artisan/$(date +"\%Y-\%m-\%d") && /usr/bin/php artisan schedule:run >> storage/logs/artisan/$(date +"\%Y-\%m-\%d")/schedule-run.log 2>&1
 ```
 
-11. Creamos el usuario principal.
+11. Create the main user.
 
 ```bash
 php artisan user:create --email=user@domain.com --name=Admin --password=StrongPassword2 --enabled --admin
 ```
 
-12. Configuramos el `DocumentRoot` del servidor web para apuntar a `/var/www/project/public`.
+12. Configure the web server `DocumentRoot` to `/var/www/project/public`.
 
 13. Profit!
 
-### Conexión vía Socket
+#### Docker Compose
 
-El puerto abierto para la conexión de dispositivos con protocolo H02 se realiza por defecto en el puerto `8091`, pero puede ser personalizado desde el panel de configuración (como administrador).
+1. Clone the repository.
 
-Para configurar tu dispositivo vía SMS puedes hacerlo con el siguiente comando:
-
-```
-804{PASSWORD} {IP/HOST} {PUERTO}
+```bash
+git clone https://github.com/eusonlito/GPS-Tracker.git
 ```
 
-Puedes configurar el servidor de conexión en el dispositivo usando o bien la IP o bien un HOST que resolverá internamente PERO SÓLO EN EL MOMENTO DE RECIBIR EL COMANDO, con lo cual si el servidor no tiene IP fija en cuanto cambie dejarás de recibir los datos del dispositivo.
+2. Adapt file `docker/.env`
 
-### SMS comunes para Sinotrack ST-901
+3. Build docker images (as root)
 
-#### Configurar el Teléfono desde el cual te puedes conectar al dispositivo
-
-```
-{TELEFONO}{PASSWORD} 1
+```bash
+sudo ./docker/build.sh
 ```
 
-#### Configurar la zona horaria para UTC y así delegar en la plataforma el ajuste horario
+4. Start containers (as root)
+
+```bash
+sudo ./docker/build.sh
+```
+
+5. Create the admin user (as root)
+
+```bash
+sudo ./docker/user.sh
+```
+
+6. Open your web browser and goto http://localhost:8080
+
+7. Remember to add a web server (apache2, nginx, etc...) as a proxy to add features as SSL.
+
+8. If you are going to add or change the default ports for GPS Devices (`8091`) you must edit the `gpstracker-app` properties in `docker-compose.yml` to adapt them to your own configuration.
+
+### Server connection
+
+The default port for devices with H02 protocol is `8091`, but it can be customized on configuration panel (as admin).
+
+To configure your device via SMS you can do it with the following command:
+
+```
+804{PASSWORD} {IP/HOST} {PORT}
+```
+
+You can configure the connection server in the device using either the IP or a HOST that will resolve internally BUT ONLY AT THE TIME OF RECEIVING THE COMMAND, so if the server does not have a fixed IP as soon as it changes you will stop receiving data from the device.
+
+### Common Sinotrack ST-901 SMS commands
+
+#### Configuring the Phone from which you can connect to the device
+
+```
+{PHONE}{PASSWORD} 1
+```
+
+#### Set the time zone to UTC to delegate the time adjustment to the platform.
 
 ```
 896{PASSWORD}E00
 ```
 
-#### Activar Modo GPRS
+#### Enable GPRS Mode
 
 ```
 710{PASSWORD}
 ```
 
-#### Configurar APN Operadora
+#### Configure APN Operator
 
 ```
-803{PASSWORD} {OPERADORA}
+803{PASSWORD} {OPERATOR}
 ```
 
-#### Configurar Servidor
+#### Configure Server
 
 ```
-804{PASSWORD} {IP/HOST} {PUERTO}
+804{PASSWORD} {IP/HOST} {PORT}
 ```
 
-#### Configurar frecuencia en segundos de envío reportes de posición con el contacto puesto
+#### Configure frequency in seconds of sending position reports with the car ignition on
 
 ```
-805{PASSWORD} {SEGUNDOS}
+805{PASSWORD} {SECONDS}
 ```
 
-#### Configurar frecuencia en segundos de envío reportes de posición SIN el contacto puesto
+#### Configure frequency in seconds of sending position reports with the car ignition off
 
 ```
-809{PASSWORD} {SEGUNDOS}
+809{PASSWORD} {SECONDS}
 ```
 
-#### Configurar tiempo de espera antes de pasar a modo SLEEP con el coche parado
+#### Set timeout before switching to SLEEP mode when the car is stopped
 
 ```
-SLEEP{PASSWORD} {MINUTOS}
+SLEEP{PASSWORD} {MINUTES}
 ```
 
-#### Activar llamadas de eventos (Batería baja, reporte diario, aviso grúa, salida geovalla, contacto, SOS)
-
-```
-150{PASSWORD}
-```
-
-#### Desactivar llamadas de eventos (Batería baja, reporte diario, aviso grúa, salida geovalla, contacto, SOS)
+#### Deactivate call in case of alarm
 
 ```
 151{PASSWORD}
 ```
 
-#### Activar SMS de Alarma de Batería baja
+#### Enable Device Low Battery SMS
 
 ```
 011{PASSWORD}
 ```
 
-#### Desactivar SMS de Alarma de Batería baja
+#### Disable Device Low Battery SMS
 
 ```
 010{PASSWORD}
 ```
 
-#### Activar SMS de Eventos (Batería baja, SLEEP, reporte diario, aviso grúa, salida geovalla, contacto)
-
-```
-712{PASSWORD}
-```
-
-#### Desactivar SMS de Eventos (Batería baja, SLEEP, reporte diario, aviso grúa, salida geovalla, contacto)
-
-```
-713{PASSWORD}
-```
-
-#### Cambiar Contraseña
+#### Password change
 
 ```
 777{PASSWORD-NEW}{PASSWORD-OLD}
 ```
 
-#### Reiniciar dispositivo
+#### Device restart
 
 ```
 RESTART
 ```
 
-#### Mostrar configuración actual
+#### Show current configuration
 
 ```
 RCONF
 ```
 
-### Actualización de la Plataforma
+### Platform Update
 
-La actualización de la plataforma se puede realizar de manera sencilla con el comando `composer deploy` ejecutado por el usuario que gestiona ese projecto (normalmente `www-data`).
+Updating the platform can be done in a simple way with the `composer deploy` command executed by the user who manages that project (usually `www-data`).
 
-Este comando realiza las siguientes acciones:
+This command performs the following actions:
 
 ```
 "rm -f bootstrap/cache/*.php",
@@ -206,31 +222,33 @@ Este comando realiza las siguientes acciones:
 "@php artisan server:start:all --reset"
 ```
 
-### Comandos
+### Platform Commands
 
-#### Alta de usuario:
+#### User Creation:
 
 ```bash
 php artisan user:create {--email=} {--name=} {--password=} {--enabled} {--admin}
 ```
 
-#### Iniciar/Reiniciar todos los servidores configurados:
+#### Start or Restart all configured servers:
 
-La opción de `reset` permite reiniciar el puerto en caso de que esté siendo usado.
+The `reset` option allows you to reset the port in case it is being used.
 
 ```bash
 php artisan server:start:all {--reset}
 ```
 
-#### Iniciar/Reiniciar servidor en un puerto en concreto:
+#### Start or Restart only one server port:
 
-La opción de `reset` permite reiniciar el puerto en caso de que esté siendo usado.
+The `reset` option allows you to reset the port in case it is being used.
 
 ```bash
 php artisan server:start {--port=} {--reset}
 ```
 
-### Capturas
+### Screenshots
+
+Screenshots are in spanish, you can change the system language to english.
 
 ![gps-tracker-2022-12-30-11_46_09](https://user-images.githubusercontent.com/644551/210064626-546f2d32-b39c-4d08-b4a3-05da832f69cf.png)
 

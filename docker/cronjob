@@ -1,1 +1,1 @@
-* * * * * cd /app && install -d storage/logs/artisan/$(date +"\%Y-\%m-\%d") && /usr/bin/php artisan schedule:run >> storage/logs/artisan/$(date +"\%Y-\%m-\%d")/schedule-run.log 2>&1
+* * * * * cd /app && install -d storage/logs/artisan/$(date +"\%Y-\%m-\%d") && /usr/local/bin/php artisan schedule:run >> storage/logs/artisan/$(date +"\%Y-\%m-\%d")/schedule-run.log 2>&1

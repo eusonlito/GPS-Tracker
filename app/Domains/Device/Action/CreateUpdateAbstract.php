@@ -64,7 +64,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     protected function dataPassword(): void
     {
         if (empty($this->data['password'])) {
-            $this->data['password'] = $this->row->password;
+            $this->data['password'] = $this->row->password ?? '';
         }
     }
 

@@ -192,7 +192,7 @@ class Log extends ControllerAbstract
     protected function listContentIsValid(DirectoryIterator $fileInfo): bool
     {
         return ($fileInfo->isDot() === false)
-            && ($fileInfo->isDir() || ($fileInfo->getExtension() === 'log'));
+            && ($fileInfo->isDir() || in_array($fileInfo->getExtension(), ['json', 'log']));
     }
 
     /**

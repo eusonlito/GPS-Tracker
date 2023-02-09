@@ -3,13 +3,13 @@ FROM php:8.1-fpm-buster
 RUN apt-get update -y
 RUN apt-get upgrade -y
 
-RUN apt install -y apt-utils cron git gnupg2 htop libbz2-dev libicu-dev \
-    libldb-dev libmagickwand-dev libxslt-dev libzip-dev \
-    mariadb-client procps unzip vim
+RUN apt install -y apt-utils cron default-mysql-client git gnupg2 htop \
+    libbz2-dev libicu-dev libldb-dev libmagickwand-dev libonig-dev \
+    libxslt-dev libzip-dev procps unzip vim
 
 RUN pecl install imagick redis
 
-RUN docker-php-ext-install bcmath bz2 intl opcache pdo_mysql xsl zip
+RUN docker-php-ext-install bcmath bz2 intl mbstring opcache pdo_mysql pcntl sockets xsl zip
 RUN docker-php-ext-enable imagick redis
 
 COPY ./docker/php.ini /usr/local/etc/php/
@@ -22,7 +22,7 @@ RUN cp -n ./docker/.env .
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
-RUN composer install --no-dev --optimize-autoloader --classmap-authoritative
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader --classmap-authoritative
 
 RUN php artisan key:generate
 
