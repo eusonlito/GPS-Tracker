@@ -91,7 +91,7 @@ sudo ./docker/build.sh
 4. Start containers (as root)
 
 ```bash
-sudo ./docker/build.sh
+sudo ./docker/run.sh
 ```
 
 5. Create the admin user (as root)

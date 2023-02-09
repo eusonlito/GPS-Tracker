@@ -19,7 +19,7 @@ services:
             - gpstracker-network
         healthcheck:
             test: mysqladmin ping -h localhost --password=root
-            interval: 10s
+            interval: 15s
             retries: 15
 
     gpstracker-redis:
@@ -32,7 +32,7 @@ services:
             - gpstracker-network
         healthcheck:
             test: redis-cli ping
-            interval: 10s
+            interval: 5s
             retries: 15
 
     gpstracker-app:
