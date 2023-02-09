@@ -28,6 +28,10 @@ services:
         image: redis:7.0.8
         container_name: gpstracker-redis
         restart: always
+        command: redis-server /etc/redis.conf
+        volumes:
+            - ./redis.conf:/etc/redis.conf
+            - ./../storage/docker/redis:/data
         ports:
             - "6378:6379"
         networks:
@@ -50,6 +54,7 @@ services:
             dockerfile: ./docker/Dockerfile
         ports:
             - "8080:80"
+            - "8091:8091"
         volumes:
             - ./../storage:/app/storage
             - ./../public/storage:/app/public/storage

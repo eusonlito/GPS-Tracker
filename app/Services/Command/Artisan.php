@@ -96,7 +96,7 @@ class Artisan
      */
     protected function php(): string
     {
-        return '/usr/bin/php8.1';
+        return trim(exec('which php8.1 || which php'));
     }
 
     /**
