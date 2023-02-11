@@ -19,7 +19,7 @@
         @if ($devices_multiple)
 
         <div class="flex-grow mt-2 lg:mt-0">
-            <x-select name="device_id" :options="$devices" value="id" text="name" data-change-submit></x-select>
+            <x-select name="device_id" :options="$devices" value="id" text="name" placeholder="{{ __('trip-index.device') }}" data-change-submit></x-select>
         </div>
 
         @endif

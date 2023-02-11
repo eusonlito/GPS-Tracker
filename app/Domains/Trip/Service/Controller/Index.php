@@ -114,7 +114,10 @@ class Index extends ControllerAbstract
      */
     protected function devices(): DeviceCollection
     {
-        return $this->cache[__FUNCTION__] ??= $this->vehicle()->devices()->list()->get();
+        return $this->cache[__FUNCTION__] ??= $this->vehicle()
+            ->devices()
+            ->list()
+            ->get();
     }
 
     /**
@@ -122,8 +125,7 @@ class Index extends ControllerAbstract
      */
     protected function device(): ?DeviceModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->devices()->firstWhere('id', $this->request->input('device_id'))
-            ?: $this->devices()->first();
+        return $this->cache[__FUNCTION__] ??= $this->devices()->firstWhere('id', $this->request->input('device_id'));
     }
 
     /**
@@ -167,7 +169,8 @@ class Index extends ControllerAbstract
      */
     protected function state(): ?StateModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->states()->firstWhere('id', $this->request->input('state_id'));
+        return $this->cache[__FUNCTION__] ??= $this->states()
+            ->firstWhere('id', $this->request->input('state_id'));
     }
 
     /**
@@ -191,7 +194,8 @@ class Index extends ControllerAbstract
      */
     protected function city(): ?CityModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->cities()->firstWhere('id', $this->request->input('city_id'));
+        return $this->cache[__FUNCTION__] ??= $this->cities()
+            ->firstWhere('id', $this->request->input('city_id'));
     }
 
     /**
@@ -199,7 +203,16 @@ class Index extends ControllerAbstract
      */
     protected function dateMin(): ?string
     {
-        return Model::query()->byVehicleId($this->vehicle()->id)->orderByStartAtAsc()->rawValue('DATE(`start_utc_at`)');
+        if ($device = $this->device()) {
+            $ids = [$device->id];
+        } else {
+            $ids = $this->devices()->pluck('id')->all();
+        }
+
+        return Model::query()
+            ->byDeviceIds($ids)
+            ->orderByStartAtAsc()
+            ->rawValue('DATE(`start_utc_at`)');
     }
 
     /**
