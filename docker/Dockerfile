@@ -38,4 +38,6 @@ RUN composer install --no-dev --optimize-autoloader --classmap-authoritative
 
 RUN php artisan key:generate
 
+USER root
+
 CMD ["./docker/init.sh"]

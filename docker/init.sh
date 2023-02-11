@@ -1,9 +1,11 @@
 #!/bin/bash
 
-composer deploy-docker
+su -s /bin/bash -c 'composer deploy-docker' www-data
 
-php artisan timezone:geojson
+su -s /bin/bash -c 'php artisan timezone:geojson' www-data
 
-php artisan server:start:all
+su -s /bin/bash -c 'php artisan server:start:all' www-data
 
-php artisan serve --host=0.0.0.0 --port=80
+cron
+
+su -s /bin/bash -c 'php artisan serve --host=0.0.0.0 --port=80' www-data
