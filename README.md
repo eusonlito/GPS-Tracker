@@ -110,11 +110,17 @@ cp docker/docker-compose.yml.example docker/docker-compose.yml
 ./docker/user.sh
 ```
 
-7. Open your web browser and goto http://localhost:8080
+7. Launch the Timezone GeoJSON fill (will ask for the sudo password)
 
-8. Remember to add a web server (apache2, nginx, etc...) as a proxy to add features as SSL.
+```bash
+./docker/timezone-geojson.sh
+```
 
-9. If you are going to add or change the default ports for GPS Devices (`8091`) you must edit the `gpstracker-app` properties in `docker-compose.yml` to adapt them to your own configuration.
+8. Open your web browser and goto http://localhost:8080
+
+9. Remember to add a web server (apache2, nginx, etc...) as a proxy to add features as SSL.
+
+10. If you are going to add or change the default ports for GPS Devices (`8091`) you must edit the `gpstracker-app` properties in `docker-compose.yml` to adapt them to your own configuration.
 
 ### Server connection
 
