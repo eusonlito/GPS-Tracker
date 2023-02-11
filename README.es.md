@@ -80,31 +80,41 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 git clone https://github.com/eusonlito/GPS-Tracker.git
 ```
 
-2. Personalizamos el fichero `docker/.env`
+2. [OPCIONAL] Copia el fichero `docker/.env.example` en `.env` y configura tus propios ajustes
 
-3. Realizamos el build (pedirá la contraseña de sudo)
+```bash
+cp docker/.env.example .env
+```
+
+3. [OPCIONAL] Copia el fichero `docker/docker-compose.yml.example` en `docker/docker-compose.yml` y configura tus propios ajustes
+
+```bash
+cp docker/docker-compose.yml.example docker/docker-compose.yml
+```
+
+4. Realizamos el build (pedirá la contraseña de sudo)
 
 ```bash
 ./docker/build.sh
 ```
 
-4. Iniciamos los contenedores (pedirá la contraseña de sudo)
+5. Iniciamos los contenedores (pedirá la contraseña de sudo)
 
 ```bash
 ./docker/run.sh
 ```
 
-5. Creamos el usuario principal (pedirá la contraseña de sudo)
+6. Creamos el usuario principal (pedirá la contraseña de sudo)
 
 ```bash
 ./docker/user.sh
 ```
 
-6. Ya podemos acceder desde http://localhost:8080
+7. Ya podemos acceder desde http://localhost:8080
 
-7. Recuerda añadir un servidor web (apache2, nginx, etc...) como proxy para añadir funcionalidades como SSL.
+8. Recuerda añadir un servidor web (apache2, nginx, etc...) como proxy para añadir funcionalidades como SSL.
 
-8. Si vas añadir o cambiar los puertos por defecto para los dispositivos GPS (`8091`) debes editar las propiedades de `gpstracker-app` en `docker-compose.yml` para adaptarlas a tu propia configuración.
+9. Si vas añadir o cambiar los puertos por defecto para los dispositivos GPS (`8091`) debes editar las propiedades de `gpstracker-app` en `docker-compose.yml` para adaptarlas a tu propia configuración.
 
 ### Conexión vía Socket
 

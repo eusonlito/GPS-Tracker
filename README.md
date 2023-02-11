@@ -80,31 +80,41 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 git clone https://github.com/eusonlito/GPS-Tracker.git
 ```
 
-2. Adapt file `docker/.env`
+2. [OPTIONAL] Copy file `docker/.env.example` to `.env` and configure your own settings
 
-3. Build docker images (will ask for the sudo password)
+```bash
+cp docker/.env.example .env
+```
+
+3. [OPTIONAL] Copy file `docker/docker-compose.yml.example` to `docker/docker-compose.yml` and configure your own settings
+
+```bash
+cp docker/docker-compose.yml.example docker/docker-compose.yml
+```
+
+4. Build docker images (will ask for the sudo password)
 
 ```bash
 ./docker/build.sh
 ```
 
-4. Start containers (will ask for the sudo password)
+5. Start containers (will ask for the sudo password)
 
 ```bash
 ./docker/run.sh
 ```
 
-5. Create the admin user (will ask for the sudo password)
+6. Create the admin user (will ask for the sudo password)
 
 ```bash
 ./docker/user.sh
 ```
 
-6. Open your web browser and goto http://localhost:8080
+7. Open your web browser and goto http://localhost:8080
 
-7. Remember to add a web server (apache2, nginx, etc...) as a proxy to add features as SSL.
+8. Remember to add a web server (apache2, nginx, etc...) as a proxy to add features as SSL.
 
-8. If you are going to add or change the default ports for GPS Devices (`8091`) you must edit the `gpstracker-app` properties in `docker-compose.yml` to adapt them to your own configuration.
+9. If you are going to add or change the default ports for GPS Devices (`8091`) you must edit the `gpstracker-app` properties in `docker-compose.yml` to adapt them to your own configuration.
 
 ### Server connection
 
