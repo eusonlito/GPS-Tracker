@@ -2,7 +2,7 @@
 
 namespace App\Domains\User\Test\Factory;
 
-use App\Domains\Shared\Test\Factory\FactoryAbstract;
+use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
 use Illuminate\Support\Facades\Hash;
 use App\Domains\User\Model\User as Model;
 

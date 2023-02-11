@@ -2,7 +2,7 @@
 
 namespace App\Domains\Country\Test\Factory;
 
-use App\Domains\Shared\Test\Factory\FactoryAbstract;
+use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
 use App\Domains\Country\Model\Country as Model;
 
 class Country extends FactoryAbstract

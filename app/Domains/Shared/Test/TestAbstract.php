@@ -9,7 +9,6 @@ use Faker\Factory as FactoryFaker;
 use Faker\Generator as GeneratorFaker;
 use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Traits\Factory;
-use App\Domains\User\Model\User as UserModel;
 use Database\Seeders\Database as DatabaseSeed;
 use Tests\TestsAbstract;
 use Tests\CreatesApplication;
@@ -64,9 +63,9 @@ abstract class TestAbstract extends TestsAbstract
     }
 
     /**
-     * @return \App\Domains\User\Model\User
+     * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-    protected function user(): UserModel
+    protected function user(): Authenticatable
     {
         $model = $this->getUserClass();
 
@@ -75,9 +74,9 @@ abstract class TestAbstract extends TestsAbstract
     }
 
     /**
-     * @return \App\Domains\User\Model\User
+     * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-    protected function userLast(): UserModel
+    protected function userLast(): Authenticatable
     {
         $model = $this->getUserClass();
 

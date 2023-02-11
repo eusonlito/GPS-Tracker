@@ -2,7 +2,7 @@
 
 namespace App\Domains\UserSession\Test\Factory;
 
-use App\Domains\Shared\Test\Factory\FactoryAbstract;
+use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
 use App\Domains\UserSession\Model\UserSession as Model;
 
 class UserSession extends FactoryAbstract

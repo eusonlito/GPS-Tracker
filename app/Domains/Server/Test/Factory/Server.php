@@ -2,7 +2,7 @@
 
 namespace App\Domains\Server\Test\Factory;
 
-use App\Domains\Shared\Test\Factory\FactoryAbstract;
+use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
 use App\Domains\Server\Model\Server as Model;
 
 class Server extends FactoryAbstract

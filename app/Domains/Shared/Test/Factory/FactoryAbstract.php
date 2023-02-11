@@ -4,7 +4,6 @@ namespace App\Domains\Shared\Test\Factory;
 
 use Closure;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Domains\User\Model\User as UserModel;
 
 abstract class FactoryAbstract extends Factory
 {
@@ -12,6 +11,11 @@ abstract class FactoryAbstract extends Factory
      * @var string
      */
     protected $model;
+
+    /**
+     * @return string
+     */
+    abstract protected function getUserClass(): string;
 
     /**
      * @param string $class
@@ -28,6 +32,6 @@ abstract class FactoryAbstract extends Factory
      */
     protected function userFirstOrFactory(): Closure
     {
-        return $this->firstOrFactory(UserModel::class);
+        return $this->firstOrFactory($this->getUserClass());
     }
 }

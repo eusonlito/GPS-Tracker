@@ -2,7 +2,7 @@
 
 namespace App\Domains\Language\Test\Factory;
 
-use App\Domains\Shared\Test\Factory\FactoryAbstract;
+use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
 use App\Domains\Language\Model\Language as Model;
 
 class Language extends FactoryAbstract

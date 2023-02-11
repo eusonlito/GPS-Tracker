@@ -2,7 +2,7 @@
 
 namespace App\Domains\Alarm\Test\Factory;
 
-use App\Domains\Shared\Test\Factory\FactoryAbstract;
+use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
 use App\Domains\Alarm\Model\Alarm as Model;
 use App\Domains\Alarm\Model\AlarmVehicle as AlarmVehicleModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;

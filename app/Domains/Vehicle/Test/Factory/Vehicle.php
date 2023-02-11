@@ -2,7 +2,7 @@
 
 namespace App\Domains\Vehicle\Test\Factory;
 
-use App\Domains\Shared\Test\Factory\FactoryAbstract;
+use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Vehicle\Model\Vehicle as Model;
 
