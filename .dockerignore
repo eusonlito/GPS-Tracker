@@ -1,0 +1,5 @@
+/node_modules
+/storage/docker
+/storage/logs
+/storage/tmp
+/vendor
