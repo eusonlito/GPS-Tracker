@@ -32,8 +32,6 @@ WORKDIR /app
 
 COPY --chown=www-data:www-data ./ /app
 
-RUN cp -n ./docker/.env .
-
 RUN composer install --no-dev --optimize-autoloader --classmap-authoritative
 
 RUN php artisan key:generate
