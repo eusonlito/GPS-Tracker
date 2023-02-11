@@ -1,0 +1,62 @@
+version: "3.9"
+
+services:
+    gpstracker-mysql:
+        image: mysql:8.0
+        container_name: gpstracker-mysql
+        restart: always
+        volumes:
+            - ./../storage/docker/db:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=gpstracker
+            - MYSQL_PASSWORD=gpstracker
+            - MYSQL_DATABASE=gpstracker
+        command:
+            - --character-set-server=utf8
+            - --collation-server=utf8_unicode_ci
+        networks:
+            - gpstracker-network
+        healthcheck:
+            test: mysqladmin ping -h localhost --password=root
+            interval: 15s
+            retries: 15
+
+    gpstracker-redis:
+        image: redis:7.0
+        container_name: gpstracker-redis
+        restart: always
+        volumes:
+            - ./../storage/docker/redis:/data
+        networks:
+            - gpstracker-network
+        healthcheck:
+            test: redis-cli ping
+            interval: 5s
+            retries: 15
+
+    gpstracker-app:
+        image: gpstracker-app:latest
+        container_name: gpstracker-app
+        restart: always
+        depends_on:
+            gpstracker-mysql:
+                condition: service_healthy
+            gpstracker-redis:
+                condition: service_healthy
+        build:
+            context: ..
+            dockerfile: ./docker/Dockerfile
+        ports:
+            - "8080:80"
+            - "8091:8091"
+        expose:
+            - "8080"
+            - "8091"
+        networks:
+            - gpstracker-network
+        tty: true
+
+networks:
+  gpstracker-network:
+    driver: bridge
