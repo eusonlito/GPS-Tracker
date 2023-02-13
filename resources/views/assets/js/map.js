@@ -105,6 +105,7 @@ export default class {
         this.setControlLayers();
         this.setControlLayerDefault();
         this.setControlMarkers();
+        this.setControlScale();
     }
 
     getControlLayers() {
@@ -218,6 +219,12 @@ export default class {
 
     setControlMarkersLoad() {
         L.control.markers({ position: 'topright' }).addTo(this.getMap());
+
+        return this;
+    }
+
+    setControlScale() {
+        L.control.scale({ imperial: false }).addTo(this.getMap());
 
         return this;
     }
