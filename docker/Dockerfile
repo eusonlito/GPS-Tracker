@@ -25,11 +25,9 @@ RUN crontab -u www-data /etc/cron.d/crontab
 
 COPY --from=composer:2.5 /usr/bin/composer /usr/local/bin/composer
 
-WORKDIR /app
-
-RUN install -d /app/storage/docker
-
 USER www-data
+
+WORKDIR /app
 
 COPY --chown=www-data:www-data ./ /app
 
@@ -38,5 +36,7 @@ RUN composer install --no-dev --optimize-autoloader --classmap-authoritative
 RUN php artisan key:generate
 
 USER root
+
+RUN install -d /app/storage/docker
 
 CMD ["./docker/init.sh"]
