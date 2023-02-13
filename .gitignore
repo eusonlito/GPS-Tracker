@@ -2,7 +2,6 @@
 /public/manifest.json
 /public/hot
 /storage/docker
-/storage/logs
 /storage/tmp
 /vendor
 
