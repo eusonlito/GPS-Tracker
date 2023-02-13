@@ -1,5 +1,16 @@
+/docker
+
 /node_modules
+/public/manifest.json
+/public/hot
 /storage/docker
 /storage/logs
 /storage/tmp
 /vendor
+
+.env
+.phpunit.result.cache
+.php_cs.cache
+.php-cs-fixer.cache
+
+*.sh
