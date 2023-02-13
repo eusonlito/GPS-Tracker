@@ -19,16 +19,17 @@ RUN docker-php-ext-enable redis
 
 COPY ./docker/php.ini /usr/local/etc/php/
 
-COPY --from=composer:2.5 /usr/bin/composer /usr/local/bin/composer
-
 COPY ./docker/crontab /etc/cron.d/crontab
 
 RUN crontab -u www-data /etc/cron.d/crontab
-RUN cron
 
-USER www-data
+COPY --from=composer:2.5 /usr/bin/composer /usr/local/bin/composer
 
 WORKDIR /app
+
+RUN install -d /app/storage/docker
+
+USER www-data
 
 COPY --chown=www-data:www-data ./ /app
 
