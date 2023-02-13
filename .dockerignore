@@ -1,6 +1,6 @@
-/.git
+**/.git
+**/node_modules
 
-/node_modules
 /public/manifest.json
 /public/hot
 /storage/docker
