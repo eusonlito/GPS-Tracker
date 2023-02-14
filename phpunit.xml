@@ -1,58 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
-        backupGlobals="false"
-        backupStaticAttributes="false"
-        bootstrap="vendor/autoload.php"
-        colors="true"
-        convertErrorsToExceptions="true"
-        convertNoticesToExceptions="true"
-        convertWarningsToExceptions="true"
-        processIsolation="false"
-        stopOnFailure="true">
-
-    <coverage processUncoveredFiles="true">
-        <include>
-            <directory suffix=".php">./app</directory>
-        </include>
-    </coverage>
-
-    <testsuites>
-        <testsuite name="Controller">
-            <directory suffix=".php">./app/Domains/Alarm/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/AlarmNotification/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/City/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Configuration/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Country/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Dashboard/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Device/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/DeviceMessage/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/IpLock/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Language/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Position/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Profile/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Refuel/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Server/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/State/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Timezone/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Trip/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/User/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/UserSession/Test/Controller</directory>
-            <directory suffix=".php">./app/Domains/Vehicle/Test/Controller</directory>
-        </testsuite>
-    </testsuites>
-
-    <php>
-        <server name="APP_DEBUG" value="0" />
-        <server name="APP_ENV" value="testing" />
-        <server name="APP_LOCALE" value="es" />
-        <server name="AUTH_CHECK_ALLOWED" value="3" />
-        <server name="BCRYPT_ROUNDS" value="4" />
-        <server name="CACHE_DRIVER" value="array" />
-        <server name="DB_CONNECTION" value="test" />
-        <server name="DEBUGBAR_ENABLED" value="0" />
-        <server name="MAIL_DRIVER" value="array" />
-        <server name="QUEUE_CONNECTION" value="sync" />
-        <server name="SESSION_DRIVER" value="array" />
-    </php>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" backupGlobals="false" bootstrap="vendor/autoload.php" colors="true" processIsolation="false" stopOnFailure="true" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+  <coverage>
+    <include>
+      <directory suffix=".php">./app</directory>
+    </include>
+  </coverage>
+  <testsuites>
+    <testsuite name="Controller">
+      <directory suffix=".php">./app/Domains/Alarm/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/AlarmNotification/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/City/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Configuration/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Country/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Dashboard/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Device/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/DeviceMessage/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/IpLock/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Language/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Position/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Profile/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Refuel/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Server/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/State/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Timezone/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Trip/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/User/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/UserSession/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/Vehicle/Test/Controller</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <server name="APP_DEBUG" value="0"/>
+    <server name="APP_ENV" value="testing"/>
+    <server name="APP_LOCALE" value="es"/>
+    <server name="AUTH_CHECK_ALLOWED" value="3"/>
+    <server name="BCRYPT_ROUNDS" value="4"/>
+    <server name="CACHE_DRIVER" value="array"/>
+    <server name="DB_CONNECTION" value="test"/>
+    <server name="DEBUGBAR_ENABLED" value="0"/>
+    <server name="MAIL_DRIVER" value="array"/>
+    <server name="QUEUE_CONNECTION" value="sync"/>
+    <server name="SESSION_DRIVER" value="array"/>
+  </php>
 </phpunit>

@@ -1,6 +1,7 @@
 **/.git
 **/node_modules
 
+/.phpunit.cache
 /public/manifest.json
 /public/hot
 /storage/docker

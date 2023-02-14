@@ -1,7 +1,7 @@
 {
-    "name": "eusonlito/tracker-reader",
+    "name": "eusonlito/gps-tracker",
     "type": "project",
-    "description": "Tracker Reader",
+    "description": "GPS Tracker platform for Sinotrack ST-90x and OsmAnd devices built with Laravel 10 + PHP 8.1 and MySQL 8. Plataforma GPS Tracker para dispositivos Sinotrack ST-90x y OsmAnd creada con Laravel 10 + PHP 8.1 y MySQL 8.",
     "license": "MIT",
     "require": {
         "php": "^8.1",
@@ -10,7 +10,7 @@
         "eusonlito/captcha": "^1.1.1",
         "eusonlito/laravel-meta": "^3.2.3",
         "eusonlito/laravel-packer": "^2.2.6",
-        "laravel/framework": "^9.50.2",
+        "laravel/framework": "^10.0",
         "laravel/helpers": "^1.6",
         "predis/predis": "^2.1.1",
         "sentry/sentry-laravel": "^3.2",
@@ -18,15 +18,13 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
-        "brianium/paratest": "^6.8",
         "friendsofphp/php-cs-fixer": "^3.14.3",
         "laravel/pint": "^1.4.1",
-        "nunomaduro/collision": "^6.4",
+        "nunomaduro/collision": "^7.0",
         "nunomaduro/larastan": "^2.4",
-        "nunomaduro/phpinsights": "dev-master",
-        "phpunit/phpunit": "^9.6.1",
+        "phpunit/phpunit": "^10.0",
         "psalm/plugin-laravel": "^2.7",
-        "spatie/laravel-ignition": "^1.6.4",
+        "spatie/laravel-ignition": "^2.0",
         "vimeo/psalm": "^5.6"
     },
     "config": {
@@ -55,7 +53,7 @@
             "Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
         "post-install-cmd": [

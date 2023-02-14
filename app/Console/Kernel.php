@@ -28,6 +28,7 @@ class Kernel extends KernelVendor
     protected function schedule(Schedule $schedule)
     {
         $this->scheduleQueue($schedule);
+        $this->scheduleCachePrune($schedule);
 
         (new ServerScheduleManager($schedule))->handle();
         (new PositionScheduleManager($schedule))->handle();
@@ -50,6 +51,16 @@ class Kernel extends KernelVendor
             ->runInBackground()
             ->appendOutputTo($this->log())
             ->everyMinute();
+    }
+
+    /**
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
+     *
+     * @return void
+     */
+    protected function scheduleCachePrune(Schedule $schedule): void
+    {
+        $schedule->command('cache:prune-stale-tags')->hourly();
     }
 
     /**

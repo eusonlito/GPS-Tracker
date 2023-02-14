@@ -51,7 +51,7 @@ class Kernel extends KernelVendor
     /**
      * @var array<string, string>
      */
-    protected $routeMiddleware = [
+    protected $middlewareAliases = [
         'vehicle.available' => VehicleAvailable::class,
         'user.admin' => UserAdmin::class,
         'user.auth.redirect' => UserAuthRedirect::class,
