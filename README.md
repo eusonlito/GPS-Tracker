@@ -1,10 +1,16 @@
 [Castellano](README.md)
 
-# GPS Tracker (Laravel 9 + PHP 8.1 + MySQL 8)
+# GPS Tracker (Laravel 10 + PHP 8.1 + MySQL 8)
 
-Sinotrack ST-90x device management platform built with Laravel 9 + PHP 8.1 and MySQL 8.
+Sinotrack ST-90x device management platform built with Laravel 10 + PHP 8.1 and MySQL 8.
 
-### Installation
+### Requirements
+
+- PHP 8.1 or higher (bcmath bz2 intl mbstring opcache pdo_mysql pcntl redis sockets xsl zip)
+- MySQL 8.0
+- Redis
+
+### Local Installation
 
 1. Create the database in MySQL.
 
@@ -72,7 +78,11 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 
 13. Profit!
 
-#### Docker Compose
+#### Upgrade
+
+Updating the platform can be done in a simple way with the `composer deploy` command executed by the user who manages that project (usually `www-data`).
+
+### Docker Installation
 
 1. Clone the repository.
 
@@ -121,6 +131,28 @@ cp docker/docker-compose.yml.example docker/docker-compose.yml
 9. Remember to add a web server (apache2, nginx, etc...) as a proxy to add features as SSL.
 
 10. If you are going to add or change the default ports for GPS Devices (`8091`) you must edit the `gpstracker-app` properties in `docker-compose.yml` to adapt them to your own configuration.
+
+#### Docker Upgrade
+
+1. Update the project source
+
+```bash
+git pull
+```
+
+2. Build docker images (will ask for the sudo password)
+
+```bash
+./docker/build.sh
+```
+
+3. Start containers (will ask for the sudo password)
+
+```bash
+./docker/run.sh
+```
+
+4. Open your web browser and goto http://localhost:8080
 
 ### Server connection
 
@@ -218,24 +250,6 @@ RESTART
 
 ```
 RCONF
-```
-
-### Platform Update
-
-Updating the platform can be done in a simple way with the `composer deploy` command executed by the user who manages that project (usually `www-data`).
-
-This command performs the following actions:
-
-```
-"rm -f bootstrap/cache/*.php",
-"git checkout .",
-"git pull",
-"@composer env-version --ansi",
-"@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
-"@php artisan migrate --force --ansi",
-"@php artisan db:seed --force --ansi --class=\"Database\\Seeders\\Database\"",
-"@php artisan maintenance:migration:clean",
-"@php artisan server:start:all --reset"
 ```
 
 ### Platform Commands

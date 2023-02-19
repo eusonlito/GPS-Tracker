@@ -26,8 +26,6 @@ services:
         image: redis:7.0
         container_name: gpstracker-redis
         restart: always
-        volumes:
-            - ./../storage/docker/redis:/data
         networks:
             - gpstracker-network
         healthcheck:

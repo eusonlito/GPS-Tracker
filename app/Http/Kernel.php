@@ -10,6 +10,7 @@ use App\Domains\User\Middleware\AuthRedirect as UserAuthRedirect;
 use App\Domains\User\Middleware\Enabled as UserEnabled;
 use App\Domains\User\Middleware\Request as UserRequest;
 use App\Domains\Vehicle\Middleware\Available as VehicleAvailable;
+use App\Http\Middleware\Https;
 use App\Http\Middleware\MessagesShareFromSession;
 use App\Http\Middleware\RequestLogger;
 use App\Http\Middleware\Reset;
@@ -22,6 +23,7 @@ class Kernel extends KernelVendor
      */
     protected $middleware = [
         TrustProxies::class,
+        Https::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Cookie\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,

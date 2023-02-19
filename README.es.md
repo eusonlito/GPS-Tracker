@@ -1,10 +1,16 @@
 [English](README.en.md)
 
-# GPS Tracker (Laravel 9 + PHP 8.1 + MySQL 8)
+# GPS Tracker (Laravel 10 + PHP 8.1 + MySQL 8)
 
-Plataforma de gestión de dispositivos Sinotrack ST-90x creada con Laravel 9 + PHP 8.1 y MySQL 8.
+Plataforma de gestión de dispositivos Sinotrack ST-90x creada con Laravel 10 + PHP 8.1 y MySQL 8.
 
-### Instalación
+### Requisitos
+
+- PHP 8.1 o superior (bcmath bz2 intl mbstring opcache pdo_mysql pcntl redis sockets xsl zip)
+- MySQL 8.0
+- Redis
+
+### Instalación Local
 
 1. Creamos la base de datos en MySQL.
 
@@ -72,7 +78,11 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 
 13. Profit!
 
-#### Docker Compose
+#### Actualización
+
+La actualización de la plataforma se puede realizar de manera sencilla con el comando `composer deploy` ejecutado por el usuario que gestiona ese projecto (normalmente `www-data`).
+
+### Instalación vía Docker
 
 1. Clonamos el repositorio.
 
@@ -121,6 +131,28 @@ cp docker/docker-compose.yml.example docker/docker-compose.yml
 9. Recuerda añadir un servidor web (apache2, nginx, etc...) como proxy para añadir funcionalidades como SSL.
 
 10. Si vas añadir o cambiar los puertos por defecto para los dispositivos GPS (`8091`) debes editar las propiedades de `gpstracker-app` en `docker-compose.yml` para adaptarlas a tu propia configuración.
+
+#### Actualización
+
+1. Actualizamos el código del proyecto
+
+```bash
+git pull
+```
+
+2. Realizamos el build (pedirá la contraseña de sudo)
+
+```bash
+./docker/build.sh
+```
+
+3. Iniciamos los contenedores (pedirá la contraseña de sudo)
+
+```bash
+./docker/run.sh
+```
+
+4. Ya podemos acceder desde http://localhost:8080
 
 ### Conexión vía Socket
 
@@ -236,24 +268,6 @@ RESTART
 
 ```
 RCONF
-```
-
-### Actualización de la Plataforma
-
-La actualización de la plataforma se puede realizar de manera sencilla con el comando `composer deploy` ejecutado por el usuario que gestiona ese projecto (normalmente `www-data`).
-
-Este comando realiza las siguientes acciones:
-
-```
-"rm -f bootstrap/cache/*.php",
-"git checkout .",
-"git pull",
-"@composer env-version --ansi",
-"@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
-"@php artisan migrate --force --ansi",
-"@php artisan db:seed --force --ansi --class=\"Database\\Seeders\\Database\"",
-"@php artisan maintenance:migration:clean",
-"@php artisan server:start:all --reset"
 ```
 
 ### Comandos
