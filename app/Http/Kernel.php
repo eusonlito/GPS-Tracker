@@ -13,6 +13,7 @@ use App\Domains\Vehicle\Middleware\Available as VehicleAvailable;
 use App\Http\Middleware\MessagesShareFromSession;
 use App\Http\Middleware\RequestLogger;
 use App\Http\Middleware\Reset;
+use App\Http\Middleware\TrustProxies;
 
 class Kernel extends KernelVendor
 {
@@ -20,6 +21,7 @@ class Kernel extends KernelVendor
      * @var array<int, string>
      */
     protected $middleware = [
+        TrustProxies::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Cookie\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
