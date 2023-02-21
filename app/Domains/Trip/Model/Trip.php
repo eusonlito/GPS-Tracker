@@ -12,6 +12,7 @@ use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Builder\Trip as Builder;
 use App\Domains\Trip\Model\Collection\Trip as Collection;
 use App\Domains\Trip\Test\Factory\Trip as TestFactory;
+use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Trip extends ModelAbstract
@@ -95,6 +96,14 @@ class Trip extends ModelAbstract
     public function timezone(): BelongsTo
     {
         return $this->belongsTo(TimezoneModel::class, TimezoneModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(UserModel::class, UserModel::FOREIGN);
     }
 
     /**

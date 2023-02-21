@@ -35,5 +35,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
         $this->row = Model::query()->byCode($code)->whereShared()->firstOr(static function () {
             throw new NotFoundException(__('trip.error.not-found'));
         });
+
+        $this->factory('Language', $this->row->user->language)->action()->set();
     }
 }

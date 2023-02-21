@@ -49,6 +49,8 @@ export default class {
         this.marker = null;
         this.markers = {};
 
+        this.listTable = null;
+
         this.localStorage = new LocalStorage('map');
 
         return this;
@@ -480,10 +482,12 @@ export default class {
 
         L.marker(latLng, this.getMarkerOptions(marker, options, optionsIcon))
             .bindPopup(this.jsonToHtml(marker))
+            .on('click', (e) => this.showMarker(marker.id))
             .addTo(this.getLayerMarkers());
 
         this.markers[marker.id] = L.circleMarker(latLng, { radius: 15, opacity: 0, fillOpacity: 0 })
             .bindPopup(this.jsonToHtml(marker))
+            .on('click', (e) => this.showMarker(marker.id))
             .addTo(this.getLayer());
 
         return this;
@@ -525,7 +529,29 @@ export default class {
 
         this.getMap().flyTo(this.marker.getLatLng());
 
+        this.showMarkerListTable(id);
+
         this.marker.openPopup();
+
+        return this;
+    }
+
+    showMarkerListTable(id) {
+        if (!this.listTable) {
+            return;
+        }
+
+        this.listTable
+            .querySelectorAll('tr.selected')
+            .forEach(tr => tr.classList.remove('selected'));
+
+        const mapPoint = this.listTable.querySelector('[data-map-point="' + id + '"');
+
+        if (!mapPoint) {
+            return;
+        }
+
+        mapPoint.closest('tr').classList.add('selected');
 
         return this;
     }
@@ -560,9 +586,6 @@ export default class {
         this.getMap().invalidateSize();
     }
 
-    render() {
-    }
-
     merge(first, second) {
         return JSON.parse(JSON.stringify(Object.assign({}, first || {}, second || {})));
     }
@@ -576,6 +599,12 @@ export default class {
             lat: points.latitude,
             lng: points.longitude
         };
+    }
+
+    setListTable(listTable) {
+        this.listTable = listTable;
+
+        return this;
     }
 
     jsonToHtml(json) {

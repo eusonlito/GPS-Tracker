@@ -14,7 +14,7 @@
             </a>
         </div>
 
-        <table class="table table-report font-medium text-center whitespace-nowrap text-xs" data-table-sort>
+        <table class="table table-report font-medium text-center whitespace-nowrap text-xs" data-map-list-table data-table-sort>
             <thead>
                 <tr>
                     <th class="w-1">{{ __('map.date') }}</th>

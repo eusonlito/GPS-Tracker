@@ -56,7 +56,7 @@ import Map from './map';
     map.setIcon('start', positionFirst);
     map.setIcon('end', positionLast);
 
-    map.render();
+    map.setListTable(document.querySelector('[data-map-list-table]'));
 
     if (element.dataset.mapShowLast) {
         map.setView(positionLast, 17);

@@ -46,6 +46,14 @@
 
             tbody {
                 > tr {
+                    &.selected {
+                        background-color: #a3ea9a;
+
+                        > td {
+                            background: none;
+                        }
+                    }
+
                     > td {
                         padding: 0.25rem;
                     }
