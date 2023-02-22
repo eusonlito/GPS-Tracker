@@ -37,6 +37,4 @@ RUN php artisan key:generate
 
 USER root
 
-RUN install -d /app/storage/docker
-
 CMD ["./docker/init.sh"]
