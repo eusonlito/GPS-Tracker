@@ -22,6 +22,7 @@
         "laravel/pint": "^1.4.1",
         "nunomaduro/collision": "^7.0",
         "nunomaduro/larastan": "^2.4",
+        "phpcompatibility/php-compatibility": "^9.3",
         "phpunit/phpunit": "^10.0",
         "psalm/plugin-laravel": "^2.7",
         "spatie/laravel-ignition": "^2.0",
