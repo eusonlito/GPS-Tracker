@@ -129,7 +129,6 @@ CREATE TABLE `device` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` bigint unsigned NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `timezone_auto` tinyint(1) NOT NULL DEFAULT '0',
   `connected_at` datetime DEFAULT NULL,
   `phone_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `vehicle_id` bigint unsigned DEFAULT NULL,
@@ -464,3 +463,4 @@ INSERT INTO `migrations` VALUES (45,'2022_12_27_183000_server_debug',31);
 INSERT INTO `migrations` VALUES (46,'2022_12_29_220000_trip_stats',32);
 INSERT INTO `migrations` VALUES (47,'2023_01_02_230000_user_preferences',33);
 INSERT INTO `migrations` VALUES (48,'2023_02_01_230000_trip_shared',34);
+INSERT INTO `migrations` VALUES (49,'2023_02_07_234500_device_timezone_auto',35);
