@@ -96,7 +96,10 @@ class Artisan
      */
     protected function php(): string
     {
-        return PHP_BINARY;
+        $v = explode('.', phpversion());
+        $v = $v[0].'.'.$v[1];
+
+        return trim(exec('which php'.$v.' || which php'));
     }
 
     /**
@@ -112,6 +115,6 @@ class Artisan
      */
     protected function launch(): void
     {
-        exec($this->nohup);
+        proc_close(proc_open($this->nohup, [], $null));
     }
 }
