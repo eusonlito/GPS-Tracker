@@ -19,7 +19,7 @@ class Artisan
     /**
      * @var string
      */
-    protected string $nohup;
+    protected string $cmd;
 
     /**
      * @return self
@@ -55,7 +55,7 @@ class Artisan
      */
     public function exec(): void
     {
-        $this->nohup();
+        $this->cmd();
         $this->logOpen();
         $this->launch();
     }
@@ -85,9 +85,9 @@ class Artisan
     /**
      * @return void
      */
-    protected function nohup(): void
+    protected function cmd(): void
     {
-        $this->nohup = 'nohup '.$this->php().' '.base_path('artisan').' '.$this->command
+        $this->cmd = $this->php().' '.base_path('artisan').' '.$this->command
             .' 2>&1 | tee -a '.$this->log.' > /dev/null 2>&1 &';
     }
 
@@ -107,7 +107,7 @@ class Artisan
      */
     protected function logOpen(): void
     {
-        file_put_contents($this->log, $this->nohup."\n\n");
+        file_put_contents($this->log, $this->cmd."\n\n");
     }
 
     /**
@@ -115,6 +115,6 @@ class Artisan
      */
     protected function launch(): void
     {
-        exec($this->nohup);
+        exec($this->cmd);
     }
 }
