@@ -96,10 +96,9 @@ class Artisan
      */
     protected function php(): string
     {
-        $v = explode('.', phpversion());
-        $v = $v[0].'.'.$v[1];
+        $version = implode('.', explode('.', phpversion(), 2));
 
-        return trim(exec('which php'.$v.' || which php'));
+        return trim(exec('which php'.$version.' || which php'));
     }
 
     /**
