@@ -115,6 +115,6 @@ class Artisan
      */
     protected function launch(): void
     {
-        pclose(popen($this->nohup, 'r'));
+        pclose(popen($this->nohup, 'w'));
     }
 }
