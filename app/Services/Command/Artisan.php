@@ -88,7 +88,7 @@ class Artisan
     protected function nohup(): void
     {
         $this->nohup = 'nohup '.$this->php().' '.base_path('artisan').' '.$this->command
-            .' 2>&1 | tee -a '.$this->log.' > /dev/null 2>&1';
+            .' 2>&1 | tee -a '.$this->log.' > /dev/null 2>&1 &';
     }
 
     /**
