@@ -88,7 +88,7 @@ class Artisan
     protected function nohup(): void
     {
         $this->nohup = 'nohup '.$this->php().' '.base_path('artisan').' '.$this->command
-            .' >> '.$this->log.' 2>&1 & echo $!';
+            .' 2>&1 | tee -a '.$this->log.' > /dev/null 2>&1';
     }
 
     /**
@@ -115,6 +115,6 @@ class Artisan
      */
     protected function launch(): void
     {
-        pclose(popen($this->nohup, 'w'));
+        exec($this->nohup);
     }
 }
