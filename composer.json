@@ -79,6 +79,10 @@
             "sed -i 's/CACHE_VERSION=.*/CACHE_VERSION='$(head -c 16 /dev/urandom | md5sum | head -c 32)'/' .env"
         ],
 
+        "artisan-server-start-all": [
+            "@php artisan server:start:all --reset || true"
+        ],
+
         "deploy": [
             "rm -f bootstrap/cache/*.php",
             "git checkout .",
@@ -90,7 +94,7 @@
             "@php artisan maintenance:migration:clean",
             "@php artisan server:manifest:generate",
             "@php artisan queue:restart --ansi",
-            "@php artisan server:start:all --reset"
+            "@composer artisan-server-start-all"
         ],
 
         "deploy-dev": [
@@ -101,7 +105,8 @@
             "@php artisan maintenance:migration:clean",
             "@php artisan server:manifest:generate",
             "@composer artisan-cache-clear",
-            "@php artisan queue:restart --ansi"
+            "@php artisan queue:restart --ansi",
+            "@composer artisan-server-start-all"
         ],
 
         "deploy-docker": [
@@ -112,7 +117,7 @@
             "@php artisan maintenance:migration:clean",
             "@php artisan server:manifest:generate",
             "@php artisan queue:restart --ansi",
-            "@php artisan server:start:all --reset"
+            "@composer artisan-server-start-all"
         ],
 
         "fix": [
