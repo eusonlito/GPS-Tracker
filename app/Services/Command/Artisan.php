@@ -88,7 +88,7 @@ class Artisan
     protected function cmd(): void
     {
         $this->cmd = 'nohup '.$this->php().' '.base_path('artisan').' '.$this->command
-            .' >> '.$this->log.' 2>&1 & || true';
+            .' >> '.$this->log.' 2>&1 &';
     }
 
     /**
