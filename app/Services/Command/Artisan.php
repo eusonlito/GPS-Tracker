@@ -87,8 +87,8 @@ class Artisan
      */
     protected function cmd(): void
     {
-        $this->cmd = $this->php().' '.base_path('artisan').' '.$this->command
-            .' 2>&1 | tee -a '.$this->log.' > /dev/null 2>&1 &';
+        $this->cmd = 'nohup '.$this->php().' '.base_path('artisan').' '.$this->command
+            .' >> '.$this->log.' 2>&1 & || true';
     }
 
     /**
@@ -96,7 +96,7 @@ class Artisan
      */
     protected function php(): string
     {
-        $version = implode('.', explode('.', phpversion(), 2));
+        $version = PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;
 
         return trim(exec('which php'.$version.' || which php'));
     }

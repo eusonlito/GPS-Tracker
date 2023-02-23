@@ -75,12 +75,12 @@
             "@php artisan optimize --ansi"
         ],
 
-        "env-version": [
-            "sed -i 's/CACHE_VERSION=.*/CACHE_VERSION='$(head -c 16 /dev/urandom | md5sum | head -c 32)'/' .env"
-        ],
-
         "artisan-server-start-all": [
             "@php artisan server:start:all --reset || true"
+        ],
+
+        "env-version": [
+            "sed -i 's/CACHE_VERSION=.*/CACHE_VERSION='$(head -c 16 /dev/urandom | md5sum | head -c 32)'/' .env"
         ],
 
         "deploy": [
