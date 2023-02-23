@@ -28,7 +28,5 @@ class StartAll extends CommandAbstract
         $this->factory()->action()->startAll();
 
         $this->info('END');
-
-        exit;
     }
 }
