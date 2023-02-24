@@ -6,7 +6,7 @@ use PhpCsFixer\Config;
 return (new Config())
     ->setRiskyAllowed(true)
     ->setRules([
-        '@PHP81Migration' => true,
+        '@PHP82Migration' => true,
         '@PSR2' => true,
         'braces' => false,
         'class_definition' => false,
