@@ -2,7 +2,7 @@
 
 namespace App\Domains\Timezone\Seeder;
 
-use Illuminate\Database\Query\Expression;
+use Illuminate\Contracts\Database\Query\Expression;
 use App\Domains\Shared\Seeder\SeederAbstract;
 use App\Domains\Timezone\Model\Timezone as Model;
 
@@ -29,7 +29,7 @@ class Timezone extends SeederAbstract
     }
 
     /**
-     * @return \Illuminate\Database\Query\Expression
+     * @return \Illuminate\Contracts\Database\Query\Expression
      */
     protected function geojson(): Expression
     {

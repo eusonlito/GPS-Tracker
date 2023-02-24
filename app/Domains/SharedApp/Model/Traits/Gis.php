@@ -3,7 +3,7 @@
 namespace App\Domains\SharedApp\Model\Traits;
 
 use stdClass;
-use Illuminate\Database\Query\Expression;
+use Illuminate\Contracts\Database\Query\Expression;
 
 trait Gis
 {
@@ -19,7 +19,7 @@ trait Gis
      * @param float $latitude
      * @param float $longitude
      *
-     * @return \Illuminate\Database\Query\Expression
+     * @return \Illuminate\Contracts\Database\Query\Expression
      */
     public static function pointFromLatitudeLongitude(float $latitude, float $longitude): Expression
     {
@@ -30,7 +30,7 @@ trait Gis
      * @param \stdClass $json
      * @param float $simplify = 0
      *
-     * @return \Illuminate\Database\Query\Expression
+     * @return \Illuminate\Contracts\Database\Query\Expression
      */
     public static function geomFromGeoJSON(stdClass $json, float $simplify = 0): Expression
     {

@@ -19,7 +19,7 @@ class UserSession extends FactoryAbstract
     {
         return [
             'auth' => $this->faker->email(),
-            'ip' => $this->faker->ip(),
+            'ip' => $this->faker->ip,
 
             'success' => ($success = rand(1, 0)),
 

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class TrustProxies extends Middleware
 {
     /**
-     * @var string|array
+     * @var array<int, string>|string|null
      */
     protected $proxies = '*';
 
