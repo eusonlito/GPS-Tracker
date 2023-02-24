@@ -32,7 +32,6 @@ class LastOrNew extends ActionAbstract
         $this->device();
         $this->vehicle();
         $this->row();
-        $this->createIfPositionInvalid();
 
         return $this->row;
     }
@@ -59,10 +58,41 @@ class LastOrNew extends ActionAbstract
      */
     protected function row(): void
     {
+        $this->rowByPrevious();
+
+        if ($this->rowIsValid()) {
+            return;
+        }
+
+        $this->rowByNext();
+
+        if ($this->rowIsValid()) {
+            return;
+        }
+
+        $this->rowCreate();
+    }
+
+    /**
+     * @return void
+     */
+    protected function rowByPrevious(): void
+    {
         $this->row = Model::query()
             ->byDeviceId($this->device->id)
-            ->nearToStartUtcAt($this->data['date_utc_at'])
-            ->firstOr(fn () => $this->rowCreate());
+            ->nearToStartUtcAtBefore($this->data['date_utc_at'])
+            ->first();
+    }
+
+    /**
+     * @return void
+     */
+    protected function rowByNext(): void
+    {
+        $this->row = Model::query()
+            ->byDeviceId($this->device->id)
+            ->nearToStartUtcAtNext($this->data['date_utc_at'])
+            ->first();
     }
 
     /**
@@ -80,28 +110,18 @@ class LastOrNew extends ActionAbstract
     }
 
     /**
-     * @return void
+     * @return bool
      */
-    protected function createIfPositionInvalid(): void
+    protected function rowIsValid(): bool
     {
-        if ($this->positionIsValid() === false) {
-            $this->rowCreate();
-        }
+        return $this->row
+            && ($this->rowIsValidAfter() || $this->rowIsValidWait());
     }
 
     /**
      * @return bool
      */
-    protected function positionIsValid(): bool
-    {
-        return $this->positionIsValidAfter()
-            || $this->positionIsValidWait();
-    }
-
-    /**
-     * @return bool
-     */
-    protected function positionIsValidAfter(): bool
+    protected function rowIsValidAfter(): bool
     {
         return (bool)PositionModel::query()
             ->byTripId($this->row->id)
@@ -112,9 +132,9 @@ class LastOrNew extends ActionAbstract
     /**
      * @return bool
      */
-    protected function positionIsValidWait(): bool
+    protected function rowIsValidWait(): bool
     {
-        $dateUtcAt = $this->positionIsValidWaitDateUtcAt();
+        $dateUtcAt = $this->rowIsValidWaitDateUtcAt();
 
         if ($dateUtcAt === null) {
             return true;
@@ -122,7 +142,7 @@ class LastOrNew extends ActionAbstract
 
         $wait = app('configuration')->int('trip_wait_minutes');
 
-        if (($wait === 0) || ($wait >= $this->positionIsValidWaitMinutes($dateUtcAt))) {
+        if (($wait === 0) || ($wait >= $this->rowIsValidWaitMinutes($dateUtcAt))) {
             return true;
         }
 
@@ -132,7 +152,7 @@ class LastOrNew extends ActionAbstract
     /**
      * @return ?string
      */
-    protected function positionIsValidWaitDateUtcAt(): ?string
+    protected function rowIsValidWaitDateUtcAt(): ?string
     {
         return PositionModel::query()
             ->byTripId($this->row->id)
@@ -145,7 +165,7 @@ class LastOrNew extends ActionAbstract
      *
      * @return int
      */
-    protected function positionIsValidWaitMinutes(string $dateUtcAt): int
+    protected function rowIsValidWaitMinutes(string $dateUtcAt): int
     {
         return (int)abs((strtotime($this->data['date_utc_at']) - strtotime($dateUtcAt)) / 60);
     }

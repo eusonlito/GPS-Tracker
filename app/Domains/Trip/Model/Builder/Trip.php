@@ -103,9 +103,19 @@ class Trip extends BuilderAbstract
      *
      * @return self
      */
-    public function nearToStartUtcAt(string $start_utc_at): self
+    public function nearToStartUtcAtBefore(string $start_utc_at): self
     {
         return $this->where('start_utc_at', '<=', $start_utc_at)->orderByStartUtcAtDesc();
+    }
+
+    /**
+     * @param string $start_utc_at
+     *
+     * @return self
+     */
+    public function nearToStartUtcAtNext(string $start_utc_at): self
+    {
+        return $this->where('start_utc_at', '>=', $start_utc_at)->orderByStartUtcAtAsc();
     }
 
     /**
