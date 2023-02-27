@@ -10,9 +10,9 @@ class DatabaseFactory
     /**
      * @param \Illuminate\Database\ConnectionInterface $db
      *
-     * @return self
+     * @return \App\Domains\Shared\Migration\Database\DatabaseAbstract
      */
-    public static function get(ConnectionInterface $db)
+    public static function get(ConnectionInterface $db): DatabaseAbstract
     {
         return match ($db->getDriverName()) {
             'pgsql' => new PostgreSQL($db),
