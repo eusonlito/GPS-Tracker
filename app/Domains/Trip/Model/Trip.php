@@ -44,6 +44,7 @@ class Trip extends ModelAbstract
      */
     protected $casts = [
         'stats' => 'array',
+        'shared' => 'boolean',
     ];
 
     /**

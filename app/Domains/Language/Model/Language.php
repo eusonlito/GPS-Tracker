@@ -28,6 +28,14 @@ class Language extends ModelAbstract
     public const FOREIGN = 'language_id';
 
     /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'default' => 'boolean',
+        'enabled' => 'boolean',
+    ];
+
+    /**
      * @return void
      */
     protected static function booted(): void

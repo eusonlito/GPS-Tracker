@@ -30,6 +30,13 @@ class UserSession extends ModelAbstract
     public const FOREIGN = 'user_session_id';
 
     /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'success' => 'boolean',
+    ];
+
+    /**
      * @param array $models
      *
      * @return \App\Domains\UserSession\Model\Collection\UserSession

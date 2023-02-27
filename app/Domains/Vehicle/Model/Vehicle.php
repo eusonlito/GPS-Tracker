@@ -39,6 +39,14 @@ class Vehicle extends ModelAbstract
     public const FOREIGN = 'vehicle_id';
 
     /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'timezone_auto' => 'boolean',
+        'enabled' => 'boolean',
+    ];
+
+    /**
      * @param array $models
      *
      * @return \App\Domains\Vehicle\Model\Collection\Vehicle
