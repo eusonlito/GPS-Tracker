@@ -68,24 +68,39 @@ trait Custom
 
     /**
      * @param int $mcc
+     * @param int $mnc
      *
      * @return ?\stdClass
      */
-    public function mcc(int $mcc): ?stdClass
+    public function mcc(int $mcc, int $mnc): ?stdClass
     {
         static $cache = [];
 
-        if (isset($cache[$mcc])) {
-            return $cache[$mcc];
+        if (isset($cache[$mcc][$mnc])) {
+            return $cache[$mcc][$mnc];
         }
+
+        $country = [];
 
         foreach ($this->mccs() as $each) {
-            if ($each->mcc === $mcc) {
-                return $cache[$mcc] = $each;
+            if ($each->mcc !== $mcc) {
+                continue;
             }
+
+            if ($each->mnc === $mnc) {
+                return $cache[$mcc][$mnc] = $each;
+            }
+
+            $country[$each->iso][] = $each;
         }
 
-        return null;
+        if (empty($country)) {
+            return null;
+        }
+
+        usort($country, static fn ($a, $b) => count($a) > count($b) ? -1 : 1);
+
+        return $cache[$mcc][$mnc] = $country[0][0];
     }
 
     /**

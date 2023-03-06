@@ -62,6 +62,7 @@ class Location extends ParserAbstract
             .'[0-9]{6},'             // 11 - date
             .'[0-9a-fA-F]{8},'       // 12 - status
             .'[0-9]+,'               // 13 - mcc
+            .'[0-9]+,'               // 14 - mnc
             .'/';
     }
 
@@ -166,7 +167,10 @@ class Location extends ParserAbstract
      */
     protected function country(): ?string
     {
-        return $this->cache[__FUNCTION__] ??= helper()->mcc((int)$this->values[13])?->iso;
+        return $this->cache[__FUNCTION__] ??= helper()->mcc(
+            intval($this->values[13]),
+            intval($this->values[14])
+        )?->iso;
     }
 
     /**
@@ -174,7 +178,11 @@ class Location extends ParserAbstract
      */
     protected function timezone(): ?string
     {
-        return $this->cache[__FUNCTION__] ??= helper()->latitudeLongitudeTimezone($this->latitude(), $this->longitude(), $this->country());
+        return $this->cache[__FUNCTION__] ??= helper()->latitudeLongitudeTimezone(
+            $this->latitude(),
+            $this->longitude(),
+            $this->country()
+        );
     }
 
     /**

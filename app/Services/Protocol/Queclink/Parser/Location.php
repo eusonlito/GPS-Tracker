@@ -149,7 +149,10 @@ class Location extends ParserAbstract
      */
     protected function country(): ?string
     {
-        return $this->cache[__FUNCTION__] ??= helper()->mcc(intval($this->values[15]))?->iso;
+        return $this->cache[__FUNCTION__] ??= helper()->mcc(
+            intval($this->values[15]),
+            intval($this->values[16])
+        )?->iso;
     }
 
     /**
@@ -157,7 +160,11 @@ class Location extends ParserAbstract
      */
     protected function timezone(): ?string
     {
-        return $this->cache[__FUNCTION__] ??= helper()->latitudeLongitudeTimezone($this->latitude(), $this->longitude(), $this->country());
+        return $this->cache[__FUNCTION__] ??= helper()->latitudeLongitudeTimezone(
+            $this->latitude(),
+            $this->longitude(),
+            $this->country()
+        );
     }
 
     /**
