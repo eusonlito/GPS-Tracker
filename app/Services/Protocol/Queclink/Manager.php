@@ -2,9 +2,7 @@
 
 namespace App\Services\Protocol\Queclink;
 
-use App\Services\Protocol\Queclink\Parser\Command as CommandParser;
 use App\Services\Protocol\Queclink\Parser\Location as LocationParser;
-use App\Services\Protocol\Queclink\Parser\Sms as SmsParser;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Server\Socket\Server;
@@ -16,8 +14,6 @@ class Manager extends ProtocolAbstract
      */
     protected const PARSERS = [
         LocationParser::class,
-        SmsParser::class,
-        CommandParser::class,
     ];
 
     /**
@@ -65,7 +61,7 @@ class Manager extends ProtocolAbstract
      */
     protected function bodies(string $body): array
     {
-        preg_match_all('/\*[^\$]+\$/', $body, $matches);
+        preg_match_all('/\+[^\$]+\$/', $body, $matches);
 
         return $matches[0];
     }
