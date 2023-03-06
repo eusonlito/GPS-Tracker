@@ -479,14 +479,15 @@ export default class {
         }
 
         const latLng = this.getLatLng(marker);
+        const html = this.jsonToHtml(marker);
 
         L.marker(latLng, this.getMarkerOptions(marker, options, optionsIcon))
-            .bindPopup(this.jsonToHtml(marker))
+            .bindPopup(html)
             .on('click', (e) => this.showMarker(marker.id))
             .addTo(this.getLayerMarkers());
 
         this.markers[marker.id] = L.circleMarker(latLng, { radius: 15, opacity: 0, fillOpacity: 0 })
-            .bindPopup(this.jsonToHtml(marker))
+            .bindPopup(html)
             .on('click', (e) => this.showMarker(marker.id))
             .addTo(this.getLayer());
 
@@ -608,11 +609,13 @@ export default class {
     }
 
     jsonToHtml(json) {
-        return Object.keys(json).map(key => this.jsonToHtmlKeyValue(key, json[key])).join('');
+        return ['date_at', 'latitude', 'longitude', 'speed', 'city', 'state'].map(key => {
+            return this.jsonToHtmlKeyValue(key, json[key]);
+        }).join('');
     }
 
     jsonToHtmlKeyValue(key, value) {
-        return '<p style="margin: 0.5em 0 !important"><strong>' + this.ucfirst(key.replace(/_at$/, '')) + ':</strong> ' + value + '</p>';
+        return '<p style="margin: 0.5em 0 !important"><strong>' + this.ucfirst(key.replace(/_at$/, '')) + ':</strong> ' + ((value === null) ? '' : value) + '</p>';
     }
 
     ucfirst(string) {
