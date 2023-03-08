@@ -28,7 +28,7 @@
                         <td class="text-left"><a href="{{ $link }}" class="d-t-m-o max-w-md" title="{{ $each->name }}">{{ $each->name }}</a></td>
                         <td><a href="{{ $link }}" class="block">{{ $each->start_at }}</a></td>
                         <td><a href="{{ $link }}" class="block">{{ $each->end_at }}</a></td>
-                        <td data-table-sort-value="{{ $each->distance }}"><a href="{{ $link }}" class="block">@distanceHuman($each->distance)</a></td>
+                        <td data-table-sort-value="@unit('distance', $each->distance)"><a href="{{ $link }}" class="block">@unitHuman('distance', $each->distance)</a></td>
                         <td data-table-sort-value="{{ $each->time }}"><a href="{{ $link }}" class="block">@timeHuman($each->time)</a></td>
                         <td class="w-1">
                             @if ($each->id !== $row->id)

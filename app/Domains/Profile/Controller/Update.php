@@ -4,7 +4,7 @@ namespace App\Domains\Profile\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Language\Model\Language as LanguageModel;
+use App\Domains\Profile\Service\Controller\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -23,9 +23,15 @@ class Update extends ControllerAbstract
 
         $this->meta('title', __('profile-update.meta-title'));
 
-        return $this->page('profile.update', [
-            'languages' => LanguageModel::query()->list()->get(),
-        ]);
+        return $this->page('profile.update', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 
     /**

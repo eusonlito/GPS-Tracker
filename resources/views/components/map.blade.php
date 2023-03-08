@@ -7,7 +7,7 @@
 
     <div class="map-list box px-5 py-2" data-map-list>
         <div class="flex items-center text-center">
-            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600" data-map-list-distance>@distanceHuman($trip->distance)</div>
+            <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600" data-map-list-distance>@unitHuman('distance', $trip->distance)</div>
             <div class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600" data-map-list-time>@timeHuman($trip->time)</div>
             <a href="#" class="flex-1 mx-2 py-1 px-2 rounded-full border font-medium text-slate-600 map-list-toggle" data-map-list-toggle>
                 ⟻
@@ -29,7 +29,7 @@
                 <tr>
                     <td class="w-1"><a href="#" data-map-point="{{ $each->id }}">{{ $each->date_at }}</a></td>
                     <td class="w-1"><a href="https://maps.google.com/?q={{ $each->latitude }},{{ $each->longitude }}" rel="nofollow noopener noreferrer" target="_blank">{{ $each->latitude }},{{ $each->longitude }}</a></td>
-                    <td class="w-1">{{ $each->speed }}</td>
+                    <td class="w-1" data-table-sort-value="@unit('speed', $each->speed)">@unitHuman('speed', $each->speed)</td>
                 </tr>
 
                 @endforeach

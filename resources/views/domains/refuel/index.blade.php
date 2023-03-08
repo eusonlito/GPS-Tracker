@@ -58,11 +58,11 @@
                 @endif
 
                 <td><a href="{{ $link }}" class="block">{{ $row->date_at }}</a></td>
-                <td><a href="{{ $link }}" class="block">@distanceHuman($row->distance_total * 1000, 0)</a></td>
-                <td><a href="{{ $link }}" class="block">@distanceHuman($row->distance * 1000, 0)</a></td>
-                <td><a href="{{ $link }}" class="block">@number($row->quantity)</a></td>
-                <td><a href="{{ $link }}" class="block">@money($row->price, 3)</a></td>
-                <td><a href="{{ $link }}" class="block">@money($row->total)</a></td>
+                <td><a href="{{ $link }}" class="block" data-sort-table-value="{{ $row->distance_total }}">@unitHumanRaw('distance', $row->distance_total, 0)</a></td>
+                <td><a href="{{ $link }}" class="block" data-sort-table-value="{{ $row->distance }}">@unitHumanRaw('distance', $row->distance, 0)</a></td>
+                <td><a href="{{ $link }}" class="block" data-sort-table-value="{{ $row->quantity }}">@unitHumanRaw('volume', $row->quantity)</a></td>
+                <td><a href="{{ $link }}" class="block" data-sort-table-value="{{ $row->price }}">@unitHumanRaw('money', $row->price, 3)</a></td>
+                <td><a href="{{ $link }}" class="block" data-sort-table-value="{{ $row->total }}">@unitHumanRaw('money', $row->total)</a></td>
             </tr>
 
             @endforeach
@@ -73,10 +73,10 @@
         <tfoot class="bg-white">
             <tr>
                 <th colspan="{{ $vehicles_multiple ? '3' : '2' }}"></th>
-                <th>@distanceHuman($totals->distance * 1000, 0)</th>
-                <th>@number($totals->quantity)</th>
-                <th>@money($totals->price, 3)</th>
-                <th>@money($totals->total)</th>
+                <th>@unitHumanRaw('distance', $totals->distance, 0)</th>
+                <th>@unitHumanRaw('volume', $totals->quantity)</th>
+                <th>@unitHumanRaw('money', $totals->price, 3)</th>
+                <th>@unitHumanRaw('money', $totals->total)</th>
             </tr>
         </tfoot>
 

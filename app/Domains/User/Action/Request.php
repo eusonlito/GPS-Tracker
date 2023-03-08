@@ -39,7 +39,16 @@ class Request extends ActionAbstract
      */
     protected function set(): void
     {
+        $this->setRow();
         $this->setLanguage();
+    }
+
+    /**
+     * @return void
+     */
+    protected function setRow(): void
+    {
+        app()->bind('user', fn () => $this->row);
     }
 
     /**

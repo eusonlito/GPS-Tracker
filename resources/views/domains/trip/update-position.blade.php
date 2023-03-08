@@ -34,7 +34,7 @@
                                 <td class="w-1"><a href="#" data-map-point="{{ $each->id }}">{{ $each->date_at }}</a></td>
                                 <td class="w-1"><a href="https://maps.google.com/?q={{ $each->latitude }},{{ $each->longitude }}" rel="nofollow noopener noreferrer" target="_blank">{{ $each->latitude }},{{ $each->longitude }}</a></td>
                                 <td><span class="d-t-m-o max-w-2xs" title="{{ $each->city->name }} ({{ $each->city->state->name }})">{{ $each->city->name }} ({{ $each->city->state->name }})</span></td>
-                                <td class="w-1">{{ $each->speed }}</td>
+                                <td class="w-1" data-table-sort-value="{{ $each->speed }}">@unitHuman('speed', $each->speed)</td>
                                 <td class="w-1">@status((bool)$each->signal)</td>
                                 <td class="w-1"><input type="checkbox" name="position_ids[]" value="{{ $each->id }}" /></td>
                             </tr>

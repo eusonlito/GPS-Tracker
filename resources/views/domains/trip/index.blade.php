@@ -105,7 +105,7 @@
 
                 <td><a href="{{ $link }}" class="block">{{ $row->start_at }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->end_at }}</a></td>
-                <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block">@distanceHuman($row->distance)</a></td>
+                <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block">@unitHuman('distance', $row->distance)</a></td>
                 <td data-table-sort-value="{{ $row->time }}"><a href="{{ $link }}" class="block">@timeHuman($row->time)</a></td>
 
                 <td class="w-1">
@@ -130,8 +130,8 @@
 
         <tfoot class="bg-white">
             <tr>
-                <th colspan="{{ $vehicles_multiple ? '4' : '3' }}"></th>
-                <th>@distanceHuman($list->sum('distance'))</th>
+                <th colspan="{{ 3 + (int)$vehicles_multiple + (int)$devices_multiple }}"></th>
+                <th>@unitHuman('distance', $list->sum('distance'))</th>
                 <th>@timeHuman($list->sum('time'))</th>
                 <th colspan="2"></th>
             </tr>

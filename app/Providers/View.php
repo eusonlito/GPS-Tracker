@@ -81,6 +81,18 @@ class View extends ServiceProvider
         Blade::directive('timeHuman', function (string $expression) {
             return "<?= helper()->timeHuman($expression); ?>";
         });
+
+        Blade::directive('unit', function (string $expression) {
+            return "<?= helper()->unit($expression); ?>";
+        });
+
+        Blade::directive('unitHuman', function (string $expression) {
+            return "<?= helper()->unitHuman($expression); ?>";
+        });
+
+        Blade::directive('unitHumanRaw', function (string $expression) {
+            return "<?= helper()->unitHumanRaw($expression); ?>";
+        });
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Services\Helper\Traits\Exception as ExceptionTrait;
 use App\Services\Helper\Traits\File as FileTrait;
 use App\Services\Helper\Traits\Misc as MiscTrait;
 use App\Services\Helper\Traits\Number as NumberTrait;
+use App\Services\Helper\Traits\Unit as UnitTrait;
 
 class Helper
 {
@@ -19,4 +20,5 @@ class Helper
     use FileTrait;
     use MiscTrait;
     use NumberTrait;
+    use UnitTrait;
 }
