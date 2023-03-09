@@ -36,10 +36,12 @@ return new class extends MigrationAbstract
             $table->string('name');
             $table->string('type');
 
+            $table->string('schedule_start')->nullable();
+            $table->string('schedule_end')->nullable();
+
             $table->jsonb('config')->nullable();
 
             $table->boolean('telegram')->default(0);
-
             $table->boolean('enabled')->default(0);
 
             $this->timestamps($table);

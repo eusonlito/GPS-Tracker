@@ -8,6 +8,19 @@ use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 class Alarm extends BuilderAbstract
 {
     /**
+     * @param string $time
+     *
+     * @return self
+     */
+    public function bySchedule(string $time): self
+    {
+        return $this->where(static function ($q) use ($time) {
+            $q->where(static fn ($q) => $q->whereNull('schedule_start')->orWhereNull('schedule_end'))
+                ->orWhere(static fn ($q) => $q->where('schedule_start', '<=', $time)->where('schedule_end', '>=', $time));
+        });
+    }
+
+    /**
      * @param int $vehicle_id
      *
      * @return self

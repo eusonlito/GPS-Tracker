@@ -67,6 +67,7 @@ class CheckPosition extends ActionAbstract
     {
         return Model::query()
             ->byVehicleIdEnabled($this->vehicle->id)
+            ->bySchedule(explode(' ', $this->position->date_at)[1])
             ->enabled()
             ->get();
     }

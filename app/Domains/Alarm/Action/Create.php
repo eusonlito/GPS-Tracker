@@ -3,76 +3,16 @@
 namespace App\Domains\Alarm\Action;
 
 use App\Domains\Alarm\Model\Alarm as Model;
-use App\Domains\Alarm\Service\Type\Format\FormatAbstract as TypeFormatAbstract;
 use App\Domains\Alarm\Service\Type\Manager as TypeManager;
 
-class Create extends ActionAbstract
+class Create extends CreateUpdateAbstract
 {
-    /**
-     * @var \App\Domains\Alarm\Service\Type\Format\FormatAbstract
-     */
-    protected TypeFormatAbstract $type;
-
-    /**
-     * @return \App\Domains\Alarm\Model\Alarm
-     */
-    public function handle(): Model
-    {
-        $this->type();
-        $this->check();
-        $this->data();
-        $this->save();
-
-        return $this->row;
-    }
-
     /**
      * @return void
      */
     protected function type(): void
     {
         $this->type = TypeManager::new()->factory($this->data['type'], $this->data['config']);
-    }
-
-    /**
-     * @return void
-     */
-    protected function check(): void
-    {
-        $this->checkType();
-    }
-
-    /**
-     * @return void
-     */
-    protected function checkType(): void
-    {
-        $this->type->validate();
-    }
-
-    /**
-     * @return void
-     */
-    protected function data(): void
-    {
-        $this->dataType();
-        $this->dataConfig();
-    }
-
-    /**
-     * @return void
-     */
-    protected function dataType(): void
-    {
-        $this->data['type'] = $this->type->code();
-    }
-
-    /**
-     * @return void
-     */
-    protected function dataConfig(): void
-    {
-        $this->data['config'] = $this->type->config();
     }
 
     /**
@@ -86,6 +26,8 @@ class Create extends ActionAbstract
             'config' => $this->data['config'],
             'telegram' => $this->data['enabled'],
             'enabled' => $this->data['enabled'],
+            'schedule_start' => $this->data['schedule_start'],
+            'schedule_end' => $this->data['schedule_end'],
             'user_id' => $this->auth->id,
         ]);
     }
