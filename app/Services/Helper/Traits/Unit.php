@@ -20,7 +20,7 @@ trait Unit
             'volume' => $this->unitVolume($value, $round),
             'distance' => $this->unitDistance($value, $round),
             'speed' => $this->unitSpeed($value, $round),
-            default => throw new UnexpectedValueException(__('unit.error.invalid')),
+            default => $this->unitException($type),
         };
     }
 
@@ -38,7 +38,7 @@ trait Unit
             'volume' => $this->unitVolumeHuman($value, $round),
             'distance' => $this->unitDistanceHuman($value, $round),
             'speed' => $this->unitSpeedHuman($value, $round),
-            default => throw new UnexpectedValueException(__('unit.error.invalid')),
+            default => $this->unitException($type),
         };
     }
 
@@ -56,7 +56,7 @@ trait Unit
             'volume' => $this->unitVolumeHumanRaw($value, $round),
             'distance' => $this->unitDistanceHumanRaw($value, $round),
             'speed' => $this->unitSpeedHumanRaw($value, $round),
-            default => throw new UnexpectedValueException(__('unit.error.invalid')),
+            default => $this->unitException($type),
         };
     }
 
@@ -276,5 +276,15 @@ trait Unit
             'distance' => 'kilometer',
             'thousand' => '.',
         ];
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return void
+     */
+    protected function unitException(string $type): void
+    {
+        throw new UnexpectedValueException(__('unit.error.invalid', ['unit' => $type]));
     }
 }
