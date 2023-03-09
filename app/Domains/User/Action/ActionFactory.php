@@ -61,6 +61,14 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
+     * @return void
+     */
+    public function set(): void
+    {
+        $this->actionHandle(Set::class);
+    }
+
+    /**
      * @return \App\Domains\User\Model\User
      */
     public function update(): Model

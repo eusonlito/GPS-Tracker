@@ -57,6 +57,19 @@ class Overspeed extends FormatAbstract
      */
     public function checkPosition(PositionModel $position): bool
     {
-        return $position->speed > $this->config()['speed'];
+        return $this->speed($position) > $this->config()['speed'];
+    }
+
+    /**
+     * @param \App\Domains\Position\Model\Position $position
+     *
+     * @return float
+     */
+    protected function speed(PositionModel $position): float
+    {
+        return match ($position->user->preferences['units']['distance'] ?? 'kilometer') {
+            'mile' => $position->speed * 0.621371,
+            default => $position->speed,
+        };
     }
 }

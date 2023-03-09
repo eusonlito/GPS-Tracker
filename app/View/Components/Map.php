@@ -72,7 +72,7 @@ class Map extends Component
             'longitude' => $position->longitude,
             'speed' => helper()->unit('speed', $position->speed),
             'city' => $position->city->name,
-            'state' => $position->city->state->name
+            'state' => $position->city->state->name,
         ];
     }
 

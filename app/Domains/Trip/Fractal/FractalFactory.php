@@ -20,7 +20,8 @@ class FractalFactory extends FractalAbstract
             'start_utc_at' => $row->start_utc_at,
             'end_at' => $row->end_at,
             'end_utc_at' => $row->end_utc_at,
-            'distance' => $row->distance,
+            'distance' => helper()->unit('distance', $row->distance),
+            'distance_human' => helper()->unitHuman('distance', $row->distance),
             'time' => $row->time,
             'positions' => $this->from('Position', 'map', $row->positions),
         ];

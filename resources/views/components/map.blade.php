@@ -29,7 +29,7 @@
                 <tr>
                     <td class="w-1"><a href="#" data-map-point="{{ $each->id }}">{{ $each->date_at }}</a></td>
                     <td class="w-1"><a href="https://maps.google.com/?q={{ $each->latitude }},{{ $each->longitude }}" rel="nofollow noopener noreferrer" target="_blank">{{ $each->latitude }},{{ $each->longitude }}</a></td>
-                    <td class="w-1" data-table-sort-value="@unit('speed', $each->speed)">@unitHuman('speed', $each->speed)</td>
+                    <td class="w-1" data-table-sort-value="{{ $each->speed }}">@unitHuman('speed', $each->speed)</td>
                 </tr>
 
                 @endforeach

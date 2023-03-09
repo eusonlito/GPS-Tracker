@@ -22,12 +22,45 @@ class User extends FactoryAbstract
             'name' => $this->faker->name(),
             'email' => ($email = $this->faker->companyEmail()),
             'password' => Hash::make($email),
-            'telegram' => ['username' => 'Telegram'],
+            'preferences' => $this->definitionPreferences(),
+            'telegram' => $this->definitionTelegram(),
             'admin' => false,
             'enabled' => true,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             'language_id' => 1,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function definitionTelegram(): array
+    {
+        return ['username' => 'Telegram'];
+    }
+
+    /**
+     * @return array
+     */
+    protected function definitionPreferences(): array
+    {
+        return [
+            'units' => $this->definitionPreferencesUnits(),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function definitionPreferencesUnits(): array
+    {
+        return [
+            'money' => 'euro',
+            'volume' => 'liter',
+            'decimal' => ',',
+            'distance' => 'kilometer',
+            'thousand' => '.',
         ];
     }
 }

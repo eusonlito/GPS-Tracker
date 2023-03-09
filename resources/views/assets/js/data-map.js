@@ -140,7 +140,7 @@ import Map from './map';
     };
 
     const liveStartMapPositions = function (trip) {
-        distance.textContent = distanceHuman(trip.distance);
+        distance.textContent = trip.distance_human;
         time.textContent = timeHuman(trip.time);
 
         const positions = trip.positions;
@@ -189,24 +189,8 @@ import Map from './map';
     };
 
     const tableAddPositionSpeed = function (td, position) {
-        td.innerHTML = position.speed;
-    };
-
-    const distanceHuman = function (meters) {
-        let decimals = 2,
-            units = 'km';
-
-        if (meters >= 1000) {
-            meters /= 1000;
-        } else {
-            decimals = 0;
-            units = 'm';
-        }
-
-        return new Intl.NumberFormat('es-ES', {
-            minimumFractionDigits: decimals,
-            maximumFractionDigits: decimals
-        }).format(meters) + ' ' + units;
+        td.dataset.tableSortValue = position.speed;
+        td.innerHTML = position.speed_human;
     };
 
     const timeHuman = function (seconds) {

@@ -36,6 +36,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
             throw new NotFoundException(__('trip.error.not-found'));
         });
 
-        $this->factory('Language', $this->row->user->language)->action()->set();
+        $this->factory('User', $this->row->user)->action()->set();
     }
 }

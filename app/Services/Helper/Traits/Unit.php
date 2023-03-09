@@ -179,7 +179,7 @@ trait Unit
 
         return match ($this->unitPreferences()['distance']) {
             'kilometer' => $value.' km',
-            'mile' => $value.' ml',
+            'mile' => $value.' mi',
             default => strval($value),
         };
     }
@@ -196,7 +196,7 @@ trait Unit
 
         return match ($this->unitPreferences()['distance']) {
             'kilometer' => $value.' km',
-            'mile' => $value.' ml',
+            'mile' => $value.' mi',
             default => strval($value),
         };
     }
@@ -227,7 +227,7 @@ trait Unit
 
         return match ($this->unitPreferences()['distance']) {
             'kilometer' => $value.' km/h',
-            'mile' => $value.' ml/h',
+            'mile' => $value.' mi/h',
             default => strval($value),
         };
     }
@@ -244,7 +244,7 @@ trait Unit
 
         return match ($this->unitPreferences()['distance']) {
             'kilometer' => $value.' km/h',
-            'mile' => $value.' ml/h',
+            'mile' => $value.' mi/h',
             default => strval($value),
         };
     }
@@ -270,11 +270,11 @@ trait Unit
         static $cache;
 
         return $cache ??= (app('user')->preferences['units'] ?? []) + [
-            'money' =>'euro',
-            'volume' =>'liter',
-            'decimal' =>',',
-            'distance' =>'kilometer',
-            'thousand' =>'.',
+            'money' => 'euro',
+            'volume' => 'liter',
+            'decimal' => ',',
+            'distance' => 'kilometer',
+            'thousand' => '.',
         ];
     }
 }

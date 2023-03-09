@@ -20,8 +20,9 @@ class FractalFactory extends FractalAbstract
             'latitude' => $row->latitude,
             'longitude' => $row->longitude,
             'speed' => helper()->unit('speed', $row->speed),
+            'speed_human' => helper()->unitHuman('speed', $row->speed),
             'city' => $row->city->name,
-            'state' => $row->city->state->name
+            'state' => $row->city->state->name,
         ];
     }
 }
