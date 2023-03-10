@@ -1,5 +1,6 @@
 import Ajax from './ajax';
 import Feather from './feather';
+import LocalStorage from './local-storage';
 import Map from './map';
 
 (function () {
@@ -30,6 +31,38 @@ import Map from './map';
     }
 
     const map = new Map(render);
+
+    (function () {
+        const mapListToggle = element.querySelector('[data-map-list-toggle]');
+
+        if (!mapListToggle) {
+            return;
+        }
+
+        const localStorage = new LocalStorage('map');
+
+        mapListToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const show = element.classList.contains('map-list-hidden');
+
+            element.classList.add('map-list-moving');
+            element.classList.toggle('map-list-hidden');
+
+            mapListToggle.innerHTML = show ? '⟼' : '⟻';
+
+            localStorage.set('list', show);
+
+            setTimeout(() => {
+                element.classList.remove('map-list-moving');
+                map.invalidateSize();
+            }, 500);
+        });
+
+        if (localStorage.get('list')) {
+            mapListToggle.dispatchEvent(new Event('click'));
+        }
+    })();
 
     try {
         map.setAlarms(JSON.parse(element.dataset.mapAlarms || '[]'));
@@ -72,26 +105,6 @@ import Map from './map';
 
     if (anchor.match(/^position\-id\-[0-9]+$/)) {
         map.showMarker(anchor.split('-').pop());
-    }
-
-    const mapListToggle = element.querySelector('[data-map-list-toggle]');
-
-    if (mapListToggle) {
-        mapListToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            const hide = element.classList.contains('map-list-hidden');
-
-            element.classList.add('map-list-moving');
-            element.classList.toggle('map-list-hidden');
-
-            mapListToggle.innerHTML = hide ? '⟼' : '⟻';
-
-            setTimeout(() => {
-                element.classList.remove('map-list-moving');
-                map.invalidateSize();
-            }, 500);
-        });
     }
 
     const live = document.querySelector('[data-map-live]');
