@@ -20,6 +20,11 @@ use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 class Index extends ControllerAbstract
 {
     /**
+     * @const string
+     */
+    protected const DATE_REGEXP = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
+
+    /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
      *
@@ -44,11 +49,34 @@ class Index extends ControllerAbstract
      */
     protected function filtersDates(): void
     {
-        if (preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/', (string)$this->request->input('start_at')) === 0) {
-            $this->request->merge(['start_at' => date('Y-m-d', strtotime('-30 days'))]);
+        $this->filtersDatesStartAt();
+        $this->filtersDatesEndAt();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersDatesStartAt(): void
+    {
+        $start_at = $this->request->input('start_at');
+
+        if ($start_at === '') {
+            return;
         }
 
-        if (preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/', (string)$this->request->input('end_at')) === 0) {
+        if (is_null($start_at) || preg_match(static::DATE_REGEXP, $start_at) === 0) {
+            $this->request->merge(['start_at' => date('Y-m-d', strtotime('-30 days'))]);
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersDatesEndAt(): void
+    {
+        $end_at = $this->request->input('end_at');
+
+        if (is_null($end_at) || preg_match(static::DATE_REGEXP, $end_at) === 0) {
             $this->request->merge(['end_at' => '']);
         }
     }
