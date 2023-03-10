@@ -613,7 +613,7 @@ export default class {
             + this.popupHtmlLine('clock', marker.date_at)
             + this.popupHtmlLine('location', '<a href="https://maps.google.com/?q=' + marker.latitude + ',' + marker.longitude + '" rel="nofollow noopener noreferrer" target="_blank">' + marker.latitude + ',' + marker.longitude + '</a>')
             + this.popupHtmlLine('speed', marker.speed_human)
-            + this.popupHtmlLine('world', marker.city + ' (' + marker.state + ')');
+            + this.popupHtmlLine('map', marker.city + ' (' + marker.state + ')');
     }
 
     popupHtmlLine(type, value) {
