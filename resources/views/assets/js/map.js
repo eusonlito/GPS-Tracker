@@ -624,12 +624,7 @@ export default class {
         return Array.isArray(array) ? array : [];
     }
 
-    svg(name, width = 15, height = 15) {
-        return {
-            clock: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="css-i6dzq1" viewBox="0 0 24 24" width="' + width + '" height="' + height + '" style="display: inline-block;"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
-            world: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="css-i6dzq1" viewBox="0 0 24 24" width="' + width + '" height="' + height + '" style="display: inline-block;"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
-            speed: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="' + width + '" height="' + height + '" style="display: inline-block;"><path stroke="#33363F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.343 17.657a8 8 0 1 1 11.314 0M12 12l4-2"/></svg>',
-            location: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="css-i6dzq1" viewBox="0 0 24 24" width="' + width + '" height="' + height + '" style="display: inline-block;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'
-        }[name];
+    svg(name) {
+        return '<img src="' + WWW + '/build/images/map-popup-' + name + '.svg" width="15" height="15" style="display: inline-block" />';
     }
 };
