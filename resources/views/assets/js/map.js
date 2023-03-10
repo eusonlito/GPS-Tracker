@@ -611,13 +611,13 @@ export default class {
     popupHtml(marker) {
         return ''
             + this.popupHtmlLine('clock', marker.date_at)
-            + this.popupHtmlLine('world', marker.latitude + ',' + marker.longitude)
-            + this.popupHtmlLine('speed', marker.speed)
+            + this.popupHtmlLine('world', '<a href="https://maps.google.com/?q=' + marker.latitude + ',' + marker.longitude + '" rel="nofollow noopener noreferrer" target="_blank">' + marker.latitude + ',' + marker.longitude + '</a>')
+            + this.popupHtmlLine('speed', marker.speed_human)
             + this.popupHtmlLine('location', marker.city + ' (' + marker.state + ')');
     }
 
     popupHtmlLine(type, value) {
-        return '<p style="margin: 0.5em 0 !important; white-space: nowrap; vertical-align: middle !important;"><span style="margin-right: 5px">' + this.svg(type) + '</span> ' + value + '</p>';
+        return '<p style="margin: 0 !important; padding: 3px 20px 3px 0 !important; white-space: nowrap; vertical-align: middle !important;"><span style="margin-right: 5px">' + this.svg(type) + '</span> ' + value + '</p>';
     }
 
     array(array) {
@@ -625,6 +625,6 @@ export default class {
     }
 
     svg(name) {
-        return '<img src="' + WWW + '/build/images/map-popup-' + name + '.svg" width="15" height="15" style="display: inline-block" />';
+        return '<img src="' + WWW + '/build/images/map-popup-' + name + '.svg" width="15" height="15" style="display: inline-block;" />';
     }
 };
