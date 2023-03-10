@@ -17,6 +17,8 @@ CREATE TABLE `alarm` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `telegram` tinyint(1) NOT NULL DEFAULT '0',
   `user_id` bigint unsigned NOT NULL,
+  `schedule_start` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `schedule_end` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `alarm_user_fk` (`user_id`),
   CONSTRAINT `alarm_user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
@@ -335,7 +337,7 @@ CREATE TABLE `trip` (
   `end_utc_at` datetime NOT NULL,
   `timezone_id` bigint unsigned NOT NULL,
   `vehicle_id` bigint unsigned NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `shared` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `trip_name_index` (`name`),
@@ -464,3 +466,4 @@ INSERT INTO `migrations` VALUES (46,'2022_12_29_220000_trip_stats',32);
 INSERT INTO `migrations` VALUES (47,'2023_01_02_230000_user_preferences',33);
 INSERT INTO `migrations` VALUES (48,'2023_02_01_230000_trip_shared',34);
 INSERT INTO `migrations` VALUES (49,'2023_02_07_234500_device_timezone_auto',35);
+INSERT INTO `migrations` VALUES (50,'2023_03_09_163000_alarm_schedule',36);
