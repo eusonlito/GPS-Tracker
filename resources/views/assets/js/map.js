@@ -479,7 +479,7 @@ export default class {
         }
 
         const latLng = this.getLatLng(marker);
-        const html = this.jsonToHtml(marker);
+        const html = this.popupHtml(marker);
 
         L.marker(latLng, this.getMarkerOptions(marker, options, optionsIcon))
             .bindPopup(html)
@@ -608,21 +608,28 @@ export default class {
         return this;
     }
 
-    jsonToHtml(json) {
-        return ['date_at', 'latitude', 'longitude', 'speed', 'city', 'state'].map(key => {
-            return this.jsonToHtmlKeyValue(key, json[key]);
-        }).join('');
+    popupHtml(marker) {
+        return ''
+            + this.popupHtmlLine('clock', marker.date_at)
+            + this.popupHtmlLine('world', marker.latitude + ',' + marker.longitude)
+            + this.popupHtmlLine('speed', marker.speed)
+            + this.popupHtmlLine('location', marker.city + ' (' + marker.state + ')');
     }
 
-    jsonToHtmlKeyValue(key, value) {
-        return '<p style="margin: 0.5em 0 !important"><strong>' + this.ucfirst(key.replace(/_at$/, '')) + ':</strong> ' + ((value === null) ? '' : value) + '</p>';
-    }
-
-    ucfirst(string) {
-        return string[0].toUpperCase() + string.slice(1);
+    popupHtmlLine(type, value) {
+        return '<p style="margin: 0.5em 0 !important; white-space: nowrap; vertical-align: middle !important;"><span style="margin-right: 5px">' + this.svg(type) + '</span> ' + value + '</p>';
     }
 
     array(array) {
         return Array.isArray(array) ? array : [];
+    }
+
+    svg(name, width = 15, height = 15) {
+        return {
+            clock: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="css-i6dzq1" viewBox="0 0 24 24" width="' + width + '" height="' + height + '" style="display: inline-block;"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+            world: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="css-i6dzq1" viewBox="0 0 24 24" width="' + width + '" height="' + height + '" style="display: inline-block;"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+            speed: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="' + width + '" height="' + height + '" style="display: inline-block;"><path stroke="#33363F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.343 17.657a8 8 0 1 1 11.314 0M12 12l4-2"/></svg>',
+            location: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="css-i6dzq1" viewBox="0 0 24 24" width="' + width + '" height="' + height + '" style="display: inline-block;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'
+        }[name];
     }
 };
