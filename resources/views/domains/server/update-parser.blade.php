@@ -42,7 +42,7 @@
         <tbody>
             @foreach ($parsed as $each)
 
-            @foreach ($each['resources'] as $resource)
+            @forelse ($each['resources'] as $resource)
 
             <tr>
                 <td>{{ $resource->format() }}</td>
@@ -68,7 +68,25 @@
                 <td class="text-left">{{ $each['line'] }}</td>
             </tr>
 
-            @endforeach
+            @empty
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="text-danger">-</td>
+
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <td class="text-left">{{ $each['line'] }}</td>
+            </tr>
+
+            @endforelse
 
             @endforeach
         </tbody>
