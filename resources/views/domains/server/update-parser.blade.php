@@ -21,7 +21,7 @@
 
 @if ($parsed)
 
-<div class="overflow-auto overflow-visible header-sticky">
+<div class="max-h-screen overflow-x-auto header-sticky">
     <table id="server-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap">
         <thead>
             <tr>
@@ -35,15 +35,12 @@
                 <th class="w-1">{{ __('server-update-parser.signal') }}</th>
                 <th class="w-1">{{ __('server-update-parser.date_utc_at') }}</th>
                 <th class="w-1">{{ __('server-update-parser.timezone') }}</th>
+                <th>{{ __('server-update-parser.line') }}</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach ($parsed as $each)
-
-            <tr>
-                <td colspan="10" class="text-left">{{ $each['line'] }}</td>
-            </tr>
 
             @foreach ($each['resources'] as $resource)
 
@@ -62,7 +59,13 @@
                 <td>{{ $resource->datetime() }}</td>
                 <td>{{ $resource->timezone() }}</td>
 
+                @else
+
+                <td colspan="7"></td>
+
                 @endif
+
+                <td class="text-left">{{ $each['line'] }}</td>
             </tr>
 
             @endforeach

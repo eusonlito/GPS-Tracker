@@ -4,6 +4,7 @@
     'direction' => 'Address',
     'format' => 'Format',
     'latitude' => 'Latitude',
+    'line' => 'Line',
     'log' => 'Protocol :name Log',
     'longitude' => 'Longitude',
     'send' => 'Send',
