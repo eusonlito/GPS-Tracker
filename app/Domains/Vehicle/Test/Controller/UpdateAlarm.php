@@ -68,7 +68,7 @@ class UpdateAlarm extends ControllerAbstract
 
         $this->post($this->routeToController(), $data + $this->action())
             ->assertStatus(302)
-            ->assertRedirect(route('vehicle.update.alarm', $this->rowLast()->id));
+            ->assertRedirect(route($this->route, $this->rowLast()->id));
     }
 
     /**
@@ -83,7 +83,7 @@ class UpdateAlarm extends ControllerAbstract
 
         $this->post($this->routeToController(), $data + $this->action())
             ->assertStatus(302)
-            ->assertRedirect(route('vehicle.update.alarm', $this->rowLast()->id));
+            ->assertRedirect(route($this->route, $this->rowLast()->id));
     }
 
     /**

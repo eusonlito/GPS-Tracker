@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Vehicle\Test\Controller;
+namespace App\Domains\Server\Test\Controller;
 
-class Update extends ControllerAbstract
+class UpdateParser extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'vehicle.update';
+    protected string $route = 'server.update.parser';
 
     /**
      * @var string
      */
-    protected string $action = 'update';
+    protected string $action = 'parse';
 
     /**
      * @return void
@@ -37,9 +37,31 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthEmptySuccess(): void
+    public function testGetAuthUnauthorizedFail(): void
     {
         $this->authUser();
+
+        $this->get($this->routeToController())
+            ->assertStatus(404);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostAuthUnauthorizedFail(): void
+    {
+        $this->authUser();
+
+        $this->post($this->routeToController())
+            ->assertStatus(404);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetAuthAdminEmptySuccess(): void
+    {
+        $this->authUserAdmin();
 
         $this->get($this->routeToController())
             ->assertStatus(200);
@@ -48,9 +70,9 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthSuccess(): void
+    public function testGetAuthAdminSuccess(): void
     {
-        $this->authUser();
+        $this->authUserAdmin();
         $this->factoryCreate();
 
         $this->get($this->routeToController())
@@ -60,42 +82,25 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthEmptySuccess(): void
+    public function testPostAuthAdminEmptyFail(): void
     {
-        $this->authUser();
+        $this->authUserAdmin();
 
-        $data = $this->factoryMake()->toArray();
-
-        $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($this->route, $this->rowLast()->id));
-
-        $row = $this->rowLast();
-
-        foreach ($data as $key => $value) {
-            $this->assertEquals($row->$key, $value);
-        }
+        $this->post($this->routeToController(), $this->action())
+            ->assertStatus(422);
     }
 
     /**
      * @return void
      */
-    public function testPostAuthSuccess(): void
+    public function testPostAuthAdminSuccess(): void
     {
-        $this->authUser();
-        $this->factoryCreate();
+        $this->authUserAdmin();
 
-        $data = $this->factoryMake()->toArray();
+        $data = ['log' => '*#'];
 
         $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($this->route, $this->rowLast()->id));
-
-        $row = $this->rowLast();
-
-        foreach ($data as $key => $value) {
-            $this->assertEquals($row->$key, $value);
-        }
+            ->assertStatus(200);
     }
 
     /**

@@ -2,7 +2,7 @@ $data = $this->factoryMake()->toArray();
 
 $this->post($this->routeToController(), $data + $this->action())
     ->assertStatus(302)
-    ->assertRedirect(route('{{ name }}.update', $this->rowLast()->id));
+    ->assertRedirect(route($this->route, $this->rowLast()->id));
 
 $row = $this->rowLast();
 
