@@ -6,7 +6,6 @@ use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Device\Model\Collection\Device as DeviceCollection;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\ProtocolFactory;
-use App\Services\Protocol\Resource\ResourceAbstract;
 
 class Parse extends ActionAbstract
 {
