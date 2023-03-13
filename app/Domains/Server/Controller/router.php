@@ -11,4 +11,5 @@ Route::group(['middleware' => ['user-auth-admin']], static function () {
     Route::any('/server/log', Log::class)->name('server.log');
     Route::any('/server/{id}', Update::class)->name('server.update');
     Route::any('/server/{id}/boolean/{column}', UpdateBoolean::class)->name('server.update.boolean');
+    Route::any('/server/{id}/parser', UpdateParser::class)->name('server.update.parser');
 });

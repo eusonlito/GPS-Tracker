@@ -45,6 +45,14 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
+     * @return array
+     */
+    public function parse(): array
+    {
+        return $this->actionHandle(Parse::class, $this->validate()->parse());
+    }
+
+    /**
      * @return void
      */
     public function startAll(): void

@@ -4,7 +4,7 @@
         <input type="text" name="name" class="form-control form-control-lg" id="alarm-create-name" value="{{ $REQUEST->input('name') }}" required>
     </div>
 
-    <div class="md:flex">
+    <div class="flex">
         <div class="flex-1 p-2">
             <label for="alarm-create-schedule_start" class="form-label">{{ __('alarm-create.schedule_start') }}</label>
             <input type="text" name="schedule_start" class="form-control form-control-lg" id="alarm-create-schedule_start" value="{{ $REQUEST->input('schedule_start') }}" placeholder="{{ __('alarm-create.schedule_start-placeholder') }}">
