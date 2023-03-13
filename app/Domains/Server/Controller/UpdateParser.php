@@ -4,6 +4,7 @@ namespace App\Domains\Server\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Services\Protocol\ProtocolFactory;
 
 class UpdateParser extends ControllerAbstract
 {
@@ -20,6 +21,7 @@ class UpdateParser extends ControllerAbstract
 
         return $this->page('server.update-parser', [
             'row' => $this->row,
+            'protocol' => ProtocolFactory::get($this->row->protocol),
             'parsed' => $this->actionPost('parse'),
         ]);
     }

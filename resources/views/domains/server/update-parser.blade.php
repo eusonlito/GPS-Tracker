@@ -7,7 +7,7 @@
 
     <div class="box p-5 mt-5">
         <div class="p-2">
-            <label for="server-log" class="form-label">{{ __('server-update-parser.log') }}</label>
+            <label for="server-log" class="form-label">{{ __('server-update-parser.log', ['name' => $protocol->name()]) }}</label>
             <textarea name="log" class="form-control form-control-lg" id="server-log" rows="10" required>{{ $REQUEST->input('log') }}</textarea>
         </div>
     </div>
