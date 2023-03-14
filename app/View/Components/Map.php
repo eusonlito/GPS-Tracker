@@ -70,6 +70,7 @@ class Map extends Component
             'date_at' => $position->date_at,
             'latitude' => $position->latitude,
             'longitude' => $position->longitude,
+            'direction' => $position->direction,
             'speed' => helper()->unit('speed', $position->speed),
             'speed_human' => helper()->unitHuman('speed', $position->speed),
             'city' => $position->city->name,

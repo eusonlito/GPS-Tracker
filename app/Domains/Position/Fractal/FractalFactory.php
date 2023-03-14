@@ -19,6 +19,7 @@ class FractalFactory extends FractalAbstract
             'date_at' => $row->date_at,
             'latitude' => $row->latitude,
             'longitude' => $row->longitude,
+            'direction' => $row->direction,
             'speed' => helper()->unit('speed', $row->speed),
             'speed_human' => helper()->unitHuman('speed', $row->speed),
             'city' => $row->city->name,
