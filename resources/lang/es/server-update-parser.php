@@ -1,5 +1,6 @@
 <?php return [
-    'date_utc_at' => 'Fecha UTC',
+    'date_at' => 'Fecha',
+    'date_utc_at' => 'Fecha Registro (UTC)',
     'device' => 'Dispositivo',
     'direction' => 'Dirección',
     'format' => 'Format',

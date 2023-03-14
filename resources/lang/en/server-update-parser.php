@@ -1,5 +1,6 @@
 <?php return [
-    'date_utc_at' => 'UTC Date',
+    'date_at' => 'Timestamp',
+    'date_utc_at' => 'Location Date (UTC)',
     'device' => 'Device',
     'direction' => 'Address',
     'format' => 'Format',

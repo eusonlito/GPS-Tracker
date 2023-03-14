@@ -69,14 +69,11 @@ class Parse extends ActionAbstract
      */
     protected function line(string $line): void
     {
-        $line = trim($line);
-
-        if (str_contains($line, ' ')) {
-            $line = explode(' ', $line, 2)[1];
-        }
+        [$line, $date_at] = array_reverse(explode(' ', trim($line), 2)) + ['', ''];
 
         $this->parsed[] = [
             'line' => $line,
+            'date_at' => str_replace(['[', ']'], '', $date_at),
             'resources' => ($resources = $this->protocol->resources($line)),
             'device' => $this->lineDevice($resources),
         ];

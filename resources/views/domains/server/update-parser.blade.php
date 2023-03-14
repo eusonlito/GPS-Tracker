@@ -25,6 +25,7 @@
     <table id="server-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap">
         <thead>
             <tr>
+                <th class="w-1">{{ __('server-update-parser.date_at') }}</th>
                 <th class="w-1">{{ __('server-update-parser.format') }}</th>
                 <th class="w-1">{{ __('server-update-parser.serial') }}</th>
                 <th class="w-1">{{ __('server-update-parser.device') }}</th>
@@ -42,9 +43,11 @@
         <tbody>
             @foreach ($parsed as $each)
 
-            @forelse ($each['resources'] as $resource)
-
             <tr>
+                <td class="text-left">{{ $each['date_at'] }}</td>
+
+                @forelse ($each['resources'] as $resource)
+
                 <td>{{ $resource->format() }}</td>
                 <td>{{ $resource->serial() }}</td>
                 <td class="{{ $each['device'] ? 'text-success' : 'text-danger' }}">{{ $each['device']?->name ?: '-' }}</td>
@@ -65,12 +68,8 @@
 
                 @endif
 
-                <td class="text-left">{{ $each['line'] }}</td>
-            </tr>
+                @empty
 
-            @empty
-
-            <tr>
                 <td></td>
                 <td></td>
                 <td class="text-danger">-</td>
@@ -83,10 +82,10 @@
                 <td></td>
                 <td></td>
 
+                @endforelse
+
                 <td class="text-left">{{ $each['line'] }}</td>
             </tr>
-
-            @endforelse
 
             @endforeach
         </tbody>
