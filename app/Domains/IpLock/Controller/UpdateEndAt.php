@@ -2,7 +2,6 @@
 
 namespace App\Domains\IpLock\Controller;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
 class UpdateEndAt extends ControllerAbstract
