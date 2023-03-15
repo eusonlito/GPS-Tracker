@@ -4,6 +4,7 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as KernelVendor;
 use App\Domains\Configuration\Middleware\Request as ConfigurationRequest;
+use App\Domains\IpLock\Middleware\Check as IpLockCheck;
 use App\Domains\Language\Middleware\Request as LanguageRequest;
 use App\Domains\User\Middleware\Admin as UserAdmin;
 use App\Domains\User\Middleware\AuthRedirect as UserAuthRedirect;
@@ -41,6 +42,7 @@ class Kernel extends KernelVendor
      */
     protected $middlewareGroups = [
         'user-auth' => [
+            IpLockCheck::class,
             UserRequest::class,
             UserEnabled::class,
         ],

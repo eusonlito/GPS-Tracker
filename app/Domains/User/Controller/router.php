@@ -21,5 +21,6 @@ Route::group(['middleware' => ['user-auth-admin']], static function () {
     Route::any('/user/create', Create::class)->name('user.create');
     Route::any('/user/{id}', Update::class)->name('user.update');
     Route::get('/user/{id}/user-session', UpdateUserSession::class)->name('user.update.user-session');
+    Route::get('/user/ip-lock', IpLock::class)->name('user.ip-lock');
     Route::get('/user/user-session', UserSession::class)->name('user.user-session');
 });

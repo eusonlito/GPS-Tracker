@@ -54,4 +54,20 @@ class IpLock extends ModelAbstract
     {
         return TestFactory::new();
     }
+
+    /**
+     * @return string
+     */
+    public function time(): string
+    {
+        return helper()->timeHuman(strtotime($this->end_at) - strtotime($this->created_at));
+    }
+
+    /**
+     * @return bool
+     */
+    public function finished(): bool
+    {
+        return $this->end_at <= date('Y-m-d H:i:s');
+    }
 }

@@ -89,6 +89,13 @@
                         <div class="side-menu__title">{{ __('in-sidebar.users-sessions') }}</div>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('user.ip-lock') }}" class="side-menu {{ ($ROUTE === 'user.ip-lock') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('lock')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.ip-locks') }}</div>
+                    </a>
+                </li>
             </ul>
         </li>
 

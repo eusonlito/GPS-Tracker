@@ -27,4 +27,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(Create::class);
     }
+
+    /**
+     * @return \App\Domains\IpLock\Model\IpLock
+     */
+    public function updateEndAt(): Model
+    {
+        return $this->actionHandle(UpdateEndAt::class);
+    }
 }

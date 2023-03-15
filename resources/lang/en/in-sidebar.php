@@ -3,6 +3,7 @@
     'configuration' => 'Configuration',
     'dashboard' => 'Dashboard',
     'devices' => 'Devices',
+    'ip-locks' => 'Blocked IPs',
     'logout' => 'Exit',
     'notifications' => 'Notifications',
     'profile' => 'Profile',

@@ -3,6 +3,7 @@
     'configuration' => 'Configuración',
     'dashboard' => 'Dashboard',
     'devices' => 'Dispositivos',
+    'ip-locks' => 'IPs Bloqueadas',
     'logout' => 'Salir',
     'notifications' => 'Notificaciones',
     'profile' => 'Perfil',

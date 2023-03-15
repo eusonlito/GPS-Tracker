@@ -17,7 +17,7 @@ class ActionFactory extends ActionFactoryAbstract
      */
     public function fail(): void
     {
-        $this->actionHandleTransaction(Fail::class, $this->validate()->fail());
+        $this->actionHandle(Fail::class, $this->validate()->fail());
     }
 
     /**
@@ -25,6 +25,6 @@ class ActionFactory extends ActionFactoryAbstract
      */
     public function success(): void
     {
-        $this->actionHandleTransaction(Success::class, $this->validate()->success(), ...func_get_args());
+        $this->actionHandle(Success::class, $this->validate()->success(), ...func_get_args());
     }
 }
