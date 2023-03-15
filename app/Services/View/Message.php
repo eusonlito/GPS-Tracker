@@ -3,8 +3,8 @@
 namespace App\Services\View;
 
 use Throwable;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
-use Illuminate\Session\Store;
 use Illuminate\Support\MessageBag;
 
 class Message
@@ -35,9 +35,9 @@ class Message
     protected Request $request;
 
     /**
-     * @var \Illuminate\Session\Store
+     * @var \Illuminate\Contracts\Session\Session
      */
-    protected Store $session;
+    protected Session $session;
 
     /**
      * @return self
@@ -173,11 +173,11 @@ class Message
     }
 
     /**
-     * @param \Illuminate\Session\Store $session
+     * @param \Illuminate\Contracts\Session\Session $session
      *
      * @return self
      */
-    public function session(Store $session): self
+    public function session(Session $session): self
     {
         $this->session = $session;
         $this->set($this->session->get('messages', []));

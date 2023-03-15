@@ -112,7 +112,7 @@ abstract class CommandAbstract extends Command
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-    final protected function actingAs($user = null): Authenticatable
+    final protected function actingAs(Authenticatable|int|null $user = null): Authenticatable
     {
         $model = config('auth.providers.users.model');
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 abstract class FactoryAbstract extends Factory
 {
     /**
-     * @var class-string<Illuminate\Database\Eloquent\Model>
+     * @var class-string<\App\Domains\Shared\Model\ModelAbstract>
      */
     protected $model;
 
