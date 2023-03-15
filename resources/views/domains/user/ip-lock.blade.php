@@ -30,7 +30,7 @@
                 <td>{{ $each->time() }}</td>
                 <td class="w-1">
                     @if ($each->finished() === false)
-                    <a href="{{ route('ip-lock.update.end-at', $each->id) }}" class="block">@icon('unlock')</a>
+                    <a href="{{ route('ip-lock.update.end-at', $each->id) }}" title="{{ __('user-ip-lock.unlock') }}" class="block">@icon('unlock', 'w-4 h-4')</a>
                     @endif
                 </td>
             </tr>

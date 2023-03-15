@@ -6,4 +6,5 @@
     'ip' => 'IP',
     'meta-title' => 'IPs Bloqueadas',
     'time' => 'Tiempo',
+    'unlock' => 'Desbloquear',
 ];

@@ -6,4 +6,5 @@
     'ip' => 'IP',
     'meta-title' => 'Blocked IPs',
     'time' => 'Time',
+    'unlock' => 'Unblock',
 ];
