@@ -1,3 +1,8 @@
+html {
+    --tw-bg-opacity: 1;
+    background-color: rgba(7, 26, 80, var(--tw-bg-opacity));
+}
+
 html, body, .main {
     padding: 0;
 }
@@ -13,6 +18,14 @@ select {
 
 .mobile-menu {
     margin: 0;
+}
+
+.side-nav {
+    width: 230px;
+
+    @media (max-width: 1279px) {
+        width: 105px;
+    }
 }
 
 .wrapper:before,
@@ -36,12 +49,8 @@ select {
     margin-right: -26px !important;
 }
 
-.side-nav {
-    width: 230px;
-
-    @media (max-width: 1279px) {
-        width: 105px;
-    }
+.mobile-menu > ul > li > .menu.menu--active {
+    background-color: rgba(20, 46, 113, var(--tw-bg-opacity));
 }
 
 .header-sticky table thead th {
