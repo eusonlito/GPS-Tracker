@@ -11,7 +11,7 @@ use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 class Trip extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\Trip\Model\Trip>
      */
     protected $model = Model::class;
 

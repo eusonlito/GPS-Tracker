@@ -8,7 +8,7 @@ use App\Domains\Alarm\Model\Alarm as Model;
 class Alarm extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\Alarm\Model\Alarm>
      */
     protected $model = Model::class;
 

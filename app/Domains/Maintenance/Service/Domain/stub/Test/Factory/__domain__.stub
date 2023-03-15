@@ -8,7 +8,7 @@ use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
 class {{ domain }} extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\{{ domain }}\Model\{{ domain }}>
      */
     protected $model = Model::class;
 

@@ -12,7 +12,7 @@ use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 class AlarmNotification extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\AlarmNotification\Model\AlarmNotification>
      */
     protected $model = Model::class;
 

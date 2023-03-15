@@ -9,7 +9,7 @@ use App\Domains\DeviceMessage\Model\DeviceMessage as Model;
 class DeviceMessage extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\DeviceMessage\Model\DeviceMessage>
      */
     protected $model = Model::class;
 

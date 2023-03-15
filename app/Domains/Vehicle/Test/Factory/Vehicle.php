@@ -9,7 +9,7 @@ use App\Domains\Vehicle\Model\Vehicle as Model;
 class Vehicle extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\Vehicle\Model\Vehicle>
      */
     protected $model = Model::class;
 

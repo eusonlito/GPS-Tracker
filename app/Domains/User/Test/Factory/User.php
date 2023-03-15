@@ -9,7 +9,7 @@ use App\Domains\User\Model\User as Model;
 class User extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\User\Model\User>
      */
     protected $model = Model::class;
 

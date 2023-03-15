@@ -8,7 +8,7 @@ use App\Domains\Server\Model\Server as Model;
 class Server extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\Server\Model\Server>
      */
     protected $model = Model::class;
 

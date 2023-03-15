@@ -8,7 +8,7 @@ use App\Domains\Configuration\Model\Configuration as Model;
 class Configuration extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\Configuration\Model\Configuration>
      */
     protected $model = Model::class;
 

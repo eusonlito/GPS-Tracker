@@ -8,7 +8,7 @@ use App\Domains\UserSession\Model\UserSession as Model;
 class UserSession extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\UserSession\Model\UserSession>
      */
     protected $model = Model::class;
 

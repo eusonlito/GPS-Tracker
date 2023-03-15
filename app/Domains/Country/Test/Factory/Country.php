@@ -8,7 +8,7 @@ use App\Domains\Country\Model\Country as Model;
 class Country extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\Country\Model\Country>
      */
     protected $model = Model::class;
 

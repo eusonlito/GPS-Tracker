@@ -13,7 +13,7 @@ use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 class Position extends FactoryAbstract
 {
     /**
-     * @var string
+     * @var class-string<\App\Domains\Position\Model\Position>
      */
     protected $model = Model::class;
 
