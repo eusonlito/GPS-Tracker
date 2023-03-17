@@ -25,7 +25,7 @@ class UpdateExport extends ActionAbstract
      */
     protected function response(): StreamedResponse
     {
-        return response()->stream(fn () => $this->readfile(), 200, $this->headers());
+        return response()->stream($this->readfile(...), 200, $this->headers());
     }
 
     /**

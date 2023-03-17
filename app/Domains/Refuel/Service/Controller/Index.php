@@ -101,7 +101,7 @@ class Index extends ControllerAbstract
             return null;
         }
 
-        $totals = $this->list()->reduce(fn ($carry, $row) => $this->totalsRow($carry, $row), $this->totalsCarry());
+        $totals = $this->list()->reduce($this->totalsRow(...), $this->totalsCarry());
         $totals->price = round($totals->price / $totals->count, 3);
 
         return $totals;

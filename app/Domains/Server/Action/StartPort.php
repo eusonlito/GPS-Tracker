@@ -102,7 +102,7 @@ class StartPort extends ActionAbstract
      */
     protected function serve(): void
     {
-        $this->server->accept(fn (string $body) => $this->store($body));
+        $this->server->accept($this->store(...));
     }
 
     /**

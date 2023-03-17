@@ -52,7 +52,7 @@ class Map extends Component
     protected function positionsJson(): string
     {
         return $this->positions
-            ->map(fn ($position) => $this->positionsJsonMap($position))
+            ->map($this->positionsJsonMap(...))
             ->sortByDesc('date_at')
             ->values()
             ->toJson();

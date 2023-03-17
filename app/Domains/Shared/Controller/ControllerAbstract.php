@@ -20,7 +20,7 @@ abstract class ControllerAbstract extends Controller
      */
     public function __construct()
     {
-        $this->middleware(fn ($request, $next) => $this->setup($request, $next));
+        $this->middleware($this->setup(...));
     }
 
     /**

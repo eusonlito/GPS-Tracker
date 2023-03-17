@@ -55,7 +55,7 @@ class Manager extends ProtocolAbstract
      */
     public function resources(string $body): array
     {
-        return array_filter(array_map(fn ($body) => $this->resource($body), $this->bodies($body)));
+        return array_filter(array_map($this->resource(...), $this->bodies($body)));
     }
 
     /**

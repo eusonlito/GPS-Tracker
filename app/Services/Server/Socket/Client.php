@@ -169,7 +169,7 @@ class Client
             ->whereSentAt(false)
             ->withDevice()
             ->get()
-            ->each(fn ($message) => $this->readResourceMessageWrite($message));
+            ->each($this->readResourceMessageWrite(...));
     }
 
     /**

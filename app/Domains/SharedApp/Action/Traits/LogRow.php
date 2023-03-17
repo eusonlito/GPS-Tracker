@@ -55,7 +55,7 @@ trait LogRow
         }
 
         if (is_array($row)) {
-            return array_map(fn ($value) => $this->logRowRelatedRow($value), $row);
+            return array_map($this->logRowRelatedRow(...), $row);
         }
 
         return [$this->logRowRelatedRow($row)];

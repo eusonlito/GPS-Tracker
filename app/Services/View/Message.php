@@ -157,7 +157,7 @@ class Message
     public function set(array $messages): void
     {
         $this->sessionFlash($messages);
-        $this->viewShareSet(array_map(fn ($value) => $this->setBag($value), $messages));
+        $this->viewShareSet(array_map($this->setBag(...), $messages));
     }
 
     /**

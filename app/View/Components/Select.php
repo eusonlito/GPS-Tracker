@@ -141,7 +141,7 @@ class Select extends Component
      */
     protected function optionsValue(array $options): array
     {
-        return array_map(fn ($value) => $this->optionsValueOption($value), $options);
+        return array_map($this->optionsValueOption(...), $options);
     }
 
     /**
@@ -179,7 +179,7 @@ class Select extends Component
      */
     protected function optionsKeyValue(array $options): array
     {
-        return array_map(fn ($key, $value) => $this->optionsKeyValueOption($key, $value), array_keys($options), $options);
+        return array_map($this->optionsKeyValueOption(...), array_keys($options), $options);
     }
 
     /**
@@ -218,7 +218,7 @@ class Select extends Component
      */
     protected function optionsAssociative(array $options): array
     {
-        return array_map(fn ($value) => $this->optionsAssociativeOption($value), $options);
+        return array_map($this->optionsAssociativeOption(...), $options);
     }
 
     /**

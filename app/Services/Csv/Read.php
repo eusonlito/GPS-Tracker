@@ -59,7 +59,7 @@ class Read
         $this->header();
         $this->columns();
 
-        return array_map(fn (array $line) => $this->line($line), $this->lines);
+        return array_map($this->line(...), $this->lines);
     }
 
     /**
