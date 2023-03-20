@@ -172,6 +172,6 @@ class Location extends ParserAbstract
      */
     protected function response(): string
     {
-        return $this->body;
+        return '+SACK:'.end($this->values).'$';
     }
 }
