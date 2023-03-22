@@ -151,7 +151,7 @@ return new class extends MigrationAbstract
         Schema::create('ip_lock', function (Blueprint $table) {
             $table->id();
 
-            $table->string('ip')->default('');
+            $table->string('ip')->default('')->index();
 
             $table->dateTimeTz('end_at')->nullable();
 
