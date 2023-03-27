@@ -3,26 +3,25 @@
 export default class {
     constructor(name) {
         this.name = name;
+        this.available = this.isAvailable();
+    }
+
+    isAvailable() {
+        return this.name
+            && this.name.length
+            && this.storage() !== false;
     }
 
     set(name, value) {
-        if (!this.available() || !name) {
+        if (!this.available) {
             return;
         }
 
-        let storage = localStorage.getItem(this.name);
+        let storage = this.storage();
 
-        if (storage) {
-            try {
-                storage = JSON.parse(storage);
-            } catch (e) {
-                storage = {};
-            }
-        } else {
-            storage = {};
-        }
-
-        if (typeof name === 'object') {
+        if (!name || !name.length) {
+            storage = value;
+        } else if (typeof name === 'object') {
             storage = {...storage, ...name };
         } else {
             storage[name] = value;
@@ -32,57 +31,46 @@ export default class {
     }
 
     get(name) {
-        if (!this.available() || !name) {
+        if (!this.available) {
             return;
         }
 
-        const storage = localStorage.getItem(this.name);
+        const storage = this.storage();
 
-        if (!storage) {
-            return;
+        if (!name || !name.length) {
+            return storage;
         }
 
-        try {
-            return JSON.parse(storage)[name] || null;
-        } catch (e) {
-            return null;
-        }
+        return storage[name] || null;
     }
 
     del(name) {
-        if (!this.available() || !name) {
+        if (!this.available) {
             return;
         }
 
-        const storage = localStorage.getItem(this.name);
+        let storage = this.storage();
 
-        if (!storage || !storage[name]) {
-            return;
+        if (!name || !name.length) {
+            storage = {};
+        } else {
+            delete storage[name];
         }
-
-        delete storage[name];
 
         localStorage.setItem(this.name, JSON.stringify(storage));
     }
 
-    available() {
-        if (this._available) {
-            return this._available;
-        }
+    storage() {
+        const storage = localStorage.getItem(this.name);
 
-        if (!this.name) {
-            return this._available = false;
+        if (!storage) {
+            return {};
         }
-
-        const test = 'test';
 
         try {
-            localStorage.setItem(test, test);
-            localStorage.removeItem(test);
-
-            return this._available = true;
+            return JSON.parse(storage) || {};
         } catch (e) {
-            return this._available = false;
+            return false;
         }
     }
 }
