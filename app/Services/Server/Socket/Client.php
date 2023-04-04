@@ -214,6 +214,7 @@ class Client
      */
     protected function errorIsReportable(Throwable $e): bool
     {
-        return str_contains($e->getMessage(), ' closed ') === false;
+        return (str_contains($e->getMessage(), ' closed ') === false)
+            && (str_contains($e->getMessage(), ' unable to write to socket ') === false);
     }
 }
