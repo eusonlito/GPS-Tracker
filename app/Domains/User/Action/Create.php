@@ -31,6 +31,7 @@ class Create extends ActionAbstract
         $this->dataAdmin();
         $this->dataEnabled();
         $this->dataPassword();
+        $this->dataPreferences();
         $this->dataLanguageId();
     }
 
@@ -77,6 +78,14 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
+    protected function dataPreferences(): void
+    {
+        $this->data['preferences'] = [];
+    }
+
+    /**
+     * @return void
+     */
     protected function dataLanguageId(): void
     {
         $this->data['language_id'] = LanguageModel::query()
@@ -113,6 +122,7 @@ class Create extends ActionAbstract
             'name' => $this->data['name'],
             'email' => $this->data['email'],
             'password' => $this->data['password'],
+            'preferences' => $this->data['preferences'],
             'admin' => $this->data['admin'],
             'enabled' => $this->data['enabled'],
             'language_id' => $this->data['language_id'],
