@@ -31,20 +31,20 @@
         "nth-check": "^2.1.1",
         "path-parse": "^1.0.7",
         "postcss": "^8.4.21",
-        "sass": "^1.60.0",
+        "sass": "^1.61.0",
         "semver-regex": "^4.0.5",
         "tailwindcss": "^2.2.19",
         "tippy.js": "^6.3.7",
         "tom-select": "^1.7.8",
         "trim-newlines": "^4.1.1",
         "velocity-animate": "^1.5.2",
-        "webpack": "^5.76.3",
+        "webpack": "^5.78.0",
         "webpack-stream": "^7.0.0",
         "yargs-parser": "^21.1.1"
     },
     "dependencies": {
         "leaflet-geometryutil": "^0.10.1",
-        "leaflet-polycolor": "^2.0.3",
+        "leaflet-polycolor": "^2.0.4",
         "leaflet-rotatedmarker": "^0.2.0",
         "leaflet-spline": "^0.1.3"
     }
