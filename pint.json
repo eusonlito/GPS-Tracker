@@ -13,6 +13,9 @@
         "phpdoc_order": true,
         "phpdoc_separation": true,
         "single_line_comment_style": false,
-        "Laravel/laravel_phpdoc_alignment": false
+        "Laravel/laravel_phpdoc_alignment": false,
+        "curly_braces_position": {
+            "anonymous_classes_opening_brace": "next_line_unless_newline_at_signature_end"
+        }
     }
 }

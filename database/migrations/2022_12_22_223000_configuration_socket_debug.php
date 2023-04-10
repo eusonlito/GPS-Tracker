@@ -2,8 +2,7 @@
 
 use App\Domains\SharedApp\Migration\MigrationAbstract;
 
-return new class extends MigrationAbstract
-{
+return new class extends MigrationAbstract {
     /**
      * @return void
      */
