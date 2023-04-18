@@ -12,7 +12,7 @@ class StartAll extends CommandAbstract
     /**
      * @var string
      */
-    protected $description = 'Start All Configured Servers with {--reset} and  {--debug} options.';
+    protected $description = 'Start All Configured Servers with {--reset} and {--debug} options.';
 
     /**
      * @return void
