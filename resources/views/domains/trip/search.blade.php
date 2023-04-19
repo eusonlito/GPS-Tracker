@@ -36,11 +36,80 @@
             <x-select name="shared" :options="$shared" data-change-submit></x-select>
         </div>
 
-        <div class="lg:ml-4 mt-2 lg:mt-0 bg-white">
-            <a href="{{ route('trip.search') }}" class="btn form-control-lg">{{ __('trip-index.search') }}</a>
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="country_id" :options="$countries" value="id" text="name" placeholder="{{ __('trip-index.country') }}" data-change-submit></x-select>
+        </div>
+
+        @if ($country)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="state_id" :options="$states" value="id" text="name" placeholder="{{ __('trip-index.state') }}" data-change-submit></x-select>
+        </div>
+
+        @endif
+
+        @if ($state)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="city_id" :options="$cities" value="id" text="name" placeholder="{{ __('trip-index.city') }}" data-change-submit></x-select>
+        </div>
+
+        @endif
+
+        @if ($country)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="start_end" :options="$starts_ends" placeholder="{{ __('trip-index.start_end') }}" data-change-submit></x-select>
+        </div>
+
+        @endif
+    </div>
+
+    <div class="box p-5 mt-5">
+        <div class="accordion" data-accordion>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <button class="accordion-button p-2" type="button" aria-controls="trip-accordion-map">
+                        {{ __('trip-index.map') }}
+                    </button>
+                </div>
+
+                <div class="accordion-collapse collapse {{ $REQUEST->input('fence') ? 'show' : '' }}" aria-labelledby="trip-accordion-map">
+                    <div class="accordion-body text-slate-600 dark:text-slate-500 leading-relaxed">
+                        <input type="hidden" name="fence" value="{{ $REQUEST->input('fence') ? '1' : '0' }}" />
+
+                        <div class="md:flex">
+                            <div class="flex-1 p-2">
+                                <label for="trip-index-latitude" class="form-label">{{ __('trip-index.latitude') }}</label>
+                                <input type="number" name="fence_latitude" class="form-control form-control-lg" id="trip-index-latitude" value="{{ $REQUEST->input('fence_latitude') ?: $position?->latitude }}" step="any">
+                            </div>
+
+                            <div class="flex-1 p-2">
+                                <label for="trip-index-longitude" class="form-label">{{ __('trip-index.longitude') }}</label>
+                                <input type="number" name="fence_longitude" class="form-control form-control-lg" id="trip-index-longitude" value="{{ $REQUEST->input('fence_longitude') ?: $position?->longitude }}" step="any">
+                            </div>
+
+                            <div class="flex-1 p-2">
+                                <label for="trip-index-radius" class="form-label">{{ __('trip-index.radius') }}</label>
+                                <input type="number" name="fence_radius" class="form-control form-control-lg" id="trip-index-radius" value="{{ $REQUEST->input('fence_radius') ?: 5 }}" step="0.1">
+                            </div>
+                        </div>
+
+                        <div class="map-fence mt-5" data-map-fence data-map-fence-latitude="#trip-index-latitude" data-map-fence-longitude="#trip-index-longitude" data-map-fence-radius="#trip-index-radius"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box p-5 mt-5">
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" data-click-one>{{ __('trip-search.send') }}</button>
         </div>
     </div>
 </form>
+
+@if (isset($list))
 
 <div class="overflow-auto lg:overflow-visible header-sticky">
     <table id="trip-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
@@ -114,5 +183,7 @@
         </tfoot>
     </table>
 </div>
+
+@endif
 
 @stop

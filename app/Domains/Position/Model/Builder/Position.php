@@ -4,10 +4,13 @@ namespace App\Domains\Position\Model\Builder;
 
 use App\Domains\City\Model\City as CityModel;
 use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
+use App\Domains\SharedApp\Model\Builder\Traits\Gis as GisTrait;
 use App\Domains\Trip\Model\Trip as TripModel;
 
 class Position extends BuilderAbstract
 {
+    use GisTrait;
+
     /**
      * @param int $city_id
      *
@@ -51,6 +54,18 @@ class Position extends BuilderAbstract
         return $this->byDeviceId($device_id)
             ->whenTripStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at)
             ->whenStartEnd($trip_start_end);
+    }
+
+    /**
+     * @param float $latitude
+     * @param float $longitude
+     * @param float $radius
+     *
+     * @return self
+     */
+    public function byFence(float $latitude, float $longitude, float $radius): self
+    {
+        return $this->inRadius($latitude, $longitude, intval($radius * 1000));
     }
 
     /**

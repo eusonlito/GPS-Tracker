@@ -20,6 +20,8 @@ import './data-update-boolean.js';
 import './data-notification-request.js';
 import './data-datepicker.js';
 import './data-link-to-post.js';
+import './data-accordion.js';
+import './trip-search.js';
 import './alarm-notification.js';
 import './mobile-menu.js';
 import './side-menu.js';

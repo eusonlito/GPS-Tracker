@@ -40,6 +40,18 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @param float $latitude
+     * @param float $longitude
+     * @param float $radius
+     *
+     * @return self
+     */
+    public function byFence(float $latitude, float $longitude, float $radius): self
+    {
+        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byFence($latitude, $longitude, $radius));
+    }
+
+    /**
      * @param string $start_utc_at
      *
      * @return self
@@ -174,6 +186,22 @@ class Trip extends BuilderAbstract
             boolval($country_id) => $this->byCountryId($country_id, $start_end),
             default => $this,
         };
+    }
+
+    /**
+     * @param bool $fence
+     * @param float $latitude
+     * @param float $longitude
+     * @param float $radius
+     *
+     * @return self
+     */
+    public function whenFence(bool $fence, float $latitude, float $longitude, float $radius): self
+    {
+        return $this->when(
+            $fence && $latitude && $longitude && $radius,
+            static fn ($q) => $q->byFence($latitude, $longitude, $radius)
+        );
     }
 
     /**

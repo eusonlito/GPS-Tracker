@@ -78,11 +78,15 @@ L.GeometryUtil = GeometryUtil;
 
     mapClick(latitude.value, longitude.value, true);
 
-    map.fitBounds(map.getBounds(), { animate: false, padding: [30, 30] });
+    if (element.offsetParent !== null) {
+        map.fitBounds(map.getBounds(), { animate: false, padding: [30, 30] });
+    }
 
     map.on('click', e => mapClick(e.latlng.lat, e.latlng.lng));
 
     latitude.addEventListener('keyup', (e) => mapClick(latitude.value, longitude.value, true));
     longitude.addEventListener('keyup', (e) => mapClick(latitude.value, longitude.value, true));
     radius.addEventListener('keyup', (e) => mapClick(latitude.value, longitude.value, true));
+
+    window.map = map;
 })();
