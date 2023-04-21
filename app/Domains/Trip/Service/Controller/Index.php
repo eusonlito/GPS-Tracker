@@ -130,7 +130,7 @@ class Index extends ControllerAbstract
     protected function vehicle(): VehicleModel
     {
         return $this->cache[__FUNCTION__] ??= $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
-            ?: $this->vehicles()->first();
+            ?: $this->vehicles()->last();
     }
 
     /**
