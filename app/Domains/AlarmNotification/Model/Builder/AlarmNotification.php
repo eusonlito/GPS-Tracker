@@ -46,7 +46,7 @@ class AlarmNotification extends BuilderAbstract
             `id`, `name`, `type`, `config`, `closed_at`, `sent_at`, `created_at`, `updated_at`,
             `telegram`, `date_at`, `date_utc_at`,
             `alarm_id`, `position_id`, `trip_id`, `vehicle_id`,
-            ROUND(ST_X(`point`), 5) AS `longitude`, ROUND(ST_Y(`point`), 5) AS `latitude`
+            ROUND(ST_Longitude(`point`), 5) AS `longitude`, ROUND(ST_Latitude(`point`), 5) AS `latitude`
         ');
     }
 

@@ -108,7 +108,7 @@ class City extends BuilderAbstract
     {
         return $this->selectRaw('
             `id`, `name`, `created_at`, `updated_at`, `state_id`,
-            ROUND(ST_X(`point`), 5) AS `longitude`, ROUND(ST_Y(`point`), 5) AS `latitude`
+            ROUND(ST_Longitude(`point`), 5) AS `longitude`, ROUND(ST_Latitude(`point`), 5) AS `latitude`
         ');
     }
 
