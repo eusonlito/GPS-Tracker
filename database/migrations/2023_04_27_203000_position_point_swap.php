@@ -8,16 +8,48 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
+        if ($this->upMigrated()) {
+            return;
+        }
+
         $this->update();
         $this->upFinish();
     }
 
     /**
+     * @return bool
+     */
+    protected function upMigrated(): bool
+    {
+        try {
+            $result = $this->db()->select($this->upMigratedQuery());
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return empty($result)
+            || $result[0]->migrated;
+    }
+
+    /**
+     * @return string
+     */
+    protected function upMigratedQuery(): string
+    {
+        return '
+            SELECT ST_Y(`point`) = ST_Longitude(`point`) AS `migrated`
+            FROM `position`
+            ORDER BY `id` ASC
+            LIMIT 1;
+        ';
+    }
+
+    /**
      * @return void
      */
-    protected function update()
+    protected function update(): void
     {
         $this->updateAlarmNotification();
         $this->updateCity();
@@ -27,7 +59,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function updateAlarmNotification()
+    protected function updateAlarmNotification(): void
     {
         $this->db()->statement('
             DELETE FROM `alarm_notification`
@@ -43,7 +75,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function updateCity()
+    protected function updateCity(): void
     {
         $this->db()->statement('
             DELETE FROM `city`
@@ -59,7 +91,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function updatePosition()
+    protected function updatePosition(): void
     {
         $this->db()->statement('
             DELETE FROM `position`
@@ -84,7 +116,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         $this->downAlarmNotification();
         $this->downCity();
@@ -94,7 +126,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function downAlarmNotification()
+    protected function downAlarmNotification(): void
     {
         $this->db()->statement('
             DELETE FROM `alarm_notification`
@@ -110,7 +142,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function downCity()
+    protected function downCity(): void
     {
         $this->db()->statement('
             DELETE FROM `city`
@@ -126,7 +158,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function downPosition()
+    protected function downPosition(): void
     {
         $this->db()->statement('
             DELETE FROM `position`
