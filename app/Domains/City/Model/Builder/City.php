@@ -88,7 +88,7 @@ class City extends BuilderAbstract
      */
     public function selectDistance(float $latitude, float $longitude): self
     {
-        return $this->selectRaw(sprintf('*, ST_Distance_Sphere(`point`, ST_SRID(POINT(%f, %f), 4326)) `distance`', $latitude, $longitude));
+        return $this->selectRaw(sprintf('*, ST_Distance_Sphere(`point`, ST_SRID(POINT(%f, %f), 4326)) `distance`', $longitude, $latitude));
     }
 
     /**

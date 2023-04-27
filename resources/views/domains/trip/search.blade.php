@@ -91,7 +91,7 @@
 
                             <div class="flex-1 p-2">
                                 <label for="trip-index-radius" class="form-label">{{ __('trip-index.radius') }}</label>
-                                <input type="number" name="fence_radius" class="form-control form-control-lg" id="trip-index-radius" value="{{ $REQUEST->input('fence_radius') ?: 5 }}" step="0.1">
+                                <input type="number" name="fence_radius" class="form-control form-control-lg" id="trip-index-radius" value="{{ $REQUEST->input('fence_radius') ?: 5 }}" step="any">
                             </div>
                         </div>
 

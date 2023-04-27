@@ -26,9 +26,9 @@ trait Gis
     protected function inRadiusSql(float $latitude, float $longitude, int $meters): string
     {
         return sprintf(
-            'ST_Intersects(ST_Buffer(ST_SRID(Point(%f, %f), 4326), %d), ST_SRID(`point`, 4326))',
-            $latitude,
+            'ST_Intersects(ST_Buffer(ST_SRID(POINT(%f, %f), 4326), %d), ST_SRID(`point`, 4326))',
             $longitude,
+            $latitude,
             $meters,
         );
     }
