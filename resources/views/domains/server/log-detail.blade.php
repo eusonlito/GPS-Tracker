@@ -5,15 +5,21 @@
 <div class="flex mb-2 mb-5 border-b-2">
     <h2 class="text-lg font-medium truncate"><a href="{{ route('server.log') }}">@icon('home', 'w-5 h-5')</a></h2>
 
-    @foreach ($breadcrumb as $each)
-    <h2 class="text-lg font-medium truncate mx-2">/</h2>
-    <h2 class="text-lg font-medium truncate"><a href="{{ route('server.log', ['path' => $each->hash]) }}">{{ $each->name }}</a></h2>
-    @endforeach
+    <div class="flex-1">
+        @foreach ($breadcrumb as $each)
+        <h2 class="inline-block text-lg font-medium truncate mx-2">/</h2>
+        <h2 class="inline-block text-lg font-medium truncate"><a href="{{ route('server.log', ['path' => $each->hash]) }}">{{ $each->name }}</a></h2>
+        @endforeach
+    </div>
+
+    @if ($is_file)
+    <a href="#" data-copy="#log-contents">@icon('clipboard', 'w-5 h-5')</a>
+    @endif
 </div>
 
 @if ($is_file)
 
-<pre class="p-2 bg-white w-full max-h-screen overflow-x-auto">{{ $contents }}</pre>
+<pre id="log-contents" class="p-2 bg-white w-full max-h-screen overflow-x-auto">{{ $contents }}</pre>
 
 @else
 

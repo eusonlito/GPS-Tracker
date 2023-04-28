@@ -21,13 +21,17 @@
         element.addEventListener('click', (e) => {
             e.preventDefault();
 
-            const field = document.querySelector(element.dataset.copy);
+            const target = document.querySelector(element.dataset.copy);
 
-            if (!field) {
+            if (!target) {
                 return;
             }
 
-            clipboard(field.value);
+            if (['input', 'textarea'].includes(target.tagName.toLowerCase())) {
+                clipboard(target.value);
+            } else {
+                clipboard(target.innerHTML);
+            }
 
             const color = element.style.color;
 
