@@ -1,4 +1,4 @@
-[English](README.en.md)
+[English](README.md)
 
 # GPS Tracker (Laravel 10 + PHP 8.1 + MySQL 8)
 
