@@ -5,10 +5,12 @@
 <div class="flex mb-2 mb-5 border-b-2">
     <h2 class="text-lg font-medium truncate"><a href="{{ route('server.log') }}">@icon('home', 'w-5 h-5')</a></h2>
 
-    @foreach ($breadcrumb as $each)
-    <h2 class="text-lg font-medium truncate mx-2">/</h2>
-    <h2 class="text-lg font-medium truncate"><a href="{{ route('server.log', ['path' => $each->hash]) }}">{{ $each->name }}</a></h2>
-    @endforeach
+    <div class="flex-1 mx-2">
+        @foreach ($breadcrumb as $each)
+        <h2 class="inline-block text-lg font-medium truncate">/</h2>
+        <h2 class="inline-block text-lg font-medium truncate"><a href="{{ route('server.log', ['path' => $each->hash]) }}">{{ $each->name }}</a></h2>
+        @endforeach
+    </div>
 </div>
 
 <form method="get">
