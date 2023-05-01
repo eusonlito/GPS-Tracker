@@ -1,13 +1,12 @@
 (function () {
     'use strict';
 
-    const total = function (first, second) {
-        return Math.max(0, parseFloat(first || 0) * parseFloat(second || 0)).toFixed(2);
-    };
+    const total = (first, second) => amount(float(first) * float(second));
+    const subtract = (first, second) => amount(float(first) - float(second));
+    const divide = (first, second) => amount(float(first) / float(second));
 
-    const subtract = function (first, second) {
-        return Math.max(0, parseFloat(first || 0) - parseFloat(second || 0)).toFixed(2);
-    };
+    const float = (value) => parseFloat(value || 0);
+    const amount = (value) => Math.max(0, value).toFixed(2);
 
     document.querySelectorAll('[data-calculator-total]').forEach(element => {
         const first = document.querySelector(element.dataset.calculatorTotalFirst);
@@ -17,8 +16,21 @@
             return;
         }
 
-        first.addEventListener('keyup', (e) => element.value = total(first.value, second.value));
-        second.addEventListener('keyup', (e) => element.value = total(first.value, second.value));
+        const handler = (e) => {
+            if (!e.isTrusted) {
+                return;
+            }
+
+            if (e.target === element) {
+                first.value = divide(element.value, second.value)
+            } else {
+                element.value = total(first.value, second.value)
+            }
+        }
+
+        first.addEventListener('keyup', handler);
+        second.addEventListener('keyup', handler);
+        element.addEventListener('keyup', handler);
     });
 
     document.querySelectorAll('[data-calculator-difference]').forEach(element => {
@@ -28,8 +40,16 @@
             return;
         }
 
+        const handler = (e) => {
+            if (!e.isTrusted) {
+                return;
+            }
+
+            element.value = subtract(target.value, element.dataset.calculatorDifferenceValue);
+        }
+
         element.dataset.calculatorDifferenceValue = target.value;
 
-        target.addEventListener('keyup', (e) => element.value = subtract(target.value, element.dataset.calculatorDifferenceValue));
+        target.addEventListener('keyup', handler);
     });
 })();
