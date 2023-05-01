@@ -43,7 +43,7 @@
         "yargs-parser": "^21.1.1"
     },
     "dependencies": {
-        "leaflet-geometryutil": "^0.10.1",
+        "leaflet-geometryutil": "^0.10.2",
         "leaflet-polycolor": "^2.0.4",
         "leaflet-rotatedmarker": "^0.2.0",
         "leaflet-spline": "^0.1.3"

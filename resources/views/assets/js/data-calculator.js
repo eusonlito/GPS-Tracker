@@ -2,11 +2,11 @@
     'use strict';
 
     const total = function (first, second) {
-        return (parseFloat(first) * parseFloat(second)).toFixed(2);
+        return Math.max(0, parseFloat(first || 0) * parseFloat(second || 0)).toFixed(2);
     };
 
     const subtract = function (first, second) {
-        return (parseFloat(first) - parseFloat(second)).toFixed(2);
+        return Math.max(0, parseFloat(first || 0) - parseFloat(second || 0)).toFixed(2);
     };
 
     document.querySelectorAll('[data-calculator-total]').forEach(element => {
