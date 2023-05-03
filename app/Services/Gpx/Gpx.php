@@ -4,6 +4,8 @@ namespace App\Services\Gpx;
 
 use DateTime;
 use DateTimeZone;
+use phpGPX\Models\Extensions;
+use phpGPX\Models\Extensions\TrackPointExtension;
 use phpGPX\Models\GpxFile;
 use phpGPX\Models\Metadata;
 use phpGPX\Models\Point;
@@ -64,6 +66,7 @@ class Gpx
         $this->file = new GpxFile();
         $this->file->metadata = new Metadata();
         $this->file->metadata->time = $this->datetime($this->trip->start_at, $this->trip->timezone->zone);
+        $this->file->metadata->description = $this->trip->name;
 
         return $this;
     }
@@ -75,6 +78,7 @@ class Gpx
     {
         $track = new Track();
         $track->name = $this->trip->name;
+        $track->source = 'eusonlito/GPS-Tracker';
 
         $segment = new Segment();
 
@@ -114,6 +118,15 @@ class Gpx
         $point->latitude = $position->latitude;
         $point->longitude = $position->longitude;
         $point->time = $this->datetime($position->date_at, $position->timezone->zone);
+
+        $trackPointExtension = new TrackPointExtension();
+        $trackPointExtension->speed = $position->speed;
+        $trackPointExtension->course = $position->direction;
+
+        $extensions = new Extensions();
+        $extensions->trackPointExtension = $trackPointExtension;
+
+        $point->extensions = $extensions;
 
         return $point;
     }
