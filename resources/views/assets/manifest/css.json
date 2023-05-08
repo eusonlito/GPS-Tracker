@@ -1,4 +1,5 @@
 [
     "vendor|leaflet/dist/leaflet.css",
+    "vendor|leaflet.locatecontrol/dist/L.Control.Locate.min.css",
     "scss|map.scss"
 ]

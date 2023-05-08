@@ -36,6 +36,8 @@ export default class {
         this.point = [];
         this.pointLatLng = [];
 
+        this.zoom = 13;
+
         this.speeds = [];
 
         this.icons = {};
@@ -103,10 +105,25 @@ export default class {
         return this;
     }
 
+    getLayerLocate() {
+        if (!this.layerLocate) {
+            this.setLayerLocate();
+        }
+
+        return this.layerLocate;
+    }
+
+    setLayerLocate() {
+        this.layerLocate = new L.FeatureGroup();
+
+        return this;
+    }
+
     setControls() {
         this.setControlLayers();
         this.setControlLayerDefault();
         this.setControlMarkers();
+        this.setControlLocate();
         this.setControlScale();
     }
 
@@ -225,6 +242,28 @@ export default class {
         return this;
     }
 
+    setControlLocate() {
+        L.control.locate(this.setControlLocateOptions()).addTo(this.getMap());
+
+        return this;
+    }
+
+    setControlLocateOptions() {
+        return {
+            setView: 'once',
+            flyTo: true,
+            keepCurrentZoomLevel: true,
+            initialZoomLevel: false,
+            locateOptions: {
+                watch: true,
+                enableHighAccuracy: true
+            },
+            strings: {
+                title: ''
+            }
+        };
+    }
+
     setControlScale() {
         L.control.scale({ imperial: false }).addTo(this.getMap());
 
@@ -296,6 +335,16 @@ export default class {
 
     isValidPoint(point) {
         return point && point.id && point.latitude && point.longitude;
+    }
+
+    getZoom() {
+        return this.zoom;
+    }
+
+    setZoom(zoom) {
+        this.zoom = zoom;
+
+        return this;
     }
 
     getSpeeds() {
@@ -558,6 +607,7 @@ export default class {
     }
 
     setView(point, zoom) {
+        this.setZoom(zoom)
         this.getMap().setView(this.getLatLng(point), zoom);
 
         return this;

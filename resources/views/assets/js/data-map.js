@@ -109,24 +109,22 @@ import Map from './map';
 
     const live = document.querySelector('[data-map-live]');
 
-    if (!live) {
-        return;
-    }
-
     const distance = document.querySelector('[data-map-list-distance]');
     const time = document.querySelector('[data-map-list-time]');
 
     let interval;
 
-    live.addEventListener('click', (e) => {
-        e.preventDefault();
+    if (live) {
+        live.addEventListener('click', (e) => {
+            e.preventDefault();
 
-        if (interval) {
-            liveStop();
-        } else {
-            liveStart();
-        }
-    });
+            if (interval) {
+                liveStop();
+            } else {
+                liveStart();
+            }
+        });
+    }
 
     const liveStop = function () {
         clearInterval(interval);
