@@ -13,8 +13,8 @@ class Create extends ValidateAbstract
     {
         return [
             'serial' => ['bail', 'required', 'string'],
-            'latitude' => ['bail', 'required', 'numeric'],
-            'longitude' => ['bail', 'required', 'numeric'],
+            'latitude' => ['bail', 'required', 'numeric', 'between:-90,90'],
+            'longitude' => ['bail', 'required', 'numeric', 'between:-180,180'],
             'speed' => ['bail', 'required', 'numeric'],
             'direction' => ['bail', 'required', 'integer'],
             'signal' => ['bail', 'required', 'integer'],

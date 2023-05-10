@@ -12,8 +12,8 @@ class GetOrNew extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'latitude' => ['bail', 'required', 'numeric'],
-            'longitude' => ['bail', 'required', 'numeric'],
+            'latitude' => ['bail', 'required', 'numeric', 'between:-90,90'],
+            'longitude' => ['bail', 'required', 'numeric', 'between:-180,180'],
         ];
     }
 }
