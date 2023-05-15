@@ -156,6 +156,7 @@ class Server extends ServerAbstract
         $this->clients[] = (object)[
             'socket' => socket_accept($this->socket),
             'timestamp' => time(),
+            'data' => null,
         ];
     }
 
