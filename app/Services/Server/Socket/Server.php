@@ -334,6 +334,7 @@ class Server extends ServerAbstract
     protected function errorIsReportable(Throwable $e): bool
     {
         return (str_contains($e->getMessage(), ' closed ') === false)
-            && (str_contains($e->getMessage(), ' unable to write to socket ') === false);
+            && (str_contains($e->getMessage(), ' unable to write to socket') === false)
+            && (str_contains($e->getMessage(), ' reset by peer') === false);
     }
 }
