@@ -5,6 +5,7 @@ namespace App\Domains\Alarm\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use App\Domains\Alarm\Service\Type\Manager as TypeManager;
+use App\Domains\Position\Model\Position as PositionModel;
 
 class Update extends ControllerAbstract
 {
@@ -29,6 +30,7 @@ class Update extends ControllerAbstract
             'row' => $this->row,
             'types' => TypeManager::new()->titles(),
             'type' => $this->row->type,
+            'position' => PositionModel::query()->byUserId($this->auth->id)->orderByDateUtcAtDesc()->first(),
         ]);
     }
 

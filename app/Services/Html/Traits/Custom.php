@@ -58,8 +58,16 @@ trait Custom
      */
     public static function arrayAsBadges(?array $data, string $class = 'border text-slate-600'): string
     {
-        return implode(array_map(static function ($key, $value) use ($class) {
-            return '<span class="px-2 py-1 rounded-full whitespace-nowrap mr-2 '.$class.'">'.ucfirst($key).': '.strval($value).'</span> ';
+        $toString = function(mixed $value): string {
+            if (is_array($value) || is_object($value)) {
+                return substr(json_encode($value), 0, 20).'...';
+            }
+
+            return strval($value);
+        };
+
+        return implode(array_map(static function ($key, $value) use ($class, $toString) {
+            return '<span class="px-2 py-1 rounded-full whitespace-nowrap mr-2 '.$class.'">'.ucfirst($key).': '.$toString($value).'</span> ';
         }, array_keys($data), $data));
     }
 

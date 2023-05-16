@@ -67,7 +67,8 @@ let paths = {
     directories: {
         './theme/fonts/**': target + '/fonts/',
         './theme/images/**': target + '/images/',
-        './node_modules/leaflet/dist/images/**': target + '/css/images/'
+        './node_modules/leaflet/dist/images/**': target + '/css/images/',
+        './node_modules/leaflet-draw/dist/images/**': target + '/css/images/'
     }
 };
 

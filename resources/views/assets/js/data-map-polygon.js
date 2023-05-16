@@ -1,5 +1,6 @@
 import L from 'leaflet';
 import GeometryUtil from 'leaflet-geometryutil';
+import 'leaflet-draw';
 
 L.GeometryUtil = GeometryUtil;
 
@@ -12,41 +13,14 @@ L.GeometryUtil = GeometryUtil;
         return;
     }
 
-    const latitude = document.querySelector(element.dataset.mapFenceLatitude);
-    const longitude = document.querySelector(element.dataset.mapFenceLongitude);
-    const radius = document.querySelector(element.dataset.mapFenceRadius);
+    const input = document.querySelector(element.dataset.mapPolygonInput);
 
-    if (!latitude || !longitude || !radius) {
-        return
+    if (!input) {
+        return;
     }
 
-    latitude.value = latitude.value || 40.416729;
-    longitude.value = longitude.value || -3.703339;
-    radius.value = radius.value || 5;
-
-    let circle;
-
-    const mapClick = function (lat, lng, input) {
-        lat = parseFloat(lat).toFixed(5);
-        lng = parseFloat(lng).toFixed(5);
-
-        if (circle) {
-            map.removeLayer(circle);
-        }
-
-        circle = L.circle({ lat, lng }, {
-            radius: radius.value * 1000,
-            fillOpacity: 0.2,
-            opacity: 0.3
-        }).addTo(map);
-
-        if (input) {
-            map.setView({ lat, lng });
-        } else {
-            latitude.value = lat;
-            longitude.value = lng;
-        }
-    }
+    const latitude = element.dataset.mapPolygonLatitude || 40.416729;
+    const longitude = element.dataset.mapPolygonLongitude || -3.703339;
 
     const layers = {
         OpenStreetMap: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -69,6 +43,7 @@ L.GeometryUtil = GeometryUtil;
         attributionControl: false,
         zoomControl: true,
         zoomSnap: 1,
+        center: new L.LatLng(latitude, longitude),
         zoom: 13
     });
 
@@ -76,17 +51,121 @@ L.GeometryUtil = GeometryUtil;
 
     layers.OpenStreetMap.addTo(map);
 
-    mapClick(latitude.value, longitude.value, true);
+    const drawnItems = new L.FeatureGroup();
 
-    if (element.offsetParent !== null) {
-        map.fitBounds(map.getBounds(), { animate: false, padding: [30, 30] });
+    map.addLayer(drawnItems);
+
+    const drawControlFull = new L.Control.Draw({
+        draw: {
+            polyline: false,
+            circle: false,
+            rectangle: false,
+            marker: false,
+            circlemarker: false,
+            polygon: {
+                allowIntersection: false,
+                drawError: {
+                    color: "#e1e100",
+                    message: "<strong>Not Available<strong>"
+                },
+                shapeOptions: {
+                    color: "#97009c"
+                }
+            },
+            poly: {
+                allowIntersection: false
+            }
+        },
+
+        edit: {
+            featureGroup: drawnItems,
+            remove: false,
+            poly: {
+                allowIntersection: false
+            }
+        }
+    });
+
+    const drawControlEditOnly = new L.Control.Draw({
+        draw: false,
+
+        edit: {
+            featureGroup: drawnItems,
+
+            polygon: {
+                allowIntersection: false,
+
+                drawError: {
+                    color: '#e1e100',
+                    message: '<strong>Not Available<strong>'
+                },
+                shapeOptions: {
+                    color: '#97009c'
+                }
+            },
+
+            poly: {
+                allowIntersection: false,
+            }
+        },
+    });
+
+    map.addControl(drawControlFull);
+
+    const loadGeoJson = (geojson) => {
+        if (!geojson || !geojson.length) {
+            return;
+        }
+
+        L.geoJson(JSON.parse(geojson), {
+            onEachFeature: (feature, layer) => drawnItems.addLayer(layer)
+        });
+
+        if (!drawnItems.getLayers().length) {
+            return;
+        }
+
+        map.removeControl(drawControlFull);
+        map.addControl(drawControlEditOnly);
+
+        map.fitBounds(drawnItems.getLayers()[0].getBounds(), { animate: false, padding: [30, 30] });
+    };
+
+    try {
+        loadGeoJson(input.value);
+    } catch (e) {
+        console.error(e);
     }
 
-    map.on('click', e => mapClick(e.latlng.lat, e.latlng.lng));
+    map.on('draw:created', function (e) {
+        e.layer.editing.enable();
 
-    latitude.addEventListener('keyup', (e) => mapClick(latitude.value, longitude.value, true));
-    longitude.addEventListener('keyup', (e) => mapClick(latitude.value, longitude.value, true));
-    radius.addEventListener('keyup', (e) => mapClick(latitude.value, longitude.value, true));
+        drawnItems.addLayer(e.layer);
+
+        map.removeControl(drawControlFull);
+        map.addControl(drawControlEditOnly);
+    });
+
+    map.on('draw:deleted', function(e) {
+        setInputValue(e);
+
+        if (drawnItems.getLayers().length) {
+            return;
+        }
+
+        map.removeControl(drawControlEditOnly);
+        map.addControl(drawControlFull);
+    });
+
+    const setInputValue = (e) => {
+        const geoJson = drawnItems.toGeoJSON();
+
+        input.value = geoJson.features.length ? JSON.stringify(geoJson) : '';
+    }
+
+    map.on('draw:edited', setInputValue);
+    map.on('draw:editstop', setInputValue);
+    map.on('draw:drawstop', setInputValue);
 
     window.map = map;
 })();

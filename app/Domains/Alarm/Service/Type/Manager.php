@@ -11,7 +11,7 @@ class Manager
      * @const
      */
     protected const FORMATS = [
-        'fence-in', 'fence-out', 'polygon-in', 'polygon-out', 'movement', 'overspeed'
+        'fence-in', 'fence-out', 'polygon-in', 'polygon-out', 'movement', 'overspeed',
     ];
 
     /**
