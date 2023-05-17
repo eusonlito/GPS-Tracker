@@ -58,7 +58,7 @@ trait Custom
      */
     public static function arrayAsBadges(?array $data, string $class = 'border text-slate-600'): string
     {
-        $toString = function(mixed $value): string {
+        $toString = function (mixed $value): string {
             if (is_array($value) || is_object($value)) {
                 return substr(json_encode($value), 0, 20).'...';
             }

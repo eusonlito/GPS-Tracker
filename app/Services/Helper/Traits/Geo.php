@@ -2,6 +2,7 @@
 
 namespace App\Services\Helper\Traits;
 
+use DateTimeZone;
 use Exception;
 use stdClass;
 
@@ -195,6 +196,43 @@ trait Geo
         }
 
         return ($k % 2) !== 0;
+    }
+
+    /**
+     * @param float $latitude
+     * @param float $longitude
+     * @param ?string $country = null
+     *
+     * @return string
+     */
+    public function latitudeLongitudeTimezone(float $latitude, float $longitude, ?string $country = null): string
+    {
+        $timezones = $this->countryTimezones($country);
+
+        if (count($timezones) === 1) {
+            return $timezones[0];
+        }
+
+        $timezone = null;
+        $tz_distance = 0;
+
+        foreach ($timezones as $id) {
+            $location = timezone_location_get(new DateTimeZone($id));
+
+            $distance = (sin(deg2rad($latitude)) * sin(deg2rad($location['latitude'])))
+                + (cos(deg2rad($latitude)) * cos(deg2rad($location['latitude'])) * cos(deg2rad($longitude - $location['longitude'])));
+
+            $distance = abs(rad2deg(acos($distance)));
+
+            if ($timezone && ($tz_distance < $distance)) {
+                continue;
+            }
+
+            $timezone = $id;
+            $tz_distance = $distance;
+        }
+
+        return $timezone;
     }
 
     /**

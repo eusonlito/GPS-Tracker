@@ -60,7 +60,7 @@ abstract class Polygon extends FormatAbstract
         }
 
         return [
-            'geojson' => $this->config['geojson']
+            'geojson' => $this->config['geojson'],
         ];
     }
 }
