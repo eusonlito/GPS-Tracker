@@ -16,8 +16,8 @@ class Alarm extends BuilderAbstract
      */
     public function check(float $latitude, float $longitude, float $speed): self
     {
-        return $this->where(static fn ($q) =>
-            $q
+        return $this->where(
+            static fn ($q) => $q
                 ->orWhere(static fn ($q) => $q->checkFenceIn($latitude, $longitude))
                 ->orWhere(static fn ($q) => $q->checkFenceOut($latitude, $longitude))
                 ->orWhere(static fn ($q) => $q->checkMovement($speed))

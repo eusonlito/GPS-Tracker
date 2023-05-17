@@ -2,8 +2,6 @@
 
 namespace App\Domains\Alarm\Service\Type\Format;
 
-use App\Domains\Position\Model\Position as PositionModel;
-
 class FenceOut extends FormatAbstract
 {
     /**
