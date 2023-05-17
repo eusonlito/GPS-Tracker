@@ -56,11 +56,22 @@ abstract class Polygon extends FormatAbstract
     public function config(): array
     {
         if (is_array($this->config['geojson'] ?? '') === false) {
-            $this->config['geojson'] = json_decode($this->config['geojson'] ?? '[]', true);
+            $this->config['geojson'] = $this->configGeoJsonFromText();
         }
 
         return [
             'geojson' => $this->config['geojson'],
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function configGeoJsonFromText(): array
+    {
+        $geojson = json_decode($this->config['geojson'] ?? '[]', true) ?: [];
+        $geojson['features'][0]['properties'] = null;
+
+        return $geojson;
     }
 }

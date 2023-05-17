@@ -33,13 +33,6 @@ abstract class FormatAbstract
     abstract public function config(): array;
 
     /**
-     * @param \App\Domains\Position\Model\Position $position
-     *
-     * @return bool
-     */
-    abstract public function checkPosition(PositionModel $position): bool;
-
-    /**
      * @return self
      */
     public static function new(): self

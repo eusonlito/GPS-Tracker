@@ -1,4 +1,4 @@
 <?php return [
-    'message' => 'El vehículo ha salido del polígono',
-    'title' => 'Polígono (Salida)',
+    'message' => 'El vehículo ha salido del área',
+    'title' => 'Área (Salida)',
 ];

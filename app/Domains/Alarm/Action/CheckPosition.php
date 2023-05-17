@@ -28,6 +28,7 @@ class CheckPosition extends ActionAbstract
     {
         $this->position();
         $this->vehicle();
+        $this->data();
         $this->iterate();
     }
 
@@ -53,6 +54,43 @@ class CheckPosition extends ActionAbstract
     /**
      * @return void
      */
+    protected function data(): void
+    {
+        $this->dataLatitude();
+        $this->dataLongitude();
+        $this->dataSpeed();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataLatitude(): void
+    {
+        $this->data['latitude'] = $this->position->latitude;
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataLongitude(): void
+    {
+        $this->data['longitude'] = $this->position->longitude;
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataSpeed(): void
+    {
+        $this->data['speed'] = match ($this->position->user->preferences['units']['distance'] ?? 'kilometer') {
+            'mile' => $this->position->speed * 0.621371,
+            default => $this->position->speed,
+        };
+    }
+
+    /**
+     * @return void
+     */
     protected function iterate(): void
     {
         foreach ($this->list() as $row) {
@@ -68,6 +106,7 @@ class CheckPosition extends ActionAbstract
         return Model::query()
             ->byVehicleIdEnabled($this->vehicle->id)
             ->bySchedule(explode(' ', $this->position->date_at)[1])
+            ->check($this->data['latitude'], $this->data['longitude'], $this->data['speed'])
             ->enabled()
             ->get();
     }
@@ -80,10 +119,6 @@ class CheckPosition extends ActionAbstract
     protected function check(Model $row): void
     {
         if ($this->checkLast($row) === false) {
-            return;
-        }
-
-        if ($this->checkFormat($row) === false) {
             return;
         }
 
@@ -104,16 +139,6 @@ class CheckPosition extends ActionAbstract
             ->first();
 
         return empty($notification) || $notification->closed_at;
-    }
-
-    /**
-     * @param \App\Domains\Alarm\Model\Alarm $row
-     *
-     * @return bool
-     */
-    protected function checkFormat(Model $row): bool
-    {
-        return $row->typeFormat()->checkPosition($this->position);
     }
 
     /**

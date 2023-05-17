@@ -44,14 +44,4 @@ class Movement extends FormatAbstract
     {
         return [];
     }
-
-    /**
-     * @param \App\Domains\Position\Model\Position $position
-     *
-     * @return bool
-     */
-    public function checkPosition(PositionModel $position): bool
-    {
-        return (bool)$position->speed;
-    }
 }

@@ -29,18 +29,4 @@ class PolygonOut extends Polygon
     {
         return __('alarm-type-polygon-out.message');
     }
-
-    /**
-     * @param \App\Domains\Position\Model\Position $position
-     *
-     * @return bool
-     */
-    public function checkPosition(PositionModel $position): bool
-    {
-        return helper()->latitudeLongitudeInsideGeoJson(
-            $position->latitude,
-            $position->longitude,
-            $this->config()['geojson']
-        ) === false;
-    }
 }

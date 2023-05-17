@@ -61,29 +61,4 @@ class FenceOut extends FormatAbstract
             'radius' => floatval($this->config['radius'] ?? 0),
         ];
     }
-
-    /**
-     * @param \App\Domains\Position\Model\Position $position
-     *
-     * @return bool
-     */
-    public function checkPosition(PositionModel $position): bool
-    {
-        return $this->checkPositionDistance($position) >= $this->config()['radius'];
-    }
-
-    /**
-     * @param \App\Domains\Position\Model\Position $position
-     *
-     * @return float
-     */
-    public function checkPositionDistance(PositionModel $position): float
-    {
-        return helper()->coordinatesDistance(
-            $position->latitude,
-            $position->longitude,
-            $this->config()['latitude'],
-            $this->config()['longitude'],
-        ) / 1000;
-    }
 }

@@ -385,22 +385,96 @@ export default class {
 
         this.alarms.push(alarm);
 
-        L.circle(this.getLatLng(alarm.config), this.getAlarmOptions(alarm, options))
-            .addTo(this.getMap());
+        switch (alarm.type) {
+            case 'fence-in':
+                this.setAlarmFenceIn(alarm, options);
+                break;
+
+            case 'fence-out':
+                this.setAlarmFenceOut(alarm, options);
+                break;
+
+            case 'polygon-in':
+                this.setAlarmPolygonIn(alarm, options);
+                break;
+
+            case 'polygon-out':
+                this.setAlarmPolygonOut(alarm, options);
+                break;
+        }
 
         return this;
     }
 
+    setAlarmFenceIn(alarm, options) {
+        L.circle(this.getLatLng(alarm.config), this.getAlarmOptions(alarm, options))
+            .addTo(this.getMap());
+    }
+
+    setAlarmFenceOut(alarm, options) {
+        L.circle(this.getLatLng(alarm.config), this.getAlarmOptions(alarm, options))
+            .addTo(this.getMap());
+    }
+
+    setAlarmPolygonIn(alarm, options) {
+        L.geoJson(alarm.config.geojson, {
+            onEachFeature: (feature, layer) => this.getMap().addLayer(layer)
+        });
+    }
+
+    setAlarmPolygonOut(alarm, options) {
+        L.geoJson(alarm.config.geojson, {
+            onEachFeature: (feature, layer) => this.getMap().addLayer(layer)
+        });
+    }
+
     isValidAlarm(alarm) {
-        return alarm && alarm.type && alarm.id && alarm.config
-            && alarm.config.latitude && alarm.config.longitude && alarm.config.radius
-            && ['fence-in', 'fence-out'].includes(alarm.type)
-            && this.isValidAlarmNotLoaded(alarm);
+        if (!alarm || !alarm.type || !alarm.id || !alarm.config) {
+            return false;
+        }
+
+        let valid = false;
+
+        switch (alarm.type) {
+            case 'fence-in':
+                valid = this.isValidAlarmFenceIn(alarm);
+                break;
+
+            case 'fence-out':
+                valid = this.isValidAlarmFenceOut(alarm);
+                break;
+
+            case 'polygon-in':
+                valid = this.isValidAlarmPolygonIn(alarm);
+                break;
+
+            case 'polygon-out':
+                valid = this.isValidAlarmPolygonOut(alarm);
+                break;
+        }
+
+        return (valid === true) && this.isValidAlarmNotLoaded(alarm);
+    }
+
+    isValidAlarmFenceIn(alarm) {
+        return !!(alarm.config.latitude && alarm.config.longitude && alarm.config.radius);
+    }
+
+    isValidAlarmFenceOut(alarm) {
+        return !!(alarm.config.latitude && alarm.config.longitude && alarm.config.radius);
+    }
+
+    isValidAlarmPolygonIn(alarm) {
+        return !!alarm.config.geojson;
+    }
+
+    isValidAlarmPolygonOut(alarm) {
+        return !!alarm.config.geojson;
     }
 
     isValidAlarmNotLoaded(alarm) {
-        for (const i = 0; i < this.alarms.length; i++) {
-            if (this.isSameAlarm(this.alarms[i], alarm)) {
+        for (let i = 0; i < this.alarms.length; i++) {
+            if (this.alarms[i].id === alarm.id) {
                 return false;
             }
         }
@@ -408,20 +482,13 @@ export default class {
         return true;
     }
 
-    isSameAlarm(loaded, current) {
-        return (loaded.type === current.type)
-            && (loaded.config.latitude === current.config.latitude)
-            && (loaded.config.longitude === current.config.longitude)
-            && (loaded.config.radius === current.config.radius);
-    }
-
     getAlarmOptions(alarm, options) {
         const defaults = {
             radius: parseFloat(alarm.config.radius) * 1000,
             fillOpacity: 0.05,
             opacity: 0.3,
-            color: (alarm.type === 'fence-in') ? 'red' : 'green',
-            fillColor: (alarm.type === 'fence-in') ? 'red' : 'green',
+            color: alarm.type.match(/-in$/) ? 'red' : 'green',
+            fillColor: alarm.type.match(/-in$/) ? 'red' : 'green',
         };
 
         return this.merge(defaults, options);
