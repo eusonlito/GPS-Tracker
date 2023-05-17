@@ -81,6 +81,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     {
         $this->dataType();
         $this->dataConfig();
+        $this->dataSchedule();
     }
 
     /**
@@ -97,5 +98,14 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     protected function dataConfig(): void
     {
         $this->data['config'] = $this->type->config();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataSchedule(): void
+    {
+        $this->data['schedule_start'] = $this->data['schedule_start'] ?: null;
+        $this->data['schedule_end'] = $this->data['schedule_end'] ?: null;
     }
 }

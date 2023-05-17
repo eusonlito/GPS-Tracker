@@ -15,9 +15,29 @@ class Alarm extends BuilderAbstract
     public function bySchedule(string $time): self
     {
         return $this->where(static function ($q) use ($time) {
-            $q->where(static fn ($q) => $q->whereNull('schedule_start')->orWhereNull('schedule_end'))
-                ->orWhere(static fn ($q) => $q->where('schedule_start', '<=', $time)->where('schedule_end', '>=', $time));
+            $q->where(static fn ($q) => $q->whereScheduleIsEmpty())
+                ->orWhere(static fn ($q) => $q->byScheduleStart($time)->byScheduleEnd($time));
         });
+    }
+
+    /**
+     * @param string $time
+     *
+     * @return self
+     */
+    public function byScheduleEnd(string $time): self
+    {
+        return $this->where('schedule_end', '>=', $time);
+    }
+
+    /**
+     * @param string $time
+     *
+     * @return self
+     */
+    public function byScheduleStart(string $time): self
+    {
+        return $this->where('schedule_start', '<=', $time);
     }
 
     /**
@@ -58,6 +78,30 @@ class Alarm extends BuilderAbstract
     public function byVehicleSerial(string $serial): self
     {
         return $this->whereIn('id', AlarmVehicleModel::query()->selectOnly('alarm_id')->byVehicleSerial($serial));
+    }
+
+    /**
+     * @return self
+     */
+    public function whereScheduleIsEmpty(): self
+    {
+        return $this->whereScheduleStartIsEmpty()->whereScheduleEndIsEmpty();
+    }
+
+    /**
+     * @return self
+     */
+    public function whereScheduleEndIsEmpty(): self
+    {
+        return $this->whereRaw('TRIM(COALESCE(`schedule_end`, "")) = ""');
+    }
+
+    /**
+     * @return self
+     */
+    public function whereScheduleStartIsEmpty(): self
+    {
+        return $this->whereRaw('TRIM(COALESCE(`schedule_start`, "")) = ""');
     }
 
     /**

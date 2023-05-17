@@ -74,10 +74,10 @@ trait Geo
      */
     public function latitudeLongitudeInBoundingBox(float $latitude, float $longitude, array $bbox): bool
     {
-        return ($bbox[0] <= $latitude)
-            && ($bbox[1] <= $longitude)
-            && ($bbox[2] >= $latitude)
-            && ($bbox[3] >= $longitude);
+        return ($bbox[0][0] <= $longitude)
+            && ($bbox[0][1] <= $latitude)
+            && ($bbox[1][0] >= $longitude)
+            && ($bbox[1][1] >= $latitude);
     }
 
     /**
@@ -89,7 +89,7 @@ trait Geo
      */
     public function latitudeLongitudeInGeoJsonBoundingBox(float $latitude, float $longitude, array $geojson): bool
     {
-        return $this->latitudeLongitudeInBoundingBox($latitude, $longitude, $this->geojsonBoundingBox($geojson));
+        return $this->latitudeLongitudeInBoundingBox($latitude, $longitude, $this->geoJsonBoundingBox($geojson));
     }
 
     /**
@@ -107,7 +107,7 @@ trait Geo
             return false;
         }
 
-        if ($this->latitudeLongitudeInGeoJsonBoundingBox($latitude, $longitude, $geojson)) {
+        if ($this->latitudeLongitudeInGeoJsonBoundingBox($latitude, $longitude, $geojson) === false) {
             return false;
         }
 
@@ -135,23 +135,23 @@ trait Geo
                 throw new Exception('First and last coordinates in a ring must be the same');
             }
 
-            $u1 = $currentP[0] - $latitude;
-            $v1 = $currentP[1] - $longitude;
+            $u1 = $currentP[0] - $longitude;
+            $v1 = $currentP[1] - $latitude;
 
             for ($ii = 0; $ii < $contourLen; $ii++) {
                 $nextP = $contour[$ii + 1];
 
-                $v2 = $nextP[1] - $longitude;
+                $v2 = $nextP[1] - $latitude;
 
                 if (($v1 < 0 && $v2 < 0) || ($v1 > 0 && $v2 > 0)) {
                     $currentP = $nextP;
                     $v1 = $v2;
-                    $u1 = $currentP[0] - $latitude;
+                    $u1 = $currentP[0] - $longitude;
 
                     continue;
                 }
 
-                $u2 = $nextP[0] - $latitude;
+                $u2 = $nextP[0] - $longitude;
 
                 if ($v2 > 0 && $v1 <= 0) {
                     $f = ($u1 * $v2) - ($u2 * $v1);
