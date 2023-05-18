@@ -8,5 +8,5 @@
     'longitude' => 'Longitude',
     'message' => 'The vehicle has entered the geofence',
     'radius' => 'Radius in KM',
-    'title' => 'Geofence (Input)',
+    'title' => 'Geofence (Entry)',
 ];
