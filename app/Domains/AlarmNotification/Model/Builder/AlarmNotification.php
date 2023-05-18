@@ -51,11 +51,11 @@ class AlarmNotification extends BuilderAbstract
     }
 
     /**
-     * @param bool $closed_at = false
+     * @param bool $closed_at
      *
      * @return self
      */
-    public function whereClosedAt(bool $closed_at = false): self
+    public function whereClosedAt(bool $closed_at): self
     {
         return $this->when(
             $closed_at,

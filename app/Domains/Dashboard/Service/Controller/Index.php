@@ -216,6 +216,7 @@ class Index extends ControllerAbstract
 
         return $this->cache[__FUNCTION__] ??= AlarmNotificationModel::query()
             ->byVehicleId($this->vehicle()->id)
+            ->whereClosedAt(false)
             ->withAlarm()
             ->withVehicle()
             ->withPosition()

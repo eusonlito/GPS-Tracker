@@ -20,7 +20,7 @@
 
 @else
 
-@each ('domains.alarm-notification.molecules.alert', $alarm_notifications->whereNull('closed_at'), 'row')
+@each ('domains.alarm-notification.molecules.alert', $alarm_notifications, 'row')
 
 <form method="GET">
     <div class="lg:flex lg:space-x-4">

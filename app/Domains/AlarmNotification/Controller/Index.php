@@ -70,7 +70,7 @@ class Index extends ControllerAbstract
     {
         return Model::query()
             ->byUserId($this->auth->id)
-            ->whereClosedAt()
+            ->whereClosedAt(false)
             ->whereSentAt()
             ->withAlarm()
             ->withVehicle()
