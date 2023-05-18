@@ -418,12 +418,14 @@ export default class {
 
     setAlarmPolygonIn(alarm, options) {
         L.geoJson(alarm.config.geojson, {
+            style: this.getAlarmOptions(alarm, options),
             onEachFeature: (feature, layer) => this.getMap().addLayer(layer)
         });
     }
 
     setAlarmPolygonOut(alarm, options) {
         L.geoJson(alarm.config.geojson, {
+            style: this.getAlarmOptions(alarm, options),
             onEachFeature: (feature, layer) => this.getMap().addLayer(layer)
         });
     }
@@ -474,12 +476,17 @@ export default class {
 
     isValidAlarmNotLoaded(alarm) {
         for (let i = 0; i < this.alarms.length; i++) {
-            if (this.alarms[i].id === alarm.id) {
+            if (this.isSameAlarm(this.alarms[i], alarm)) {
                 return false;
             }
         }
 
         return true;
+    }
+
+    isSameAlarm(loaded, current) {
+        return (loaded.type === current.type)
+            && (loaded.config === current.config);
     }
 
     getAlarmOptions(alarm, options) {
