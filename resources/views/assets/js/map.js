@@ -319,9 +319,6 @@ export default class {
 
         this.getPoints().push(point);
 
-        this.setSpeeds();
-        this.setLinePoints();
-
         return this;
     }
 
@@ -506,10 +503,10 @@ export default class {
 
         this.setAlarm(notification);
 
-        const point = this.getPointByLatitudeLongitude(notification.latitude, notification.longitude);
+        const onClick = () => this.showMarker(this.getPointByLatitudeLongitude(notification.latitude, notification.longitude)?.id);
 
         new L.Marker(this.getLatLng(notification), this.getNotificationOptions(notification, options))
-            .on('click', (e) => this.showMarker(point?.id))
+            .on('click', onClick)
             .addTo(this.getMap());
 
         return this;
@@ -552,7 +549,7 @@ export default class {
     }
 
     setLinePoints() {
-        this.setLine(this.points.map(this.getLatLng));
+        this.setLine(this.points.map((point) => this.getLatLng(point)));
 
         return this;
     }
@@ -713,7 +710,7 @@ export default class {
 
     getLatLng(points) {
         if (Array.isArray(points)) {
-            return points.map(this.getLatLng);
+            return points.map((point) => this.getLatLng(point));
         }
 
         return {
