@@ -303,16 +303,10 @@ export default class {
         return this.points;
     }
 
-    getPointsLatLng() {
-        return this.pointsLatLng;
-    }
-
     setPoints(points) {
-        this.points = this.array(points).filter(this.isValidPoint);
-        this.pointsLatLng = this.getLatLng(this.points);
+        this.array(points).forEach((point) => this.setPoint(point));
 
         this.setSpeeds();
-
         this.setLinePoints();
 
         return this;
@@ -324,10 +318,8 @@ export default class {
         }
 
         this.getPoints().push(point);
-        this.getPointsLatLng().push(this.getLatLng(point));
 
         this.setSpeeds();
-
         this.setLinePoints();
 
         return this;
@@ -514,7 +506,10 @@ export default class {
 
         this.setAlarm(notification);
 
+        const point = this.getPointByLatitudeLongitude(notification.latitude, notification.longitude);
+
         new L.Marker(this.getLatLng(notification), this.getNotificationOptions(notification, options))
+            .on('click', (e) => this.showMarker(point?.id))
             .addTo(this.getMap());
 
         return this;
@@ -534,18 +529,19 @@ export default class {
         return { icon: L.icon(this.merge(defaults, options)) };
     }
 
-    setIcon (name, point, options) {
+    setIcon(name, point, options) {
         if (this.icons[name]) {
             this.getMap().removeLayer(this.icons[name]);
         }
 
         this.icons[name] = new L.Marker(this.getLatLng(point), this.getIconOptions(name, options))
+            .on('click', (e) => this.showMarker(point.id))
             .addTo(this.getMap());
 
         return this;
     }
 
-    getIconOptions (name, options) {
+    getIconOptions(name, options) {
         const defaults = {
             iconUrl: WWW + '/build/images/map-' + name + '.svg',
             iconSize: [30, 42],
@@ -556,7 +552,7 @@ export default class {
     }
 
     setLinePoints() {
-        this.setLine(this.getPointsLatLng());
+        this.setLine(this.points.map(this.getLatLng));
 
         return this;
     }
@@ -724,6 +720,16 @@ export default class {
             lat: points.latitude,
             lng: points.longitude
         };
+    }
+
+    getPointByLatitudeLongitude(latitude, longitude) {
+        for (let i = 0; i < this.points.length; i++) {
+            const point = this.points[i];
+
+            if ((point.latitude === latitude) && (point.longitude === longitude)) {
+                return point;
+            }
+        }
     }
 
     setListTable(listTable) {

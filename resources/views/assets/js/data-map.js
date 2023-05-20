@@ -64,6 +64,9 @@ import Map from './map';
         }
     })();
 
+    map.setPoints(positions);
+    map.setMarkers(positions);
+
     try {
         map.setAlarms(JSON.parse(element.dataset.mapAlarms || '[]'));
     } catch (e) {
@@ -73,9 +76,6 @@ import Map from './map';
         map.setNotifications(JSON.parse(element.dataset.mapNotifications || '[]'));
     } catch (e) {
     }
-
-    map.setPoints(positions);
-    map.setMarkers(positions);
 
     const mapPointClick = function (e, point) {
         e.preventDefault();
