@@ -102,7 +102,7 @@ class Index extends ControllerAbstract
         }
 
         $totals = $this->list()->reduce($this->totalsRow(...), $this->totalsCarry());
-        $totals->price = round($totals->price / $totals->count, 3);
+        $totals->price = round($totals->total / $totals->quantity, 3);
 
         return $totals;
     }
@@ -113,7 +113,6 @@ class Index extends ControllerAbstract
     protected function totalsCarry(): stdClass
     {
         return (object)[
-            'count' => 0,
             'distance' => 0,
             'quantity' => 0,
             'price' => 0,
@@ -129,8 +128,6 @@ class Index extends ControllerAbstract
      */
     protected function totalsRow(stdClass $carry, Model $row): stdClass
     {
-        $carry->count++;
-
         $carry->distance += $row->distance;
         $carry->quantity += $row->quantity;
         $carry->price += $row->price;
