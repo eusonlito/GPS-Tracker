@@ -23,7 +23,7 @@
         "gulp-uglify": "^3.0.2",
         "jshint": "^2.13.6",
         "jshint-stylish": "^2.2.1",
-        "leaflet": "^1.9.3",
+        "leaflet": "^1.9.4",
         "litepicker": "^2.0.12",
         "lodash.template": "^4.5.0",
         "mem": "^9.0.2",
