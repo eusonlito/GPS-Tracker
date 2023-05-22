@@ -12,8 +12,8 @@ return (new Config())
         'no_unused_imports' => true,
         'phpdoc_separation' => true,
         'curly_braces_position' => [
-            'anonymous_classes_opening_brace' => 'next_line_unless_newline_at_signature_end',
-            'allow_single_line_empty_anonymous_classes' => false,
+            'anonymous_classes_opening_brace' => 'same_line',
+            'allow_single_line_empty_anonymous_classes' => true,
         ],
     ])
     ->setFinder(Finder::create()->in(['app', 'config', 'database', 'tests']));

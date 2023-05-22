@@ -292,7 +292,7 @@ class Alarm extends BuilderAbstract
     public function withNotificationsPendingCount(): self
     {
         return $this->withCount([
-            'notifications as notifications_pending_count' => static fn ($q) => $q->whereClosedAt(false)
+            'notifications as notifications_pending_count' => static fn ($q) => $q->whereClosedAt(false),
         ]);
     }
 }

@@ -38,7 +38,7 @@ class Vehicle extends BuilderAbstract
     public function withAlarmsNotificationsPendingCount(): self
     {
         return $this->withCount([
-            'alarmsNotifications as alarms_notifications_pending_count' => static fn ($q) => $q->whereClosedAt(false)
+            'alarmsNotifications as alarms_notifications_pending_count' => static fn ($q) => $q->whereClosedAt(false),
         ]);
     }
 
