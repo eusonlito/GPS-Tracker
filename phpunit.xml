@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" backupGlobals="false" bootstrap="vendor/autoload.php" colors="true" processIsolation="false" stopOnFailure="true" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
-  <coverage>
-    <include>
-      <directory suffix=".php">./app</directory>
-    </include>
-  </coverage>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd" backupGlobals="false" bootstrap="vendor/autoload.php" colors="true" processIsolation="false" stopOnFailure="true" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+  <coverage/>
   <testsuites>
     <testsuite name="Controller">
       <directory suffix=".php">./app/Domains/Alarm/Test/Controller</directory>
@@ -27,6 +23,27 @@
       <directory suffix=".php">./app/Domains/User/Test/Controller</directory>
       <directory suffix=".php">./app/Domains/UserSession/Test/Controller</directory>
       <directory suffix=".php">./app/Domains/Vehicle/Test/Controller</directory>
+
+      <exclude>./app/Domains/Alarm/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/AlarmNotification/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/City/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Configuration/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Country/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Dashboard/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Device/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/DeviceMessage/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/IpLock/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Language/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Position/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Profile/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Refuel/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Server/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/State/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Timezone/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Trip/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/User/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/UserSession/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Vehicle/Test/Controller/ControllerAbstract.php</exclude>
     </testsuite>
   </testsuites>
   <php>
@@ -42,4 +59,9 @@
     <server name="QUEUE_CONNECTION" value="sync"/>
     <server name="SESSION_DRIVER" value="array"/>
   </php>
+  <source>
+    <include>
+      <directory suffix=".php">./app</directory>
+    </include>
+  </source>
 </phpunit>
