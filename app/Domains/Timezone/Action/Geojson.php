@@ -4,12 +4,16 @@ namespace App\Domains\Timezone\Action;
 
 use stdClass;
 use Throwable;
+use Illuminate\Console\Concerns\InteractsWithIO;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use App\Domains\Timezone\Model\Timezone as Model;
 use App\Services\Compress\Zip\Extract as ZipExtract;
 use App\Services\Http\Curl\Curl;
 
 class Geojson extends ActionAbstract
 {
+    use InteractsWithIO;
+
     /**
      * @const string
      */
@@ -50,6 +54,7 @@ class Geojson extends ActionAbstract
      */
     public function handle(): void
     {
+        $this->output();
         $this->release();
         $this->files();
         $this->download();
@@ -61,8 +66,18 @@ class Geojson extends ActionAbstract
     /**
      * @return void
      */
+    protected function output(): void
+    {
+        $this->output = new ConsoleOutput();
+    }
+
+    /**
+     * @return void
+     */
     protected function release(): void
     {
+        $this->info(sprintf('[%s] Checking Releases', date('Y-m-d H:i:s')));
+
         $this->release = Curl::new()->setUrl(static::RELEASE_URL)->send()->getBody('object');
     }
 
@@ -85,6 +100,8 @@ class Geojson extends ActionAbstract
             return;
         }
 
+        $this->info(sprintf('[%s] Downloading %s', date('Y-m-d H:i:s'), $this->url));
+
         helper()->mkdir($this->zip, true);
 
         file_put_contents($this->zip, fopen($this->url, 'r'));
@@ -99,6 +116,8 @@ class Geojson extends ActionAbstract
             return;
         }
 
+        $this->info(sprintf('[%s] Extracting ZIP', date('Y-m-d H:i:s')));
+
         ZipExtract::new($this->zip)->extract(basename($this->geojson));
     }
 
@@ -107,6 +126,8 @@ class Geojson extends ActionAbstract
      */
     protected function replace(): void
     {
+        $this->info(sprintf('[%s] Optimizing GeoJSON', date('Y-m-d H:i:s')));
+
         file_put_contents(
             $this->geojson,
             preg_replace('/([0-9]\.[0-9]{4})[0-9]+/', '$1', file_get_contents($this->geojson)),
@@ -131,6 +152,8 @@ class Geojson extends ActionAbstract
      */
     protected function zone(stdClass $zone): void
     {
+        $this->info(sprintf('[%s] Updating %s', date('Y-m-d H:i:s'), $zone->properties->tzid));
+
         try {
             $this->zoneUpdateOrInsert($zone, 0.005);
         } catch (Throwable $e) {
