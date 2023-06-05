@@ -13,9 +13,9 @@ class ActionFactory extends ActionFactoryAbstract
     protected ?Model $row;
 
     /**
-     * @return \App\Domains\City\Model\City
+     * @return ?\App\Domains\City\Model\City
      */
-    public function getOrNew(): Model
+    public function getOrNew(): ?Model
     {
         return $this->actionHandle(GetOrNew::class, $this->validate()->getOrNew());
     }

@@ -26,9 +26,9 @@ class GetOrNew extends ActionAbstract
     protected StateModel $state;
 
     /**
-     * @return \App\Domains\City\Model\City
+     * @return ?\App\Domains\City\Model\City
      */
-    public function handle(): Model
+    public function handle(): ?Model
     {
         $this->locate();
 
@@ -63,9 +63,9 @@ class GetOrNew extends ActionAbstract
     }
 
     /**
-     * @return \App\Domains\City\Model\City
+     * @return ?\App\Domains\City\Model\City
      */
-    protected function near(): Model
+    protected function near(): ?Model
     {
         return Model::query()
             ->selectDistance($this->data['latitude'], $this->data['longitude'])

@@ -107,22 +107,24 @@ abstract class TestAbstract extends TestsAbstract
 
     /**
      * @param ?string $model = null
+     * @param array $data = []
      *
      * @return \App\Domains\Shared\Model\ModelAbstract
      */
-    protected function factoryCreate(?string $model = null): ModelAbstract
+    protected function factoryCreate(?string $model = null, array $data = []): ModelAbstract
     {
-        return ($model ?: $this->getModelClass())::factory()->create();
+        return ($model ?: $this->getModelClass())::factory()->create($data);
     }
 
     /**
      * @param ?string $model = null
+     * @param array $data = []
      *
      * @return \App\Domains\Shared\Model\ModelAbstract
      */
-    protected function factoryMake(?string $model = null): ModelAbstract
+    protected function factoryMake(?string $model = null, array $data = []): ModelAbstract
     {
-        return ($model ?: $this->getModelClass())::factory()->make();
+        return ($model ?: $this->getModelClass())::factory()->make($data);
     }
 
     /**

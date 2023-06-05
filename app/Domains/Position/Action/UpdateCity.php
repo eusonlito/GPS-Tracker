@@ -8,9 +8,9 @@ use App\Domains\Position\Model\Position as Model;
 class UpdateCity extends ActionAbstract
 {
     /**
-     * @var \App\Domains\City\Model\City
+     * @var ?\App\Domains\City\Model\City
      */
-    protected CityModel $city;
+    protected ?CityModel $city;
 
     /**
      * @return \App\Domains\Position\Model\Position
@@ -47,6 +47,10 @@ class UpdateCity extends ActionAbstract
      */
     protected function save(): void
     {
+        if (empty($this->city)) {
+            return;
+        }
+
         $this->row->city_id = $this->city->id;
         $this->row->save();
     }

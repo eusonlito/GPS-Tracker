@@ -18,6 +18,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
+        "brianium/paratest": "^7.1",
         "friendsofphp/php-cs-fixer": "^3.14.3",
         "laravel/pint": "^1.4.1",
         "nunomaduro/collision": "^7.0",

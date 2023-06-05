@@ -45,6 +45,12 @@
       <exclude>./app/Domains/UserSession/Test/Controller/ControllerAbstract.php</exclude>
       <exclude>./app/Domains/Vehicle/Test/Controller/ControllerAbstract.php</exclude>
     </testsuite>
+
+    <testsuite name="Unit">
+      <directory suffix=".php">./app/Domains/Server/Test/Unit</directory>
+
+      <exclude>./app/Domains/Server/Test/Unit/UnitAbstract.php</exclude>
+    </testsuite>
   </testsuites>
   <php>
     <server name="APP_DEBUG" value="0"/>

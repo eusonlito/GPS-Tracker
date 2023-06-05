@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 05 Jun 2023 20:37:27 GMT
+Content-Type: application/json; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: close
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS,GET
+
+{"place_id":100081519,"licence":"Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright","osm_type":"node","osm_id":10054564215,"lat":"42.3523095","lon":"-7.8784234","place_rank":30,"category":"highway","type":"bus_stop","importance":9.99999999995449e-6,"addresstype":"highway","name":"Antiga Estacion bus","display_name":"Antiga Estacion bus, Estrada Vigo-Pino, San Rosendo, Ourense, Orense, Galicia, 32003, España","address":{"highway":"Antiga Estacion bus","road":"Estrada Vigo-Pino","suburb":"San Rosendo","borough":"Ourense","city":"Orense","county":"Orense","province":"Orense","ISO3166-2-lvl6":"ES-OR","state":"Galicia","ISO3166-2-lvl4":"ES-GA","postcode":"32003","country":"España","country_code":"es"},"boundingbox":["42.3522595","42.3523595","-7.8784734","-7.8783734"]}
