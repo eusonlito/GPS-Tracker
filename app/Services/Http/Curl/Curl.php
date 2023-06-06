@@ -12,7 +12,7 @@ class Curl
     /**
      * @var ?string
      */
-    protected static ?string $test = null;
+    protected static ?string $fake = null;
 
     /**
      * @var \CurlHandle
@@ -168,13 +168,13 @@ class Curl
     }
 
     /**
-     * @param ?string $test = null
+     * @param ?string $fake = null
      *
      * @return void
      */
-    public static function test(?string $test = null): void
+    public static function fake(?string $fake = null): void
     {
-        static::$test = $test;
+        static::$fake = $fake;
     }
 
     /**
@@ -676,7 +676,7 @@ class Curl
         $this->sendUrl();
         $this->sendPost();
 
-        $response = static::$test ?? curl_exec($this->curl);
+        $response = static::$fake ?? curl_exec($this->curl);
 
         $this->info = curl_getinfo($this->curl);
         $this->responseHeaders = [];

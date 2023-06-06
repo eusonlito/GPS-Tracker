@@ -14,7 +14,7 @@ class LogRead extends UnitAbstract
      */
     public function testSuccess(): void
     {
-        $this->authUserAdmin();
+        $this->authUser();
 
         $this->setCurl();
         $this->setConfiguration();
@@ -30,7 +30,7 @@ class LogRead extends UnitAbstract
      */
     protected function setCurl(): void
     {
-        Curl::test(file_get_contents(base_path('resources/app/test/server/curl-nominatim.openstreetmap.org.log')));
+        Curl::fake(file_get_contents(base_path('resources/app/test/server/curl-nominatim.openstreetmap.org.log')));
     }
 
     /**
