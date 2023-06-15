@@ -23,16 +23,4 @@ trait DateDisabled
     {
         return false;
     }
-
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-     *
-     * @param string $key
-     *
-     * @return bool
-     */
-    protected function isDateCastable($key)
-    {
-        return false;
-    }
 }
