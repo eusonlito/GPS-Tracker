@@ -7,7 +7,7 @@ Sinotrack ST-90x device management platform built with Laravel 10 + PHP 8.1 and 
 ### Requirements
 
 - PHP 8.1 or higher (bcmath bz2 intl mbstring opcache pdo_mysql pcntl redis sockets xsl zip)
-- MySQL 8.0
+- MySQL 8.0.12 or higher
 - Redis
 
 ### Local Installation
