@@ -9,7 +9,6 @@
         "doctrine/dbal": "^3.5.3",
         "eusonlito/captcha": "^1.1.1",
         "eusonlito/laravel-meta": "^3.2.3",
-        "eusonlito/laravel-packer": "^2.2.6",
         "laravel/framework": "^10.0",
         "laravel/helpers": "^1.6",
         "predis/predis": "^2.1.1",
