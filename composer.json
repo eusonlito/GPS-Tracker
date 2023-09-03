@@ -8,7 +8,7 @@
         "composer/composer": "^2.5.1",
         "doctrine/dbal": "^3.5.3",
         "eusonlito/captcha": "^1.1.1",
-        "eusonlito/laravel-meta": "^3.2.3",
+        "eusonlito/laravel-meta": "^3.3",
         "laravel/framework": "^10.0",
         "laravel/helpers": "^1.6",
         "predis/predis": "^2.1.1",
