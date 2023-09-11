@@ -31,8 +31,6 @@ trait Geo
     }
 
     /**
-     * @param float $latitude
-     * @param float $longitude
      * @param array $geojson
      *
      * @return array
@@ -68,7 +66,7 @@ trait Geo
     /**
      * @param float $latitude
      * @param float $longitude
-     * @param array $geojson
+     * @param array $bbox
      *
      * @return bool
      */
@@ -131,7 +129,7 @@ trait Geo
 
             $currentP = $contour[0];
 
-            if ($currentP[0] !== $contour[$contourLen][0] && $currentP[1] !== $contour[$contourLen][1]) {
+            if (($currentP[0] !== $contour[$contourLen][0]) && ($currentP[1] !== $contour[$contourLen][1])) {
                 throw new Exception('First and last coordinates in a ring must be the same');
             }
 
@@ -143,7 +141,7 @@ trait Geo
 
                 $v2 = $nextP[1] - $latitude;
 
-                if (($v1 < 0 && $v2 < 0) || ($v1 > 0 && $v2 > 0)) {
+                if ((($v1 < 0) && ($v2 < 0)) || (($v1 > 0) && ($v2 > 0))) {
                     $currentP = $nextP;
                     $v1 = $v2;
                     $u1 = $currentP[0] - $longitude;
@@ -153,38 +151,40 @@ trait Geo
 
                 $u2 = $nextP[0] - $longitude;
 
-                if ($v2 > 0 && $v1 <= 0) {
+                if (($v2 > 0) && ($v1 <= 0)) {
                     $f = ($u1 * $v2) - ($u2 * $v1);
 
                     if ($f > 0) {
-                        $k = $k + 1;
-                    } elseif ($f === 0) {
+                        $k += 1;
+                    } elseif (intval($f) === 0) {
                         return 0;
                     }
-                } elseif ($v1 > 0 && $v2 <= 0) {
+                } elseif (($v1 > 0) && ($v2 <= 0)) {
                     $f = ($u1 * $v2) - ($u2 * $v1);
 
                     if ($f < 0) {
-                        $k = $k + 1;
-                    } elseif ($f === 0) {
+                        $k += 1;
+                    } elseif (intval($f) === 0) {
                         return 0;
                     }
-                } elseif ($v2 === 0 && $v1 < 0) {
+                } elseif ((intval($v2) === 0) && ($v1 < 0)) {
                     $f = ($u1 * $v2) - ($u2 * $v1);
 
-                    if ($f === 0) {
+                    if (intval($f) === 0) {
                         return 0;
                     }
-                } elseif ($v1 === 0 && $v2 < 0) {
+                } elseif ((intval($v1) === 0) && ($v2 < 0)) {
                     $f = $u1 * $v2 - $u2 * $v1;
 
-                    if ($f === 0) {
+                    if (intval($f) === 0) {
                         return 0;
                     }
-                } elseif ($v1 === 0 && $v2 === 0) {
+                } elseif ((intval($v1) === 0) && (intval($v2) === 0)) {
                     if ($u2 <= 0 && $u1 >= 0) {
                         return 0;
-                    } elseif ($u1 <= 0 && $u2 >= 0) {
+                    }
+
+                    if (($u1 <= 0) && ($u2 >= 0)) {
                         return 0;
                     }
                 }

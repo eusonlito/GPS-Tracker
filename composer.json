@@ -22,6 +22,7 @@
         "laravel/pint": "^1.4.1",
         "nunomaduro/collision": "^7.0",
         "nunomaduro/larastan": "^2.4",
+        "nunomaduro/phpinsights": "^2.8",
         "phpcompatibility/php-compatibility": "^9.3",
         "phpunit/phpunit": "^10.0",
         "psalm/plugin-laravel": "^2.7",
@@ -127,6 +128,7 @@
         ],
 
         "quality": [
+            "@php artisan insights --ansi",
             "@php ./vendor/bin/phpstan analyse --ansi || true",
             "@php ./vendor/bin/psalm || true"
         ],

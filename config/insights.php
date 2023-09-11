@@ -140,7 +140,7 @@ return [
         ],
 
         FunctionLengthSniff::class => [
-            'maxLinesLength' => 50,
+            'maxLinesLength' => 80,
         ],
     ],
 ];
