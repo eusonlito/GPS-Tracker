@@ -5,6 +5,7 @@
     'devices' => 'Devices',
     'ip-locks' => 'Blocked IPs',
     'logout' => 'Exit',
+    'maintenances' => 'Maintenances',
     'notifications' => 'Notifications',
     'profile' => 'Profile',
     'refuel' => 'Refuels',

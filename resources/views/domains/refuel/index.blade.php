@@ -57,12 +57,12 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->vehicle->name }}</a></td>
                 @endif
 
-                <td><a href="{{ $link }}" class="block">{{ $row->date_at }}</a></td>
-                <td><a href="{{ $link }}" class="block" data-sort-table-value="{{ $row->distance_total }}">@unitHumanRaw('distance', $row->distance_total, 0)</a></td>
-                <td><a href="{{ $link }}" class="block" data-sort-table-value="{{ $row->distance }}">@unitHumanRaw('distance', $row->distance, 0)</a></td>
-                <td><a href="{{ $link }}" class="block" data-sort-table-value="{{ $row->quantity }}">@unitHumanRaw('volume', $row->quantity)</a></td>
-                <td><a href="{{ $link }}" class="block" data-sort-table-value="{{ $row->price }}">@unitHumanRaw('money', $row->price, 3)</a></td>
-                <td><a href="{{ $link }}" class="block" data-sort-table-value="{{ $row->total }}">@unitHumanRaw('money', $row->total)</a></td>
+                <td data-table-sort-value="{{ $row->date_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->date_at)</a></td>
+                <td data-table-sort-value="{{ $row->distance_total }}"><a href="{{ $link }}" class="block">@unitHumanRaw('distance', $row->distance_total, 0)</a></td>
+                <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block">@unitHumanRaw('distance', $row->distance, 0)</a></td>
+                <td data-table-sort-value="{{ $row->quantity }}"><a href="{{ $link }}" class="block">@unitHumanRaw('volume', $row->quantity)</a></td>
+                <td data-table-sort-value="{{ $row->price }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->price, 3)</a></td>
+                <td data-table-sort-value="{{ $row->total }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->total)</a></td>
             </tr>
 
             @endforeach

@@ -13,6 +13,7 @@ abstract class UpdateBoolean extends ActionAbstract
     {
         $this->before();
         $this->check();
+        $this->data();
         $this->store();
 
         return $this->row;
@@ -30,8 +31,22 @@ abstract class UpdateBoolean extends ActionAbstract
      */
     protected function check(): void
     {
-        if (($this->row->getCasts()[$this->data['column']] ?? null) !== 'boolean') {
+        if (array_key_exists($this->data['column'], $this->row->toArray()) === false) {
             $this->exceptionValidator(__('validator.column-not-valid'));
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function data(): void
+    {
+        $this->data['value'] = $this->row->{$this->data['column']};
+
+        if (is_bool($this->data['value'])) {
+            $this->data['value'] = empty($this->data['value']);
+        } else {
+            $this->data['value'] = $this->data['value'] ? null : date('Y-m-d H:i:s');
         }
     }
 
@@ -40,7 +55,7 @@ abstract class UpdateBoolean extends ActionAbstract
      */
     protected function store(): void
     {
-        $this->row->{$this->data['column']} = !$this->row->{$this->data['column']};
+        $this->row->{$this->data['column']} = $this->data['value'];
         $this->row->save();
     }
 }

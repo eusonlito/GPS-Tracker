@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Refuel\Action;
+namespace App\Domains\Maintenance\Action;
 
-use App\Domains\Refuel\Model\Refuel as Model;
+use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
@@ -18,7 +18,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     abstract protected function save(): void;
 
     /**
-     * @return \App\Domains\Refuel\Model\Refuel
+     * @return \App\Domains\Maintenance\Model\Maintenance
      */
     public function handle(): Model
     {

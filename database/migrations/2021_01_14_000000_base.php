@@ -170,6 +170,27 @@ return new class extends MigrationAbstract {
             $this->timestamps($table);
         });
 
+        Schema::create('maintenance', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name')->index();
+            $table->string('workshop')->default('');
+
+            $table->text('description');
+
+            $table->dateTime('date_at');
+
+            $table->unsignedDecimal('amount', 10, 2)->default(0);
+
+            $table->unsignedDecimal('distance', 10, 2)->default(0);
+            $table->unsignedDecimal('distance_next', 10, 2)->default(0);
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('vehicle_id');
+        });
+
         Schema::create('position', function (Blueprint $table) {
             $table->id();
 
@@ -368,6 +389,11 @@ return new class extends MigrationAbstract {
 
         Schema::table('device_message', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'device');
+        });
+
+        Schema::table('maintenance', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'user');
+            $this->foreignOnDeleteCascade($table, 'vehicle');
         });
 
         Schema::table('position', function (Blueprint $table) {
