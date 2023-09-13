@@ -7,7 +7,7 @@
     'end-at' => 'Fin',
     'filter' => 'Filtrar...',
     'meta-title' => 'Crear Mantenimiento',
-    'name' => 'Nombre',
+    'name' => 'Tarea',
     'start-at' => 'Inicio',
     'vehicle' => 'Vehículo',
     'workshop' => 'Taller',
