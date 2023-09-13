@@ -41,6 +41,6 @@
 
     <div class="p-2">
         <label for="maintenance-description" class="form-label">{{ __('maintenance-create.description') }}</label>
-        <textarea name="description" class="form-control form-control-lg" id="maintenance-description" rows="10" required>{{ $REQUEST->input('description') }}</textarea>
+        <textarea name="description" class="form-control form-control-lg" id="maintenance-description" rows="5">{{ $REQUEST->input('description') }}</textarea>
     </div>
 </div>
