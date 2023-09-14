@@ -4,7 +4,6 @@ namespace App\Domains\Maintenance\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Create extends ControllerAbstract
@@ -24,6 +23,7 @@ class Create extends ControllerAbstract
 
         return $this->page('maintenance.create', [
             'vehicles' => VehicleModel::query()->byUserId($this->auth->id)->list()->get(),
+            'files' => collect(),
         ]);
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Domains\Maintenance\Service\Controller;
 
-use stdClass;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use App\Domains\Maintenance\Model\Maintenance as Model;

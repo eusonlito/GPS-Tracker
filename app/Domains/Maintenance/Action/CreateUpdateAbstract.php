@@ -4,9 +4,12 @@ namespace App\Domains\Maintenance\Action;
 
 use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+use App\Domains\File\Action\Traits\RelatedCreateUpdate as FileRelatedCreateUpdate;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
 {
+    use FileRelatedCreateUpdate;
+
     /**
      * @var \App\Domains\Vehicle\Model\Vehicle
      */
@@ -24,6 +27,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     {
         $this->vehicle();
         $this->save();
+        $this->files();
 
         return $this->row;
     }

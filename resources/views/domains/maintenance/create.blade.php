@@ -2,7 +2,7 @@
 
 @section ('body')
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <input type="hidden" name="_action" value="create" />
 
     @include ('domains.maintenance.molecules.create-update')

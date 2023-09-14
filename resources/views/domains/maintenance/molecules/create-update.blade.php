@@ -44,3 +44,5 @@
         <textarea name="description" class="form-control form-control-lg" id="maintenance-description" rows="5">{{ $REQUEST->input('description') }}</textarea>
     </div>
 </div>
+
+@include ('domains.file.molecules.create-update', ['list' => $files])

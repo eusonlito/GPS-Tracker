@@ -17,7 +17,7 @@ class ActionFactory extends ActionFactoryAbstract
      */
     public function create(): Model
     {
-        return $this->actionHandle(Create::class, $this->validate()->create());
+        return $this->actionHandleTransaction(Create::class, $this->validate()->create());
     }
 
     /**
@@ -25,7 +25,7 @@ class ActionFactory extends ActionFactoryAbstract
      */
     public function delete(): void
     {
-        $this->actionHandle(Delete::class);
+        $this->actionHandleTransaction(Delete::class);
     }
 
     /**
@@ -33,14 +33,6 @@ class ActionFactory extends ActionFactoryAbstract
      */
     public function update(): Model
     {
-        return $this->actionHandle(Update::class, $this->validate()->update());
-    }
-
-    /**
-     * @return \App\Domains\Alarm\Model\Alarm
-     */
-    public function updateBoolean(): Model
-    {
-        return $this->actionHandle(UpdateBoolean::class, $this->validate()->updateBoolean());
+        return $this->actionHandleTransaction(Update::class, $this->validate()->update());
     }
 }

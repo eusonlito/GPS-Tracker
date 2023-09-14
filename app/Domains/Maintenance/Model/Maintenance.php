@@ -4,6 +4,8 @@ namespace App\Domains\Maintenance\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Domains\File\Model\File as FileModel;
 use App\Domains\Maintenance\Model\Builder\Maintenance as Builder;
 use App\Domains\Maintenance\Model\Collection\Maintenance as Collection;
 use App\Domains\Maintenance\Test\Factory\Maintenance as TestFactory;
@@ -62,6 +64,14 @@ class Maintenance extends ModelAbstract
     protected static function newFactory(): TestFactory
     {
         return TestFactory::new();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function files(): HasMany
+    {
+        return $this->hasMany(FileModel::class, 'related_id')->byRelatedTable(static::TABLE)->list();
     }
 
     /**

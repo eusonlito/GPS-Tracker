@@ -24,7 +24,7 @@ return new class extends MigrationAbstract {
      */
     protected function upMigrated(): bool
     {
-        return Schema::hasTable('maintenance');
+        return Schema::hasTable('file');
     }
 
     /**
@@ -32,25 +32,20 @@ return new class extends MigrationAbstract {
      */
     protected function tables()
     {
-        Schema::create('maintenance', function (Blueprint $table) {
+        Schema::create('file', function (Blueprint $table) {
             $table->id();
 
             $table->string('name')->index();
-            $table->string('workshop')->default('');
+            $table->string('path');
 
-            $table->text('description');
-
-            $table->dateTime('date_at');
-
-            $table->unsignedDecimal('amount', 10, 2)->default(0);
-
-            $table->unsignedDecimal('distance', 10, 2)->default(0);
-            $table->unsignedDecimal('distance_next', 10, 2)->default(0);
+            $table->unsignedBigInteger('size');
 
             $this->timestamps($table);
 
+            $table->string('related_table');
+            $table->unsignedBigInteger('related_id');
+
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('vehicle_id');
         });
     }
 
@@ -59,9 +54,10 @@ return new class extends MigrationAbstract {
      */
     protected function keys()
     {
-        Schema::table('maintenance', function (Blueprint $table) {
+        Schema::table('file', function (Blueprint $table) {
+            $this->tableAddIndex($table, ['related_table', 'related_id']);
+
             $this->foreignOnDeleteCascade($table, 'user');
-            $this->foreignOnDeleteCascade($table, 'vehicle');
         });
     }
 
@@ -70,6 +66,6 @@ return new class extends MigrationAbstract {
      */
     public function down()
     {
-        Schema::drop('maintenance');
+        Schema::drop('file');
     }
 };

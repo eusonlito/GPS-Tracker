@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Maintenance\Action;
+namespace App\Domains\File\Action;
 
 class Delete extends ActionAbstract
 {
@@ -10,7 +10,6 @@ class Delete extends ActionAbstract
     public function handle(): void
     {
         $this->delete();
-        $this->files();
     }
 
     /**
@@ -18,16 +17,23 @@ class Delete extends ActionAbstract
      */
     protected function delete(): void
     {
+        $this->deleteRow();
+        $this->deleteFile();
+    }
+
+    /**
+     * @return void
+     */
+    protected function deleteRow(): void
+    {
         $this->row->delete();
     }
 
     /**
      * @return void
      */
-    protected function files(): void
+    protected function deleteFile(): void
     {
-        foreach ($this->row->files as $file) {
-            $this->factory('File', $file)->action()->delete();
-        }
+        $this->row->fileDelete();
     }
 }

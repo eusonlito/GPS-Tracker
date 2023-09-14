@@ -49,11 +49,11 @@ abstract class TestAbstract extends TestsAbstract
     abstract protected function getUserClass(): string;
 
     /**
-     * @param \Illuminate\Contracts\Auth\Authenticatable $user = null
+     * @param ?\Illuminate\Contracts\Auth\Authenticatable $user = null
      *
      * @return self
      */
-    protected function auth(Authenticatable $user = null): self
+    protected function auth(?Authenticatable $user = null): self
     {
         $this->auth = $user ?: $this->user();
 
