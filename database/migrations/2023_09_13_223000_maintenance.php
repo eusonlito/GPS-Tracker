@@ -15,6 +15,7 @@ return new class extends MigrationAbstract {
         }
 
         $this->tables();
+        $this->keys();
         $this->upFinish();
     }
 
