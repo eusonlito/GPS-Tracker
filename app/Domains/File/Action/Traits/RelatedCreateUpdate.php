@@ -2,6 +2,7 @@
 
 namespace App\Domains\File\Action\Traits;
 
+use Throwable;
 use App\Domains\File\Model\File as Model;
 
 trait RelatedCreateUpdate

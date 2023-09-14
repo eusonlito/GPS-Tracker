@@ -157,7 +157,7 @@ trait Geo
                     if ($f > 0) {
                         $k += 1;
                     } elseif (intval($f) === 0) {
-                        return 0;
+                        return false;
                     }
                 } elseif (($v1 > 0) && ($v2 <= 0)) {
                     $f = ($u1 * $v2) - ($u2 * $v1);
@@ -165,27 +165,27 @@ trait Geo
                     if ($f < 0) {
                         $k += 1;
                     } elseif (intval($f) === 0) {
-                        return 0;
+                        return false;
                     }
                 } elseif ((intval($v2) === 0) && ($v1 < 0)) {
                     $f = ($u1 * $v2) - ($u2 * $v1);
 
                     if (intval($f) === 0) {
-                        return 0;
+                        return false;
                     }
                 } elseif ((intval($v1) === 0) && ($v2 < 0)) {
                     $f = $u1 * $v2 - $u2 * $v1;
 
                     if (intval($f) === 0) {
-                        return 0;
+                        return false;
                     }
                 } elseif ((intval($v1) === 0) && (intval($v2) === 0)) {
                     if ($u2 <= 0 && $u1 >= 0) {
-                        return 0;
+                        return false;
                     }
 
                     if (($u1 <= 0) && ($u2 >= 0)) {
-                        return 0;
+                        return false;
                     }
                 }
 
