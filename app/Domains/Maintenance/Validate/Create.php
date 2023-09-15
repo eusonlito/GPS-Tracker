@@ -13,11 +13,11 @@ class Create extends ValidateAbstract
     {
         return [
             'name' => ['bail', 'required'],
-            'workshop' => ['bail'],
+            'workshop' => ['bail', 'required'],
             'date_at' => ['bail', 'required', 'date_format:Y-m-d'],
             'distance' => ['bail', 'required', 'numeric'],
             'distance_next' => ['bail', 'numeric'],
-            'amount' => ['bail', 'required', 'numeric'],
+            'amount' => ['bail', 'numeric'],
             'description' => ['bail'],
             'vehicle_id' => ['bail', 'required', 'integer'],
         ];

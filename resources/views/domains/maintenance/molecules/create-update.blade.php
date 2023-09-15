@@ -18,12 +18,12 @@
 
         <div class="flex-1 p-2">
             <label for="maintenance-workshop" class="form-label">{{ __('maintenance-create.workshop') }}</label>
-            <input type="text" name="workshop" class="form-control form-control-lg" id="maintenance-workshop" value="{{ $REQUEST->input('workshop') }}">
+            <input type="text" name="workshop" class="form-control form-control-lg" id="maintenance-workshop" value="{{ $REQUEST->input('workshop') }}" required>
         </div>
 
         <div class="flex-1 p-2">
             <label for="maintenance-amount" class="form-label">{{ __('maintenance-create.amount') }}</label>
-            <input type="number" name="amount" class="form-control form-control-lg" id="maintenance-amount" value="{{ $REQUEST->input('amount') }}" min="0" step="any" required>
+            <input type="number" name="amount" class="form-control form-control-lg" id="maintenance-amount" value="{{ $REQUEST->input('amount') }}" min="0" step="any">
         </div>
     </div>
 
