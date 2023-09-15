@@ -56,6 +56,14 @@ class File extends ModelAbstract
     /**
      * @return string
      */
+    public function filePath(): string
+    {
+        return static::storage()->path($this->path);
+    }
+
+    /**
+     * @return string
+     */
     public function fileContentsGet(): string
     {
         return static::storage()->get($this->path);

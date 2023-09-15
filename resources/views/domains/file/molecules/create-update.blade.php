@@ -13,7 +13,7 @@
 
                 <label for="files-{{ $i }}-file" class="input-group-text input-group-text-lg border-0">@icon('upload', 'w-5 h-5')</label>
 
-                <a href="{{ route('file.view', $each->id) }}" class="input-group-text input-group-text-lg" target="_blank" tabindex="-1">@icon('external-link', 'w-5 h-5')</a>
+                <a href="{{ route('file.view', [$each->id, $each->name]) }}" class="input-group-text input-group-text-lg" target="_blank" tabindex="-1">@icon('external-link', 'w-5 h-5')</a>
 
                 <label class="input-group-text input-group-text-lg" title="{{ __('file-create.delete') }}">
                     <input type="checkbox" name="files[{{ $i }}][delete]" value="1">

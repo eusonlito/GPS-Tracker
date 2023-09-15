@@ -5,7 +5,7 @@
 <form method="get">
     <div class="lg:flex lg:space-x-4">
         <div class="flex-grow mt-2 lg:mt-0">
-            <input type="search" class="form-control form-control-lg" placeholder="{{ __('maintenance-index.filter') }}" data-table-search="#maintenance-list-table" />
+            <input type="search" name="search" value="{{ $REQUEST->input('search') }}" class="form-control form-control-lg" placeholder="{{ __('maintenance-index.search') }}" />
         </div>
 
         @if ($vehicles_multiple)
@@ -22,6 +22,10 @@
 
         <div class="flex-grow mt-2 lg:mt-0">
             <input type="search" name="end_at" value="{{ $REQUEST->input('end_at') }}" class="form-control form-control-lg" placeholder="{{ __('maintenance-index.end-at') }}" data-datepicker data-datepicker-min-date="{{ $date_min }}" data-change-submit />
+        </div>
+
+        <div class="lg:ml-4 mt-2 lg:mt-0 bg-white">
+            <button type="submit" class="btn form-control-lg">{{ __('maintenance-index.send') }}</button>
         </div>
 
         <div class="lg:ml-4 mt-2 lg:mt-0 bg-white">

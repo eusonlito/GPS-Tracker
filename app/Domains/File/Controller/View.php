@@ -2,16 +2,16 @@
 
 namespace App\Domains\File\Controller;
 
-use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class View extends ControllerAbstract
 {
     /**
      * @param int $id
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function __invoke(int $id): StreamedResponse
+    public function __invoke(int $id): BinaryFileResponse
     {
         $this->row($id);
 
@@ -19,8 +19,6 @@ class View extends ControllerAbstract
             abort(404);
         }
 
-        return response()->streamDownload(function () {
-            echo $this->row->fileContentsGet();
-        }, $this->row->name);
+        return response()->file($this->row->filePath());
     }
 }

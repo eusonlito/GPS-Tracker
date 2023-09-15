@@ -65,6 +65,7 @@ class Index extends ControllerAbstract
         return $this->cache[__FUNCTION__] ??= Model::query()
             ->list()
             ->byUserId($this->auth->id)
+            ->whenSearch($this->request->input('search'))
             ->whenVehicleId((int)$this->request->input('vehicle_id'))
             ->whenDateAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
             ->withVehicle()

@@ -6,7 +6,7 @@
 
         <div class="flex-1 p-2">
             <label for="maintenance-date_at" class="form-label">{{ __('maintenance-create.date_at') }}</label>
-            <input type="text" name="date_at" class="form-control form-control-lg" id="maintenance-date_at" value="{{ $REQUEST->input('date_at') }}" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" data-current-datetime required>
+            <input type="text" name="date_at" class="form-control form-control-lg" id="maintenance-date_at" value="{{ $REQUEST->input('date_at') }}" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" data-current-date required>
         </div>
     </div>
 

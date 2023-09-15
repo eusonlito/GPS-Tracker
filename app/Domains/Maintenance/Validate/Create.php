@@ -14,7 +14,7 @@ class Create extends ValidateAbstract
         return [
             'name' => ['bail', 'required'],
             'workshop' => ['bail'],
-            'date_at' => ['bail', 'required', 'date_format:Y-m-d H:i:s'],
+            'date_at' => ['bail', 'required', 'date_format:Y-m-d'],
             'distance' => ['bail', 'required', 'numeric'],
             'distance_next' => ['bail', 'numeric'],
             'amount' => ['bail', 'required', 'numeric'],

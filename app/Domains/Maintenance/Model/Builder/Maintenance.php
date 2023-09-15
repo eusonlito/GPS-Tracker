@@ -82,6 +82,16 @@ class Maintenance extends BuilderAbstract
     }
 
     /**
+     * @param ?string $search
+     *
+     * @return self
+     */
+    public function whenSearch(?string $search): self
+    {
+        return $this->when($search, static fn ($q) => $q->searchLike(['name', 'workshop', 'description'], $search));
+    }
+
+    /**
      * @return self
      */
     public function withVehicle(): self

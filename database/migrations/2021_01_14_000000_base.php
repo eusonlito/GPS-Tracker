@@ -178,7 +178,7 @@ return new class extends MigrationAbstract {
 
             $table->text('description');
 
-            $table->dateTime('date_at');
+            $table->date('date_at');
 
             $table->unsignedDecimal('amount', 10, 2)->default(0);
 
