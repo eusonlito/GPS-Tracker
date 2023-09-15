@@ -1,11 +1,17 @@
 <div class="mobile-menu md:hidden">
     <div class="mobile-menu-bar">
+        <a href="{{ route('dashboard.index') }}">
+            @icon('home', 'w-6 h-6 text-white')
+        </a>
+
+        <h1 class="flex-1 truncate">{{ $ROUTE_TITLE }}</h1>
+
         <a href="javascript:;" id="mobile-menu-toggler">
-            @icon('bar-chart-2', 'w-8 h-8 text-white transform -rotate-90')
+            @icon('menu', 'w-8 h-8 text-white')
         </a>
     </div>
 
-    <ul class="border-t border-theme-21 py-5 hidden">
+    <ul class="border-t hidden">
         <li>
             <a href="{{ route('dashboard.index') }}" class="menu {{ str_starts_with($ROUTE, 'dashboard.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('home')</div>
@@ -16,7 +22,7 @@
         <li>
             <a href="{{ route('trip.index') }}" class="menu {{ str_starts_with($ROUTE, 'trip.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('map')</div>
-                <div class="menu__title">{{ __('in-sidebar.trips') }}</div>
+                <div class="menu__title">{{ __('in-sidebar.trip') }}</div>
             </a>
         </li>
 
@@ -30,35 +36,35 @@
         <li>
             <a href="{{ route('maintenance.index') }}" class="menu {{ str_starts_with($ROUTE, 'maintenance.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('tool')</div>
-                <div class="menu__title">{{ __('in-sidebar.maintenances') }}</div>
+                <div class="menu__title">{{ __('in-sidebar.maintenance') }}</div>
             </a>
         </li>
 
         <li>
             <a href="{{ route('vehicle.index') }}" class="menu {{ str_starts_with($ROUTE, 'vehicle.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('truck')</div>
-                <div class="menu__title">{{ __('in-sidebar.vehicles') }}</div>
+                <div class="menu__title">{{ __('in-sidebar.vehicle') }}</div>
             </a>
         </li>
 
         <li>
             <a href="{{ route('device.index') }}" class="menu {{ str_starts_with($ROUTE, 'device.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('cpu')</div>
-                <div class="menu__title">{{ __('in-sidebar.devices') }}</div>
+                <div class="menu__title">{{ __('in-sidebar.device') }}</div>
             </a>
         </li>
 
         <li>
             <a href="{{ route('alarm.index') }}" class="menu {{ str_starts_with($ROUTE, 'alarm.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('bell')</div>
-                <div class="menu__title">{{ __('in-sidebar.alarms') }}</div>
+                <div class="menu__title">{{ __('in-sidebar.alarm') }}</div>
             </a>
         </li>
 
         <li>
             <a href="{{ route('alarm-notification.index') }}" class="menu {{ str_starts_with($ROUTE, 'alarm-notification.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('alert-triangle')</div>
-                <div class="menu__title">{{ __('in-sidebar.notifications') }}</div>
+                <div class="menu__title">{{ __('in-sidebar.alarm-notification') }}</div>
             </a>
         </li>
 
@@ -84,7 +90,7 @@
             <a href="javascript:;" class="menu {{ $active ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('users')</div>
                 <div class="menu__title">
-                    {{ __('in-sidebar.users') }} <div class="menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                    {{ __('in-sidebar.user') }} <div class="menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
                 </div>
             </a>
 
@@ -92,21 +98,21 @@
                 <li>
                     <a href="{{ route('user.index') }}" class="menu {{ $active ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('list')</div>
-                        <div class="menu__title">{{ __('in-sidebar.users-list') }}</div>
+                        <div class="menu__title">{{ __('in-sidebar.user-index') }}</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ route('user.user-session') }}" class="menu {{ ($ROUTE === 'user.user-session') ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('key')</div>
-                        <div class="menu__title">{{ __('in-sidebar.users-sessions') }}</div>
+                        <div class="menu__title">{{ __('in-sidebar.user-session') }}</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ route('user.ip-lock') }}" class="menu {{ ($ROUTE === 'user.ip-lock') ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('lock')</div>
-                        <div class="menu__title">{{ __('in-sidebar.ip-locks') }}</div>
+                        <div class="menu__title">{{ __('in-sidebar.user-ip-lock') }}</div>
                     </a>
                 </li>
             </ul>
@@ -116,7 +122,7 @@
             <a href="javascript:;" class="menu {{ str_starts_with($ROUTE, 'server.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('radio')</div>
                 <div class="menu__title">
-                    {{ __('in-sidebar.servers') }} <div class="menu__sub-icon">@icon('chevron-down')</div>
+                    {{ __('in-sidebar.server') }} <div class="menu__sub-icon">@icon('chevron-down')</div>
                 </div>
             </a>
 
@@ -124,21 +130,21 @@
                 <li>
                     <a href="{{ route('server.status') }}" class="menu {{ ($ROUTE === 'server.status') ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('activity')</div>
-                        <div class="menu__title">{{ __('in-sidebar.servers-status') }}</div>
+                        <div class="menu__title">{{ __('in-sidebar.server-status') }}</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ route('server.index') }}" class="menu {{ in_array($ROUTE, ['server.index', 'server.create', 'server.update']) ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('list')</div>
-                        <div class="menu__title">{{ __('in-sidebar.servers-list') }}</div>
+                        <div class="menu__title">{{ __('in-sidebar.server-index') }}</div>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ route('server.log') }}" class="menu {{ ($ROUTE === 'server.log') ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('file-text')</div>
-                        <div class="menu__title">{{ __('in-sidebar.servers-logs') }}</div>
+                        <div class="menu__title">{{ __('in-sidebar.server-log') }}</div>
                     </a>
                 </li>
             </ul>
@@ -147,7 +153,7 @@
         <li>
             <a href="{{ route('timezone.index') }}" class="menu {{ str_starts_with($ROUTE, 'timezone.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('globe')</div>
-                <div class="menu__title">{{ __('in-sidebar.timezones') }}</div>
+                <div class="menu__title">{{ __('in-sidebar.timezone') }}</div>
             </a>
         </li>
 

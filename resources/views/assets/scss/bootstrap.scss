@@ -28,7 +28,10 @@ select {
     }
 }
 
-.wrapper:before,
+.wrapper:before {
+    content: none
+}
+
 .wrapper .wrapper-box,
 .content,
 .side-nav > ul > li > a,
@@ -39,6 +42,12 @@ select {
     transform: none !important;
     animation: none !important;
     border-radius: 0;
+}
+
+.wrapper .wrapper-box {
+    @media (max-width: 767px) {
+        margin-top: 0;
+    }
 }
 
 .side-nav > ul > li > .side-menu.side-menu--active {
@@ -52,6 +61,20 @@ select {
 .mobile-menu > ul > li > .menu.menu--active {
     background-color: rgba(20, 46, 113, var(--tw-bg-opacity));
 }
+
+.mobile-menu {
+    .mobile-menu-bar {
+        height: auto;
+        padding: 10px;
+
+        h1 {
+            color: white;
+            font-size: 1.2rem;
+            margin-left: 1rem;
+        }
+    }
+}
+
 
 .header-sticky table thead th {
     position: sticky;
