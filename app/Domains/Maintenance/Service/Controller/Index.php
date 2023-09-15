@@ -54,6 +54,7 @@ class Index extends ControllerAbstract
             'vehicles' => $this->vehicles(),
             'vehicles_multiple' => ($this->vehicles()->count() > 1),
             'date_min' => $this->dateMin(),
+            'total' => $this->list()->sum('amount'),
         ];
     }
 

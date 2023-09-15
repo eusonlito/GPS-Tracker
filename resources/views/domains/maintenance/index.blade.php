@@ -71,6 +71,17 @@
 
             @endforeach
         </tbody>
+
+        @if ($total)
+
+        <tfoot class="bg-white">
+            <tr>
+                <th colspan="{{ $vehicles_multiple ? '6' : '5' }}"></th>
+                <th>@unitHumanRaw('money', $total)</th>
+            </tr>
+        </tfoot>
+
+        @endif
     </table>
 </div>
 
