@@ -42,7 +42,7 @@
                 <th>{{ __('maintenance-index.vehicle') }}</th>
                 @endif
 
-                <th>{{ __('maintenance-index.name') }}</th>
+                <th class="text-left">{{ __('maintenance-index.name') }}</th>
                 <th>{{ __('maintenance-index.workshop') }}</th>
                 <th>{{ __('maintenance-index.date_at') }}</th>
                 <th>{{ __('maintenance-index.distance') }}</th>
@@ -61,7 +61,7 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->vehicle->name }}</a></td>
                 @endif
 
-                <td><a href="{{ $link }}" class="block">{{ $row->name }}</a></td>
+                <td><a href="{{ $link }}" class="block text-left">{{ $row->name }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->workshop }}</a></td>
                 <td data-table-sort-value="{{ $row->date_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->date_at)</a></td>
                 <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block">@unitHumanRaw('distance', $row->distance, 0)</a></td>
