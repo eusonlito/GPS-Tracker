@@ -19,7 +19,7 @@ class Maintenance extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'date_at' => date('Y-m-d H:i:s'),
+            'date_at' => date('Y-m-d'),
 
             'name' => $this->faker->name,
             'workshop' => $this->faker->name,

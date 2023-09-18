@@ -3,7 +3,7 @@
 namespace App\Domains\Configuration\Controller;
 
 use App\Domains\Configuration\Model\Configuration as Model;
-use App\Domains\Shared\Controller\ControllerWebAbstract;
+use App\Domains\SharedApp\Controller\ControllerWebAbstract;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {

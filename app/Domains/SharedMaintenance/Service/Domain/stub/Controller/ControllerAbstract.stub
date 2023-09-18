@@ -3,7 +3,7 @@
 namespace App\Domains\{{ domain }}\Controller;
 
 use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
-use App\Domains\Shared\Controller\ControllerWebAbstract;
+use App\Domains\SharedApp\Controller\ControllerWebAbstract;
 use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract

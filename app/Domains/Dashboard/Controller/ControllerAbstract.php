@@ -2,7 +2,7 @@
 
 namespace App\Domains\Dashboard\Controller;
 
-use App\Domains\Shared\Controller\ControllerWebAbstract;
+use App\Domains\SharedApp\Controller\ControllerWebAbstract;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {

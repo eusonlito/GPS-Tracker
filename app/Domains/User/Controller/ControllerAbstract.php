@@ -2,7 +2,7 @@
 
 namespace App\Domains\User\Controller;
 
-use App\Domains\Shared\Controller\ControllerWebAbstract;
+use App\Domains\SharedApp\Controller\ControllerWebAbstract;
 use App\Domains\User\Model\User as Model;
 use App\Exceptions\NotFoundException;
 

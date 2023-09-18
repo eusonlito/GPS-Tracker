@@ -3,7 +3,7 @@
 namespace App\Domains\Refuel\Controller;
 
 use App\Domains\Refuel\Model\Refuel as Model;
-use App\Domains\Shared\Controller\ControllerWebAbstract;
+use App\Domains\SharedApp\Controller\ControllerWebAbstract;
 use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract

@@ -34,12 +34,8 @@ abstract class ControllerWebAbstract extends ControllerAbstract
      */
     protected function initViewShare(): void
     {
-        $ROUTE = $this->request->route()?->getName() ?: '';
-        $ROUTE_TITLE = $ROUTE ? __('in-sidebar.'.explode('.', $ROUTE)[0]) : '';
-
         view()->share([
-            'ROUTE' => $ROUTE,
-            'ROUTE_TITLE' => $ROUTE_TITLE,
+            'ROUTE' => $this->request->route()?->getName() ?: '',
             'AUTH' => $this->auth,
             'REQUEST' => $this->request,
         ]);

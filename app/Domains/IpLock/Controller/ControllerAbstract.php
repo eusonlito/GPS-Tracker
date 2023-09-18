@@ -2,7 +2,7 @@
 
 namespace App\Domains\IpLock\Controller;
 
-use App\Domains\Shared\Controller\ControllerWebAbstract;
+use App\Domains\SharedApp\Controller\ControllerWebAbstract;
 use App\Domains\IpLock\Model\IpLock as Model;
 use App\Exceptions\NotFoundException;
 
