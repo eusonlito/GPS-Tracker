@@ -16,10 +16,6 @@ select {
     background-color: inherit;
 }
 
-.mobile-menu {
-    margin: 0;
-}
-
 .side-nav {
     width: 230px;
 
@@ -44,6 +40,7 @@ select {
     border-radius: 0;
 }
 
+
 .wrapper .wrapper-box {
     @media (max-width: 767px) {
         margin-top: 0;
@@ -52,17 +49,29 @@ select {
 
 .side-nav > ul > li > .side-menu.side-menu--active {
     border-bottom-width: 2px;
-}
 
-.side-nav > ul > li > .side-menu.side-menu--active:before {
-    margin-right: -26px !important;
-}
+    &:before {
+        margin-right: -26px !important;
+    }
 
-.mobile-menu > ul > li > .menu.menu--active {
-    background-color: rgba(20, 46, 113, var(--tw-bg-opacity));
+    .side-menu__icon, .side-menu__title {
+        color: white;
+    }
 }
 
 .mobile-menu {
+    margin: 0;
+
+    > ul > li > .menu {
+        font-weight: 500;
+        color: rgba(178, 190, 222, var(--tw-text-opacity));
+
+        &.menu--active {
+            background-color: rgba(20, 46, 113, var(--tw-bg-opacity));
+            color: white;
+        }
+    }
+
     .mobile-menu-bar {
         height: auto;
         padding: 10px;
@@ -74,7 +83,6 @@ select {
         }
     }
 }
-
 
 .header-sticky table thead th {
     position: sticky;
