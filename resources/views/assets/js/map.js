@@ -133,12 +133,12 @@ export default class {
                 maxNativeZoom: 19,
                 maxZoom: 22
             }),
-            GoogleStreets: L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            GoogleStreets: L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
                 maxNativeZoom: 20,
                 maxZoom: 22,
                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
             }),
-            GoogleSatellite: L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+            GoogleSatellite: L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
                 maxNativeZoom: 20,
                 maxZoom: 22,
                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
