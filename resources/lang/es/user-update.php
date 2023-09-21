@@ -12,6 +12,7 @@
         'enabled-own' => 'No es posible desactivar a tu propio usuario',
     ],
     'language' => 'Idioma',
+    'meta-title' => 'Usuario > :title',
     'name' => 'Nombre',
     'password' => 'Contraseña',
     'save' => 'Guardar',

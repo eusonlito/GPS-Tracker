@@ -4,7 +4,7 @@
         'email-exists' => 'Another user with the same email already exists',
     ],
     'language' => 'Language',
-    'meta-title' => 'Profile Update',
+    'meta-title' => 'Profile',
     'name' => 'Name',
     'password' => 'Password',
     'password_current' => 'Current Password',

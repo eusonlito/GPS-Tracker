@@ -4,7 +4,7 @@
     'end_at' => 'End',
     'filter' => 'Filter...',
     'ip' => 'IP',
-    'meta-title' => 'Blocked IPs',
+    'meta-title' => 'Users > Blocked IPs',
     'time' => 'Time',
     'unlock' => 'Unblock',
 ];

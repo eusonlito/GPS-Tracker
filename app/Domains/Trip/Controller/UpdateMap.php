@@ -21,9 +21,10 @@ class UpdateMap extends UpdateAbstract
     {
         $this->load($id);
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('trip-update-map.meta-title', ['title' => $this->row->name]));
 
         return $this->page('trip.update-map', [
+            'row' => $this->row,
             'positions' => $this->positions(),
             'alarms' => $this->alarms(),
             'notifications' => $this->notifications(),

@@ -2,7 +2,7 @@
     'date_at' => 'Fecha y Hora',
     'distance' => 'Distancia desde el repostaje anterior',
     'distance_total' => 'Distancia total',
-    'meta-title' => 'Crear',
+    'meta-title' => 'Repostajes > Crear',
     'price' => 'Precio',
     'quantity' => 'Cantidad',
     'quantity_before' => 'Cantidad en el depósito antes del repostaje',

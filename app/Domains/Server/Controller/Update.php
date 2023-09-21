@@ -22,7 +22,7 @@ class Update extends ControllerAbstract
 
         $this->requestMergeWithRow();
 
-        $this->meta('title', $this->row->port.' - '.$this->row->protocol);
+        $this->meta('title', __('server-update.meta-title', ['title' => $this->row->port.' - '.$this->row->protocol]));
 
         return $this->page('server.update', [
             'row' => $this->row,

@@ -5,7 +5,7 @@
         'port-exists' => 'El puerto ya esta configurado para otro protocolo',
         'protocol-not-exists' => 'El protocolo seleccionado no está disponible',
     ],
-    'meta-title' => 'Crear Servidor',
+    'meta-title' => 'Servidor > Crear',
     'port' => 'Puerto',
     'protocol' => 'Protocolo',
     'protocol-select' => 'Selecciona un Protocolo',

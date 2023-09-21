@@ -22,7 +22,7 @@ class Update extends ControllerAbstract
 
         $this->requestMergeWithRow();
 
-        $this->meta('title', $this->row->key);
+        $this->meta('title', __('configuration-update.meta-title', ['title' => $this->row->key]));
 
         return $this->page('configuration.update', [
             'row' => $this->row,

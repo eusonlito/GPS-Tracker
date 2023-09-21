@@ -6,6 +6,7 @@
     'created_at' => 'Created',
     'filter' => 'Filter...',
     'message' => 'Message',
+    'meta-title' => 'Vehicle > :title > Notifications',
     'name' => 'Name',
     'telegram' => 'Telegram',
     'trip' => 'Trip',

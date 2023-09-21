@@ -4,7 +4,7 @@
             @icon('home', 'w-6 h-6 text-white')
         </a>
 
-        <h1 class="flex-1 truncate">{{ $ROUTE_TITLE }}</h1>
+        <h1 class="flex-1 truncate">{{ Meta::get('title') }}</h1>
 
         <a href="javascript:;" id="mobile-menu-toggler">
             @icon('menu', 'w-8 h-8 text-white')

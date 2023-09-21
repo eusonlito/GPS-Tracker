@@ -24,7 +24,7 @@ class Update extends ControllerAbstract
 
         $this->requestMergeWithRow();
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('alarm-update.meta-title', ['title' => $this->row->name]));
 
         return $this->page('alarm.update', [
             'row' => $this->row,

@@ -23,7 +23,7 @@ class Update extends ControllerAbstract
 
         $this->requestMergeWithRow();
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('vehicle-update.meta-title', ['title' => $this->row->name]));
 
         return $this->page('vehicle.update', [
             'row' => $this->row,

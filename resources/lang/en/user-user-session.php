@@ -3,6 +3,6 @@
     'created_at' => 'Created',
     'filter' => 'Filter...',
     'ip' => 'IP',
-    'meta-title' => 'User Sessions',
+    'meta-title' => 'Users > Sessions',
     'success' => 'Success',
 ];

@@ -2,7 +2,7 @@
     'create' => 'Crear',
     'enabled' => 'Activo',
     'filter' => 'Filtrar...',
-    'meta-title' => 'Dispositivos',
+    'meta-title' => 'Vehículos',
     'name' => 'Nombre',
     'plate' => 'Matrícula',
     'timezone' => 'Zona Horaria',

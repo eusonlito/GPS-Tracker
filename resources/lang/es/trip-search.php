@@ -1,4 +1,4 @@
 <?php return [
-    'meta-title' => 'Buscar Viajes',
+    'meta-title' => 'Viajes > Buscar',
     'send' => 'Enviar',
 ];

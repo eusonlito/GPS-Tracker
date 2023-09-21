@@ -20,9 +20,10 @@ class UpdateStat extends UpdateAbstract
             $this->actionCall('updateStats');
         }
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('trip-update-stat.meta-title', ['title' => $this->row->name]));
 
         return $this->page('trip.update-stat', [
+            'row' => $this->row,
             'stats' => $this->row->stats,
         ]);
     }

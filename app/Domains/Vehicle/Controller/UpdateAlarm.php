@@ -22,7 +22,7 @@ class UpdateAlarm extends ControllerAbstract
             return $response;
         }
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('vehicle-update-alarm.meta-title', ['title' => $this->row->name]));
 
         return $this->page('vehicle.update-alarm', [
             'row' => $this->row,

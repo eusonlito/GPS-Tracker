@@ -18,9 +18,10 @@ class UpdateAlarmNotification extends UpdateAbstract
     {
         $this->load($id);
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('trip-update-alarm-notification.meta-title', ['title' => $this->row->name]));
 
         return $this->page('trip.update-alarm-notification', [
+            'row' => $this->row,
             'positions' => $this->positions(),
             'notifications' => $this->notifications(),
         ]);

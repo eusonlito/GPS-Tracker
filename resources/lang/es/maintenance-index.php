@@ -5,7 +5,7 @@
     'distance' => 'Distancia',
     'distance_next' => 'Distancia Siguiente',
     'end-at' => 'Fin',
-    'meta-title' => 'Crear Mantenimiento',
+    'meta-title' => 'Mantenimientos',
     'name' => 'Tarea',
     'search' => 'Buscar',
     'send' => 'Enviar',

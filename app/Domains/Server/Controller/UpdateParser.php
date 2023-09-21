@@ -17,7 +17,7 @@ class UpdateParser extends ControllerAbstract
     {
         $this->row($id);
 
-        $this->meta('title', $this->row->port.' - '.$this->row->protocol);
+        $this->meta('title', __('server-update-parser.meta-title', ['title' => $this->row->port.' - '.$this->row->protocol]));
 
         return $this->page('server.update-parser', [
             'row' => $this->row,

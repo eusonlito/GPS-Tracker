@@ -15,7 +15,7 @@ class UpdateDeviceMessage extends ControllerAbstract
     {
         $this->row($id);
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('device-update-device-message.meta-title', ['title' => $this->row->name]));
 
         return $this->page('device.update-device-message', [
             'row' => $this->row,

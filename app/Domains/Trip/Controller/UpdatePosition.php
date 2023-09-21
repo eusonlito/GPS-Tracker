@@ -31,9 +31,10 @@ class UpdatePosition extends UpdateAbstract
             return $response;
         }
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('trip-update-position.meta-title', ['title' => $this->row->name]));
 
         return $this->page('trip.update-position', [
+            'row' => $this->row,
             'positions' => $this->positions(),
             'alarms' => $this->alarms(),
             'notifications' => $this->notifications(),

@@ -7,6 +7,7 @@
     'delete-success' => 'The coordinates have been deleted successfully',
     'filter' => 'Filter...',
     'location' => 'Coordinates',
+    'meta-title' => 'Trip > :title > Coordinates',
     'signal' => 'Signal',
     'speed' => 'Speed',
 ];

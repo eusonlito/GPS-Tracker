@@ -20,7 +20,7 @@ class Update extends ControllerAbstract
             return $response;
         }
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('{{ name }}-update.meta-title', ['title' => $this->row->name]));
 
         return $this->page('{{ name }}.update', [
             'row' => $this->row,

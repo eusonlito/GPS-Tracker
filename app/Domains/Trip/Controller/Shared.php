@@ -16,7 +16,7 @@ class Shared extends ControllerAbstract
     {
         $this->rowShared($code);
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('trip-shared.meta-title', ['title' => $this->row->name]));
 
         return $this->page('trip.shared', [
             'row' => $this->row,

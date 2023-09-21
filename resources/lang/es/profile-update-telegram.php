@@ -1,7 +1,7 @@
 <?php return [
     'connect' => 'Comprobar Conexión',
     'connected-message' => 'Se ha realizado la conexión con el bot',
-    'meta-title' => 'Conexión con Telegram',
+    'meta-title' => 'Perfil > Conexión con Telegram',
     'password_current' => 'Contraseña Actual',
     'pending-message' => 'Pendiente de conexión con el bot',
     'save' => 'Guardar',

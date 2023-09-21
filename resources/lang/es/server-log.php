@@ -1,6 +1,6 @@
 <?php return [
     'filter' => 'Filtrar...',
-    'meta-title' => 'Logs',
+    'meta-title' => 'Servidores > Logs',
     'name' => 'Nombre',
     'size' => 'Tamaño',
     'type' => 'Tipo',

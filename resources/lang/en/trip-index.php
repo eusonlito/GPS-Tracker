@@ -13,7 +13,7 @@
     'longitude' => 'Longitude',
     'map' => 'Show Map',
     'messages' => 'Messages',
-    'meta-title' => 'Trips',
+    'meta-title' => 'Travel',
     'name' => 'Name',
     'notifications' => 'Notifications',
     'radius' => 'Radio',

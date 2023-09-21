@@ -2,7 +2,7 @@
     'command' => 'Comando',
     'debug' => 'Debug',
     'enabled' => 'Activo',
-    'meta-title' => 'Servidores',
+    'meta-title' => 'Servidores > Estado',
     'owner' => 'Propietario',
     'pid' => 'PID',
     'port' => 'Puerto',

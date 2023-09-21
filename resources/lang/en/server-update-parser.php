@@ -8,6 +8,7 @@
     'line' => 'Line',
     'log' => 'Protocol :name Log',
     'longitude' => 'Longitude',
+    'meta-title' => 'Server > :title > Parser',
     'send' => 'Send',
     'serial' => 'Serial',
     'signal' => 'Signal',

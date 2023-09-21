@@ -5,6 +5,7 @@
         'ids-empty' => 'No se ha seleccionado ningún viaje',
     ],
     'merge' => 'Unir con los viajes seleccionados',
+    'meta-title' => 'Viaje > :title > Unir',
     'name' => 'Nombre',
     'select' => 'Seleccionar',
     'start_at' => 'Inicio',

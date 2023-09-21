@@ -16,7 +16,7 @@ class UpdateAlarmNotification extends ControllerAbstract
     {
         $this->row($id);
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('vehicle-update-alarm-notification.meta-title', ['title' => $this->row->name]));
 
         return $this->page('vehicle.update-alarm-notification', [
             'row' => $this->row,

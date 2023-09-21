@@ -7,6 +7,7 @@
     'delete-success' => 'Las coordenadas han sido borradas correctamente',
     'filter' => 'Filtrar...',
     'location' => 'Coordenadas',
+    'meta-title' => 'Viaje > :title > Coordenadas',
     'signal' => 'Señal',
     'speed' => 'Velocidad',
 ];

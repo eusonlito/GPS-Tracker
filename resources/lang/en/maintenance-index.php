@@ -5,7 +5,7 @@
     'distance' => 'Distance',
     'distance_next' => 'Next Distance',
     'end-at' => 'End',
-    'meta-title' => 'Create Maintenance',
+    'meta-title' => 'Maintenance',
     'name' => 'Name',
     'search' => 'Search',
     'send' => 'Send',

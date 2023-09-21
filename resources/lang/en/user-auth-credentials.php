@@ -4,6 +4,6 @@
         'auth-fail' => 'Authentication error',
     ],
     'login' => 'Login',
-    'meta-title' => 'Login',
+    'meta-title' => 'Access',
     'password' => 'Password',
 ];

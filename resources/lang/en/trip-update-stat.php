@@ -3,6 +3,7 @@
         'title' => 'Distance',
         'total' => 'Total',
     ],
+    'meta-title' => 'Travel > :title > Statistics',
     'speed' => [
         'avg' => 'Average',
         'avg_movement' => 'Media in Motion',

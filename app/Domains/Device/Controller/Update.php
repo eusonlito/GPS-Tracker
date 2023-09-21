@@ -23,7 +23,7 @@ class Update extends ControllerAbstract
 
         $this->requestMergeWithRow();
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('device-update.meta-title', ['title' => $this->row->name]));
 
         return $this->page('device.update', [
             'row' => $this->row,

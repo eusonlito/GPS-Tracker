@@ -5,7 +5,7 @@
         'schedule_start' => 'When filling in the end hour, the start hour must also be filled in',
         'schedule_start_gt_schedule_end' => 'The start hour cannot be equal or higher than the end hour',
     ],
-    'meta-title' => 'Create Alarm',
+    'meta-title' => 'Alarm > Create',
     'name' => 'Name',
     'save' => 'Create',
     'schedule_end' => 'End Hour',

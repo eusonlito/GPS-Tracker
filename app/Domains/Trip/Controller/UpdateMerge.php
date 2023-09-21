@@ -22,9 +22,10 @@ class UpdateMerge extends UpdateAbstract
             return $response;
         }
 
-        $this->meta('title', $this->row->name);
+        $this->meta('title', __('trip-update-merge.meta-title', ['title' => $this->row->name]));
 
         return $this->page('trip.update-merge', [
+            'row' => $this->row,
             'list' => $this->list(),
         ]);
     }

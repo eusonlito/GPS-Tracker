@@ -5,6 +5,7 @@
     'created_at' => 'Creada',
     'filter' => 'Filtrar...',
     'message' => 'Mensaje',
+    'meta-title' => 'Alarma > :title > Notificaciones',
     'name' => 'Nombre',
     'telegram' => 'Telegram',
     'trip' => 'Viaje',

@@ -23,7 +23,7 @@ class Update extends ControllerAbstract
 
         $this->requestMergeWithRow();
 
-        $this->meta('title', $this->row->date_at);
+        $this->meta('title', __('refuel-update.meta-title', ['title' => $this->row->date_at]));
 
         return $this->page('refuel.update', [
             'row' => $this->row,

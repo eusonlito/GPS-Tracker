@@ -2,7 +2,7 @@
     'command' => 'Command',
     'debug' => 'Debug',
     'enabled' => 'Active',
-    'meta-title' => 'Servers',
+    'meta-title' => 'Servers > Status',
     'owner' => 'Owner',
     'pid' => 'PID',
     'port' => 'Port',

@@ -5,6 +5,7 @@
     'created_at' => 'Creada',
     'filter' => 'Filtrar...',
     'message' => 'Mensaje',
+    'meta-title' => 'Viaje > :title > Alarmas',
     'name' => 'Nombre',
     'telegram' => 'Telegram',
 ];
