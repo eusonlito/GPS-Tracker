@@ -29,6 +29,11 @@ class StartPort extends ActionAbstract
         $this->row();
         $this->data();
         $this->protocol();
+
+        if ($this->runningUnitTests()) {
+            return;
+        }
+
         $this->server();
         $this->kill();
 

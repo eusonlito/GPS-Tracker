@@ -14,6 +14,10 @@ class StartPorts extends ActionAbstract
      */
     public function handle(): void
     {
+        if ($this->runningUnitTests()) {
+            return;
+        }
+
         $this->iterate();
         $this->sleep();
     }

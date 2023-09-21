@@ -6,6 +6,7 @@ use Closure;
 use Throwable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Traits\Factory;
@@ -107,5 +108,13 @@ abstract class ActionAbstract
     final protected function exceptionValidator(string $message): void
     {
         throw new ValidatorException($message);
+    }
+
+    /**
+     * @return bool
+     */
+    final protected function runningUnitTests(): bool
+    {
+        return App::runningUnitTests();
     }
 }

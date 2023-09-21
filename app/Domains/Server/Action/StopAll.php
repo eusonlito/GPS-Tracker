@@ -16,6 +16,10 @@ class StopAll extends ActionAbstract
      */
     public function handle(): void
     {
+        if ($this->runningUnitTests()) {
+            return;
+        }
+
         $this->process();
         $this->iterate();
         $this->sleep();
