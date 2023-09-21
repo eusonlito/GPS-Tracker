@@ -23,7 +23,6 @@ return (new Config())
 
         'curly_braces_position' => [
             'allow_single_line_empty_anonymous_classes' => true,
-
             'anonymous_functions_opening_brace' => 'same_line',
         ],
     ])

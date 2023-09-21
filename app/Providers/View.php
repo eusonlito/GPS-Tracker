@@ -34,6 +34,10 @@ class View extends ServiceProvider
             return "<?= \App\Services\Html\Html::asset($expression); ?>";
         });
 
+        Blade::directive('cut', function (string $expression) {
+            return "<?= \App\Services\Html\Html::cut($expression); ?>";
+        });
+
         Blade::directive('dateLocal', function (string $expression) {
             return "<?= helper()->dateLocal($expression); ?>";
         });
@@ -68,6 +72,10 @@ class View extends ServiceProvider
 
         Blade::directive('query', function (string $expression) {
             return "<?= helper()->query($expression); ?>";
+        });
+
+        Blade::directive('sizeHuman', function (string $expression) {
+            return "<?= helper()->sizeHuman($expression); ?>";
         });
 
         Blade::directive('status', function (string $expression) {

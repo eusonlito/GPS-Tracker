@@ -207,21 +207,17 @@ class Log extends ControllerAbstract
             'location' => ($location = str_replace($this->basepath(), '', $path)),
             'hash' => base64_encode($location),
             'name' => $fileInfo->getBasename(),
-            'size' => $fileInfo->isDir() ? '-' : helper()->sizeHuman($fileInfo->getSize()),
+            'size' => $fileInfo->getSize(),
             'type' => $fileInfo->isDir() ? 'dir' : 'file',
             'updated_at' => date('Y-m-d H:i:s', $fileInfo->getMTime()),
         ];
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    protected function contents(): string
+    protected function contents(): ?string
     {
-        if ($this->isFile() === false) {
-            return '';
-        }
-
-        return file_get_contents($this->fullpath());
+        return $this->isFile() ? file_get_contents($this->fullpath()) : null;
     }
 }
