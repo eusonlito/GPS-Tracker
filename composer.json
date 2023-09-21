@@ -69,6 +69,10 @@
             "@php artisan package:discover --ansi"
         ],
 
+        "post-update-cmd": [
+            "@php artisan test"
+        ],
+
         "artisan-cache-clear": [
             "@php artisan optimize:clear --ansi"
         ],
