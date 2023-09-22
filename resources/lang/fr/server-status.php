@@ -1,0 +1,16 @@
+<?php return [
+    'command' => 'Commande',
+    'debug' => 'Débogage',
+    'enabled' => 'Actif',
+    'meta-title' => 'Serveurs > Statut',
+    'owner' => 'Propriétaire',
+    'pid' => 'PID',
+    'port' => 'Port',
+    'protocol' => 'Protocole',
+    'restart' => 'Démarrage/Redémarrage',
+    'start-success' => 'Les serveurs ont été démarrés avec succès',
+    'started' => 'Démarrer',
+    'stop' => 'Arrêter',
+    'stop-success' => 'Les serveurs ont été arrêtés avec succès',
+    'time' => 'Temps',
+];
