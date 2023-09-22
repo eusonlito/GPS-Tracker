@@ -3,7 +3,7 @@
         'title' => 'Distancia',
         'total' => 'Total',
     ],
-    'meta-title' => 'Viaje > :title > Estadísticas',
+    'meta-title' => 'Viajes > :title > Estadísticas',
     'speed' => [
         'avg' => 'Media',
         'avg_movement' => 'Media en Movimiento',

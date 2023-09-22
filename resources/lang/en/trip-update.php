@@ -5,7 +5,7 @@
     'export' => 'Export',
     'map' => 'Map',
     'merge' => 'Merge',
-    'meta-title' => 'Travel > :title',
+    'meta-title' => 'Trips > :title',
     'name' => 'Name',
     'next' => 'Next',
     'positions' => 'Coordinates',

@@ -4,7 +4,7 @@
         'key-duplicate' => 'Ya existe otra configuración con esa misma clave',
     ],
     'key' => 'Clave',
-    'meta-title' => 'Configuración > Crear',
+    'meta-title' => 'Configuraciones > Crear',
     'save' => 'Crear',
     'success' => 'La configuración ha sido creada correctamente',
     'value' => 'Valor',

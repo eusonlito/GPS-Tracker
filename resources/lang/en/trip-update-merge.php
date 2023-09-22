@@ -5,7 +5,7 @@
         'ids-empty' => 'No trip has been selected',
     ],
     'merge' => 'Merge with selected trips',
-    'meta-title' => 'Travel > :title > Join',
+    'meta-title' => 'Trips > :title > Join',
     'name' => 'Name',
     'select' => 'Select',
     'start_at' => 'Start',

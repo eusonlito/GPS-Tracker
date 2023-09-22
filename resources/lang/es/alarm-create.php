@@ -5,7 +5,7 @@
         'schedule_start' => 'Al rellenar la hora de fin se debe rellenar también la de inicio',
         'schedule_start_gt_schedule_end' => 'La hora de inicio no puede ser igual o superior a la de fin',
     ],
-    'meta-title' => 'Alarma > Crear',
+    'meta-title' => 'Alarmas > Crear',
     'name' => 'Nombre',
     'save' => 'Crear',
     'schedule_end' => 'Hora de Fin',

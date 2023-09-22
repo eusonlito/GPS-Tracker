@@ -4,7 +4,7 @@
     'delete-success' => 'The device has been successfully deleted',
     'delete-title' => 'Delete Device',
     'messages' => 'Messages',
-    'meta-title' => 'Device > :title',
+    'meta-title' => 'Devices > :title',
     'save' => 'Save',
     'success' => 'The device has been successfully updated',
 ];

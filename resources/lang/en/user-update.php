@@ -12,7 +12,7 @@
         'enabled-own' => 'It\'s not possible to disable your own user',
     ],
     'language' => 'Language',
-    'meta-title' => 'User > :title',
+    'meta-title' => 'Users > :title',
     'name' => 'Name',
     'password' => 'Password',
     'save' => 'Save',

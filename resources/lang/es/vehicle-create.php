@@ -1,6 +1,6 @@
 <?php return [
     'enabled' => 'Activo',
-    'meta-title' => 'Vehículo > Crear',
+    'meta-title' => 'Vehículos > Crear',
     'name' => 'Nombre',
     'plate' => 'Matrícula',
     'save' => 'Crear',

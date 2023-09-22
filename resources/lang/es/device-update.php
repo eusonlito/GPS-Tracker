@@ -4,7 +4,7 @@
     'delete-success' => 'El dispositivo ha sido borrado correctamente',
     'delete-title' => 'Borrar Dispositivo',
     'messages' => 'Mensajes',
-    'meta-title' => 'Dispositivo > :title',
+    'meta-title' => 'Dispositivos > :title',
     'save' => 'Guardar',
     'success' => 'El dispositivo ha sido actualizado correctamente',
 ];

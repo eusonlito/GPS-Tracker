@@ -1,6 +1,6 @@
 <?php return [
     'data' => 'Datos',
-    'meta-title' => 'Configuración > :title',
+    'meta-title' => 'Configuraciones > :title',
     'save' => 'Guardar',
     'success' => 'La configuración ha sido actualizada correctamente',
 ];

@@ -2,7 +2,7 @@
     'date_at' => 'Date and Time',
     'distance' => 'Distance since previous refueling',
     'distance_total' => 'Total distance',
-    'meta-title' => 'Refills > Create',
+    'meta-title' => 'Refuelings > Create',
     'price' => 'Price',
     'quantity' => 'Quantity',
     'quantity_before' => 'Quantity in tank before refueling',

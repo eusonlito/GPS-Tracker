@@ -1,7 +1,7 @@
 <?php return [
     'enabled' => 'Active',
     'filter' => 'Filter...',
-    'meta-title' => 'Alarm > :title > Vehicles',
+    'meta-title' => 'Alarms > :title > Vehicles',
     'name' => 'Name',
     'plate' => 'License plate',
     'relate' => 'Relate',

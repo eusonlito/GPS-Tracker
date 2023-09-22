@@ -4,7 +4,7 @@
     'description' => 'Description',
     'distance' => 'Distance',
     'distance_next' => 'Distance Next',
-    'meta-title' => 'Maintenance > Create',
+    'meta-title' => 'Maintenances > Create',
     'name' => 'Name',
     'save' => 'Save',
     'success' => 'The maintenance has been successfully created',

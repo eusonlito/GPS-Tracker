@@ -4,7 +4,7 @@
         'serial-exists' => 'El indicado serial ya existe',
     ],
     'maker' => 'Fabricante',
-    'meta-title' => 'Dispositivo > Crear',
+    'meta-title' => 'Dispositivos > Crear',
     'name' => 'Nombre',
     'password' => 'Contraseña',
     'phone_number' => 'Número de Teléfono',

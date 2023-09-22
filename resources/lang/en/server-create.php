@@ -5,7 +5,7 @@
         'port-exists' => 'The port is already configured for another protocol',
         'protocol-not-exists' => 'The selected protocol is not available',
     ],
-    'meta-title' => 'Server > Create',
+    'meta-title' => 'Servers > Create',
     'port' => 'Port',
     'protocol' => 'Protocol',
     'protocol-select' => 'Select a Protocol',

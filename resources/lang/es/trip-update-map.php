@@ -1,3 +1,3 @@
 <?php return [
-    'meta-title' => 'Viaje > :title > Mapa',
+    'meta-title' => 'Viajes > :title > Mapa',
 ];

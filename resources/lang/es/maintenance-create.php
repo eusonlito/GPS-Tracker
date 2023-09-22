@@ -4,7 +4,7 @@
     'description' => 'Descripción',
     'distance' => 'Distancia',
     'distance_next' => 'Distancia Siguiente',
-    'meta-title' => 'Mantenimiento > Crear',
+    'meta-title' => 'Mantenimientos > Crear',
     'name' => 'Tarea',
     'save' => 'Guardar',
     'success' => 'El mantenimiento ha sido creado correctamente',

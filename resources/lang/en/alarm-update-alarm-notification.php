@@ -5,7 +5,7 @@
     'created_at' => 'Created',
     'filter' => 'Filter...',
     'message' => 'Message',
-    'meta-title' => 'Alarm > :title > Notifications',
+    'meta-title' => 'Alarms > :title > Notifications',
     'name' => 'Name',
     'telegram' => 'Telegram',
     'trip' => 'Trip',

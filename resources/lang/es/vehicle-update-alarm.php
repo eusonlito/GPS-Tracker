@@ -3,7 +3,7 @@
     'created_at' => 'Creada',
     'enabled' => 'Activa',
     'filter' => 'Filtrar...',
-    'meta-title' => 'Vehículo > :title > Alarmas',
+    'meta-title' => 'Vehículos > :title > Alarmas',
     'name' => 'Nombre',
     'relate' => 'Relacionar',
     'success' => 'Las relaciones han sido actualizadas correctamente',
