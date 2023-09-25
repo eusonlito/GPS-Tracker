@@ -69,6 +69,8 @@ class Create extends ControllerAbstract
         $this->post($this->routeToController(), $data + $this->action())
             ->assertStatus(302)
             ->assertRedirect(route('device.update', $this->rowLast()->id));
+
+        $this->dataVsRow($data, $this->rowLast(), ['code', 'connected_at']);
     }
 
     /**
@@ -84,6 +86,8 @@ class Create extends ControllerAbstract
         $this->post($this->routeToController(), $data + $this->action())
             ->assertStatus(302)
             ->assertRedirect(route('device.update', $this->rowLast()->id));
+
+        $this->dataVsRow($data, $this->rowLast(), ['code', 'connected_at']);
     }
 
     /**

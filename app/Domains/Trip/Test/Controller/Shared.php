@@ -28,10 +28,21 @@ class Shared extends ControllerAbstract
     }
 
     /**
+     * @return void
+     */
+    public function testGetSharedDisabledFail(): void
+    {
+        $this->get($this->routeToController(false))
+            ->assertStatus(404);
+    }
+
+    /**
+     * @param bool $shared = true
+     *
      * @return string
      */
-    protected function routeToController(): string
+    protected function routeToController(bool $shared = true): string
     {
-        return $this->route(null, $this->factoryCreate()->code);
+        return $this->route(null, $this->factoryCreate(data: ['shared' => $shared])->code);
     }
 }

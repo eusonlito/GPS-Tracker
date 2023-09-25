@@ -19,6 +19,7 @@ class Device extends FactoryAbstract
     public function definition(): array
     {
         return [
+            'code' => $this->faker->uuid(),
             'name' => $this->faker->name(),
             'maker' => $this->faker->name(),
             'serial' => strval($this->faker->numberBetween()),
@@ -26,6 +27,7 @@ class Device extends FactoryAbstract
             'password' => $this->faker->name(),
 
             'enabled' => true,
+            'shared' => false,
 
             'connected_at' => date('Y-m-d H:i:s'),
 

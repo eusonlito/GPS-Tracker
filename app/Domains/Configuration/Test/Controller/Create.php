@@ -92,11 +92,7 @@ class Create extends ControllerAbstract
             ->assertStatus(302)
             ->assertRedirect(route('configuration.update', $this->rowLast()->id));
 
-        $row = $this->rowLast();
-
-        foreach ($data as $key => $value) {
-            $this->assertEquals($row->$key, $value);
-        }
+        $this->dataVsRow($data, $this->rowLast());
     }
 
     /**
@@ -113,11 +109,7 @@ class Create extends ControllerAbstract
             ->assertStatus(302)
             ->assertRedirect(route('configuration.update', $this->rowLast()->id));
 
-        $row = $this->rowLast();
-
-        foreach ($data as $key => $value) {
-            $this->assertEquals($row->$key, $value);
-        }
+        $this->dataVsRow($data, $this->rowLast());
     }
 
     /**

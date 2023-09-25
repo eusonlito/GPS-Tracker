@@ -24,7 +24,7 @@ abstract class FactoryAbstract extends Factory
      */
     protected function firstOrFactory(string $class): Closure
     {
-        return static fn () => $class::first() ?: $class::factory();
+        return static fn () => $class::orderBy('id', 'ASC')->first() ?: $class::factory();
     }
 
     /**

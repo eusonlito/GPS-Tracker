@@ -70,6 +70,8 @@ class Update extends ControllerAbstract
         $this->post($this->routeToController(), $data + $this->action())
             ->assertStatus(302)
             ->assertRedirect($this->routeToController());
+
+        $this->dataVsRow($data, $user, ['password_current']);
     }
 
     /**

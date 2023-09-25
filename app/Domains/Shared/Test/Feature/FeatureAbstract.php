@@ -2,6 +2,7 @@
 
 namespace App\Domains\Shared\Test\Feature;
 
+use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Test\TestAbstract;
 
 abstract class FeatureAbstract extends TestAbstract
@@ -42,5 +43,26 @@ abstract class FeatureAbstract extends TestAbstract
     protected function routeFactoryLastModel(?string $model = null, ...$params): string
     {
         return $this->route(null, $this->rowLast($model)->id, ...$params);
+    }
+
+    /**
+     * @param array $data
+     * @param \App\Domains\Shared\Model\ModelAbstract $row
+     * @param array $exclude = []
+     * @param array $only = []
+     *
+     * @return void
+     */
+    protected function dataVsRow(array $data, ModelAbstract $row, array $exclude = [], array $only = []): void
+    {
+        if ($only) {
+            $data = helper()->arrayValuesWhitelist($data, $only);
+        } else {
+            $data = helper()->arrayKeysBlacklist($data, array_merge(['created_at', 'updated_at'], $exclude));
+        }
+
+        foreach ($data as $key => $value) {
+            $this->assertEquals($value, $row->$key);
+        }
     }
 }
