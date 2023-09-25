@@ -2,14 +2,14 @@
 
 namespace App\Domains\SharedApp\Action;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Domains\Shared\Model\ModelAbstract;
 
 abstract class UpdateBoolean extends ActionAbstract
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return \App\Domains\Shared\Model\ModelAbstract
      */
-    public function handle(): Model
+    public function handle(): ModelAbstract
     {
         $this->before();
         $this->check();
@@ -41,13 +41,40 @@ abstract class UpdateBoolean extends ActionAbstract
      */
     protected function data(): void
     {
-        $this->data['value'] = $this->row->{$this->data['column']};
+        $this->dataValue();
+    }
 
-        if (is_bool($this->data['value'])) {
-            $this->data['value'] = empty($this->data['value']);
-        } else {
-            $this->data['value'] = $this->data['value'] ? null : date('Y-m-d H:i:s');
-        }
+    /**
+     * @return void
+     */
+    protected function dataValue(): void
+    {
+        $value = $this->row->{$this->data['column']};
+
+        $this->data['value'] = match (is_bool($value)) {
+            true => $this->dataValueBoolean($value),
+            false => $this->dataValueDate($value),
+        };
+    }
+
+    /**
+     * @param bool $value
+     *
+     * @return bool
+     */
+    protected function dataValueBoolean(bool $value): bool
+    {
+        return $value === false;
+    }
+
+    /**
+     * @param ?string $value
+     *
+     * @return ?string
+     */
+    protected function dataValueDate(?string $value): ?string
+    {
+        return $value ? null : date('Y-m-d H:i:s');
     }
 
     /**

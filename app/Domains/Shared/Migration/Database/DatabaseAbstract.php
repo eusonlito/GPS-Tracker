@@ -32,8 +32,7 @@ abstract class DatabaseAbstract
      *
      * @return self
      */
-    public function __construct(ConnectionInterface $db)
+    public function __construct(protected ConnectionInterface $db)
     {
-        $this->db = $db;
     }
 }

@@ -13,7 +13,7 @@ abstract class ControllerWebAbstract extends SharedControllerWebAbstract
     {
         view()->share([
             'MEMORY_USAGE' => helper()->sizeHuman(memory_get_peak_usage(false)),
-            'EXECUTION_TIME' => sprintf('%.3f', microtime(true) - LARAVEL_START, 3),
+            'EXECUTION_TIME' => sprintf('%.3f', microtime(true) - LARAVEL_START),
         ]);
     }
 }
