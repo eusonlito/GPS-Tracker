@@ -12,7 +12,7 @@ abstract class ControllerWebAbstract extends SharedControllerWebAbstract
     protected function initCustom(): void
     {
         view()->share([
-            'MEMORY_USAGE' => helper()->sizeHuman(memory_get_usage(false)),
+            'MEMORY_USAGE' => helper()->sizeHuman(memory_get_peak_usage(false)),
             'EXECUTION_TIME' => sprintf('%.3f', microtime(true) - LARAVEL_START, 3),
         ]);
     }
