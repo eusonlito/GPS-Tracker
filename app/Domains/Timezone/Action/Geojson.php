@@ -7,6 +7,7 @@ use Throwable;
 use Illuminate\Console\Concerns\InteractsWithIO;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use App\Domains\Timezone\Model\Timezone as Model;
+use App\Exceptions\UnexpectedValueException;
 use App\Services\Compress\Zip\Extract as ZipExtract;
 use App\Services\Http\Curl\Curl;
 
@@ -50,6 +51,16 @@ class Geojson extends ActionAbstract
     protected string $url;
 
     /**
+     * @var bool
+     */
+    protected bool $exists;
+
+    /**
+     * @var bool
+     */
+    protected bool $overwrite;
+
+    /**
      * @return void
      */
     public function handle(): void
@@ -57,6 +68,15 @@ class Geojson extends ActionAbstract
         $this->output();
         $this->release();
         $this->files();
+        $this->exists();
+        $this->overwrite();
+
+        if ($this->overwrite === false) {
+            $this->skip();
+
+            return;
+        }
+
         $this->download();
         $this->extract();
         $this->replace();
@@ -76,9 +96,15 @@ class Geojson extends ActionAbstract
      */
     protected function release(): void
     {
-        $this->info(sprintf('[%s] Checking Releases', date('Y-m-d H:i:s')));
+        $this->print('Checking Releases from %s', static::RELEASE_URL);
 
         $this->release = Curl::new()->setUrl(static::RELEASE_URL)->send()->getBody('object');
+
+        if (empty($this->release->tag_name)) {
+            throw new UnexpectedValueException('Releases can not be loaded');
+        }
+
+        $this->print('Last Release %s', $this->release->tag_name);
     }
 
     /**
@@ -86,9 +112,35 @@ class Geojson extends ActionAbstract
      */
     protected function files(): void
     {
-        $this->geojson = base_path(static::STORAGE_PATH.'/combined-with-oceans.json');
-        $this->zip = base_path(static::STORAGE_PATH.'/timezones-with-oceans.geojson.zip');
+        $storage = static::STORAGE_PATH.'/'.$this->release->tag_name;
+
         $this->url = sprintf(static::DOWNLOAD_URL, $this->release->tag_name);
+        $this->zip = base_path($storage.'/timezones-with-oceans.geojson.zip');
+        $this->geojson = base_path($storage.'/combined-with-oceans.json');
+    }
+
+    /**
+     * @return void
+     */
+    protected function exists(): void
+    {
+        $this->exists = is_file($this->geojson);
+    }
+
+    /**
+     * @return void
+     */
+    protected function overwrite(): void
+    {
+        $this->overwrite = $this->data['overwrite'] || ($this->exists === false);
+    }
+
+    /**
+     * @return void
+     */
+    protected function skip(): void
+    {
+        $this->print('GeoJSON %s already loaded', $this->fileRelative($this->geojson));
     }
 
     /**
@@ -96,11 +148,7 @@ class Geojson extends ActionAbstract
      */
     protected function download(): void
     {
-        if (($this->data['overwrite'] === false) && is_file($this->zip)) {
-            return;
-        }
-
-        $this->info(sprintf('[%s] Downloading %s', date('Y-m-d H:i:s'), $this->url));
+        $this->print('Downloading %s to %s', $this->url, $this->fileRelative($this->zip));
 
         helper()->mkdir($this->zip, true);
 
@@ -112,11 +160,7 @@ class Geojson extends ActionAbstract
      */
     protected function extract(): void
     {
-        if (($this->data['overwrite'] === false) && is_file($this->geojson)) {
-            return;
-        }
-
-        $this->info(sprintf('[%s] Extracting ZIP', date('Y-m-d H:i:s')));
+        $this->print('Extracting GeoJSON from ZIP to %s', $this->fileRelative($this->geojson));
 
         ZipExtract::new($this->zip)->extract(basename($this->geojson));
     }
@@ -126,7 +170,7 @@ class Geojson extends ActionAbstract
      */
     protected function replace(): void
     {
-        $this->info(sprintf('[%s] Optimizing GeoJSON', date('Y-m-d H:i:s')));
+        $this->print('Optimizing GeoJSON %s', $this->fileRelative($this->geojson));
 
         file_put_contents(
             $this->geojson,
@@ -152,7 +196,7 @@ class Geojson extends ActionAbstract
      */
     protected function zone(stdClass $zone): void
     {
-        $this->info(sprintf('[%s] Updating %s', date('Y-m-d H:i:s'), $zone->properties->tzid));
+        $this->print('Updating %s', $zone->properties->tzid);
 
         try {
             $this->zoneUpdateOrInsert($zone, 0.005);
@@ -173,5 +217,26 @@ class Geojson extends ActionAbstract
             ['zone' => $zone->properties->tzid],
             ['geojson' => Model::geomFromGeoJSON($zone->geometry, $simplify)]
         );
+    }
+
+    /**
+     * @param string $file
+     *
+     * @return string
+     */
+    protected function fileRelative(string $file): string
+    {
+        return str_replace(base_path(), '', $file);
+    }
+
+    /**
+     * @param string $message
+     * @param mixed ...$parameters
+     *
+     * @return void
+     */
+    protected function print(string $message, mixed ...$parameters): void
+    {
+        $this->info(sprintf('[%s] '.$message, date('Y-m-d H:i:s'), ...$parameters));
     }
 }
