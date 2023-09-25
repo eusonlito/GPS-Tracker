@@ -1,5 +1,6 @@
 <?php return [
     'close' => 'Cerrar',
+    'back' => 'Volver',
     'error' => [
         'method-not-allowed' => 'Método no Permitido',
         'not-found' => 'No Encontrado',

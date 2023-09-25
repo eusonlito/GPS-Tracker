@@ -3,7 +3,7 @@
         'title' => 'Distance',
         'total' => 'Total',
     ],
-    'meta-title' => 'Trajets > :title > Statistiques',
+    'meta-title' => 'Voyages > :title > Statistiques',
     'speed' => [
         'avg' => 'Moyenne',
         'avg_movement' => 'Moyenne mobile',

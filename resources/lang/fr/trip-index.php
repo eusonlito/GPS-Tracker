@@ -13,7 +13,7 @@
     'longitude' => 'Longitude',
     'map' => 'Afficher la carte',
     'messages' => 'Messages',
-    'meta-title' => 'Voyage',
+    'meta-title' => 'Voyages',
     'name' => 'Nom',
     'notifications' => 'Notifications',
     'radius' => 'Radio',

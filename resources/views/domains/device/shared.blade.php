@@ -4,7 +4,7 @@
 
 <div class="my-5">
     <div class="overflow-auto lg:overflow-visible header-sticky">
-        <table id="device-trips-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
+        <table id="device-trips-table" class="table table-report font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
             <thead>
                 <tr>
                     <th class="text-left">{{ __('device-shared.trip-name') }}</th>
