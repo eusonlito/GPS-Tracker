@@ -7,12 +7,12 @@ class Translate extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'translation:translate {--from=} {--to=}';
+    protected $signature = 'translation:translate {--from=} {--to=*}';
 
     /**
      * @var string
      */
-    protected $description = 'Translate to lang using online translator';
+    protected $description = 'Translate to languages using online translator';
 
     /**
      * @return void

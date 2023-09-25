@@ -13,7 +13,7 @@ class Translate extends ValidateAbstract
     {
         return [
             'from' => ['bail', 'required'],
-            'to' => ['bail', 'required'],
+            'to' => ['bail', 'array', 'required'],
         ];
     }
 }

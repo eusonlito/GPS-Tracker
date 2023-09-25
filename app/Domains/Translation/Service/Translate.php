@@ -14,17 +14,42 @@ class Translate extends ServiceAbstract
 
     /**
      * @param string $from
-     * @param string $to
+     * @param array $to
      *
      * @return self
      */
-    public function __construct(protected string $from, protected string $to)
+    public function __construct(protected string $from, protected array $to)
     {
         if ($this->from === $this->to) {
             throw new UnexpectedValueException('Languages must be different');
         }
 
+        $this->base();
+        $this->to();
+    }
+
+    /**
+     * @return void
+     */
+    protected function base(): void
+    {
         $this->base = base_path($this->base);
+    }
+
+    /**
+     * @return void
+     */
+    protected function to(): void
+    {
+        $locales = config('app.locales');
+
+        if ($this->to[0] === 'all') {
+            $to = $locales;
+        } else {
+            $to = helper()->arrayValuesWhitelist($this->to, $locales);
+        }
+
+        $this->to = helper()->arrayValuesBlacklist($to, [$this->from]);
     }
 
     /**
@@ -33,7 +58,9 @@ class Translate extends ServiceAbstract
     public function write(): void
     {
         foreach ($this->files() as $file) {
-            $this->translate($file);
+            foreach ($this->to as $to) {
+                $this->translate($to, $file);
+            }
         }
     }
 
@@ -46,23 +73,25 @@ class Translate extends ServiceAbstract
     }
 
     /**
+     * @param string $to
      * @param string $name
      *
      * @return string
      */
-    protected function file(string $name): string
+    protected function file(string $to, string $name): string
     {
-        return $this->base.'/'.$this->to.'/'.$name;
+        return $this->base.'/'.$to.'/'.$name;
     }
 
     /**
+     * @param string $to
      * @param string $from
      *
      * @return void
      */
-    protected function translate(string $from): void
+    protected function translate(string $to, string $from): void
     {
-        $file = $this->file(basename($from));
+        $file = $this->file($to, basename($from));
         $current = array_dot(is_file($file) ? (require $file) : []);
         $empty = helper()->arrayFilterRecursive($current, static fn ($value) => is_string($value) && empty($value));
         $strings = array_filter(array_intersect_key(array_dot(require $from), $empty));
@@ -71,27 +100,29 @@ class Translate extends ServiceAbstract
             return;
         }
 
-        $this->writeFile($file, $this->translateUndot($current, $strings));
+        $this->writeFile($file, $this->translateUndot($to, $current, $strings));
     }
 
     /**
+     * @param string $to
      * @param array $current
      * @param array $strings
      *
      * @return array
      */
-    protected function translateUndot(array $current, array $strings): array
+    protected function translateUndot(string $to, array $current, array $strings): array
     {
-        return $this->undot(array_merge($current, array_combine(array_keys($strings), $this->request($strings))));
+        return $this->undot(array_merge($current, array_combine(array_keys($strings), $this->request($to, $strings))));
     }
 
     /**
+     * @param string $to
      * @param array $strings
      *
      * @return array
      */
-    protected function request(array $strings): array
+    protected function request(string $to, array $strings): array
     {
-        return TranslatorFactory::get()->array($this->from, $this->to, $strings);
+        return TranslatorFactory::get()->array($this->from, $to, $strings);
     }
 }
