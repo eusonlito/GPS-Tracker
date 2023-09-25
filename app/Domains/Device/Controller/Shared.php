@@ -30,6 +30,7 @@ class Shared extends ControllerAbstract
     protected function trips(): TripCollection
     {
         return TripModel::query()
+            ->byDeviceId($this->row->id)
             ->whereShared()
             ->list()
             ->get();

@@ -40,6 +40,16 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @param int $device_id
+     *
+     * @return self
+     */
+    public function byDeviceId(int $device_id): self
+    {
+        return $this->where('device_id', $device_id);
+    }
+
+    /**
      * @param float $latitude
      * @param float $longitude
      * @param float $radius
