@@ -6,5 +6,6 @@
     'messages' => 'Messages',
     'meta-title' => 'Appareils > :title',
     'save' => 'Sauvegarder',
+    'shared-url' => 'URL publique :',
     'success' => 'L\'appareil a été mis à jour avec succès',
 ];

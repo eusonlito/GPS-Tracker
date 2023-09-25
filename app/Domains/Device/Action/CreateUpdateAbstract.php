@@ -71,6 +71,14 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     /**
      * @return void
      */
+    protected function dataCode(): void
+    {
+        $this->data['code'] = $this->row?->code ?: helper()->uuid();
+    }
+
+    /**
+     * @return void
+     */
     protected function dataVehicleId(): void
     {
         if ($this->data['vehicle_id']) {

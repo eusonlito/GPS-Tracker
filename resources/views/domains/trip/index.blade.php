@@ -59,6 +59,7 @@
                 <th>{{ __('trip-index.end_at') }}</th>
                 <th>{{ __('trip-index.distance') }}</th>
                 <th>{{ __('trip-index.time') }}</th>
+                <th>{{ __('trip-index.shared') }}</th>
                 <th>{{ __('trip-index.actions') }}</th>
             </tr>
         </thead>
@@ -83,6 +84,7 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->end_at }}</a></td>
                 <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block">@unitHuman('distance', $row->distance)</a></td>
                 <td data-table-sort-value="{{ $row->time }}"><a href="{{ $link }}" class="block">@timeHuman($row->time)</a></td>
+                <td data-table-sort-value="{{ (int)$row->shared }}" class="w-1">@status($row->shared)</td>
 
                 <td class="w-1">
                     <a href="{{ route('trip.update', $row->id) }}">@icon('edit', 'w-4 h-4')</a>

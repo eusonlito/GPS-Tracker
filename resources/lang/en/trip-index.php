@@ -18,6 +18,7 @@
     'notifications' => 'Notifications',
     'radius' => 'Radio',
     'search' => 'Search',
+    'shared' => 'Shared',
     'shared-all' => 'Share',
     'shared-no' => 'Not Shared',
     'shared-yes' => 'Shared',

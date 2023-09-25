@@ -13,6 +13,7 @@ class Update extends CreateUpdateAbstract
         $this->dataMaker();
         $this->dataSerial();
         $this->dataPassword();
+        $this->dataCode();
         $this->dataVehicleId();
     }
 
@@ -29,12 +30,14 @@ class Update extends CreateUpdateAbstract
      */
     protected function save(): void
     {
+        $this->row->code = $this->data['code'];
         $this->row->name = $this->data['name'];
         $this->row->maker = $this->data['maker'];
         $this->row->serial = $this->data['serial'];
         $this->row->phone_number = $this->data['phone_number'];
         $this->row->password = $this->data['password'];
         $this->row->enabled = $this->data['enabled'];
+        $this->row->shared = $this->data['shared'];
         $this->row->vehicle_id = $this->data['vehicle_id'];
 
         $this->row->save();

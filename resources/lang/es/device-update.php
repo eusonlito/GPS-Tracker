@@ -6,5 +6,6 @@
     'messages' => 'Mensajes',
     'meta-title' => 'Dispositivos > :title',
     'save' => 'Guardar',
+    'shared-url' => 'URL Pública:',
     'success' => 'El dispositivo ha sido actualizado correctamente',
 ];

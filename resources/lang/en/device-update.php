@@ -6,5 +6,6 @@
     'messages' => 'Messages',
     'meta-title' => 'Devices > :title',
     'save' => 'Save',
+    'shared-url' => 'Public URL:',
     'success' => 'The device has been successfully updated',
 ];

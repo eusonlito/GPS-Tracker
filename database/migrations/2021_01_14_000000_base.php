@@ -117,6 +117,8 @@ return new class extends MigrationAbstract {
         Schema::create('device', function (Blueprint $table) {
             $table->id();
 
+            $table->string('code')->index()->nullable();
+
             $table->string('name')->index();
             $table->string('maker')->index();
             $table->string('serial')->unique();
@@ -124,6 +126,7 @@ return new class extends MigrationAbstract {
             $table->string('password')->default('');
 
             $table->boolean('enabled')->default(0);
+            $table->boolean('shared')->default(0);
 
             $table->dateTimeTz('connected_at')->nullable();
 

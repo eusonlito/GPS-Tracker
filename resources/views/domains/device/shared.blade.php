@@ -1,0 +1,38 @@
+@extends ('layouts.empty')
+
+@section ('body')
+
+<div class="my-5">
+    <div class="overflow-auto lg:overflow-visible header-sticky">
+        <table id="device-trips-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
+            <thead>
+                <tr>
+                    <th class="text-left">{{ __('device-shared.trip-name') }}</th>
+                    <th>{{ __('device-shared.trip-start_at') }}</th>
+                    <th>{{ __('device-shared.trip-end_at') }}</th>
+                    <th>{{ __('device-shared.trip-distance') }}</th>
+                    <th>{{ __('device-shared.trip-time') }}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach ($trips as $trip)
+
+                @php ($link = route('trip.shared', $trip->code))
+
+                <tr>
+                    <td class="text-left"><a href="{{ $link }}" class="d-t-m-o max-w-md" title="{{ $trip->name }}">{{ $trip->name }}</a></td>
+
+                    <td><a href="{{ $link }}" class="block">{{ $trip->start_at }}</a></td>
+                    <td><a href="{{ $link }}" class="block">{{ $trip->end_at }}</a></td>
+                    <td data-table-sort-value="{{ $trip->distance }}"><a href="{{ $link }}" class="block">@unitHuman('distance', $trip->distance)</a></td>
+                    <td data-table-sort-value="{{ $trip->time }}"><a href="{{ $link }}" class="block">@timeHuman($trip->time)</a></td>
+                </tr>
+
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@stop

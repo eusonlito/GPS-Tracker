@@ -23,6 +23,7 @@
                 <th>{{ __('device-index.vehicle') }}</th>
                 <th>{{ __('device-index.connected_at') }}</th>
                 <th>{{ __('device-index.enabled') }}</th>
+                <th>{{ __('device-index.shared') }}</th>
                 <th>{{ __('trip-index.messages') }}</th>
             </tr>
         </thead>
@@ -38,6 +39,7 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->vehicle->name ?? '-' }}</a></td>
                 <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->connected_at, $row->vehicle?->timezone->zone, 'Y-m-d H:i:s')</a></td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}" class="w-1">@status($row->enabled)</td>
+                <td data-table-sort-value="{{ (int)$row->shared }}" class="w-1">@status($row->shared)</td>
                 <td class="w-1">
                     <a href="{{ route('device.update.device-message', $row->id) }}" class="{{ $row->messages_pending_count ? 'text-warning' : 'text-success' }}">
                         {{ $row->messages_count.($row->messages_pending_count ? ('/'.$row->messages_pending_count) : '') }}

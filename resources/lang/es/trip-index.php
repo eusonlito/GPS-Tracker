@@ -18,6 +18,7 @@
     'notifications' => 'Notificaciones',
     'radius' => 'Radio',
     'search' => 'Buscar',
+    'shared' => 'Compartido',
     'shared-all' => 'Compartir',
     'shared-no' => 'No Compartidos',
     'shared-yes' => 'Compartidos',

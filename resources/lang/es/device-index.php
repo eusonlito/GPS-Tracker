@@ -6,5 +6,6 @@
     'maker' => 'Fabricante',
     'meta-title' => 'Dispositivos',
     'name' => 'Nombre',
+    'shared' => 'Compartido',
     'vehicle' => 'Vehículo',
 ];

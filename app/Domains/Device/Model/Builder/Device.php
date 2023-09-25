@@ -7,6 +7,16 @@ use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
 class Device extends BuilderAbstract
 {
     /**
+     * @param string $code
+     *
+     * @return self
+     */
+    public function byCode(string $code): self
+    {
+        return $this->where('code', $code);
+    }
+
+    /**
      * @param string $serial
      *
      * @return self
@@ -14,6 +24,26 @@ class Device extends BuilderAbstract
     public function bySerial(string $serial): self
     {
         return $this->where('serial', $serial);
+    }
+
+    /**
+     * @param ?bool $shared
+     *
+     * @return self
+     */
+    public function whenShared(?bool $shared): self
+    {
+        return $this->when(is_bool($shared), static fn ($q) => $q->whereShared($shared));
+    }
+
+    /**
+     * @param bool $shared = true
+     *
+     * @return self
+     */
+    public function whereShared(bool $shared = true): self
+    {
+        return $this->where('shared', $shared);
     }
 
     /**

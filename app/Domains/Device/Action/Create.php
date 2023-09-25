@@ -15,6 +15,7 @@ class Create extends CreateUpdateAbstract
         $this->dataMaker();
         $this->dataSerial();
         $this->dataPassword();
+        $this->dataCode();
         $this->dataVehicleId();
     }
 
@@ -32,12 +33,14 @@ class Create extends CreateUpdateAbstract
     protected function save(): void
     {
         $this->row = Model::query()->create([
+            'code' => $this->data['code'],
             'name' => $this->data['name'],
             'maker' => $this->data['maker'],
             'serial' => $this->data['serial'],
             'phone_number' => $this->data['phone_number'],
             'password' => $this->data['password'],
             'enabled' => $this->data['enabled'],
+            'shared' => $this->data['shared'],
             'vehicle_id' => $this->data['vehicle_id'],
             'user_id' => $this->auth->id,
         ]);

@@ -17,7 +17,7 @@ class UpdateUserSession extends ControllerAbstract
     {
         $this->row($id);
 
-        $this->meta('title', __('user-update-user-session.meta-title', ['title' => $this->row->name ]));
+        $this->meta('title', __('user-update-user-session.meta-title', ['title' => $this->row->name]));
 
         return $this->page('user.update-user-session', [
             'row' => $this->row,

@@ -6,5 +6,6 @@
     'maker' => 'Manufacturer',
     'meta-title' => 'Devices',
     'name' => 'Name',
+    'shared' => 'Shared',
     'vehicle' => 'Vehicle',
 ];

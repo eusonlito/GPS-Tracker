@@ -69,9 +69,19 @@ class Create extends ActionAbstract
      */
     protected function data(): void
     {
+        $this->dataCode();
         $this->dataName();
         $this->dataEndAt();
         $this->dataEndUtcAt();
+        $this->dataShared();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataCode(): void
+    {
+        $this->data['code'] = $this->row?->code ?: helper()->uuid();
     }
 
     /**
@@ -101,14 +111,24 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
+    protected function dataShared(): void
+    {
+        $this->data['shared'] = $this->device->shared;
+    }
+
+    /**
+     * @return void
+     */
     protected function save(): void
     {
         $this->row = Model::query()->create([
+            'code' => $this->data['code'],
             'name' => $this->data['name'],
             'start_at' => $this->data['start_at'],
             'start_utc_at' => $this->data['start_utc_at'],
             'end_at' => $this->data['end_at'],
             'end_utc_at' => $this->data['end_utc_at'],
+            'shared' => $this->data['shared'],
             'device_id' => $this->device->id,
             'timezone_id' => $this->timezone->id,
             'user_id' => $this->device->user_id,
