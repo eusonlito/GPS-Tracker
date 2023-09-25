@@ -32,9 +32,6 @@ class AlarmNotification extends FactoryAbstract
             'date_at' => date('Y-m-d H:i:s'),
             'date_utc_at' => date('Y-m-d H:i:s'),
 
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-
             'alarm_id' => $this->firstOrFactory(AlarmModel::class),
             'position_id' => $this->firstOrFactory(PositionModel::class),
             'trip_id' => $this->firstOrFactory(TripModel::class),

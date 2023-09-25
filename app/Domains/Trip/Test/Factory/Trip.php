@@ -36,9 +36,6 @@ class Trip extends FactoryAbstract
 
             'shared' => true,
 
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-
             'device_id' => $this->firstOrFactory(DeviceModel::class),
             'timezone_id' => $this->firstOrFactory(TimezoneModel::class),
             'user_id' => $this->userFirstOrFactory(),

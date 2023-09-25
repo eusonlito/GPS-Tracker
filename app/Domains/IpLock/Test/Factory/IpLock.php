@@ -21,9 +21,6 @@ class IpLock extends FactoryAbstract
             'ip' => $this->faker->ip,
 
             'end_at' => date('Y-m-d H:i:s', strtotime('+10 minutes')),
-
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
         ];
     }
 }

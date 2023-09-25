@@ -21,9 +21,6 @@ class State extends FactoryAbstract
         return [
             'name' => $this->faker->name(),
 
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-
             'country_id' => $this->firstOrFactory(CountryModel::class),
         ];
     }

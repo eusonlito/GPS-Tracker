@@ -49,6 +49,18 @@ abstract class TestAbstract extends TestsAbstract
     abstract protected function getUserClass(): string;
 
     /**
+     * @return void
+     */
+    protected function setUp(): void
+    {
+        if (!defined('LARAVEL_START')) {
+            define('LARAVEL_START', microtime(true));
+        }
+
+        parent::setUp();
+    }
+
+    /**
      * @param ?\Illuminate\Contracts\Auth\Authenticatable $user = null
      *
      * @return self

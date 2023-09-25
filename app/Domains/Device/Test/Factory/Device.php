@@ -29,9 +29,6 @@ class Device extends FactoryAbstract
 
             'connected_at' => date('Y-m-d H:i:s'),
 
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-
             'user_id' => $this->userFirstOrFactory(),
             'vehicle_id' => $this->firstOrFactory(VehicleModel::class),
         ];

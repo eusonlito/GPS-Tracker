@@ -21,9 +21,6 @@ class Configuration extends FactoryAbstract
             'key' => uniqid(),
             'value' => 1,
             'description' => 'Configuration Test',
-
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
         ];
     }
 }

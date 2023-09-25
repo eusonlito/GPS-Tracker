@@ -20,9 +20,6 @@ class {{ domain }} extends FactoryAbstract
         return [
             'name' => $this->faker->name(),
             'enabled' => true,
-
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
         ];
     }
 }

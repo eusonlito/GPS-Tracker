@@ -22,9 +22,6 @@ class Timezone extends FactoryAbstract
             'default' => true,
 
             'geojson' => Model::DB()->raw(Model::emptyGeoJSON()),
-
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
         ];
     }
 }

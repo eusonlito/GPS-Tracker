@@ -29,9 +29,6 @@ class Maintenance extends FactoryAbstract
             'distance_next' => rand(1000, 10000),
             'amount' => $this->faker->randomFloat(2, 100, 1000),
 
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-
             'user_id' => $this->userFirstOrFactory(),
             'vehicle_id' => $this->firstOrFactory(VehicleModel::class),
         ];

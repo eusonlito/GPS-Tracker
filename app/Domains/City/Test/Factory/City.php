@@ -23,9 +23,6 @@ class City extends FactoryAbstract
 
             'point' => Model::pointFromLatitudeLongitude(42.34818, -7.9126),
 
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-
             'state_id' => $this->firstOrFactory(StateModel::class),
         ];
     }

@@ -25,9 +25,6 @@ class Vehicle extends FactoryAbstract
             'timezone_auto' => true,
             'enabled' => true,
 
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-
             'timezone_id' => $this->firstOrFactory(TimezoneModel::class),
             'user_id' => $this->userFirstOrFactory(),
         ];
