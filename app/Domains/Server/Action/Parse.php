@@ -49,7 +49,9 @@ class Parse extends ActionAbstract
      */
     protected function devices(): void
     {
-        $this->devices = DeviceModel::get()->keyBy('serial');
+        $this->devices = DeviceModel::query()
+            ->get()
+            ->keyBy('serial');
     }
 
     /**

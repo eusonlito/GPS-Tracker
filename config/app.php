@@ -85,7 +85,7 @@ return [
     'locale_system' => [
         'es' => 'es_ES.UTF-8',
         'en' => 'en_US.UTF-8',
-        'fr' => 'fr_FR.UTF-8'
+        'fr' => 'fr_FR.UTF-8',
     ],
 
     /*
