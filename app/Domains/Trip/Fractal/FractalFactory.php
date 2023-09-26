@@ -26,4 +26,23 @@ class FractalFactory extends FractalAbstract
             'positions' => $this->from('Position', 'map', $row->positions),
         ];
     }
+
+    /**
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return array
+     */
+    protected function simple(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'name' => $row->name,
+            'start_at' => $row->start_at,
+            'end_at' => $row->end_at,
+            'distance' => helper()->unit('distance', $row->distance),
+            'distance_human' => helper()->unitHuman('distance', $row->distance),
+            'time' => $row->time,
+            'shared' => $row->shared,
+        ];
+    }
 }

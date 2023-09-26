@@ -8,6 +8,7 @@ Route::group(['middleware' => ['user-auth', 'vehicle.available']], static functi
     Route::get('/trip', Index::class)->name('trip.index');
     Route::any('/trip/{id}', Update::class)->name('trip.update');
     Route::any('/trip/{id}/alarm-notification', UpdateAlarmNotification::class)->name('trip.update.alarm-notification');
+    Route::any('/trip/{id}/boolean/{column}', UpdateBoolean::class)->name('trip.update.boolean');
     Route::any('/trip/{id}/export', UpdateExport::class)->name('trip.update.export');
     Route::any('/trip/{id}/map', UpdateMap::class)->name('trip.update.map');
     Route::any('/trip/{id}/merge', UpdateMerge::class)->name('trip.update.merge');

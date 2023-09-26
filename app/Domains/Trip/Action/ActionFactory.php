@@ -46,6 +46,14 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
+     * @return \App\Domains\Trip\Model\Trip
+     */
+    public function updateBoolean(): Model
+    {
+        return $this->actionHandle(UpdateBoolean::class, $this->validate()->updateBoolean());
+    }
+
+    /**
      * @return ?\Symfony\Component\HttpFoundation\StreamedResponse
      */
     public function updateExport(): ?StreamedResponse
