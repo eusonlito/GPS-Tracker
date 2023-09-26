@@ -3,8 +3,8 @@
 namespace App\Domains\Timezone\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Domains\SharedApp\Model\ModelAbstract;
-use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;
+use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\Traits\Gis as GisTrait;
 use App\Domains\Timezone\Model\Builder\Timezone as Builder;
 use App\Domains\Timezone\Model\Collection\Timezone as Collection;
 use App\Domains\Timezone\Test\Factory\Timezone as TestFactory;

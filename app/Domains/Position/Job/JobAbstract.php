@@ -4,9 +4,9 @@ namespace App\Domains\Position\Job;
 
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use App\Domains\Position\Model\Position as Model;
-use App\Domains\Shared\Job\JobAbstract as JobAbstractShared;
+use App\Domains\Core\Job\JobAbstract as JobAbstractCore;
 
-abstract class JobAbstract extends JobAbstractShared
+abstract class JobAbstract extends JobAbstractCore
 {
     /**
      * @param int $id

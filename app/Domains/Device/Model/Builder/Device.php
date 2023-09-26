@@ -2,7 +2,7 @@
 
 namespace App\Domains\Device\Model\Builder;
 
-use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
+use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 
 class Device extends BuilderAbstract
 {

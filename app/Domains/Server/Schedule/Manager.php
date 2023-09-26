@@ -3,7 +3,7 @@
 namespace App\Domains\Server\Schedule;
 
 use App\Domains\Server\Command\StartAll as StartAllCommand;
-use App\Domains\Shared\Schedule\ScheduleAbstract;
+use App\Domains\Core\Schedule\ScheduleAbstract;
 
 class Manager extends ScheduleAbstract
 {

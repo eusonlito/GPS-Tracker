@@ -73,7 +73,7 @@ class Create extends ActionAbstract
         $this->dataName();
         $this->dataEndAt();
         $this->dataEndUtcAt();
-        $this->dataShared();
+        $this->dataCore();
     }
 
     /**
@@ -111,7 +111,7 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
-    protected function dataShared(): void
+    protected function dataCore(): void
     {
         $this->data['shared'] = $this->device->shared;
     }

@@ -3,10 +3,10 @@
 namespace App\Domains\Trip\Job;
 
 use Illuminate\Queue\Middleware\WithoutOverlapping;
-use App\Domains\Shared\Job\JobAbstract as JobAbstractShared;
+use App\Domains\Core\Job\JobAbstract as JobAbstractCore;
 use App\Domains\Trip\Model\Trip as Model;
 
-abstract class JobAbstract extends JobAbstractShared
+abstract class JobAbstract extends JobAbstractCore
 {
     /**
      * @param int $id

@@ -2,7 +2,7 @@
 
 namespace App\Domains\Profile\Action;
 
-use App\Domains\Shared\Action\ActionFactoryAbstract;
+use App\Domains\Core\Action\ActionFactoryAbstract;
 use App\Domains\User\Model\User as Model;
 
 class ActionFactory extends ActionFactoryAbstract

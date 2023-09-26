@@ -3,10 +3,10 @@
 namespace App\Domains\User\Middleware;
 
 use Illuminate\Http\Request;
-use App\Domains\Shared\Middleware\MiddlewareAbstract as MiddlewareAbstractShared;
+use App\Domains\Core\Middleware\MiddlewareAbstract as MiddlewareAbstractCore;
 use App\Domains\User\Model\User as Model;
 
-abstract class MiddlewareAbstract extends MiddlewareAbstractShared
+abstract class MiddlewareAbstract extends MiddlewareAbstractCore
 {
     /**
      * @var ?\App\Domains\User\Model\User

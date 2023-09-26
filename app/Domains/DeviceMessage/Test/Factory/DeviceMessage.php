@@ -2,7 +2,7 @@
 
 namespace App\Domains\DeviceMessage\Test\Factory;
 
-use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\DeviceMessage\Model\DeviceMessage as Model;
 

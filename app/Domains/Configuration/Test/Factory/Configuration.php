@@ -2,7 +2,7 @@
 
 namespace App\Domains\Configuration\Test\Factory;
 
-use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Configuration\Model\Configuration as Model;
 
 class Configuration extends FactoryAbstract

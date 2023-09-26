@@ -3,7 +3,7 @@
 namespace App\Domains\Refuel\Action;
 
 use App\Domains\Refuel\Model\Refuel as Model;
-use App\Domains\Shared\Action\ActionFactoryAbstract;
+use App\Domains\Core\Action\ActionFactoryAbstract;
 
 class ActionFactory extends ActionFactoryAbstract
 {

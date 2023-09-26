@@ -2,10 +2,10 @@
 
 namespace App\Domains\Vehicle\Action;
 
-use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
+use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
 use App\Domains\Vehicle\Model\Vehicle as Model;
 
-abstract class ActionAbstract extends ActionAbstractShared
+abstract class ActionAbstract extends ActionAbstractCore
 {
     /**
      * @var ?\App\Domains\Vehicle\Model\Vehicle

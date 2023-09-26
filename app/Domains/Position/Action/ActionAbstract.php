@@ -3,9 +3,9 @@
 namespace App\Domains\Position\Action;
 
 use App\Domains\Position\Model\Position as Model;
-use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
+use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
 
-abstract class ActionAbstract extends ActionAbstractShared
+abstract class ActionAbstract extends ActionAbstractCore
 {
     /**
      * @var ?\App\Domains\Position\Model\Position

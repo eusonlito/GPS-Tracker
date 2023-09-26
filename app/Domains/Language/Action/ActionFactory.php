@@ -3,7 +3,7 @@
 namespace App\Domains\Language\Action;
 
 use App\Domains\Language\Model\Language as Model;
-use App\Domains\Shared\Action\ActionFactoryAbstract;
+use App\Domains\Core\Action\ActionFactoryAbstract;
 
 class ActionFactory extends ActionFactoryAbstract
 {

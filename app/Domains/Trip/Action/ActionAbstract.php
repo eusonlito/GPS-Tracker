@@ -2,10 +2,10 @@
 
 namespace App\Domains\Trip\Action;
 
-use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
+use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
 use App\Domains\Trip\Model\Trip as Model;
 
-abstract class ActionAbstract extends ActionAbstractShared
+abstract class ActionAbstract extends ActionAbstractCore
 {
     /**
      * @var ?\App\Domains\Trip\Model\Trip

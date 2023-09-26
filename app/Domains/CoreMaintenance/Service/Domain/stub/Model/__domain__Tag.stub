@@ -1,0 +1,71 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Model;
+
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Domains\{{ domain }}\Model\Builder\{{ domain }}Tag as Builder;
+use App\Domains\{{ domain }}\Model\Collection\{{ domain }}Tag as Collection;
+use App\Domains\Core\Model\PivotAbstract;
+use App\Domains\Tag\Model\Tag as TagModel;
+
+class {{ domain }}Tag extends PivotAbstract
+{
+    /**
+     * @var string
+     */
+    protected $table = '{{ table }}_tag';
+
+    /**
+     * @const string
+     */
+    public const TABLE = '{{ table }}_tag';
+
+    /**
+     * @const string
+     */
+    public const FOREIGN = '{{ table }}_tag_id';
+
+    /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'content' => 'array',
+        'config' => 'array',
+    ];
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\{{ domain }}\Model\Collection\{{ domain }}Tag
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
+
+    /**
+     * @param \Illuminate\Database\Query\Builder $query
+     *
+     * @return \App\Domains\{{ domain }}\Model\Builder\{{ domain }}Tag
+     */
+    public function newEloquentBuilder($query): Builder
+    {
+        return new Builder($query);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function page(): BelongsTo
+    {
+        return $this->belongsTo({{ domain }}::class, {{ domain }}::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tag(): BelongsTo
+    {
+        return $this->belongsTo(TagModel::class, TagModel::FOREIGN);
+    }
+}

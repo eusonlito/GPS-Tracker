@@ -8,7 +8,7 @@ use App\Domains\Alarm\Model\Builder\AlarmVehicle as Builder;
 use App\Domains\Alarm\Model\Collection\AlarmVehicle as Collection;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\Alarm\Test\Factory\AlarmVehicle as TestFactory;
-use App\Domains\SharedApp\Model\PivotAbstract;
+use App\Domains\CoreApp\Model\PivotAbstract;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class AlarmVehicle extends PivotAbstract

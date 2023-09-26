@@ -2,8 +2,8 @@
 
 namespace App\Domains\Vehicle\Middleware;
 
-use App\Domains\Shared\Middleware\MiddlewareAbstract as MiddlewareAbstractShared;
+use App\Domains\Core\Middleware\MiddlewareAbstract as MiddlewareAbstractCore;
 
-abstract class MiddlewareAbstract extends MiddlewareAbstractShared
+abstract class MiddlewareAbstract extends MiddlewareAbstractCore
 {
 }

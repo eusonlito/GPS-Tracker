@@ -3,7 +3,7 @@
 namespace App\Domains\Vehicle\Test\Controller;
 
 use App\Domains\Vehicle\Model\Vehicle as Model;
-use App\Domains\SharedApp\Test\Feature\FeatureAbstract;
+use App\Domains\CoreApp\Test\Feature\FeatureAbstract;
 
 abstract class ControllerAbstract extends FeatureAbstract
 {

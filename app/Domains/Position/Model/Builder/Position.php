@@ -3,8 +3,8 @@
 namespace App\Domains\Position\Model\Builder;
 
 use App\Domains\City\Model\City as CityModel;
-use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
-use App\Domains\SharedApp\Model\Builder\Traits\Gis as GisTrait;
+use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
+use App\Domains\CoreApp\Model\Builder\Traits\Gis as GisTrait;
 use App\Domains\Trip\Model\Trip as TripModel;
 
 class Position extends BuilderAbstract

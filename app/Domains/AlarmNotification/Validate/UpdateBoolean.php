@@ -2,8 +2,8 @@
 
 namespace App\Domains\AlarmNotification\Validate;
 
-use App\Domains\SharedApp\Validate\UpdateBoolean as UpdateBooleanSharedApp;
+use App\Domains\CoreApp\Validate\UpdateBoolean as UpdateBooleanCoreApp;
 
-class UpdateBoolean extends UpdateBooleanSharedApp
+class UpdateBoolean extends UpdateBooleanCoreApp
 {
 }

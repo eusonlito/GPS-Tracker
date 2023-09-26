@@ -2,7 +2,7 @@
 
 namespace App\Domains\Country\Model\Collection;
 
-use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
+use App\Domains\CoreApp\Model\Collection\CollectionAbstract;
 
 class Country extends CollectionAbstract
 {

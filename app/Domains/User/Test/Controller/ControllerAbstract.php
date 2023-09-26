@@ -3,7 +3,7 @@
 namespace App\Domains\User\Test\Controller;
 
 use App\Domains\User\Model\User as Model;
-use App\Domains\SharedApp\Test\Feature\FeatureAbstract;
+use App\Domains\CoreApp\Test\Feature\FeatureAbstract;
 
 abstract class ControllerAbstract extends FeatureAbstract
 {

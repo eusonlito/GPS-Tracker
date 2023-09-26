@@ -9,7 +9,7 @@ use App\Domains\Device\Model\Builder\Device as Builder;
 use App\Domains\Device\Model\Collection\Device as Collection;
 use App\Domains\Device\Test\Factory\Device as TestFactory;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;

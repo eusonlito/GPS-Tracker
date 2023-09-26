@@ -2,7 +2,7 @@
 
 namespace App\Domains\Maintenance\Model\Collection;
 
-use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
+use App\Domains\CoreApp\Model\Collection\CollectionAbstract;
 
 class Maintenance extends CollectionAbstract
 {

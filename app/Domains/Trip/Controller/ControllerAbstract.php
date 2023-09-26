@@ -2,7 +2,7 @@
 
 namespace App\Domains\Trip\Controller;
 
-use App\Domains\SharedApp\Controller\ControllerWebAbstract;
+use App\Domains\CoreApp\Controller\ControllerWebAbstract;
 use App\Domains\Trip\Model\Trip as Model;
 use App\Exceptions\NotFoundException;
 

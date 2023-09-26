@@ -3,7 +3,7 @@
 namespace App\Domains\Language\Seeder;
 
 use App\Domains\Language\Model\Language as Model;
-use App\Domains\Shared\Seeder\SeederAbstract;
+use App\Domains\Core\Seeder\SeederAbstract;
 
 class Language extends SeederAbstract
 {

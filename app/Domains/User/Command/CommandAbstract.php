@@ -2,7 +2,7 @@
 
 namespace App\Domains\User\Command;
 
-use App\Domains\Shared\Command\CommandAbstract as CommandAbstractSahred;
+use App\Domains\Core\Command\CommandAbstract as CommandAbstractSahred;
 use App\Domains\User\Model\User as Model;
 
 abstract class CommandAbstract extends CommandAbstractSahred

@@ -2,7 +2,7 @@
 
 namespace App\Domains\Trip\Test\Factory;
 
-use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as Model;

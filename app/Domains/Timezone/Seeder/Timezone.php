@@ -3,7 +3,7 @@
 namespace App\Domains\Timezone\Seeder;
 
 use Illuminate\Contracts\Database\Query\Expression;
-use App\Domains\Shared\Seeder\SeederAbstract;
+use App\Domains\Core\Seeder\SeederAbstract;
 use App\Domains\Timezone\Model\Timezone as Model;
 
 class Timezone extends SeederAbstract

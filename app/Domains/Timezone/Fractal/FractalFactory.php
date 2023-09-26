@@ -2,7 +2,7 @@
 
 namespace App\Domains\Timezone\Fractal;
 
-use App\Domains\Shared\Fractal\FractalAbstract;
+use App\Domains\Core\Fractal\FractalAbstract;
 use App\Domains\Timezone\Model\Timezone as Model;
 
 class FractalFactory extends FractalAbstract

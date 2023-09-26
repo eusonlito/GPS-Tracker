@@ -3,9 +3,9 @@
 namespace App\Domains\Server\Action;
 
 use App\Domains\Server\Model\Server as Model;
-use App\Domains\SharedApp\Action\UpdateBoolean as UpdateBooleanSharedApp;
+use App\Domains\CoreApp\Action\UpdateBoolean as UpdateBooleanCoreApp;
 
-class UpdateBoolean extends UpdateBooleanSharedApp
+class UpdateBoolean extends UpdateBooleanCoreApp
 {
     /**
      * @var \App\Domains\Server\Model\Server

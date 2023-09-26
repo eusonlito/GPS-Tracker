@@ -2,7 +2,7 @@
 
 namespace App\Domains\Timezone\Model\Collection;
 
-use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
+use App\Domains\CoreApp\Model\Collection\CollectionAbstract;
 
 class Timezone extends CollectionAbstract
 {

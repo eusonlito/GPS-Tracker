@@ -3,7 +3,7 @@
 namespace App\Domains\AlarmNotification\Controller;
 
 use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
-use App\Domains\SharedApp\Controller\ControllerWebAbstract;
+use App\Domains\CoreApp\Controller\ControllerWebAbstract;
 use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract

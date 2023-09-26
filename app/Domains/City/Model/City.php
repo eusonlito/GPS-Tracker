@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\City\Model\Builder\City as Builder;
 use App\Domains\City\Model\Collection\City as Collection;
 use App\Domains\City\Test\Factory\City as TestFactory;
-use App\Domains\SharedApp\Model\ModelAbstract;
-use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;
+use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\Traits\Gis as GisTrait;
 use App\Domains\State\Model\State as StateModel;
 
 class City extends ModelAbstract

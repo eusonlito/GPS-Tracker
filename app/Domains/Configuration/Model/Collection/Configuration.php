@@ -2,7 +2,7 @@
 
 namespace App\Domains\Configuration\Model\Collection;
 
-use App\Domains\SharedApp\Model\Collection\CollectionAbstract;
+use App\Domains\CoreApp\Model\Collection\CollectionAbstract;
 
 class Configuration extends CollectionAbstract
 {

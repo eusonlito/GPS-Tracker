@@ -2,7 +2,7 @@
 
 namespace App\Domains\IpLock\Test\Factory;
 
-use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\IpLock\Model\IpLock as Model;
 
 class IpLock extends FactoryAbstract

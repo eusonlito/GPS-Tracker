@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Domains\Country\Model\Builder\Country as Builder;
 use App\Domains\Country\Model\Collection\Country as Collection;
 use App\Domains\Country\Test\Factory\Country as TestFactory;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\ModelAbstract;
 
 class Country extends ModelAbstract
 {

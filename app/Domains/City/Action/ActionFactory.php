@@ -3,7 +3,7 @@
 namespace App\Domains\City\Action;
 
 use App\Domains\City\Model\City as Model;
-use App\Domains\Shared\Action\ActionFactoryAbstract;
+use App\Domains\Core\Action\ActionFactoryAbstract;
 
 class ActionFactory extends ActionFactoryAbstract
 {

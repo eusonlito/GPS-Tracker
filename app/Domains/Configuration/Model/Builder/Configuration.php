@@ -2,7 +2,7 @@
 
 namespace App\Domains\Configuration\Model\Builder;
 
-use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
+use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 
 class Configuration extends BuilderAbstract
 {

@@ -30,7 +30,7 @@ class Shared extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetSharedDisabledFail(): void
+    public function testGetCoreDisabledFail(): void
     {
         $this->get($this->routeToController(false))
             ->assertStatus(404);

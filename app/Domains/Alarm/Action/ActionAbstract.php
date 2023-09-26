@@ -3,9 +3,9 @@
 namespace App\Domains\Alarm\Action;
 
 use App\Domains\Alarm\Model\Alarm as Model;
-use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
+use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
 
-abstract class ActionAbstract extends ActionAbstractShared
+abstract class ActionAbstract extends ActionAbstractCore
 {
     /**
      * @var ?\App\Domains\Alarm\Model\Alarm

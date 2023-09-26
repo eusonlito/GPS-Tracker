@@ -4,7 +4,7 @@ namespace App\Domains\UserSession\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\UserSession\Model\Builder\UserSession as Builder;
 use App\Domains\UserSession\Model\Collection\UserSession as Collection;

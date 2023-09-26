@@ -3,7 +3,7 @@
 namespace App\Domains\Configuration\Seeder;
 
 use App\Domains\Configuration\Model\Configuration as Model;
-use App\Domains\Shared\Seeder\SeederAbstract;
+use App\Domains\Core\Seeder\SeederAbstract;
 
 class Configuration extends SeederAbstract
 {

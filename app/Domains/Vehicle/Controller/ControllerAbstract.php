@@ -4,7 +4,7 @@ namespace App\Domains\Vehicle\Controller;
 
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
-use App\Domains\SharedApp\Controller\ControllerWebAbstract;
+use App\Domains\CoreApp\Controller\ControllerWebAbstract;
 use App\Domains\Vehicle\Model\Vehicle as Model;
 use App\Exceptions\NotFoundException;
 

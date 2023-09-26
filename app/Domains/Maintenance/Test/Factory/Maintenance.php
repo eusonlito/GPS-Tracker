@@ -2,7 +2,7 @@
 
 namespace App\Domains\Maintenance\Test\Factory;
 
-use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 

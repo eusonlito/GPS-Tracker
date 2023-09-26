@@ -2,7 +2,7 @@
 
 namespace App\Domains\File\Model\Builder;
 
-use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
+use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 
 class File extends BuilderAbstract
 {

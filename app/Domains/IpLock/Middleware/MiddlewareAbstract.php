@@ -2,10 +2,10 @@
 
 namespace App\Domains\IpLock\Middleware;
 
-use App\Domains\Shared\Middleware\MiddlewareAbstract as MiddlewareAbstractShared;
+use App\Domains\Core\Middleware\MiddlewareAbstract as MiddlewareAbstractCore;
 use App\Domains\IpLock\Model\IpLock as Model;
 
-abstract class MiddlewareAbstract extends MiddlewareAbstractShared
+abstract class MiddlewareAbstract extends MiddlewareAbstractCore
 {
     /**
      * @var ?\App\Domains\IpLock\Model\IpLock

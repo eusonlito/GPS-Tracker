@@ -3,7 +3,7 @@
 namespace App\Domains\IpLock\Action;
 
 use App\Domains\IpLock\Model\IpLock as Model;
-use App\Domains\Shared\Action\ActionFactoryAbstract;
+use App\Domains\Core\Action\ActionFactoryAbstract;
 
 class ActionFactory extends ActionFactoryAbstract
 {

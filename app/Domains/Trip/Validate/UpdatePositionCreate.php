@@ -2,7 +2,7 @@
 
 namespace App\Domains\Trip\Validate;
 
-use App\Domains\Shared\Validate\ValidateAbstract;
+use App\Domains\Core\Validate\ValidateAbstract;
 
 class UpdatePositionCreate extends ValidateAbstract
 {

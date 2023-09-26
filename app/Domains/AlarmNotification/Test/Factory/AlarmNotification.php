@@ -2,7 +2,7 @@
 
 namespace App\Domains\AlarmNotification\Test\Factory;
 
-use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
 use App\Domains\Position\Model\Position as PositionModel;

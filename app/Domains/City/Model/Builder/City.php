@@ -3,7 +3,7 @@
 namespace App\Domains\City\Model\Builder;
 
 use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
+use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\State\Model\State as StateModel;
 
 class City extends BuilderAbstract

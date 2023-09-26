@@ -2,7 +2,7 @@
 
 namespace App\Domains\Timezone\Test\Factory;
 
-use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Timezone\Model\Timezone as Model;
 
 class Timezone extends FactoryAbstract

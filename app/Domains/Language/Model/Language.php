@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Domains\Language\Model\Builder\Language as Builder;
 use App\Domains\Language\Model\Collection\Language as Collection;
 use App\Domains\Language\Test\Factory\Language as TestFactory;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\ModelAbstract;
 
 class Language extends ModelAbstract
 {

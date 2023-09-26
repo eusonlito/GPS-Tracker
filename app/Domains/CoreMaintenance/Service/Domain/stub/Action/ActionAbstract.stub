@@ -1,0 +1,14 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Action;
+
+use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
+
+abstract class ActionAbstract extends ActionAbstractCore
+{
+    /**
+     * @var ?\App\Domains\{{ domain }}\Model\{{ domain }}
+     */
+    protected ?Model $row;
+}

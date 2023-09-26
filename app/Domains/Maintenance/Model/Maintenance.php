@@ -9,7 +9,7 @@ use App\Domains\File\Model\File as FileModel;
 use App\Domains\Maintenance\Model\Builder\Maintenance as Builder;
 use App\Domains\Maintenance\Model\Collection\Maintenance as Collection;
 use App\Domains\Maintenance\Test\Factory\Maintenance as TestFactory;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Maintenance extends ModelAbstract

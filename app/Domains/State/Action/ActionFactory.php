@@ -2,7 +2,7 @@
 
 namespace App\Domains\State\Action;
 
-use App\Domains\Shared\Action\ActionFactoryAbstract;
+use App\Domains\Core\Action\ActionFactoryAbstract;
 use App\Domains\State\Model\State as Model;
 
 class ActionFactory extends ActionFactoryAbstract

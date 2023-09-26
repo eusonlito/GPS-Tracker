@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Domains\SharedApp\Migration\MigrationAbstract;
+use App\Domains\CoreApp\Migration\MigrationAbstract;
 
 return new class extends MigrationAbstract {
     /**

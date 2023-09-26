@@ -3,7 +3,7 @@
 namespace App\Domains\Position\Action;
 
 use App\Domains\Position\Model\Position as Model;
-use App\Domains\Shared\Action\ActionFactoryAbstract;
+use App\Domains\Core\Action\ActionFactoryAbstract;
 
 class ActionFactory extends ActionFactoryAbstract
 {

@@ -2,7 +2,7 @@
 
 namespace App\Domains\Country\Validate;
 
-use App\Domains\Shared\Validate\ValidateAbstract;
+use App\Domains\Core\Validate\ValidateAbstract;
 
 class GetOrNew extends ValidateAbstract
 {

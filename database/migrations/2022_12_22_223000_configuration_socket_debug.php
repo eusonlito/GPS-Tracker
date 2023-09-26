@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use App\Domains\SharedApp\Migration\MigrationAbstract;
+use App\Domains\CoreApp\Migration\MigrationAbstract;
 
 return new class extends MigrationAbstract {
     /**

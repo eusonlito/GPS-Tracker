@@ -3,9 +3,9 @@
 namespace App\Domains\Server\Test\Unit;
 
 use App\Domains\Server\Model\Server as Model;
-use App\Domains\SharedApp\Test\Unit\UnitAbstract as UnitAbstractShared;
+use App\Domains\CoreApp\Test\Unit\UnitAbstract as UnitAbstractCore;
 
-abstract class UnitAbstract extends UnitAbstractShared
+abstract class UnitAbstract extends UnitAbstractCore
 {
     /**
      * @return string

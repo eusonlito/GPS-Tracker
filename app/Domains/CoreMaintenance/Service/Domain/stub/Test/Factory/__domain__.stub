@@ -1,0 +1,25 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Test\Factory;
+
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
+use App\Domains\{{ domain }}\Model\{{ domain }} as Model;
+
+class {{ domain }} extends FactoryAbstract
+{
+    /**
+     * @var class-string<\App\Domains\{{ domain }}\Model\{{ domain }}>
+     */
+    protected $model = Model::class;
+
+    /**
+     * @return array
+     */
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->name(),
+            'enabled' => true,
+        ];
+    }
+}

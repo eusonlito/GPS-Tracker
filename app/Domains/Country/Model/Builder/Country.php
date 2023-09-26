@@ -2,7 +2,7 @@
 
 namespace App\Domains\Country\Model\Builder;
 
-use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
+use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\State\Model\State as StateModel;
 
 class Country extends BuilderAbstract

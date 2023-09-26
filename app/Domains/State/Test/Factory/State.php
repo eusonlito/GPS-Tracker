@@ -2,7 +2,7 @@
 
 namespace App\Domains\State\Test\Factory;
 
-use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Country\Model\Country as CountryModel;
 use App\Domains\State\Model\State as Model;
 

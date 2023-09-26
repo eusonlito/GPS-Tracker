@@ -1,5 +1,9 @@
 <?php
 
+if (defined('LARAVEL_START') === false) {
+    define('LARAVEL_START', microtime(true));
+}
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application

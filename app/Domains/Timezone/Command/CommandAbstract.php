@@ -2,7 +2,7 @@
 
 namespace App\Domains\Timezone\Command;
 
-use App\Domains\SharedApp\Command\CommandAbstract as CommandAbstractSahred;
+use App\Domains\CoreApp\Command\CommandAbstract as CommandAbstractSahred;
 use App\Domains\Timezone\Model\Timezone as Model;
 
 abstract class CommandAbstract extends CommandAbstractSahred

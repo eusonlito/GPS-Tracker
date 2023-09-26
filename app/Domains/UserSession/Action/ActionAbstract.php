@@ -2,10 +2,10 @@
 
 namespace App\Domains\UserSession\Action;
 
-use App\Domains\SharedApp\Action\ActionAbstract as ActionAbstractShared;
+use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
 use App\Domains\UserSession\Model\UserSession as Model;
 
-abstract class ActionAbstract extends ActionAbstractShared
+abstract class ActionAbstract extends ActionAbstractCore
 {
     /**
      * @var ?\App\Domains\UserSession\Model\UserSession

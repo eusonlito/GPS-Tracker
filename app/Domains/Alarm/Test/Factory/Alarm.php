@@ -2,7 +2,7 @@
 
 namespace App\Domains\Alarm\Test\Factory;
 
-use App\Domains\SharedApp\Test\Factory\FactoryAbstract;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Alarm\Model\Alarm as Model;
 
 class Alarm extends FactoryAbstract

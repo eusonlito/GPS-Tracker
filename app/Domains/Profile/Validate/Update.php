@@ -3,7 +3,7 @@
 namespace App\Domains\Profile\Validate;
 
 use Illuminate\Validation\Rule;
-use App\Domains\Shared\Validate\ValidateAbstract;
+use App\Domains\Core\Validate\ValidateAbstract;
 
 class Update extends ValidateAbstract
 {

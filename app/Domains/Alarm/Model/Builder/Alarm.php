@@ -3,7 +3,7 @@
 namespace App\Domains\Alarm\Model\Builder;
 
 use App\Domains\Alarm\Model\AlarmVehicle as AlarmVehicleModel;
-use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
+use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 
 class Alarm extends BuilderAbstract
 {

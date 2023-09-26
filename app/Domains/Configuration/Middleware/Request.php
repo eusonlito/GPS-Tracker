@@ -4,7 +4,7 @@ namespace App\Domains\Configuration\Middleware;
 
 use Closure;
 use Illuminate\Http\Request as RequestVendor;
-use App\Domains\Shared\Middleware\MiddlewareAbstract;
+use App\Domains\Core\Middleware\MiddlewareAbstract;
 
 class Request extends MiddlewareAbstract
 {

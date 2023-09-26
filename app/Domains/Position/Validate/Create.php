@@ -2,7 +2,7 @@
 
 namespace App\Domains\Position\Validate;
 
-use App\Domains\Shared\Validate\ValidateAbstract;
+use App\Domains\Core\Validate\ValidateAbstract;
 
 class Create extends ValidateAbstract
 {

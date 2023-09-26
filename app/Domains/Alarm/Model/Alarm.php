@@ -11,7 +11,7 @@ use App\Domains\Alarm\Model\Collection\Alarm as Collection;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\Alarm\Test\Factory\Alarm as TestFactory;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Alarm extends ModelAbstract

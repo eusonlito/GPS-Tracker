@@ -10,8 +10,8 @@ use App\Domains\AlarmNotification\Model\Builder\AlarmNotification as Builder;
 use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as Collection;
 use App\Domains\AlarmNotification\Test\Factory\AlarmNotification as TestFactory;
 use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\SharedApp\Model\ModelAbstract;
-use App\Domains\SharedApp\Model\Traits\Gis as GisTrait;
+use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\Traits\Gis as GisTrait;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 

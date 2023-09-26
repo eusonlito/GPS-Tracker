@@ -2,7 +2,7 @@
 
 namespace App\Domains\Trip\Command;
 
-use App\Domains\SharedApp\Command\CommandAbstract as CommandAbstractSahred;
+use App\Domains\CoreApp\Command\CommandAbstract as CommandAbstractSahred;
 use App\Domains\Trip\Model\Trip as Model;
 
 abstract class CommandAbstract extends CommandAbstractSahred

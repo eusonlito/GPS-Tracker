@@ -3,7 +3,7 @@
 namespace App\Domains\Alarm\Command;
 
 use App\Domains\Alarm\Model\Alarm as Model;
-use App\Domains\SharedApp\Command\CommandAbstract as CommandAbstractSahred;
+use App\Domains\CoreApp\Command\CommandAbstract as CommandAbstractSahred;
 
 abstract class CommandAbstract extends CommandAbstractSahred
 {

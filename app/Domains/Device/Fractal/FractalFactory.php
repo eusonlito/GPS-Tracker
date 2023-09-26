@@ -3,7 +3,7 @@
 namespace App\Domains\Device\Fractal;
 
 use App\Domains\Device\Model\Device as Model;
-use App\Domains\Shared\Fractal\FractalAbstract;
+use App\Domains\Core\Fractal\FractalAbstract;
 
 class FractalFactory extends FractalAbstract
 {

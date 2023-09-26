@@ -2,7 +2,7 @@
 
 namespace App\Domains\UserSession\Model\Builder;
 
-use App\Domains\SharedApp\Model\Builder\BuilderAbstract;
+use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\User\Model\User as UserModel;
 
 class UserSession extends BuilderAbstract

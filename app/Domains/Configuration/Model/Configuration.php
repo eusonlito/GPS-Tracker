@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Domains\Configuration\Model\Builder\Configuration as Builder;
 use App\Domains\Configuration\Model\Collection\Configuration as Collection;
 use App\Domains\Configuration\Test\Factory\Configuration as TestFactory;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\ModelAbstract;
 
 class Configuration extends ModelAbstract
 {

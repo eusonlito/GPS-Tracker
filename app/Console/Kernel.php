@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as KernelVendor;
-use App\Domains\SharedMaintenance\Schedule\Manager as SharedMaintenanceScheduleManager;
+use App\Domains\CoreMaintenance\Schedule\Manager as CoreMaintenanceScheduleManager;
 use App\Domains\Position\Schedule\Manager as PositionScheduleManager;
 use App\Domains\Server\Schedule\Manager as ServerScheduleManager;
 
@@ -32,7 +32,7 @@ class Kernel extends KernelVendor
 
         (new ServerScheduleManager($schedule))->handle();
         (new PositionScheduleManager($schedule))->handle();
-        (new SharedMaintenanceScheduleManager($schedule))->handle();
+        (new CoreMaintenanceScheduleManager($schedule))->handle();
     }
 
     /**

@@ -11,7 +11,7 @@ use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\Alarm\Model\AlarmVehicle as AlarmVehicleModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\Device\Model\Device as DeviceModel;
-use App\Domains\SharedApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\User\Model\User as UserModel;

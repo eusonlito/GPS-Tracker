@@ -2,8 +2,8 @@
 
 namespace App\Domains\Translation\Command;
 
-use App\Domains\Shared\Command\CommandAbstract as CommandAbstractShared;
+use App\Domains\Core\Command\CommandAbstract as CommandAbstractCore;
 
-abstract class CommandAbstract extends CommandAbstractShared
+abstract class CommandAbstract extends CommandAbstractCore
 {
 }
