@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Server: nginx/1.18.0
+Date: Tue, 26 Sep 2023 21:23:37 GMT
+Content-Type: application/json
+Content-Length: 23
+Connection: close
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Access-Control-Expose-Headers: Content-Length,Content-Type,Date,Server,Connection
+
+{"ok":true,"result":[]}

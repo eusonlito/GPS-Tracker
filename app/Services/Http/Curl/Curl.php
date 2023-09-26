@@ -676,9 +676,13 @@ class Curl
         $this->sendUrl();
         $this->sendPost();
 
-        $response = static::$fake ?? curl_exec($this->curl);
+        if ($response = static::$fake) {
+            $this->info = [];
+        } else {
+            $response = curl_exec($this->curl);
+            $this->info = curl_getinfo($this->curl);
+        }
 
-        $this->info = curl_getinfo($this->curl);
         $this->responseHeaders = [];
 
         if (is_string($response) === false) {

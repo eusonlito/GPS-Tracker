@@ -2,6 +2,8 @@
 
 namespace App\Domains\Profile\Test\Controller;
 
+use App\Services\Http\Curl\Curl;
+
 class UpdateTelegram extends ControllerAbstract
 {
     /**
@@ -62,6 +64,8 @@ class UpdateTelegram extends ControllerAbstract
      */
     public function testPostAuthSuccess(): void
     {
+        $this->setCurl();
+
         $user = $this->authUser();
 
         $data = $this->factoryMake()->toArray();
@@ -78,5 +82,13 @@ class UpdateTelegram extends ControllerAbstract
     protected function routeToController(): string
     {
         return $this->route();
+    }
+
+    /**
+     * @return void
+     */
+    protected function setCurl(): void
+    {
+        Curl::fake(file_get_contents(base_path('resources/app/test/server/api.telegram.org.log')));
     }
 }
