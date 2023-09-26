@@ -43,6 +43,7 @@ class FractalFactory extends FractalAbstract
             'distance_human' => helper()->unitHuman('distance', $row->distance),
             'time' => $row->time,
             'shared' => $row->shared,
+            'shared_public' => $row->shared_public,
         ];
     }
 }

@@ -38,6 +38,7 @@ class Update extends CreateUpdateAbstract
         $this->row->password = $this->data['password'];
         $this->row->enabled = $this->data['enabled'];
         $this->row->shared = $this->data['shared'];
+        $this->row->shared_public = $this->data['shared_public'];
         $this->row->vehicle_id = $this->data['vehicle_id'];
 
         $this->row->save();

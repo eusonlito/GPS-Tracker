@@ -28,7 +28,7 @@
                 <tr>
                     <td class="text-left"><a href="{{ $link }}" class="d-t-m-o max-w-md" title="{{ $device->name }}">{{ $device->name }}</a></td>
 
-                    @if ($trip = $device->tripLastShared)
+                    @if ($trip = $device->tripLastSharedPublic)
 
                     <td class="text-left"><a href="{{ $link }}" class="d-t-m-o max-w-md" title="{{ $trip->name }}">{{ $trip->name }}</a></td>
 

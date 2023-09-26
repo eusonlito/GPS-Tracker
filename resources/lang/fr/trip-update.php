@@ -13,6 +13,7 @@
     'save' => 'Sauvegarder',
     'shared' => 'Partager le voyage',
     'shared-url' => 'URL publique:',
+    'shared_public' => 'Le covoiturage public',
     'stats' => 'Statistiques',
     'success' => 'Le voyage a été mis à jour avec succès',
 ];

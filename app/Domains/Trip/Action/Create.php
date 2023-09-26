@@ -73,7 +73,8 @@ class Create extends ActionAbstract
         $this->dataName();
         $this->dataEndAt();
         $this->dataEndUtcAt();
-        $this->dataCore();
+        $this->dataShared();
+        $this->dataSharedPublic();
     }
 
     /**
@@ -111,9 +112,17 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
-    protected function dataCore(): void
+    protected function dataShared(): void
     {
         $this->data['shared'] = $this->device->shared;
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataSharedPublic(): void
+    {
+        $this->data['shared_public'] = $this->device->shared_public;
     }
 
     /**
@@ -129,6 +138,7 @@ class Create extends ActionAbstract
             'end_at' => $this->data['end_at'],
             'end_utc_at' => $this->data['end_utc_at'],
             'shared' => $this->data['shared'],
+            'shared_public' => $this->data['shared_public'],
             'device_id' => $this->device->id,
             'timezone_id' => $this->timezone->id,
             'user_id' => $this->device->user_id,

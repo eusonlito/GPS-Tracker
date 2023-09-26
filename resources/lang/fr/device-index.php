@@ -7,5 +7,6 @@
     'model' => 'Modèle',
     'name' => 'Nom de l\'appareil',
     'shared' => 'Partagés',
+    'shared_public' => 'Public partagé',
     'vehicle' => 'Véhicule',
 ];

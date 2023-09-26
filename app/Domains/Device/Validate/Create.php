@@ -20,6 +20,7 @@ class Create extends ValidateAbstract
             'vehicle_id' => ['bail', 'nullable', 'integer'],
             'enabled' => ['bail', 'boolean'],
             'shared' => ['bail', 'boolean'],
+            'shared_public' => ['bail', 'boolean'],
         ];
     }
 }

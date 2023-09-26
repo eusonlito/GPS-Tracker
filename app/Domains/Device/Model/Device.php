@@ -40,6 +40,7 @@ class Device extends ModelAbstract
     protected $casts = [
         'enabled' => 'boolean',
         'shared' => 'boolean',
+        'shared_public' => 'boolean',
     ];
 
     /**
@@ -93,6 +94,15 @@ class Device extends ModelAbstract
     {
         return $this->hasOne(TripModel::class, static::FOREIGN)
             ->ofMany(['id' => 'MAX'], static fn ($q) => $q->whereShared());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function tripLastSharedPublic()
+    {
+        return $this->hasOne(TripModel::class, static::FOREIGN)
+            ->ofMany(['id' => 'MAX'], static fn ($q) => $q->whereShared()->whereSharedPublic());
     }
 
     /**

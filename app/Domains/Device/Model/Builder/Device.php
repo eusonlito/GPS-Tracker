@@ -37,6 +37,16 @@ class Device extends BuilderAbstract
     }
 
     /**
+     * @param ?bool $shared_public
+     *
+     * @return self
+     */
+    public function whenSharedPublic(?bool $shared_public): self
+    {
+        return $this->when(is_bool($shared_public), static fn ($q) => $q->whereSharedPublic($shared_public));
+    }
+
+    /**
      * @param bool $shared = true
      *
      * @return self
@@ -44,6 +54,16 @@ class Device extends BuilderAbstract
     public function whereShared(bool $shared = true): self
     {
         return $this->where('shared', $shared);
+    }
+
+    /**
+     * @param bool $shared_public = true
+     *
+     * @return self
+     */
+    public function whereSharedPublic(bool $shared_public = true): self
+    {
+        return $this->where('shared_public', $shared_public);
     }
 
     /**
@@ -68,6 +88,14 @@ class Device extends BuilderAbstract
     public function withTripLastShared(): self
     {
         return $this->with('tripLastShared');
+    }
+
+    /**
+     * @return self
+     */
+    public function withTripLastSharedPublic(): self
+    {
+        return $this->with('tripLastSharedPublic');
     }
 
     /**

@@ -41,6 +41,7 @@ class Create extends CreateUpdateAbstract
             'password' => $this->data['password'],
             'enabled' => $this->data['enabled'],
             'shared' => $this->data['shared'],
+            'shared_public' => $this->data['shared_public'],
             'vehicle_id' => $this->data['vehicle_id'],
             'user_id' => $this->auth->id,
         ]);

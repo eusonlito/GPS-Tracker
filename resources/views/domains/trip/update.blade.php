@@ -17,6 +17,13 @@
                 <label for="trip-shared" class="form-check-label">{{ __('trip-update.shared') }}</label>
             </div>
         </div>
+
+        <div class="p-2">
+            <div class="form-check">
+                <input type="checkbox" name="shared_public" value="1" class="form-check-switch" id="trip-shared_public" {{ $REQUEST->input('shared_public') ? 'checked' : '' }}>
+                <label for="trip-shared_public" class="form-check-label">{{ __('trip-update.shared_public') }}</label>
+            </div>
+        </div>
     </div>
 
     @if ($row->shared)

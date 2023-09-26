@@ -177,7 +177,10 @@ class Trip extends BuilderAbstract
      */
     public function selectSimple(): self
     {
-        return $this->selectOnly('id', 'name', 'start_at', 'start_utc_at', 'end_at', 'end_utc_at', 'time', 'distance', 'shared', 'device_id', 'vehicle_id');
+        return $this->selectOnly(
+            'id', 'name', 'start_at', 'start_utc_at', 'end_at', 'end_utc_at', 'time', 'distance',
+            'shared', 'shared_public', 'device_id', 'vehicle_id'
+        );
     }
 
     /**
@@ -222,6 +225,16 @@ class Trip extends BuilderAbstract
     public function whenShared(?bool $shared): self
     {
         return $this->when(is_bool($shared), static fn ($q) => $q->whereShared($shared));
+    }
+
+    /**
+     * @param ?bool $shared_public
+     *
+     * @return self
+     */
+    public function whenSharedPublic(?bool $shared_public): self
+    {
+        return $this->when(is_bool($shared_public), static fn ($q) => $q->whereSharedPublic($shared_public));
     }
 
     /**
@@ -271,6 +284,16 @@ class Trip extends BuilderAbstract
     public function whereShared(bool $shared = true): self
     {
         return $this->where('shared', $shared);
+    }
+
+    /**
+     * @param bool $shared_public = true
+     *
+     * @return self
+     */
+    public function whereSharedPublic(bool $shared_public = true): self
+    {
+        return $this->where('shared_public', $shared_public);
     }
 
     /**

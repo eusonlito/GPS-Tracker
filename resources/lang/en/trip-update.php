@@ -13,6 +13,7 @@
     'save' => 'Save',
     'shared' => 'Share Trip',
     'shared-url' => 'Public URL:',
+    'shared_public' => 'Public Ride Sharing',
     'stats' => 'Statistics',
     'success' => 'The trip has been successfully updated',
 ];

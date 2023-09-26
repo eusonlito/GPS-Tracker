@@ -41,6 +41,7 @@ class Update extends ActionAbstract
         $this->row->name = $this->data['name'];
         $this->row->code = $this->data['code'];
         $this->row->shared = $this->data['shared'];
+        $this->row->shared_public = $this->data['shared_public'];
         $this->row->save();
     }
 }

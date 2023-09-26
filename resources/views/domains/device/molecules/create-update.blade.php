@@ -45,4 +45,11 @@
             <label for="device-shared" class="form-check-label">{{ __('device-create.shared') }}</label>
         </div>
     </div>
+
+    <div class="p-2">
+        <div class="form-check">
+            <input type="checkbox" name="shared_public" value="1" class="form-check-switch" id="device-shared_public" {{ $REQUEST->input('shared_public') ? 'checked' : '' }}>
+            <label for="device-shared_public" class="form-check-label">{{ __('device-create.shared_public') }}</label>
+        </div>
+    </div>
 </div>

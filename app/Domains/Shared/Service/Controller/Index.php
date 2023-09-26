@@ -52,9 +52,10 @@ class Index extends ControllerAbstract
     {
         return $this->cache[__FUNCTION__] ??= DeviceModel::query()
             ->whereShared()
-            ->withTripLastShared()
+            ->whereSharedPublic()
+            ->withTripLastSharedPublic()
             ->list()
             ->get()
-            ->sortByDesc('tripLastShared.id');
+            ->sortByDesc('withTripLastSharedPublic.id');
     }
 }

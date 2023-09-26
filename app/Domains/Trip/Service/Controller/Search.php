@@ -51,6 +51,7 @@ class Search extends Index
             'date_min' => $this->dateMin(),
             'starts_ends' => $this->startsEnds(),
             'shared' => $this->shared(),
+            'shared_public' => $this->sharedPublic(),
             'position' => $this->position(),
             'list' => $this->list(),
         ];
@@ -153,6 +154,7 @@ class Search extends Index
             ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
             ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
             ->whenShared($this->listWhenShared())
+            ->whenSharedPublic($this->listWhenSharedPublic())
             ->whenFence($this->request->boolean('fence'), $this->request->float('fence_latitude'), $this->request->float('fence_longitude'), $this->request->float('fence_radius'))
             ->withDevice()
             ->withVehicle()

@@ -101,6 +101,7 @@ class Index extends ControllerAbstract
             'date_min' => $this->dateMin(),
             'starts_ends' => $this->startsEnds(),
             'shared' => $this->shared(),
+            'shared_public' => $this->sharedPublic(),
             'list' => $this->list(),
         ];
     }
@@ -201,6 +202,18 @@ class Index extends ControllerAbstract
     }
 
     /**
+     * @return array
+     */
+    protected function sharedPublic(): array
+    {
+        return [
+            '' => __('trip-index.shared_public-all'),
+            '1' => __('trip-index.shared_public-yes'),
+            '0' => __('trip-index.shared_public-no'),
+        ];
+    }
+
+    /**
      * @return ?\App\Domains\Trip\Model\Collection\Trip
      */
     protected function list(): ?Collection
@@ -211,6 +224,7 @@ class Index extends ControllerAbstract
             ->whenDeviceId($this->device()->id ?? null)
             ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
             ->whenShared($this->listWhenShared())
+            ->whenSharedPublic($this->listWhenSharedPublic())
             ->withDevice()
             ->withVehicle()
             ->list()
@@ -224,6 +238,17 @@ class Index extends ControllerAbstract
     {
         return match ($shared = $this->request->input('shared')) {
             '1', '0' => boolval($shared),
+            default => null,
+        };
+    }
+
+    /**
+     * @return ?bool
+     */
+    protected function listWhenSharedPublic(): ?bool
+    {
+        return match ($shared_public = $this->request->input('shared_public')) {
+            '1', '0' => boolval($shared_public),
             default => null,
         };
     }

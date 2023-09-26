@@ -13,6 +13,7 @@
     'save' => 'Guardar',
     'shared' => 'Compartir Viaje',
     'shared-url' => 'URL Pública:',
+    'shared_public' => 'Compartir Viaje Públicamente',
     'stats' => 'Estadísticas',
     'success' => 'El viaje ha sido actualizado correctamente',
 ];
