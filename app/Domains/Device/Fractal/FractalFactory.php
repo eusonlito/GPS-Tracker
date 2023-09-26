@@ -14,6 +14,6 @@ class FractalFactory extends FractalAbstract
      */
     protected function simple(Model $row): array
     {
-        return $row->only('id', 'name');
+        return $row->only('id', 'name', 'shared');
     }
 }

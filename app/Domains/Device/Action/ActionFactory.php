@@ -38,6 +38,14 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
+     * @return \App\Domains\Device\Model\Device
+     */
+    public function updateBoolean(): Model
+    {
+        return $this->actionHandle(UpdateBoolean::class, $this->validate()->updateBoolean());
+    }
+
+    /**
      * @return \App\Domains\DeviceMessage\Model\DeviceMessage
      */
     public function updateDeviceMessageCreate(): DeviceMessageModel

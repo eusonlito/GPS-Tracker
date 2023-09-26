@@ -38,6 +38,7 @@ class Device extends ModelAbstract
      */
     protected $casts = [
         'enabled' => 'boolean',
+        'shared' => 'boolean',
     ];
 
     /**

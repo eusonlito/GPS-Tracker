@@ -51,20 +51,20 @@ abstract class UpdateBoolean extends ActionAbstract
     {
         $value = $this->row->{$this->data['column']};
 
-        $this->data['value'] = match (is_bool($value)) {
+        $this->data['value'] = match (is_bool($value) || is_int($value)) {
             true => $this->dataValueBoolean($value),
             false => $this->dataValueDate($value),
         };
     }
 
     /**
-     * @param bool $value
+     * @param bool|int $value
      *
      * @return bool
      */
-    protected function dataValueBoolean(bool $value): bool
+    protected function dataValueBoolean(bool|int $value): bool
     {
-        return $value === false;
+        return empty($value);
     }
 
     /**
