@@ -10,7 +10,7 @@ class Update extends CreateUpdateAbstract
     protected function data(): void
     {
         $this->dataName();
-        $this->dataMaker();
+        $this->dataModel();
         $this->dataSerial();
         $this->dataPassword();
         $this->dataCode();
@@ -32,7 +32,7 @@ class Update extends CreateUpdateAbstract
     {
         $this->row->code = $this->data['code'];
         $this->row->name = $this->data['name'];
-        $this->row->maker = $this->data['maker'];
+        $this->row->model = $this->data['model'];
         $this->row->serial = $this->data['serial'];
         $this->row->phone_number = $this->data['phone_number'];
         $this->row->password = $this->data['password'];

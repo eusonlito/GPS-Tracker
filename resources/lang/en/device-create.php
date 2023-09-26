@@ -3,8 +3,8 @@
     'error' => [
         'serial-exists' => 'The specified serial already exists',
     ],
-    'maker' => 'Manufacturer',
     'meta-title' => 'Devices > Create',
+    'model' => 'Model',
     'name' => 'Name',
     'password' => 'Password',
     'phone_number' => 'Phone Number',

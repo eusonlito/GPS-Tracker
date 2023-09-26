@@ -45,9 +45,9 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     /**
      * @return void
      */
-    protected function dataMaker(): void
+    protected function dataModel(): void
     {
-        $this->data['maker'] = trim($this->data['maker']);
+        $this->data['model'] = trim($this->data['model']);
     }
 
     /**

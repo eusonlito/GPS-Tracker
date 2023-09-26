@@ -3,8 +3,8 @@
     'error' => [
         'serial-exists' => 'La série indiquée existe déjà',
     ],
-    'maker' => 'Fabricant',
     'meta-title' => 'Appareils > Créer',
+    'model' => 'Modèle',
     'name' => 'Nom',
     'password' => 'Mot de passe',
     'phone_number' => 'Numéro de téléphone',

@@ -12,7 +12,7 @@ class Create extends CreateUpdateAbstract
     protected function data(): void
     {
         $this->dataName();
-        $this->dataMaker();
+        $this->dataModel();
         $this->dataSerial();
         $this->dataPassword();
         $this->dataCode();
@@ -35,7 +35,7 @@ class Create extends CreateUpdateAbstract
         $this->row = Model::query()->create([
             'code' => $this->data['code'],
             'name' => $this->data['name'],
-            'maker' => $this->data['maker'],
+            'model' => $this->data['model'],
             'serial' => $this->data['serial'],
             'phone_number' => $this->data['phone_number'],
             'password' => $this->data['password'],

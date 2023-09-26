@@ -19,7 +19,7 @@
         <thead>
             <tr>
                 <th>{{ __('device-index.name') }}</th>
-                <th>{{ __('device-index.maker') }}</th>
+                <th>{{ __('device-index.model') }}</th>
                 <th>{{ __('device-index.vehicle') }}</th>
                 <th>{{ __('device-index.connected_at') }}</th>
                 <th>{{ __('device-index.enabled') }}</th>
@@ -35,7 +35,7 @@
 
             <tr>
                 <td><a href="{{ $link }}" class="block">{{ $row->name }}</a></td>
-                <td><a href="{{ $link }}" class="block">{{ $row->maker }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->model }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->vehicle->name ?? '-' }}</a></td>
                 <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->connected_at, $row->vehicle?->timezone->zone, 'Y-m-d H:i:s')</a></td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}" class="w-1">@status($row->enabled)</td>

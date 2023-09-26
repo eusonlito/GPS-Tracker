@@ -5,8 +5,8 @@
     </div>
 
     <div class="p-2">
-        <label for="device-maker" class="form-label">{{ __('device-create.maker') }}</label>
-        <input type="text" name="maker" class="form-control form-control-lg" id="device-maker" value="{{ $REQUEST->input('maker') }}" required>
+        <label for="device-model" class="form-label">{{ __('device-create.model') }}</label>
+        <input type="text" name="model" class="form-control form-control-lg" id="device-model" value="{{ $REQUEST->input('model') }}" required>
     </div>
 
     <div class="p-2">

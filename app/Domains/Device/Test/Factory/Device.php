@@ -21,7 +21,7 @@ class Device extends FactoryAbstract
         return [
             'code' => $this->faker->uuid(),
             'name' => $this->faker->name(),
-            'maker' => $this->faker->name(),
+            'model' => $this->faker->name(),
             'serial' => strval($this->faker->numberBetween()),
             'phone_number' => $this->faker->phoneNumber(),
             'password' => $this->faker->name(),

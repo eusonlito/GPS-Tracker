@@ -13,7 +13,7 @@ class Create extends ValidateAbstract
     {
         return [
             'name' => ['bail', 'string', 'required'],
-            'maker' => ['bail', 'string', 'required'],
+            'model' => ['bail', 'string', 'required'],
             'serial' => ['bail', 'string', 'required'],
             'phone_number' => ['bail', 'string'],
             'password' => ['bail', 'string'],
