@@ -5,6 +5,7 @@ namespace App\Domains\Device\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Domains\Device\Model\Builder\Device as Builder;
 use App\Domains\Device\Model\Collection\Device as Collection;
 use App\Domains\Device\Test\Factory\Device as TestFactory;
@@ -75,6 +76,23 @@ class Device extends ModelAbstract
     public function messages(): HasMany
     {
         return $this->hasMany(DeviceMessageModel::class, static::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function tripLast()
+    {
+        return $this->hasOne(TripModel::class, static::FOREIGN)->latestOfMany();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function tripLastShared()
+    {
+        return $this->hasOne(TripModel::class, static::FOREIGN)
+            ->ofMany(['id' => 'MAX'], static fn ($q) => $q->whereShared());
     }
 
     /**

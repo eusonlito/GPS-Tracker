@@ -20,6 +20,7 @@ class Shared extends ControllerAbstract
         $this->meta('title', __('device-shared.meta-title', ['title' => $this->row->name]));
 
         return $this->page('device.shared', [
+            'row' => $this->row,
             'trips' => $this->trips(),
         ]);
     }

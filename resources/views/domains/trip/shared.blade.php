@@ -11,6 +11,8 @@
 
     @endif
 
+    <h2 class="box px-5 py-2 mb-5 font-medium text-xl sm:text-2xl">{{ $row->name }}</h2>
+
     @if ($positions->isNotEmpty())
 
     <div class="box p-5">

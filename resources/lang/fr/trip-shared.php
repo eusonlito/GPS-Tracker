@@ -1,9 +1,9 @@
 <?php return [
-    'meta-title' => 'Voyage > :title',
     'distance' => [
         'title' => 'Distance',
         'total' => 'Total',
     ],
+    'meta-title' => 'Voyage > :title',
     'speed' => [
         'avg' => 'Moyenne',
         'avg_movement' => 'Moyenne mobile',

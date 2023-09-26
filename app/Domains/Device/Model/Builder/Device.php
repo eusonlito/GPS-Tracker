@@ -65,6 +65,14 @@ class Device extends BuilderAbstract
     /**
      * @return self
      */
+    public function withTripLastShared(): self
+    {
+        return $this->with('tripLastShared');
+    }
+
+    /**
+     * @return self
+     */
     public function withVehicle(): self
     {
         return $this->with(['vehicle' => static fn ($q) => $q->withTimezone()]);
