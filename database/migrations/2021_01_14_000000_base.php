@@ -120,13 +120,14 @@ return new class extends MigrationAbstract {
             $table->string('code')->index()->nullable();
 
             $table->string('name')->index();
-            $table->string('maker')->index();
+            $table->string('model')->index();
             $table->string('serial')->unique();
             $table->string('phone_number')->nullable();
             $table->string('password')->default('');
 
             $table->boolean('enabled')->default(0);
             $table->boolean('shared')->default(0);
+            $table->boolean('shared_public')->default(0);
 
             $table->dateTimeTz('connected_at')->nullable();
 
@@ -300,6 +301,7 @@ return new class extends MigrationAbstract {
             $table->dateTime('end_utc_at');
 
             $table->boolean('shared')->default(0);
+            $table->boolean('shared_public')->default(0);
 
             $this->timestamps($table);
 

@@ -124,7 +124,7 @@ DROP TABLE IF EXISTS `device`;
 CREATE TABLE `device` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `maker` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `serial` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -134,12 +134,16 @@ CREATE TABLE `device` (
   `connected_at` datetime DEFAULT NULL,
   `phone_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `vehicle_id` bigint unsigned DEFAULT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shared` tinyint(1) NOT NULL DEFAULT '0',
+  `shared_public` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `device_serial_unique` (`serial`),
   KEY `device_name_index` (`name`),
-  KEY `device_maker_index` (`maker`),
+  KEY `device_maker_index` (`model`),
   KEY `device_user_fk` (`user_id`),
   KEY `device_vehicle_fk` (`vehicle_id`),
+  KEY `device_code_index` (`code`),
   CONSTRAINT `device_user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `device_vehicle_fk` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicle` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -159,6 +163,26 @@ CREATE TABLE `device_message` (
   PRIMARY KEY (`id`),
   KEY `device_message_device_fk` (`device_id`),
   CONSTRAINT `device_message_device_fk` FOREIGN KEY (`device_id`) REFERENCES `device` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `file`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `file` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `size` bigint unsigned NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `related_table` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `related_id` bigint unsigned NOT NULL,
+  `user_id` bigint unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `file_name_index` (`name`),
+  KEY `file_related_table_related_id_index` (`related_table`,`related_id`),
+  KEY `file_user_fk` (`user_id`),
+  CONSTRAINT `file_user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `ip_lock`;
@@ -189,6 +213,30 @@ CREATE TABLE `language` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `language_code_unique` (`code`),
   UNIQUE KEY `language_locale_unique` (`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `maintenance`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `maintenance` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `workshop` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_at` date NOT NULL,
+  `amount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
+  `distance` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
+  `distance_next` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_id` bigint unsigned NOT NULL,
+  `vehicle_id` bigint unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `maintenance_name_index` (`name`),
+  KEY `maintenance_user_fk` (`user_id`),
+  KEY `maintenance_vehicle_fk` (`vehicle_id`),
+  CONSTRAINT `maintenance_user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `maintenance_vehicle_fk` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicle` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `migrations`;
@@ -340,6 +388,7 @@ CREATE TABLE `trip` (
   `vehicle_id` bigint unsigned NOT NULL,
   `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `shared` tinyint(1) NOT NULL DEFAULT '0',
+  `shared_public` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `trip_name_index` (`name`),
   KEY `trip_device_fk` (`device_id`),
@@ -421,52 +470,59 @@ CREATE TABLE `vehicle` (
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-INSERT INTO `migrations` VALUES (1,'2021_01_14_000000_base',1);
-INSERT INTO `migrations` VALUES (2,'2021_01_14_000001_seed',1);
-INSERT INTO `migrations` VALUES (3,'2022_10_04_184500_device_password_port',2);
-INSERT INTO `migrations` VALUES (4,'2022_10_06_183000_trip_distance_time',3);
-INSERT INTO `migrations` VALUES (5,'2022_10_06_183000_trip_sleep',3);
-INSERT INTO `migrations` VALUES (6,'2022_10_07_190000_city_state_country',4);
-INSERT INTO `migrations` VALUES (7,'2022_10_07_193000_position_city',4);
-INSERT INTO `migrations` VALUES (8,'2022_10_09_233000_device_timezone',5);
-INSERT INTO `migrations` VALUES (9,'2022_10_10_153000_point_4326',6);
-INSERT INTO `migrations` VALUES (10,'2022_10_11_173000_user_admin',7);
-INSERT INTO `migrations` VALUES (11,'2022_10_16_190000_timezone',8);
-INSERT INTO `migrations` VALUES (12,'2022_10_16_193000_device_timezone',8);
-INSERT INTO `migrations` VALUES (13,'2022_10_16_193000_position_date_utc_at',8);
-INSERT INTO `migrations` VALUES (14,'2022_10_16_193000_position_timezone',8);
-INSERT INTO `migrations` VALUES (15,'2022_10_17_193000_trip_dates_utc_at',9);
-INSERT INTO `migrations` VALUES (16,'2022_10_17_193000_trip_timezone',9);
-INSERT INTO `migrations` VALUES (20,'2022_10_17_193000_refuel_units',10);
-INSERT INTO `migrations` VALUES (21,'2022_10_17_230000_refuel_quantity_before',10);
-INSERT INTO `migrations` VALUES (22,'2022_10_17_233000_refuel_price',10);
-INSERT INTO `migrations` VALUES (23,'2022_11_01_193000_device_timezone_auto',11);
-INSERT INTO `migrations` VALUES (24,'2022_11_02_180000_timezone_unused',12);
-INSERT INTO `migrations` VALUES (25,'2022_11_02_183000_timezone_geojson',13);
-INSERT INTO `migrations` VALUES (26,'2022_11_04_183000_device_connected_at',14);
-INSERT INTO `migrations` VALUES (27,'2022_11_05_220000_position_trip_id',15);
-INSERT INTO `migrations` VALUES (28,'2022_11_07_183000_device_message',16);
-INSERT INTO `migrations` VALUES (29,'2022_11_08_190000_device_message_response',17);
-INSERT INTO `migrations` VALUES (30,'2022_11_09_183000_device_phone_number',18);
-INSERT INTO `migrations` VALUES (31,'2022_11_10_183000_device_alarm',19);
-INSERT INTO `migrations` VALUES (32,'2022_11_23_220000_device_alarm_keys',20);
-INSERT INTO `migrations` VALUES (33,'2022_11_23_233000_user_telegram',21);
-INSERT INTO `migrations` VALUES (34,'2022_11_24_183000_device_alarm_telegram',21);
-INSERT INTO `migrations` VALUES (35,'2022_11_24_220000_device_alarm_notification_foreign',22);
-INSERT INTO `migrations` VALUES (36,'2022_11_25_223000_device_alarm_rename',23);
-INSERT INTO `migrations` VALUES (37,'2022_11_25_224000_device_alarm_multiple',23);
-INSERT INTO `migrations` VALUES (38,'2022_11_27_190000_timezone_default',24);
-INSERT INTO `migrations` VALUES (39,'2022_11_27_220000_alarm_notification_date_at',25);
-INSERT INTO `migrations` VALUES (40,'2022_11_27_223000_alarm_notification_point',26);
-INSERT INTO `migrations` VALUES (41,'2022_12_02_183000_server',27);
-INSERT INTO `migrations` VALUES (42,'2022_12_20_183000_vehicle',28);
-INSERT INTO `migrations` VALUES (43,'2022_12_22_223000_device_port',29);
-INSERT INTO `migrations` VALUES (44,'2022_12_22_223000_configuration_socket_debug',30);
-INSERT INTO `migrations` VALUES (45,'2022_12_27_183000_server_debug',31);
-INSERT INTO `migrations` VALUES (46,'2022_12_29_220000_trip_stats',32);
-INSERT INTO `migrations` VALUES (47,'2023_01_02_230000_user_preferences',33);
-INSERT INTO `migrations` VALUES (48,'2023_02_01_230000_trip_shared',34);
-INSERT INTO `migrations` VALUES (49,'2023_02_07_234500_device_timezone_auto',35);
-INSERT INTO `migrations` VALUES (50,'2023_03_09_163000_alarm_schedule',36);
-INSERT INTO `migrations` VALUES (51,'2023_03_22_183000_ip_lock_index',37);
-INSERT INTO `migrations` VALUES (52,'2023_04_27_203000_position_point_swap',38);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (1,'2021_01_14_000000_base',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (2,'2021_01_14_000001_seed',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (3,'2022_10_04_184500_device_password_port',2);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (4,'2022_10_06_183000_trip_distance_time',3);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (5,'2022_10_06_183000_trip_sleep',3);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (6,'2022_10_07_190000_city_state_country',4);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (7,'2022_10_07_193000_position_city',4);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (8,'2022_10_09_233000_device_timezone',5);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (9,'2022_10_10_153000_point_4326',6);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (10,'2022_10_11_173000_user_admin',7);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (11,'2022_10_16_190000_timezone',8);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (12,'2022_10_16_193000_device_timezone',8);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (13,'2022_10_16_193000_position_date_utc_at',8);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (14,'2022_10_16_193000_position_timezone',8);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (15,'2022_10_17_193000_trip_dates_utc_at',9);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (16,'2022_10_17_193000_trip_timezone',9);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (20,'2022_10_17_193000_refuel_units',10);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (21,'2022_10_17_230000_refuel_quantity_before',10);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (22,'2022_10_17_233000_refuel_price',10);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (23,'2022_11_01_193000_device_timezone_auto',11);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (24,'2022_11_02_180000_timezone_unused',12);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (25,'2022_11_02_183000_timezone_geojson',13);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (26,'2022_11_04_183000_device_connected_at',14);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (27,'2022_11_05_220000_position_trip_id',15);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (28,'2022_11_07_183000_device_message',16);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (29,'2022_11_08_190000_device_message_response',17);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (30,'2022_11_09_183000_device_phone_number',18);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (31,'2022_11_10_183000_device_alarm',19);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (32,'2022_11_23_220000_device_alarm_keys',20);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (33,'2022_11_23_233000_user_telegram',21);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (34,'2022_11_24_183000_device_alarm_telegram',21);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (35,'2022_11_24_220000_device_alarm_notification_foreign',22);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (36,'2022_11_25_223000_device_alarm_rename',23);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (37,'2022_11_25_224000_device_alarm_multiple',23);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (38,'2022_11_27_190000_timezone_default',24);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (39,'2022_11_27_220000_alarm_notification_date_at',25);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (40,'2022_11_27_223000_alarm_notification_point',26);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (41,'2022_12_02_183000_server',27);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (42,'2022_12_20_183000_vehicle',28);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (43,'2022_12_22_223000_device_port',29);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (44,'2022_12_22_223000_configuration_socket_debug',30);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (45,'2022_12_27_183000_server_debug',31);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (46,'2022_12_29_220000_trip_stats',32);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (47,'2023_01_02_230000_user_preferences',33);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (48,'2023_02_01_230000_trip_shared',34);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (49,'2023_02_07_234500_device_timezone_auto',35);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (50,'2023_03_09_163000_alarm_schedule',36);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (51,'2023_03_22_183000_ip_lock_index',37);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (52,'2023_04_27_203000_position_point_swap',38);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (54,'2023_09_13_223000_maintenance',39);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (55,'2023_09_14_190000_file',40);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (56,'2023_09_15_183000_maintenance_date_at',41);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (57,'2023_09_25_200000_device_shared',42);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (58,'2023_09_27_004500_device_maker_model',43);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (59,'2023_09_27_005000_device_trip_shared_public',44);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (60,'2023_09_27_185000_device_trip_code_uuid',45);
