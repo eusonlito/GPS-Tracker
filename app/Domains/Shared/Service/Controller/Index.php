@@ -2,13 +2,10 @@
 
 namespace App\Domains\Shared\Service\Controller;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use App\Domains\Core\Traits\Factory;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Device\Model\Collection\Device as DeviceCollection;
-use App\Domains\Trip\Model\Trip as TripModel;
-use App\Domains\Trip\Model\Collection\Trip as TripCollection;
 
 class Index extends ControllerAbstract
 {

@@ -82,7 +82,7 @@ class Device extends ModelAbstract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function tripLast()
+    public function tripLast(): HasOne
     {
         return $this->hasOne(TripModel::class, static::FOREIGN)->latestOfMany();
     }
@@ -90,7 +90,7 @@ class Device extends ModelAbstract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function tripLastShared()
+    public function tripLastShared(): HasOne
     {
         return $this->hasOne(TripModel::class, static::FOREIGN)
             ->ofMany(['id' => 'MAX'], static fn ($q) => $q->whereShared());
@@ -99,7 +99,7 @@ class Device extends ModelAbstract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function tripLastSharedPublic()
+    public function tripLastSharedPublic(): HasOne
     {
         return $this->hasOne(TripModel::class, static::FOREIGN)
             ->ofMany(['id' => 'MAX'], static fn ($q) => $q->whereShared()->whereSharedPublic());
