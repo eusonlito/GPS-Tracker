@@ -3,8 +3,7 @@
 namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Trip\Model\Trip as TripModel;
-use App\Domains\Trip\Model\Collection\Trip as TripCollection;
+use App\Domains\Device\Service\Controller\Shared as ControllerService;
 
 class Shared extends ControllerAbstract
 {
@@ -19,22 +18,14 @@ class Shared extends ControllerAbstract
 
         $this->meta('title', __('device-shared.meta-title', ['title' => $this->row->name]));
 
-        return $this->page('device.shared', [
-            'row' => $this->row,
-            'trips' => $this->trips(),
-        ]);
+        return $this->page('device.shared', $this->data());
     }
 
     /**
-     * @return \App\Domains\Trip\Model\Collection\Trip
+     * @return array
      */
-    protected function trips(): TripCollection
+    protected function data(): array
     {
-        return TripModel::query()
-            ->byDeviceId($this->row->id)
-            ->whereShared()
-            ->whereSharedPublic()
-            ->list()
-            ->get();
+        return ControllerService::new($this->request, $this->row)->data();
     }
 }

@@ -3,6 +3,14 @@
 @section ('body')
 
 <div class="my-5">
+    @if ($shared_available)
+
+    <div class="box px-5 py-2 mb-5">
+        <a href="{{ $shared_url }}">&laquo; {{ __('common.back')}}</a>
+    </div>
+
+    @endif
+
     <h2 class="box px-5 py-2 font-medium text-xl sm:text-2xl">{{ $row->name }}</h2>
 
     <div class="overflow-auto lg:overflow-visible header-sticky">

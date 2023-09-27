@@ -5,6 +5,11 @@ namespace App\Domains\Core\Service\Controller;
 abstract class ControllerAbstract
 {
     /**
+     * @var array
+     */
+    protected array $cache = [];
+
+    /**
      * @return self
      */
     public static function new(): self
