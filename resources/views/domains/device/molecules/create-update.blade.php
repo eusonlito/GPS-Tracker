@@ -1,5 +1,14 @@
 <div class="box p-5 mt-5">
     <div class="p-2">
+        <label for="device-code" class="form-label">{{ __('device-update.code') }}</label>
+
+        <div class="input-group">
+            <input type="text" name="code" class="form-control form-control-lg" id="device-code" value="{{ $REQUEST->input('code') }}" readonly required>
+            <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.generate') }}" data-password-generate="#device-code" data-password-generate-format="uuid" tabindex="-1">@icon('refresh-cw', 'w-5 h-5')</button>
+        </div>
+    </div>
+
+    <div class="p-2">
         <label for="device-name" class="form-label">{{ __('device-create.name') }}</label>
         <input type="text" name="name" class="form-control form-control-lg" id="device-name" value="{{ $REQUEST->input('name') }}" required>
     </div>

@@ -17,13 +17,21 @@ class Create extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow();
+        $this->requestMergeWithRow(data: $this->requestMergeWithRowData());
 
         $this->meta('title', __('device-create.meta-title'));
 
         return $this->page('device.create', [
             'vehicles' => VehicleModel::query()->list()->get(),
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function requestMergeWithRowData(): array
+    {
+        return ['code' => helper()->uuid()];
     }
 
     /**

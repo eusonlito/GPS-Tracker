@@ -1,7 +1,11 @@
 <?php return [
     'alarms' => 'Alarmas',
+    'code' => 'Código',
     'delete-button' => 'Borrar',
     'delete-success' => 'El viaje ha sido borrado correctamente',
+    'error' => [
+        'code-exists' => 'El código indicado ya existe',
+    ],
     'export' => 'Exportar',
     'map' => 'Mapa',
     'merge' => 'Unir',

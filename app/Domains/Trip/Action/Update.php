@@ -11,7 +11,7 @@ class Update extends ActionAbstract
      */
     public function handle(): Model
     {
-        $this->data();
+        $this->check();
         $this->save();
 
         return $this->row;
@@ -20,17 +20,19 @@ class Update extends ActionAbstract
     /**
      * @return void
      */
-    protected function data(): void
+    protected function check(): void
     {
-        $this->dataCode();
+        $this->checkCode();
     }
 
     /**
      * @return void
      */
-    protected function dataCode(): void
+    protected function checkCode(): void
     {
-        $this->data['code'] = $this->row->code ?: helper()->uuid();
+        if (Model::query()->byIdNot($this->row->id)->byCode($this->data['code'])->count()) {
+            $this->exceptionValidator(__('trip-update.error.code-exists'));
+        }
     }
 
     /**

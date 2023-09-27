@@ -12,6 +12,7 @@ class Update extends ValidateAbstract
     public function rules(): array
     {
         return [
+            'code' => ['bail', 'required', 'uuid'],
             'name' => ['bail', 'required', 'string'],
             'shared' => ['bail', 'boolean'],
             'shared_public' => ['bail', 'boolean'],

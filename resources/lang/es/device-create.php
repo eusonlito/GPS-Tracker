@@ -1,7 +1,8 @@
 <?php return [
     'enabled' => 'Activo',
     'error' => [
-        'serial-exists' => 'El indicado serial ya existe',
+        'code-exists' => 'El código indicado ya existe',
+        'serial-exists' => 'El número de serie indicado ya existe',
     ],
     'meta-title' => 'Dispositivos > Crear',
     'model' => 'Modelo',

@@ -4,7 +4,7 @@
     "description": "GPS Tracker platform for Sinotrack ST-90x and OsmAnd devices built with Laravel 10 + PHP 8.1 and MySQL 8. Plataforma GPS Tracker para dispositivos Sinotrack ST-90x y OsmAnd creada con Laravel 10 + PHP 8.1 y MySQL 8.",
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": ">=8.1",
         "composer/composer": "^2.5.1",
         "doctrine/dbal": "^3.5.3",
         "eusonlito/captcha": "^1.1.1",

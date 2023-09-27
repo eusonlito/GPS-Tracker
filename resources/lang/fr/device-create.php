@@ -1,6 +1,7 @@
 <?php return [
     'enabled' => 'Actif',
     'error' => [
+        'code-exists' => 'Le code indiqué existe déjà',
         'serial-exists' => 'La série indiquée existe déjà',
     ],
     'meta-title' => 'Appareils > Créer',

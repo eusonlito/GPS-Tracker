@@ -8,5 +8,6 @@
         'query' => 'Error del Sistema',
         'system' => 'Error del Sistema',
     ],
+    'generate' => 'Generar',
     'show' => 'Mostrar',
 ];

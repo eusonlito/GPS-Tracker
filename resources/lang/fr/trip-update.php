@@ -1,7 +1,11 @@
 <?php return [
     'alarms' => 'Alarmes',
+    'code' => 'Code',
     'delete-button' => 'Effacer',
     'delete-success' => 'Le déclenchement a été supprimé avec succès',
+    'error' => [
+        'code-exists' => 'Le code indiqué existe déjà',
+    ],
     'export' => 'Exporter',
     'map' => 'Carte',
     'merge' => 'Joindre',

@@ -13,7 +13,6 @@ class Update extends CreateUpdateAbstract
         $this->dataModel();
         $this->dataSerial();
         $this->dataPassword();
-        $this->dataCode();
         $this->dataVehicleId();
     }
 
@@ -22,6 +21,7 @@ class Update extends CreateUpdateAbstract
      */
     protected function check(): void
     {
+        $this->checkCode();
         $this->checkSerial();
     }
 

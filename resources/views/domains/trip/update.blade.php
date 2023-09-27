@@ -7,6 +7,15 @@
 
     <div class="box p-5 mt-5">
         <div class="p-2">
+            <label for="trip-code" class="form-label">{{ __('trip-update.code') }}</label>
+
+            <div class="input-group">
+                <input type="text" name="code" class="form-control form-control-lg" id="trip-code" value="{{ $REQUEST->input('code') }}" readonly required>
+                <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.generate') }}" data-password-generate="#trip-code" data-password-generate-format="uuid" tabindex="-1">@icon('refresh-cw', 'w-5 h-5')</button>
+            </div>
+        </div>
+
+        <div class="p-2">
             <label for="trip-name" class="form-label">{{ __('trip-update.name') }}</label>
             <input type="text" name="name" class="form-control form-control-lg" id="trip-name" value="{{ $REQUEST->input('name') }}" required>
         </div>

@@ -71,20 +71,22 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     /**
      * @return void
      */
-    protected function dataCode(): void
-    {
-        $this->data['code'] = $this->row?->code ?: helper()->uuid();
-    }
-
-    /**
-     * @return void
-     */
     protected function dataVehicleId(): void
     {
         if ($this->data['vehicle_id']) {
             $this->data['vehicle_id'] = VehicleModel::query()->selectOnly('id')->findOrFail($this->data['vehicle_id'])->id;
         } else {
             $this->data['vehicle_id'] = null;
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkCode(): void
+    {
+        if (Model::query()->byIdNot($this->row->id ?? 0)->byCode($this->data['code'])->count()) {
+            $this->exceptionValidator(__('device-create.error.code-exists'));
         }
     }
 

@@ -1,7 +1,11 @@
 <?php return [
     'alarms' => 'Alarms',
+    'code' => 'Code',
     'delete-button' => 'Delete',
     'delete-success' => 'The trip has been successfully deleted',
+    'error' => [
+        'code-exists' => 'The indicated code already exists',
+    ],
     'export' => 'Export',
     'map' => 'Map',
     'merge' => 'Merge',
