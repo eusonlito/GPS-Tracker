@@ -6,8 +6,4 @@ use App\Domains\Core\Service\Controller\ControllerAbstract as ControllerAbstract
 
 abstract class ControllerAbstract extends ControllerAbstractCore
 {
-    /**
-     * @var array
-     */
-    protected array $cache = [];
 }
