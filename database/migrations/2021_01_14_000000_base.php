@@ -151,6 +151,22 @@ return new class extends MigrationAbstract {
             $table->unsignedBigInteger('device_id');
         });
 
+        Schema::create('file', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name')->index();
+            $table->string('path');
+
+            $table->unsignedBigInteger('size');
+
+            $this->timestamps($table);
+
+            $table->string('related_table');
+            $table->unsignedBigInteger('related_id');
+
+            $table->unsignedBigInteger('user_id');
+        });
+
         Schema::create('ip_lock', function (Blueprint $table) {
             $table->id();
 
@@ -323,6 +339,7 @@ return new class extends MigrationAbstract {
             $table->jsonb('telegram')->nullable();
 
             $table->boolean('enabled')->default(0);
+            $table->boolean('admin')->default(0);
 
             $this->timestamps($table);
 
@@ -392,6 +409,12 @@ return new class extends MigrationAbstract {
 
         Schema::table('device_message', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'device');
+        });
+
+        Schema::table('file', function (Blueprint $table) {
+            $this->tableAddIndex($table, ['related_table', 'related_id']);
+
+            $this->foreignOnDeleteCascade($table, 'user');
         });
 
         Schema::table('maintenance', function (Blueprint $table) {
