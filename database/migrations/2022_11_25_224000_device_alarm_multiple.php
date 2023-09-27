@@ -8,7 +8,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         if ($this->upMigrated()) {
             return;
@@ -31,7 +31,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function tables()
+    protected function tables(): void
     {
         Schema::table('alarm', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable();
@@ -79,7 +79,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function keys()
+    protected function keys(): void
     {
         Schema::table('alarm', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'user');
@@ -94,7 +94,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('alarm', function (Blueprint $table) {
             $table->unsignedBigInteger('device_id')->nullable();

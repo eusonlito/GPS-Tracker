@@ -8,7 +8,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $this->map();
         $this->tables();
@@ -18,7 +18,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function map()
+    protected function map(): void
     {
         $this->db()->getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('point', 'array');
     }
@@ -26,7 +26,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function tables()
+    protected function tables(): void
     {
         $this->db()->statement('DELETE FROM `position` WHERE `trip_id` IS NULL;');
 
@@ -46,7 +46,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         $this->map();
 

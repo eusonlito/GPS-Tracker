@@ -13,7 +13,7 @@ class Database extends Seeder
     /**
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $time = time();
 

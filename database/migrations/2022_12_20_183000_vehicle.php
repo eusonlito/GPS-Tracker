@@ -8,7 +8,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         if ($this->upMigrated()) {
             return;
@@ -34,7 +34,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function tables()
+    protected function tables(): void
     {
         Schema::table('alarm_notification', function (Blueprint $table) {
             $this->tableDropForeign($table, 'device', 'fk_');
@@ -93,7 +93,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function migrate()
+    protected function migrate(): void
     {
         $this->migrateVehicle();
         $this->migrateDevice();
@@ -107,7 +107,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function migrateVehicle()
+    protected function migrateVehicle(): void
     {
         $this->db()->statement('
             INSERT INTO `vehicle`
@@ -122,7 +122,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function migrateDevice()
+    protected function migrateDevice(): void
     {
         $this->db()->statement('
             UPDATE `device`
@@ -133,7 +133,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function migrateAlarmNotification()
+    protected function migrateAlarmNotification(): void
     {
         $this->db()->statement('
             UPDATE `alarm_notification`
@@ -144,7 +144,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function migrateAlarmVehicle()
+    protected function migrateAlarmVehicle(): void
     {
         $this->db()->statement('
             INSERT INTO `alarm_vehicle`
@@ -159,7 +159,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function migratePosition()
+    protected function migratePosition(): void
     {
         $this->db()->statement('
             UPDATE `position`
@@ -170,7 +170,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function migrateRefuel()
+    protected function migrateRefuel(): void
     {
         $this->db()->statement('
             UPDATE `refuel`
@@ -181,7 +181,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function migrateTrip()
+    protected function migrateTrip(): void
     {
         $this->db()->statement('
             UPDATE `trip`
@@ -192,7 +192,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function tablesFinish()
+    protected function tablesFinish(): void
     {
         Schema::table('alarm_notification', function (Blueprint $table) {
             $table->dropColumn('device_id');
@@ -228,7 +228,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function keys()
+    protected function keys(): void
     {
         Schema::table('alarm_notification', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'vehicle');
@@ -266,7 +266,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function down()
+    public function down(): void
     {
     }
 };

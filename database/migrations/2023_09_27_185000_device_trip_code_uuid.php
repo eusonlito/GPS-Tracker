@@ -6,7 +6,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $this->update();
         $this->upFinish();
@@ -15,7 +15,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function update()
+    protected function update(): void
     {
         $this->db()->statement('
             UPDATE `trip`

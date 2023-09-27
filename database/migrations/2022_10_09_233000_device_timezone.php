@@ -8,7 +8,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         if ($this->upMigrated()) {
             return;
@@ -31,7 +31,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function tables()
+    protected function tables(): void
     {
         Schema::table('device', function (Blueprint $table) {
             $table->string('timezone');
@@ -41,7 +41,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('device', function (Blueprint $table) {
             $table->dropColumn('timezone');

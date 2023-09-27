@@ -8,7 +8,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $this->tables();
         $this->upFinish();
@@ -17,7 +17,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function tables()
+    protected function tables(): void
     {
         Schema::table('ip_lock', function (Blueprint $table) {
             $this->tableAddIndex($table, 'ip');
@@ -27,7 +27,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('ip_lock', function (Blueprint $table) {
             $this->tableAddIndex($table, 'ip');

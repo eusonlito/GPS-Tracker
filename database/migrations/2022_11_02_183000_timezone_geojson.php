@@ -9,14 +9,14 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         if ($this->upMigrated()) {
             return;
         }
 
         $this->tables();
-        $this->index();
+        $this->keys();
         $this->upFinish();
     }
 
@@ -31,7 +31,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function tables()
+    protected function tables(): void
     {
         Schema::table('timezone', function (Blueprint $table) {
             $table->multiPolygon('geojson')->nullable();
@@ -44,7 +44,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function index()
+    protected function keys(): void
     {
         Schema::table('timezone', function (Blueprint $table) {
             $table->spatialIndex('geojson');
@@ -54,7 +54,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('timezone', function (Blueprint $table) {
             $table->dropColumn('geojson');

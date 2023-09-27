@@ -9,7 +9,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $this->factory('Trip')->action()->updateStatsAll();
     }

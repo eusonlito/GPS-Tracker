@@ -6,7 +6,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $this->tables();
     }
@@ -14,7 +14,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function tables()
+    protected function tables(): void
     {
         $this->db()->statement('ALTER TABLE `city` DROP INDEX `city_point_index`;');
         $this->db()->statement('ALTER TABLE `city` MODIFY COLUMN `point` POINT NOT NULL SRID 4326;');

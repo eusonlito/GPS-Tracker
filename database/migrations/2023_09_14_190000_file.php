@@ -8,7 +8,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         if ($this->upMigrated()) {
             return;
@@ -30,7 +30,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function tables()
+    protected function tables(): void
     {
         Schema::create('file', function (Blueprint $table) {
             $table->id();
@@ -52,7 +52,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function keys()
+    protected function keys(): void
     {
         Schema::table('file', function (Blueprint $table) {
             $this->tableAddIndex($table, ['related_table', 'related_id']);
@@ -64,7 +64,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::drop('file');
     }

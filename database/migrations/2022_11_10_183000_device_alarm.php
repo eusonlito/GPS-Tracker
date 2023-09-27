@@ -8,7 +8,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         if ($this->upMigrated()) {
             return;
@@ -23,13 +23,13 @@ return new class extends MigrationAbstract {
      */
     protected function upMigrated(): bool
     {
-        return Schema::hasTable('alarm');
+        return Schema::hasTable('device_alarm');
     }
 
     /**
      * @return void
      */
-    protected function tables()
+    protected function tables(): void
     {
         Schema::create('device_alarm', function (Blueprint $table) {
             $table->id();
@@ -69,7 +69,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::drop('device_alarm_notification');
         Schema::drop('device_alarm');

@@ -8,7 +8,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         $this->functions();
         $this->tables();
@@ -27,7 +27,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function tables()
+    protected function tables(): void
     {
         Schema::create('alarm', function (Blueprint $table) {
             $table->id();
@@ -378,7 +378,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function keys()
+    protected function keys(): void
     {
         Schema::table('alarm', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'user');

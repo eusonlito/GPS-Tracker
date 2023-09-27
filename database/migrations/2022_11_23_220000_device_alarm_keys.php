@@ -8,7 +8,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         if ($this->upMigrated()) {
             return;
@@ -30,7 +30,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function tables()
+    protected function tables(): void
     {
         $this->db()->statement('
             DELETE FROM `device_alarm`
@@ -60,7 +60,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function keys()
+    protected function keys(): void
     {
         Schema::table('device_alarm', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'device');
@@ -77,7 +77,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('device_alarm', function (Blueprint $table) {
             $this->tableDropForeign($table, 'device', 'fk_');

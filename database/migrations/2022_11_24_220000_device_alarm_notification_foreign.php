@@ -8,7 +8,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         if ($this->upMigrated()) {
             return;
@@ -28,7 +28,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    protected function keys()
+    protected function keys(): void
     {
         Schema::table('device_alarm_notification', function (Blueprint $table) {
             $this->tableDropForeign($table, 'device_alarm', 'fk_');
@@ -46,7 +46,7 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::table('device_alarm_notification', function (Blueprint $table) {
             $this->tableDropForeign($table, 'device_alarm', 'fk_');
