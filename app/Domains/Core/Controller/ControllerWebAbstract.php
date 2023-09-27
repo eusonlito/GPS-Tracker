@@ -107,11 +107,13 @@ abstract class ControllerWebAbstract extends ControllerAbstract
      *
      * @return mixed
      */
-    final protected function actionIfExists(string $name)
+    final protected function actionIfExists(string $name): mixed
     {
-        if ($this->request->input('_action') === $name) {
-            return call_user_func_array([$this, 'actionCall'], func_get_args());
+        if ($this->request->input('_action') !== $name) {
+            return null;
         }
+
+        return call_user_func_array([$this, 'actionCall'], func_get_args());
     }
 
     /**
@@ -119,11 +121,13 @@ abstract class ControllerWebAbstract extends ControllerAbstract
      *
      * @return mixed
      */
-    final protected function actionPost(string $name)
+    final protected function actionPost(string $name): mixed
     {
-        if ($this->request->isMethod('post')) {
-            return $this->actionIfExists($name, ...func_get_args());
+        if ($this->request->isMethod('post') === false) {
+            return null;
         }
+
+        return $this->actionIfExists($name, ...func_get_args());
     }
 
     /**
@@ -133,7 +137,7 @@ abstract class ControllerWebAbstract extends ControllerAbstract
      *
      * @return mixed
      */
-    final protected function actionCall(string $name, ?string $target = null, ...$args)
+    final protected function actionCall(string $name, ?string $target = null, ...$args): mixed
     {
         try {
             return call_user_func_array([$this, $target ?: $name], $args);
@@ -147,7 +151,7 @@ abstract class ControllerWebAbstract extends ControllerAbstract
      *
      * @return mixed
      */
-    final protected function actionCallClosure(Closure $closure)
+    final protected function actionCallClosure(Closure $closure): mixed
     {
         try {
             return $closure();
@@ -161,7 +165,7 @@ abstract class ControllerWebAbstract extends ControllerAbstract
      *
      * @return mixed
      */
-    final protected function actionException(Throwable $e)
+    final protected function actionException(Throwable $e): mixed
     {
         report($e);
 
@@ -174,7 +178,7 @@ abstract class ControllerWebAbstract extends ControllerAbstract
      *
      * @return mixed
      */
-    final protected function sessionMessage(string $status, string $message)
+    final protected function sessionMessage(string $status, string $message): mixed
     {
         return Alert::{$status}($message);
     }

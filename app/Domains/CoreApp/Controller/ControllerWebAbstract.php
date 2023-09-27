@@ -7,6 +7,8 @@ use App\Domains\Core\Controller\ControllerWebAbstract as CoreControllerWebAbstra
 abstract class ControllerWebAbstract extends CoreControllerWebAbstract
 {
     /**
+     * @psalm-suppress UndefinedConstant
+     *
      * @return void
      */
     protected function initCustom(): void

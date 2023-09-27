@@ -18,7 +18,7 @@ class CheckPosition extends JobAbstract
     /**
      * @return array
      */
-    public function middleware()
+    public function middleware(): array
     {
         return [(new WithoutOverlapping((string)$this->position_id))->expireAfter(30)];
     }
@@ -26,7 +26,7 @@ class CheckPosition extends JobAbstract
     /**
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $this->factory()->action(['position_id' => $this->position_id])->checkPosition();
     }

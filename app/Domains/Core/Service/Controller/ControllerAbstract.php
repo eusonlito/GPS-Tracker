@@ -7,7 +7,7 @@ abstract class ControllerAbstract
     /**
      * @return self
      */
-    public static function new()
+    public static function new(): self
     {
         return new static(...func_get_args());
     }

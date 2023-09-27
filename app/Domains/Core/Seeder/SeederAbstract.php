@@ -52,7 +52,7 @@ class SeederAbstract extends Seeder
      *
      * @return void
      */
-    protected function transaction(Closure $function)
+    protected function transaction(Closure $function): void
     {
         DB::transaction(function () use ($function) {
             Schema::disableForeignKeyConstraints();
@@ -68,7 +68,7 @@ class SeederAbstract extends Seeder
      *
      * @return void
      */
-    protected function truncate(string ...$tables)
+    protected function truncate(string ...$tables): void
     {
         Schema::disableForeignKeyConstraints();
 

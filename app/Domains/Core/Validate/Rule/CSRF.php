@@ -27,7 +27,7 @@ class CSRF implements RuleContract
     /**
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return __('validator.csrf');
     }

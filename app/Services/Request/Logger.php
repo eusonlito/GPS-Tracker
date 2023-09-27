@@ -81,6 +81,8 @@ class Logger extends RotatingFileAbstract
      * @param \Illuminate\Http\Request $request
      * @param array $data = []
      *
+     * @psalm-suppress UndefinedConstant
+     *
      * @return array
      */
     protected static function data(Request $request, array $data = []): array

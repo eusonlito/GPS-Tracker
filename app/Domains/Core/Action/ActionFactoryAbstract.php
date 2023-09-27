@@ -47,7 +47,7 @@ abstract class ActionFactoryAbstract
      *
      * @return mixed
      */
-    final protected function actionHandle(string $class, ?array $data = [], ...$args)
+    final protected function actionHandle(string $class, ?array $data = [], ...$args): mixed
     {
         return $this->action($class, $data ?? $this->data)->handle(...$args);
     }
@@ -59,7 +59,7 @@ abstract class ActionFactoryAbstract
      *
      * @return mixed
      */
-    final protected function actionHandleTransaction(string $class, ?array $data = [], ...$args)
+    final protected function actionHandleTransaction(string $class, ?array $data = [], ...$args): mixed
     {
         return $this->transaction(fn () => $this->actionHandle($class, $data ?? $this->data, ...$args));
     }
@@ -69,7 +69,7 @@ abstract class ActionFactoryAbstract
      *
      * @return mixed
      */
-    final protected function transaction(Closure $closure)
+    final protected function transaction(Closure $closure): mixed
     {
         return $this->connection()->transaction($closure);
     }

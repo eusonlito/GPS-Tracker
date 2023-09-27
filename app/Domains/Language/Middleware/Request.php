@@ -14,7 +14,7 @@ class Request extends MiddlewareAbstract
      *
      * @return mixed
      */
-    public function handle(RequestVendor $request, Closure $next)
+    public function handle(RequestVendor $request, Closure $next): mixed
     {
         $this->factory()->action()->request();
 

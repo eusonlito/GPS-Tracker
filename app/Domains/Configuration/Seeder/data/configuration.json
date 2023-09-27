@@ -15,5 +15,17 @@
         "key": "position_filter_signal",
         "value": 1,
         "description": "Descartar posiciones que no contengan una señal válida"
+    },
+
+    {
+        "key": "shared_enabled",
+        "value": 0,
+        "description": "Activar o Desactivar el panel público de dispositivos compartidos (/shared)"
+    },
+
+    {
+        "key": "shared_slug",
+        "value": "",
+        "description": "Añadir un slug a la ruta /shared para evitar el acceso directo en la URL genérica"
     }
 ]

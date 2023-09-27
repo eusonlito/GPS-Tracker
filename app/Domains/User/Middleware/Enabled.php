@@ -13,7 +13,7 @@ class Enabled extends MiddlewareAbstract
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         $this->load($request);
 

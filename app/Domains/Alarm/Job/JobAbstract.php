@@ -20,7 +20,7 @@ abstract class JobAbstract extends JobAbstractCore
     /**
      * @return array
      */
-    public function middleware()
+    public function middleware(): array
     {
         return [(new WithoutOverlapping((string)$this->id))->expireAfter(30)];
     }

@@ -19,7 +19,7 @@ trait DateDisabled
      *
      * @return bool
      */
-    protected function isDateAttribute($key)
+    protected function isDateAttribute($key): bool
     {
         return false;
     }

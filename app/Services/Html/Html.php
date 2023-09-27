@@ -42,7 +42,7 @@ class Html
      *
      * @return string
      */
-    public static function assetManifest(string $path)
+    public static function assetManifest(string $path): string
     {
         if (config('app.debug')) {
             return $path;

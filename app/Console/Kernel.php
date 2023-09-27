@@ -13,7 +13,7 @@ class Kernel extends KernelVendor
     /**
      * @return void
      */
-    protected function commands()
+    protected function commands(): void
     {
         foreach (glob(app_path('Domains/*/Command')) as $dir) {
             $this->load($dir);
@@ -25,7 +25,7 @@ class Kernel extends KernelVendor
      *
      * @return void
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
         $this->scheduleQueue($schedule);
         $this->scheduleCachePrune($schedule);

@@ -31,7 +31,7 @@ abstract class CommandAbstract extends Command
      *
      * @return void
      */
-    final public function info($string, $verbosity = null)
+    final public function info($string, $verbosity = null): void
     {
         if (is_string($string) === false) {
             $string = print_r($string, true);
@@ -46,7 +46,7 @@ abstract class CommandAbstract extends Command
      *
      * @return void
      */
-    final public function error($string, $verbosity = null)
+    final public function error($string, $verbosity = null): void
     {
         if (is_string($string) === false) {
             $string = print_r($string, true);
@@ -58,7 +58,7 @@ abstract class CommandAbstract extends Command
     /**
      * @return string
      */
-    final public function className()
+    final public function className(): string
     {
         $namespace = explode('\\', get_class($this));
 
@@ -70,7 +70,7 @@ abstract class CommandAbstract extends Command
      *
      * @return mixed
      */
-    final protected function checkOption(string $key)
+    final protected function checkOption(string $key): mixed
     {
         if (is_null($value = $this->option($key))) {
             throw new ValidatorException(sprintf('Option "%s" is required', $key));

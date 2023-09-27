@@ -189,7 +189,7 @@ class Curl
     /**
      * @return self
      */
-    protected function initCurl()
+    protected function initCurl(): self
     {
         $this->curl = curl_init();
 
@@ -214,7 +214,7 @@ class Curl
     /**
      * @return self
      */
-    protected function initCache()
+    protected function initCache(): self
     {
         $this->cache = new Cache();
 

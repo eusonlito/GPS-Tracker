@@ -17,7 +17,7 @@ class StartPort extends CommandAbstract
     /**
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $this->info('START');
 

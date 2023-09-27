@@ -14,7 +14,7 @@ class Https
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         if (str_starts_with(config('app.url'), 'https')) {
             URL::forceScheme('https');

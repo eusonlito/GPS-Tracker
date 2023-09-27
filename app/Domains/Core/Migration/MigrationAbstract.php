@@ -63,7 +63,7 @@ abstract class MigrationAbstract extends Migration
      *
      * @return void
      */
-    protected function timestamps(Blueprint $table)
+    protected function timestamps(Blueprint $table): void
     {
         $this->dateTimeCreatedAt($table);
         $this->dateTimeUpdatedAt($table);
@@ -199,7 +199,7 @@ abstract class MigrationAbstract extends Migration
      *
      * @return void
      */
-    protected function drop(array $tables = [])
+    protected function drop(array $tables = []): void
     {
         foreach (($tables ?: $this->getTables()) as $table) {
             Schema::dropIfExists($table);

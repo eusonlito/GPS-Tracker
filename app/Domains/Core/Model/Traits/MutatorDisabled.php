@@ -11,7 +11,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    public function hasGetMutator($key)
+    public function hasGetMutator($key): bool
     {
         return false;
     }
@@ -23,7 +23,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    public function hasSetMutator($key)
+    public function hasSetMutator($key): bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    public function hasAttributeMutator($key)
+    public function hasAttributeMutator($key): bool
     {
         return false;
     }
@@ -47,7 +47,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    public function hasAttributeGetMutator($key)
+    public function hasAttributeGetMutator($key): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    public function hasAttributeSetMutator($key)
+    public function hasAttributeSetMutator($key): bool
     {
         return false;
     }
@@ -71,7 +71,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    protected function isDateCastable($key)
+    protected function isDateCastable($key): bool
     {
         return false;
     }
@@ -83,7 +83,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    protected function isDateCastableWithCustomFormat($key)
+    protected function isDateCastableWithCustomFormat($key): bool
     {
         return false;
     }
@@ -95,7 +95,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    protected function isClassCastable($key)
+    protected function isClassCastable($key): bool
     {
         return false;
     }
@@ -107,7 +107,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    protected function isEnumCastable($key)
+    protected function isEnumCastable($key): bool
     {
         return false;
     }
@@ -119,7 +119,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    protected function isClassDeviable($key)
+    protected function isClassDeviable($key): bool
     {
         return false;
     }
@@ -131,7 +131,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    protected function isClassSerializable($key)
+    protected function isClassSerializable($key): bool
     {
         return false;
     }
@@ -143,7 +143,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    public function hasAppended($attribute)
+    public function hasAppended($attribute): bool
     {
         return false;
     }

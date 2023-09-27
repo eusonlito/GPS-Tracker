@@ -15,7 +15,7 @@ class RequestLogger
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         return $next($request);
     }
@@ -26,7 +26,7 @@ class RequestLogger
      *
      * @return void
      */
-    public function terminate(Request $request, Response $response)
+    public function terminate(Request $request, Response $response): void
     {
         Logger::fromRequestAndResponse($request, $response);
     }

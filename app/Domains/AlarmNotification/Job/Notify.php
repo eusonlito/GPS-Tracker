@@ -7,7 +7,7 @@ class Notify extends JobAbstract
     /**
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $this->factory(row: $this->row())->action()->notify();
     }

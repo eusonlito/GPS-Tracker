@@ -14,7 +14,7 @@ class Request extends MiddlewareAbstract
      *
      * @return mixed
      */
-    public function handle(RequestVendor $request, Closure $next)
+    public function handle(RequestVendor $request, Closure $next): mixed
     {
         try {
             $this->factory()->action()->request();
@@ -31,7 +31,7 @@ class Request extends MiddlewareAbstract
      *
      * @return mixed
      */
-    protected function fail(RequestVendor $request, Exception $e)
+    protected function fail(RequestVendor $request, Exception $e): mixed
     {
         if (helper()->isExceptionSystem($e)) {
             report($e);

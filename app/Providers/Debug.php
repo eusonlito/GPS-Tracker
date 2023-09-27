@@ -16,7 +16,7 @@ class Debug extends ServiceProvider
     /**
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->queue();
         $this->logging();

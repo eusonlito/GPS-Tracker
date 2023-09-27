@@ -29,7 +29,7 @@ abstract class ControllerAbstract extends Controller
      *
      * @return mixed
      */
-    protected function setup(Request $request, Closure $next)
+    protected function setup(Request $request, Closure $next): mixed
     {
         $this->request = $request;
         $this->auth = $request->user();

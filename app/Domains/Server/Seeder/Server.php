@@ -10,7 +10,7 @@ class Server extends SeederAbstract
     /**
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         if (Model::query()->count()) {
             return;

@@ -39,7 +39,7 @@ class RateLimit
      *
      * @return void
      */
-    final public function send(ShouldQueue $job, callable $next)
+    final public function send(ShouldQueue $job, callable $next): void
     {
         $job->handle();
 
@@ -51,7 +51,7 @@ class RateLimit
      *
      * @return void
      */
-    final public function fail(ShouldQueue $job)
+    final public function fail(ShouldQueue $job): void
     {
         $job->release(10);
     }

@@ -39,7 +39,7 @@ abstract class ActionAbstract
      *
      * @return mixed
      */
-    final protected function transaction(Closure $closure, ?Closure $rollback = null)
+    final protected function transaction(Closure $closure, ?Closure $rollback = null): mixed
     {
         try {
             return $this->connection()->transaction($closure);
@@ -59,7 +59,7 @@ abstract class ActionAbstract
      *
      * @return mixed
      */
-    final protected function try(Closure $closure, int $limit, int $wait)
+    final protected function try(Closure $closure, int $limit, int $wait): mixed
     {
         $try = 1;
 

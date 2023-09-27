@@ -11,7 +11,7 @@ class View extends ServiceProvider
     /**
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->blade();
         $this->pagination();
@@ -20,7 +20,7 @@ class View extends ServiceProvider
     /**
      * @return void
      */
-    protected function blade()
+    protected function blade(): void
     {
         Blade::directive('arrayAsBadges', function (string $expression) {
             return "<?= \App\Services\Html\Html::arrayAsBadges($expression); ?>";
@@ -106,7 +106,7 @@ class View extends ServiceProvider
     /**
      * @return void
      */
-    protected function pagination()
+    protected function pagination(): void
     {
         Paginator::defaultView('molecules.pagination');
     }

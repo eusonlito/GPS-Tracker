@@ -44,7 +44,7 @@ abstract class ValidatorAbstract
     /**
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [];
     }

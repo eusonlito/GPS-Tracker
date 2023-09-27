@@ -14,7 +14,7 @@ class Available extends MiddlewareAbstract
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         if (Model::query()->byUserId($request->user()->id)->count() === 0) {
             return redirect()->route('vehicle.create');
