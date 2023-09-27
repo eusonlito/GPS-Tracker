@@ -121,7 +121,7 @@ class Location extends ParserAbstract
      */
     protected function direction(): int
     {
-        return 0;
+        return intval($this->values['direction'] ?? 0);
     }
 
     /**
