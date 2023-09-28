@@ -3,6 +3,7 @@ import './data-map.js';
 import './data-table-pagination.js';
 import './data-map-fence.js';
 import './data-map-polygon.js';
+import './data-map-device.js';
 import './data-current-datetime.js';
 import './nav-tabs.js';
 

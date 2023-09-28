@@ -181,6 +181,26 @@ class Position extends BuilderAbstract
     /**
      * @return self
      */
+    public function selectOnlyLatitudeLongitude(): self
+    {
+        return $this->withoutGlobalScope('selectPointAsLatitudeLongitude')->selectLatitudeLongitude();
+    }
+
+    /**
+     * @return self
+     */
+    public function selectLatitudeLongitude(): self
+    {
+        return $this->selectRaw('
+            ROUND(ST_Longitude(`position`.`point`), 5) AS `longitude`,
+            ROUND(ST_Latitude(`position`.`point`), 5) AS `latitude`,
+            NULL AS `point`
+        ');
+    }
+
+    /**
+     * @return self
+     */
     public function selectPointAsLatitudeLongitude(): self
     {
         return $this->selectRaw('

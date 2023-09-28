@@ -73,8 +73,8 @@ class Map extends Component
             'direction' => $position->direction,
             'speed' => helper()->unit('speed', $position->speed),
             'speed_human' => helper()->unitHuman('speed', $position->speed),
-            'city' => $position->city->name,
-            'state' => $position->city->state->name,
+            'city' => $position->city?->name,
+            'state' => $position->city?->state->name,
         ];
     }
 

@@ -32,6 +32,7 @@ export default class {
 
         this.layer = null;
         this.layerMarkers = null;
+        this.layerDevices = null;
 
         this.point = [];
         this.pointLatLng = [];
@@ -101,6 +102,22 @@ export default class {
 
     setLayerMarkers() {
         this.layerMarkers = new L.FeatureGroup();
+
+        return this;
+    }
+
+    getLayerDevices() {
+        if (!this.layerDevices) {
+            this.setLayerDevices();
+        }
+
+        return this.layerDevices;
+    }
+
+    setLayerDevices() {
+        this.layerDevices = new L.FeatureGroup();
+
+        this.getLayer().addLayer(this.layerDevices);
 
         return this;
     }
@@ -526,6 +543,51 @@ export default class {
         return { icon: L.icon(this.merge(defaults, options)) };
     }
 
+    setDevices(devices) {
+        this.getLayer().removeLayer(this.getLayerDevices());
+        this.setLayerDevices();
+
+        this.array(devices).forEach((device) => this.setDevice(device));
+
+        return this;
+    }
+
+    setDevice(device, options) {
+        if (!this.isValiDevice(device)) {
+            return this;
+        }
+
+        const id = device.position.id;
+        const latLng = this.getLatLng(device.position);
+        const html = this.popupHtml(device.position);
+
+        new L.Marker(latLng, this.getDeviceOptions(device, options))
+            .bindPopup(html)
+            .on('click', (e) => this.showMarker(id))
+            .addTo(this.getLayerDevices());
+
+        this.markers[id] = L.circleMarker(latLng, { radius: 15, opacity: 0, fillOpacity: 0 })
+            .bindPopup(html)
+            .on('click', (e) => this.showMarker(id))
+            .addTo(this.getLayerDevices());
+
+        return this;
+    }
+
+    getDeviceOptions(device, options) {
+        const defaults = {
+            iconUrl: WWW + '/build/images/map-notification-movement.svg',
+            iconSize: [30, 42],
+            iconAnchor: [15, 42],
+        };
+
+        return { icon: L.icon(this.merge(defaults, options)) };
+    }
+
+    isValiDevice(device) {
+        return device && device.id && device.name && this.isValidPoint(device.position);
+    }
+
     setIcon(name, point, options) {
         if (this.icons[name]) {
             this.getMap().removeLayer(this.icons[name]);
@@ -709,6 +771,10 @@ export default class {
     }
 
     getLatLng(points) {
+        if (!points) {
+            return null;
+        }
+
         if (Array.isArray(points)) {
             return points.map((point) => this.getLatLng(point));
         }

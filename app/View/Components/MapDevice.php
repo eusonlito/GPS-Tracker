@@ -1,0 +1,107 @@
+<?php declare(strict_types=1);
+
+namespace App\View\Components;
+
+use Illuminate\View\Component;
+use Illuminate\View\View;
+use App\Domains\Device\Model\Collection\Device as DeviceCollection;
+use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+
+class MapDevice extends Component
+{
+    /**
+     * @param \App\Domains\Device\Model\Collection\Device $devices
+     * @param bool $sidebarHidden = false
+     *
+     * @return self
+     */
+    public function __construct(
+        readonly public DeviceCollection $devices,
+        readonly public bool $sidebarHidden = false,
+    ) {
+    }
+
+    /**
+     * @return ?\Illuminate\View\View
+     */
+    public function render(): ?View
+    {
+        if ($this->devices->isEmpty()) {
+            return null;
+        }
+
+        return view('components.map-device', [
+            'devicesJson' => $this->devicesJson(),
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    protected function devicesJson(): string
+    {
+        return $this->devices
+            ->map($this->devicesJsonMap(...))
+            ->sortBy('name')
+            ->values()
+            ->toJson();
+    }
+
+    /**
+     * @param \App\Domains\Device\Model\Device $device
+     *
+     * @return array
+     */
+    protected function devicesJsonMap(DeviceModel $device): array
+    {
+        return [
+            'id' => $device->id,
+            'name' => $device->name,
+            'position' => $this->devicesJsonMapPosition($device->positionLast),
+            'vehicle' => $this->devicesJsonMapVehicle($device->vehicle),
+        ];
+    }
+
+    /**
+     * @param ?\App\Domains\Vehicle\Model\Vehicle $vehicle
+     *
+     * @return ?array
+     */
+    protected function devicesJsonMapVehicle(?VehicleModel $vehicle): ?array
+    {
+        if ($vehicle === null) {
+            return null;
+        }
+
+        return [
+            'id' => $vehicle->id,
+            'name' => $vehicle->name,
+        ];
+    }
+
+    /**
+     * @param ?\App\Domains\Position\Model\Position $position
+     *
+     * @return ?array
+     */
+    protected function devicesJsonMapPosition(?PositionModel $position): ?array
+    {
+        if ($position === null) {
+            return null;
+        }
+
+        return [
+            'id' => $position->id,
+            'date_at' => $position->date_at,
+            'latitude' => $position->latitude,
+            'longitude' => $position->longitude,
+            'direction' => $position->direction,
+            'speed' => helper()->unit('speed', $position->speed),
+            'speed_human' => helper()->unitHuman('speed', $position->speed),
+            'city' => $position->city?->name,
+            'state' => $position->city?->state->name,
+        ];
+    }
+}

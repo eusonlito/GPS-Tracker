@@ -85,6 +85,14 @@ class Device extends BuilderAbstract
     /**
      * @return self
      */
+    public function withPositionLast(): self
+    {
+        return $this->with(['positionLast' => static fn ($q) => $q->withCity()]);
+    }
+
+    /**
+     * @return self
+     */
     public function withTripLastShared(): self
     {
         return $this->with('tripLastShared');

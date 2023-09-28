@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Device\Model\Builder\Device as Builder;
 use App\Domains\Device\Model\Collection\Device as Collection;
 use App\Domains\Device\Test\Factory\Device as TestFactory;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
-use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
@@ -74,6 +75,24 @@ class Device extends ModelAbstract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function positions(): HasMany
+    {
+        return $this->hasMany(PositionModel::class, static::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function positionLast(): HasOne
+    {
+        return $this->hasOne(PositionModel::class, static::FOREIGN)
+            ->ofMany(['date_utc_at' => 'MAX'], static fn ($q) => $q->withoutGlobalScope('selectPointAsLatitudeLongitude'))
+            ->selectOnlyLatitudeLongitude();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function messages(): HasMany
     {
         return $this->hasMany(DeviceMessageModel::class, static::FOREIGN);
@@ -84,7 +103,8 @@ class Device extends ModelAbstract
      */
     public function tripLast(): HasOne
     {
-        return $this->hasOne(TripModel::class, static::FOREIGN)->latestOfMany();
+        return $this->hasOne(TripModel::class, static::FOREIGN)
+            ->ofMany(['end_utc_at' => 'MAX']);
     }
 
     /**
@@ -93,7 +113,7 @@ class Device extends ModelAbstract
     public function tripLastShared(): HasOne
     {
         return $this->hasOne(TripModel::class, static::FOREIGN)
-            ->ofMany(['id' => 'MAX'], static fn ($q) => $q->whereShared());
+            ->ofMany(['endutc_at' => 'MAX'], static fn ($q) => $q->whereShared());
     }
 
     /**
@@ -102,7 +122,7 @@ class Device extends ModelAbstract
     public function tripLastSharedPublic(): HasOne
     {
         return $this->hasOne(TripModel::class, static::FOREIGN)
-            ->ofMany(['id' => 'MAX'], static fn ($q) => $q->whereShared()->whereSharedPublic());
+            ->ofMany(['end_utc_at' => 'MAX'], static fn ($q) => $q->whereShared()->whereSharedPublic());
     }
 
     /**
