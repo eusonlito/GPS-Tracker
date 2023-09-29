@@ -35,11 +35,31 @@
             </a>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'device.'))
+
         <li>
-            <a href="{{ route('device.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'device.') ? 'side-menu--active' : '' }}">
+            <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('cpu')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.device') }}</div>
+                <div class="side-menu__title">
+                    {{ __('in-sidebar.device') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                </div>
             </a>
+
+            <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('device.index') }}" class="side-menu {{ ($ROUTE !== 'device.map') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('list')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.device-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('device.map') }}" class="side-menu {{ ($ROUTE === 'device.map') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('map')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.device-map') }}</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         <li>

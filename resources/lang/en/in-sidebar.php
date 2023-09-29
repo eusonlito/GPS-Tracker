@@ -4,6 +4,8 @@
     'configuration' => 'Configuration',
     'dashboard' => 'Dashboard',
     'device' => 'Devices',
+    'device-index' => 'List',
+    'device-map' => 'Map',
     'logout' => 'Logout',
     'maintenance' => 'Maintenances',
     'profile' => 'Profile',

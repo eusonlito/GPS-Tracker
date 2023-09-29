@@ -59,6 +59,14 @@ select {
     }
 }
 
+.side-nav .side-menu {
+    height: 45px;
+}
+
+.side-nav > ul ul li > .side-menu {
+    height: 40px;
+}
+
 .mobile-menu {
     margin: 0;
 

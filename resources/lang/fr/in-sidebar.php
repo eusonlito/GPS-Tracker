@@ -4,6 +4,8 @@
     'configuration' => 'Configuration de la base de données',
     'dashboard' => 'Tableau de bord',
     'device' => 'Appareils',
+    'device-index' => 'Liste',
+    'device-map' => 'Carte',
     'logout' => 'Sortie',
     'maintenance' => 'Maintenance',
     'profile' => 'Profil',
