@@ -3,6 +3,7 @@
     'create' => 'Créer',
     'enabled' => 'Actif',
     'filter' => 'Filtre...',
+    'map' => 'Carte',
     'meta-title' => 'Appareils',
     'model' => 'Modèle',
     'name' => 'Nom de l\'appareil',

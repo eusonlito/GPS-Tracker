@@ -105,7 +105,7 @@ import Map from './map';
         visible.forEach(change);
     })();
 
-    map.setDevices(devices);
+    map.setDevices(devices, element.dataset.mapTripUrl);
 
     const mapPointClick = function (e, point) {
         e.preventDefault();

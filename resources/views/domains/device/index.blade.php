@@ -9,6 +9,10 @@
         </div>
 
         <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
+            <a href="{{ route('device.map') }}" class="btn form-control-lg">{{ __('device-index.map') }}</a>
+        </div>
+
+        <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
             <a href="{{ route('device.create') }}" class="btn form-control-lg">{{ __('device-index.create') }}</a>
         </div>
     </div>

@@ -1,6 +1,6 @@
-<app-map class="map map-list-hidden" data-map-device data-map-devices="{{ $devicesJson }}" {{ $attributes }}>
+<app-map class="map map-list-hidden" data-map-device data-map-devices="{{ $devicesJson }}" data-map-trip-url="{{ route('dashboard.index') }}" {{ $attributes }}>
     <div class="map-map {{ $sidebarHidden ? 'w-full' : '' }}" data-map-map>
-        <div class="map-map-render" data-map-render></div>
+        <div class="map-map-render" data-map-render data-map-control-markers-disabled></div>
     </div>
 
     @if ($sidebarHidden === false)
@@ -15,9 +15,9 @@
         <table class="table table-report font-medium text-center whitespace-nowrap text-xs" data-map-list-table data-table-sort>
             <thead>
                 <tr>
+                    <th class="w-1"><input type="checkbox" data-checkall="[data-map-list-table] > tbody" checked /></th>
                     <th class="w-1">{{ __('map-device.name') }}</th>
                     <th class="w-1">{{ __('map-device.vehicle') }}</th>
-                    <th class="w-1"><input type="checkbox" data-checkall="[data-map-list-table] > tbody" checked /></th>
                 </tr>
             </thead>
 
@@ -25,9 +25,9 @@
                 @foreach ($devices as $each)
 
                 <tr>
+                    <td class="w-1"><input type="checkbox" name="visible[]" value="{{ $each->positionLast->id }}" data-map-list-visible checked /></td>
                     <td class="w-1"><a href="#" data-map-point="{{ $each->positionLast->id }}">{{ $each->name }}</a></td>
                     <td class="w-1"><a href="#">{{ $each->vehicle->name ?? '-' }}</a></td>
-                    <td class="w-1"><input type="checkbox" name="visible[]" value="{{ $each->positionLast->id }}" data-map-list-visible checked /></td>
                 </tr>
 
                 @endforeach

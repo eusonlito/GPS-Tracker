@@ -54,6 +54,8 @@ export default class {
 
         this.listTable = null;
 
+        this.devicesTripUrl = null;
+
         this.localStorage = new LocalStorage('map');
 
         return this;
@@ -193,6 +195,10 @@ export default class {
     }
 
     setControlMarkers() {
+        if (this.getElement().dataset.mapControlMarkersDisabled !== undefined) {
+            return;
+        }
+
         this.setControlMarkersCreate();
         this.setControlMarkersLoad();
     }
@@ -543,7 +549,9 @@ export default class {
         return { icon: L.icon(this.merge(defaults, options)) };
     }
 
-    setDevices(devices) {
+    setDevices(devices, devicesTripUrl) {
+        this.devicesTripUrl = devicesTripUrl;
+
         this.getLayer().removeLayer(this.getLayerDevices());
         this.setLayerDevices();
 
@@ -553,38 +561,47 @@ export default class {
     }
 
     setDevice(device, options) {
-        if (!this.isValiDevice(device)) {
+        if (!this.isValidDevice(device)) {
             return this;
         }
 
         const id = device.position.id;
         const latLng = this.getLatLng(device.position);
-        const html = this.popupHtml(device.position);
+        const html = this.devicePopupHtml(device);
 
-        new L.Marker(latLng, this.getDeviceOptions(device, options))
-            .bindPopup(html)
-            .on('click', (e) => this.showMarker(id))
-            .addTo(this.getLayerDevices());
-
-        this.markers[id] = L.circleMarker(latLng, { radius: 15, opacity: 0, fillOpacity: 0 })
-            .bindPopup(html)
+        new L.Marker(latLng, this.getDeviceMarkerOptions(device, options))
+            .bindPopup(html, this.getDeviceBindPopupOptions(device))
+            .bindTooltip(device.name, this.getDeviceTooltipOptions(device))
             .on('click', (e) => this.showMarker(id))
             .addTo(this.getLayerDevices());
 
         return this;
     }
 
-    getDeviceOptions(device, options) {
-        const defaults = {
-            iconUrl: WWW + '/build/images/map-notification-movement.svg',
-            iconSize: [30, 42],
-            iconAnchor: [15, 42],
+    getDeviceMarkerOptions(device, options) {
+        return {
+            opacity: 0,
+            icon: L.divIcon(),
         };
-
-        return { icon: L.icon(this.merge(defaults, options)) };
     }
 
-    isValiDevice(device) {
+    getDeviceBindPopupOptions(device) {
+        return {
+            offset: new L.Point(0, -7)
+        };
+    }
+
+    getDeviceTooltipOptions(device) {
+        return {
+            interactive: true,
+            permanent: true,
+            direction: 'center',
+            className: 'map-device-label',
+            opacity: 1,
+        };
+    }
+
+    isValidDevice(device) {
         return device && device.id && device.name && this.isValidPoint(device.position);
     }
 
@@ -799,6 +816,23 @@ export default class {
         this.listTable = listTable;
 
         return this;
+    }
+
+    devicePopupHtml(device) {
+        const link = '<a href="' + this.devicesTripUrl + '/?device_id=' + device.id + '" target="_blank">';
+
+        let html = '';
+
+        if (device.vehicle && (device.name === device.vehicle.name)) {
+            html += this.popupHtmlLine('vehicle', link + device.vehicle.name + '</a>');
+        } else if (device.vehicle) {
+            html += this.popupHtmlLine('device', link + device.name + '</a>')
+                + this.popupHtmlLine('vehicle', link + device.vehicle.name + '</a>');
+        } else {
+            html += this.popupHtmlLine('device', link + device.name + '</a>');
+        }
+
+        return html + this.popupHtml(device.position);
     }
 
     popupHtml(marker) {

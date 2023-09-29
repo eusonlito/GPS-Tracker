@@ -3,6 +3,7 @@
     'create' => 'Create Device',
     'enabled' => 'Active',
     'filter' => 'Filter...',
+    'map' => 'Map',
     'meta-title' => 'Devices',
     'model' => 'Model',
     'name' => 'Name',
