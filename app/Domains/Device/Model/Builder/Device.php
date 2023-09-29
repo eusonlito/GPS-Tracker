@@ -3,6 +3,7 @@
 namespace App\Domains\Device\Model\Builder;
 
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
+use App\Domains\Trip\Model\Trip as TripModel;
 
 class Device extends BuilderAbstract
 {
@@ -27,6 +28,16 @@ class Device extends BuilderAbstract
     }
 
     /**
+     * @param ?bool $finished
+     *
+     * @return self
+     */
+    public function whenTripFinished(?bool $finished): self
+    {
+        return $this->when(is_bool($finished), static fn ($q) => $q->whereTripFinished($finished));
+    }
+
+    /**
      * @param ?bool $shared
      *
      * @return self
@@ -44,6 +55,16 @@ class Device extends BuilderAbstract
     public function whenSharedPublic(?bool $shared_public): self
     {
         return $this->when(is_bool($shared_public), static fn ($q) => $q->whereSharedPublic($shared_public));
+    }
+
+    /**
+     * @param bool $finished = true
+     *
+     * @return self
+     */
+    public function whereTripFinished(bool $finished = true): self
+    {
+        return $this->whereIn('id', TripModel::query()->select('device_id')->whereFinished($finished));
     }
 
     /**

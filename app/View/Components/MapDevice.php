@@ -28,13 +28,11 @@ class MapDevice extends Component
      */
     public function render(): ?View
     {
-        if ($this->devices->isEmpty()) {
-            return null;
-        }
-
         return view('components.map-device', [
             'id' => uniqid(),
             'devicesJson' => $this->devicesJson(),
+            'filterFinished' => $this->filterFinished(),
+            'filterFinishedMinutes' => $this->filterFinishedMinutes(),
         ]);
     }
 
@@ -96,6 +94,7 @@ class MapDevice extends Component
         return [
             'id' => $position->id,
             'date_at' => $position->date_at,
+            'date_utc_at' => $position->date_utc_at,
             'latitude' => $position->latitude,
             'longitude' => $position->longitude,
             'direction' => $position->direction,
@@ -104,5 +103,25 @@ class MapDevice extends Component
             'city' => $position->city?->name,
             'state' => $position->city?->state->name,
         ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function filterFinished(): array
+    {
+        return [
+            '' => __('map-device.filter.finished-all'),
+            '0' => __('map-device.filter.finished-no'),
+            '1' => __('map-device.filter.finished-yes'),
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function filterFinishedMinutes(): string
+    {
+        return app('configuration')->string('trip_wait_minutes');
     }
 }

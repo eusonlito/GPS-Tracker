@@ -223,33 +223,11 @@ class Index extends ControllerAbstract
             ->byVehicleId($this->vehicle()->id)
             ->whenDeviceId($this->device()->id ?? null)
             ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
-            ->whenShared($this->listWhenShared())
-            ->whenSharedPublic($this->listWhenSharedPublic())
+            ->whenShared($this->boolValue('shared'))
+            ->whenSharedPublic($this->boolValue('shared_public'))
             ->withDevice()
             ->withVehicle()
             ->list()
             ->get();
-    }
-
-    /**
-     * @return ?bool
-     */
-    protected function listWhenShared(): ?bool
-    {
-        return match ($shared = $this->request->input('shared')) {
-            '1', '0' => boolval($shared),
-            default => null,
-        };
-    }
-
-    /**
-     * @return ?bool
-     */
-    protected function listWhenSharedPublic(): ?bool
-    {
-        return match ($shared_public = $this->request->input('shared_public')) {
-            '1', '0' => boolval($shared_public),
-            default => null,
-        };
     }
 }

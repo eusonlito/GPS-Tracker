@@ -3,8 +3,7 @@
 namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Device\Model\Device as Model;
-use App\Domains\Device\Model\Collection\Device as Collection;
+use App\Domains\Device\Service\Controller\Map as ControllerService;
 
 class Map extends ControllerAbstract
 {
@@ -15,22 +14,14 @@ class Map extends ControllerAbstract
     {
         $this->meta('title', __('device-map.meta-title'));
 
-        return $this->page('device.map', [
-            'list' => $this->list(),
-        ]);
+        return $this->page('device.map', $this->data());
     }
 
     /**
-     * @return \App\Domains\Device\Model\Collection\Device
+     * @return array
      */
-    protected function list(): Collection
+    protected function data(): array
     {
-        return Model::query()
-            ->byUserId($this->auth->id)
-            ->withVehicle()
-            ->withPositionLast()
-            ->list()
-            ->get()
-            ->filter(static fn ($device) => $device->positionLast);
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 }

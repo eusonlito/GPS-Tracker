@@ -549,9 +549,13 @@ export default class {
         return { icon: L.icon(this.merge(defaults, options)) };
     }
 
-    setDevices(devices, devicesTripUrl) {
+    setDevicesTripUrl(devicesTripUrl) {
         this.devicesTripUrl = devicesTripUrl;
 
+        return this;
+    }
+
+    setDevices(devices) {
         this.getLayer().removeLayer(this.getLayerDevices());
         this.setLayerDevices();
 

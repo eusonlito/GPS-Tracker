@@ -24,10 +24,10 @@ abstract class ControllerAbstract
      */
     protected function boolValue(string $key): ?bool
     {
-        if (strlen($value = (string)$this->request->input($key))) {
-            return (bool)$value;
-        }
-
-        return null;
+        return match ($value = $this->request->input($key)) {
+            'true', '1' => true,
+            'false', '0' => false,
+            default => null,
+        };
     }
 }

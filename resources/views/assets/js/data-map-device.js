@@ -2,6 +2,7 @@ import Ajax from './ajax';
 import Feather from './feather';
 import LocalStorage from './local-storage';
 import Map from './map';
+import { dateUtc, dateToIso } from './helper'
 
 (function () {
     'use strict';
@@ -21,12 +22,10 @@ import Map from './map';
     let devices = [];
 
     try {
-        devices = JSON.parse(element.dataset.mapDevices).sort((a, b) => b.date_at > a.date_at ? -1 : 1);
+        devices = JSON.parse(element.dataset.mapDevices)
+            .filter(device => device.position)
+            .sort((a, b) => a.name < b.name ? -1 : 1);
     } catch (e) {
-        return;
-    }
-
-    if (!devices.length) {
         return;
     }
 
@@ -85,27 +84,64 @@ import Map from './map';
             map.setDevices(devices.filter(device => selected.includes(device.position.id)));
         };
 
-        const change = (element) => {
-            if (!element) {
+        const change = (checkbox) => {
+            if (!checkbox) {
                 return;
             }
 
-            element.addEventListener('change', (e) => {
+            checkbox.addEventListener('change', (e) => {
                 e.preventDefault();
 
                 clearTimeout(timeout);
 
-                timeout = setTimeout(filter, 1000);
+                timeout = setTimeout(filter, 800);
             });
         };
-
 
         change(element.querySelector('[data-checkall]'))
 
         visible.forEach(change);
     })();
 
-    map.setDevices(devices, element.dataset.mapTripUrl);
+    (function () {
+        const finished = element.querySelector('[data-map-trip-finished]');
+
+        if (!finished) {
+            return;
+        }
+
+        let timeout;
+
+        const filter = () => {
+            const end_at = dateToIso(dateUtc(new Date(new Date() - 1000 * finished.value)));
+            const value = finished.value;
+
+            map.setDevices(devices.filter(device => {
+                const date_utc_at = device.position.date_utc_at;
+
+                if (value === '0') {
+                    return date_utc_at >= end_at;
+                }
+
+                if (value === '1') {
+                    return date_utc_at <= end_at;
+                }
+
+                return true;
+            }));
+        };
+
+        finished.addEventListener('change', (e) => {
+            e.preventDefault();
+
+            clearTimeout(timeout);
+
+            timeout = setTimeout(filter, 800);
+        });
+    })();
+
+    map.setDevicesTripUrl(element.dataset.mapTripUrl);
+    map.setDevices(devices);
 
     const mapPointClick = function (e, point) {
         e.preventDefault();

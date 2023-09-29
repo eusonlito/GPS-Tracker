@@ -287,6 +287,19 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @param bool $finished = true
+     *
+     * @return self
+     */
+    public function whereFinished(bool $finished = true): self
+    {
+        $time = strtotime('-'.app('configuration')->int('trip_wait_minutes').' minutes');
+        $date = gmdate('Y-m-d H:i:s', $time);
+
+        return $this->where('end_utc_at', $finished ? '<=' : '>=', $date);
+    }
+
+    /**
      * @param bool $shared = true
      *
      * @return self

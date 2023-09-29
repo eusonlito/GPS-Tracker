@@ -13,8 +13,12 @@
         </div>
 
         <form method="get">
-            <div class="p-5">
+            <div class="p-2">
                 <input type="search" class="form-control form-control-lg" placeholder="{{ __('device-map.filter') }}" data-table-search="#map-device-list-table-{{ $id }}" />
+            </div>
+
+            <div class="p-2">
+                <x-select name="finished" :options="$filterFinished" data-map-trip-finished="{{ $filterFinishedMinutes }}"></x-select>
             </div>
         </form>
 
