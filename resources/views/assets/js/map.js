@@ -569,7 +569,7 @@ export default class {
         const latLng = this.getLatLng(device.position);
         const html = this.devicePopupHtml(device);
 
-        new L.Marker(latLng, this.getDeviceMarkerOptions(device, options))
+        this.markers[id] = new L.Marker(latLng, this.getDeviceMarkerOptions(device, options))
             .bindPopup(html, this.getDeviceBindPopupOptions(device))
             .bindTooltip(device.name, this.getDeviceTooltipOptions(device))
             .on('click', (e) => this.showMarker(id))
