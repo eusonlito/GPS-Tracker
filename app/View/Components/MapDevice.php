@@ -33,6 +33,7 @@ class MapDevice extends Component
         }
 
         return view('components.map-device', [
+            'id' => uniqid(),
             'devicesJson' => $this->devicesJson(),
         ]);
     }

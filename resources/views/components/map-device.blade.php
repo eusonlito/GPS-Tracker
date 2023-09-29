@@ -12,10 +12,16 @@
             </a>
         </div>
 
-        <table class="table table-report font-medium text-center whitespace-nowrap text-xs" data-map-list-table data-table-sort>
+        <form method="get">
+            <div class="p-5">
+                <input type="search" class="form-control form-control-lg" placeholder="{{ __('device-map.filter') }}" data-table-search="#map-device-list-table-{{ $id }}" />
+            </div>
+        </form>
+
+        <table id="map-device-list-table-{{ $id }}" class="table table-report font-medium text-center whitespace-nowrap text-xs" data-map-list-table data-table-sort>
             <thead>
                 <tr>
-                    <th class="w-1"><input type="checkbox" data-checkall="[data-map-list-table] > tbody" checked /></th>
+                    <th class="w-1"><input type="checkbox" data-checkall="#map-device-list-table-{{ $id }} > tbody" checked /></th>
                     <th class="w-1">{{ __('map-device.name') }}</th>
                     <th class="w-1">{{ __('map-device.vehicle') }}</th>
                 </tr>
