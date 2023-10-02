@@ -60,6 +60,21 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
+    public function testGetAuthSharedSuccess(): void
+    {
+        $this->authUser();
+        $this->factoryCreate(data: [
+            'shared' => true,
+            'shared_public' => true,
+        ]);
+
+        $this->get($this->routeFactoryLastModel())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
     public function testPostAuthEmptySuccess(): void
     {
         $this->authUser();
@@ -70,7 +85,7 @@ class Update extends ControllerAbstract
             ->assertStatus(302)
             ->assertRedirect(route($this->route, $this->rowLast()->id));
 
-        $this->dataVsRow($data, $this->rowLast(), ['code', 'connected_at']);
+        $this->dataVsRow($data, $this->rowLast(), ['connected_at']);
     }
 
     /**
@@ -87,7 +102,7 @@ class Update extends ControllerAbstract
             ->assertStatus(302)
             ->assertRedirect(route($this->route, $this->rowLast()->id));
 
-        $this->dataVsRow($data, $this->rowLast(), ['code', 'connected_at']);
+        $this->dataVsRow($data, $this->rowLast(), ['connected_at']);
     }
 
     /**

@@ -39,7 +39,7 @@
 
     <div class="box p-5 mt-5">
         <div class="p-2">
-            <span class="font-medium">{{ __('trip-update.shared-url') }}</span> <a href="{{ route('trip.shared', $row->code) }}" class="text-primary" target="_blank">{{ route('trip.shared', $row->code) }}</a>
+            <span class="font-medium">{{ __('trip-update.shared-url') }}</span> <a href="{{ route('shared.trip', $row->code) }}" class="text-primary" target="_blank">{{ route('shared.trip', $row->code) }}</a>
         </div>
     </div>
 

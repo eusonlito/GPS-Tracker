@@ -17,18 +17,18 @@
         <table id="device-trips-table" class="table table-report font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
             <thead>
                 <tr>
-                    <th class="text-left">{{ __('device-shared.trip-name') }}</th>
-                    <th>{{ __('device-shared.trip-start_at') }}</th>
-                    <th>{{ __('device-shared.trip-end_at') }}</th>
-                    <th>{{ __('device-shared.trip-distance') }}</th>
-                    <th>{{ __('device-shared.trip-time') }}</th>
+                    <th class="text-left">{{ __('shared-device.trip-name') }}</th>
+                    <th>{{ __('shared-device.trip-start_at') }}</th>
+                    <th>{{ __('shared-device.trip-end_at') }}</th>
+                    <th>{{ __('shared-device.trip-distance') }}</th>
+                    <th>{{ __('shared-device.trip-time') }}</th>
                 </tr>
             </thead>
 
             <tbody>
                 @foreach ($trips as $trip)
 
-                @php ($link = route('trip.shared', $trip->code))
+                @php ($link = route('shared.trip', $trip->code))
 
                 <tr>
                     <td class="text-left"><a href="{{ $link }}" class="d-t-m-o max-w-md" title="{{ $trip->name }}">{{ $trip->name }}</a></td>

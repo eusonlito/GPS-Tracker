@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Device\Service\Controller;
+namespace App\Domains\Shared\Service\Controller;
 
 use Illuminate\Http\Request;
 use App\Domains\Core\Traits\Factory;
@@ -8,7 +8,7 @@ use App\Domains\Device\Model\Device as Model;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Trip\Model\Collection\Trip as TripCollection;
 
-class Shared extends ControllerAbstract
+class Device extends ControllerAbstract
 {
     use Factory;
 

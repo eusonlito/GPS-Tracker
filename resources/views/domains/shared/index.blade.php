@@ -23,7 +23,7 @@
             <tbody>
                 @foreach ($devices as $device)
 
-                @php ($link = route('device.shared', $device->code))
+                @php ($link = route('shared.device', $device->code))
 
                 <tr>
                     <td class="text-left"><a href="{{ $link }}" class="d-t-m-o max-w-md" title="{{ $device->name }}">{{ $device->name }}</a></td>

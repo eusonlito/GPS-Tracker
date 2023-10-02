@@ -44,18 +44,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     }
 
     /**
-     * @param string $code
-     *
-     * @return void
-     */
-    protected function rowShared(string $code): void
-    {
-        $this->row = Model::query()->byCode($code)->whereShared()->firstOr(static function () {
-            throw new NotFoundException(__('device.error.not-found'));
-        });
-    }
-
-    /**
      * @param int $alarm_id
      *
      * @return void

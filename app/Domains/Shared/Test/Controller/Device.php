@@ -1,13 +1,24 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Device\Test\Controller;
+namespace App\Domains\Shared\Test\Controller;
 
-class Shared extends ControllerAbstract
+use App\Domains\Device\Model\Device as Model;
+use App\Domains\Trip\Model\Trip as TripModel;
+
+class Device extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'device.shared';
+    protected string $route = 'shared.device';
+
+    /**
+     * @return string
+     */
+    protected function getModelClass(): string
+    {
+        return Model::class;
+    }
 
     /**
      * @return void
@@ -23,6 +34,20 @@ class Shared extends ControllerAbstract
      */
     public function testGetGuestSuccess(): void
     {
+        $this->get($this->routeToController())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetGuestTripsSuccess(): void
+    {
+        $this->factoryCreate(TripModel::class, [
+            'shared' => true,
+            'shared_public' => true,
+        ]);
+
         $this->get($this->routeToController())
             ->assertStatus(200);
     }

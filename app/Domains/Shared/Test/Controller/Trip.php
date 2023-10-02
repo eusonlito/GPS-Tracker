@@ -1,13 +1,23 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Trip\Test\Controller;
+namespace App\Domains\Shared\Test\Controller;
 
-class Shared extends ControllerAbstract
+use App\Domains\Trip\Model\Trip as Model;
+
+class Trip extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'trip.shared';
+    protected string $route = 'shared.trip';
+
+    /**
+     * @return string
+     */
+    protected function getModelClass(): string
+    {
+        return Model::class;
+    }
 
     /**
      * @return void

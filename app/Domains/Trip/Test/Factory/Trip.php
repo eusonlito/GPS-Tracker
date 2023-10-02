@@ -35,6 +35,7 @@ class Trip extends FactoryAbstract
             'end_utc_at' => date('Y-m-d H:i:s', strtotime('+10 minutes')),
 
             'shared' => false,
+            'shared_public' => false,
 
             'device_id' => $this->firstOrFactory(DeviceModel::class),
             'timezone_id' => $this->firstOrFactory(TimezoneModel::class),

@@ -28,6 +28,7 @@ class Device extends FactoryAbstract
 
             'enabled' => true,
             'shared' => false,
+            'shared_public' => false,
 
             'connected_at' => date('Y-m-d H:i:s'),
 

@@ -60,6 +60,21 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
+    public function testGetAuthSharedSuccess(): void
+    {
+        $this->authUser();
+        $this->factoryCreate(data: [
+            'shared' => true,
+            'shared_public' => true,
+        ]);
+
+        $this->get($this->routeFactoryLastModel())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
     public function testPostAuthEmptySuccess(): void
     {
         $this->authUser();

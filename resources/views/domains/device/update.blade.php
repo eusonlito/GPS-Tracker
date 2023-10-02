@@ -11,7 +11,7 @@
 
     <div class="box p-5 mt-5">
         <div class="p-2">
-            <span class="font-medium">{{ __('device-update.shared-url') }}</span> <a href="{{ route('device.shared', $row->code) }}" class="text-primary" target="_blank">{{ route('device.shared', $row->code) }}</a>
+            <span class="font-medium">{{ __('device-update.shared-url') }}</span> <a href="{{ route('shared.device', $row->code) }}" class="text-primary" target="_blank">{{ route('shared.device', $row->code) }}</a>
         </div>
     </div>
 

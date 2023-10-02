@@ -16,5 +16,3 @@ Route::group(['middleware' => ['user-auth', 'vehicle.available']], static functi
     Route::any('/trip/{id}/stat', UpdateStat::class)->name('trip.update.stat');
     Route::any('/trip/search', Search::class)->name('trip.search');
 });
-
-Route::get('/trip/{uuid}', Shared::class)->name('trip.shared');

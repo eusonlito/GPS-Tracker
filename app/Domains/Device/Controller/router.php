@@ -14,5 +14,3 @@ Route::group(['middleware' => ['user-auth']], static function () {
     Route::any('/device/{id}/device-message/create', UpdateDeviceMessageCreate::class)->name('device.update.device-message.create');
     Route::any('/device/{id}/device-message/{device_message_id}', UpdateDeviceMessageUpdate::class)->name('device.update.device-message.update');
 });
-
-Route::get('/device/{uuid}', Shared::class)->name('device.shared');
