@@ -38,6 +38,8 @@ abstract class ControllerWebAbstract extends ControllerAbstract
             'ROUTE' => $this->request->route()?->getName() ?: '',
             'AUTH' => $this->auth,
             'REQUEST' => $this->request,
+            'MEMORY_USAGE' => helper()->sizeHuman(memory_get_peak_usage(false)),
+            'EXECUTION_TIME' => sprintf('%.3f', microtime(true) - LARAVEL_START),
         ]);
     }
 

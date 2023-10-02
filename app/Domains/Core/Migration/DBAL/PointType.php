@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\CoreApp\Migration\DBAL;
+namespace App\Domains\Core\Migration\DBAL;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;

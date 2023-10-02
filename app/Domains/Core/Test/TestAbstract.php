@@ -7,11 +7,12 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Testing\Fakes\MailFake;
 use Faker\Factory as FactoryFaker;
 use Faker\Generator as GeneratorFaker;
-use App\Domains\Core\Model\ModelAbstract;
-use App\Domains\Core\Traits\Factory;
-use Database\Seeders\Database as DatabaseSeed;
 use Tests\TestsAbstract;
 use Tests\CreatesApplication;
+use App\Domains\Core\Model\ModelAbstract;
+use App\Domains\Core\Traits\Factory;
+use App\Domains\User\Model\User as UserModel;
+use Database\Seeders\Database as DatabaseSeed;
 
 abstract class TestAbstract extends TestsAbstract
 {
@@ -46,7 +47,10 @@ abstract class TestAbstract extends TestsAbstract
     /**
      * @return string
      */
-    abstract protected function getUserClass(): string;
+    protected function getUserClass(): string
+    {
+        return UserModel::class;
+    }
 
     /**
      * @param ?\Illuminate\Contracts\Auth\Authenticatable $user = null

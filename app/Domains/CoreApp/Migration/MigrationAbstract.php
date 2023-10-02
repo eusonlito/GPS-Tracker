@@ -4,7 +4,7 @@ namespace App\Domains\CoreApp\Migration;
 
 use Doctrine\DBAL\Types\Type;
 use App\Domains\Core\Migration\MigrationAbstract as MigrationAbstractCore;
-use App\Domains\CoreApp\Migration\DBAL\PointType;
+use App\Domains\Core\Migration\DBAL\PointType;
 
 abstract class MigrationAbstract extends MigrationAbstractCore
 {
