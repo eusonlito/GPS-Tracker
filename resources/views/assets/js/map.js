@@ -599,7 +599,7 @@ export default class {
         return {
             interactive: true,
             permanent: true,
-            direction: 'center',
+            direction: 'top',
             className: 'map-device-label',
             opacity: 1,
         };
