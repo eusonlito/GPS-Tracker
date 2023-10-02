@@ -29,7 +29,7 @@ cp .env.example .env
 4. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.1).
 
 ```bash
-composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
+./composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
 ```
 
 5. Generamos la clave de aplicación.
@@ -41,7 +41,7 @@ php artisan key:generate
 6. Regeneramos las cachés.
 
 ```bash
-composer artisan-cache
+./composer artisan-cache
 ```
 
 7. Lanzamos la migración inicial.
@@ -80,7 +80,7 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 
 #### Actualización
 
-La actualización de la plataforma se puede realizar de manera sencilla con el comando `composer deploy` ejecutado por el usuario que gestiona ese projecto (normalmente `www-data`).
+La actualización de la plataforma se puede realizar de manera sencilla con el comando `./composer deploy` ejecutado por el usuario que gestiona ese projecto (normalmente `www-data`).
 
 ### Instalación vía Docker
 

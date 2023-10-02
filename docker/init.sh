@@ -1,6 +1,6 @@
 #!/bin/bash
 
-su -s /bin/bash -c 'COMPOSER_PROCESS_TIMEOUT=60 composer deploy-docker' www-data
+su -s /bin/bash -c 'COMPOSER_PROCESS_TIMEOUT=60 ./composer deploy-docker' www-data
 
 cron
 

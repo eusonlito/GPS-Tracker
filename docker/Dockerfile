@@ -23,15 +23,13 @@ COPY ./docker/crontab /etc/cron.d/crontab
 
 RUN crontab -u www-data /etc/cron.d/crontab
 
-COPY --from=composer:2.5 /usr/bin/composer /usr/local/bin/composer
-
 USER www-data
 
 WORKDIR /app
 
 COPY --chown=www-data:www-data ./ /app
 
-RUN composer install --no-dev --optimize-autoloader --classmap-authoritative
+RUN ./composer install --no-dev --optimize-autoloader --classmap-authoritative
 
 RUN php artisan key:generate
 
