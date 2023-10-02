@@ -29,6 +29,7 @@ return new class extends MigrationAbstract {
     protected function tables(): void
     {
         Schema::table('position', function (Blueprint $table) {
+            $this->tableAddIndex($table, ['trip_id', 'date_utc_at']);
             $this->tableAddIndex($table, ['user_id', 'date_utc_at']);
         });
     }
@@ -38,7 +39,10 @@ return new class extends MigrationAbstract {
      */
     public function down(): void
     {
+        $this->map();
+
         Schema::table('position', function (Blueprint $table) {
+            $this->tableDropIndex($table, ['trip_id', 'date_utc_at']);
             $this->tableDropIndex($table, ['user_id', 'date_utc_at']);
         });
     }
