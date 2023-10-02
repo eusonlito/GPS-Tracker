@@ -92,8 +92,8 @@ class Logger extends RotatingFileAbstract
             'method' => $request->method(),
             'headers' => static::headers($request),
             'input' => static::input($request),
-            'execution_time' => (microtime(true) - LARAVEL_START),
-            'memory_usage' => round(memory_get_peak_usage() / 1024 / 1024, 2),
+            'execution_time' => sprintf('%.3f', microtime(true) - LARAVEL_START),
+            'memory_usage' => round(memory_get_peak_usage(false) / 1024 / 1024, 2),
         ] + $data;
     }
 
