@@ -40,6 +40,7 @@ class Map extends ControllerAbstract
         return [
             'devices' => $this->devices(),
             'shared_url' => $this->sharedUrl(),
+            'shared_url_map' => $this->sharedUrlMap(),
         ];
     }
 

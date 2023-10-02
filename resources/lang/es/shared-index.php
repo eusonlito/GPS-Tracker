@@ -1,6 +1,7 @@
 <?php return [
     'device-filter' => 'Filtrar...',
     'device-name' => 'Dispositivo',
+    'map' => 'Mapa',
     'meta-title' => 'Directorio Público',
     'trip-distance' => 'Distancia',
     'trip-end_at' => 'Fin',

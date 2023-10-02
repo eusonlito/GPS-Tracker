@@ -3,11 +3,19 @@
 @section ('body')
 
 <div class="my-5">
-    <div class="overflow-auto lg:overflow-visible header-sticky">
-        <form method="get">
-            <input type="search" class="form-control form-control-lg" placeholder="{{ __('shared-index.device-filter') }}" data-table-search="#shared-devices-table" />
-        </form>
+    <form method="get">
+        <div class="flex space-x-4">
+            <div class="flex-grow mt-2 sm:mt-0">
+                <input type="search" class="form-control form-control-lg" placeholder="{{ __('shared-index.device-filter') }}" data-table-search="#shared-devices-table" />
+            </div>
 
+            <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
+                <a href="{{ $shared_url_map }}" class="btn form-control-lg">{{ __('shared-index.map') }}</a>
+            </div>
+        </div>
+    </form>
+
+    <div class="overflow-auto lg:overflow-visible header-sticky">
         <table id="shared-devices-table" class="table table-report font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
             <thead>
                 <tr>

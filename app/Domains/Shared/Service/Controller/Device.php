@@ -42,6 +42,7 @@ class Device extends ControllerAbstract
             'trips' => $this->trips(),
             'shared_available' => $this->sharedAvailable(),
             'shared_url' => $this->sharedUrl(),
+            'shared_url_map' => $this->sharedUrlMap(),
         ];
     }
 

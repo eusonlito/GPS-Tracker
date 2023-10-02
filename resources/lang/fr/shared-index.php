@@ -1,6 +1,7 @@
 <?php return [
     'device-filter' => 'Filtre...',
     'device-name' => 'Appareil',
+    'map' => 'Carte',
     'meta-title' => 'Répertoire public',
     'trip-distance' => 'Distance',
     'trip-end_at' => 'Fin',
