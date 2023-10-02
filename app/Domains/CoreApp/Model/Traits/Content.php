@@ -2,6 +2,8 @@
 
 namespace App\Domains\CoreApp\Model\Traits;
 
+use App\Domains\Core\Model\Traits\JsonColumn;
+
 trait Content
 {
     use JsonColumn;

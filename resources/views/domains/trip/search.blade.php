@@ -132,6 +132,8 @@
                 <th>{{ __('trip-index.end_at') }}</th>
                 <th>{{ __('trip-index.distance') }}</th>
                 <th>{{ __('trip-index.time') }}</th>
+                <th>{{ __('trip-index.shared') }}</th>
+                <th>{{ __('trip-index.shared_public') }}</th>
                 <th>{{ __('trip-index.actions') }}</th>
             </tr>
         </thead>
@@ -156,6 +158,8 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->end_at }}</a></td>
                 <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block">@unitHuman('distance', $row->distance)</a></td>
                 <td data-table-sort-value="{{ $row->time }}"><a href="{{ $link }}" class="block">@timeHuman($row->time)</a></td>
+                <td data-table-sort-value="{{ (int)$row->shared }}" class="w-1"><a href="{{ route('trip.update.boolean', [$row->id, 'shared']) }}" class="block" data-update-boolean="shared">@status($row->shared)</a></td>
+                <td data-table-sort-value="{{ (int)$row->shared_public }}" class="w-1"><a href="{{ route('trip.update.boolean', [$row->id, 'shared_public']) }}" class="block" data-update-boolean="shared_public">@status($row->shared_public)</a></td>
 
                 <td class="w-1">
                     <a href="{{ route('trip.update', $row->id) }}">@icon('edit', 'w-4 h-4')</a>
@@ -182,7 +186,7 @@
                 <th colspan="{{ 3 + (int)$vehicles_multiple + (int)$devices_multiple }}"></th>
                 <th>@unitHuman('distance', $list->sum('distance'))</th>
                 <th>@timeHuman($list->sum('time'))</th>
-                <th colspan="2"></th>
+                <th colspan="3"></th>
             </tr>
         </tfoot>
     </table>

@@ -2,7 +2,6 @@
 
 namespace App\Domains\Translation\Service;
 
-use App\Exceptions\UnexpectedValueException;
 use App\Services\Translator\TranslatorFactory;
 
 class Translate extends ServiceAbstract
@@ -20,10 +19,6 @@ class Translate extends ServiceAbstract
      */
     public function __construct(protected string $from, protected array $to)
     {
-        if ($this->from === $this->to) {
-            throw new UnexpectedValueException('Languages must be different');
-        }
-
         $this->base();
         $this->to();
     }

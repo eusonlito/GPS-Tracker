@@ -24,7 +24,7 @@ abstract class ControllerAbstract
      */
     protected function boolValue(string $key): ?bool
     {
-        return match ($value = $this->request->input($key)) {
+        return match ($this->request->input($key)) {
             'true', '1' => true,
             'false', '0' => false,
             default => null,
