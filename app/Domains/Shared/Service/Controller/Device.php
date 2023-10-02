@@ -4,7 +4,7 @@ namespace App\Domains\Shared\Service\Controller;
 
 use Illuminate\Http\Request;
 use App\Domains\Core\Traits\Factory;
-use App\Domains\Device\Model\Device as Model;
+use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Trip\Model\Collection\Trip as TripCollection;
 
@@ -14,11 +14,11 @@ class Device extends ControllerAbstract
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \App\Domains\Device\Model\Device $row
+     * @param \App\Domains\Device\Model\Device $device
      *
      * @return self
      */
-    public function __construct(Request $request, protected Model $row)
+    public function __construct(Request $request, protected DeviceModel $device)
     {
         $this->request = $request;
         $this->setUser();
@@ -29,7 +29,7 @@ class Device extends ControllerAbstract
      */
     public function setUser(): void
     {
-        $this->factory('User', $this->row->user)->action()->set();
+        $this->factory('User', $this->device->user)->action()->set();
     }
 
     /**
@@ -38,7 +38,7 @@ class Device extends ControllerAbstract
     public function data(): array
     {
         return [
-            'row' => $this->row,
+            'device' => $this->device,
             'trips' => $this->trips(),
             'shared_available' => $this->sharedAvailable(),
             'shared_url' => $this->sharedUrl(),
@@ -51,7 +51,7 @@ class Device extends ControllerAbstract
     protected function trips(): TripCollection
     {
         return $this->cache[__FUNCTION__] ??= TripModel::query()
-            ->byDeviceId($this->row->id)
+            ->byDeviceId($this->device->id)
             ->whereShared()
             ->whereSharedPublic()
             ->list()
@@ -63,15 +63,7 @@ class Device extends ControllerAbstract
      */
     protected function sharedAvailable(): bool
     {
-        return $this->row->shared_public
+        return $this->device->shared_public
             && app('configuration')->bool('shared_enabled');
-    }
-
-    /**
-     * @return string
-     */
-    protected function sharedUrl(): string
-    {
-        return route('shared.index', app('configuration')->string('shared_slug'));
     }
 }

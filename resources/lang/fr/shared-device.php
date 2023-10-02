@@ -1,4 +1,7 @@
 <?php return [
+    'error' => [
+        'not-found' => 'L\'appareil indiqué n\'est pas disponible',
+    ],
     'meta-title' => 'Voyage',
     'trip-distance' => 'Distance',
     'trip-end_at' => 'Fin',

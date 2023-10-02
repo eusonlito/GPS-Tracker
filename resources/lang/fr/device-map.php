@@ -1,4 +1,4 @@
 <?php return [
     'filter' => 'Filtre...',
-    'meta-title' => 'Appareils &gt; Carte',
+    'meta-title' => 'Appareils > Carte',
 ];

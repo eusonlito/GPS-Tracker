@@ -4,10 +4,10 @@ namespace App\Domains\Shared\Service\Controller;
 
 use Illuminate\Http\Request;
 use App\Domains\Core\Traits\Factory;
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Device\Model\Collection\Device as DeviceCollection;
+use App\Domains\Device\Model\Device as DeviceModel;
 
-class Index extends ControllerAbstract
+class Map extends ControllerAbstract
 {
     use Factory;
 
@@ -39,6 +39,7 @@ class Index extends ControllerAbstract
     {
         return [
             'devices' => $this->devices(),
+            'shared_url' => $this->sharedUrl(),
         ];
     }
 
@@ -50,9 +51,10 @@ class Index extends ControllerAbstract
         return $this->cache[__FUNCTION__] ??= DeviceModel::query()
             ->whereShared()
             ->whereSharedPublic()
-            ->withTripLastSharedPublic()
+            ->withVehicle()
+            ->withPositionLast()
             ->list()
             ->get()
-            ->sortByDesc('withTripLastSharedPublic.id');
+            ->filter(static fn ($device) => $device->positionLast);
     }
 }

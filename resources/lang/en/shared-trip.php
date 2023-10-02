@@ -3,6 +3,9 @@
         'title' => 'Distance',
         'total' => 'Total',
     ],
+    'error' => [
+        'not-found' => 'The indicated trip is not available',
+    ],
     'meta-title' => 'Trip > :title',
     'speed' => [
         'avg' => 'Average',

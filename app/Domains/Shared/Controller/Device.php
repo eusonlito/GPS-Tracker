@@ -3,7 +3,7 @@
 namespace App\Domains\Shared\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Device\Model\Device as Model;
+use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Shared\Service\Controller\Device as ControllerService;
 use App\Exceptions\NotFoundException;
 
@@ -12,7 +12,7 @@ class Device extends ControllerAbstract
     /**
      * @var \App\Domains\Device\Model\Device
      */
-    protected Model $row;
+    protected DeviceModel $device;
 
     /**
      * @param string $code
@@ -21,9 +21,9 @@ class Device extends ControllerAbstract
      */
     public function __invoke(string $code): Response
     {
-        $this->row($code);
+        $this->device($code);
 
-        $this->meta('title', __('shared-device.meta-title', ['title' => $this->row->name]));
+        $this->meta('title', __('shared-device.meta-title', ['title' => $this->device->name]));
 
         return $this->page('shared.device', $this->data());
     }
@@ -33,11 +33,14 @@ class Device extends ControllerAbstract
      *
      * @return void
      */
-    protected function row(string $code): void
+    protected function device(string $code): void
     {
-        $this->row = Model::query()->byCode($code)->whereShared()->firstOr(static function () {
-            throw new NotFoundException(__('shared-device.error.not-found'));
-        });
+        $this->device = DeviceModel::query()
+            ->byCode($code)
+            ->whereShared()
+            ->firstOr(static function () {
+                throw new NotFoundException(__('shared-device.error.not-found'));
+            });
     }
 
     /**
@@ -45,6 +48,6 @@ class Device extends ControllerAbstract
      */
     protected function data(): array
     {
-        return ControllerService::new($this->request, $this->row)->data();
+        return ControllerService::new($this->request, $this->device)->data();
     }
 }

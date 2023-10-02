@@ -3,9 +3,9 @@
 namespace App\Domains\Shared\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Shared\Service\Controller\Index as ControllerService;
+use App\Domains\Shared\Service\Controller\Map as ControllerService;
 
-class Index extends ControllerAbstract
+class Map extends ControllerAbstract
 {
     /**
      * @param string $slug
@@ -16,9 +16,9 @@ class Index extends ControllerAbstract
     {
         $this->publicIsAvailable($slug);
 
-        $this->meta('title', __('shared-index.meta-title'));
+        $this->meta('title', __('shared-map.meta-title'));
 
-        return $this->page('shared.index', $this->data());
+        return $this->page('shared.map', $this->data());
     }
 
     /**

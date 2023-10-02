@@ -11,7 +11,7 @@
 
     @endif
 
-    <h2 class="box px-5 py-2 font-medium text-xl sm:text-2xl">{{ $row->name }}</h2>
+    <h2 class="box px-5 py-2 font-medium text-xl sm:text-2xl">{{ $device->name }}</h2>
 
     <div class="overflow-auto lg:overflow-visible header-sticky">
         <table id="device-trips-table" class="table table-report font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">

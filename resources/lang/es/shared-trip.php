@@ -3,6 +3,9 @@
         'title' => 'Distancia',
         'total' => 'Total',
     ],
+    'error' => [
+        'not-found' => 'El viaje indicado no se encuentra disponible',
+    ],
     'meta-title' => 'Viaje > :title',
     'speed' => [
         'avg' => 'Media',

@@ -4,7 +4,7 @@ namespace App\Domains\Shared\Controller;
 
 use Illuminate\Http\Response;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
-use App\Domains\Trip\Model\Trip as Model;
+use App\Domains\Trip\Model\Trip as TripModel;
 use App\Exceptions\NotFoundException;
 
 class Trip extends ControllerAbstract
@@ -12,7 +12,7 @@ class Trip extends ControllerAbstract
     /**
      * @var \App\Domains\Trip\Model\Trip
      */
-    protected Model $row;
+    protected TripModel $trip;
 
     /**
      * @param string $code
@@ -21,15 +21,15 @@ class Trip extends ControllerAbstract
      */
     public function __invoke(string $code): Response
     {
-        $this->row($code);
+        $this->trip($code);
 
-        $this->meta('title', __('shared-trip.meta-title', ['title' => $this->row->name]));
+        $this->meta('title', __('shared-trip.meta-title', ['title' => $this->trip->name]));
 
         return $this->page('shared.trip', [
-            'row' => $this->row,
-            'device' => $this->row->device,
+            'trip' => $this->trip,
+            'device' => $this->trip->device,
             'positions' => $this->positions(),
-            'stats' => $this->row->stats,
+            'stats' => $this->trip->stats,
         ]);
     }
 
@@ -38,13 +38,16 @@ class Trip extends ControllerAbstract
      *
      * @return void
      */
-    protected function row(string $code): void
+    protected function trip(string $code): void
     {
-        $this->row = Model::query()->byCode($code)->whereShared()->firstOr(static function () {
-            throw new NotFoundException(__('shared-trip.error.not-found'));
-        });
+        $this->trip = TripModel::query()
+            ->byCode($code)
+            ->whereShared()
+            ->firstOr(static function () {
+                throw new NotFoundException(__('shared-trip.error.not-found'));
+            });
 
-        $this->factory('User', $this->row->user)->action()->set();
+        $this->factory('User', $this->trip->user)->action()->set();
     }
 
     /**
@@ -52,7 +55,7 @@ class Trip extends ControllerAbstract
      */
     protected function positions(): PositionCollection
     {
-        return $this->row->positions()
+        return $this->trip->positions()
             ->withCity()
             ->list()
             ->get();

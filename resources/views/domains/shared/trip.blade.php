@@ -11,12 +11,12 @@
 
     @endif
 
-    <h2 class="box px-5 py-2 mb-5 font-medium text-xl sm:text-2xl">{{ $row->name }}</h2>
+    <h2 class="box px-5 py-2 mb-5 font-medium text-xl sm:text-2xl">{{ $trip->name }}</h2>
 
     @if ($positions->isNotEmpty())
 
     <div class="box p-5">
-        <x-map :trip="$row" :positions="$positions"></x-map>
+        <x-map :trip="$trip" :positions="$positions"></x-map>
     </div>
 
     @endif
@@ -27,7 +27,7 @@
         <h2 class="text-xl font-medium mb-3">{{ __('shared-trip.distance.title') }}</h2>
 
         <div class="progress h-6">
-            <div class="progress-bar p-3 whitespace-nowrap" style="width: 100%" role="progressbar" aria-valuenow="{{ $stats['speed']['max_percent'] }}" aria-valuemin="0" aria-valuemax="100">{{ __('shared-trip.distance.total') }}: @unitHuman('distance', $row->distance)</div>
+            <div class="progress-bar p-3 whitespace-nowrap" style="width: 100%" role="progressbar" aria-valuenow="{{ $stats['speed']['max_percent'] }}" aria-valuemin="0" aria-valuemax="100">{{ __('shared-trip.distance.total') }}: @unitHuman('distance', $trip->distance)</div>
         </div>
     </div>
 

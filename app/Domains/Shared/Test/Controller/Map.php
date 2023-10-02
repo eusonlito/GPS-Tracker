@@ -4,12 +4,12 @@ namespace App\Domains\Shared\Test\Controller;
 
 use App\Domains\Configuration\Model\Configuration as ConfigurationModel;
 
-class Index extends ControllerAbstract
+class Map extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'shared.index';
+    protected string $route = 'shared.map';
 
     /**
      * @return void
