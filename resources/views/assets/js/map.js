@@ -569,7 +569,7 @@ export default class {
             return this;
         }
 
-        const id = device.position.id;
+        const id = device.id;
         const latLng = this.getLatLng(device.position);
         const html = this.devicePopupHtml(device);
 
@@ -591,7 +591,7 @@ export default class {
 
     getDeviceBindPopupOptions(device) {
         return {
-            offset: new L.Point(0, -7)
+            offset: new L.Point(0, -25)
         };
     }
 

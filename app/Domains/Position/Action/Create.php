@@ -142,8 +142,17 @@ class Create extends ActionAbstract
      */
     protected function data(): void
     {
+        $this->dataPoint();
         $this->dataTimezoneId();
         $this->dataDateAt();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataPoint(): void
+    {
+        $this->data['point'] = Model::pointFromLatitudeLongitude($this->data['latitude'], $this->data['longitude']);
     }
 
     /**
@@ -293,7 +302,7 @@ class Create extends ActionAbstract
     protected function saveRow(): void
     {
         $this->row = Model::query()->create([
-            'point' => Model::pointFromLatitudeLongitude($this->data['latitude'], $this->data['longitude']),
+            'point' => $this->data['point'],
             'speed' => $this->data['speed'],
             'direction' => $this->data['direction'],
             'signal' => $this->data['signal'],

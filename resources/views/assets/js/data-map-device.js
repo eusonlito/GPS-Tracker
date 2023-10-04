@@ -83,7 +83,7 @@ import { dateUtc, dateToIso } from './helper'
             }
         });
 
-        return devices.filter(device => selected.includes(device.position.id));
+        return devices.filter(device => selected.includes(device.id));
     };
 
     const filterFinishedHandler = (devices) => {
@@ -91,18 +91,24 @@ import { dateUtc, dateToIso } from './helper'
             return devices;
         }
 
-        const end_at = dateToIso(dateUtc(new Date(new Date() - 1000 * filterFinished.value)));
+        const minutes = parseInt(filterFinished.dataset.mapTripFinished);
+
+        if (isNaN(minutes)) {
+            return devices;
+        }
+
+        const end_at = dateToIso(dateUtc(new Date(new Date() - 1000 * 60 * minutes)));
         const value = filterFinished.value;
 
         return devices.filter(device => {
             const date_utc_at = device.position.date_utc_at;
 
-            if (value === '0') {
-                return date_utc_at >= end_at;
-            }
-
             if (value === '1') {
                 return date_utc_at <= end_at;
+            }
+
+            if (value === '0') {
+                return date_utc_at >= end_at;
             }
 
             return true;

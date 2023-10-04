@@ -41,8 +41,8 @@
                 @foreach ($devices as $each)
 
                 <tr>
-                    <td class="w-1"><input type="checkbox" name="visible[]" value="{{ $each->positionLast->id }}" data-map-list-visible checked /></td>
-                    <td class="w-1"><a href="#" data-map-point="{{ $each->positionLast->id }}">{{ $each->name }}</a></td>
+                    <td class="w-1"><input type="checkbox" name="visible[]" value="{{ $each->id }}" data-map-list-visible checked /></td>
+                    <td class="w-1"><a href="#" data-map-point="{{ $each->id }}">{{ $each->name }}</a></td>
                     <td class="w-1"><a href="#">{{ $each->vehicle->name ?? '-' }}</a></td>
                 </tr>
 
