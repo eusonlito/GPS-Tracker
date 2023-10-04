@@ -53,9 +53,8 @@ class Map extends ControllerAbstract
             ->whereShared()
             ->whereSharedPublic()
             ->withVehicle()
-            ->withPositionLast()
+            ->withWhereHasPositionLast()
             ->list()
-            ->get()
-            ->filter(static fn ($device) => $device->positionLast);
+            ->get();
     }
 }

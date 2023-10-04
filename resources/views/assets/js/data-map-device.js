@@ -63,82 +63,96 @@ import { dateUtc, dateToIso } from './helper'
         }
     })();
 
-    (function () {
-        const visible = element.querySelectorAll('[data-map-list-visible]');
+    const filterVisible = element.querySelectorAll('[data-map-list-visible]');
+    const filterFinished = element.querySelector('[data-map-trip-finished]');
 
-        if (!visible.length) {
-            return;
+    const filter = () => {
+        map.setDevices(filterFinishedHandler(filterVisibleHandler(devices)));
+    };
+
+    const filterVisibleHandler = (devices) => {
+        if (!filterVisible.length) {
+            return devices;
         }
 
-        let timeout;
+        const selected = [];
 
-        const filter = () => {
-            const selected = [];
+        filterVisible.forEach(checkbox => {
+            if (checkbox.checked) {
+                selected.push(parseInt(checkbox.value));
+            }
+        });
 
-            visible.forEach(checkbox => {
-                if (checkbox.checked) {
-                    selected.push(parseInt(checkbox.value));
-                }
-            });
+        return devices.filter(device => selected.includes(device.position.id));
+    };
 
-            map.setDevices(devices.filter(device => selected.includes(device.position.id)));
-        };
+    const filterFinishedHandler = (devices) => {
+        if (!filterFinished) {
+            return devices;
+        }
 
-        const change = (checkbox) => {
-            if (!checkbox) {
-                return;
+        const end_at = dateToIso(dateUtc(new Date(new Date() - 1000 * filterFinished.value)));
+        const value = filterFinished.value;
+
+        return devices.filter(device => {
+            const date_utc_at = device.position.date_utc_at;
+
+            if (value === '0') {
+                return date_utc_at >= end_at;
             }
 
-            checkbox.addEventListener('change', (e) => {
-                e.preventDefault();
+            if (value === '1') {
+                return date_utc_at <= end_at;
+            }
 
-                clearTimeout(timeout);
+            return true;
+        });
+    };
 
-                timeout = setTimeout(filter, 800);
-            });
-        };
+    const filterListener = () => {
+        filterVisibleListener();
+        filterFinishedListener();
+    };
 
-        change(element.querySelector('[data-checkall]'))
-
-        visible.forEach(change);
-    })();
-
-    (function () {
-        const finished = element.querySelector('[data-map-trip-finished]');
-
-        if (!finished) {
+    const filterVisibleListener = () => {
+        if (!filterVisible.length) {
             return;
         }
 
         let timeout;
 
-        const filter = () => {
-            const end_at = dateToIso(dateUtc(new Date(new Date() - 1000 * finished.value)));
-            const value = finished.value;
+        const event = (e) => {
+            e.preventDefault();
 
-            map.setDevices(devices.filter(device => {
-                const date_utc_at = device.position.date_utc_at;
+            clearTimeout(timeout);
 
-                if (value === '0') {
-                    return date_utc_at >= end_at;
-                }
-
-                if (value === '1') {
-                    return date_utc_at <= end_at;
-                }
-
-                return true;
-            }));
+            timeout = setTimeout(filter, 800);
         };
 
-        finished.addEventListener('change', (e) => {
+        filterVisible.forEach((checkbox) => {
+            if (checkbox) {
+                checkbox.addEventListener('change', event);
+            }
+        });
+    };
+
+    const filterFinishedListener = () => {
+        if (!filterFinished) {
+            return;
+        }
+
+        let timeout;
+
+        filterFinished.addEventListener('change', (e) => {
             e.preventDefault();
 
             clearTimeout(timeout);
 
             timeout = setTimeout(filter, 800);
         });
-    })();
+    };
+
+    filterListener();
 
     map.setDevicesTripUrl(element.dataset.mapTripUrl);
     map.setDevices(devices);
@@ -180,7 +194,7 @@ import { dateUtc, dateToIso } from './helper'
 
         interval = null;
 
-        live.innerHTML = Feather('play', 'w-4 h-4 sm:w-6 sm:h-6');
+        live.innerHTML = Feather('play', 'w-6 h-6');
     };
 
     const liveStart = function () {
@@ -188,18 +202,18 @@ import { dateUtc, dateToIso } from './helper'
 
         interval = setInterval(liveStartMap, 10000);
 
-        live.innerHTML = Feather('pause', 'w-4 h-4 sm:w-6 sm:h-6');
+        live.innerHTML = Feather('pause', 'w-6 h-6');
     };
 
     const liveStartMap = function () {
-        new Ajax(element.dataset.mapDevicesUrl, 'GET')
+        new Ajax(window.location.href, 'GET')
             .setAjax(true)
             .setJsonResponse(true)
             .setCallback(liveStartMapDevices)
             .send();
     };
 
-    const liveStartMapDevices = function (devices) {
-        map.setDevices(devices);
+    const liveStartMapDevices = function (response) {
+        filter(devices = response);
     };
 })();

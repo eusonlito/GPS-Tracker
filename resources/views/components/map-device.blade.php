@@ -17,8 +17,14 @@
                 <input type="search" class="form-control form-control-lg" placeholder="{{ __('device-map.filter') }}" data-table-search="#map-device-list-table-{{ $id }}" />
             </div>
 
-            <div class="p-2">
-                <x-select name="finished" :options="$filterFinished" data-map-trip-finished="{{ $filterFinishedMinutes }}"></x-select>
+            <div class="flex">
+                <div class="p-2">
+                    <a href="#" class="btn bg-white mr-2" data-map-live>@icon('play', 'w-6 h-6')</a>
+                </div>
+
+                <div class="flex-1 p-2">
+                    <x-select name="finished" :options="$filterFinished" data-map-trip-finished="{{ $filterFinishedMinutes }}"></x-select>
+                </div>
             </div>
         </form>
 
