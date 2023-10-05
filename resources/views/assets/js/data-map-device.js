@@ -189,18 +189,10 @@ import { dateUtc, dateToIso } from './helper'
     };
 
     const liveStart = function () {
-        liveStartMap();
+        update();
 
-        interval = setInterval(liveStartMap, 10000);
+        interval = setInterval(update, 10000);
 
         live.innerHTML = Feather('pause', 'w-6 h-6');
-    };
-
-    const liveStartMap = function () {
-        new Ajax(window.location.href, 'GET')
-            .setAjax(true)
-            .setJsonResponse(true)
-            .setCallback(update)
-            .send();
     };
 })();

@@ -68,6 +68,16 @@ class Device extends BuilderAbstract
     }
 
     /**
+     * @param bool $shared_public = true
+     *
+     * @return self
+     */
+    public function whereTripSharedPublic(bool $shared_public = true): self
+    {
+        return $this->whereIn('id', TripModel::query()->select('device_id')->whereSharedPublic($shared_public));
+    }
+
+    /**
      * @param bool $shared = true
      *
      * @return self
@@ -84,7 +94,7 @@ class Device extends BuilderAbstract
      */
     public function whereSharedPublic(bool $shared_public = true): self
     {
-        return $this->where('shared_public', $shared_public);
+        return $this->whereShared()->where('shared_public', $shared_public);
     }
 
     /**

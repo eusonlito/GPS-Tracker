@@ -3,15 +3,12 @@
 namespace App\Domains\Shared\Service\Controller;
 
 use Illuminate\Http\Request;
-use App\Domains\Core\Traits\Factory;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Trip\Model\Collection\Trip as TripCollection;
 
 class Device extends ControllerAbstract
 {
-    use Factory;
-
     /**
      * @param \Illuminate\Http\Request $request
      * @param \App\Domains\Device\Model\Device $device
@@ -42,7 +39,6 @@ class Device extends ControllerAbstract
             'trips' => $this->trips(),
             'shared_available' => $this->sharedAvailable(),
             'shared_url' => $this->sharedUrl(),
-            'shared_url_map' => $this->sharedUrlMap(),
         ];
     }
 
@@ -53,7 +49,6 @@ class Device extends ControllerAbstract
     {
         return $this->cache[__FUNCTION__] ??= TripModel::query()
             ->byDeviceId($this->device->id)
-            ->whereShared()
             ->whereSharedPublic()
             ->list()
             ->get();

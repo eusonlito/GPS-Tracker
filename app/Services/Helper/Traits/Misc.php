@@ -52,4 +52,14 @@ trait Misc
 
         return json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR);
     }
+
+    /**
+     * @param array $query
+     *
+     * @return string
+     */
+    public function query(array $query): string
+    {
+        return http_build_query($query + request()->query());
+    }
 }

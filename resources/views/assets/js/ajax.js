@@ -121,13 +121,13 @@ export default class {
     }
 
     sendUrl() {
-        let url = this.url;
-
-        if (this.query) {
-            url += '?' + this.queryToUrl(this.query);
+        if (this.isObjectEmpty(this.query)) {
+            return this.url;
         }
 
-        return url;
+        return this.url
+            + (this.url.includes('?') ? '&' : '?')
+            + this.queryToUrl(this.query);
     }
 
     sendData() {
@@ -216,5 +216,9 @@ export default class {
         });
 
         return [].concat.apply([], query).join('&');
+    }
+
+    isObjectEmpty(object) {
+        return !object || !Object.keys(object).length;
     }
 };

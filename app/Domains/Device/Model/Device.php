@@ -122,7 +122,7 @@ class Device extends ModelAbstract
     public function tripLastSharedPublic(): HasOne
     {
         return $this->hasOne(TripModel::class, static::FOREIGN)
-            ->ofMany(['end_utc_at' => 'MAX'], static fn ($q) => $q->whereShared()->whereSharedPublic());
+            ->ofMany(['end_utc_at' => 'MAX'], static fn ($q) => $q->whereSharedPublic());
     }
 
     /**

@@ -180,6 +180,7 @@ class Trip extends BuilderAbstract
         return $this->selectOnly(
             'id',
             'name',
+            'code',
             'start_at',
             'start_utc_at',
             'end_at',
@@ -316,7 +317,7 @@ class Trip extends BuilderAbstract
      */
     public function whereSharedPublic(bool $shared_public = true): self
     {
-        return $this->where('shared_public', $shared_public);
+        return $this->whereShared()->where('shared_public', $shared_public);
     }
 
     /**
