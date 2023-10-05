@@ -28,7 +28,7 @@ class Index extends ControllerAbstract
      */
     public function setUser(): void
     {
-        if ($device = $this->devices()->first()) {
+        if ($device = $this->device() ?: $this->devices()->first()) {
             $this->factory('User', $device->user)->action()->set();
         }
     }
