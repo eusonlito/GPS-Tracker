@@ -70,7 +70,7 @@ select {
 .mobile-menu {
     margin: 0;
 
-    > ul > li > .menu {
+    ul li .menu {
         font-weight: 500;
         color: rgba(178, 190, 222, var(--tw-text-opacity));
 

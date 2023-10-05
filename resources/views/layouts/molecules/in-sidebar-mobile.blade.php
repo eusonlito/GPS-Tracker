@@ -59,7 +59,7 @@
 
             <ul class="{{ $active ? 'menu__sub-open' : '' }}">
                 <li>
-                    <a href="{{ route('device.index') }}" class="menu {{ ($ROUTE !== 'device.map') ? 'menu--active' : '' }}">
+                    <a href="{{ route('device.index') }}" class="menu {{ ($active && ($ROUTE !== 'device.map')) ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('list')</div>
                         <div class="menu__title">{{ __('in-sidebar.device-index') }}</div>
                     </a>
