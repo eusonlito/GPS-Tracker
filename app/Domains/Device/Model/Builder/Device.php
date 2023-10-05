@@ -134,4 +134,12 @@ class Device extends BuilderAbstract
     {
         return $this->with(['vehicle' => static fn ($q) => $q->withTimezone()]);
     }
+
+    /**
+     * @return self
+     */
+    public function withWhereHasTripLastSharedPublic(): self
+    {
+        return $this->withWhereHas('tripLastSharedPublic');
+    }
 }
