@@ -21,7 +21,7 @@ return (new Config())
         'phpdoc_separation' => true,
         'single_line_comment_style' => false,
 
-        'curly_braces_position' => [
+        'braces_position' => [
             'allow_single_line_empty_anonymous_classes' => true,
             'anonymous_functions_opening_brace' => 'same_line',
         ],

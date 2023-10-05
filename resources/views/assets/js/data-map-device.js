@@ -66,53 +66,38 @@ import { dateUtc, dateToIso } from './helper'
     const filterVisible = element.querySelectorAll('[data-map-list-visible]');
     const filterFinished = element.querySelector('[data-map-trip-finished]');
 
-    const filter = () => {
-        map.setDevices(filterFinishedHandler(filterVisibleHandler(devices)));
+    const update = () => {
+        new Ajax(window.location.href, 'GET')
+            .setAjax(true)
+            .setQuery(updateQuery())
+            .setJsonResponse(true)
+            .setCallback(updateCallback)
+            .send();
     };
 
-    const filterVisibleHandler = (devices) => {
+    const updateQuery = () => {
+        return {
+            ids: updateQueryIds(),
+            finished: updateQueryFinished()
+        };
+    };
+
+    const updateQueryIds = () => {
         if (!filterVisible.length) {
-            return devices;
+            return;
         }
 
-        const selected = [];
-
-        filterVisible.forEach(checkbox => {
-            if (checkbox.checked) {
-                selected.push(parseInt(checkbox.value));
-            }
-        });
-
-        return devices.filter(device => selected.includes(device.id));
+        return Array.from(filterVisible)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
     };
 
-    const filterFinishedHandler = (devices) => {
-        if (!filterFinished) {
-            return devices;
-        }
+    const updateQueryFinished = () => {
+        return filterFinished?.value;
+    };
 
-        const minutes = parseInt(filterFinished.dataset.mapTripFinished);
-
-        if (isNaN(minutes)) {
-            return devices;
-        }
-
-        const end_at = dateToIso(dateUtc(new Date(new Date() - 1000 * 60 * minutes)));
-        const value = filterFinished.value;
-
-        return devices.filter(device => {
-            const date_utc_at = device.position.date_utc_at;
-
-            if (value === '1') {
-                return date_utc_at <= end_at;
-            }
-
-            if (value === '0') {
-                return date_utc_at >= end_at;
-            }
-
-            return true;
-        });
+    const updateCallback = (list) => {
+        map.setDevices(list);
     };
 
     const filterListener = () => {
@@ -132,7 +117,7 @@ import { dateUtc, dateToIso } from './helper'
 
             clearTimeout(timeout);
 
-            timeout = setTimeout(filter, 800);
+            timeout = setTimeout(update, 800);
         };
 
         filterVisible.forEach((checkbox) => {
@@ -154,7 +139,7 @@ import { dateUtc, dateToIso } from './helper'
 
             clearTimeout(timeout);
 
-            timeout = setTimeout(filter, 800);
+            timeout = setTimeout(update, 800);
         });
     };
 
@@ -215,11 +200,7 @@ import { dateUtc, dateToIso } from './helper'
         new Ajax(window.location.href, 'GET')
             .setAjax(true)
             .setJsonResponse(true)
-            .setCallback(liveStartMapDevices)
+            .setCallback(update)
             .send();
-    };
-
-    const liveStartMapDevices = function (response) {
-        filter(devices = response);
     };
 })();

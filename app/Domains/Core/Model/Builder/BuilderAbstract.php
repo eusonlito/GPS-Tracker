@@ -224,11 +224,11 @@ abstract class BuilderAbstract extends Builder
     }
 
     /**
-     * @param array $ids
+     * @param ?array $ids
      *
      * @return self
      */
-    public function whenIds(array $ids): self
+    public function whenIds(?array $ids): self
     {
         return $this->when($ids, static fn ($q) => $q->byIds($ids));
     }

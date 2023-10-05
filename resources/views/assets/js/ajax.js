@@ -68,6 +68,12 @@ export default class {
         return this;
     }
 
+    setQuery(query) {
+        this.query = query;
+
+        return this;
+    }
+
     setBody(body) {
         this.body = body;
 
@@ -99,7 +105,7 @@ export default class {
     }
 
     send() {
-        return fetch(this.url, this.sendData()).then(async response => {
+        return fetch(this.sendUrl(), this.sendData()).then(async response => {
             response = await this.sendResponse(response);
 
             if (typeof response === 'undefined') {
@@ -112,6 +118,16 @@ export default class {
                 document.dispatchEvent(new Event('ajax'));
             }
         }).catch(error => this.error(error));
+    }
+
+    sendUrl() {
+        let url = this.url;
+
+        if (this.query) {
+            url += '?' + this.queryToUrl(this.query);
+        }
+
+        return url;
     }
 
     sendData() {
@@ -176,5 +192,29 @@ export default class {
         }
 
         return text;
+    }
+
+    queryToUrl(params, prefix) {
+        if (!params) {
+            return '';
+        }
+
+        const query = Object.keys(params).map((key) => {
+            const value  = params[key];
+
+            if (params.constructor === Array) {
+                key = `${prefix}[]`;
+            } else if (params.constructor === Object) {
+                key = (prefix ? `${prefix}[${key}]` : key);
+            }
+
+            if (typeof value === 'object') {
+                return this.queryToUrl(value, key);
+            }
+
+            return `${key}=${encodeURIComponent(value)}`;
+        });
+
+        return [].concat.apply([], query).join('&');
     }
 };

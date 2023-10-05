@@ -52,6 +52,8 @@ class Map extends ControllerAbstract
         return $this->cache[__FUNCTION__] ??= DeviceModel::query()
             ->whereShared()
             ->whereSharedPublic()
+            ->whenIds($this->requestArray('ids'))
+            ->whenTripFinished($this->requestBool('finished'))
             ->withVehicle()
             ->withWhereHasPositionLast()
             ->list()
