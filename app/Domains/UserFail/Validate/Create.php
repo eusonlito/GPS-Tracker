@@ -18,16 +18,4 @@ class Create extends ValidateAbstract
             'user_id' => ['bail', 'integer', 'nullable'],
         ];
     }
-
-    /**
-     * @return array
-     */
-    public function messages(): array
-    {
-        return [
-            'type.required' => __('user-fail-create.validate.type-required'),
-            'text.required' => __('user-fail-create.validate.text-required'),
-            'user_id.integer' => __('user-fail-create.validate.user_id-integer'),
-        ];
-    }
 }

@@ -17,16 +17,4 @@ class Create extends ValidateAbstract
             'user_id' => ['bail', 'required', 'integer'],
         ];
     }
-
-    /**
-     * @return array
-     */
-    public function messages(): array
-    {
-        return [
-            'auth.required' => __('user-session-create.validate.auth-required'),
-            'user_id.required' => __('user-session-create.validate.user_id-required'),
-            'user_id.integer' => __('user-session-create.validate.user_id-integer'),
-        ];
-    }
 }
