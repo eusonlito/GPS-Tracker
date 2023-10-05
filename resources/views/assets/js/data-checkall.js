@@ -10,6 +10,15 @@
 
         checkboxes.forEach(checkbox => checkbox.dataset.checkallPrevious = checkbox.checked);
 
+        const checked = (checkbox, status) => {
+            if (!checkbox.offsetParent || (checkbox.checked === status)) {
+                return;
+            }
+
+            checkbox.checked = status;
+            checkbox.dispatchEvent(new Event('change'));
+        };
+
         let checkallClicks = 0;
 
         element.addEventListener('click', (e) => {
@@ -20,27 +29,21 @@
                 element.indeterminate = false;
 
                 checkboxes.forEach(checkbox => {
-                    if (checkbox.offsetParent) {
-                        checkbox.checked = true;
-                    }
+                    checked(checkbox, true);
                 });
             } else if (checkallClicks === 1) {
                 element.checked = false;
                 element.indeterminate = false;
 
                 checkboxes.forEach(checkbox => {
-                    if (checkbox.offsetParent) {
-                        checkbox.checked = false;
-                    }
+                    checked(checkbox, false);
                 });
             } else {
                 element.checked = true;
                 element.indeterminate = true;
 
                 checkboxes.forEach(checkbox => {
-                    if (checkbox.offsetParent) {
-                        checkbox.checked = checkbox.dataset.checkallPrevious === 'true';
-                    }
+                    checked(checkbox, checkbox.dataset.checkallPrevious === 'true');
                 });
             }
 
