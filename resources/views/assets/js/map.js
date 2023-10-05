@@ -823,17 +823,15 @@ export default class {
     }
 
     devicePopupHtml(device) {
-        const link = '<a href="' + this.devicesTripUrl + '/?device_id=' + device.id + '" target="_blank">';
-
         let html = '';
 
         if (device.vehicle && (device.name === device.vehicle.name)) {
-            html += this.popupHtmlLine('vehicle', link + device.vehicle.name + '</a>');
+            html += this.popupHtmlLine('vehicle', device.vehicle.name);
         } else if (device.vehicle) {
-            html += this.popupHtmlLine('device', link + device.name + '</a>')
-                + this.popupHtmlLine('vehicle', link + device.vehicle.name + '</a>');
+            html += this.popupHtmlLine('device', device.name)
+                + this.popupHtmlLine('vehicle', device.vehicle.name);
         } else {
-            html += this.popupHtmlLine('device', link + device.name + '</a>');
+            html += this.popupHtmlLine('device', device.name);
         }
 
         return html + this.popupHtml(device.position);
