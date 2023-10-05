@@ -61,6 +61,16 @@ abstract class MigrationAbstract extends Migration
     /**
      * @param \Illuminate\Database\Schema\Blueprint $table
      *
+     * @return \Illuminate\Database\Schema\ColumnDefinition
+     */
+    protected function uuid(Blueprint $table): ColumnDefinition
+    {
+        return $this->database()->uuid($table);
+    }
+
+    /**
+     * @param \Illuminate\Database\Schema\Blueprint $table
+     *
      * @return void
      */
     protected function timestamps(Blueprint $table): void

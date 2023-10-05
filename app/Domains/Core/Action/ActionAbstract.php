@@ -29,8 +29,11 @@ abstract class ActionAbstract
     {
         $this->request = $request;
         $this->auth = $auth;
-        $this->row = $row;
         $this->data = $data;
+
+        if (property_exists($this, 'row')) {
+            $this->row = $row;
+        }
     }
 
     /**

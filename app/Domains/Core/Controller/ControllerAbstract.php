@@ -3,6 +3,7 @@
 namespace App\Domains\Core\Controller;
 
 use Closure;
+use Throwable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -66,6 +67,48 @@ abstract class ControllerAbstract extends Controller
     final protected function action(?ModelAbstract $row = null, array $data = []): ActionFactoryAbstract
     {
         return $this->factory(row: $row)->action($data);
+    }
+
+    /**
+     * @param string $name
+     * @param ?string $target = null
+     * @param mixed ...$args
+     *
+     * @return mixed
+     */
+    final protected function actionCall(string $name, ?string $target = null, ...$args): mixed
+    {
+        try {
+            return call_user_func_array([$this, $target ?: $name], $args);
+        } catch (Throwable $e) {
+            return $this->actionException($e);
+        }
+    }
+
+    /**
+     * @param \Closure $closure
+     *
+     * @return mixed
+     */
+    final protected function actionCallClosure(Closure $closure): mixed
+    {
+        try {
+            return $closure();
+        } catch (Throwable $e) {
+            return $this->actionException($e);
+        }
+    }
+
+    /**
+     * @param \Throwable $e
+     *
+     * @return mixed
+     */
+    protected function actionException(Throwable $e): mixed
+    {
+        report($e);
+
+        return false;
     }
 
     /**

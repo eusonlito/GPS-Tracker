@@ -1,0 +1,23 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\{{ domain }}\Job;
+
+class Stats extends JobAbstract
+{
+    /**
+     * @param int $id
+     *
+     * @return self
+     */
+    public function __construct(protected int $id)
+    {
+    }
+
+    /**
+     * @return void
+     */
+    public function handle(): void
+    {
+        $this->factory(row: $this->row())->action()->stats();
+    }
+}

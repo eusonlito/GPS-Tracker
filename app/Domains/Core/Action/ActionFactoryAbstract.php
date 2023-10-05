@@ -25,8 +25,11 @@ abstract class ActionFactoryAbstract
     {
         $this->request = $request;
         $this->auth = $auth;
-        $this->row = $row;
         $this->data = $data;
+
+        if (property_exists($this, 'row')) {
+            $this->row = $row;
+        }
     }
 
     /**
@@ -37,7 +40,7 @@ abstract class ActionFactoryAbstract
      */
     final protected function action(string $class, ?array $data = []): ActionAbstract
     {
-        return new $class($this->request, $this->auth, $this->row, $data ?? $this->data);
+        return new $class($this->request, $this->auth, $this->row ?? null, $data ?? $this->data);
     }
 
     /**

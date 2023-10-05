@@ -2,7 +2,6 @@
 
 namespace App\Domains\Core\Controller;
 
-use Closure;
 use Throwable;
 use Illuminate\Http\Response;
 use Eusonlito\LaravelMeta\Facade as Meta;
@@ -133,43 +132,13 @@ abstract class ControllerWebAbstract extends ControllerAbstract
     }
 
     /**
-     * @param string $name
-     * @param ?string $target = null
-     * @param mixed ...$args
-     *
-     * @return mixed
-     */
-    final protected function actionCall(string $name, ?string $target = null, ...$args): mixed
-    {
-        try {
-            return call_user_func_array([$this, $target ?: $name], $args);
-        } catch (Throwable $e) {
-            return $this->actionException($e);
-        }
-    }
-
-    /**
-     * @param \Closure $closure
-     *
-     * @return mixed
-     */
-    final protected function actionCallClosure(Closure $closure): mixed
-    {
-        try {
-            return $closure();
-        } catch (Throwable $e) {
-            return $this->actionException($e);
-        }
-    }
-
-    /**
      * @param \Throwable $e
      *
      * @return mixed
      */
-    final protected function actionException(Throwable $e): mixed
+    protected function actionException(Throwable $e): mixed
     {
-        report($e);
+        parent::actionException($e);
 
         return Alert::exception($this->request, $e);
     }

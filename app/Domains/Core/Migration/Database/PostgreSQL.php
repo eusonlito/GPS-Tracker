@@ -2,14 +2,27 @@
 
 namespace App\Domains\Core\Migration\Database;
 
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\ColumnDefinition;
+
 class PostgreSQL extends DatabaseAbstract
 {
+    /**
+     * @param \Illuminate\Database\Schema\Blueprint $table
+     *
+     * @return \Illuminate\Database\Schema\ColumnDefinition
+     */
+    public function uuid(Blueprint $table): ColumnDefinition
+    {
+        return $table->uuid('uuid')->unique()->default($this->db->raw('gen_random_uuid()'));
+    }
+
     /**
      * @return void
      */
     public function functionUpdatedAtNow(): void
     {
-        $this->db->statement('
+        $this->db->unprepared('
             CREATE OR REPLACE FUNCTION updated_at_now()
             RETURNS TRIGGER AS $$
             BEGIN
@@ -34,7 +47,7 @@ class PostgreSQL extends DatabaseAbstract
         ';
 
         if ($execute) {
-            $this->db->statement($sql);
+            $this->db->unprepared($sql);
         }
 
         return $sql;
@@ -55,7 +68,7 @@ class PostgreSQL extends DatabaseAbstract
         ';
 
         if ($execute) {
-            $this->db->statement($sql);
+            $this->db->unprepared($sql);
         }
 
         return $sql;

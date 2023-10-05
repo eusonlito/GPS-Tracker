@@ -11,7 +11,11 @@ class Create
     /**
      * @const
      */
-    public const SECTIONS = ['Action', 'Command', 'Controller', 'Fractal', 'Mail', 'Middleware', 'Model', 'Schedule', 'Seeder', 'Test', 'Validate'];
+    public const SECTIONS = [
+        'Action', 'Command', 'Controller', 'Exception', 'Fractal',
+        'Job', 'Mail', 'Middleware', 'Model', 'Schedule',
+        'Seeder', 'Test', 'Validate',
+    ];
 
     /**
      * @var string

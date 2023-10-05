@@ -3,11 +3,12 @@
 namespace App\Domains\Core\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-abstract class MailAbstract extends Mailable
+abstract class MailAbstract extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 

@@ -122,7 +122,7 @@ abstract class CommandAbstract extends Command
             $user = $model::query()->findOrFail($user);
         }
 
-        Auth::login($user);
+        Auth::setUser($user);
 
         return $this->auth = $user;
     }
