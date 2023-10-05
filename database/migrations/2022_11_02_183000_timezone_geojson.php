@@ -37,8 +37,8 @@ return new class extends MigrationAbstract {
             $table->multiPolygon('geojson')->nullable();
         });
 
-        $this->db()->statement('UPDATE `timezone` SET `geojson` = '.TimezoneModel::emptyGeoJSON().';');
-        $this->db()->statement('ALTER TABLE `timezone` MODIFY COLUMN `geojson` multipolygon NOT NULL;');
+        $this->db()->unprepared('UPDATE `timezone` SET `geojson` = '.TimezoneModel::emptyGeoJSON().';');
+        $this->db()->unprepared('ALTER TABLE `timezone` MODIFY COLUMN `geojson` multipolygon NOT NULL;');
     }
 
     /**

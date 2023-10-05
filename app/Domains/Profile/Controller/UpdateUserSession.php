@@ -29,6 +29,7 @@ class UpdateUserSession extends ControllerAbstract
     {
         return UserSessionModel::query()
             ->byUser($this->row)
+            ->unionUserFailByUser($this->row)
             ->list()
             ->get();
     }

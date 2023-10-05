@@ -36,7 +36,7 @@ return new class extends MigrationAbstract {
             $table->dateTime('end_utc_at')->nullable();
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `trip` SET
                 `start_utc_at` = DATE_SUB(`start_at`, INTERVAL 2 HOUR),
                 `end_utc_at` = DATE_SUB(`end_at`, INTERVAL 2 HOUR);

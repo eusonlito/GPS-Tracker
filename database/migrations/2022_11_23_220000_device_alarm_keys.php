@@ -32,7 +32,7 @@ return new class extends MigrationAbstract {
      */
     protected function tables(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `device_alarm`
             WHERE `device_id` NOT IN (
                 SELECT `id`
@@ -40,7 +40,7 @@ return new class extends MigrationAbstract {
             );
         ');
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `device_alarm_notification`
             WHERE `device_id` NOT IN (
                 SELECT `id`
@@ -48,7 +48,7 @@ return new class extends MigrationAbstract {
             );
         ');
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `device_alarm_notification`
             WHERE `device_alarm_id` NOT IN (
                 SELECT `id`

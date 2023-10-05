@@ -35,7 +35,7 @@ return new class extends MigrationAbstract {
             $table->boolean('default')->default(0);
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `timezone`
             SET `default` = true
             WHERE `zone` = (
@@ -46,7 +46,7 @@ return new class extends MigrationAbstract {
             );
         ');
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `configuration`
             WHERE `key` = "timezone_default";
         ');
@@ -61,7 +61,7 @@ return new class extends MigrationAbstract {
             $table->dropColumn('default');
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             INSERT INTO `configuration`
             SET
                 `key` = "timezone_default",

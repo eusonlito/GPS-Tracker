@@ -2,7 +2,7 @@
 
 namespace App\Domains\Translation\Action;
 
-use App\Domains\Translation\Service\Fill as FillService;
+use App\Domains\Translation\Service\Fill as ActionService;
 
 class Fill extends ActionAbstract
 {
@@ -11,6 +11,6 @@ class Fill extends ActionAbstract
      */
     public function handle(): void
     {
-        FillService::new()->write();
+        ActionService::new()->write();
     }
 }

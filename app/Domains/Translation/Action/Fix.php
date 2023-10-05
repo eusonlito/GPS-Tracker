@@ -2,7 +2,7 @@
 
 namespace App\Domains\Translation\Action;
 
-use App\Domains\Translation\Service\Fix as FixService;
+use App\Domains\Translation\Service\Fix as ActionService;
 
 class Fix extends ActionAbstract
 {
@@ -11,6 +11,6 @@ class Fix extends ActionAbstract
      */
     public function handle(): void
     {
-        FixService::new()->write();
+        ActionService::new()->write();
     }
 }

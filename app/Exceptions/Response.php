@@ -61,12 +61,12 @@ class Response
             return $message;
         }
 
-        if ($this->e instanceof AuthenticationExceptionVendor) {
-            return __('user-auth.error.empty');
-        }
-
         if ($this->e instanceof AuthenticationException) {
             return $message ?: __('user-auth.error.auth');
+        }
+
+        if ($this->e instanceof AuthenticationExceptionVendor) {
+            return __('user-auth.error.empty');
         }
 
         if ($this->e instanceof NotFoundHttpException) {
@@ -131,12 +131,12 @@ class Response
             return $status;
         }
 
-        if ($this->e instanceof AuthenticationExceptionVendor) {
-            return 'user_auth';
-        }
-
         if ($this->e instanceof AuthenticationException) {
             return 'user_error';
+        }
+
+        if ($this->e instanceof AuthenticationExceptionVendor) {
+            return 'user_auth';
         }
 
         if ($this->e instanceof NotFoundHttpException) {
@@ -196,8 +196,7 @@ class Response
      */
     protected function isExceptionAuth(): bool
     {
-        return ($this->e instanceof AuthenticationExceptionVendor)
-            || ($this->e instanceof AuthenticationException);
+        return $this->e instanceof AuthenticationExceptionVendor;
     }
 
     /**

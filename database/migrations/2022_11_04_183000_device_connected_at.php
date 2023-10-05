@@ -35,7 +35,7 @@ return new class extends MigrationAbstract {
             $table->dateTimeTz('connected_at')->nullable();
         });
 
-        $this->db()->statement('UPDATE `device` SET `connected_at` = (
+        $this->db()->unprepared('UPDATE `device` SET `connected_at` = (
             SELECT MAX(`position`.`date_utc_at`)
             FROM `position`
             WHERE `position`.`device_id` = `device`.`id`

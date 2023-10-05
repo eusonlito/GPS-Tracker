@@ -2,7 +2,7 @@
 
 namespace App\Domains\Translation\Action;
 
-use App\Domains\Translation\Service\Translate as TranslateService;
+use App\Domains\Translation\Service\Translate as ActionService;
 
 class Translate extends ActionAbstract
 {
@@ -11,6 +11,6 @@ class Translate extends ActionAbstract
      */
     public function handle(): void
     {
-        TranslateService::new($this->data['from'], $this->data['to'])->write();
+        ActionService::new($this->data['from'], $this->data['to'])->write();
     }
 }

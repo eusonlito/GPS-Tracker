@@ -36,7 +36,7 @@ return new class extends MigrationAbstract {
             $table->unsignedBigInteger('timezone_id')->nullable();
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `trip` SET `timezone_id` = (
                 SELECT `device`.`timezone_id`
                 FROM `device`

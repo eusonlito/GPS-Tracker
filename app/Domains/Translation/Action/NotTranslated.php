@@ -2,7 +2,7 @@
 
 namespace App\Domains\Translation\Action;
 
-use App\Domains\Translation\Service\NotTranslated as NotTranslatedService;
+use App\Domains\Translation\Service\NotTranslated as ActionService;
 
 class NotTranslated extends ActionAbstract
 {
@@ -11,6 +11,6 @@ class NotTranslated extends ActionAbstract
      */
     public function handle(): array
     {
-        return NotTranslatedService::new()->scan();
+        return ActionService::new()->scan();
     }
 }

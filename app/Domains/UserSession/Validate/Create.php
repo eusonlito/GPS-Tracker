@@ -4,7 +4,7 @@ namespace App\Domains\UserSession\Validate;
 
 use App\Domains\Core\Validate\ValidateAbstract;
 
-class Fail extends ValidateAbstract
+class Create extends ValidateAbstract
 {
     /**
      * @return array
@@ -13,6 +13,8 @@ class Fail extends ValidateAbstract
     {
         return [
             'auth' => ['bail', 'required'],
+            'ip' => ['bail', 'nullable'],
+            'user_id' => ['bail', 'required', 'integer'],
         ];
     }
 
@@ -22,7 +24,9 @@ class Fail extends ValidateAbstract
     public function messages(): array
     {
         return [
-            'auth.required' => __('validator.auth-required'),
+            'auth.required' => __('user-session-create.validate.auth-required'),
+            'user_id.required' => __('user-session-create.validate.user_id-required'),
+            'user_id.integer' => __('user-session-create.validate.user_id-integer'),
         ];
     }
 }

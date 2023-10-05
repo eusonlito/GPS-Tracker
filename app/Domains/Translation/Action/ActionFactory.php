@@ -51,7 +51,23 @@ class ActionFactory extends ActionFactoryAbstract
      */
     public function only(): array
     {
-        return $this->actionHandle(Only::class, $this->validate()->lang());
+        return $this->actionHandle(Only::class, $this->validate()->only());
+    }
+
+    /**
+     * @return string
+     */
+    public function plainExport(): string
+    {
+        return $this->actionHandle(PlainExport::class, $this->validate()->plainExport());
+    }
+
+    /**
+     * @return void
+     */
+    public function plainImport(): void
+    {
+        $this->actionHandle(PlainImport::class, $this->validate()->plainImport());
     }
 
     /**

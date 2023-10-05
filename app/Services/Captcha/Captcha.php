@@ -3,7 +3,7 @@
 namespace App\Services\Captcha;
 
 use Eusonlito\Captcha\Captcha as CaptchaVendor;
-use App\Domains\UserSession\Model\UserSession as UserSessionModel;
+use App\Domains\UserFail\Model\UserFail as UserFailModel;
 
 class Captcha
 {
@@ -51,9 +51,8 @@ class Captcha
      */
     public function requiredAuthIpDay(): bool
     {
-        return UserSessionModel::query()
+        return UserFailModel::query()
             ->byIp(request()->ip())
-            ->whereSuccess(false)
             ->byCreatedAtAfter(date('Y-m-d H:i:s', strtotime('-1 day')))
             ->count() >= 2;
     }

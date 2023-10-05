@@ -59,12 +59,12 @@ return new class extends MigrationAbstract {
      */
     protected function updateAlarmNotification(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `alarm_notification`
             WHERE ST_Y(`point`) > 90;
         ');
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `alarm_notification`
             SET `point` = ST_SwapXY(`point`);
         ');
@@ -75,12 +75,12 @@ return new class extends MigrationAbstract {
      */
     protected function updateCity(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `city`
             WHERE ST_Y(`point`) > 90;
         ');
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `city`
             SET `point` = ST_SwapXY(`point`);
         ');
@@ -91,12 +91,12 @@ return new class extends MigrationAbstract {
      */
     protected function updatePosition(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `position`
             WHERE ST_Y(`point`) > 90;
         ');
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `trip`
             WHERE NOT EXISTS (
                 SELECT *
@@ -105,7 +105,7 @@ return new class extends MigrationAbstract {
             );
         ');
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `position`
             SET `point` = ST_SwapXY(`point`);
         ');
@@ -126,12 +126,12 @@ return new class extends MigrationAbstract {
      */
     protected function downAlarmNotification(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `alarm_notification`
             WHERE ST_X(`point`) > 90;
         ');
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `alarm_notification`
             SET `point` = ST_SwapXY(`point`);
         ');
@@ -142,12 +142,12 @@ return new class extends MigrationAbstract {
      */
     protected function downCity(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `city`
             WHERE ST_X(`point`) > 90;
         ');
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `city`
             SET `point` = ST_SwapXY(`point`);
         ');
@@ -158,12 +158,12 @@ return new class extends MigrationAbstract {
      */
     protected function downPosition(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `position`
             WHERE ST_X(`point`) > 90;
         ');
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `position`
             SET `point` = ST_SwapXY(`point`);
         ');

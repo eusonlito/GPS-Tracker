@@ -13,18 +13,10 @@ class ActionFactory extends ActionFactoryAbstract
     protected ?Model $row;
 
     /**
-     * @return void
+     * @return \App\Domains\UserSession\Model\UserSession
      */
-    public function fail(): void
+    public function create(): Model
     {
-        $this->actionHandle(Fail::class, $this->validate()->fail());
-    }
-
-    /**
-     * @return void
-     */
-    public function success(): void
-    {
-        $this->actionHandle(Success::class, $this->validate()->success(), ...func_get_args());
+        return $this->actionHandle(Create::class, $this->validate()->create());
     }
 }

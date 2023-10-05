@@ -4,6 +4,8 @@ namespace App\Domains\UserSession\Model\Builder;
 
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\User\Model\User as UserModel;
+use App\Domains\UserFail\Model\UserFail as UserFailModel;
+use App\Domains\UserFail\Model\Builder\UserFail as UserFailBuilder;
 
 class UserSession extends BuilderAbstract
 {
@@ -15,16 +17,6 @@ class UserSession extends BuilderAbstract
     public function byAuth(string $auth): self
     {
         return $this->where('auth', $auth);
-    }
-
-    /**
-     * @param string $created_at
-     *
-     * @return self
-     */
-    public function byCreatedAtAfter(string $created_at): self
-    {
-        return $this->where('created_at', '>=', $created_at);
     }
 
     /**
@@ -54,17 +46,48 @@ class UserSession extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->orderByCreatedAtDesc();
+        return $this->orderBy('created_at', 'DESC');
     }
 
     /**
-     * @param bool $success
+     * @return self
+     */
+    public function unionUserFail(): self
+    {
+        return $this->selectRaw('`auth`, `ip`, TRUE AS `success`, `created_at`, `user_id`')
+            ->union($this->unionUserFailQuery());
+    }
+
+    /**
+     * @return self
+     */
+    public function unionUserFailQuery(): UserFailBuilder
+    {
+        return UserFailModel::query()
+            ->selectRaw('`text` AS `auth`, `ip`, FALSE AS `success`, `created_at`, `user_id`');
+    }
+
+    /**
+     * @param \App\Domains\User\Model\User $user
      *
      * @return self
      */
-    public function whereSuccess(bool $success = true): self
+    public function unionUserFailByUser(UserModel $user): self
     {
-        return $this->where('success', $success);
+        return $this->selectRaw('`auth`, `ip`, TRUE AS `success`, `created_at`, `user_id`')
+            ->union($this->unionUserFailQueryByUser($user));
+    }
+
+    /**
+     * @param \App\Domains\User\Model\User $user
+     *
+     * @return self
+     */
+    public function unionUserFailQueryByUser(UserModel $user): UserFailBuilder
+    {
+        return UserFailModel::query()
+            ->selectRaw('`text` AS `auth`, `ip`, FALSE AS `success`, `created_at`, `user_id`')
+            ->byUser($user);
     }
 
     /**

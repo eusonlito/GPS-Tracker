@@ -14,9 +14,19 @@ class AuthModel extends ActionAbstract
     {
         $this->login();
         $this->auth();
-        $this->success();
+        $this->userSession();
 
         return $this->row;
+    }
+
+    /**
+     * @return void
+     */
+    protected function save(): void
+    {
+        $this->saveLogin();
+        $this->saveAuth();
+        $this->saveUserSession();
     }
 
     /**
@@ -38,8 +48,20 @@ class AuthModel extends ActionAbstract
     /**
      * @return void
      */
-    protected function success(): void
+    protected function userSession(): void
     {
-        $this->factory('UserSession')->action(['auth' => $this->row->email])->success($this->row);
+        $this->factory('UserSession')->action($this->saveUserSessionData())->create();
+    }
+
+    /**
+     * @return array
+     */
+    protected function userSessionData(): array
+    {
+        return [
+            'auth' => $this->data['email'],
+            'ip' => $this->request->ip(),
+            'user_id' => $this->row->id,
+        ];
     }
 }

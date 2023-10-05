@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
-class AuthenticationException extends GenericException
+use Illuminate\Auth\AuthenticationException as AuthenticationExceptionVendor;
+
+class AuthenticationException extends AuthenticationExceptionVendor
 {
     /**
      * @var int

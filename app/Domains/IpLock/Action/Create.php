@@ -11,6 +11,8 @@ class Create extends ActionAbstract
      */
     public function handle(): ?Model
     {
+        $this->data();
+
         if ($this->isWhiteList()) {
             return null;
         }
@@ -21,11 +23,27 @@ class Create extends ActionAbstract
     }
 
     /**
+     * @return void
+     */
+    protected function data(): void
+    {
+        $this->dataIp();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataIp(): void
+    {
+        $this->data['ip'] ??= $this->request->ip();
+    }
+
+    /**
      * @return bool
      */
     protected function isWhiteList(): bool
     {
-        return in_array($this->request->ip(), config('auth.lock.whitelist'));
+        return in_array($this->data['ip'], config('auth.lock.whitelist'));
     }
 
     /**
@@ -34,7 +52,7 @@ class Create extends ActionAbstract
     protected function save(): void
     {
         $this->row = Model::query()->current()->updateOrCreate(
-            ['ip' => $this->request->ip()],
+            ['ip' => $this->data['ip']],
             ['end_at' => $this->endAt()],
         );
     }
@@ -44,6 +62,6 @@ class Create extends ActionAbstract
      */
     protected function endAt(): string
     {
-        return date('c', strtotime('+'.(int)config('auth.lock.check').' seconds'));
+        return date('Y-m-d H:i:s', strtotime('+'.(int)config('auth.lock.check').' seconds'));
     }
 }

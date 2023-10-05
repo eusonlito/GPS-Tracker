@@ -8,7 +8,7 @@ return new class extends MigrationAbstract {
      */
     public function up(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `configuration`
             WHERE `key` = "socket_debug"
             LIMIT 1;

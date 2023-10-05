@@ -2,6 +2,7 @@
 
 namespace App\Domains\IpLock\Action;
 
+use App\Domains\IpLock\Exception\IpLocked as IpLockedException;
 use App\Domains\IpLock\Model\IpLock as Model;
 
 class Check extends ActionAbstract
@@ -11,7 +12,24 @@ class Check extends ActionAbstract
      */
     public function handle(): void
     {
+        $this->data();
         $this->check();
+    }
+
+    /**
+     * @return void
+     */
+    protected function data(): void
+    {
+        $this->dataIp();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataIp(): void
+    {
+        $this->data['ip'] ??= $this->request->ip();
     }
 
     /**
@@ -20,7 +38,7 @@ class Check extends ActionAbstract
     protected function check(): void
     {
         if ($this->exists()) {
-            $this->exceptionValidator(__('ip-lock.error.locked'));
+            throw new IpLockedException(__('ip-lock.error.locked'));
         }
     }
 
@@ -29,10 +47,9 @@ class Check extends ActionAbstract
      */
     protected function exists(): bool
     {
-        return (bool)Model::query()
-            ->where('ip', $this->request->ip())
+        return Model::query()
+            ->byIp($this->data['ip'])
             ->current()
-            ->limit(1)
-            ->count();
+            ->exists();
     }
 }

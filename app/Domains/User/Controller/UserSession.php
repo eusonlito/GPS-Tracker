@@ -26,6 +26,7 @@ class UserSession extends ControllerAbstract
     protected function sessions(): UserSessionCollection
     {
         return UserSessionModel::query()
+            ->unionUserFail()
             ->withUser()
             ->list()
             ->get();

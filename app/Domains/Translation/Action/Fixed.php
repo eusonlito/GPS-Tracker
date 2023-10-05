@@ -2,7 +2,7 @@
 
 namespace App\Domains\Translation\Action;
 
-use App\Domains\Translation\Service\Fixed as FixedService;
+use App\Domains\Translation\Service\Fixed as ActionService;
 
 class Fixed extends ActionAbstract
 {
@@ -11,6 +11,6 @@ class Fixed extends ActionAbstract
      */
     public function handle(): array
     {
-        return FixedService::new($this->data['paths-exclude'])->scan();
+        return ActionService::new($this->data['paths-exclude'])->scan();
     }
 }

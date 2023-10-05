@@ -2,7 +2,7 @@
 
 namespace App\Domains\Translation\Action;
 
-use App\Domains\Translation\Service\Only as OnlyService;
+use App\Domains\Translation\Service\Only as ActionService;
 
 class Only extends ActionAbstract
 {
@@ -11,6 +11,6 @@ class Only extends ActionAbstract
      */
     public function handle(): array
     {
-        return OnlyService::new($this->data['lang'])->scan();
+        return ActionService::new($this->data['lang'])->scan();
     }
 }

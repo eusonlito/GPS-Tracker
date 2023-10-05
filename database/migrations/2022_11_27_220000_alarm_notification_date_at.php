@@ -36,7 +36,7 @@ return new class extends MigrationAbstract {
             $table->dateTime('date_utc_at')->nullable();
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `alarm_notification`
             JOIN `device` ON (`device`.`id` = `alarm_notification`.`device_id`)
             JOIN `timezone` ON (`timezone`.`id` = `device`.`timezone_id`)

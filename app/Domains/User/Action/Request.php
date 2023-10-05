@@ -2,7 +2,7 @@
 
 namespace App\Domains\User\Action;
 
-use App\Exceptions\AuthenticationException;
+use App\Domains\User\Exception\AuthFailed;
 
 class Request extends ActionAbstract
 {
@@ -30,7 +30,7 @@ class Request extends ActionAbstract
     protected function check(): void
     {
         if (empty($this->row)) {
-            throw new AuthenticationException(__('user-auth.error.empty'));
+            throw new AuthFailed(__('user-auth.error.empty'));
         }
     }
 

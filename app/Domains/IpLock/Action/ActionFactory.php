@@ -17,7 +17,7 @@ class ActionFactory extends ActionFactoryAbstract
      */
     public function check(): void
     {
-        $this->actionHandle(Check::class);
+        $this->actionHandle(Check::class, $this->validate()->check());
     }
 
     /**
@@ -25,7 +25,7 @@ class ActionFactory extends ActionFactoryAbstract
      */
     public function create(): ?Model
     {
-        return $this->actionHandle(Create::class);
+        return $this->actionHandle(Create::class, $this->validate()->create());
     }
 
     /**

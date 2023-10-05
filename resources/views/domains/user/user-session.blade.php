@@ -20,7 +20,7 @@
         <tbody>
             @foreach ($sessions as $each)
 
-            @php ($link = $each->user ? route('user.update', $each->id) : null)
+            @php ($link = $each->user ? route('user.update', $each->user->id) : null)
 
             <tr>
                 <td data-table-sort-value="{{ $each->created_at }}">@dateWithTimezone($each->created_at)</td>

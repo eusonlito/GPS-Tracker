@@ -21,9 +21,10 @@ class UserSession extends FactoryAbstract
             'auth' => $this->faker->email(),
             'ip' => $this->faker->ip,
 
-            'success' => ($success = rand(1, 0)),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
 
-            'user_id' => $success ? $this->userFirstOrFactory() : null,
+            'user_id' => $this->userFirstOrFactory(),
         ];
     }
 }

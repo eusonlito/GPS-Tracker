@@ -109,7 +109,7 @@ return new class extends MigrationAbstract {
      */
     protected function migrateVehicle(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             INSERT INTO `vehicle`
             (`id`, `name`, `plate`, `timezone_auto`, `enabled`, `created_at`, `updated_at`, `timezone_id`, `user_id`)
             (
@@ -124,7 +124,7 @@ return new class extends MigrationAbstract {
      */
     protected function migrateDevice(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `device`
             SET `vehicle_id` = `id`;
         ');
@@ -135,7 +135,7 @@ return new class extends MigrationAbstract {
      */
     protected function migrateAlarmNotification(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `alarm_notification`
             SET `vehicle_id` = `device_id`;
         ');
@@ -146,7 +146,7 @@ return new class extends MigrationAbstract {
      */
     protected function migrateAlarmVehicle(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             INSERT INTO `alarm_vehicle`
             (`alarm_id`, `vehicle_id`)
             (
@@ -161,7 +161,7 @@ return new class extends MigrationAbstract {
      */
     protected function migratePosition(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `position`
             SET `vehicle_id` = `device_id`;
         ');
@@ -172,7 +172,7 @@ return new class extends MigrationAbstract {
      */
     protected function migrateRefuel(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `refuel`
             SET `vehicle_id` = `device_id`;
         ');
@@ -183,7 +183,7 @@ return new class extends MigrationAbstract {
      */
     protected function migrateTrip(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `trip`
             SET `vehicle_id` = `device_id`;
         ');

@@ -43,7 +43,7 @@ return new class extends MigrationAbstract {
      */
     protected function delete(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             DELETE FROM `configuration`
             WHERE `key` = "server_debug"
             LIMIT 1;

@@ -36,7 +36,7 @@ return new class extends MigrationAbstract {
             $table->dateTime('date_utc_at')->nullable();
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `position` SET `date_utc_at` = DATE_SUB(`date_at`, INTERVAL 2 HOUR);
         ');
 

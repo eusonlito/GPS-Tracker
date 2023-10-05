@@ -38,7 +38,7 @@ return new class extends MigrationAbstract {
             $table->unsignedBigInteger('timezone_id')->nullable();
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `device` SET `timezone_id` = (
                 SELECT `timezone`.`id`
                 FROM `timezone`
@@ -72,7 +72,7 @@ return new class extends MigrationAbstract {
             $table->string('timezone')->index();
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `device` SET `timezone` = (
                 SELECT `timezone`.`zone`
                 FROM `timezone`

@@ -346,17 +346,27 @@ return new class extends MigrationAbstract {
             $table->unsignedBigInteger('language_id');
         });
 
+        Schema::create('user_fail', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('type')->index();
+            $table->string('text')->nullable();
+            $table->string('ip')->index();
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('user_id')->nullable();
+        });
+
         Schema::create('user_session', function (Blueprint $table) {
             $table->id();
 
             $table->string('auth')->index();
             $table->string('ip')->index();
 
-            $table->boolean('success')->default(0);
-
             $this->timestamps($table);
 
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id');
         });
 
         Schema::create('vehicle', function (Blueprint $table) {
@@ -457,8 +467,12 @@ return new class extends MigrationAbstract {
             $this->foreignOnDeleteCascade($table, 'language');
         });
 
-        Schema::table('user_session', function (Blueprint $table) {
+        Schema::table('user_fail', function (Blueprint $table) {
             $this->foreignOnDeleteSetNull($table, 'user');
+        });
+
+        Schema::table('user_session', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'user');
         });
 
         Schema::table('vehicle', function (Blueprint $table) {

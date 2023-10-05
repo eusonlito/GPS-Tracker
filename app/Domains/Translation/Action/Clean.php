@@ -2,7 +2,7 @@
 
 namespace App\Domains\Translation\Action;
 
-use App\Domains\Translation\Service\Clean as CleanService;
+use App\Domains\Translation\Service\Clean as ActionService;
 
 class Clean extends ActionAbstract
 {
@@ -11,6 +11,6 @@ class Clean extends ActionAbstract
      */
     public function handle(): void
     {
-        CleanService::new()->write();
+        ActionService::new()->write();
     }
 }

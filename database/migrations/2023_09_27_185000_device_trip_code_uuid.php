@@ -17,13 +17,13 @@ return new class extends MigrationAbstract {
      */
     protected function update(): void
     {
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `trip`
             SET `code` = (SELECT UUID())
             WHERE `code` IS NULL;
         ');
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `device`
             SET `code` = (SELECT UUID())
             WHERE `code` IS NULL;

@@ -4,8 +4,8 @@ namespace App\Domains\User\Action;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Domains\User\Exception\AuthFailed;
 use App\Domains\User\Model\User as Model;
-use App\Exceptions\AuthenticationException;
 
 class AuthCredentials extends ActionAbstract
 {
@@ -17,9 +17,7 @@ class AuthCredentials extends ActionAbstract
         $this->checkIp();
         $this->row();
         $this->check();
-        $this->login();
-        $this->auth();
-        $this->success();
+        $this->save();
 
         return $this->row;
     }
@@ -37,7 +35,10 @@ class AuthCredentials extends ActionAbstract
      */
     protected function row(): void
     {
-        $this->row = Model::query()->byEmail($this->data['email'])->enabled()->firstOr(fn () => $this->fail());
+        $this->row = Model::query()
+            ->byEmail($this->data['email'])
+            ->enabled()
+            ->firstOr(fn () => $this->fail());
     }
 
     /**
@@ -59,21 +60,44 @@ class AuthCredentials extends ActionAbstract
     }
 
     /**
-     * @throws \App\Exceptions\AuthenticationException
+     * @throws \App\Domains\User\Exception\AuthFailed
      *
      * @return void
      */
     protected function fail(): void
     {
-        $this->factory('UserSession')->action(['auth' => $this->data['email']])->fail();
+        $this->factory('UserFail')->action($this->failData())->create();
 
-        throw new AuthenticationException(__('user-auth-credentials.error.auth-fail'));
+        throw new AuthFailed(__('user-auth-credentials.error.auth-fail'));
+    }
+
+    /**
+     * @return array
+     */
+    protected function failData(): array
+    {
+        return [
+            'type' => 'user-auth-credentials',
+            'text' => $this->data['email'],
+            'ip' => $this->request->ip(),
+            'user_id' => $this->row?->id,
+        ];
     }
 
     /**
      * @return void
      */
-    protected function login(): void
+    protected function save(): void
+    {
+        $this->saveLogin();
+        $this->saveAuth();
+        $this->saveUserSession();
+    }
+
+    /**
+     * @return void
+     */
+    protected function saveLogin(): void
     {
         Auth::login($this->row, true);
     }
@@ -81,7 +105,7 @@ class AuthCredentials extends ActionAbstract
     /**
      * @return void
      */
-    protected function auth(): void
+    protected function saveAuth(): void
     {
         $this->row = $this->auth = Auth::user();
     }
@@ -89,8 +113,20 @@ class AuthCredentials extends ActionAbstract
     /**
      * @return void
      */
-    protected function success(): void
+    protected function saveUserSession(): void
     {
-        $this->factory('UserSession')->action(['auth' => $this->data['email']])->success($this->row);
+        $this->factory('UserSession')->action($this->saveUserSessionData())->create();
+    }
+
+    /**
+     * @return array
+     */
+    protected function saveUserSessionData(): array
+    {
+        return [
+            'auth' => $this->data['email'],
+            'ip' => $this->request->ip(),
+            'user_id' => $this->row->id,
+        ];
     }
 }

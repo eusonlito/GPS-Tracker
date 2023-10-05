@@ -42,7 +42,7 @@ return new class extends MigrationAbstract {
             $this->timestamps($table);
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             INSERT INTO `server`
             SET `port` = 8091, `protocol` = "h02", `enabled` = true;
         ');

@@ -126,6 +126,6 @@ class Create extends ActionAbstract
             'admin' => $this->data['admin'],
             'enabled' => $this->data['enabled'],
             'language_id' => $this->data['language_id'],
-        ]);
+        ])->fresh();
     }
 }

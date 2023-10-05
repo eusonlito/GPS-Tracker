@@ -28,7 +28,7 @@ return new class extends MigrationAbstract {
      */
     protected function tables(): void
     {
-        $this->db()->statement('DELETE FROM `position` WHERE `trip_id` IS NULL;');
+        $this->db()->unprepared('DELETE FROM `position` WHERE `trip_id` IS NULL;');
 
         Schema::table('position', function (Blueprint $table) {
             $this->tableDropForeign($table, 'trip', 'fk');

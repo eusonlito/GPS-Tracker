@@ -36,7 +36,7 @@ return new class extends MigrationAbstract {
             $table->point('point', 4326)->nullable();
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `alarm_notification`
             JOIN `position` ON (`position`.`id` = `alarm_notification`.`position_id`)
             SET `alarm_notification`.`point` = `position`.`point`;

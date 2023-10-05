@@ -2,7 +2,7 @@
 
 namespace App\Domains\Translation\Action;
 
-use App\Domains\Translation\Service\Unused as UnusedService;
+use App\Domains\Translation\Service\Unused as ActionService;
 
 class Unused extends ActionAbstract
 {
@@ -11,6 +11,6 @@ class Unused extends ActionAbstract
      */
     public function handle(): void
     {
-        UnusedService::new()->write();
+        ActionService::new()->write();
     }
 }

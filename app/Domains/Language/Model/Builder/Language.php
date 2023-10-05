@@ -21,7 +21,7 @@ class Language extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->orderBy('name', 'ASC');
+        return $this->orderBy('default', 'DESC')->orderBy('name', 'ASC');
     }
 
     /**

@@ -75,7 +75,7 @@ class AuthCredentials extends ControllerAbstract
         $this->assertEquals(IpLockModel::query()->count(), 0);
 
         $this->post($route, $data)
-            ->assertStatus(422)
+            ->assertStatus(401)
             ->assertViewIs('domains.user.auth-credentials');
 
         $this->assertEquals(IpLockModel::query()->count(), 1);

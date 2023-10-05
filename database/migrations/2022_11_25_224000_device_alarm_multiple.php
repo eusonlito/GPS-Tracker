@@ -37,7 +37,7 @@ return new class extends MigrationAbstract {
             $table->unsignedBigInteger('user_id')->nullable();
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `alarm`
             SET `user_id` = (
                 SELECT `user_id`
@@ -56,7 +56,7 @@ return new class extends MigrationAbstract {
             $table->unsignedBigInteger('device_id');
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             INSERT INTO `alarm_device`
             (`alarm_id`, `device_id`)
             (
@@ -102,7 +102,7 @@ return new class extends MigrationAbstract {
             $this->tableDropForeign($table, 'user', 'fk_');
         });
 
-        $this->db()->statement('
+        $this->db()->unprepared('
             UPDATE `alarm`
             SET `device_id` = (
                 SELECT `alarm_device`.`device_id`
