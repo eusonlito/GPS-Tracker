@@ -2,19 +2,12 @@
 
 namespace App\Domains\Shared\Service\Controller;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Alarm\Model\Alarm as AlarmModel;
-use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
 use App\Domains\Device\Model\Collection\Device as DeviceCollection;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Trip\Model\Collection\Trip as TripCollection;
 use App\Domains\Trip\Model\Trip as TripModel;
-use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
 {
