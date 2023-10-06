@@ -2,6 +2,9 @@
 
 namespace App\Domains\Core\Service\Controller;
 
+use Closure;
+use ReflectionFunction;
+
 abstract class ControllerAbstract
 {
     /**
@@ -15,6 +18,34 @@ abstract class ControllerAbstract
     public static function new(): self
     {
         return new static(...func_get_args());
+    }
+
+    /**
+     * @param \Closure $callback
+     *
+     * @return mixed
+     */
+    protected function cache(Closure $callback): mixed
+    {
+        $key = $this->cacheKey($callback);
+
+        if (array_key_exists($key, $this->cache) === false) {
+            $this->cache[$key] = $callback();
+        }
+
+        return $this->cache[$key];
+    }
+
+    /**
+     * @param \Closure $callback
+     *
+     * @return string
+     */
+    protected function cacheKey(Closure $callback): string
+    {
+        $r = new ReflectionFunction($callback);
+
+        return md5($r->getFileName().$r->getStartLine().$r->getEndLine());
     }
 
     /**

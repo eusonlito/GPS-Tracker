@@ -62,10 +62,12 @@ class Search extends Index
      */
     protected function countries(): CountryCollection
     {
-        return $this->cache[__FUNCTION__] ??= CountryModel::query()
-            ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => CountryModel::query()
+                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+                ->list()
+                ->get()
+        );
     }
 
     /**
@@ -73,8 +75,9 @@ class Search extends Index
      */
     protected function country(): ?CountryModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->countries()
-            ->firstWhere('id', $this->request->input('country_id'));
+        return $this->cache(
+            fn () => $this->countries()->firstWhere('id', $this->request->input('country_id'))
+        );
     }
 
     /**
@@ -86,11 +89,13 @@ class Search extends Index
             return new StateCollection();
         }
 
-        return $this->cache[__FUNCTION__] ??= StateModel::query()
-            ->byCountryId($country_id)
-            ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => StateModel::query()
+                ->byCountryId($country_id)
+                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+                ->list()
+                ->get()
+        );
     }
 
     /**
@@ -98,8 +103,9 @@ class Search extends Index
      */
     protected function state(): ?StateModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->states()
-            ->firstWhere('id', $this->request->input('state_id'));
+        return $this->cache(
+            fn () => $this->states()->firstWhere('id', $this->request->input('state_id'))
+        );
     }
 
     /**
@@ -111,11 +117,13 @@ class Search extends Index
             return new CityCollection();
         }
 
-        return $this->cache[__FUNCTION__] ??= CityModel::query()
-            ->byStateId($state_id)
-            ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => CityModel::query()
+                ->byStateId($state_id)
+                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+                ->list()
+                ->get()
+        );
     }
 
     /**
@@ -123,8 +131,9 @@ class Search extends Index
      */
     protected function city(): ?CityModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->cities()
-            ->firstWhere('id', $this->request->input('city_id'));
+        return $this->cache(
+            fn () => $this->cities()->firstWhere('id', $this->request->input('city_id'))
+        );
     }
 
     /**
@@ -132,10 +141,12 @@ class Search extends Index
      */
     protected function position(): ?PositionModel
     {
-        return $this->cache[__FUNCTION__] ??= PositionModel::query()
-            ->byUserId($this->auth->id)
-            ->orderByDateUtcAtDesc()
-            ->first();
+        return $this->cache(
+            fn () => PositionModel::query()
+                ->byUserId($this->auth->id)
+                ->orderByDateUtcAtDesc()
+                ->first()
+        );
     }
 
     /**
@@ -147,19 +158,21 @@ class Search extends Index
             return null;
         }
 
-        return $this->cache[__FUNCTION__] ??= Model::query()
-            ->selectSimple()
-            ->byVehicleId($this->vehicle()->id)
-            ->whenDeviceId($this->device()->id ?? null)
-            ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
-            ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
-            ->whenShared($this->requestBool('shared'))
-            ->whenSharedPublic($this->requestBool('shared_public'))
-            ->whenFence($this->request->boolean('fence'), $this->request->float('fence_latitude'), $this->request->float('fence_longitude'), $this->request->float('fence_radius'))
-            ->withDevice()
-            ->withVehicle()
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => Model::query()
+                ->selectSimple()
+                ->byVehicleId($this->vehicle()->id)
+                ->whenDeviceId($this->device()->id ?? null)
+                ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
+                ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
+                ->whenShared($this->requestBool('shared'))
+                ->whenSharedPublic($this->requestBool('shared_public'))
+                ->whenFence($this->request->boolean('fence'), $this->request->float('fence_latitude'), $this->request->float('fence_longitude'), $this->request->float('fence_radius'))
+                ->withDevice()
+                ->withVehicle()
+                ->list()
+                ->get()
+        );
     }
 
     /**

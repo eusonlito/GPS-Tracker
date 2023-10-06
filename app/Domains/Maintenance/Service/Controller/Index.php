@@ -63,14 +63,16 @@ class Index extends ControllerAbstract
      */
     protected function list(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= Model::query()
-            ->list()
-            ->byUserId($this->auth->id)
-            ->whenSearch($this->request->input('search'))
-            ->whenVehicleId((int)$this->request->input('vehicle_id'))
-            ->whenDateAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
-            ->withVehicle()
-            ->get();
+        return $this->cache(
+            fn () => Model::query()
+                ->list()
+                ->byUserId($this->auth->id)
+                ->whenSearch($this->request->input('search'))
+                ->whenVehicleId((int)$this->request->input('vehicle_id'))
+                ->whenDateAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
+                ->withVehicle()
+                ->get()
+        );
     }
 
     /**
@@ -78,10 +80,12 @@ class Index extends ControllerAbstract
      */
     protected function vehicles(): VehicleCollection
     {
-        return $this->cache[__FUNCTION__] ??= VehicleModel::query()
-            ->byUserId($this->auth->id)
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => VehicleModel::query()
+                ->byUserId($this->auth->id)
+                ->list()
+                ->get()
+        );
     }
 
     /**
@@ -89,6 +93,11 @@ class Index extends ControllerAbstract
      */
     protected function dateMin(): ?string
     {
-        return Model::query()->byUserId($this->auth->id)->orderByDateAtAsc()->rawValue('DATE(`date_at`)');
+        return $this->cache(
+            fn () => Model::query()
+                ->byUserId($this->auth->id)
+                ->orderByDateAtAsc()
+                ->rawValue('DATE(`date_at`)')
+        );
     }
 }

@@ -111,10 +111,12 @@ class Index extends ControllerAbstract
      */
     protected function vehicles(): VehicleCollection
     {
-        return $this->cache[__FUNCTION__] ??= VehicleModel::query()
-            ->byUserId($this->auth->id)
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => VehicleModel::query()
+                ->byUserId($this->auth->id)
+                ->list()
+                ->get()
+        );
     }
 
     /**
@@ -130,8 +132,10 @@ class Index extends ControllerAbstract
      */
     protected function vehicle(): VehicleModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
-            ?: $this->vehicles()->last();
+        return $this->cache(
+            fn () => $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
+                ?: $this->vehicles()->last()
+        );
     }
 
     /**
@@ -139,10 +143,9 @@ class Index extends ControllerAbstract
      */
     protected function devices(): DeviceCollection
     {
-        return $this->cache[__FUNCTION__] ??= $this->vehicle()
-            ->devices()
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => $this->vehicle()->devices()->list()->get()
+        );
     }
 
     /**
@@ -158,7 +161,9 @@ class Index extends ControllerAbstract
      */
     protected function device(): ?DeviceModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->devices()->firstWhere('id', $this->request->input('device_id'));
+        return $this->cache(
+            fn () => $this->devices()->firstWhere('id', $this->request->input('device_id'))
+        );
     }
 
     /**
@@ -218,16 +223,18 @@ class Index extends ControllerAbstract
      */
     protected function list(): ?Collection
     {
-        return $this->cache[__FUNCTION__] ??= Model::query()
-            ->selectSimple()
-            ->byVehicleId($this->vehicle()->id)
-            ->whenDeviceId($this->device()->id ?? null)
-            ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
-            ->whenShared($this->requestBool('shared'))
-            ->whenSharedPublic($this->requestBool('shared_public'))
-            ->withDevice()
-            ->withVehicle()
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => Model::query()
+                ->selectSimple()
+                ->byVehicleId($this->vehicle()->id)
+                ->whenDeviceId($this->device()?->id)
+                ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
+                ->whenShared($this->requestBool('shared'))
+                ->whenSharedPublic($this->requestBool('shared_public'))
+                ->withDevice()
+                ->withVehicle()
+                ->list()
+                ->get()
+        );
     }
 }

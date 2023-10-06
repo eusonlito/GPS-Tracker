@@ -34,13 +34,15 @@ class Map extends ControllerAbstract
      */
     protected function list(): Collection
     {
-        return $this->cache[__FUNCTION__] ??= Model::query()
-            ->byUserId($this->auth->id)
-            ->whenIds($this->requestArray('ids'))
-            ->whenTripFinished($this->requestBool('finished'))
-            ->withVehicle()
-            ->withWhereHasPositionLast()
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => Model::query()
+                ->byUserId($this->auth->id)
+                ->whenIds($this->requestArray('ids'))
+                ->whenTripFinished($this->requestBool('finished'))
+                ->withVehicle()
+                ->withWhereHasPositionLast()
+                ->list()
+                ->get()
+        );
     }
 }

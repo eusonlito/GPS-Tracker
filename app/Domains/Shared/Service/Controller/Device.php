@@ -47,11 +47,13 @@ class Device extends ControllerAbstract
      */
     protected function trips(): TripCollection
     {
-        return $this->cache[__FUNCTION__] ??= TripModel::query()
-            ->byDeviceId($this->device->id)
-            ->whereSharedPublic()
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => TripModel::query()
+                ->byDeviceId($this->device->id)
+                ->whereSharedPublic()
+                ->list()
+                ->get()
+        );
     }
 
     /**

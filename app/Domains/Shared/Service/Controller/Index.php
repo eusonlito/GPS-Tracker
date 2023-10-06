@@ -54,14 +54,16 @@ class Index extends ControllerAbstract
      */
     protected function devices(): DeviceCollection
     {
-        return $this->cache[__FUNCTION__] ??= DeviceModel::query()
-            ->whereSharedPublic()
-            ->whenIds($this->requestArray('ids'))
-            ->whenTripFinished($this->requestBool('finished'))
-            ->withVehicle()
-            ->withWhereHasPositionLast()
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => DeviceModel::query()
+                ->whereSharedPublic()
+                ->whenIds($this->requestArray('ids'))
+                ->whenTripFinished($this->requestBool('finished'))
+                ->withVehicle()
+                ->withWhereHasPositionLast()
+                ->list()
+                ->get()
+        );
     }
 
     /**
@@ -69,12 +71,10 @@ class Index extends ControllerAbstract
      */
     protected function device(): ?DeviceModel
     {
-        if (array_key_exists(__FUNCTION__, $this->cache)) {
-            return $this->cache[__FUNCTION__];
-        }
-
-        return $this->cache[__FUNCTION__] = $this->devices()
-            ->firstWhere('code', $this->request->input('device_code'));
+        return $this->cache(
+            fn () => $this->devices()
+                ->firstWhere('code', $this->request->input('device_code'))
+        );
     }
 
     /**
@@ -86,13 +86,15 @@ class Index extends ControllerAbstract
             return new TripCollection();
         }
 
-        return $this->cache[__FUNCTION__] ??= TripModel::query()
-            ->selectSimple()
-            ->byDeviceId($this->device()->id)
-            ->whereSharedPublic()
-            ->list()
-            ->limit(100)
-            ->get();
+        return $this->cache(
+            fn () => TripModel::query()
+                ->selectSimple()
+                ->byDeviceId($this->device()->id)
+                ->whereSharedPublic()
+                ->list()
+                ->limit(100)
+                ->get()
+        );
     }
 
     /**
@@ -100,13 +102,11 @@ class Index extends ControllerAbstract
      */
     protected function trip(): ?TripModel
     {
-        if (array_key_exists(__FUNCTION__, $this->cache)) {
-            return $this->cache[__FUNCTION__];
-        }
-
-        return $this->cache[__FUNCTION__] = $this->trips()
-            ->firstWhere('code', $this->request->input('trip_code'))
-            ?: $this->trips()->first();
+        return $this->cache(
+            fn () => $this->trips()
+                ->firstWhere('code', $this->request->input('trip_code'))
+                ?: $this->trips()->first()
+        );
     }
 
     /**
@@ -118,10 +118,12 @@ class Index extends ControllerAbstract
             return null;
         }
 
-        return $this->cache[__FUNCTION__] ??= $this->trips()
-            ->reverse()
-            ->firstWhere('start_utc_at', '>', $this->trip()->start_utc_at)
-            ->code ?? null;
+        return $this->cache(
+            fn () => $this->trips()
+                ->reverse()
+                ->firstWhere('start_utc_at', '>', $this->trip()->start_utc_at)
+                ->code ?? null
+        );
     }
 
     /**
@@ -133,9 +135,11 @@ class Index extends ControllerAbstract
             return null;
         }
 
-        return $this->cache[__FUNCTION__] ??= $this->trips()
-            ->firstWhere('start_utc_at', '<', $this->trip()->start_utc_at)
-            ->code ?? null;
+        return $this->cache(
+            fn () => $this->trips()
+                ->firstWhere('start_utc_at', '<', $this->trip()->start_utc_at)
+                ->code ?? null
+        );
     }
 
     /**
@@ -147,10 +151,12 @@ class Index extends ControllerAbstract
             return new PositionCollection();
         }
 
-        return $this->cache[__FUNCTION__] ??= $this->trip()
-            ->positions()
-            ->withCity()
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => $this->trip()
+                ->positions()
+                ->withCity()
+                ->list()
+                ->get()
+        );
     }
 }

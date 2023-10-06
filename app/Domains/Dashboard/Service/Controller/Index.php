@@ -65,10 +65,12 @@ class Index extends ControllerAbstract
      */
     protected function vehicles(): VehicleCollection
     {
-        return $this->cache[__FUNCTION__] ??= VehicleModel::query()
-            ->byUserId($this->auth->id)
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => VehicleModel::query()
+                ->byUserId($this->auth->id)
+                ->list()
+                ->get()
+        );
     }
 
     /**
@@ -76,8 +78,10 @@ class Index extends ControllerAbstract
      */
     protected function vehicle(): ?VehicleModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
-            ?: $this->vehicles()->first();
+        return $this->cache(
+            fn () => $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
+                ?: $this->vehicles()->first()
+        );
     }
 
     /**
@@ -89,7 +93,9 @@ class Index extends ControllerAbstract
             return new DeviceCollection();
         }
 
-        return $this->cache[__FUNCTION__] ??= $this->vehicle()->devices()->list()->get();
+        return $this->cache(
+            fn () => $this->vehicle()->devices()->list()->get()
+        );
     }
 
     /**
@@ -97,8 +103,10 @@ class Index extends ControllerAbstract
      */
     protected function device(): ?DeviceModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->devices()->firstWhere('id', $this->request->input('device_id'))
-            ?: $this->devices()->first();
+        return $this->cache(
+            fn () => $this->devices()->firstWhere('id', $this->request->input('device_id'))
+                ?: $this->devices()->first()
+        );
     }
 
     /**
@@ -110,13 +118,15 @@ class Index extends ControllerAbstract
             return new TripCollection();
         }
 
-        return $this->cache[__FUNCTION__] ??= TripModel::query()
-            ->selectSimple()
-            ->byVehicleId($this->vehicle()->id)
-            ->whenDeviceId($this->device()->id ?? null)
-            ->list()
-            ->limit(50)
-            ->get();
+        return $this->cache(
+            fn () => TripModel::query()
+                ->selectSimple()
+                ->byVehicleId($this->vehicle()->id)
+                ->whenDeviceId($this->device()->id ?? null)
+                ->list()
+                ->limit(50)
+                ->get()
+        );
     }
 
     /**
@@ -124,8 +134,10 @@ class Index extends ControllerAbstract
      */
     protected function trip(): ?TripModel
     {
-        return $this->cache[__FUNCTION__] ??= $this->trips()->firstWhere('id', $this->request->input('trip_id'))
-            ?: $this->trips()->first();
+        return $this->cache(
+            fn () => $this->trips()->firstWhere('id', $this->request->input('trip_id'))
+                ?: $this->trips()->first()
+        );
     }
 
     /**
@@ -137,10 +149,12 @@ class Index extends ControllerAbstract
             return null;
         }
 
-        return $this->cache[__FUNCTION__] ??= $this->trips()
-            ->reverse()
-            ->firstWhere('start_utc_at', '>', $this->trip()->start_utc_at)
-            ->id ?? null;
+        return $this->cache(
+            fn () => $this->trips()
+                ->reverse()
+                ->firstWhere('start_utc_at', '>', $this->trip()->start_utc_at)
+                ->id ?? null
+        );
     }
 
     /**
@@ -152,9 +166,11 @@ class Index extends ControllerAbstract
             return null;
         }
 
-        return $this->cache[__FUNCTION__] ??= $this->trips()
-            ->firstWhere('start_utc_at', '<', $this->trip()->start_utc_at)
-            ->id ?? null;
+        return $this->cache(
+            fn () => $this->trips()
+                ->firstWhere('start_utc_at', '<', $this->trip()->start_utc_at)
+                ->id ?? null
+        );
     }
 
     /**
@@ -166,11 +182,13 @@ class Index extends ControllerAbstract
             return new AlarmNotificationCollection();
         }
 
-        return $this->cache[__FUNCTION__] ??= AlarmNotificationModel::query()
-            ->byTripId($this->trip()->id)
-            ->withAlarm()
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => AlarmNotificationModel::query()
+                ->byTripId($this->trip()->id)
+                ->withAlarm()
+                ->list()
+                ->get()
+        );
     }
 
     /**
@@ -182,11 +200,13 @@ class Index extends ControllerAbstract
             return new PositionCollection();
         }
 
-        return $this->cache[__FUNCTION__] ??= $this->trip()
-            ->positions()
-            ->withCity()
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => $this->trip()
+                ->positions()
+                ->withCity()
+                ->list()
+                ->get()
+        );
     }
 
     /**
@@ -198,11 +218,13 @@ class Index extends ControllerAbstract
             return new AlarmCollection();
         }
 
-        return $this->cache[__FUNCTION__] ??= AlarmModel::query()
-            ->byVehicleId($this->vehicle()->id)
-            ->enabled()
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => AlarmModel::query()
+                ->byVehicleId($this->vehicle()->id)
+                ->enabled()
+                ->list()
+                ->get()
+        );
     }
 
     /**
@@ -214,14 +236,16 @@ class Index extends ControllerAbstract
             return new AlarmNotificationCollection();
         }
 
-        return $this->cache[__FUNCTION__] ??= AlarmNotificationModel::query()
-            ->byVehicleId($this->vehicle()->id)
-            ->whereClosedAt(false)
-            ->withAlarm()
-            ->withVehicle()
-            ->withPosition()
-            ->withTrip()
-            ->list()
-            ->get();
+        return $this->cache(
+            fn () => AlarmNotificationModel::query()
+                ->byVehicleId($this->vehicle()->id)
+                ->whereClosedAt(false)
+                ->withAlarm()
+                ->withVehicle()
+                ->withPosition()
+                ->withTrip()
+                ->list()
+                ->get()
+        );
     }
 }
