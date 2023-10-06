@@ -2,10 +2,10 @@
 
 namespace App\Domains\Shared\Controller;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Trip\Model\Trip as TripModel;
-use App\Exceptions\NotFoundException;
 
 class Trip extends ControllerAbstract
 {
@@ -17,11 +17,15 @@ class Trip extends ControllerAbstract
     /**
      * @param string $code
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
-    public function __invoke(string $code): Response
+    public function __invoke(string $code): Response|JsonResponse
     {
         $this->trip($code);
+
+        if ($this->request->wantsJson()) {
+            return $this->responseJson();
+        }
 
         $this->meta('title', __('shared-trip.meta-title', ['title' => $this->trip->name]));
 
@@ -43,9 +47,7 @@ class Trip extends ControllerAbstract
         $this->trip = TripModel::query()
             ->byCode($code)
             ->whereShared()
-            ->firstOr(static function () {
-                throw new NotFoundException(__('shared-trip.error.not-found'));
-            });
+            ->firstOr(fn () => $this->exceptionNotFound(__('shared-trip.error.not-found')));
 
         $this->factory('User', $this->trip->user)->action()->set();
     }
@@ -56,6 +58,34 @@ class Trip extends ControllerAbstract
     protected function positions(): PositionCollection
     {
         return $this->trip->positions()
+            ->withCity()
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function responseJson(): JsonResponse
+    {
+        return $this->json($this->factory('Trip')->fractal('map', $this->responseJsonList()));
+    }
+
+    /**
+     * @return \App\Domains\Trip\Model\Trip
+     */
+    protected function responseJsonList(): TripModel
+    {
+        return $this->trip->setRelation('positions', $this->responseJsonListPositions());
+    }
+
+    /**
+     * @return \App\Domains\Position\Model\Collection\Position
+     */
+    protected function responseJsonListPositions(): PositionCollection
+    {
+        return $this->trip->positions()
+            ->byIdNext((int)$this->request->input('id_from'))
             ->withCity()
             ->list()
             ->get();

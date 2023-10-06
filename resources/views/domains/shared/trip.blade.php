@@ -11,12 +11,25 @@
 
     @endif
 
-    <h2 class="box px-5 py-2 mb-5 font-medium text-xl sm:text-2xl">{{ $trip->name }}</h2>
+    <div class="lg:flex lg:space-x-4">
+        <div class="flex-1 mb-2">
+            <h2 class="box px-5 py-2 mb-5 font-medium text-xl sm:text-2xl">{{ $trip->name }}</h2>
+        </div>
+
+        <div class="mb-4 text-center">
+            <a href="#" class="btn bg-white mr-2" data-map-live>@icon('play', 'w-8 h-8')</a>
+        </div>
+    </div>
 
     @if ($positions->isNotEmpty())
 
     <div class="box p-5">
-        <x-map :trip="$trip" :positions="$positions"></x-map>
+        <x-map
+            :trip="$trip"
+            :positions="$positions"
+            :data-map-show-last="$trip->finished()"
+            :data-map-positions-url="route('shared.trip', $trip->code)"
+        ></x-map>
     </div>
 
     @endif

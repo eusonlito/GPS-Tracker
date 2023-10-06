@@ -15,6 +15,7 @@ class FractalFactory extends FractalAbstract
     protected function map(Model $row): array
     {
         return [
+            'code' => $row->code,
             'name' => $row->name,
             'start_at' => $row->start_at,
             'start_utc_at' => $row->start_utc_at,
@@ -36,6 +37,7 @@ class FractalFactory extends FractalAbstract
     {
         return [
             'id' => $row->id,
+            'code' => $row->code,
             'name' => $row->name,
             'start_at' => $row->start_at,
             'end_at' => $row->end_at,

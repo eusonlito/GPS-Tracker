@@ -1,13 +1,15 @@
 'use strict';
 
-export default function (icon, style, success) {
+export default function (element, icon, style, success) {
     let html = '';
 
     if (typeof success === 'boolean') {
         html += '<span class="text-theme-' + (success ? '10' : '24') + '">';
     }
 
-    html += '<svg class="feather ' + (style || 'w-4 h-4') + '">';
+    style = element.getElementsByTagName('svg')[0].getAttribute('class') + ' ' + (style || '');
+
+    html += '<svg class="' + style.trim() + '">';
     html += '<use xlink:href="' + WWW + '/build/images/feather-sprite.svg#' + icon + '"></use>'
     html += '</svg>';
 
@@ -15,5 +17,5 @@ export default function (icon, style, success) {
         html += '</span>';
     }
 
-    return html;
+    element.innerHTML = html;
 };

@@ -185,7 +185,7 @@ import { dateUtc, dateToIso } from './helper'
 
         interval = null;
 
-        live.innerHTML = Feather('play', 'w-6 h-6');
+        Feather(live, 'play')
     };
 
     const liveStart = function () {
@@ -193,6 +193,6 @@ import { dateUtc, dateToIso } from './helper'
 
         interval = setInterval(update, 10000);
 
-        live.innerHTML = Feather('pause', 'w-6 h-6');
+        Feather(live, 'pause')
     };
 })();

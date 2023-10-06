@@ -77,7 +77,14 @@
 
 @if ($trip)
 
-<x-map :trip="$trip" :positions="$positions" :alarms="$alarms" :notifications="$trip_alarm_notifications" :data-map-show-last="$trip->finished()"></x-map>
+<x-map
+    :trip="$trip"
+    :positions="$positions"
+    :alarms="$alarms"
+    :notifications="$trip_alarm_notifications"
+    :data-map-show-last="$trip->finished()"
+    :data-map-positions-url="route('trip.update.position', $trip->id)"
+></x-map>
 
 @else
 

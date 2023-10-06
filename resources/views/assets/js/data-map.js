@@ -114,7 +114,7 @@ import Map from './map';
 
     let interval;
 
-    if (live) {
+    if (live && element.dataset.mapPositionsUrl) {
         live.addEventListener('click', (e) => {
             e.preventDefault();
 
@@ -131,7 +131,7 @@ import Map from './map';
 
         interval = null;
 
-        live.innerHTML = Feather('play', 'w-4 h-4 sm:w-6 sm:h-6');
+        Feather(live, 'play');
     };
 
     const liveStart = function () {
@@ -139,7 +139,7 @@ import Map from './map';
 
         interval = setInterval(liveStartMap, 10000);
 
-        live.innerHTML = Feather('pause', 'w-4 h-4 sm:w-6 sm:h-6');
+        Feather(live, 'pause');
     };
 
     const liveStartMap = function () {

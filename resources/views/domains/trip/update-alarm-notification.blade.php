@@ -3,7 +3,12 @@
 @section ('content')
 
 <div class="mt-5">
-    <x-map :trip="$row" :positions="$positions" :notifications="$notifications" sidebar-hidden></x-map>
+    <x-map
+        :trip="$row"
+        :positions="$positions"
+        :notifications="$notifications"
+        sidebar-hidden
+    ></x-map>
 </div>
 
 <form method="get" class="mt-5">

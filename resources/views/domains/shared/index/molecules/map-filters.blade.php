@@ -26,6 +26,10 @@
             </div>
         </div>
 
+        <div class="mb-4 text-center">
+            <a href="#" class="btn bg-white mr-2" data-map-live>@icon('play', 'w-4 h-4 sm:w-6 sm:h-6')</a>
+        </div>
+
         @endif
     </div>
 </form>

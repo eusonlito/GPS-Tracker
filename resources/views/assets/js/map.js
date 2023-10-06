@@ -11,7 +11,6 @@ import leafletPolycolor from 'leaflet-polycolor';
 leafletPolycolor(L);
 
 import Ajax from './ajax';
-import Feather from './feather';
 import LocalStorage from './local-storage';
 import value2color from './value2color';
 
