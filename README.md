@@ -278,56 +278,35 @@ php artisan server:start {--port=} {--reset}
 
 ### Screenshots
 
-Screenshots are in spanish, you can change the system language to english.
+Screenshots are in english, you can change the system language to spanish.
 
-![gps-tracker-2022-12-30-11_46_09](https://user-images.githubusercontent.com/644551/210064626-546f2d32-b39c-4d08-b4a3-05da832f69cf.png)
-
-![gps-tracker-2022-12-30-11_47_14](https://user-images.githubusercontent.com/644551/210064624-115268df-8418-40c4-a867-2423643c5362.png)
-
-![gps-tracker-2022-12-30-11_47_46](https://user-images.githubusercontent.com/644551/210064012-a2ef4d18-0b29-457a-bf08-94b2b3de57c9.png)
-
-![gps-tracker-2022-12-30-11_48_31](https://user-images.githubusercontent.com/644551/210064011-00f8ef87-b47c-4570-9f76-72cbaa148c32.png)
-
-![gps-tracker-2022-12-30-11_49_20](https://user-images.githubusercontent.com/644551/210064010-a417013e-4218-4245-8edd-83b1b3cf3253.png)
-
-![gps-tracker-2022-12-30-11_49_55](https://user-images.githubusercontent.com/644551/210064008-3832c8e3-5cc6-45de-850a-6d4593174d4e.png)
-
-![gps-tracker-2022-12-30-11_51_24](https://user-images.githubusercontent.com/644551/210064006-00b726b3-183f-421f-98b8-86eb4ff86636.png)
-
-![gps-tracker-2022-12-30-11_51_49](https://user-images.githubusercontent.com/644551/210064005-54238ce2-80a7-48c6-a2a4-f9653b4a519d.png)
-
-![gps-tracker-2022-12-30-11_52_07](https://user-images.githubusercontent.com/644551/210064004-cf50b5c4-9918-4dec-b77c-473502728de1.png)
-
-![gps-tracker-2022-12-30-11_52_51](https://user-images.githubusercontent.com/644551/210064003-d0dac472-37d1-491b-829b-a23ba78cfc20.png)
-
-![gps-tracker-2022-12-30-11_55_23](https://user-images.githubusercontent.com/644551/210064002-c56009e6-bfd7-4ca6-ae6e-d5098865d116.png)
-
-![gps-tracker-2022-12-30-11_55_48](https://user-images.githubusercontent.com/644551/210064001-f447a7d3-a7b2-414e-b1fe-75fd9387bb52.png)
-
-![gps-tracker-2022-12-30-11_56_07](https://user-images.githubusercontent.com/644551/210063999-a6dbe759-4e33-499d-ae81-086a5467c26f.png)
-
-![gps-tracker-2022-12-30-11_56_33](https://user-images.githubusercontent.com/644551/210063997-4adfed30-1f07-49b7-9b3b-ac76f51f2c28.png)
-
-![gps-tracker-2022-12-30-11_57_50](https://user-images.githubusercontent.com/644551/210063996-22323f37-45f9-4bdf-b8e5-e120d28a6918.png)
-
-![gps-tracker-2022-12-30-11_58_06](https://user-images.githubusercontent.com/644551/210063994-98fbbf6d-8127-4b38-8483-29740d1af21f.png)
-
-![gps-tracker-2022-12-30-11_58_56](https://user-images.githubusercontent.com/644551/210063989-4fb43878-4041-42b7-9648-4b3d03f5db04.png)
-
-![gps-tracker-2022-12-30-11_59_25](https://user-images.githubusercontent.com/644551/210063988-dcf5f604-0d9e-45cc-9f71-31c675368758.png)
-
-![gps-tracker-2022-12-30-11_59_48](https://user-images.githubusercontent.com/644551/210063987-112e8db4-0866-4b81-a03f-3a9059e2ef55.png)
-
-![gps-tracker-2022-12-30-12_00_04](https://user-images.githubusercontent.com/644551/210063983-86739319-e6b5-4a7c-8c68-e6155d2d976f.png)
-
-![gps-tracker-2022-12-30-12_00_30](https://user-images.githubusercontent.com/644551/210063981-95ab19b4-7bc6-4f33-b998-cac02b10016c.png)
-
-![gps-tracker-2022-12-30-12_01_20](https://user-images.githubusercontent.com/644551/210063980-354eec06-e7fc-4611-9a33-b23788a8aa43.png)
-
-![gps-tracker-2022-12-30-12_01_43](https://user-images.githubusercontent.com/644551/210063978-753a20f6-68eb-487e-aa6f-1745f9769fd4.png)
-
-![gps-tracker-2022-12-30-12_02_01](https://user-images.githubusercontent.com/644551/210063976-c3cda554-4335-4c75-820c-f666f207489b.png)
-
-![gps-tracker-2022-12-30-12_03_07](https://user-images.githubusercontent.com/644551/210063974-97b37bab-86cf-4ee7-9a69-70799c7ca34f.png)
-
-![gps-tracker-2022-12-30-12_03_37](https://user-images.githubusercontent.com/644551/210063972-17d143ad-9cdc-47f0-9005-cc3d429ae78e.png)
+![Screenshot from 2023-10-09 11-52-03](https://github.com/eusonlito/GPS-Tracker/assets/644551/5217b62a-aeba-4ba3-8926-624260091652)
+![Screenshot from 2023-10-09 11-52-07](https://github.com/eusonlito/GPS-Tracker/assets/644551/80f396e0-59dd-4443-a109-65466308ca38)
+![Screenshot from 2023-10-09 11-52-28](https://github.com/eusonlito/GPS-Tracker/assets/644551/9c44af72-f8e6-4aad-952b-2b437ea72bab)
+![Screenshot from 2023-10-09 11-52-42](https://github.com/eusonlito/GPS-Tracker/assets/644551/f07c4e86-6ac4-4a57-81a4-bf5a019e80a8)
+![Screenshot from 2023-10-09 11-52-53](https://github.com/eusonlito/GPS-Tracker/assets/644551/c622e8ec-38e9-4bf8-8cc5-1fc7193cfa4a)
+![Screenshot from 2023-10-09 11-53-05](https://github.com/eusonlito/GPS-Tracker/assets/644551/2a653e10-4c74-4af6-8561-6082d5f7298e)
+![Screenshot from 2023-10-09 11-53-12](https://github.com/eusonlito/GPS-Tracker/assets/644551/a50c96af-4e8e-4263-99bd-1eb395f5068a)
+![Screenshot from 2023-10-09 11-53-25](https://github.com/eusonlito/GPS-Tracker/assets/644551/a4201b10-86b0-48e6-b3cd-6486e5c4fcba)
+![Screenshot from 2023-10-09 11-53-31](https://github.com/eusonlito/GPS-Tracker/assets/644551/39338c5c-a7e0-40ae-89ae-2c99baceea05)
+![Screenshot from 2023-10-09 11-53-37](https://github.com/eusonlito/GPS-Tracker/assets/644551/fac01e4a-6b87-44a9-8ccc-dc5971abdd4c)
+![Screenshot from 2023-10-09 11-53-43](https://github.com/eusonlito/GPS-Tracker/assets/644551/9e69845a-dcd9-4f0c-9985-9659dc6640a2)
+![Screenshot from 2023-10-09 11-53-46](https://github.com/eusonlito/GPS-Tracker/assets/644551/82e9eb54-8076-464c-aab8-5e49497577f5)
+![Screenshot from 2023-10-09 11-53-50](https://github.com/eusonlito/GPS-Tracker/assets/644551/c06fc928-bc33-4a8c-9ea7-ccd1216f3450)
+![Screenshot from 2023-10-09 11-54-01](https://github.com/eusonlito/GPS-Tracker/assets/644551/edb4f4bc-2e20-4f6b-99b6-738ea9e58adc)
+![Screenshot from 2023-10-09 11-54-29](https://github.com/eusonlito/GPS-Tracker/assets/644551/3b1b49d0-058c-46d3-afcf-fe41167325a0)
+![Screenshot from 2023-10-09 11-54-35](https://github.com/eusonlito/GPS-Tracker/assets/644551/801510b1-6707-45a8-abef-296b0ab94b65)
+![Screenshot from 2023-10-09 11-54-45](https://github.com/eusonlito/GPS-Tracker/assets/644551/9a63b9b2-b8ac-4939-b2de-10e8a294fddd)
+![Screenshot from 2023-10-09 11-54-49](https://github.com/eusonlito/GPS-Tracker/assets/644551/faff6659-1650-41e1-a95e-e9f97b88bbad)
+![screencapture-tracker-local-lan-alarm-10-2023-10-09-11_55_02](https://github.com/eusonlito/GPS-Tracker/assets/644551/9a39f858-6a11-40c0-84ef-f6a86f7d5208)
+![Screenshot from 2023-10-09 11-55-24](https://github.com/eusonlito/GPS-Tracker/assets/644551/2c2bca9c-2560-44a9-8eec-c202be156033)
+![Screenshot from 2023-10-09 11-55-35](https://github.com/eusonlito/GPS-Tracker/assets/644551/43acdb70-e1fb-4ede-95e0-b88caf0385d2)
+![Screenshot from 2023-10-09 11-55-42](https://github.com/eusonlito/GPS-Tracker/assets/644551/2aab9135-f08c-402e-9db8-4445a85ee48a)
+![Screenshot from 2023-10-09 11-55-47](https://github.com/eusonlito/GPS-Tracker/assets/644551/49710f8f-95f1-4ff2-87c0-36a6c0cffef9)
+![Screenshot from 2023-10-09 11-56-00](https://github.com/eusonlito/GPS-Tracker/assets/644551/5346a6e4-b3c4-4f4e-89b1-6b064805a3e5)
+![Screenshot from 2023-10-09 11-57-15](https://github.com/eusonlito/GPS-Tracker/assets/644551/89fe034a-e912-4f57-8982-8f75786fb4b2)
+![Screenshot from 2023-10-09 11-57-24](https://github.com/eusonlito/GPS-Tracker/assets/644551/0bd15163-6717-4a98-87dc-b3968dd16012)
+![Screenshot from 2023-10-09 11-57-31](https://github.com/eusonlito/GPS-Tracker/assets/644551/de2130b4-1ae7-4d58-afa3-f7eb064d88c6)
+![Screenshot from 2023-10-09 11-57-36](https://github.com/eusonlito/GPS-Tracker/assets/644551/c79a6dff-4729-46fe-8be0-5a8ef0c83c4f)
+![Screenshot from 2023-10-09 11-58-26](https://github.com/eusonlito/GPS-Tracker/assets/644551/8c3aa719-ea30-4da3-ae3d-aec8ee09aed4)
+![Screenshot from 2023-10-09 11-58-58](https://github.com/eusonlito/GPS-Tracker/assets/644551/b4f24a03-726a-4e33-80bd-882ff79a0e68)
