@@ -22,16 +22,6 @@ class AuthModel extends ActionAbstract
     /**
      * @return void
      */
-    protected function save(): void
-    {
-        $this->saveLogin();
-        $this->saveAuth();
-        $this->saveUserSession();
-    }
-
-    /**
-     * @return void
-     */
     protected function login(): void
     {
         Auth::login($this->row, true);
@@ -56,7 +46,7 @@ class AuthModel extends ActionAbstract
     /**
      * @return array
      */
-    protected function userSessionData(): array
+    protected function saveUserSessionData(): array
     {
         return [
             'auth' => $this->data['email'],
