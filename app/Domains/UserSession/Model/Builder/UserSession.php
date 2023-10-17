@@ -59,7 +59,7 @@ class UserSession extends BuilderAbstract
     }
 
     /**
-     * @return self
+     * @return \App\Domains\UserFail\Model\Builder\UserFail
      */
     public function unionUserFailQuery(): UserFailBuilder
     {
@@ -81,7 +81,7 @@ class UserSession extends BuilderAbstract
     /**
      * @param \App\Domains\User\Model\User $user
      *
-     * @return self
+     * @return \App\Domains\UserFail\Model\Builder\UserFail
      */
     public function unionUserFailQueryByUser(UserModel $user): UserFailBuilder
     {
