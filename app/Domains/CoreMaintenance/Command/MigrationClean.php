@@ -7,7 +7,7 @@ class MigrationClean extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'core-maintenance:migration:clean';
+    protected $signature = 'core:maintenance:migration:clean';
 
     /**
      * @var string

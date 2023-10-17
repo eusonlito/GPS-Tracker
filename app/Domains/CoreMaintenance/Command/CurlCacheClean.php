@@ -7,7 +7,7 @@ class CurlCacheClean extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'core-maintenance:curl:cache:clean';
+    protected $signature = 'core:maintenance:curl:cache:clean';
 
     /**
      * @var string

@@ -7,7 +7,7 @@ class FileZip extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'core-maintenance:file:zip {--days=10} {--folder=storage/logs} {--extensions=log}';
+    protected $signature = 'core:maintenance:file:zip {--days=10} {--folder=storage/logs} {--extensions=log}';
 
     /**
      * @var string

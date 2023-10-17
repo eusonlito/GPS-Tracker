@@ -7,7 +7,7 @@ class FileDeleteOlder extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'core-maintenance:file:delete:older {--days=10} {--folder=storage/logs} {--extensions=log,zip}';
+    protected $signature = 'core:maintenance:file:delete:older {--days=10} {--folder=storage/logs} {--extensions=log,zip}';
 
     /**
      * @var string

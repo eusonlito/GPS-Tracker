@@ -7,7 +7,7 @@ class DomainCreate extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'core-maintenance:domain:create {--name=} {--action} {--command} {--controller} {--exception} {--fractal} {--job} {--mail} {--middleware} {--model} {--schedule} {--seeder} {--test} {--validate}';
+    protected $signature = 'core:maintenance:domain:create {--name=} {--action} {--command} {--controller} {--exception} {--fractal} {--job} {--mail} {--middleware} {--model} {--schedule} {--seeder} {--test} {--validate}';
 
     /**
      * @var string
