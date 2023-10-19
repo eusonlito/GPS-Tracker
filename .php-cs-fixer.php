@@ -23,7 +23,8 @@ return (new Config())
 
         'braces_position' => [
             'allow_single_line_empty_anonymous_classes' => true,
+            'anonymous_classes_opening_brace' => 'same_line',
             'anonymous_functions_opening_brace' => 'same_line',
         ],
     ])
-    ->setFinder(Finder::create()->in(['app', 'config', 'database', 'tests']));
+    ->setFinder(Finder::create()->in(['app', 'config', 'database']));

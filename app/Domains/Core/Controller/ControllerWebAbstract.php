@@ -29,8 +29,6 @@ abstract class ControllerWebAbstract extends ControllerAbstract
     }
 
     /**
-     * @psalm-suppress UndefinedConstant
-     *
      * @return void
      */
     protected function initViewShare(): void

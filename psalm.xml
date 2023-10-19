@@ -3,6 +3,8 @@
     <projectFiles>
         <directory name="app" />
         <directory name="database" />
+        <directory name="public" />
+        <directory name="bootstrap" />
 
         <ignoreFiles>
             <directory name="vendor" />
