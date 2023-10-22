@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Queue\Events\JobFailed;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
@@ -39,6 +40,7 @@ class Debug extends ServiceProvider
     protected function logging(): void
     {
         $this->loggingDatabase();
+        $this->disableQueryLog();
     }
 
     /**
@@ -47,6 +49,16 @@ class Debug extends ServiceProvider
     protected function loggingDatabase(): void
     {
         LoggerDatabase::new()->listen();
+    }
+
+    /**
+     * @return void
+     */
+    protected function disableQueryLog(): void
+    {
+        if ($this->app->isProduction()) {
+            DB::connection()->disableQueryLog();
+        }
     }
 
     /**
