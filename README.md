@@ -305,6 +305,7 @@ Screenshots are in english, you can change the system language to spanish.
 ![Screenshot from 2023-10-09 11-55-47](https://github.com/eusonlito/GPS-Tracker/assets/644551/49710f8f-95f1-4ff2-87c0-36a6c0cffef9)
 ![Screenshot from 2023-10-09 11-56-00](https://github.com/eusonlito/GPS-Tracker/assets/644551/5346a6e4-b3c4-4f4e-89b1-6b064805a3e5)
 ![Screenshot from 2023-10-09 11-57-15](https://github.com/eusonlito/GPS-Tracker/assets/644551/89fe034a-e912-4f57-8982-8f75786fb4b2)
+![Screenshot from 2023-10-23 11-39-12](https://github.com/eusonlito/GPS-Tracker/assets/644551/f7214971-adcd-4b4b-8090-4c62fd3bde3e)
 ![Screenshot from 2023-10-09 11-57-24](https://github.com/eusonlito/GPS-Tracker/assets/644551/0bd15163-6717-4a98-87dc-b3968dd16012)
 ![Screenshot from 2023-10-09 11-57-31](https://github.com/eusonlito/GPS-Tracker/assets/644551/de2130b4-1ae7-4d58-afa3-f7eb064d88c6)
 ![Screenshot from 2023-10-09 11-57-36](https://github.com/eusonlito/GPS-Tracker/assets/644551/c79a6dff-4729-46fe-8be0-5a8ef0c83c4f)
