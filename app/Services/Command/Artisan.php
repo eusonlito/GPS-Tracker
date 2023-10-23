@@ -17,6 +17,11 @@ class Artisan
     protected string $log = '/dev/null';
 
     /**
+     * @var bool
+     */
+    protected bool $logDaily = false;
+
+    /**
      * @var string
      */
     protected string $cmd;
@@ -51,6 +56,19 @@ class Artisan
     }
 
     /**
+     * @param bool $logDaily = true
+     *
+     * @return self
+     */
+    public function logDaily(bool $logDaily = true): self
+    {
+        $this->logDaily = $logDaily;
+        $this->log($logDaily);
+
+        return $this;
+    }
+
+    /**
      * @return void
      */
     public function exec(): void
@@ -71,15 +89,47 @@ class Artisan
             return $this->log = static::LOG;
         }
 
-        if ($path === true) {
-            $path = storage_path('logs/artisan/'.date_create()->format('Y-m-d/H_i_s_u').'-'.str_slug($this->command).'.log');
-        }
-
-        $this->log = $path;
+        $this->log = $this->logFilePath($path);
 
         Directory::create($this->log, true);
 
         return $this->log;
+    }
+
+    /**
+     * @param string|bool $path
+     *
+     * @return string
+     */
+    protected function logFilePath(string|bool $path): string
+    {
+        if ($path === true) {
+            return storage_path('logs/artisan/'.$this->logFileDatePrefix().$this->logFileCommand($this->command));
+        }
+
+        if (str_starts_with($path, '/')) {
+            return $path;
+        }
+
+        return storage_path($this->logFileDatePrefix().$this->logFileCommand($path));
+    }
+
+    /**
+     * @return string
+     */
+    protected function logFileDatePrefix(): string
+    {
+        return date_create()->format('Y-m-d/'.($this->logDaily ? '' : 'H_i_s_u-'));
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    protected function logFileCommand(string $path): string
+    {
+        return str_slug(preg_replace('/\W/', '-', $path)).'.log';
     }
 
     /**
@@ -106,7 +156,7 @@ class Artisan
      */
     protected function logOpen(): void
     {
-        file_put_contents($this->log, $this->cmd."\n\n");
+        file_put_contents($this->log, "\n".$this->cmd."\n\n", FILE_APPEND);
     }
 
     /**

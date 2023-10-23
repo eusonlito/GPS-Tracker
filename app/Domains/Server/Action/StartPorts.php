@@ -50,7 +50,7 @@ class StartPorts extends ActionAbstract
      */
     protected function command(Model $row): void
     {
-        Artisan::new($this->commandString($row))->log()->exec();
+        Artisan::new($this->commandString($row))->logDaily()->exec();
     }
 
     /**

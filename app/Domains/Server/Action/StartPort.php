@@ -110,7 +110,9 @@ class StartPort extends ActionAbstract
      */
     protected function isBusyError(): void
     {
-        logger()->error(new PortBusyException(__('server.error.port-busy', ['port' => $this->data['port']])));
+        if ($this->data['reset']) {
+            logger()->error(new PortBusyException(__('server.error.port-busy', ['port' => $this->data['port']])));
+        }
     }
 
     /**
