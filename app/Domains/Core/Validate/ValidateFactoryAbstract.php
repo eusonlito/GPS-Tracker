@@ -41,7 +41,7 @@ abstract class ValidateFactoryAbstract
         $class = (new ReflectionClass($this))->getNamespaceName().'\\'.ucfirst($name);
 
         if (class_exists($class) === false) {
-            throw new BadMethodCallException();
+            throw new BadMethodCallException(sprintf('Invalid Validator Method %s', $name));
         }
 
         return $this->handle($class);
