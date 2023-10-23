@@ -7,6 +7,11 @@ use UnexpectedValueException;
 class Read
 {
     /**
+     * @var stream
+     */
+    protected mixed $fp;
+
+    /**
      * @var array
      */
     protected array $lines;
@@ -22,14 +27,28 @@ class Read
     protected int $columns;
 
     /**
-     * @param string $file
+     * @param string $csv
      * @param string $delimiter = ';'
      *
      * @return self
      */
-    public static function fromFile(string $file, string $delimiter = ';'): self
+    public static function fromString(string $csv, string $delimiter = ';'): self
     {
-        return static::new(file_get_contents($file), $delimiter);
+        return static::new(static::stringToFile($csv), $delimiter);
+    }
+
+    /**
+     * @param string $csv
+     *
+     * @return string
+     */
+    public static function stringToFile(string $csv): string
+    {
+        $file = tempnam(sys_get_temp_dir(), 'csv-read');
+
+        file_put_contents($file, $csv);
+
+        return $file;
     }
 
     /**
@@ -41,25 +60,13 @@ class Read
     }
 
     /**
-     * @param string $csv
+     * @param string $file
      * @param string $delimiter = ';'
      *
      * @return self
      */
-    public function __construct(protected string $csv, protected string $delimiter = ';')
+    public function __construct(protected string $file, protected string $delimiter = ';')
     {
-    }
-
-    /**
-     * @return array
-     */
-    public function get(): array
-    {
-        $this->lines();
-        $this->header();
-        $this->columns();
-
-        return array_map($this->line(...), $this->lines);
     }
 
     /**
@@ -75,19 +82,62 @@ class Read
     }
 
     /**
+     * @return array
+     */
+    public function get(): array
+    {
+        $this->fopen();
+        $this->lines();
+        $this->fclose();
+        $this->header();
+        $this->columns();
+
+        return array_map($this->line(...), $this->lines);
+    }
+
+    /**
+     * @return self
+     */
+    public function fopen(): self
+    {
+        if (is_readable($this->file) === false) {
+            throw new UnexpectedValueException(sprintf('Invalid CSV File %s', $this->file));
+        }
+
+        $this->fp = fopen($this->file, 'r');
+
+        if ($this->fp === false) {
+            throw new UnexpectedValueException(sprintf('Invalid CSV File %s', $this->file));
+        }
+
+        // UTF-8 BOM Remove
+        if (fgets($this->fp, 4) !== "\xef\xbb\xbf") {
+            rewind($this->fp);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return void
      */
     protected function lines(): void
     {
         $this->lines = [];
 
-        foreach (array_filter(preg_split('/\r\n|\r|\n/', $this->csv)) as $each) {
-            $this->lines[] = str_getcsv($this->utf8($each), $this->delimiter);
+        while (($each = fgetcsv($this->fp, 0, $this->delimiter)) !== false) {
+            $this->lines[] = $each;
         }
+    }
 
-        if (count($this->lines) < 2) {
-            $this->lines = [];
-        }
+    /**
+     * @return self
+     */
+    public function fclose(): self
+    {
+        fclose($this->fp);
+
+        return $this;
     }
 
     /**
@@ -97,9 +147,7 @@ class Read
     {
         $header = array_shift($this->lines);
 
-        if (isset($this->header) === false) {
-            $this->header = $header;
-        }
+        $this->header ??= $header ?? [];
     }
 
     /**
@@ -121,7 +169,17 @@ class Read
             $this->lineError($line);
         }
 
-        return array_combine($this->header, array_map(static fn ($value) => trim(strval($value)), $line));
+        return array_combine($this->header, array_map($this->value(...), $line));
+    }
+
+    /**
+     * @param string|null $value
+     *
+     * @return string
+     */
+    protected function value(?string $value): string
+    {
+        return trim($this->utf8(strval($value)));
     }
 
     /**
@@ -145,11 +203,6 @@ class Read
      */
     protected function utf8(string $string): string
     {
-        // Remove UTF-8 BOM fix in Excel
-        if (substr($string, 0, 3) === chr(0xEF).chr(0xBB).chr(0xBF)) {
-            $string = substr($string, 3);
-        }
-
         if (preg_match('#[\x80-\x{1FF}\x{2000}-\x{3FFF}]#u', $string)) {
             return $string;
         }
