@@ -85,10 +85,6 @@ class Artisan
      */
     protected function logFile(string|bool $path): string
     {
-        if (empty($path)) {
-            return $this->log = static::LOG;
-        }
-
         $this->log = $this->logFilePath($path);
 
         Directory::create($this->log, true);
@@ -103,15 +99,19 @@ class Artisan
      */
     protected function logFilePath(string|bool $path): string
     {
+        if (empty($path)) {
+            return static::LOG;
+        }
+
         if ($path === true) {
-            return storage_path('logs/artisan/'.$this->logFileDatePrefix().$this->logFileCommand($this->command));
+            $path = $this->command;
         }
 
         if (str_starts_with($path, '/')) {
             return $path;
         }
 
-        return storage_path($this->logFileDatePrefix().$this->logFileCommand($path));
+        return storage_path('logs/artisan/'.$this->logFileDatePrefix().$this->logFileCommand($path));
     }
 
     /**
