@@ -3,6 +3,7 @@
 namespace App\Domains\Server\Action;
 
 use App\Domains\Server\Model\Server as Model;
+use App\Domains\Server\Exception\PortBusy as PortBusyException;
 use App\Services\Filesystem\Directory;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\ProtocolFactory;
@@ -38,6 +39,8 @@ class StartPort extends ActionAbstract
         $this->kill();
 
         if ($this->isBusy()) {
+            $this->isBusyError();
+
             return;
         }
 
@@ -100,6 +103,14 @@ class StartPort extends ActionAbstract
     protected function isBusy(): bool
     {
         return $this->server->isBusy();
+    }
+
+    /**
+     * @return void
+     */
+    protected function isBusyError(): void
+    {
+        logger()->error(new PortBusyException(__('server.error.port-busy', ['port' => $this->data['port']])));
     }
 
     /**

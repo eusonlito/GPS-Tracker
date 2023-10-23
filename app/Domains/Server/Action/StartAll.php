@@ -49,7 +49,7 @@ class StartAll extends ActionAbstract
      */
     protected function command(Model $row): void
     {
-        Artisan::new($this->commandString($row))->exec();
+        Artisan::new($this->commandString($row))->log()->exec();
     }
 
     /**
