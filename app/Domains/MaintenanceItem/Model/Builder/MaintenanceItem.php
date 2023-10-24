@@ -46,10 +46,15 @@ class MaintenanceItem extends BuilderAbstract
      */
     public function withStats(): self
     {
-        return $this->addSelect([
-            'amount_net_min' => MaintenanceMaintenanceItemModel::query()->selectAmountNetMinFromItem(),
-            'amount_net_max' => MaintenanceMaintenanceItemModel::query()->selectAmountNetMaxFromItem(),
-            'amount_net_avg' => MaintenanceMaintenanceItemModel::query()->selectAmountNetAvgFromItem(),
-        ]);
+        return $this->selectRaw('COALESCE(`stats`.`amount_net_min`, 0) AS `amount_net_min`')
+            ->selectRaw('COALESCE(`stats`.`amount_net_max`, 0) AS `amount_net_max`')
+            ->selectRaw('COALESCE(`stats`.`amount_net_avg`, 0) AS `amount_net_avg`')
+            ->selectRaw('COALESCE(`stats`.`quantity_sum`, 0) AS `quantity_sum`')
+            ->selectRaw('COALESCE(`stats`.`total_sum`, 0) AS `total_sum`')
+            ->leftJoinSub(
+                MaintenanceMaintenanceItemModel::query()->selectMaintenanceItemStats(),
+                'stats',
+                static fn ($join) => $join->on('maintenance_item.id', '=', 'stats.maintenance_item_id')
+            );
     }
 }

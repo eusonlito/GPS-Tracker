@@ -7,4 +7,6 @@
     'maintenances_count' => 'Maintenance',
     'meta-title' => 'Maintenance &gt; Éléments',
     'name' => 'Nom',
+    'quantity_sum' => '',
+    'total_sum' => '',
 ];

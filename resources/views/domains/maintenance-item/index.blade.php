@@ -23,6 +23,8 @@
                 <th>{{ __('maintenance-item-index.amount_net_min') }}</th>
                 <th>{{ __('maintenance-item-index.amount_net_max') }}</th>
                 <th>{{ __('maintenance-item-index.amount_net_avg') }}</th>
+                <th>{{ __('maintenance-item-index.quantity_sum') }}</th>
+                <th>{{ __('maintenance-item-index.total_sum') }}</th>
             </tr>
         </thead>
 
@@ -34,9 +36,11 @@
             <tr>
                 <td><a href="{{ $link }}" class="block text-left">{{ $row->name }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->maintenances_count }}</a></td>
-                <td><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount_net_min)</a></td>
-                <td><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount_net_max)</a></td>
-                <td><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount_net_avg)</a></td>
+                <td data-table-sort-value="{{ $row->amount_net_min }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount_net_min)</a></td>
+                <td data-table-sort-value="{{ $row->amount_net_max }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount_net_max)</a></td>
+                <td data-table-sort-value="{{ $row->amount_net_avg }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount_net_avg)</a></td>
+                <td data-table-sort-value="{{ $row->quantity_sum }}"><a href="{{ $link }}" class="block">@number($row->quantity_sum)</a></td>
+                <td data-table-sort-value="{{ $row->total_sum }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->total_sum)</a></td>
             </tr>
 
             @endforeach

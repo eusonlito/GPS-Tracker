@@ -42,21 +42,21 @@
             @endforeach
         </tbody>
 
-            <tfoot class="bg-white">
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>{{ $total['quantity'] }}</th>
-                    <th>@unitHumanRaw('money', $total['amount_gross'])</th>
-                    <th>@unitHumanRaw('money', $total['amount_net'])</th>
-                    <th></th>
-                    <th>@unitHumanRaw('money', $total['subtotal'])</th>
-                    <th>@unitHumanRaw('money', $total['tax_amount'])</th>
-                    <th>@unitHumanRaw('money', $total['total'])</th>
-                </tr>
-            </tfoot>
+        <tfoot class="bg-white">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>{{ $total['quantity'] }}</th>
+                <th>@unitHumanRaw('money', $total['amount_gross'])</th>
+                <th>@unitHumanRaw('money', $total['amount_net'])</th>
+                <th></th>
+                <th>@unitHumanRaw('money', $total['subtotal'])</th>
+                <th>@unitHumanRaw('money', $total['tax_amount'])</th>
+                <th>@unitHumanRaw('money', $total['total'])</th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
