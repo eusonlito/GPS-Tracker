@@ -21,11 +21,31 @@
             </a>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'maintenance'))
+
         <li>
-            <a href="{{ route('maintenance.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'maintenance.') ? 'side-menu--active' : '' }}">
+            <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('tool')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.maintenance') }}</div>
+                <div class="side-menu__title">
+                    {{ __('in-sidebar.maintenance') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                </div>
             </a>
+
+            <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('maintenance.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'maintenance.') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('list')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.maintenance-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('maintenance-item.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'maintenance-item.') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('shopping-bag')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.maintenance-item') }}</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         <li>

@@ -4,11 +4,13 @@ namespace App\Domains\Maintenance\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\File\Model\File as FileModel;
 use App\Domains\Maintenance\Model\Builder\Maintenance as Builder;
 use App\Domains\Maintenance\Model\Collection\Maintenance as Collection;
 use App\Domains\Maintenance\Test\Factory\Maintenance as TestFactory;
+use App\Domains\MaintenanceItem\Model\MaintenanceItem as MaintenanceItemModel;
 use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
@@ -30,13 +32,6 @@ class Maintenance extends ModelAbstract
      * @const string
      */
     public const FOREIGN = 'maintenance_id';
-
-    /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'done' => 'boolean',
-    ];
 
     /**
      * @param array $models
@@ -72,6 +67,22 @@ class Maintenance extends ModelAbstract
     public function files(): HasMany
     {
         return $this->hasMany(FileModel::class, 'related_id')->byRelatedTable(static::TABLE)->list();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function items(): BelongsToMany
+    {
+        return $this->belongsToMany(MaintenanceItemModel::class, MaintenanceMaintenanceItem::TABLE);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function itemsPivot(): HasMany
+    {
+        return $this->hasMany(MaintenanceMaintenanceItem::class, static::FOREIGN);
     }
 
     /**

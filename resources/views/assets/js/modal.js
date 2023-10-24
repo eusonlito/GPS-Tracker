@@ -140,7 +140,7 @@
             }
         })
 
-        if (!element.classList.contains('modal') || !element.classList.contains('show')) {
+        if (!element || !element.classList.contains('modal') || !element.classList.contains('show')) {
             return;
         }
 
@@ -151,4 +151,9 @@
             setTimeout(() => element.classList.remove('modal-static'), 600);
         }
     }, false);
+
+    modals.forEach(modal => {
+        modal.show = () => show(modal);
+        modal.hide = () => hide(modal);
+    });
 })();

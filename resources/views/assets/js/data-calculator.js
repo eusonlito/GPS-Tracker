@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
+    const float = (value) => parseFloat(value || 0);
+    const amount = (value) => Math.max(0, value).toFixed(2);
+
     const total = (first, second) => amount(float(first) * float(second));
     const subtract = (first, second) => amount(float(first) - float(second));
     const divide = (first, second) => amount(float(first) / float(second));
-
-    const float = (value) => parseFloat(value || 0);
-    const amount = (value) => Math.max(0, value).toFixed(2);
 
     document.querySelectorAll('[data-calculator-total]').forEach(element => {
         const first = document.querySelector(element.dataset.calculatorTotalFirst);

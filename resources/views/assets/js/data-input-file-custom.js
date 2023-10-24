@@ -28,7 +28,7 @@
 
         setup(element);
 
-        element.dataset.inputFileCustomoaded = true;
+        element.dataset.inputFileCustomLoaded = true;
     }
 
     function init () {

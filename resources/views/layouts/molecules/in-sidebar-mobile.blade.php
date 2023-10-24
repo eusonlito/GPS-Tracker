@@ -33,11 +33,31 @@
             </a>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'maintenance'))
+
         <li>
-            <a href="{{ route('maintenance.index') }}" class="menu {{ str_starts_with($ROUTE, 'maintenance.') ? 'menu--active' : '' }}">
+            <a href="javascript:;" class="menu {{ $active ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('tool')</div>
-                <div class="menu__title">{{ __('in-sidebar.maintenance') }}</div>
+                <div class="menu__title">
+                    {{ __('in-sidebar.maintenance') }} <div class="menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                </div>
             </a>
+
+            <ul class="{{ $active ? 'menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('maintenance.index') }}" class="menu {{ ($ROUTE === 'maintenance.index') ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('list')</div>
+                        <div class="menu__title">{{ __('in-sidebar.maintenance-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('maintenance-item.index') }}" class="menu {{ ($ROUTE === 'maintenance-item.index') ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('shopping-bag')</div>
+                        <div class="menu__title">{{ __('in-sidebar.maintenance-item') }}</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         <li>

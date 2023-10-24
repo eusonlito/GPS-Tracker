@@ -35,4 +35,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandleTransaction(Update::class, $this->validate()->update());
     }
+
+    /**
+     * @return \App\Domains\Maintenance\Model\Maintenance
+     */
+    public function updateItem(): Model
+    {
+        return $this->actionHandleTransaction(UpdateItem::class, $this->validate()->updateItem());
+    }
 }

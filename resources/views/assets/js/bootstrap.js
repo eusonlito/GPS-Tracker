@@ -31,4 +31,5 @@ import './side-menu.js';
 import './data-input-file-custom.js';
 import './modal.js';
 import './alert.js';
+import './data-maintenance-update-item.js';
 import './service-worker.js';

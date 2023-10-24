@@ -36,8 +36,8 @@ class UpdateAlarm extends ControllerAbstract
     protected function alarms(): AlarmCollection
     {
         return AlarmModel::query()
-            ->list()
             ->withVehiclePivot($this->row->id)
+            ->list()
             ->get()
             ->sortByDesc('vehiclePivot');
     }

@@ -8,6 +8,8 @@
     'device-map' => 'Map',
     'logout' => 'Logout',
     'maintenance' => 'Maintenances',
+    'maintenance-index' => 'List',
+    'maintenance-item' => 'Items',
     'profile' => 'Profile',
     'refuel' => 'Refuelings',
     'server' => 'Servers',

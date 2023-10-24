@@ -7,7 +7,7 @@ export default class {
         this.setBody();
         this.setCallback();
         this.setCallbackParameters();
-        this.setError();
+        this.setErrorCallback();
         this.setHeaders();
         this.setJson(true);
 
@@ -98,8 +98,8 @@ export default class {
         return this;
     }
 
-    setError(error) {
-        this.error = error || function (message) { console.error(message) };
+    setErrorCallback(callback) {
+        this.errorCallback = callback || function (message) { console.error(message) };
 
         return this;
     }
@@ -117,7 +117,7 @@ export default class {
             if (!this.jsonResponse) {
                 document.dispatchEvent(new Event('ajax'));
             }
-        }).catch(error => this.error(error));
+        }).catch(error => this.errorCallback(error));
     }
 
     sendUrl() {
@@ -176,11 +176,11 @@ export default class {
         try {
             data = JSON.parse(text);
         } catch (error) {
-            return this.error(error);
+            return this.errorCallback(text);
         }
 
         if (!response.ok) {
-            return this.error(data.message);
+            return this.errorCallback(data);
         }
 
         return data;
@@ -188,7 +188,7 @@ export default class {
 
     sendResponseHtml(response, text) {
         if (!response.ok) {
-            return this.error(text);
+            return this.errorCallback(text);
         }
 
         return text;
