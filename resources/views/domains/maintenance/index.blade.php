@@ -83,6 +83,7 @@
             <tr>
                 <th colspan="{{ $vehicles_multiple ? '6' : '5' }}"></th>
                 <th>@unitHumanRaw('money', $total)</th>
+                <th></th>
             </tr>
         </tfoot>
 
