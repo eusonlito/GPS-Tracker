@@ -25,6 +25,7 @@
                 <th>{{ __('maintenance-item-index.amount_net_avg') }}</th>
                 <th>{{ __('maintenance-item-index.quantity_sum') }}</th>
                 <th>{{ __('maintenance-item-index.total_sum') }}</th>
+                <th></th>
             </tr>
         </thead>
 
@@ -41,6 +42,10 @@
                 <td data-table-sort-value="{{ $row->amount_net_avg }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount_net_avg)</a></td>
                 <td data-table-sort-value="{{ $row->quantity_sum }}"><a href="{{ $link }}" class="block">@number($row->quantity_sum)</a></td>
                 <td data-table-sort-value="{{ $row->total_sum }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->total_sum)</a></td>
+
+                <td class="w-1">
+                    <a href="{{ route('maintenance-item.update.maintenance', $row->id) }}">@icon('tool', 'w-4 h-4')</a>
+                </td>
             </tr>
 
             @endforeach

@@ -48,6 +48,7 @@
                 <th>{{ __('maintenance-index.distance') }}</th>
                 <th>{{ __('maintenance-index.distance_next') }}</th>
                 <th>{{ __('maintenance-index.amount') }}</th>
+                <th></th>
             </tr>
         </thead>
 
@@ -67,6 +68,10 @@
                 <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block">@unitHumanRaw('distance', $row->distance, 0)</a></td>
                 <td data-table-sort-value="{{ $row->distance_next }}"><a href="{{ $link }}" class="block">@unitHumanRaw('distance', $row->distance_next, 0)</a></td>
                 <td data-table-sort-value="{{ $row->amount }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount, 2)</a></td>
+
+                <td class="w-1">
+                    <a href="{{ route('maintenance.update.item', $row->id) }}">@icon('shopping-bag', 'w-4 h-4')</a>
+                </td>
             </tr>
 
             @endforeach
