@@ -76,14 +76,16 @@ class UpdateItem extends ActionAbstract
         $data = [
             'maintenance_item_id' => $this->data['maintenance_item_id'][$index] ?? null,
             'quantity' => $this->data['quantity'][$index] ?? 0,
-            'amount' => $this->data['amount'][$index] ?? 0,
+            'amount_gross' => $this->data['amount_gross'][$index] ?? 0,
             'tax_percent' => $this->data['tax_percent'][$index] ?? 0,
         ];
 
-        $data['subtotal'] = $data['quantity'] * $data['amount'];
+        $data['amount_net'] = $data['amount_gross'] * (1 + $data['tax_percent'] / 100);
+        $data['subtotal'] = $data['quantity'] * $data['amount_gross'];
         $data['tax_amount'] = $data['subtotal'] * $data['tax_percent'] / 100;
         $data['total'] = $data['subtotal'] + $data['tax_amount'];
 
+        $data['amount_net'] = round($data['amount_net'], 2);
         $data['subtotal'] = round($data['subtotal'], 2);
         $data['tax_amount'] = round($data['tax_amount'], 2);
         $data['total'] = round($data['total'], 2);
@@ -100,7 +102,7 @@ class UpdateItem extends ActionAbstract
     {
         return in_array($data['maintenance_item_id'], $this->maintenanceItemIds)
             && $data['quantity']
-            && $data['amount'];
+            && $data['amount_gross'];
     }
 
     /**
@@ -140,7 +142,8 @@ class UpdateItem extends ActionAbstract
             'maintenance_item_id' => $line['maintenance_item_id'],
         ], [
             'quantity' => $line['quantity'],
-            'amount' => $line['amount'],
+            'amount_gross' => $line['amount_gross'],
+            'amount_net' => $line['amount_net'],
             'tax_percent' => $line['tax_percent'],
             'tax_amount' => $line['tax_amount'],
             'subtotal' => $line['subtotal'],

@@ -1,6 +1,7 @@
 <?php return [
     'add' => 'Ajouter',
-    'amount' => 'Montant',
+    'amount_gross' => 'Montant brut',
+    'amount_net' => 'Montant net',
     'item' => 'Sélectionner un élément',
     'meta-title' => 'Maintenance &gt; :title &gt; Articles',
     'name' => 'Nom',

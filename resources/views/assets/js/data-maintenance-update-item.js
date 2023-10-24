@@ -33,7 +33,7 @@ import Ajax from './ajax';
         element.querySelectorAll('[data-maintenance-update-item-maintenance_item_id]').forEach(selectListener);
 
         element.querySelectorAll('[data-maintenance-update-item-quantity]').forEach(inputListener);
-        element.querySelectorAll('[data-maintenance-update-item-amount]').forEach(inputListener);
+        element.querySelectorAll('[data-maintenance-update-item-amount_gross]').forEach(inputListener);
         element.querySelectorAll('[data-maintenance-update-item-tax_percent]').forEach(inputListener);
 
         element.querySelectorAll('[data-maintenance-update-item-add]').forEach(buttonAddListener);
@@ -51,17 +51,20 @@ import Ajax from './ajax';
         const tr = e.target.closest('tr');
 
         const quantity_value = float(tr.querySelector('[data-maintenance-update-item-quantity]').value);
-        const amount_value = float(tr.querySelector('[data-maintenance-update-item-amount]').value);
+        const amount_gross_value = float(tr.querySelector('[data-maintenance-update-item-amount_gross]').value);
         const tax_percent_value = float(tr.querySelector('[data-maintenance-update-item-tax_percent]').value);
 
+        const amount_net = tr.querySelector('[data-maintenance-update-item-amount_net]');
         const tax_amount = tr.querySelector('[data-maintenance-update-item-tax_amount]');
         const subtotal = tr.querySelector('[data-maintenance-update-item-subtotal]');
         const total = tr.querySelector('[data-maintenance-update-item-total]');
 
-        const subtotal_value = quantity_value * amount_value;
+        const amount_net_value = amount_gross_value * (1 + tax_percent_value / 100);
+        const subtotal_value = quantity_value * amount_gross_value;
         const tax_amount_value = subtotal_value * tax_percent_value / 100;
         const total_value = subtotal_value + tax_amount_value;
 
+        amount_net.value = amount(amount_net_value);
         subtotal.value = amount(subtotal_value);
         tax_amount.value = amount(tax_amount_value);
         total.value = amount(total_value);
@@ -84,17 +87,19 @@ import Ajax from './ajax';
         });
 
         values.quantity = values.quantity.reduce((sum, a) => sum + a, 0);
-        values.amount = values.amount.reduce((sum, a) => sum + a, 0);
+        values.amount_gross = values.amount_gross.reduce((sum, a) => sum + a, 0);
+        values.amount_net = values.amount_net.reduce((sum, a) => sum + a, 0);
         values.subtotal = values.subtotal.reduce((sum, a) => sum + a, 0);
         values.tax_amount = values.tax_amount.reduce((sum, a) => sum + a, 0);
         values.total = values.total.reduce((sum, a) => sum + a, 0);
 
         const tfoot = table.querySelector('tfoot');
 
-        setMoneyConversion(tfoot.querySelector('[data-maintenance-update-item-total-amount]').innerText);
+        setMoneyConversion(tfoot.querySelector('[data-maintenance-update-item-total-total]').innerText);
 
         tfoot.querySelector('[data-maintenance-update-item-total-quantity]').innerText = values.quantity;
-        tfoot.querySelector('[data-maintenance-update-item-total-amount]').innerText = money(values.amount);
+        tfoot.querySelector('[data-maintenance-update-item-total-amount_gross]').innerText = money(values.amount_gross);
+        tfoot.querySelector('[data-maintenance-update-item-total-amount_net]').innerText = money(values.amount_net);
         tfoot.querySelector('[data-maintenance-update-item-total-subtotal]').innerText = money(values.subtotal);
         tfoot.querySelector('[data-maintenance-update-item-total-tax_amount]').innerText = money(values.tax_amount);
         tfoot.querySelector('[data-maintenance-update-item-total-total]').innerText = money(values.total);

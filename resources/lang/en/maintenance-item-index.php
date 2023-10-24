@@ -1,6 +1,8 @@
 <?php return [
+    'amount_net_avg' => 'Average Amount',
+    'amount_net_max' => 'Maximum Amount',
+    'amount_net_min' => 'Minimum Amount',
     'create' => 'Create',
-    'created_at' => 'Sign up',
     'filter' => 'Filter...',
     'maintenances_count' => 'Maintenance',
     'meta-title' => 'Maintenance &gt; Items',

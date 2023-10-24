@@ -20,7 +20,9 @@
             <tr>
                 <th class="text-left">{{ __('maintenance-item-index.name') }}</th>
                 <th>{{ __('maintenance-item-index.maintenances_count') }}</th>
-                <th>{{ __('maintenance-item-index.created_at') }}</th>
+                <th>{{ __('maintenance-item-index.amount_net_min') }}</th>
+                <th>{{ __('maintenance-item-index.amount_net_max') }}</th>
+                <th>{{ __('maintenance-item-index.amount_net_avg') }}</th>
             </tr>
         </thead>
 
@@ -32,7 +34,9 @@
             <tr>
                 <td><a href="{{ $link }}" class="block text-left">{{ $row->name }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->maintenances_count }}</a></td>
-                <td data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->created_at)</a></td>
+                <td><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount_net_min)</a></td>
+                <td><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount_net_max)</a></td>
+                <td><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount_net_avg)</a></td>
             </tr>
 
             @endforeach

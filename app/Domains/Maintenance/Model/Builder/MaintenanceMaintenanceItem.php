@@ -57,6 +57,38 @@ class MaintenanceMaintenanceItem extends BuilderAbstract
     /**
      * @return self
      */
+    public function selectAmountNetAvgFromItem(): self
+    {
+        return $this->selectRaw('COALESCE(AVG(`amount_net`), 0)')->whereColumnMaintenanceItem();
+    }
+
+    /**
+     * @return self
+     */
+    public function selectAmountNetMaxFromItem(): self
+    {
+        return $this->selectRaw('COALESCE(MAX(`amount_net`), 0)')->whereColumnMaintenanceItem();
+    }
+
+    /**
+     * @return self
+     */
+    public function selectAmountNetMinFromItem(): self
+    {
+        return $this->selectRaw('COALESCE(MIN(`amount_net`), 0)')->whereColumnMaintenanceItem();
+    }
+
+    /**
+     * @return self
+     */
+    public function whereColumnMaintenanceItem(): self
+    {
+        return $this->whereColumn('maintenance_item_id', 'maintenance_item.id');
+    }
+
+    /**
+     * @return self
+     */
     public function withItem(): self
     {
         return $this->with('item');

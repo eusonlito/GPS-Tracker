@@ -83,7 +83,8 @@ class UpdateItem extends ControllerAbstract
 
         return [
             'quantity' => $itemsPivot->sum('quantity'),
-            'amount' => $itemsPivot->sum('amount'),
+            'amount_gross' => $itemsPivot->sum('amount_gross'),
+            'amount_net' => $itemsPivot->sum('amount_net'),
             'subtotal' => $itemsPivot->sum('subtotal'),
             'tax_amount' => $itemsPivot->sum('tax_amount'),
             'total' => $itemsPivot->sum('total'),

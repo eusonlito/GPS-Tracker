@@ -1,6 +1,8 @@
 <?php return [
+    'amount_net_avg' => 'Importe Medio',
+    'amount_net_max' => 'Importe Máximo',
+    'amount_net_min' => 'Importe Mínimo',
     'create' => 'Crear',
-    'created_at' => 'Alta',
     'filter' => 'Filtrar...',
     'maintenances_count' => 'Mantenimientos',
     'meta-title' => 'Mantenimientos > Items',

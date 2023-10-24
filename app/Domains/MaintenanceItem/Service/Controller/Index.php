@@ -30,7 +30,7 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \App\Domains\MaintenanceItem\Model\Collection\Maintenance
+     * @return \App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem
      */
     protected function list(): Collection
     {
@@ -38,6 +38,7 @@ class Index extends ControllerAbstract
             fn () => Model::query()
                 ->byUserId($this->auth->id)
                 ->withMaintenancesCount()
+                ->withStats()
                 ->orderByMaintenancesCount()
                 ->list()
                 ->get()

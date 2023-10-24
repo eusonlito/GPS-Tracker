@@ -1,6 +1,8 @@
 <?php return [
+    'amount_net_avg' => 'Montant moyen',
+    'amount_net_max' => 'Montant maximum',
+    'amount_net_min' => 'Montant minimum',
     'create' => 'Créer',
-    'created_at' => 'S\'abonner',
     'filter' => 'Filtre...',
     'maintenances_count' => 'Maintenance',
     'meta-title' => 'Maintenance &gt; Éléments',

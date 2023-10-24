@@ -11,8 +11,9 @@
                 <tr>
                     <th class="text-left">{{ __('maintenance-update-item.name') }}</th>
                     <th>{{ __('maintenance-update-item.quantity') }}</th>
-                    <th>{{ __('maintenance-update-item.amount') }}</th>
+                    <th>{{ __('maintenance-update-item.amount_gross') }}</th>
                     <th>{{ __('maintenance-update-item.tax_percent') }}</th>
+                    <th>{{ __('maintenance-update-item.amount_net') }}</th>
                     <th>{{ __('maintenance-update-item.subtotal') }}</th>
                     <th>{{ __('maintenance-update-item.tax_amount') }}</th>
                     <th>{{ __('maintenance-update-item.total') }}</th>
@@ -21,13 +22,14 @@
             </thead>
 
             <tbody>
-                @foreach ($itemsPivot as $each)
+                @forelse ($itemsPivot as $each)
 
                 <tr>
                     <td><x-select name="maintenance_item_id[]" :options="$items" value="id" text="name" :selected="$each->maintenance_item_id" :placeholder="__('maintenance-update-item.item')" required data-maintenance-update-item-maintenance_item_id></x-select></td>
                     <td><input type="number" name="quantity[]" value="{{ $each->quantity }}" class="form-control" step="any" min="0" required data-maintenance-update-item-quantity /></td>
-                    <td><input type="number" name="amount[]" value="{{ $each->amount }}" class="form-control" step="any" min="0" required data-maintenance-update-item-amount /></td>
+                    <td><input type="number" name="amount_gross[]" value="{{ $each->amount_gross }}" class="form-control" step="any" min="0" required data-maintenance-update-item-amount_gross /></td>
                     <td><input type="number" name="tax_percent[]" value="{{ $each->tax_percent }}" class="form-control" step="any" min="0" required data-maintenance-update-item-tax_percent /></td>
+                    <td><input type="number" name="amount_net[]" value="{{ $each->amount_net }}" class="form-control" step="any" min="0" readonly data-maintenance-update-item-amount_net /></td>
                     <td><input type="number" name="subtotal[]" value="{{ $each->subtotal }}" class="form-control" step="any" min="0" readonly data-maintenance-update-item-subtotal /></td>
                     <td><input type="number" name="tax_amount[]" value="{{ $each->tax_amount }}" class="form-control" step="any" min="0" readonly data-maintenance-update-item-tax_amount /></td>
                     <td><input type="number" name="total[]" value="{{ $each->total }}" class="form-control" step="any" min="0" readonly data-maintenance-update-item-total /></td>
@@ -39,13 +41,14 @@
                     </td>
                 </tr>
 
-                @endforeach
+                @empty
 
                 <tr>
                     <td><x-select name="maintenance_item_id[]" :options="$items" value="id" text="name" :placeholder="__('maintenance-update-item.item')" data-maintenance-update-item-maintenance_item_id></x-select></td>
                     <td><input type="number" name="quantity[]" value="" class="form-control" step="any" min="0" data-maintenance-update-item-quantity /></td>
-                    <td><input type="number" name="amount[]" value="" class="form-control" step="any" min="0" data-maintenance-update-item-amount /></td>
+                    <td><input type="number" name="amount_gross[]" value="" class="form-control" step="any" min="0" data-maintenance-update-item-amount_gross /></td>
                     <td><input type="number" name="tax_percent[]" value="" class="form-control" step="any" min="0" data-maintenance-update-item-tax_percent /></td>
+                    <td><input type="number" name="amount_net[]" value="" class="form-control" step="any" min="0" data-maintenance-update-item-amount_net /></td>
                     <td><input type="number" name="subtotal[]" value="" class="form-control" step="any" min="0" readonly data-maintenance-update-item-subtotal /></td>
                     <td><input type="number" name="tax_amount[]" value="" class="form-control" step="any" min="0" readonly data-maintenance-update-item-tax_amount /></td>
                     <td><input type="number" name="total[]" value="" class="form-control" step="any" min="0" readonly data-maintenance-update-item-total /></td>
@@ -57,11 +60,14 @@
                     </td>
                 </tr>
 
+                @endforelse
+
                 <tr class="hidden" data-maintenance-update-item-template>
                     <td><x-select name="maintenance_item_id[]" :options="$items" value="id" text="name" :placeholder="__('maintenance-update-item.item')" data-maintenance-update-item-maintenance_item_id></x-select></td>
                     <td><input type="number" name="quantity[]" value="" class="form-control" step="any" min="0" data-maintenance-update-item-quantity /></td>
-                    <td><input type="number" name="amount[]" value="" class="form-control" step="any" min="0" data-maintenance-update-item-amount /></td>
+                    <td><input type="number" name="amount_gross[]" value="" class="form-control" step="any" min="0" data-maintenance-update-item-amount_gross /></td>
                     <td><input type="number" name="tax_percent[]" value="" class="form-control" step="any" min="0" data-maintenance-update-item-tax_percent /></td>
+                    <td><input type="number" name="amount_net[]" value="" class="form-control" step="any" min="0" data-maintenance-update-item-amount_net /></td>
                     <td><input type="number" name="subtotal[]" value="" class="form-control" step="any" min="0" readonly data-maintenance-update-item-subtotal /></td>
                     <td><input type="number" name="tax_amount[]" value="" class="form-control" step="any" min="0" readonly data-maintenance-update-item-tax_amount /></td>
                     <td><input type="number" name="total[]" value="" class="form-control" step="any" min="0" readonly data-maintenance-update-item-total /></td>
@@ -78,8 +84,9 @@
                 <tr>
                     <th></th>
                     <th data-maintenance-update-item-total-quantity>{{ $total['quantity'] }}</th>
-                    <th data-maintenance-update-item-total-amount>@unitHumanRaw('money', $total['amount'])</th>
+                    <th data-maintenance-update-item-total-amount_gross>@unitHumanRaw('money', $total['amount_gross'])</th>
                     <th></th>
+                    <th data-maintenance-update-item-total-amount_net>@unitHumanRaw('money', $total['amount_net'])</th>
                     <th data-maintenance-update-item-total-subtotal>@unitHumanRaw('money', $total['subtotal'])</th>
                     <th data-maintenance-update-item-total-tax_amount>@unitHumanRaw('money', $total['tax_amount'])</th>
                     <th data-maintenance-update-item-total-total>@unitHumanRaw('money', $total['total'])</th>

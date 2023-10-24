@@ -1,5 +1,6 @@
 <?php return [
-    'amount' => 'Import',
+    'amount_gross' => 'Importe Bruto',
+    'amount_net' => 'Importe Neto',
     'date_at' => 'Fecha',
     'mainteance' => 'Mantenimiento',
     'meta-title' => 'Matenimientos > Item > :title > Mateniemientos',

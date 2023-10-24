@@ -1,6 +1,7 @@
 <?php return [
     'add' => 'Add',
-    'amount' => 'Amount',
+    'amount_gross' => 'Gross Amount',
+    'amount_net' => 'Net Amount',
     'item' => 'Select an Item',
     'meta-title' => 'Maintenances > :title > Items',
     'name' => 'Name',

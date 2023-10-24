@@ -30,7 +30,8 @@ class MaintenanceMaintenanceItem extends PivotAbstract
      */
     protected $casts = [
         'quantity' => 'float',
-        'amount' => 'float',
+        'amount_gross' => 'float',
+        'amount_net' => 'float',
         'tax_percent' => 'float',
         'subtotal' => 'float',
         'tax_amount' => 'float',

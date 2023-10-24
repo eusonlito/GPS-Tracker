@@ -11,7 +11,8 @@
                 <th class="text-left">{{ __('maintenance-item-update-maintenance.workshop') }}</th>
                 <th>{{ __('maintenance-item-update-maintenance.date_at') }}</th>
                 <th>{{ __('maintenance-item-update-maintenance.quantity') }}</th>
-                <th>{{ __('maintenance-item-update-maintenance.amount') }}</th>
+                <th>{{ __('maintenance-item-update-maintenance.amount_gross') }}</th>
+                <th>{{ __('maintenance-item-update-maintenance.amount_net') }}</th>
                 <th>{{ __('maintenance-item-update-maintenance.tax_percent') }}</th>
                 <th>{{ __('maintenance-item-update-maintenance.subtotal') }}</th>
                 <th>{{ __('maintenance-item-update-maintenance.tax_amount') }}</th>
@@ -30,7 +31,8 @@
                 <td><a href="{{ $link }}" class="block text-left">{{ $each->maintenance->workshop }}</a></td>
                 <td data-table-sort-value="{{ $each->maintenance->date_at }}"><a href="{{ $link }}" class="block">@dateLocal($each->maintenance->date_at)</a></td>
                 <td data-table-sort-value="{{ $each->quantity }}"><a href="{{ $link }}" class="block">@number($each->quantity, 2)</a></td>
-                <td data-table-sort-value="{{ $each->amount }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $each->amount, 0)</a></td>
+                <td data-table-sort-value="{{ $each->amount_gross }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $each->amount_gross, 2)</a></td>
+                <td data-table-sort-value="{{ $each->amount_net }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $each->amount_net, 2)</a></td>
                 <td data-table-sort-value="{{ $each->tax_percent }}"><a href="{{ $link }}" class="block">@number($each->tax_percent, 2)</a></td>
                 <td data-table-sort-value="{{ $each->subtotal }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $each->subtotal, 2)</a></td>
                 <td data-table-sort-value="{{ $each->tax_amount }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $each->tax_amount, 2)</a></td>
@@ -47,7 +49,8 @@
                     <th></th>
                     <th></th>
                     <th>{{ $total['quantity'] }}</th>
-                    <th>@unitHumanRaw('money', $total['amount'])</th>
+                    <th>@unitHumanRaw('money', $total['amount_gross'])</th>
+                    <th>@unitHumanRaw('money', $total['amount_net'])</th>
                     <th></th>
                     <th>@unitHumanRaw('money', $total['subtotal'])</th>
                     <th>@unitHumanRaw('money', $total['tax_amount'])</th>

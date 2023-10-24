@@ -16,8 +16,8 @@ class UpdateItem extends ValidateAbstract
             'maintenance_item_id.*' => ['integer'],
             'quantity' => ['array'],
             'quantity.*' => ['numeric', 'min:0'],
-            'amount' => ['array'],
-            'amount.*' => ['numeric', 'min:0'],
+            'amount_gross' => ['array'],
+            'amount_gross.*' => ['numeric', 'min:0'],
             'tax_percent' => ['array'],
             'tax_percent.*' => ['numeric', 'min:0'],
         ];

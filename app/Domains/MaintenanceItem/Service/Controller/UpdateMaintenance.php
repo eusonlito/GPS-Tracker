@@ -56,7 +56,8 @@ class UpdateMaintenance extends ControllerAbstract
 
         return [
             'quantity' => $maintenancesPivot->sum('quantity'),
-            'amount' => $maintenancesPivot->sum('amount'),
+            'amount_gross' => $maintenancesPivot->sum('amount_gross'),
+            'amount_net' => $maintenancesPivot->sum('amount_net'),
             'subtotal' => $maintenancesPivot->sum('subtotal'),
             'tax_amount' => $maintenancesPivot->sum('tax_amount'),
             'total' => $maintenancesPivot->sum('total'),
