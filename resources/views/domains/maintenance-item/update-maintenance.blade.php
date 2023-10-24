@@ -23,7 +23,7 @@
         <tbody>
             @foreach ($maintenancesPivot as $each)
 
-            @php ($link = route('maintenance.update', $each->maintenance->id))
+            @php ($link = route('maintenance.update.item', $each->maintenance->id))
 
             <tr>
                 <td><a href="{{ $link }}" class="block text-left">{{ $each->maintenance->vehicle->name }}</a></td>
