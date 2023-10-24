@@ -27,6 +27,14 @@ class MaintenanceItem extends BuilderAbstract
     /**
      * @return self
      */
+    public function orderByMaintenancesCount(): self
+    {
+        return $this->orderBy('maintenances_count', 'DESC');
+    }
+
+    /**
+     * @return self
+     */
     public function withMaintenancesCount(): self
     {
         return $this->withCount('maintenances');

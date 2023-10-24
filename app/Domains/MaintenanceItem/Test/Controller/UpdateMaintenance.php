@@ -8,6 +8,7 @@ class UpdateMaintenance extends ControllerAbstract
      * @var string
      */
     protected string $route = 'maintenance-item.update.maintenance';
+
     /**
      * @return void
      */

@@ -38,6 +38,7 @@ class Index extends ControllerAbstract
             fn () => Model::query()
                 ->byUserId($this->auth->id)
                 ->withMaintenancesCount()
+                ->orderByMaintenancesCount()
                 ->list()
                 ->get()
         );
