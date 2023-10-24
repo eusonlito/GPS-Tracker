@@ -1,7 +1,7 @@
 <?php return [
-    'amount_net_avg' => 'Importe Medio',
-    'amount_net_max' => 'Importe Máximo',
-    'amount_net_min' => 'Importe Mínimo',
+    'amount_net_avg' => 'Media',
+    'amount_net_max' => 'Máximo',
+    'amount_net_min' => 'Mínimo',
     'create' => 'Crear',
     'filter' => 'Filtrar...',
     'maintenances_count' => 'Mantenimientos',
