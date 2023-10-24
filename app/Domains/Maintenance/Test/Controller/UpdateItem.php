@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\MaintenanceItem\Test\Controller;
+namespace App\Domains\Maintenance\Test\Controller;
 
-class Create extends ControllerAbstract
+class UpdateItem extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'maintenance-item.create';
+    protected string $route = 'maintenance.update.item';
 
     /**
      * @var string
      */
-    protected string $action = 'create';
+    protected string $action = 'updateItem';
 
     /**
      * @return void
@@ -64,13 +64,9 @@ class Create extends ControllerAbstract
     {
         $this->authUser();
 
-        $data = $this->factoryMake()->toArray();
-
-        $this->post($this->routeToController(), $data + $this->action())
+        $this->post($this->routeToController(), $this->action())
             ->assertStatus(302)
-            ->assertRedirect(route('maintenance-item.update', $this->rowLast()->id));
-
-        $this->dataVsRow($data, $this->rowLast());
+            ->assertRedirect(route($this->route, $this->rowLast()->id));
     }
 
     /**
@@ -81,13 +77,9 @@ class Create extends ControllerAbstract
         $this->authUser();
         $this->factoryCreate();
 
-        $data = $this->factoryMake()->toArray();
-
-        $this->post($this->routeToController(), $data + $this->action())
+        $this->post($this->routeToController(), $this->action())
             ->assertStatus(302)
-            ->assertRedirect(route('maintenance-item.update', $this->rowLast()->id));
-
-        $this->dataVsRow($data, $this->rowLast());
+            ->assertRedirect(route($this->route, $this->rowLast()->id));
     }
 
     /**
@@ -95,6 +87,6 @@ class Create extends ControllerAbstract
      */
     protected function routeToController(): string
     {
-        return $this->route();
+        return $this->routeFactoryCreateModel();
     }
 }

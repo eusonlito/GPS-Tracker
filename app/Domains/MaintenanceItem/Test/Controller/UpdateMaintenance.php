@@ -2,13 +2,12 @@
 
 namespace App\Domains\MaintenanceItem\Test\Controller;
 
-class Index extends ControllerAbstract
+class UpdateMaintenance extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'maintenance-item.index';
-
+    protected string $route = 'maintenance-item.update.maintenance';
     /**
      * @return void
      */
@@ -22,21 +21,11 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostGuestNotAllowedFail(): void
+    public function testGetGuestFail(): void
     {
         $this->post($this->routeToController())
-            ->assertStatus(405);
-    }
-
-    /**
-     * @return void
-     */
-    public function testPostAuthNotAllowedFail(): void
-    {
-        $this->authUser();
-
-        $this->post($this->routeToController())
-            ->assertStatus(405);
+            ->assertStatus(302)
+            ->assertRedirect(route('user.auth.credentials'));
     }
 
     /**
@@ -63,10 +52,21 @@ class Index extends ControllerAbstract
     }
 
     /**
+     * @return void
+     */
+    public function testPostAuthEmptySuccess(): void
+    {
+        $this->authUser();
+
+        $this->post($this->routeToController())
+            ->assertStatus(200);
+    }
+
+    /**
      * @return string
      */
     protected function routeToController(): string
     {
-        return $this->route();
+        return $this->routeFactoryCreateModel();
     }
 }

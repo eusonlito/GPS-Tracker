@@ -14,6 +14,7 @@
       <directory suffix=".php">./app/Domains/IpLock/Test/Controller</directory>
       <directory suffix=".php">./app/Domains/Language/Test/Controller</directory>
       <directory suffix=".php">./app/Domains/Maintenance/Test/Controller</directory>
+      <directory suffix=".php">./app/Domains/MaintenanceItem/Test/Controller</directory>
       <directory suffix=".php">./app/Domains/Position/Test/Controller</directory>
       <directory suffix=".php">./app/Domains/Profile/Test/Controller</directory>
       <directory suffix=".php">./app/Domains/Refuel/Test/Controller</directory>
@@ -38,6 +39,7 @@
       <exclude>./app/Domains/Language/Test/Controller/ControllerAbstract.php</exclude>
       <exclude>./app/Domains/Position/Test/Controller/ControllerAbstract.php</exclude>
       <exclude>./app/Domains/Maintenance/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/MaintenanceItem/Test/Controller/ControllerAbstract.php</exclude>
       <exclude>./app/Domains/Profile/Test/Controller/ControllerAbstract.php</exclude>
       <exclude>./app/Domains/Refuel/Test/Controller/ControllerAbstract.php</exclude>
       <exclude>./app/Domains/Server/Test/Controller/ControllerAbstract.php</exclude>
