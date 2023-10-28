@@ -9,10 +9,10 @@ DROP TABLE IF EXISTS `alarm`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `alarm` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `schedule_start` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `schedule_end` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `schedule_start` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `schedule_end` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `config` json DEFAULT NULL,
   `telegram` tinyint(1) NOT NULL DEFAULT '0',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
@@ -29,8 +29,8 @@ DROP TABLE IF EXISTS `alarm_notification`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `alarm_notification` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `config` json DEFAULT NULL,
   `point` point NOT NULL /*!80003 SRID 4326 */,
   `telegram` tinyint(1) NOT NULL DEFAULT '0',
@@ -77,7 +77,7 @@ DROP TABLE IF EXISTS `city`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `city` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alias` json DEFAULT NULL,
   `point` point NOT NULL /*!80003 SRID 4326 */,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -96,9 +96,9 @@ DROP TABLE IF EXISTS `configuration`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `configuration` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -110,8 +110,8 @@ DROP TABLE IF EXISTS `country`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `country` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alias` json DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -125,12 +125,12 @@ DROP TABLE IF EXISTS `device`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `device` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `serial` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `serial` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `shared` tinyint(1) NOT NULL DEFAULT '0',
   `shared_public` tinyint(1) NOT NULL DEFAULT '0',
@@ -155,8 +155,8 @@ DROP TABLE IF EXISTS `device_alarm`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `device_alarm` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `config` json DEFAULT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -173,8 +173,8 @@ DROP TABLE IF EXISTS `device_alarm_notification`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `device_alarm_notification` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `config` json DEFAULT NULL,
   `closed_at` datetime DEFAULT NULL,
   `sent_at` datetime DEFAULT NULL,
@@ -201,8 +201,8 @@ DROP TABLE IF EXISTS `device_message`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `device_message` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `message` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `response` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `response` text COLLATE utf8mb4_unicode_ci,
   `sent_at` datetime DEFAULT NULL,
   `response_at` datetime DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -218,12 +218,12 @@ DROP TABLE IF EXISTS `file`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `file` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `size` bigint unsigned NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `related_table` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `related_table` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `related_id` bigint unsigned NOT NULL,
   `user_id` bigint unsigned NOT NULL,
   PRIMARY KEY (`id`),
@@ -238,7 +238,7 @@ DROP TABLE IF EXISTS `ip_lock`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ip_lock` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `end_at` datetime DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -251,9 +251,9 @@ DROP TABLE IF EXISTS `language`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `language` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `locale` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `default` tinyint(1) NOT NULL DEFAULT '0',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -268,9 +268,9 @@ DROP TABLE IF EXISTS `maintenance`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `maintenance` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `workshop` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `workshop` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_at` date NOT NULL,
   `amount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
   `distance` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
@@ -292,7 +292,7 @@ DROP TABLE IF EXISTS `maintenance_item`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `maintenance_item` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` bigint unsigned NOT NULL,
@@ -331,7 +331,7 @@ DROP TABLE IF EXISTS `migrations`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -377,10 +377,10 @@ DROP TABLE IF EXISTS `queue_fail`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `queue_fail` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -416,7 +416,7 @@ DROP TABLE IF EXISTS `server`;
 CREATE TABLE `server` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `port` int unsigned NOT NULL DEFAULT '0',
-  `protocol` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `protocol` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `debug` tinyint(1) NOT NULL DEFAULT '0',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -429,7 +429,7 @@ DROP TABLE IF EXISTS `state`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `state` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alias` json DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -445,7 +445,7 @@ DROP TABLE IF EXISTS `timezone`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `timezone` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `zone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `zone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `geojson` multipolygon NOT NULL,
   `default` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -460,8 +460,8 @@ DROP TABLE IF EXISTS `trip`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trip` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `distance` int unsigned NOT NULL DEFAULT '0',
   `time` int unsigned NOT NULL DEFAULT '0',
   `stats` json DEFAULT NULL,
@@ -496,10 +496,10 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `preferences` json DEFAULT NULL,
   `telegram` json DEFAULT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
@@ -518,9 +518,9 @@ DROP TABLE IF EXISTS `user_fail`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_fail` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` bigint unsigned DEFAULT NULL,
@@ -536,8 +536,8 @@ DROP TABLE IF EXISTS `user_session`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_session` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `auth` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `auth` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` bigint unsigned NOT NULL,
@@ -553,8 +553,8 @@ DROP TABLE IF EXISTS `vehicle`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vehicle` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `plate` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `plate` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `timezone_auto` tinyint(1) NOT NULL DEFAULT '0',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
