@@ -8,12 +8,10 @@ use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
-use App\Domains\Device\Model\Collection\Device as DeviceCollection;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Trip\Model\Collection\Trip as TripCollection;
 use App\Domains\Trip\Model\Trip as TripModel;
-use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
@@ -35,6 +33,7 @@ class Index extends ControllerAbstract
     protected function filters(): void
     {
         $this->request->merge([
+            'user_id' => $this->auth->preference('user_id', $this->request->input('user_id')),
             'vehicle_id' => $this->auth->preference('vehicle_id', $this->request->input('vehicle_id')),
             'device_id' => $this->auth->preference('device_id', $this->request->input('device_id')),
         ]);
@@ -46,6 +45,8 @@ class Index extends ControllerAbstract
     public function data(): array
     {
         return [
+            'users' => $this->users(),
+            'user' => $this->user(),
             'vehicles' => $this->vehicles(),
             'vehicle' => $this->vehicle(),
             'devices' => $this->devices(),
@@ -61,19 +62,6 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
-     */
-    protected function vehicles(): VehicleCollection
-    {
-        return $this->cache(
-            fn () => VehicleModel::query()
-                ->byUserId($this->auth->id)
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
      * @return ?\App\Domains\Vehicle\Model\Vehicle
      */
     protected function vehicle(): ?VehicleModel
@@ -81,20 +69,6 @@ class Index extends ControllerAbstract
         return $this->cache(
             fn () => $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
                 ?: $this->vehicles()->first()
-        );
-    }
-
-    /**
-     * @return \App\Domains\Device\Model\Collection\Device
-     */
-    protected function devices(): DeviceCollection
-    {
-        if ($this->vehicle() === null) {
-            return new DeviceCollection();
-        }
-
-        return $this->cache(
-            fn () => $this->vehicle()->devices()->list()->get()
         );
     }
 
@@ -122,8 +96,8 @@ class Index extends ControllerAbstract
             fn () => TripModel::query()
                 ->selectSimple()
                 ->byVehicleId($this->vehicle()->id)
-                ->whenDeviceId($this->device()->id ?? null)
-                ->list()
+                ->whenDeviceId($this->device()?->id)
+                ->simple()
                 ->limit(50)
                 ->get()
         );
@@ -153,7 +127,7 @@ class Index extends ControllerAbstract
             fn () => $this->trips()
                 ->reverse()
                 ->firstWhere('start_utc_at', '>', $this->trip()->start_utc_at)
-                ->id ?? null
+                ?->id
         );
     }
 
@@ -169,7 +143,7 @@ class Index extends ControllerAbstract
         return $this->cache(
             fn () => $this->trips()
                 ->firstWhere('start_utc_at', '<', $this->trip()->start_utc_at)
-                ->id ?? null
+                ?->id
         );
     }
 

@@ -7,6 +7,14 @@ use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 class Vehicle extends BuilderAbstract
 {
     /**
+     * @return self
+     */
+    public function simple(): self
+    {
+        return $this->select('id', 'name')->orderBy('name', 'ASC');
+    }
+
+    /**
      * @param int $alarm_id
      *
      * @return self

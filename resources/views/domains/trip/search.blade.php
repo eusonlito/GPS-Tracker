@@ -8,6 +8,14 @@
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('trip-index.filter') }}" data-table-search="#trip-list-table" />
         </div>
 
+        @if ($users_multiple)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="user_id" :options="$users" value="id" text="name" data-change-submit></x-select>
+        </div>
+
+        @endif
+
         @if ($vehicles_multiple)
 
         <div class="flex-grow mt-2 lg:mt-0">

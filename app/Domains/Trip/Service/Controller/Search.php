@@ -36,6 +36,9 @@ class Search extends Index
     public function data(): array
     {
         return [
+            'users' => $this->users(),
+            'users_multiple' => $this->usersMultiple(),
+            'user' => $this->user(),
             'vehicles' => $this->vehicles(),
             'vehicles_multiple' => $this->vehiclesMultiple(),
             'vehicle' => $this->vehicle(),
@@ -62,12 +65,16 @@ class Search extends Index
      */
     protected function countries(): CountryCollection
     {
-        return $this->cache(
-            fn () => CountryModel::query()
-                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+        return $this->cache(function () {
+            if (empty($vehicle_id = $this->vehicle()?->id)) {
+                return new CountryCollection();
+            }
+
+            return CountryModel::query()
+                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($vehicle_id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
                 ->list()
-                ->get()
-        );
+                ->get();
+        });
     }
 
     /**
@@ -85,17 +92,21 @@ class Search extends Index
      */
     protected function states(): StateCollection
     {
-        if (empty($country_id = intval($this->country()?->id))) {
-            return new StateCollection();
-        }
+        return $this->cache(function () {
+            if (empty($vehicle_id = $this->vehicle()?->id)) {
+                return new StateCollection();
+            }
 
-        return $this->cache(
-            fn () => StateModel::query()
+            if (empty($country_id = intval($this->country()?->id))) {
+                return new StateCollection();
+            }
+
+            return StateModel::query()
                 ->byCountryId($country_id)
-                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($vehicle_id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
                 ->list()
-                ->get()
-        );
+                ->get();
+        });
     }
 
     /**
@@ -113,17 +124,21 @@ class Search extends Index
      */
     protected function cities(): CityCollection
     {
-        if (empty($state_id = intval($this->state()?->id))) {
-            return new CityCollection();
-        }
+        return $this->cache(function () {
+            if (empty($vehicle_id = $this->vehicle()?->id)) {
+                return new CityCollection();
+            }
 
-        return $this->cache(
-            fn () => CityModel::query()
+            if (empty($state_id = intval($this->state()?->id))) {
+                return new CityCollection();
+            }
+
+            return CityModel::query()
                 ->byStateId($state_id)
-                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($this->vehicle()->id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($vehicle_id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
                 ->list()
-                ->get()
-        );
+                ->get();
+        });
     }
 
     /**
@@ -143,25 +158,26 @@ class Search extends Index
     {
         return $this->cache(
             fn () => PositionModel::query()
-                ->byUserId($this->auth->id)
+                ->byUserId($this->user()->id)
                 ->orderByDateUtcAtDesc()
                 ->first()
         );
     }
 
     /**
-     * @return ?\App\Domains\Trip\Model\Collection\Trip
+     * @return \App\Domains\Trip\Model\Collection\Trip
      */
-    protected function list(): ?Collection
+    protected function list(): Collection
     {
         if ($this->listIsValid() === false) {
-            return null;
+            return new Collection();
         }
 
         return $this->cache(
             fn () => Model::query()
                 ->selectSimple()
-                ->byVehicleId($this->vehicle()->id)
+                ->byUserId($this->user()->id)
+                ->whenVehicleId($this->vehicle()?->id)
                 ->whenDeviceId($this->device()->id ?? null)
                 ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
                 ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))

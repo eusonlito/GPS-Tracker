@@ -4,11 +4,9 @@ namespace App\Domains\Trip\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Device\Model\Collection\Device as DeviceCollection;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Trip\Model\Collection\Trip as Collection;
 use App\Domains\Trip\Model\Trip as Model;
-use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
@@ -58,7 +56,7 @@ class Index extends ControllerAbstract
             return;
         }
 
-        if (is_null($start_at) || preg_match(static::DATE_REGEXP, $start_at) === 0) {
+        if (is_null($start_at) || (preg_match(static::DATE_REGEXP, $start_at) === 0)) {
             $this->request->merge(['start_at' => date('Y-m-d', strtotime('-30 days'))]);
         }
     }
@@ -70,7 +68,7 @@ class Index extends ControllerAbstract
     {
         $end_at = $this->request->input('end_at');
 
-        if (is_null($end_at) || preg_match(static::DATE_REGEXP, $end_at) === 0) {
+        if (is_null($end_at) || (preg_match(static::DATE_REGEXP, $end_at) === 0)) {
             $this->request->merge(['end_at' => '']);
         }
     }
@@ -81,6 +79,7 @@ class Index extends ControllerAbstract
     protected function filtersIds(): void
     {
         $this->request->merge([
+            'user_id' => $this->auth->preference('user_id', $this->request->input('user_id')),
             'vehicle_id' => $this->auth->preference('vehicle_id', $this->request->input('vehicle_id')),
             'device_id' => $this->auth->preference('device_id', $this->request->input('device_id')),
         ]);
@@ -92,6 +91,9 @@ class Index extends ControllerAbstract
     public function data(): array
     {
         return [
+            'users' => $this->users(),
+            'users_multiple' => $this->usersMultiple(),
+            'user' => $this->user(),
             'vehicles' => $this->vehicles(),
             'vehicles_multiple' => $this->vehiclesMultiple(),
             'vehicle' => $this->vehicle(),
@@ -107,53 +109,14 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
+     * @return ?\App\Domains\Vehicle\Model\Vehicle
      */
-    protected function vehicles(): VehicleCollection
-    {
-        return $this->cache(
-            fn () => VehicleModel::query()
-                ->byUserId($this->auth->id)
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
-     * @return bool
-     */
-    protected function vehiclesMultiple(): bool
-    {
-        return $this->vehicles()->count() > 1;
-    }
-
-    /**
-     * @return \App\Domains\Vehicle\Model\Vehicle
-     */
-    protected function vehicle(): VehicleModel
+    protected function vehicle(): ?VehicleModel
     {
         return $this->cache(
             fn () => $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
                 ?: $this->vehicles()->last()
         );
-    }
-
-    /**
-     * @return \App\Domains\Device\Model\Collection\Device
-     */
-    protected function devices(): DeviceCollection
-    {
-        return $this->cache(
-            fn () => $this->vehicle()->devices()->list()->get()
-        );
-    }
-
-    /**
-     * @return bool
-     */
-    protected function devicesMultiple(): bool
-    {
-        return $this->devices()->count() > 1;
     }
 
     /**
@@ -219,14 +182,15 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return ?\App\Domains\Trip\Model\Collection\Trip
+     * @return \App\Domains\Trip\Model\Collection\Trip
      */
-    protected function list(): ?Collection
+    protected function list(): Collection
     {
         return $this->cache(
             fn () => Model::query()
                 ->selectSimple()
-                ->byVehicleId($this->vehicle()->id)
+                ->byUserId($this->user()->id)
+                ->whenVehicleId($this->vehicle()?->id)
                 ->whenDeviceId($this->device()?->id)
                 ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
                 ->whenShared($this->requestBool('shared'))

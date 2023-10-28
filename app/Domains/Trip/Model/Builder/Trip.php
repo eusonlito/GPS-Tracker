@@ -195,6 +195,14 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @return self
+     */
+    public function simple(): self
+    {
+        return $this->select('id', 'name', 'end_utc_at', 'distance', 'time')->orderByStartUtcAtDesc();
+    }
+
+    /**
      * @param ?int $city_id
      * @param ?int $state_id
      * @param ?int $country_id

@@ -28,6 +28,14 @@ class Device extends BuilderAbstract
     }
 
     /**
+     * @return self
+     */
+    public function simple(): self
+    {
+        return $this->select('id', 'name')->orderBy('name', 'ASC');
+    }
+
+    /**
      * @param ?bool $finished
      *
      * @return self

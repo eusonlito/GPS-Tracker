@@ -15,4 +15,12 @@ class User extends BuilderAbstract
     {
         return $this->where('email', strtolower($email));
     }
+
+    /**
+     * @return self
+     */
+    public function simple(): self
+    {
+        return $this->select('id', 'name')->orderBy('name', 'ASC');
+    }
 }

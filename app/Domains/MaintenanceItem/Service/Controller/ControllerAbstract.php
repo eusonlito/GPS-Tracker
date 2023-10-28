@@ -2,7 +2,7 @@
 
 namespace App\Domains\MaintenanceItem\Service\Controller;
 
-use App\Domains\Core\Service\Controller\ControllerAbstract as ControllerAbstractCore;
+use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
 
 abstract class ControllerAbstract extends ControllerAbstractCore
 {
