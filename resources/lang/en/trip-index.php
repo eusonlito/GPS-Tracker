@@ -32,5 +32,6 @@
     'start_end' => 'Journey',
     'state' => 'Province',
     'time' => 'Duration',
+    'user' => '',
     'vehicle' => 'Vehicle',
 ];

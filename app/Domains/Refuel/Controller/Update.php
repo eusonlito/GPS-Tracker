@@ -27,7 +27,7 @@ class Update extends ControllerAbstract
 
         return $this->page('refuel.update', [
             'row' => $this->row,
-            'vehicles' => VehicleModel::query()->byUserId($this->auth->id)->list()->get(),
+            'vehicles' => VehicleModel::query()->byUserOrAdmin($this->auth)->list()->get(),
         ]);
     }
 

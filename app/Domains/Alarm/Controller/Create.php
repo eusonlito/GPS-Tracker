@@ -25,7 +25,7 @@ class Create extends ControllerAbstract
         return $this->page('alarm.create', [
             'types' => $typeService->titles(),
             'type' => $typeService->selected($this->request->input('type')),
-            'position' => PositionModel::query()->byUserId($this->auth->id)->orderByDateUtcAtDesc()->first(),
+            'position' => PositionModel::query()->byUserOrAdmin($this->auth)->orderByDateUtcAtDesc()->first(),
         ]);
     }
 

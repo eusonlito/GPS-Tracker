@@ -36,7 +36,7 @@ class Index extends ControllerAbstract
     {
         return $this->cache(
             fn () => Model::query()
-                ->byUserId($this->auth->id)
+                ->byUserOrAdmin($this->auth)
                 ->withMaintenancesCount()
                 ->withStats()
                 ->orderByMaintenancesCount()

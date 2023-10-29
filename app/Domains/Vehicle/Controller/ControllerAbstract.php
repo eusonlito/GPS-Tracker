@@ -32,7 +32,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::query()->byId($id)->byUserId($this->auth->id)->firstOr(static function () {
+        $this->row = Model::query()->byId($id)->byUserOrAdmin($this->auth)->firstOr(static function () {
             throw new NotFoundException(__('vehicle.error.not-found'));
         });
     }

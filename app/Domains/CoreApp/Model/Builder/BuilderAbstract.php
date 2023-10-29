@@ -3,6 +3,7 @@
 namespace App\Domains\CoreApp\Model\Builder;
 
 use App\Domains\Core\Model\Builder\BuilderAbstract as BuilderAbstractCore;
+use App\Domains\User\Model\User as UserModel;
 
 abstract class BuilderAbstract extends BuilderAbstractCore
 {
@@ -24,6 +25,16 @@ abstract class BuilderAbstract extends BuilderAbstractCore
     public function byDeviceIds(array $device_ids): self
     {
         return $this->whereIntegerInRaw('device_id', $device_ids);
+    }
+
+    /**
+     * @param \App\Domains\User\Model\User $user
+     *
+     * @return self
+     */
+    public function byUserOrAdmin(UserModel $user): self
+    {
+        return $this->when(empty($user->admin), static fn ($q) => $q->byUserId($user->id));
     }
 
     /**
@@ -54,6 +65,16 @@ abstract class BuilderAbstract extends BuilderAbstractCore
     public function whenDeviceId(?int $device_id): self
     {
         return $this->when($device_id, static fn ($q) => $q->byDeviceId($device_id));
+    }
+
+    /**
+     * @param ?int $user_id
+     *
+     * @return self
+     */
+    public function whenUserId(?int $user_id): self
+    {
+        return $this->when($user_id, static fn ($q) => $q->byUserId($user_id));
     }
 
     /**

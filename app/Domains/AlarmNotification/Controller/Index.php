@@ -35,7 +35,7 @@ class Index extends ControllerAbstract
     protected function list(): Collection
     {
         return Model::query()
-            ->byUserId($this->auth->id)
+            ->byUserOrAdmin($this->auth)
             ->withAlarm()
             ->withPosition()
             ->withTrip()
@@ -50,7 +50,7 @@ class Index extends ControllerAbstract
     protected function vehicles(): VehicleCollection
     {
         return VehicleModel::query()
-            ->byUserId($this->auth->id)
+            ->byUserOrAdmin($this->auth)
             ->list()
             ->get();
     }
@@ -69,7 +69,7 @@ class Index extends ControllerAbstract
     protected function responseJsonList(): Collection
     {
         return Model::query()
-            ->byUserId($this->auth->id)
+            ->byUserOrAdmin($this->auth)
             ->whereClosedAt(false)
             ->whereSentAt()
             ->withAlarm()

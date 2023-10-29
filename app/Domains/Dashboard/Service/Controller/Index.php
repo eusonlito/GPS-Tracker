@@ -8,11 +8,9 @@ use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Trip\Model\Collection\Trip as TripCollection;
 use App\Domains\Trip\Model\Trip as TripModel;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
 {
@@ -46,10 +44,17 @@ class Index extends ControllerAbstract
     {
         return [
             'users' => $this->users(),
+            'users_multiple' => $this->usersMultiple(),
             'user' => $this->user(),
+            'user_empty' => $this->userEmpty(),
             'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
             'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
             'devices' => $this->devices(),
+            'devices_multiple' => $this->devicesMultiple(),
+            'device' => $this->device(),
+            'device_empty' => $this->deviceEmpty(),
             'trips' => $this->trips(),
             'trip' => $this->trip(),
             'trip_next_id' => $this->tripNextId(),
@@ -59,28 +64,6 @@ class Index extends ControllerAbstract
             'alarms' => $this->alarms(),
             'alarm_notifications' => $this->alarmNotifications(),
         ];
-    }
-
-    /**
-     * @return ?\App\Domains\Vehicle\Model\Vehicle
-     */
-    protected function vehicle(): ?VehicleModel
-    {
-        return $this->cache(
-            fn () => $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
-                ?: $this->vehicles()->first()
-        );
-    }
-
-    /**
-     * @return ?\App\Domains\Device\Model\Device
-     */
-    protected function device(): ?DeviceModel
-    {
-        return $this->cache(
-            fn () => $this->devices()->firstWhere('id', $this->request->input('device_id'))
-                ?: $this->devices()->first()
-        );
     }
 
     /**

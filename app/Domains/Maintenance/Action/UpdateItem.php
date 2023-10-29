@@ -37,7 +37,7 @@ class UpdateItem extends ActionAbstract
 
         $this->maintenanceItemIds = MaintenanceItemModel::query()
             ->byIds($this->data['maintenance_item_id'])
-            ->byUserId($this->auth->id)
+            ->byUserOrAdmin($this->auth)
             ->pluck('id')
             ->all();
     }

@@ -158,7 +158,7 @@ class Search extends Index
     {
         return $this->cache(
             fn () => PositionModel::query()
-                ->byUserId($this->user()->id)
+                ->whenUserId($this->user()->id)
                 ->orderByDateUtcAtDesc()
                 ->first()
         );
@@ -176,9 +176,9 @@ class Search extends Index
         return $this->cache(
             fn () => Model::query()
                 ->selectSimple()
-                ->byUserId($this->user()->id)
+                ->whenUserId($this->user()?->id)
                 ->whenVehicleId($this->vehicle()?->id)
-                ->whenDeviceId($this->device()->id ?? null)
+                ->whenDeviceId($this->device()?->id)
                 ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
                 ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
                 ->whenShared($this->requestBool('shared'))

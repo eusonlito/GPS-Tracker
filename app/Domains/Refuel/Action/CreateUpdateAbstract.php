@@ -35,7 +35,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     {
         $this->vehicle = VehicleModel::query()
             ->byId($this->data['vehicle_id'])
-            ->byUserId($this->auth->id)
+            ->byUserOrAdmin($this->auth)
             ->firstOrFail();
     }
 }

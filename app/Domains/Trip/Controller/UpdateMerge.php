@@ -37,7 +37,7 @@ class UpdateMerge extends UpdateAbstract
     {
         return Model::query()
             ->selectSimple()
-            ->byUserId($this->auth->id)
+            ->byUserOrAdmin($this->auth)
             ->list()
             ->get();
     }

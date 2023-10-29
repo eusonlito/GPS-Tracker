@@ -24,15 +24,15 @@
 
 <form method="GET">
     <div class="lg:flex lg:space-x-4">
-        @if ($users->count() > 1)
+        @if ($users_multiple)
 
-        <div class="mb-2">
+        <div class="{{ $trip ? '': 'flex-1' }} mb-2">
             <x-select name="user_id" :options="$users" value="id" text="name" data-change-submit></x-select>
         </div>
 
         @endif
 
-        @if ($vehicles->count() > 1)
+        @if ($vehicles_multiple)
 
         <div class="mb-2">
             <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" data-change-submit></x-select>
@@ -40,7 +40,7 @@
 
         @endif
 
-        @if ($devices->count() > 1)
+        @if ($devices_multiple)
 
         <div class="mb-2">
             <x-select name="device_id" :options="$devices" value="id" text="name" data-change-submit></x-select>

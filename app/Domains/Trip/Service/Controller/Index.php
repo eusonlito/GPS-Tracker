@@ -4,10 +4,8 @@ namespace App\Domains\Trip\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Trip\Model\Collection\Trip as Collection;
 use App\Domains\Trip\Model\Trip as Model;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
 {
@@ -94,39 +92,21 @@ class Index extends ControllerAbstract
             'users' => $this->users(),
             'users_multiple' => $this->usersMultiple(),
             'user' => $this->user(),
+            'user_empty' => $this->userEmpty(),
             'vehicles' => $this->vehicles(),
             'vehicles_multiple' => $this->vehiclesMultiple(),
             'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
             'devices' => $this->devices(),
             'devices_multiple' => $this->devicesMultiple(),
             'device' => $this->device(),
+            'device_empty' => $this->deviceEmpty(),
             'date_min' => $this->dateMin(),
             'starts_ends' => $this->startsEnds(),
             'shared' => $this->shared(),
             'shared_public' => $this->sharedPublic(),
             'list' => $this->list(),
         ];
-    }
-
-    /**
-     * @return ?\App\Domains\Vehicle\Model\Vehicle
-     */
-    protected function vehicle(): ?VehicleModel
-    {
-        return $this->cache(
-            fn () => $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
-                ?: $this->vehicles()->last()
-        );
-    }
-
-    /**
-     * @return ?\App\Domains\Device\Model\Device
-     */
-    protected function device(): ?DeviceModel
-    {
-        return $this->cache(
-            fn () => $this->devices()->firstWhere('id', $this->request->input('device_id'))
-        );
     }
 
     /**
@@ -189,13 +169,14 @@ class Index extends ControllerAbstract
         return $this->cache(
             fn () => Model::query()
                 ->selectSimple()
-                ->byUserId($this->user()->id)
+                ->whenUserId($this->user()?->id)
                 ->whenVehicleId($this->vehicle()?->id)
                 ->whenDeviceId($this->device()?->id)
                 ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
                 ->whenShared($this->requestBool('shared'))
                 ->whenSharedPublic($this->requestBool('shared_public'))
                 ->withDevice()
+                ->withUser()
                 ->withVehicle()
                 ->list()
                 ->get()

@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use App\Domains\Alarm\Model\Alarm as Model;
 use App\Domains\Alarm\Model\Collection\Alarm as Collection;
+use App\Domains\Alarm\Service\Controller\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -20,23 +21,15 @@ class Index extends ControllerAbstract
 
         $this->meta('title', __('alarm-index.meta-title'));
 
-        return $this->page('alarm.index', [
-            'list' => $this->list(),
-        ]);
+        return $this->page('alarm.index', $this->data());
     }
 
     /**
-     * @return \App\Domains\Alarm\Model\Collection\Alarm
+     * @return array
      */
-    protected function list(): Collection
+    protected function data(): array
     {
-        return Model::query()
-            ->byUserId($this->auth->id)
-            ->withVehiclesCount()
-            ->withNotificationsCount()
-            ->withNotificationsPendingCount()
-            ->list()
-            ->get();
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 
     /**

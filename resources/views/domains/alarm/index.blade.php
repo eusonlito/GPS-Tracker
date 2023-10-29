@@ -8,6 +8,30 @@
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('alarm-index.filter') }}" data-table-search="#alarm-list-table" />
         </div>
 
+        @if ($users_multiple)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="user_id" :options="$users" value="id" text="name" data-change-submit></x-select>
+        </div>
+
+        @endif
+
+        @if ($vehicles_multiple)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" data-change-submit></x-select>
+        </div>
+
+        @endif
+
+        @if ($devices_multiple)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="device_id" :options="$devices" value="id" text="name" placeholder="{{ __('trip-index.device') }}" data-change-submit></x-select>
+        </div>
+
+        @endif
+
         <button type="button" class="sm:ml-4 mt-2 sm:mt-0 bg-white btn form-control-lg" data-notification-request data-notification-request-granted="{{ __('alarm-index.notifications-granted') }}" data-notification-request-denied="{{ __('alarm-index.notifications-denied') }}">{{ __('alarm-index.notifications-enable') }}</button>
 
         <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">

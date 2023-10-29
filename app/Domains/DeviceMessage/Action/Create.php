@@ -43,7 +43,7 @@ class Create extends ActionAbstract
         $this->data['device_id'] = DeviceModel::query()
             ->selectOnly('id')
             ->byId($this->data['device_id'])
-            ->byUserId($this->auth->id)
+            ->byUserOrAdmin($this->auth)
             ->firstOrFail()
             ->id;
     }

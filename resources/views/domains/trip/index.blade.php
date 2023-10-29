@@ -8,29 +8,17 @@
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('trip-index.filter') }}" data-table-search="#trip-list-table" />
         </div>
 
-        @if ($users_multiple)
-
         <div class="flex-grow mt-2 lg:mt-0">
-            <x-select name="user_id" :options="$users" value="id" text="name" data-change-submit></x-select>
+            <x-select name="user_id" :options="$users" value="id" text="name" placeholder="{{ __('trip-index.user') }}" data-change-submit></x-select>
         </div>
 
-        @endif
-
-        @if ($vehicles_multiple)
-
         <div class="flex-grow mt-2 lg:mt-0">
-            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" data-change-submit></x-select>
+            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" placeholder="{{ __('trip-index.vehicle') }}" data-change-submit></x-select>
         </div>
-
-        @endif
-
-        @if ($devices_multiple)
 
         <div class="flex-grow mt-2 lg:mt-0">
             <x-select name="device_id" :options="$devices" value="id" text="name" placeholder="{{ __('trip-index.device') }}" data-change-submit></x-select>
         </div>
-
-        @endif
 
         <div class="flex-grow mt-2 lg:mt-0">
             <input type="search" name="start_at" value="{{ $REQUEST->input('start_at') }}" class="form-control form-control-lg" placeholder="{{ __('trip-index.start-at') }}" data-datepicker data-datepicker-min-date="{{ $date_min }}" data-change-submit />
@@ -58,11 +46,15 @@
     <table id="trip-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
-                @if ($vehicles_multiple)
+                @if ($user_empty)
+                <th>{{ __('trip-index.user') }}</th>
+                @endif
+
+                @if ($vehicle_empty)
                 <th>{{ __('trip-index.vehicle') }}</th>
                 @endif
 
-                @if ($devices_multiple)
+                @if ($device_empty)
                 <th>{{ __('trip-index.device') }}</th>
                 @endif
 
@@ -83,11 +75,15 @@
             @php ($link = route('trip.update.map', $row->id))
 
             <tr>
-                @if ($vehicles_multiple)
+                @if ($user_empty)
+                <td><a href="{{ $link }}" class="block">{{ $row->user->name }}</a></td>
+                @endif
+
+                @if ($vehicle_empty)
                 <td><a href="{{ $link }}" class="block">{{ $row->vehicle->name }}</a></td>
                 @endif
 
-                @if ($devices_multiple)
+                @if ($device_empty)
                 <td><a href="{{ $link }}" class="block">{{ $row->device->name }}</a></td>
                 @endif
 
@@ -122,7 +118,7 @@
 
         <tfoot class="bg-white">
             <tr>
-                <th colspan="{{ 3 + (int)$vehicles_multiple + (int)$devices_multiple }}"></th>
+                <th colspan="{{ 3 + intval($user_empty) + intval($vehicle_empty) + intval($device_empty) }}"></th>
                 <th>@unitHuman('distance', $list->sum('distance'))</th>
                 <th>@timeHuman($list->sum('time'))</th>
                 <th colspan="3"></th>

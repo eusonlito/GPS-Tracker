@@ -22,7 +22,7 @@ class Create extends ControllerAbstract
         $this->meta('title', __('maintenance-create.meta-title'));
 
         return $this->page('maintenance.create', [
-            'vehicles' => VehicleModel::query()->byUserId($this->auth->id)->list()->get(),
+            'vehicles' => VehicleModel::query()->byUserOrAdmin($this->auth)->list()->get(),
             'files' => collect(),
         ]);
     }

@@ -34,7 +34,7 @@ class UpdateMerge extends ActionAbstract
     protected function dataIds(): void
     {
         $this->data['ids'] = Model::query()
-            ->byUserId($this->auth->id)
+            ->byUserOrAdmin($this->auth)
             ->byIdNot($this->row->id)
             ->byIds($this->data['ids'])
             ->pluck('id')

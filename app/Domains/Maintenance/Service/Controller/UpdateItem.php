@@ -42,7 +42,7 @@ class UpdateItem extends ControllerAbstract
     protected function items(): MaintenanceItemCollection
     {
         return MaintenanceItemModel::query()
-            ->byUserId($this->auth->id)
+            ->byUserOrAdmin($this->auth)
             ->list()
             ->get()
             ->merge($this->itemsMerge());

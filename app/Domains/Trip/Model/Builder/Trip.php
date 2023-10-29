@@ -190,6 +190,7 @@ class Trip extends BuilderAbstract
             'shared',
             'shared_public',
             'device_id',
+            'user_id',
             'vehicle_id'
         );
     }
@@ -342,6 +343,14 @@ class Trip extends BuilderAbstract
     public function withTimezone(): self
     {
         return $this->with('timezone');
+    }
+
+    /**
+     * @return self
+     */
+    public function withUser(): self
+    {
+        return $this->with(['user' => static fn ($q) => $q->simple()]);
     }
 
     /**

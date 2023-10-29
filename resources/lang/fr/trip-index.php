@@ -32,5 +32,6 @@
     'start_end' => 'Itinéraire',
     'state' => 'Province',
     'time' => 'Durée',
+    'user' => '',
     'vehicle' => 'Véhicule',
 ];

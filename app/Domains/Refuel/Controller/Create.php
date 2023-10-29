@@ -23,7 +23,7 @@ class Create extends ControllerAbstract
         $this->meta('title', __('refuel-create.meta-title'));
 
         return $this->page('refuel.create', [
-            'vehicles' => VehicleModel::query()->byUserId($this->auth->id)->list()->get(),
+            'vehicles' => VehicleModel::query()->byUserOrAdmin($this->auth)->list()->get(),
         ]);
     }
 
@@ -42,7 +42,7 @@ class Create extends ControllerAbstract
     {
         return Model::query()
             ->selectOnly('distance_total', 'price')
-            ->byUserId($this->auth->id)
+            ->byUserOrAdmin($this->auth)
             ->orderByLast()
             ->firstOrNew();
     }

@@ -36,7 +36,7 @@ class Map extends ControllerAbstract
     {
         return $this->cache(
             fn () => Model::query()
-                ->byUserId($this->auth->id)
+                ->byUserOrAdmin($this->auth)
                 ->whenIds($this->requestArray('ids'))
                 ->whenTripFinished($this->requestBool('finished'))
                 ->withVehicle()

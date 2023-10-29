@@ -66,7 +66,7 @@ class Index extends ControllerAbstract
     {
         return $this->cache(
             fn () => Model::query()
-                ->byUserId($this->auth->id)
+                ->byUserOrAdmin($this->auth)
                 ->whenVehicleId((int)$this->request->input('vehicle_id'))
                 ->whenDateAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
                 ->withVehicle()
@@ -82,7 +82,7 @@ class Index extends ControllerAbstract
     {
         return $this->cache(
             fn () => VehicleModel::query()
-                ->byUserId($this->auth->id)
+                ->byUserOrAdmin($this->auth)
                 ->list()
                 ->get()
         );
@@ -95,7 +95,7 @@ class Index extends ControllerAbstract
     {
         return $this->cache(
             fn () => Model::query()
-                ->byUserId($this->auth->id)
+                ->byUserOrAdmin($this->auth)
                 ->orderByDateAtAsc()
                 ->rawValue('DATE(`date_at`)')
         );

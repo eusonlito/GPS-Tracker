@@ -65,7 +65,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         return Model::query()
             ->byIdNot($this->row->id ?? 0)
             ->byName($this->data['name'])
-            ->byUserId($this->auth->id)
+            ->byUserOrAdmin($this->auth)
             ->exists();
     }
 }
