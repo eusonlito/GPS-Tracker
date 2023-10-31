@@ -5,7 +5,7 @@ namespace App\Domains\Alarm\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use App\Domains\Alarm\Service\Type\Manager as TypeManager;
-use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Alarm\Service\Controller\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -22,11 +22,15 @@ class Create extends ControllerAbstract
 
         $this->meta('title', __('alarm-create.meta-title'));
 
-        return $this->page('alarm.create', [
-            'types' => $typeService->titles(),
-            'type' => $typeService->selected($this->request->input('type')),
-            'position' => PositionModel::query()->byUserOrAdmin($this->auth)->orderByDateUtcAtDesc()->first(),
-        ]);
+        return $this->page('alarm.create', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 
     /**

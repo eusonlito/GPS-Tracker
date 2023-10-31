@@ -4,7 +4,7 @@ namespace App\Domains\Maintenance\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+use App\Domains\Maintenance\Service\Controller\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -17,14 +17,17 @@ class Create extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow();
-
         $this->meta('title', __('maintenance-create.meta-title'));
 
-        return $this->page('maintenance.create', [
-            'vehicles' => VehicleModel::query()->byUserOrAdmin($this->auth)->list()->get(),
-            'files' => collect(),
-        ]);
+        return $this->page('maintenance.create', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 
     /**

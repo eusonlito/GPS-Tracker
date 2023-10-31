@@ -4,7 +4,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+use App\Domains\Device\Service\Controller\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -17,21 +17,17 @@ class Create extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow(data: $this->requestMergeWithRowData());
-
         $this->meta('title', __('device-create.meta-title'));
 
-        return $this->page('device.create', [
-            'vehicles' => VehicleModel::query()->list()->get(),
-        ]);
+        return $this->page('device.create', $this->data());
     }
 
     /**
      * @return array
      */
-    protected function requestMergeWithRowData(): array
+    protected function data(): array
     {
-        return ['code' => helper()->uuid()];
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 
     /**

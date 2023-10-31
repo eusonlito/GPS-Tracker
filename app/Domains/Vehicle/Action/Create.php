@@ -9,16 +9,6 @@ class Create extends CreateUpdateAbstract
     /**
      * @return void
      */
-    protected function data(): void
-    {
-        $this->dataName();
-        $this->dataPlate();
-        $this->dataTimezoneId();
-    }
-
-    /**
-     * @return void
-     */
     protected function save(): void
     {
         $this->row = Model::query()->create([
@@ -27,7 +17,7 @@ class Create extends CreateUpdateAbstract
             'timezone_auto' => $this->data['timezone_auto'],
             'enabled' => $this->data['enabled'],
             'timezone_id' => $this->data['timezone_id'],
-            'user_id' => $this->auth->id,
+            'user_id' => $this->data['user_id'],
         ]);
     }
 }

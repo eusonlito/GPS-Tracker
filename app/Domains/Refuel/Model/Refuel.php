@@ -8,6 +8,7 @@ use App\Domains\Refuel\Model\Builder\Refuel as Builder;
 use App\Domains\Refuel\Model\Collection\Refuel as Collection;
 use App\Domains\Refuel\Test\Factory\Refuel as TestFactory;
 use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Refuel extends ModelAbstract
@@ -55,6 +56,14 @@ class Refuel extends ModelAbstract
     protected static function newFactory(): TestFactory
     {
         return TestFactory::new();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(UserModel::class, UserModel::FOREIGN);
     }
 
     /**

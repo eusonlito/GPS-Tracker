@@ -4,6 +4,7 @@ namespace App\Domains\AlarmNotification\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\AlarmNotification\Model\Builder\AlarmNotification as Builder;
@@ -13,6 +14,7 @@ use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\CoreApp\Model\Traits\Gis as GisTrait;
 use App\Domains\Trip\Model\Trip as TripModel;
+use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class AlarmNotification extends ModelAbstract
@@ -91,14 +93,6 @@ class AlarmNotification extends ModelAbstract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function vehicle(): BelongsTo
-    {
-        return $this->belongsTo(VehicleModel::class, VehicleModel::FOREIGN)->withTimezone();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function position(): BelongsTo
     {
         return $this->belongsTo(PositionModel::class, PositionModel::FOREIGN);
@@ -110,5 +104,21 @@ class AlarmNotification extends ModelAbstract
     public function trip(): BelongsTo
     {
         return $this->belongsTo(TripModel::class, TripModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough
+     */
+    public function user(): HasOneThrough
+    {
+        return $this->hasOneThrough(UserModel::class, VehicleModel::class, 'vehicle.id', 'user.id', 'vehicle_id', 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function vehicle(): BelongsTo
+    {
+        return $this->belongsTo(VehicleModel::class, VehicleModel::FOREIGN)->withTimezone();
     }
 }

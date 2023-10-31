@@ -15,22 +15,6 @@ use App\Domains\Trip\Model\Trip as Model;
 class Search extends Index
 {
     /**
-     * @return void
-     */
-    protected function filtersDatesStartAt(): void
-    {
-        $start_at = $this->request->input('start_at');
-
-        if ($start_at === '') {
-            return;
-        }
-
-        if (is_null($start_at) || preg_match(static::DATE_REGEXP, $start_at) === 0) {
-            $this->request->merge(['start_at' => '']);
-        }
-    }
-
-    /**
      * @return array
      */
     public function data(): array
@@ -185,6 +169,7 @@ class Search extends Index
                 ->whenSharedPublic($this->requestBool('shared_public'))
                 ->whenFence($this->request->boolean('fence'), $this->request->float('fence_latitude'), $this->request->float('fence_longitude'), $this->request->float('fence_radius'))
                 ->withDevice()
+                ->withUser()
                 ->withVehicle()
                 ->list()
                 ->get()

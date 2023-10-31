@@ -25,6 +25,7 @@ class Update extends ControllerAbstract
     public function data(): array
     {
         return [
+            'admin' => $this->auth->admin,
             'languages' => $this->languages(),
             'preferences_units_distance' => $this->preferencesUnitsDistance(),
             'preferences_units_volume' => $this->preferencesUnitsVolume(),

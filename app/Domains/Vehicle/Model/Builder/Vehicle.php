@@ -9,9 +9,25 @@ class Vehicle extends BuilderAbstract
     /**
      * @return self
      */
-    public function simple(): self
+    public function listSimple(): self
     {
         return $this->select('id', 'name')->orderBy('name', 'ASC');
+    }
+
+    /**
+     * @return self
+     */
+    public function listRelatedSimple(): self
+    {
+        return $this->select('id', 'name', 'user_id');
+    }
+
+    /**
+     * @return self
+     */
+    public function selectSimple(): self
+    {
+        return $this->select('id', 'name', 'plate', 'enabled', 'timezone_id', 'user_id');
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+use App\Domains\Device\Service\Controller\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -21,14 +21,17 @@ class Update extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow();
-
         $this->meta('title', __('device-update.meta-title', ['title' => $this->row->name]));
 
-        return $this->page('device.update', [
-            'row' => $this->row,
-            'vehicles' => VehicleModel::query()->list()->get(),
-        ]);
+        return $this->page('device.update', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
     }
 
     /**

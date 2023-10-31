@@ -29,6 +29,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     protected function data(): void
     {
         $this->dataName();
+        $this->dataUserId();
     }
 
     /**
@@ -65,7 +66,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         return Model::query()
             ->byIdNot($this->row->id ?? 0)
             ->byName($this->data['name'])
-            ->byUserOrAdmin($this->auth)
+            ->byUserId($this->data['user_id'])
             ->exists();
     }
 }

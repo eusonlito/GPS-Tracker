@@ -198,7 +198,7 @@ class Trip extends BuilderAbstract
     /**
      * @return self
      */
-    public function simple(): self
+    public function listSimple(): self
     {
         return $this->select('id', 'name', 'end_utc_at', 'distance', 'time')->orderByStartUtcAtDesc();
     }
@@ -343,14 +343,6 @@ class Trip extends BuilderAbstract
     public function withTimezone(): self
     {
         return $this->with('timezone');
-    }
-
-    /**
-     * @return self
-     */
-    public function withUser(): self
-    {
-        return $this->with(['user' => static fn ($q) => $q->simple()]);
     }
 
     /**

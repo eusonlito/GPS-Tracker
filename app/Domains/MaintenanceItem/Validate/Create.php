@@ -13,6 +13,7 @@ class Create extends ValidateAbstract
     {
         return [
             'name' => ['bail', 'required'],
+            'user_id' => ['bail', 'integer'],
         ];
     }
 }

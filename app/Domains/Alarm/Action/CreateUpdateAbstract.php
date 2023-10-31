@@ -82,6 +82,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         $this->dataType();
         $this->dataConfig();
         $this->dataSchedule();
+        $this->dataUserId();
     }
 
     /**

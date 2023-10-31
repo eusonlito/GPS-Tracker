@@ -11,11 +11,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     use FileRelatedCreateUpdate;
 
     /**
-     * @var \App\Domains\Vehicle\Model\Vehicle
-     */
-    protected VehicleModel $vehicle;
-
-    /**
      * @return void
      */
     abstract protected function save(): void;
@@ -25,7 +20,8 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     public function handle(): Model
     {
-        $this->vehicle();
+        $this->data();
+        $this->check();
         $this->save();
         $this->files();
 
@@ -35,11 +31,38 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     /**
      * @return void
      */
-    protected function vehicle(): void
+    protected function data(): void
     {
-        $this->vehicle = VehicleModel::query()
+        $this->dataUserId();
+    }
+
+    /**
+     * @return void
+     */
+    protected function check(): void
+    {
+        $this->checkVehicle();
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkVehicle(): void
+    {
+        if ($this->checkVehicleExists() === false) {
+            $this->exceptionValidator(__('maintenance-create.error.vehicle-not-found'));
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkVehicleExists(): bool
+    {
+        return VehicleModel::query()
+            ->select('id')
             ->byId($this->data['vehicle_id'])
-            ->byUserOrAdmin($this->auth)
-            ->firstOrFail();
+            ->byUserId($this->data['user_id'])
+            ->exists();
     }
 }

@@ -45,15 +45,15 @@ class Index extends ControllerAbstract
         return [
             'users' => $this->users(),
             'users_multiple' => $this->usersMultiple(),
-            'user' => $this->user(),
+            'user' => $this->user(false),
             'user_empty' => $this->userEmpty(),
             'vehicles' => $this->vehicles(),
             'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
+            'vehicle' => $this->vehicle(false),
             'vehicle_empty' => $this->vehicleEmpty(),
             'devices' => $this->devices(),
             'devices_multiple' => $this->devicesMultiple(),
-            'device' => $this->device(),
+            'device' => $this->device(false),
             'device_empty' => $this->deviceEmpty(),
             'trips' => $this->trips(),
             'trip' => $this->trip(),
@@ -80,7 +80,7 @@ class Index extends ControllerAbstract
                 ->selectSimple()
                 ->byVehicleId($this->vehicle()->id)
                 ->whenDeviceId($this->device()?->id)
-                ->simple()
+                ->listSimple()
                 ->limit(50)
                 ->get()
         );

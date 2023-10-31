@@ -14,7 +14,7 @@
     </div>
 </form>
 
-<div class="overflow-auto lg:overflow-visible header-sticky">
+<div class="overflow-auto scroll-visible header-sticky">
     <table id="configuration-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>

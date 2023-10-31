@@ -7,8 +7,6 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\Refuel\Model\Collection\Refuel as Collection;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
-use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
 
 class Index extends ControllerAbstract
 {
@@ -29,6 +27,7 @@ class Index extends ControllerAbstract
     protected function filters(): void
     {
         $this->filtersDates();
+        $this->filtersIds();
     }
 
     /**
@@ -46,14 +45,27 @@ class Index extends ControllerAbstract
     }
 
     /**
+     * @return void
+     */
+    protected function filtersIds(): void
+    {
+        $this->request->merge([
+            'user_id' => $this->auth->preference('user_id', $this->request->input('user_id')),
+            'vehicle_id' => $this->auth->preference('vehicle_id', $this->request->input('vehicle_id')),
+        ]);
+    }
+
+    /**
      * @return array
      */
     public function data(): array
     {
-        return [
-            'list' => $this->list(),
+        return $this->dataCore() + [
             'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => ($this->vehicles()->count() > 1),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
+            'list' => $this->list(),
             'date_min' => $this->dateMin(),
             'totals' => $this->totals(),
         ];
@@ -66,23 +78,11 @@ class Index extends ControllerAbstract
     {
         return $this->cache(
             fn () => Model::query()
-                ->byUserOrAdmin($this->auth)
+                ->whenUserId($this->user()?->id)
                 ->whenVehicleId((int)$this->request->input('vehicle_id'))
                 ->whenDateAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
+                ->withUser()
                 ->withVehicle()
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
-     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
-     */
-    protected function vehicles(): VehicleCollection
-    {
-        return $this->cache(
-            fn () => VehicleModel::query()
-                ->byUserOrAdmin($this->auth)
                 ->list()
                 ->get()
         );
@@ -95,7 +95,7 @@ class Index extends ControllerAbstract
     {
         return $this->cache(
             fn () => Model::query()
-                ->byUserOrAdmin($this->auth)
+                ->whenUserId($this->user()?->id)
                 ->orderByDateAtAsc()
                 ->rawValue('DATE(`date_at`)')
         );

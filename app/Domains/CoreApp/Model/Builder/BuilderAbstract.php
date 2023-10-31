@@ -34,7 +34,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function byUserOrAdmin(UserModel $user): self
     {
-        return $this->when(empty($user->admin), static fn ($q) => $q->byUserId($user->id));
+        return $this->when($user->adminMode() === false, static fn ($q) => $q->byUserId($user->id));
     }
 
     /**
@@ -55,6 +55,16 @@ abstract class BuilderAbstract extends BuilderAbstractCore
     public function byVehicleIds(array $vehicle_ids): self
     {
         return $this->whereIntegerInRaw('vehicle_id', $vehicle_ids);
+    }
+
+    /**
+     * @param ?int $id
+     *
+     * @return self
+     */
+    public function whenId(?int $id): self
+    {
+        return $this->when($id, static fn ($q) => $q->byId($id));
     }
 
     /**

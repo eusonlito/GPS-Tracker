@@ -7,27 +7,6 @@ class Update extends CreateUpdateAbstract
     /**
      * @return void
      */
-    protected function data(): void
-    {
-        $this->dataName();
-        $this->dataModel();
-        $this->dataSerial();
-        $this->dataPassword();
-        $this->dataVehicleId();
-    }
-
-    /**
-     * @return void
-     */
-    protected function check(): void
-    {
-        $this->checkCode();
-        $this->checkSerial();
-    }
-
-    /**
-     * @return void
-     */
     protected function save(): void
     {
         $this->row->code = $this->data['code'];

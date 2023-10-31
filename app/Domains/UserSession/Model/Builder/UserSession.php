@@ -89,12 +89,4 @@ class UserSession extends BuilderAbstract
             ->selectRaw('`text` AS `auth`, `ip`, FALSE AS `success`, `created_at`, `user_id`')
             ->byUser($user);
     }
-
-    /**
-     * @return self
-     */
-    public function withUser(): self
-    {
-        return $this->with('user');
-    }
 }

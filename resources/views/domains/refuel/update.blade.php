@@ -5,6 +5,16 @@
 <form method="post">
     <input type="hidden" name="_action" value="update" />
 
+    @if ($users_multiple)
+
+    <div class="box p-5 mt-5">
+        <div class="p-2">
+            <x-select name="user_id" :options="$users" value="id" text="name" id="refuel-update-user" :label="__('refuel-update.user')" readonly disabled></x-select>
+        </div>
+    </div>
+
+    @endif
+
     @include ('domains.refuel.molecules.create-update')
 
     <div class="box p-5 mt-5">

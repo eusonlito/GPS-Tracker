@@ -4,7 +4,7 @@ namespace App\Domains\Refuel\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+use App\Domains\Refuel\Service\Controller\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -21,14 +21,17 @@ class Update extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow();
-
         $this->meta('title', __('refuel-update.meta-title', ['title' => $this->row->date_at]));
 
-        return $this->page('refuel.update', [
-            'row' => $this->row,
-            'vehicles' => VehicleModel::query()->byUserOrAdmin($this->auth)->list()->get(),
-        ]);
+        return $this->page('refuel.update', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
     }
 
     /**

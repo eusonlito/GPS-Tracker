@@ -14,9 +14,10 @@ class Create extends ValidateAbstract
         return [
             'name' => ['bail', 'required'],
             'plate' => ['bail'],
-            'timezone_id' => ['bail', 'required', 'integer'],
             'timezone_auto' => ['bail', 'boolean'],
             'enabled' => ['bail', 'boolean'],
+            'timezone_id' => ['bail', 'required', 'integer'],
+            'user_id' => ['bail', 'integer'],
         ];
     }
 }

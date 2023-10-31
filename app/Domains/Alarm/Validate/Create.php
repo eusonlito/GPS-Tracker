@@ -19,6 +19,7 @@ class Create extends ValidateAbstract
             'enabled' => ['bail', 'boolean'],
             'schedule_start' => ['bail', 'nullable', 'date_format:H:i'],
             'schedule_end' => ['bail', 'nullable', 'date_format:H:i'],
+            'user_id' => ['bail', 'integer'],
         ];
     }
 }

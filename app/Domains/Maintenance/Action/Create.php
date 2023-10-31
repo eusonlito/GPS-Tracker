@@ -19,8 +19,8 @@ class Create extends CreateUpdateAbstract
             'distance' => $this->data['distance'],
             'distance_next' => $this->data['distance_next'],
             'description' => $this->data['description'],
-            'vehicle_id' => $this->vehicle->id,
-            'user_id' => $this->auth->id,
+            'user_id' => $this->data['user_id'],
+            'vehicle_id' => $this->data['vehicle_id'],
         ]);
     }
 }

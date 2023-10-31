@@ -4,11 +4,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Alarm\Model\Alarm as AlarmModel;
-use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
-use App\Domains\Position\Model\Collection\Position as PositionCollection;
+use App\Domains\Trip\Service\Controller\UpdateMap as ControllerService;
 
 class UpdateMap extends UpdateAbstract
 {
@@ -23,46 +19,14 @@ class UpdateMap extends UpdateAbstract
 
         $this->meta('title', __('trip-update-map.meta-title', ['title' => $this->row->name]));
 
-        return $this->page('trip.update-map', [
-            'row' => $this->row,
-            'positions' => $this->positions(),
-            'alarms' => $this->alarms(),
-            'notifications' => $this->notifications(),
-        ]);
+        return $this->page('trip.update-map', $this->data());
     }
 
     /**
-     * @return \App\Domains\Position\Model\Collection\Position
+     * @return array
      */
-    protected function positions(): PositionCollection
+    protected function data(): array
     {
-        return $this->row->positions()
-            ->withCity()
-            ->list()
-            ->get();
-    }
-
-    /**
-     * @return \App\Domains\Alarm\Model\Collection\Alarm
-     */
-    protected function alarms(): AlarmCollection
-    {
-        return AlarmModel::query()
-            ->byVehicleId($this->row->vehicle->id)
-            ->enabled()
-            ->list()
-            ->get();
-    }
-
-    /**
-     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
-     */
-    protected function notifications(): AlarmNotificationCollection
-    {
-        return AlarmNotificationModel::query()
-            ->byTripId($this->row->id)
-            ->withAlarm()
-            ->list()
-            ->get();
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
     }
 }

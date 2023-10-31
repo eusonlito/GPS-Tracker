@@ -6,8 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
 use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as Collection;
-use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+use App\Domains\AlarmNotification\Service\Controller\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -22,37 +21,15 @@ class Index extends ControllerAbstract
 
         $this->meta('title', __('alarm-notification-index.meta-title'));
 
-        return $this->page('alarm-notification.index', [
-            'list' => $this->list(),
-            'vehicles' => ($vehicles = $this->vehicles()),
-            'vehicles_multiple' => ($vehicles->count() > 1),
-        ]);
+        return $this->page('alarm-notification.index', $this->data());
     }
 
     /**
-     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
+     * @return array
      */
-    protected function list(): Collection
+    protected function data(): array
     {
-        return Model::query()
-            ->byUserOrAdmin($this->auth)
-            ->withAlarm()
-            ->withPosition()
-            ->withTrip()
-            ->withVehicle()
-            ->list()
-            ->get();
-    }
-
-    /**
-     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
-     */
-    protected function vehicles(): VehicleCollection
-    {
-        return VehicleModel::query()
-            ->byUserOrAdmin($this->auth)
-            ->list()
-            ->get();
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 
     /**
@@ -69,7 +46,7 @@ class Index extends ControllerAbstract
     protected function responseJsonList(): Collection
     {
         return Model::query()
-            ->byUserOrAdmin($this->auth)
+            ->byUserId($this->auth->id)
             ->whereClosedAt(false)
             ->whereSentAt()
             ->withAlarm()

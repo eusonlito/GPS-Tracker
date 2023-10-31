@@ -4,7 +4,7 @@ namespace App\Domains\Alarm\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
+use App\Domains\Alarm\Service\Controller\UpdateAlarmNotification as ControllerService;
 
 class UpdateAlarmNotification extends ControllerAbstract
 {
@@ -19,22 +19,14 @@ class UpdateAlarmNotification extends ControllerAbstract
 
         $this->meta('title', __('alarm-update-alarm-notification.meta-title', ['title' => $this->row->name]));
 
-        return $this->page('alarm.update-alarm-notification', [
-            'row' => $this->row,
-            'notifications' => $this->notifications(),
-        ]);
+        return $this->page('alarm.update-alarm-notification', $this->data());
     }
 
     /**
-     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
+     * @return array
      */
-    protected function notifications(): AlarmNotificationCollection
+    protected function data(): array
     {
-        return $this->row->notifications()
-            ->withVehicle()
-            ->withPosition()
-            ->withTrip()
-            ->list()
-            ->get();
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
     }
 }

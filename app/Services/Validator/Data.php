@@ -174,7 +174,7 @@ class Data
      *
      * @return mixed
      */
-    protected function cast($value, string $rule): mixed
+    protected function cast(mixed $value, string $rule): mixed
     {
         $rule = explode('|', $rule);
 
@@ -211,7 +211,7 @@ class Data
      *
      * @return bool
      */
-    protected function castIsNullable($value, array $rule): bool
+    protected function castIsNullable(mixed $value, array $rule): bool
     {
         if ($value) {
             return false;
@@ -225,10 +225,10 @@ class Data
             return true;
         }
 
-        if ($value instanceof Stringable) {
-            return strlen((string)$value) === 0;
+        if ((is_string($value) === false) && (($value instanceof Stringable) === false)) {
+            return false;
         }
 
-        return (bool)$value;
+        return strlen(strval($value)) === 0;
     }
 }

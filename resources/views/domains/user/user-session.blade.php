@@ -6,7 +6,7 @@
     <input type="search" class="form-control form-control-lg" placeholder="{{ __('user-user-session.filter') }}" data-table-search="#user-session-list-table" />
 </div>
 
-<div class="overflow-auto lg:overflow-visible header-sticky">
+<div class="overflow-auto scroll-visible header-sticky">
     <table id="user-session-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-pagination="user-session-list-table-pagination" data-table-sort>
         <thead>
             <tr>

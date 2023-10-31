@@ -6,7 +6,7 @@
     <input type="search" class="form-control form-control-lg" placeholder="{{ __('user-ip-lock.filter') }}" data-table-search="#ip-lock-list-table" />
 </div>
 
-<div class="overflow-auto lg:overflow-visible header-sticky">
+<div class="overflow-auto scroll-visible header-sticky">
     <table id="ip-lock-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-pagination="ip-lock-list-table-pagination" data-table-sort>
         <thead>
             <tr>

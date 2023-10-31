@@ -20,7 +20,7 @@
 
         <form method="post">
             <div class="box p-5 mt-5">
-                <div class="overflow-auto lg:overflow-visible header-sticky">
+                <div class="overflow-auto scroll-visible header-sticky">
                     <table id="position-list-table" class="table table-report font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
                         <thead>
                             <tr>

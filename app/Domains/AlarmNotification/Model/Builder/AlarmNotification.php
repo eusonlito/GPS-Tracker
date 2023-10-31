@@ -89,14 +89,6 @@ class AlarmNotification extends BuilderAbstract
     /**
      * @return self
      */
-    public function withVehicle(): self
-    {
-        return $this->with('vehicle');
-    }
-
-    /**
-     * @return self
-     */
     public function withPosition(): self
     {
         return $this->with('position');
@@ -108,5 +100,13 @@ class AlarmNotification extends BuilderAbstract
     public function withTrip(): self
     {
         return $this->with('trip');
+    }
+
+    /**
+     * @return self
+     */
+    public function withVehicle(): self
+    {
+        return $this->with('vehicle');
     }
 }

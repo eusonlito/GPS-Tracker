@@ -252,4 +252,12 @@ abstract class BuilderAbstract extends Builder
     {
         return $this->when($id, static fn ($q) => $q->byIdNext($id));
     }
+
+    /**
+     * @return self
+     */
+    public function withUser(): self
+    {
+        return $this->with('user');
+    }
 }

@@ -4,7 +4,7 @@
 
 <input type="search" class="form-control form-control-lg" placeholder="{{ __('timezone-index.filter') }}" data-table-search="#timezone-list-table" />
 
-<div class="overflow-auto lg:overflow-visible header-sticky">
+<div class="overflow-auto scroll-visible header-sticky">
     <table id="timezone-list-table" class="table table-report sm:mt-2 font-medium text-center font-semibold whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>

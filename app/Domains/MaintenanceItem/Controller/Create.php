@@ -5,6 +5,7 @@ namespace App\Domains\MaintenanceItem\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Domains\MaintenanceItem\Service\Controller\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -21,11 +22,17 @@ class Create extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow();
-
         $this->meta('title', __('maintenance-item-create.meta-title'));
 
-        return $this->page('maintenance-item.create');
+        return $this->page('maintenance-item.create', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 
     /**

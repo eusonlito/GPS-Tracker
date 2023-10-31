@@ -4,6 +4,7 @@ namespace App\Domains\MaintenanceItem\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Domains\MaintenanceItem\Service\Controller\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -20,13 +21,17 @@ class Update extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow();
-
         $this->meta('title', __('maintenance-item-update.meta-title', ['title' => $this->row->name]));
 
-        return $this->page('maintenance-item.update', [
-            'row' => $this->row,
-        ]);
+        return $this->page('maintenance-item.update', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
     }
 
     /**

@@ -4,18 +4,11 @@ namespace App\Domains\Alarm\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Alarm\Model\Collection\Alarm as Collection;
 use App\Domains\Alarm\Model\Alarm as Model;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Index extends ControllerAbstract
 {
-    /**
-     * @const string
-     */
-    protected const DATE_REGEXP = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
-
     /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
@@ -35,7 +28,6 @@ class Index extends ControllerAbstract
         $this->request->merge([
             'user_id' => $this->auth->preference('user_id', $this->request->input('user_id')),
             'vehicle_id' => $this->auth->preference('vehicle_id', $this->request->input('vehicle_id')),
-            'device_id' => $this->auth->preference('device_id', $this->request->input('device_id')),
         ]);
     }
 
@@ -44,39 +36,13 @@ class Index extends ControllerAbstract
      */
     public function data(): array
     {
-        return [
-            'users' => $this->users(),
-            'users_multiple' => $this->usersMultiple(),
-            'user' => $this->user(),
+        return $this->dataCore() + [
             'vehicles' => $this->vehicles(),
             'vehicles_multiple' => $this->vehiclesMultiple(),
             'vehicle' => $this->vehicle(),
-            'devices' => $this->devices(),
-            'devices_multiple' => $this->devicesMultiple(),
-            'device' => $this->device(),
+            'vehicle_empty' => $this->vehicleEmpty(),
             'list' => $this->list(),
         ];
-    }
-
-    /**
-     * @return ?\App\Domains\Vehicle\Model\Vehicle
-     */
-    protected function vehicle(): ?VehicleModel
-    {
-        return $this->cache(
-            fn () => $this->vehicles()->firstWhere('id', $this->request->input('vehicle_id'))
-                ?: $this->vehicles()->last()
-        );
-    }
-
-    /**
-     * @return ?\App\Domains\Device\Model\Device
-     */
-    protected function device(): ?DeviceModel
-    {
-        return $this->cache(
-            fn () => $this->devices()->firstWhere('id', $this->request->input('device_id'))
-        );
     }
 
     /**
@@ -86,7 +52,9 @@ class Index extends ControllerAbstract
     {
         return $this->cache(
             fn () => Model::query()
-                ->byUserId($this->user()->id)
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId($this->vehicle()?->id)
+                ->withUser()
                 ->withVehiclesCount()
                 ->withNotificationsCount()
                 ->withNotificationsPendingCount()

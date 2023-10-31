@@ -4,6 +4,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Domains\Trip\Service\Controller\Update as ControllerService;
 
 class Update extends UpdateAbstract
 {
@@ -20,13 +21,17 @@ class Update extends UpdateAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow();
-
         $this->meta('title', __('trip-update.meta-title', ['title' => $this->row->name]));
 
-        return $this->page('trip.update', [
-            'row' => $this->row,
-        ]);
+        return $this->page('trip.update', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+use App\Domains\Vehicle\Service\Controller\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -21,14 +21,17 @@ class Update extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow();
-
         $this->meta('title', __('vehicle-update.meta-title', ['title' => $this->row->name]));
 
-        return $this->page('vehicle.update', [
-            'row' => $this->row,
-            'timezones' => TimezoneModel::query()->list()->get(),
-        ]);
+        return $this->page('vehicle.update', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
     }
 
     /**

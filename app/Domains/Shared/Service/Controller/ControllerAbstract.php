@@ -2,7 +2,7 @@
 
 namespace App\Domains\Shared\Service\Controller;
 
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
+use App\Domains\Core\Service\Controller\ControllerAbstract as ControllerAbstractCore;
 use App\Domains\Configuration\Service\Getter\Getter as ConfigurationGetter;
 use App\Domains\Core\Traits\Factory;
 

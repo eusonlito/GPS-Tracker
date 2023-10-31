@@ -19,7 +19,15 @@ class User extends BuilderAbstract
     /**
      * @return self
      */
-    public function simple(): self
+    public function listRelatedSimple(): self
+    {
+        return $this->select('id', 'name');
+    }
+
+    /**
+     * @return self
+     */
+    public function listSimple(): self
     {
         return $this->select('id', 'name')->orderBy('name', 'ASC');
     }

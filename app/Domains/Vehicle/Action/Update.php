@@ -7,16 +7,6 @@ class Update extends CreateUpdateAbstract
     /**
      * @return void
      */
-    protected function data(): void
-    {
-        $this->dataName();
-        $this->dataPlate();
-        $this->dataTimezoneId();
-    }
-
-    /**
-     * @return void
-     */
     protected function save(): void
     {
         $this->row->name = $this->data['name'];

@@ -31,6 +31,7 @@ class Update extends ActionAbstract
         $this->dataPassword();
         $this->dataLanguageId();
         $this->dataPreferences();
+        $this->dataAdminMode();
     }
 
     /**
@@ -66,7 +67,10 @@ class Update extends ActionAbstract
      */
     protected function dataLanguageId(): void
     {
-        $this->data['language_id'] = LanguageModel::query()->byId($this->data['language_id'])->firstOrFail()->id;
+        $this->data['language_id'] = LanguageModel::query()
+            ->byId($this->data['language_id'])
+            ->firstOrFail()
+            ->id;
     }
 
     /**
@@ -75,6 +79,14 @@ class Update extends ActionAbstract
     protected function dataPreferences(): void
     {
         $this->data['preferences'] += (array)$this->row->preferences;
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataAdminMode(): void
+    {
+        $this->data['admin_mode'] = $this->row->admin && $this->data['admin_mode'];
     }
 
     /**
@@ -105,6 +117,7 @@ class Update extends ActionAbstract
         $this->row->password = $this->data['password'];
         $this->row->language_id = $this->data['language_id'];
         $this->row->preferences = $this->data['preferences'];
+        $this->row->admin_mode = $this->data['admin_mode'];
 
         $this->row->save();
     }

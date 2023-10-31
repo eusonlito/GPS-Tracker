@@ -13,7 +13,7 @@ class Create extends CreateUpdateAbstract
     {
         $this->row = Model::query()->create([
             'name' => $this->data['name'],
-            'user_id' => $this->auth->id,
+            'user_id' => $this->data['user_id'],
         ])->fresh();
     }
 }

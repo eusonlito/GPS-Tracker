@@ -11,6 +11,16 @@
         </div>
     </div>
 
+    @if ($users_multiple)
+
+    <div class="box p-5 mt-5">
+        <div class="p-2">
+            <x-select name="user_id" :options="$users" value="id" text="name" id="alarm-update-user" :label="__('alarm-update.user')" readonly disabled></x-select>
+        </div>
+    </div>
+
+    @endif
+
     @include ('domains.alarm.molecules.create-update')
 
     <div class="box p-5 mt-5">

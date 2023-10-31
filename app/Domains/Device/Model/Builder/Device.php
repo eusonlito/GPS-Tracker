@@ -30,7 +30,7 @@ class Device extends BuilderAbstract
     /**
      * @return self
      */
-    public function simple(): self
+    public function listSimple(): self
     {
         return $this->select('id', 'name')->orderBy('name', 'ASC');
     }

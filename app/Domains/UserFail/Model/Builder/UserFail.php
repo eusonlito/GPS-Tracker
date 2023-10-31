@@ -28,12 +28,4 @@ class UserFail extends BuilderAbstract
             return $q->where('text', $user->email)->orWhere('user_id', $user->id);
         });
     }
-
-    /**
-     * @return self
-     */
-    public function withUser(): self
-    {
-        return $this->with('user');
-    }
 }

@@ -93,4 +93,12 @@ class User extends ModelAbstract implements Authenticatable
     {
         return $this->hasMany(UserSessionModel::class, static::FOREIGN);
     }
+
+    /**
+     * @return bool
+     */
+    public function adminMode(): bool
+    {
+        return $this->admin && $this->admin_mode;
+    }
 }

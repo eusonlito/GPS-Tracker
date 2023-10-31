@@ -6,7 +6,7 @@
 
 <form method="post">
     <div class="box p-5">
-        <div class="overflow-auto lg:overflow-visible header-sticky">
+        <div class="overflow-auto scroll-visible header-sticky">
             <table id="server-status-proccess-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
                 <thead>
                     <tr>
@@ -48,7 +48,7 @@
 
 <form method="post">
     <div class="box p-5 {{ $process->isNotEmpty() ? 'mt-5' : '' }}">
-        <div class="overflow-auto lg:overflow-visible header-sticky">
+        <div class="overflow-auto scroll-visible header-sticky">
             <table id="server-status-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
                 <thead>
                     <tr>

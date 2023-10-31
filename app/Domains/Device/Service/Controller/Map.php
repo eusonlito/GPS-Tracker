@@ -17,6 +17,18 @@ class Map extends ControllerAbstract
      */
     public function __construct(protected Request $request, protected Authenticatable $auth)
     {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->request->merge([
+            'user_id' => $this->auth->preference('user_id', $this->request->input('user_id')),
+            'vehicle_id' => $this->auth->preference('vehicle_id', $this->request->input('vehicle_id')),
+        ]);
     }
 
     /**
@@ -24,7 +36,11 @@ class Map extends ControllerAbstract
      */
     public function data(): array
     {
-        return [
+        return $this->dataCore() + [
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
             'list' => $this->list(),
         ];
     }
@@ -36,9 +52,11 @@ class Map extends ControllerAbstract
     {
         return $this->cache(
             fn () => Model::query()
-                ->byUserOrAdmin($this->auth)
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId($this->vehicle()?->id)
                 ->whenIds($this->requestArray('ids'))
                 ->whenTripFinished($this->requestBool('finished'))
+                ->withUser()
                 ->withVehicle()
                 ->withWhereHasPositionLast()
                 ->list()

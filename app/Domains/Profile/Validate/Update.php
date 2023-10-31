@@ -25,6 +25,7 @@ class Update extends ValidateAbstract
             'preferences.units.money' => ['bail', 'required', 'in:euro,dollar'],
             'preferences.units.thousand' => ['bail', 'required', Rule::in([',', '.'])],
             'preferences.units.volume' => ['bail', 'required', 'in:liter,gallon'],
+            'admin_mode' => ['bail', 'boolean'],
         ];
     }
 }

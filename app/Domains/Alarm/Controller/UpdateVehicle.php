@@ -4,8 +4,7 @@ namespace App\Domains\Alarm\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+use App\Domains\Alarm\Service\Controller\UpdateVehicle as ControllerService;
 
 class UpdateVehicle extends ControllerAbstract
 {
@@ -24,22 +23,15 @@ class UpdateVehicle extends ControllerAbstract
 
         $this->meta('title', __('alarm-update-vehicle.meta-title', ['title' => $this->row->name]));
 
-        return $this->page('alarm.update-vehicle', [
-            'row' => $this->row,
-            'vehicles' => $this->vehicles(),
-        ]);
+        return $this->page('alarm.update-vehicle', $this->data());
     }
 
     /**
-     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
+     * @return array
      */
-    protected function vehicles(): VehicleCollection
+    protected function data(): array
     {
-        return VehicleModel::query()
-            ->list()
-            ->withAlarmPivot($this->row->id)
-            ->get()
-            ->sortByDesc('alarmPivot');
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
     }
 
     /**

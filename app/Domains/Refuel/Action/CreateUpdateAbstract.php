@@ -8,11 +8,6 @@ use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 abstract class CreateUpdateAbstract extends ActionAbstract
 {
     /**
-     * @var \App\Domains\Vehicle\Model\Vehicle
-     */
-    protected VehicleModel $vehicle;
-
-    /**
      * @return void
      */
     abstract protected function save(): void;
@@ -22,7 +17,8 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     public function handle(): Model
     {
-        $this->vehicle();
+        $this->data();
+        $this->check();
         $this->save();
 
         return $this->row;
@@ -31,11 +27,37 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     /**
      * @return void
      */
-    protected function vehicle(): void
+    protected function data(): void
     {
-        $this->vehicle = VehicleModel::query()
+        $this->dataUserId();
+    }
+
+    /**
+     * @return void
+     */
+    protected function check(): void
+    {
+        $this->checkVehicleId();
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkVehicleId(): void
+    {
+        if ($this->checkVehicleIdExists() === false) {
+            $this->exceptionValidator(__('refuel-create.error.vehicle-exists'));
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkVehicleIdExists(): bool
+    {
+        return VehicleModel::query()
             ->byId($this->data['vehicle_id'])
-            ->byUserOrAdmin($this->auth)
-            ->firstOrFail();
+            ->byUserId($this->data['user_id'])
+            ->exists();
     }
 }

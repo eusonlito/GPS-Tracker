@@ -4,6 +4,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Domains\Trip\Service\Controller\UpdateStat as ControllerService;
 
 class UpdateStat extends UpdateAbstract
 {
@@ -22,10 +23,15 @@ class UpdateStat extends UpdateAbstract
 
         $this->meta('title', __('trip-update-stat.meta-title', ['title' => $this->row->name]));
 
-        return $this->page('trip.update-stat', [
-            'row' => $this->row,
-            'stats' => $this->row->stats,
-        ]);
+        return $this->page('trip.update-stat', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
     }
 
     /**

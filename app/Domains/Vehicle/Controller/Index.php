@@ -3,8 +3,7 @@
 namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Model\Collection\Vehicle as Collection;
-use App\Domains\Vehicle\Model\Vehicle as Model;
+use App\Domains\Vehicle\Service\Controller\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -15,23 +14,14 @@ class Index extends ControllerAbstract
     {
         $this->meta('title', __('vehicle-index.meta-title'));
 
-        return $this->page('vehicle.index', [
-            'list' => $this->list(),
-        ]);
+        return $this->page('vehicle.index', $this->data());
     }
 
     /**
-     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
+     * @return array
      */
-    protected function list(): Collection
+    protected function data(): array
     {
-        return Model::query()
-            ->byUserOrAdmin($this->auth)
-            ->withAlarmsCount()
-            ->withAlarmsNotificationsCount()
-            ->withAlarmsNotificationsPendingCount()
-            ->withTimezone()
-            ->list()
-            ->get();
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 }

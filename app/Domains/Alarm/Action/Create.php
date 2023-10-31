@@ -28,7 +28,7 @@ class Create extends CreateUpdateAbstract
             'enabled' => $this->data['enabled'],
             'schedule_start' => $this->data['schedule_start'],
             'schedule_end' => $this->data['schedule_end'],
-            'user_id' => $this->auth->id,
+            'user_id' => $this->data['user_id'],
         ]);
     }
 }

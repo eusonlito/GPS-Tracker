@@ -241,6 +241,14 @@ class Alarm extends BuilderAbstract
     /**
      * @return self
      */
+    public function selectRelatedSimple(): self
+    {
+        return $this->select('id', 'name', 'type', 'enabled', 'user_id');
+    }
+
+    /**
+     * @return self
+     */
     public function whereScheduleIsEmpty(): self
     {
         return $this->whereScheduleStartIsEmpty()->whereScheduleEndIsEmpty();

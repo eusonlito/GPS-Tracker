@@ -18,12 +18,21 @@ class UpdateItem extends ActionAbstract
      */
     public function handle(): Model
     {
+        $this->data();
         $this->maintenanceItemIds();
         $this->lines();
         $this->delete();
         $this->save();
 
         return $this->row;
+    }
+
+    /**
+     * @return void
+     */
+    protected function data(): void
+    {
+        $this->dataUserId();
     }
 
     /**
@@ -37,7 +46,7 @@ class UpdateItem extends ActionAbstract
 
         $this->maintenanceItemIds = MaintenanceItemModel::query()
             ->byIds($this->data['maintenance_item_id'])
-            ->byUserOrAdmin($this->auth)
+            ->byUserId($this->data['user_id'])
             ->pluck('id')
             ->all();
     }

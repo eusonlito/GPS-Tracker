@@ -13,6 +13,19 @@ use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 abstract class ControllerAbstract extends ControllerAbstractCore
 {
     /**
+     * @return array
+     */
+    protected function dataCore(): array
+    {
+        return [
+            'users' => $this->users(),
+            'users_multiple' => $this->usersMultiple(),
+            'user' => $this->user(),
+            'user_empty' => $this->userEmpty(),
+        ];
+    }
+
+    /**
      * @return \App\Domains\Device\Model\Collection\Device
      */
     protected function devices(): DeviceCollection
@@ -21,7 +34,7 @@ abstract class ControllerAbstract extends ControllerAbstractCore
             return DeviceModel::query()
                 ->whenUserId($this->user()?->id)
                 ->whenVehicleId($this->vehicle()?->id)
-                ->simple()
+                ->listSimple()
                 ->get();
         });
     }
@@ -35,22 +48,25 @@ abstract class ControllerAbstract extends ControllerAbstractCore
     }
 
     /**
+     * @param bool $empty = true
+     *
      * @return ?\App\Domains\Device\Model\Device
      */
-    protected function device(): ?DeviceModel
+    protected function device(bool $empty = true): ?DeviceModel
     {
-        return $this->cache(function () {
+        return $this->cache(function () use ($empty) {
             $device_id = $this->request->input('device_id');
 
             if ($device_id === '') {
                 return;
             }
 
-            if ($device_id === null) {
+            if ($empty && ($device_id === null)) {
                 return $this->devices()->first();
             }
 
-            return $this->devices()->firstWhere('id', $device_id);
+            return $this->devices()->firstWhere('id', $device_id)
+                ?: $this->devices()->first();
         });
     }
 
@@ -68,12 +84,12 @@ abstract class ControllerAbstract extends ControllerAbstractCore
     protected function users(): UserCollection
     {
         return $this->cache(function () {
-            if (empty($this->auth->admin)) {
+            if ($this->auth->adminMode() === false) {
                 return new UserCollection();
             }
 
             return UserModel::query()
-                ->simple()
+                ->listSimple()
                 ->get();
         });
     }
@@ -87,18 +103,24 @@ abstract class ControllerAbstract extends ControllerAbstractCore
     }
 
     /**
+     * @param bool $empty = true
+     *
      * @return ?\App\Domains\User\Model\User
      */
-    protected function user(): ?UserModel
+    protected function user(bool $empty = true): ?UserModel
     {
-        return $this->cache(function () {
-            if (empty($this->auth->admin)) {
+        return $this->cache(function () use ($empty) {
+            if ($this->auth->adminMode() === false) {
                 return $this->auth;
+            }
+
+            if (isset($this->row->user_id)) {
+                return $this->users()->firstWhere('id', $this->row->user_id);
             }
 
             $user_id = $this->request->input('user_id');
 
-            if ($user_id === '') {
+            if ($empty && ($user_id === '')) {
                 return;
             }
 
@@ -106,7 +128,8 @@ abstract class ControllerAbstract extends ControllerAbstractCore
                 return $this->auth;
             }
 
-            return $this->users()->firstWhere('id', $user_id);
+            return $this->users()->firstWhere('id', $user_id)
+                ?: $this->auth;
         });
     }
 
@@ -126,7 +149,7 @@ abstract class ControllerAbstract extends ControllerAbstractCore
         return $this->cache(
             fn () => VehicleModel::query()
                 ->whenUserId($this->user()?->id)
-                ->simple()
+                ->listSimple()
                 ->get()
         );
     }
@@ -140,22 +163,25 @@ abstract class ControllerAbstract extends ControllerAbstractCore
     }
 
     /**
+     * @param bool $empty = true
+     *
      * @return ?\App\Domains\Vehicle\Model\Vehicle
      */
-    protected function vehicle(): ?VehicleModel
+    protected function vehicle(bool $empty = true): ?VehicleModel
     {
-        return $this->cache(function () {
+        return $this->cache(function () use ($empty) {
             $vehicle_id = $this->request->input('vehicle_id');
 
-            if ($vehicle_id === '') {
+            if ($empty && ($vehicle_id === '')) {
                 return;
             }
 
             if ($vehicle_id === null) {
-                return $this->vehicle()->first();
+                return $this->vehicles()->first();
             }
 
-            return $this->vehicles()->firstWhere('id', $vehicle_id);
+            return $this->vehicles()->firstWhere('id', $vehicle_id)
+                ?: $this->vehicles()->first();
         });
     }
 

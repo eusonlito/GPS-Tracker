@@ -12,6 +12,7 @@ use App\Domains\Maintenance\Model\Collection\Maintenance as Collection;
 use App\Domains\Maintenance\Test\Factory\Maintenance as TestFactory;
 use App\Domains\MaintenanceItem\Model\MaintenanceItem as MaintenanceItemModel;
 use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Maintenance extends ModelAbstract
@@ -83,6 +84,14 @@ class Maintenance extends ModelAbstract
     public function itemsPivot(): HasMany
     {
         return $this->hasMany(MaintenanceMaintenanceItem::class, static::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(UserModel::class, UserModel::FOREIGN);
     }
 
     /**

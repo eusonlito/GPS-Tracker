@@ -17,6 +17,17 @@ class Index extends ControllerAbstract
      */
     public function __construct(protected Request $request, protected Authenticatable $auth)
     {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->request->merge([
+            'user_id' => $this->auth->preference('user_id', $this->request->input('user_id')),
+        ]);
     }
 
     /**
@@ -24,7 +35,7 @@ class Index extends ControllerAbstract
      */
     public function data(): array
     {
-        return [
+        return $this->dataCore() + [
             'list' => $this->list(),
         ];
     }
@@ -36,9 +47,10 @@ class Index extends ControllerAbstract
     {
         return $this->cache(
             fn () => Model::query()
-                ->byUserOrAdmin($this->auth)
+                ->whenUserId($this->user()?->id)
                 ->withMaintenancesCount()
                 ->withStats()
+                ->withUser()
                 ->orderByMaintenancesCount()
                 ->list()
                 ->get()

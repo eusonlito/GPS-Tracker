@@ -10,11 +10,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     /**
      * @return void
      */
-    abstract protected function data(): void;
-
-    /**
-     * @return void
-     */
     abstract protected function save(): void;
 
     /**
@@ -23,9 +18,20 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     public function handle(): Model
     {
         $this->data();
+        $this->check();
         $this->save();
 
         return $this->row;
+    }
+
+    /**
+     * @return void
+     */
+    protected function data(): void
+    {
+        $this->dataName();
+        $this->dataPlate();
+        $this->dataUserId();
     }
 
     /**
@@ -47,11 +53,28 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     /**
      * @return void
      */
-    protected function dataTimezoneId(): void
+    protected function check(): void
     {
-        $this->data['timezone_id'] = TimezoneModel::query()
-            ->selectOnly('id')
-            ->findOrFail($this->data['timezone_id'])
-            ->id;
+        $this->checkTimezone();
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkTimezone(): void
+    {
+        if ($this->checkTimezoneExists() === false) {
+            $this->exceptionValidator(__('vehicle-create.error.timezone-exists'));
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkTimezoneExists(): bool
+    {
+        return TimezoneModel::query()
+            ->byId($this->data['timezone_id'])
+            ->exists();
     }
 }

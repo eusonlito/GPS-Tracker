@@ -23,18 +23,18 @@ class Map extends ControllerAbstract
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function responseJson(): JsonResponse
-    {
-        return $this->json($this->factory()->fractal('map', $this->data()['list']));
-    }
-
-    /**
      * @return array
      */
     protected function data(): array
     {
         return ControllerService::new($this->request, $this->auth)->data();
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function responseJson(): JsonResponse
+    {
+        return $this->json($this->factory()->fractal('map', $this->data()['list']));
     }
 }

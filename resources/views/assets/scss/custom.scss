@@ -52,6 +52,29 @@
     max-width: 15rem;
 }
 
+.overflow-auto.scroll-visible {
+    scrollbar-color: white #999;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+        display: block;
+        height: 20px;
+        width: 20px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: white;
+        border-radius: 100px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        border: 5px solid transparent;
+        background-clip: content-box;
+        background-color: #999;
+    }
+}
+
 .progress-bar {
     background-color: rgb(var(--color-primary) / var(--tw-bg-opacity));
     justify-content: left;

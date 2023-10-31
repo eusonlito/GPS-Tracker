@@ -19,6 +19,7 @@ class Create extends ValidateAbstract
             'distance_next' => ['bail', 'numeric'],
             'amount' => ['bail', 'numeric'],
             'description' => ['bail'],
+            'user_id' => ['bail', 'integer'],
             'vehicle_id' => ['bail', 'required', 'integer'],
         ];
     }

@@ -16,6 +16,16 @@
     <input type="hidden" name="_action" value="create" />
     <input type="hidden" name="type" value="{{ $type }}" />
 
+    @if ($users_multiple)
+
+    <div class="box p-5 mt-5">
+        <div class="p-2">
+            <x-select name="user_id" :options="$users" value="id" text="name" id="alarm-create-user" :label="__('alarm-create.user')" required></x-select>
+        </div>
+    </div>
+
+    @endif
+
     @include ('domains.alarm.molecules.create-update')
 
     <div class="box p-5 mt-5">

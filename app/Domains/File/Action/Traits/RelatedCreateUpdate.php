@@ -70,6 +70,7 @@ trait RelatedCreateUpdate
             'file' => $file['file'],
             'related_table' => $this->row->getTable(),
             'related_id' => $this->row->id,
+            'user_id' => $this->data['user_id'],
         ];
     }
 

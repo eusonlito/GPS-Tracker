@@ -8,13 +8,17 @@
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('refuel-index.filter') }}" data-table-search="#refuel-list-table" />
         </div>
 
-        @if ($vehicles_multiple)
+        @if ($users_multiple)
 
         <div class="flex-grow mt-2 lg:mt-0">
-            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" :placeholder="__('refuel-index.vehicle')" data-change-submit></x-select>
+            <x-select name="user_id" :options="$users" value="id" text="name" placeholder="{{ __('refuel-index.user') }}" data-change-submit></x-select>
         </div>
 
         @endif
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" placeholder="{{ __('refuel-index.vehicle') }}" data-change-submit></x-select>
+        </div>
 
         <div class="flex-grow mt-2 lg:mt-0">
             <input type="search" name="start_at" value="{{ $REQUEST->input('start_at') }}" class="form-control form-control-lg" placeholder="{{ __('refuel-index.start-at') }}" data-datepicker data-datepicker-min-date="{{ $date_min }}" data-change-submit />
@@ -30,11 +34,15 @@
     </div>
 </form>
 
-<div class="overflow-auto lg:overflow-visible header-sticky">
+<div class="overflow-auto scroll-visible header-sticky">
     <table id="refuel-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
-                @if ($vehicles_multiple)
+                @if ($user_empty)
+                <th>{{ __('refuel-index.user') }}</th>
+                @endif
+
+                @if ($vehicle_empty)
                 <th>{{ __('refuel-index.vehicle') }}</th>
                 @endif
 
@@ -53,7 +61,11 @@
             @php ($link = route('refuel.update', $row->id))
 
             <tr>
-                @if ($vehicles_multiple)
+                @if ($user_empty)
+                <td><a href="{{ $link }}" class="block">{{ $row->user->name }}</a></td>
+                @endif
+
+                @if ($vehicle_empty)
                 <td><a href="{{ $link }}" class="block">{{ $row->vehicle->name }}</a></td>
                 @endif
 
@@ -72,7 +84,7 @@
 
         <tfoot class="bg-white">
             <tr>
-                <th colspan="{{ $vehicles_multiple ? '3' : '2' }}"></th>
+                <th colspan="{{ 2 + intval($user_empty) + intval($vehicle_empty) }}"></th>
                 <th>@unitHumanRaw('distance', $totals->distance, 0)</th>
                 <th>@unitHumanRaw('volume', $totals->quantity)</th>
                 <th>@unitHumanRaw('money', $totals->price, 3)</th>

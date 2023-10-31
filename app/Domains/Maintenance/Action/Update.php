@@ -16,7 +16,7 @@ class Update extends CreateUpdateAbstract
         $this->row->distance = $this->data['distance'];
         $this->row->distance_next = $this->data['distance_next'];
         $this->row->description = $this->data['description'];
-        $this->row->vehicle_id = $this->vehicle->id;
+        $this->row->vehicle_id = $this->data['vehicle_id'];
 
         $this->row->save();
     }

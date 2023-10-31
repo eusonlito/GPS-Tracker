@@ -45,6 +45,9 @@ class Index extends ControllerAbstract
      */
     protected function responseJsonList(): Collection
     {
-        return Model::query()->byUserId($this->auth->id)->enabled()->get();
+        return Model::query()
+            ->byUserId($this->auth->id)
+            ->enabled()
+            ->get();
     }
 }

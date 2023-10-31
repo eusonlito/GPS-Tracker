@@ -2,13 +2,35 @@
 
 @section ('body')
 
-<input type="search" class="form-control form-control-lg" placeholder="{{ __('alarm-notification-index.filter') }}" data-table-search="#alarm-notification-list-table" />
+<form method="get">
+    <div class="sm:flex sm:space-x-4">
+        <div class="flex-grow mt-2 sm:mt-0">
+            <input type="search" class="form-control form-control-lg" placeholder="{{ __('alarm-notification-index.filter') }}" data-table-search="#alarm-notification-list-table" />
+        </div>
 
-<div class="overflow-auto header-sticky">
+        @if ($users_multiple)
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="user_id" :options="$users" value="id" text="name" placeholder="{{ __('device-notification-index.user') }}" data-change-submit></x-select>
+        </div>
+
+        @endif
+
+        <div class="flex-grow mt-2 lg:mt-0">
+            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" placeholder="{{ __('device-notification-index.vehicle') }}" data-change-submit></x-select>
+        </div>
+    </div>
+</form>
+
+<div class="overflow-auto scroll-visible header-sticky">
     <table id="alarm-notification-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
-                @if ($vehicles_multiple)
+                @if ($user_empty)
+                <th class="w-1">{{ __('alarm-notification-index.user') }}</th>
+                @endif
+
+                @if ($vehicle_empty)
                 <th class="w-1">{{ __('alarm-notification-index.vehicle') }}</th>
                 @endif
 
@@ -28,7 +50,11 @@
             @foreach ($list as $row)
 
             <tr>
-                @if ($vehicles_multiple)
+                @if ($user_empty)
+                <td><span class="block">{{ $row->user->name }}</span></td>
+                @endif
+
+                @if ($vehicle_empty)
                 <td class="w-1"><a href="{{ route('vehicle.update', $row->vehicle->id) }}" class="block">{{ $row->vehicle->name }}</a></td>
                 @endif
 

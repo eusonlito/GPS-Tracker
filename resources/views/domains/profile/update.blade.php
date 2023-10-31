@@ -52,6 +52,19 @@
         </div>
     </div>
 
+    @if ($admin)
+
+    <div class="box p-5 mt-5">
+        <div class="p-2">
+            <div class="form-check">
+                <input type="checkbox" name="admin_mode" value="1" class="form-check-switch" id="user-admin_mode" {{ $REQUEST->input('admin_mode') ? 'checked' : '' }}>
+                <label for="user-admin_mode" class="form-check-label">{{ __('user-update.admin_mode') }}</label>
+            </div>
+        </div>
+    </div>
+
+    @endif
+
     <div class="box p-5 mt-5">
         <div class="p-2">
             <label for="user-password_current" class="form-label">{{ __('profile-update.password_current') }}</label>

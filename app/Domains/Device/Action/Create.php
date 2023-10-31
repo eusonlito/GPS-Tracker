@@ -9,27 +9,6 @@ class Create extends CreateUpdateAbstract
     /**
      * @return void
      */
-    protected function data(): void
-    {
-        $this->dataName();
-        $this->dataModel();
-        $this->dataSerial();
-        $this->dataPassword();
-        $this->dataVehicleId();
-    }
-
-    /**
-     * @return void
-     */
-    protected function check(): void
-    {
-        $this->checkCode();
-        $this->checkSerial();
-    }
-
-    /**
-     * @return void
-     */
     protected function save(): void
     {
         $this->row = Model::query()->create([
@@ -43,7 +22,7 @@ class Create extends CreateUpdateAbstract
             'shared' => $this->data['shared'],
             'shared_public' => $this->data['shared_public'],
             'vehicle_id' => $this->data['vehicle_id'],
-            'user_id' => $this->auth->id,
+            'user_id' => $this->data['user_id'],
         ]);
     }
 }

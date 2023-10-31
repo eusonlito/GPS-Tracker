@@ -4,6 +4,7 @@ namespace App\Domains\Core\Service\Controller;
 
 use Closure;
 use ReflectionFunction;
+use App\Domains\Core\Model\ModelAbstract;
 
 abstract class ControllerAbstract
 {
@@ -11,6 +12,11 @@ abstract class ControllerAbstract
      * @var array
      */
     protected array $cache = [];
+
+    /**
+     * @return array
+     */
+    abstract public function data(): array;
 
     /**
      * @return self
@@ -72,5 +78,34 @@ abstract class ControllerAbstract
             'false', '0' => false,
             default => $default,
         };
+    }
+
+    /**
+     * @param array $data = []
+     * @param ?\App\Domains\Core\Model\ModelAbstract $row = null
+     *
+     * @return void
+     */
+    final protected function requestMergeWithRow(array $data = [], ?ModelAbstract $row = null): void
+    {
+        $this->request->merge($this->request->input() + $data + $this->requestMergeWithRowAsArray($row));
+    }
+
+    /**
+     * @param ?\App\Domains\Core\Model\ModelAbstract $row
+     *
+     * @return array
+     */
+    final protected function requestMergeWithRowAsArray(?ModelAbstract $row): array
+    {
+        if ($row) {
+            return $row->toArray();
+        }
+
+        if (isset($this->row)) {
+            return $this->row->toArray();
+        }
+
+        return [];
     }
 }

@@ -19,8 +19,8 @@ class Create extends CreateUpdateAbstract
             'price' => $this->data['price'],
             'total' => $this->data['total'],
             'date_at' => $this->data['date_at'],
-            'vehicle_id' => $this->vehicle->id,
-            'user_id' => $this->auth->id,
+            'vehicle_id' => $this->data['vehicle_id'],
+            'user_id' => $this->data['user_id'],
         ]);
     }
 }

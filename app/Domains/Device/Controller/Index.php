@@ -3,8 +3,7 @@
 namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Device\Model\Device as Model;
-use App\Domains\Device\Model\Collection\Device as Collection;
+use App\Domains\Device\Service\Controller\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -15,22 +14,14 @@ class Index extends ControllerAbstract
     {
         $this->meta('title', __('device-index.meta-title'));
 
-        return $this->page('device.index', [
-            'list' => $this->list(),
-        ]);
+        return $this->page('device.index', $this->data());
     }
 
     /**
-     * @return \App\Domains\Device\Model\Collection\Device
+     * @return array
      */
-    protected function list(): Collection
+    protected function data(): array
     {
-        return Model::query()
-            ->byUserOrAdmin($this->auth)
-            ->withMessagesCount()
-            ->withMessagesPendingCount()
-            ->withVehicle()
-            ->list()
-            ->get();
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 }
