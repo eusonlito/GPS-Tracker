@@ -5,4 +5,5 @@
     'meta-title' => 'Entretien > :title',
     'save' => 'Sauvegarder',
     'success' => 'L\'entretien a été créé avec succès',
+    'user' => 'Utilisateur',
 ];

@@ -5,4 +5,5 @@
     'meta-title' => 'Maintenances > :title',
     'save' => 'Save',
     'success' => 'The maintenance has been successfully created',
+    'user' => 'User',
 ];

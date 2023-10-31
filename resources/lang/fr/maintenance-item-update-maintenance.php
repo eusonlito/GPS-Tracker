@@ -2,6 +2,7 @@
     'amount_gross' => 'Montant brut',
     'amount_net' => 'Montant net',
     'date_at' => 'Date',
+    'filter' => 'Filtre...',
     'mainteance' => 'Maintenance',
     'meta-title' => 'Maintenance &gt; Article &gt; :titre &gt; Maintenance',
     'quantity' => 'Quantité',

@@ -10,5 +10,6 @@
     'quantity' => 'Quantité',
     'start-at' => 'Début',
     'total' => 'Montant total',
+    'user' => 'Utilisateur',
     'vehicle' => 'Véhicule',
 ];

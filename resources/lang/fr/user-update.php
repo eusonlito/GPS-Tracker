@@ -1,5 +1,6 @@
 <?php return [
     'admin' => 'Administrateur',
+    'admin_mode' => 'Mode Admin',
     'delete-button' => 'Supprimer',
     'delete-message' => 'La suppression d\'un utilisateur entraînera également la suppression de tous ses appareils, voyages et ravitaillements. Veux-tu vraiment continuer ? La suppression est permanente, cette action ne peut pas être annulée.',
     'delete-success' => 'L\'utilisateur a été supprimé avec succès',

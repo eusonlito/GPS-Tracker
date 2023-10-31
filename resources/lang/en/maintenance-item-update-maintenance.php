@@ -2,6 +2,7 @@
     'amount_gross' => 'Gross Amount',
     'amount_net' => 'Net Amount',
     'date_at' => 'Date',
+    'filter' => 'Filter...',
     'mainteance' => 'Maintenance',
     'meta-title' => 'Maintenance &gt; Item &gt; :title &gt; Maintenance',
     'quantity' => 'Quantity',

@@ -10,6 +10,7 @@
     'search' => 'Recherche',
     'send' => 'Envoyer',
     'start-at' => 'Accueil',
+    'user' => 'Utilisateur',
     'vehicle' => 'Véhicule',
     'workshop' => 'Atelier',
 ];

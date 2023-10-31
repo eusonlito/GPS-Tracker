@@ -11,13 +11,13 @@
         @if ($users_multiple)
 
         <div class="flex-grow mt-2 lg:mt-0">
-            <x-select name="user_id" :options="$users" value="id" text="name" placeholder="{{ __('device-notification-index.user') }}" data-change-submit></x-select>
+            <x-select name="user_id" :options="$users" value="id" text="name" placeholder="{{ __('alarm-notification-index.user') }}" data-change-submit></x-select>
         </div>
 
         @endif
 
         <div class="flex-grow mt-2 lg:mt-0">
-            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" placeholder="{{ __('device-notification-index.vehicle') }}" data-change-submit></x-select>
+            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" placeholder="{{ __('alarm-notification-index.vehicle') }}" data-change-submit></x-select>
         </div>
     </div>
 </form>

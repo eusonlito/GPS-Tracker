@@ -10,5 +10,6 @@
     'name' => 'Name',
     'telegram' => 'Telegram',
     'trip' => 'Trip',
+    'user' => 'User',
     'vehicle' => 'Vehicle',
 ];

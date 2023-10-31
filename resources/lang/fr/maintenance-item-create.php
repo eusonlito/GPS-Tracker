@@ -6,4 +6,5 @@
     'name' => 'Nom',
     'save' => 'Créer',
     'success' => 'L\'article a été créé avec succès',
+    'user' => 'Utilisateur',
 ];

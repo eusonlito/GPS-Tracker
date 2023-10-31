@@ -10,5 +10,6 @@
     'name' => 'Nom',
     'telegram' => 'Télégramme',
     'trip' => 'Voyage',
+    'user' => 'Utilisateur',
     'vehicle' => 'Véhicule',
 ];

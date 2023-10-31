@@ -9,5 +9,6 @@
     'name' => 'Nombre',
     'shared' => 'Compartido',
     'shared_public' => 'Compartido Público',
+    'user' => 'Usuario',
     'vehicle' => 'Vehículo',
 ];

@@ -12,5 +12,6 @@
     'notifications-granted' => 'Notificaciones Activadas',
     'telegram' => 'Telegram',
     'type' => 'Tipo',
+    'user' => 'Usuario',
     'vehicles' => 'Vehículos',
 ];

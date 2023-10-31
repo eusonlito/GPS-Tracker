@@ -6,5 +6,6 @@
     'save' => 'Sauvegarder',
     'success' => 'L\'alarme a été mise à jour avec succès',
     'type' => 'Type d\'alarme',
+    'user' => 'Utilisateur',
     'vehicles' => 'Véhicules',
 ];

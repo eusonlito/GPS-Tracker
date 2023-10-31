@@ -5,4 +5,5 @@
     'meta-title' => 'Matenimientos > Item > :title',
     'save' => 'Guardar',
     'success' => 'El item ha sido actualizado correctamente',
+    'user' => 'Usuario',
 ];

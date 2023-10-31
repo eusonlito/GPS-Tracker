@@ -9,4 +9,5 @@
     'save' => 'Guardar',
     'shared-url' => 'URL Pública:',
     'success' => 'El dispositivo ha sido actualizado correctamente',
+    'user' => 'Usuario',
 ];

@@ -6,4 +6,5 @@
     'name' => 'Nom',
     'plate' => 'Enregistrement',
     'timezone' => 'Fuseau horaire',
+    'user' => 'Utilisateur',
 ];

@@ -6,5 +6,6 @@
     'save' => 'Guardar',
     'success' => 'La alarma ha sido actualizada correctamente',
     'type' => 'Tipo',
+    'user' => 'Usuario',
     'vehicles' => 'Vehículos',
 ];

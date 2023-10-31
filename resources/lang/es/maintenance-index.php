@@ -10,6 +10,7 @@
     'search' => 'Buscar',
     'send' => 'Enviar',
     'start-at' => 'Inicio',
+    'user' => 'Usuario',
     'vehicle' => 'Vehículo',
     'workshop' => 'Taller',
 ];

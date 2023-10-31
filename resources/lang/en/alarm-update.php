@@ -6,5 +6,6 @@
     'save' => 'Save',
     'success' => 'The alarm has been successfully updated',
     'type' => 'Type',
+    'user' => 'User',
     'vehicles' => 'Vehicles',
 ];

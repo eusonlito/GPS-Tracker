@@ -10,6 +10,7 @@
     'search' => 'Search',
     'send' => 'Send',
     'start-at' => 'Start',
+    'user' => 'User',
     'vehicle' => 'Vehicle',
     'workshop' => 'Workshop',
 ];

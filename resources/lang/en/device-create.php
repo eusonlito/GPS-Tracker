@@ -3,6 +3,7 @@
     'error' => [
         'code-exists' => 'The indicated code already exists',
         'serial-exists' => 'The specified serial already exists',
+        'vehicle-exists' => 'The selected vehicle is not available',
     ],
     'meta-title' => 'Devices > Create',
     'model' => 'Model',
@@ -14,6 +15,7 @@
     'shared' => 'Share this device\'s trips (only those created after activation)',
     'shared_public' => 'Publicly share trips from this device (only those created after activation)',
     'success' => 'The device has been successfully registered',
+    'user' => 'User',
     'vehicle' => 'Vehicle',
     'vehicle-select' => 'Select Vehicle',
 ];

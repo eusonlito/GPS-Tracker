@@ -4,4 +4,5 @@
     'meta-title' => 'Ravitaillement > :title',
     'save' => 'Sauvegarder',
     'success' => 'Le ravitaillement a été mis à jour avec succès',
+    'user' => 'Utilisateur',
 ];

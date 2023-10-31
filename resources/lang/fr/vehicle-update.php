@@ -8,4 +8,5 @@
     'notifications' => 'Notifications',
     'save' => 'Sauvegarder',
     'success' => 'Le véhicule a été mis à jour avec succès',
+    'user' => 'Utilisateur',
 ];

@@ -9,4 +9,5 @@
     'save' => 'Save',
     'shared-url' => 'Public URL:',
     'success' => 'The device has been successfully updated',
+    'user' => 'User',
 ];

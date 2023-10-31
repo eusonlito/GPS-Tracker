@@ -4,4 +4,5 @@
     'meta-title' => 'Refuelings > :title',
     'save' => 'Save',
     'success' => 'The refueling has been successfully updated',
+    'user' => 'User',
 ];

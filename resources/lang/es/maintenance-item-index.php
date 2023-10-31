@@ -9,4 +9,5 @@
     'name' => 'Nombre',
     'quantity_sum' => 'Cantidad',
     'total_sum' => 'Total',
+    'user' => 'Usuario',
 ];

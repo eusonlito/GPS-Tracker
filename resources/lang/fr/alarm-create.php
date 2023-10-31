@@ -16,4 +16,5 @@
     'telegram' => 'Notifier par télégramme',
     'type' => 'Type',
     'type-select' => 'Sélectionne un type',
+    'user' => 'Utilisateur',
 ];

@@ -5,4 +5,5 @@
     'meta-title' => 'Maintenance &gt; Item &gt; :title',
     'save' => 'Save',
     'success' => 'The item has been successfully updated',
+    'user' => 'User',
 ];

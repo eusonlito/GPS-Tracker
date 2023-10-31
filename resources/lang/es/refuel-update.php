@@ -4,4 +4,5 @@
     'meta-title' => 'Repostajes > :title',
     'save' => 'Guardar',
     'success' => 'El repostaje ha sido actualizado correctamente',
+    'user' => 'Usuario',
 ];

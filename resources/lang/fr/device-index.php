@@ -9,5 +9,6 @@
     'name' => 'Nom de l\'appareil',
     'shared' => 'Partagés',
     'shared_public' => 'Public partagé',
+    'user' => 'Utilisateur',
     'vehicle' => 'Véhicule',
 ];

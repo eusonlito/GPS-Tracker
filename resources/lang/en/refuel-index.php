@@ -10,5 +10,6 @@
     'quantity' => 'Quantity',
     'start-at' => 'Home',
     'total' => 'Total Amount',
+    'user' => 'User',
     'vehicle' => 'Vehicle',
 ];

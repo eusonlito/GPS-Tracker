@@ -2,6 +2,7 @@
     'amount_gross' => 'Importe Bruto',
     'amount_net' => 'Importe Neto',
     'date_at' => 'Fecha',
+    'filter' => 'Filtrar...',
     'mainteance' => 'Mantenimiento',
     'meta-title' => 'Matenimientos > Item > :title > Mateniemientos',
     'quantity' => 'Cantidad',

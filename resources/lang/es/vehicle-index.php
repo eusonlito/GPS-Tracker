@@ -6,4 +6,5 @@
     'name' => 'Nombre',
     'plate' => 'Matrícula',
     'timezone' => 'Zona Horaria',
+    'user' => 'Usuario',
 ];

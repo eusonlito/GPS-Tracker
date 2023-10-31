@@ -6,4 +6,5 @@
     'name' => 'Name',
     'plate' => 'License plate',
     'timezone' => 'Time zone',
+    'user' => 'User',
 ];
