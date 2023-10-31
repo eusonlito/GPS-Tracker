@@ -4,7 +4,6 @@ namespace App\Domains\Timezone\Controller;
 
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
 use App\Domains\Timezone\Model\Timezone as Model;
-use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -20,8 +19,8 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::query()->byId($id)->firstOr(static function () {
-            throw new NotFoundException(__('timezone.error.not-found'));
-        });
+        $this->row = Model::query()
+            ->byId($id)
+            ->firstOr(fn () => $this->exceptionNotFound(__('timezone.error.not-found')));
     }
 }

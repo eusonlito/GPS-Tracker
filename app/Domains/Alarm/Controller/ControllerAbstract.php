@@ -4,7 +4,6 @@ namespace App\Domains\Alarm\Controller;
 
 use App\Domains\Alarm\Model\Alarm as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
-use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -20,8 +19,9 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::query()->byId($id)->byUserOrAdmin($this->auth)->firstOr(static function () {
-            throw new NotFoundException(__('alarm.error.not-found'));
-        });
+        $this->row = Model::query()
+            ->byId($id)
+            ->byUserOrAdmin($this->auth)
+            ->firstOr(fn () => $this->exceptionNotFound(__('alarm.error.not-found')));
     }
 }

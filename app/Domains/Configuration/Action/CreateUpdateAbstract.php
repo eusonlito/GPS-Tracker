@@ -45,9 +45,20 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     protected function checkKey(): void
     {
-        if (Model::query()->byIdNot($this->row->id ?? 0)->byKey($this->data['key'])->count()) {
+        if ($this->checkKeyExists()) {
             $this->exceptionValidator(__('configuration-create.error.key-duplicate'));
         }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkKeyExists(): bool
+    {
+        return Model::query()
+            ->byIdNot($this->row->id ?? 0)
+            ->byKey($this->data['key'])
+            ->exists();
     }
 
     /**

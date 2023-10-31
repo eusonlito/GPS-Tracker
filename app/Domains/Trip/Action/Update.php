@@ -30,9 +30,20 @@ class Update extends ActionAbstract
      */
     protected function checkCode(): void
     {
-        if (Model::query()->byIdNot($this->row->id)->byCode($this->data['code'])->count()) {
+        if ($this->checkCodeExists()) {
             $this->exceptionValidator(__('trip-update.error.code-exists'));
         }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkCodeExists(): bool
+    {
+        return Model::query()
+            ->byIdNot($this->row->id)
+            ->byCode($this->data['code'])
+            ->exists();
     }
 
     /**

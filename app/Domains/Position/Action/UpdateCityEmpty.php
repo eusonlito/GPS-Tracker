@@ -30,6 +30,10 @@ class UpdateCityEmpty extends ActionAbstract
      */
     protected function ids(): array
     {
-        return Model::query()->withoutCity()->orderByDateUtcAtAsc()->pluck('id')->all();
+        return Model::query()
+            ->withoutCity()
+            ->orderByDateUtcAtAsc()
+            ->pluck('id')
+            ->all();
     }
 }

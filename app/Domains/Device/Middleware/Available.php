@@ -16,10 +16,22 @@ class Available extends MiddlewareAbstract
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if (Model::query()->byUserId($request->user()->id)->count() === 0) {
+        if ($this->exists() === false) {
             return redirect()->route('device.create');
         }
 
         return $next($request);
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return bool
+     */
+    protected function exists(Request $request): bool
+    {
+        return Model::query()
+            ->byUserId($request->user()->id)
+            ->exists();
     }
 }

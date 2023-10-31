@@ -6,7 +6,6 @@ use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
 use App\Domains\Vehicle\Model\Vehicle as Model;
-use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -32,9 +31,10 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::query()->byId($id)->byUserOrAdmin($this->auth)->firstOr(static function () {
-            throw new NotFoundException(__('vehicle.error.not-found'));
-        });
+        $this->row = Model::query()
+            ->byId($id)
+            ->byUserOrAdmin($this->auth)
+            ->firstOr(fn () => $this->exceptionNotFound(__('vehicle.error.not-found')));
     }
 
     /**
@@ -47,9 +47,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
         $this->alarm = AlarmModel::query()
             ->byId($alarm_id)
             ->byVehicleId($this->row->id)
-            ->firstOr(static function () {
-                throw new NotFoundException(__('vehicle.error.not-found'));
-            });
+            ->firstOr(fn () => $this->exceptionNotFound(__('vehicle.error.not-found')));
     }
 
     /**
@@ -62,8 +60,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
         $this->alarmNotification = AlarmNotificationModel::query()
             ->byId($alarm_notification_id)
             ->byVehicleId($this->row->id)
-            ->firstOr(static function () {
-                throw new NotFoundException(__('vehicle.error.not-found'));
-            });
+            ->firstOr(fn () => $this->exceptionNotFound(__('vehicle.error.not-found')));
     }
 }

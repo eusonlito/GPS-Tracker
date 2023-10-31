@@ -7,7 +7,6 @@ use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationMo
 use App\Domains\Device\Model\Device as Model;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
-use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -38,9 +37,10 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::query()->byId($id)->byUserOrAdmin($this->auth)->firstOr(static function () {
-            throw new NotFoundException(__('device.error.not-found'));
-        });
+        $this->row = Model::query()
+            ->byId($id)
+            ->byUserOrAdmin($this->auth)
+            ->firstOr(fn () => $this->exceptionNotFound(__('device.error.not-found')));
     }
 
     /**
@@ -53,9 +53,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
         $this->alarm = AlarmModel::query()
             ->byId($alarm_id)
             ->byDeviceId($this->row->id)
-            ->firstOr(static function () {
-                throw new NotFoundException(__('device.error.not-found'));
-            });
+            ->firstOr(fn () => $this->exceptionNotFound(__('device.error.not-found')));
     }
 
     /**
@@ -68,9 +66,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
         $this->alarmNotification = AlarmNotificationModel::query()
             ->byId($alarm_notification_id)
             ->byDeviceId($this->row->id)
-            ->firstOr(static function () {
-                throw new NotFoundException(__('device.error.not-found'));
-            });
+            ->firstOr(fn () => $this->exceptionNotFound(__('device.error.not-found')));
     }
 
     /**
@@ -83,8 +79,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
         $this->message = DeviceMessageModel::query()
             ->byId($device_message_id)
             ->byDeviceId($this->row->id)
-            ->firstOr(static function () {
-                throw new NotFoundException(__('device.error.not-found'));
-            });
+            ->firstOr(fn () => $this->exceptionNotFound(__('device.error.not-found')));
     }
 }

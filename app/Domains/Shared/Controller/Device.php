@@ -5,7 +5,6 @@ namespace App\Domains\Shared\Controller;
 use Illuminate\Http\Response;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Shared\Service\Controller\Device as ControllerService;
-use App\Exceptions\NotFoundException;
 
 class Device extends ControllerAbstract
 {
@@ -38,9 +37,7 @@ class Device extends ControllerAbstract
         $this->device = DeviceModel::query()
             ->byCode($code)
             ->whereShared()
-            ->firstOr(static function () {
-                throw new NotFoundException(__('shared-device.error.not-found'));
-            });
+            ->firstOr(fn () => $this->exceptionNotFound(__('shared-device.error.not-found')));
     }
 
     /**

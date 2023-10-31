@@ -13,6 +13,7 @@ class Create extends ActionAbstract
     public function handle(): Model
     {
         $this->data();
+        $this->check();
         $this->save();
 
         return $this->row;
@@ -24,7 +25,6 @@ class Create extends ActionAbstract
     protected function data(): void
     {
         $this->dataMessage();
-        $this->dataDeviceId();
     }
 
     /**
@@ -38,14 +38,30 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
-    protected function dataDeviceId(): void
+    protected function check(): void
     {
-        $this->data['device_id'] = DeviceModel::query()
-            ->selectOnly('id')
+        $this->checkDeviceId();
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkDeviceId(): void
+    {
+        if ($this->checkDeviceIdExists() === false) {
+            $this->exceptionValidator(__('device-message-create.error.device-exists'));
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkDeviceIdExists(): bool
+    {
+        return DeviceModel::query()
             ->byId($this->data['device_id'])
             ->byUserOrAdmin($this->auth)
-            ->firstOrFail()
-            ->id;
+            ->exists();
     }
 
     /**

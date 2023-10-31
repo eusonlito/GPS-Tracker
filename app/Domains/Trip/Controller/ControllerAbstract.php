@@ -4,7 +4,6 @@ namespace App\Domains\Trip\Controller;
 
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
 use App\Domains\Trip\Model\Trip as Model;
-use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -20,8 +19,9 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::query()->byId($id)->byUserOrAdmin($this->auth)->firstOr(static function () {
-            throw new NotFoundException(__('trip.error.not-found'));
-        });
+        $this->row = Model::query()
+            ->byId($id)
+            ->byUserOrAdmin($this->auth)
+            ->firstOr(fn () => $this->exceptionNotFound(__('trip.error.not-found')));
     }
 }

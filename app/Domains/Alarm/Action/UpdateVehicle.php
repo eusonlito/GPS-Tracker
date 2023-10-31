@@ -24,6 +24,7 @@ class UpdateVehicle extends ActionAbstract
     protected function data(): void
     {
         $this->data['related'] = VehicleModel::query()
+            ->byUserId($this->row->user_id)
             ->byIds($this->data['related'])
             ->pluck('id')
             ->all();

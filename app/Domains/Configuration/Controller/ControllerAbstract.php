@@ -19,6 +19,8 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::query()->byId($id)->firstOr(fn () => $this->exceptionNotFound(__('configuration.error.not-found')));
+        $this->row = Model::query()
+            ->byId($id)
+            ->firstOr(fn () => $this->exceptionNotFound(__('configuration.error.not-found')));
     }
 }

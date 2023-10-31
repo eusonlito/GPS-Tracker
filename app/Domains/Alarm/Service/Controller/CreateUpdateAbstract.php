@@ -57,7 +57,7 @@ abstract class CreateUpdateAbstract extends ControllerAbstract
     {
         return $this->cache(
             fn () => PositionModel::query()
-                ->byUserId($this->auth->id)
+                ->byUserId($this->user()->id)
                 ->orderByDateUtcAtDesc()
                 ->first()
         );

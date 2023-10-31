@@ -4,7 +4,6 @@ namespace App\Domains\User\Controller;
 
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
 use App\Domains\User\Model\User as Model;
-use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -28,8 +27,8 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::query()->byId($id)->firstOr(static function () {
-            throw new NotFoundException(__('user.error.not-found'));
-        });
+        $this->row = Model::query()
+            ->byId($id)
+            ->firstOr(fn () => $this->exceptionNotFound(__('user.error.not-found')));
     }
 }

@@ -38,7 +38,7 @@ class UpdateVehicle extends ControllerAbstract
     protected function vehicles(): VehicleCollection
     {
         return VehicleModel::query()
-            ->byUserId($this->row->user_id)
+            ->byUserId($this->user()->id)
             ->list()
             ->withAlarmPivot($this->row->id)
             ->get()

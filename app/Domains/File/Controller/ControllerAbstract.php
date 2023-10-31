@@ -4,7 +4,6 @@ namespace App\Domains\File\Controller;
 
 use App\Domains\File\Model\File as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
-use App\Exceptions\NotFoundException;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -20,8 +19,9 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(int $id): void
     {
-        $this->row = Model::query()->byId($id)->byUserOrAdmin($this->auth)->firstOr(static function () {
-            throw new NotFoundException(__('file.error.not-found'));
-        });
+        $this->row = Model::query()
+            ->byId($id)
+            ->byUserOrAdmin($this->auth)
+            ->firstOr(fn () => $this->exceptionNotFound(__('file.error.not-found')));
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Domains\Maintenance\Action;
 
+use App\Domains\File\Action\Traits\RelatedCreateUpdate as FileRelatedCreateUpdate;
 use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
-use App\Domains\File\Action\Traits\RelatedCreateUpdate as FileRelatedCreateUpdate;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
 {

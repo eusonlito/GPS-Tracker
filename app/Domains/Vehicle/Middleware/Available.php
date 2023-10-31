@@ -16,10 +16,23 @@ class Available extends MiddlewareAbstract
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if (Model::query()->byUserId($request->user()->id)->count() === 0) {
+        if ($this->exists($request) === false) {
             return redirect()->route('vehicle.create');
         }
 
         return $next($request);
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     *
+     * @return bool
+     */
+    protected function exists(Request $request): bool
+    {
+        return Model::query()
+            ->byUserId($request->user()->id)
+            ->exists();
     }
 }

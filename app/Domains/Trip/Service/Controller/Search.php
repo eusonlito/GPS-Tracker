@@ -142,7 +142,7 @@ class Search extends Index
     {
         return $this->cache(
             fn () => PositionModel::query()
-                ->whenUserId($this->user()->id)
+                ->whenUserId($this->user()?->id)
                 ->orderByDateUtcAtDesc()
                 ->first()
         );
