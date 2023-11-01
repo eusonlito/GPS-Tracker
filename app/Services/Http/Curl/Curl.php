@@ -689,11 +689,9 @@ class Curl
             return $this;
         }
 
-        [$headers, $body] = explode("\r\n\r\n", $response, 2);
+        [$headers, $this->response] = explode("\r\n\r\n", $response, 2) + ['', null];
 
         $this->responseHeaders($headers);
-
-        $this->response = $body;
 
         return $this;
     }
@@ -920,7 +918,7 @@ class Curl
         } elseif (is_bool($value)) {
             $value = $value ? 'true' : 'false';
         } else {
-            $value = (string) $value;
+            $value = strval($value);
         }
 
         return $header."\r\n".$value."\r\n".'--'.$this->boundary.'--'."\r\n";
@@ -1092,8 +1090,8 @@ class Curl
      */
     protected function exception(): CurlException
     {
-        $message = $this->exceptionMessage((string) $this->response);
-        $code = $this->exceptionCode((string) $this->response, $this->info['http_code']);
+        $message = $this->exceptionMessage(strval($this->response));
+        $code = $this->exceptionCode(strval($this->response), $this->info['http_code']);
 
         return new CurlException(substr($message, 0, 1024), $code);
     }

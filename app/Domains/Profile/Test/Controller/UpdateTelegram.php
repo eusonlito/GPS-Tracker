@@ -89,6 +89,6 @@ class UpdateTelegram extends ControllerAbstract
      */
     protected function setCurl(): void
     {
-        Curl::fake(file_get_contents(base_path('resources/app/test/server/api.telegram.org.log')));
+        Curl::fake(file_get_contents(base_path('resources/app/test/profile/api.telegram.org.log')));
     }
 }
