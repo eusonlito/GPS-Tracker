@@ -67,13 +67,19 @@ abstract class TestAbstract extends TestsAbstract
     }
 
     /**
+     * @param ?int $id = null
+     *
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-    protected function user(): Authenticatable
+    protected function user(?int $id = null): Authenticatable
     {
         $model = $this->getUserClass();
 
-        return $model::orderBy('id', 'ASC')->first()
+        if ($id) {
+            return $model::query()->findOrFail($id);
+        }
+
+        return $model::query()->orderBy('id', 'ASC')->first()
             ?: $this->factoryCreate($model);
     }
 
@@ -84,7 +90,7 @@ abstract class TestAbstract extends TestsAbstract
     {
         $model = $this->getUserClass();
 
-        return $model::orderBy('id', 'DESC')->first()
+        return $model::query()->orderBy('id', 'DESC')->first()
             ?: $this->factoryCreate($model);
     }
 
@@ -97,7 +103,7 @@ abstract class TestAbstract extends TestsAbstract
     {
         $model = $model ?: $this->getModelClass();
 
-        return $model::orderBy('id', 'DESC')->first()
+        return $model::query()->orderBy('id', 'DESC')->first()
             ?: $model::factory()->create();
     }
 

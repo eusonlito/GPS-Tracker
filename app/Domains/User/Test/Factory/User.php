@@ -25,6 +25,7 @@ class User extends FactoryAbstract
             'preferences' => $this->definitionPreferences(),
             'telegram' => $this->definitionTelegram(),
             'admin' => false,
+            'admin_mode' => false,
             'enabled' => true,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
