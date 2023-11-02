@@ -10,7 +10,7 @@ abstract class CreateUpdateAbstract extends ControllerAbstract
     protected function request()
     {
         $this->requestMergeWithRow([
-            'user_id' => $this->user()->id,
+            'user_id' => $this->user(false)->id,
         ]);
     }
 

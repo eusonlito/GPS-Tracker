@@ -19,30 +19,15 @@ class Update extends ControllerAbstract
      */
     public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+        $this->getGuestUnauthorizedFail();
     }
 
     /**
      * @return void
      */
-    public function testGetGuestFail(): void
+    public function testPostGuestUnauthorizedFail(): void
     {
-        $this->post($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
-    }
-
-    /**
-     * @return void
-     */
-    public function testGetAuthEmptySuccess(): void
-    {
-        $this->authUser();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+        $this->postGuestUnauthorizedFail();
     }
 
     /**
@@ -50,11 +35,15 @@ class Update extends ControllerAbstract
      */
     public function testGetAuthSuccess(): void
     {
-        $this->authUser();
-        $this->factoryCreate();
+        $this->getAuthSuccess();
+    }
 
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+    /**
+     * @return void
+     */
+    public function testPostAuthSuccess(): void
+    {
+        $this->postAuthSuccess();
     }
 
     /**
@@ -75,34 +64,33 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthEmptySuccess(): void
+    public function testPostAuthUpdateSuccess(): void
     {
-        $this->authUser();
-
-        $data = $this->factoryMake()->toArray();
-
-        $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($this->route, $this->rowLast()->id));
-
-        $this->dataVsRow($data, $this->rowLast(), ['connected_at']);
+        $this->postAuthUpdateSuccess(['connected_at']);
     }
 
     /**
      * @return void
      */
-    public function testPostAuthSuccess(): void
+    public function testGetAuthUpdateAdminSuccess(): void
     {
-        $this->authUser();
-        $this->factoryCreate();
+        $this->getAuthUpdateAdminSuccess();
+    }
 
-        $data = $this->factoryMake()->toArray();
+    /**
+     * @return void
+     */
+    public function testGetAuthUpdateAdminModeSuccess(): void
+    {
+        $this->getAuthUpdateAdminModeSuccess(true, false);
+    }
 
-        $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($this->route, $this->rowLast()->id));
-
-        $this->dataVsRow($data, $this->rowLast(), ['connected_at']);
+    /**
+     * @return void
+     */
+    public function testPostAuthUpdateAdminModeSuccess(): void
+    {
+        $this->postAuthUpdateAdminModeSuccess(true, false, ['connected_at']);
     }
 
     /**

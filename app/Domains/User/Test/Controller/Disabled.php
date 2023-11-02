@@ -14,19 +14,15 @@ class Disabled extends ControllerAbstract
      */
     public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+        $this->getGuestUnauthorizedFail();
     }
 
     /**
      * @return void
      */
-    public function testGetGuestFail(): void
+    public function testPostGuestUnauthorizedFail(): void
     {
-        $this->post($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+        $this->postGuestUnauthorizedFail();
     }
 
     /**
@@ -56,41 +52,13 @@ class Disabled extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthEmptySuccess(): void
-    {
-        $user = $this->authUser();
-        $user->enabled = false;
-        $user->save();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
-    }
-
-    /**
-     * @return void
-     */
     public function testGetAuthSuccess(): void
     {
         $user = $this->authUser();
         $user->enabled = false;
         $user->save();
 
-        $this->factoryCreate();
-
         $this->get($this->routeToController())
-            ->assertStatus(200);
-    }
-
-    /**
-     * @return void
-     */
-    public function testPostAuthEmptySuccess(): void
-    {
-        $user = $this->authUser();
-        $user->enabled = false;
-        $user->save();
-
-        $this->post($this->routeToController())
             ->assertStatus(200);
     }
 
@@ -102,8 +70,6 @@ class Disabled extends ControllerAbstract
         $user = $this->authUser();
         $user->enabled = false;
         $user->save();
-
-        $this->factoryCreate();
 
         $this->post($this->routeToController())
             ->assertStatus(200);

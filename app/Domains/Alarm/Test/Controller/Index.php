@@ -36,14 +36,6 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthEmptySuccess(): void
-    {
-        $this->getAuthEmptySuccess();
-    }
-
-    /**
-     * @return void
-     */
     public function testGetAuthSuccess(): void
     {
         $this->getAuthSuccess();
@@ -52,9 +44,33 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthOnlyOwn(): void
+    public function testGetAuthListSuccess(): void
     {
-        $this->getAuthOnlyOwn();
+        $this->getAuthListSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetAuthListOnlyOwnSucess(): void
+    {
+        $this->getAuthListOnlyOwnSucess(device: false);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetAuthListAdminSuccess(): void
+    {
+        $this->getAuthListAdminSuccess(device: false);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetAuthListAdminModeSuccess(): void
+    {
+        $this->getAuthListAdminModeSuccess(device: false);
     }
 
     /**

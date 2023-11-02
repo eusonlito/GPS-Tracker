@@ -67,17 +67,11 @@ abstract class TestAbstract extends TestsAbstract
     }
 
     /**
-     * @param ?int $id = null
-     *
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-    protected function user(?int $id = null): Authenticatable
+    protected function user(): Authenticatable
     {
         $model = $this->getUserClass();
-
-        if ($id) {
-            return $model::query()->findOrFail($id);
-        }
 
         return $model::query()->orderBy('id', 'ASC')->first()
             ?: $this->factoryCreate($model);

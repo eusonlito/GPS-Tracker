@@ -1,7 +1,7 @@
 /**
  * @return void
  */
-public function testPostAuthAdminEmptySuccess(): void
+public function testPostAuthAdminSuccess(): void
 {
     $this->authUserAdmin();
 

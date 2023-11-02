@@ -15,7 +15,7 @@ class {{ controller }} extends ControllerAbstract
 
     {{ function/testPostAuthNotAllowedFail }}
 
-    {{ function/testGetAuthEmptySuccess }}
+    {{ function/testGetAuthSuccess }}
 
     {{ function/testGetAuthSuccess }}
 

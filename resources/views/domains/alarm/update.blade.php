@@ -6,20 +6,18 @@
     <input type="hidden" name="_action" value="update" />
 
     <div class="box p-5 mt-5">
+        @if ($users_multiple)
+
+        <div class="p-2">
+            <x-select name="user_id" :options="$users" value="id" text="name" id="alarm-update-user" :label="__('alarm-update.user')" readonly disabled></x-select>
+        </div>
+
+        @endif
+
         <div class="p-2">
             <x-select name="type" id="alarm-update-type" :options="$types" :label="__('alarm-update.type')" readonly disabled></x-select>
         </div>
     </div>
-
-    @if ($users_multiple)
-
-    <div class="box p-5 mt-5">
-        <div class="p-2">
-            <x-select name="user_id" :options="$users" value="id" text="name" id="alarm-update-user" :label="__('alarm-update.user')" readonly disabled></x-select>
-        </div>
-    </div>
-
-    @endif
 
     @include ('domains.alarm.molecules.create-update')
 

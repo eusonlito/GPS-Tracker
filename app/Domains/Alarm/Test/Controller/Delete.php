@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Configuration\Test\Controller;
+namespace App\Domains\Alarm\Test\Controller;
 
-class Update extends ControllerAbstract
+class Delete extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'configuration.update';
+    protected string $route = 'alarm.update';
 
     /**
      * @var string
      */
-    protected string $action = 'update';
+    protected string $action = 'delete';
 
     /**
      * @return void
@@ -33,41 +33,41 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthUnauthorizedFail(): void
+    public function testGetAuthDeleteFail(): void
     {
-        $this->getAuthUnauthorizedFail();
+        $this->getAuthDeleteFail();
     }
 
     /**
      * @return void
      */
-    public function testPostAuthUnauthorizedFail(): void
+    public function testPostAuthDeleteSuccess(): void
     {
-        $this->postAuthUnauthorizedFail();
+        $this->postAuthDeleteSuccess('alarm.index');
     }
 
     /**
      * @return void
      */
-    public function testGetAuthAdminSuccess(): void
+    public function testGetAuthAdminDeleteFail(): void
     {
-        $this->getAuthAdminSuccess();
+        $this->getAuthAdminDeleteFail();
     }
 
     /**
      * @return void
      */
-    public function testPostAuthAdminSuccess(): void
+    public function testPostAuthAdminDeleteFail(): void
     {
-        $this->postAuthAdminSuccess();
+        $this->postAuthAdminDeleteFail();
     }
 
     /**
      * @return void
      */
-    public function testPostAuthAdminCreateSuccess(): void
+    public function testPostAuthAdminModeDeleteSuccess(): void
     {
-        $this->postAuthAdminCreateSuccess();
+        $this->postAuthAdminModeDeleteSuccess('alarm.index');
     }
 
     /**

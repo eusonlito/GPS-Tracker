@@ -14,19 +14,15 @@ class UpdateBoolean extends ControllerAbstract
      */
     public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+        $this->getGuestUnauthorizedFail();
     }
 
     /**
      * @return void
      */
-    public function testGetGuestFail(): void
+    public function testPostGuestUnauthorizedFail(): void
     {
-        $this->post($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+        $this->postGuestUnauthorizedFail();
     }
 
     /**
@@ -34,10 +30,7 @@ class UpdateBoolean extends ControllerAbstract
      */
     public function testGetAuthUnauthorizedFail(): void
     {
-        $this->authUser();
-
-        $this->get($this->routeToController())
-            ->assertStatus(404);
+        $this->getAuthUnauthorizedFail();
     }
 
     /**
@@ -76,20 +69,13 @@ class UpdateBoolean extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthEmptySuccess(): void
+    public function testGetAuthSuccess(): void
     {
         $this->authUserAdmin();
 
         $this->get($this->routeToController())
             ->assertStatus(200);
-    }
 
-    /**
-     * @return void
-     */
-    public function testGetAuthSuccess(): void
-    {
-        $this->authUserAdmin();
         $this->factoryCreate();
 
         $this->get($this->routeToController())
@@ -99,20 +85,13 @@ class UpdateBoolean extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthEmptySuccess(): void
+    public function testPostAuthSuccess(): void
     {
         $this->authUserAdmin();
 
         $this->post($this->routeToController())
             ->assertStatus(200);
-    }
 
-    /**
-     * @return void
-     */
-    public function testPostAuthSuccess(): void
-    {
-        $this->authUserAdmin();
         $this->factoryCreate();
 
         $this->post($this->routeToController())

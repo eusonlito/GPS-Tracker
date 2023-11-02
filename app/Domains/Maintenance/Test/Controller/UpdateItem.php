@@ -19,30 +19,15 @@ class UpdateItem extends ControllerAbstract
      */
     public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+        $this->getGuestUnauthorizedFail();
     }
 
     /**
      * @return void
      */
-    public function testGetGuestFail(): void
+    public function testPostGuestUnauthorizedFail(): void
     {
-        $this->post($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
-    }
-
-    /**
-     * @return void
-     */
-    public function testGetAuthEmptySuccess(): void
-    {
-        $this->authUser();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+        $this->postGuestUnauthorizedFail();
     }
 
     /**
@@ -50,23 +35,7 @@ class UpdateItem extends ControllerAbstract
      */
     public function testGetAuthSuccess(): void
     {
-        $this->authUser();
-        $this->factoryCreate();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
-    }
-
-    /**
-     * @return void
-     */
-    public function testPostAuthEmptySuccess(): void
-    {
-        $this->authUser();
-
-        $this->post($this->routeToController(), $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($this->route, $this->rowLast()->id));
+        $this->getAuthSuccess();
     }
 
     /**
@@ -74,12 +43,7 @@ class UpdateItem extends ControllerAbstract
      */
     public function testPostAuthSuccess(): void
     {
-        $this->authUser();
-        $this->factoryCreate();
-
-        $this->post($this->routeToController(), $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($this->route, $this->rowLast()->id));
+        $this->postAuthSuccess();
     }
 
     /**

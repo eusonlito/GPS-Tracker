@@ -22,11 +22,11 @@ class {{ controller }} extends ControllerAbstract
 
     {{ function/testPostAuthUnauthorizedFail }}
 
-    {{ function/testGetAuthAdminEmptySuccess }}
+    {{ function/testGetAuthAdminSuccess }}
 
     {{ function/testGetAuthAdminSuccess }}
 
-    {{ function/testPostAuthAdminEmptySuccess }}
+    {{ function/testPostAuthAdminSuccess }}
 
     {{ function/testPostAuthAdminSuccess }}
 

@@ -19,17 +19,11 @@ class AuthCredentials extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetGuestEmptySuccess(): void
+    public function testGetGuestSuccess(): void
     {
         $this->get($this->routeToController())
             ->assertStatus(200);
-    }
 
-    /**
-     * @return void
-     */
-    public function testGetGuestSuccess(): void
-    {
         $this->factoryCreate();
 
         $this->get($this->routeToController())

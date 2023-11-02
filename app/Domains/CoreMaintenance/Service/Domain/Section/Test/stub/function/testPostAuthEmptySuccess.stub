@@ -1,7 +1,7 @@
 /**
  * @return void
  */
-public function testPostAuthEmptySuccess(): void
+public function testPostAuthSuccess(): void
 {
     $this->authUser();
 

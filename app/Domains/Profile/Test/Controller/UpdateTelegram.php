@@ -21,30 +21,15 @@ class UpdateTelegram extends ControllerAbstract
      */
     public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+        $this->getGuestUnauthorizedFail();
     }
 
     /**
      * @return void
      */
-    public function testGetGuestFail(): void
+    public function testPostGuestUnauthorizedFail(): void
     {
-        $this->post($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
-    }
-
-    /**
-     * @return void
-     */
-    public function testGetAuthEmptySuccess(): void
-    {
-        $this->authUser();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+        $this->postGuestUnauthorizedFail();
     }
 
     /**
@@ -52,11 +37,7 @@ class UpdateTelegram extends ControllerAbstract
      */
     public function testGetAuthSuccess(): void
     {
-        $this->authUser();
-        $this->factoryCreate();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+        $this->getAuthSuccess();
     }
 
     /**

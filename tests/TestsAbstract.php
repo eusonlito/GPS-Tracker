@@ -11,29 +11,27 @@ abstract class TestsAbstract extends TestCase
     use RefreshDatabase;
 
     /**
-     * @param ?int $id = null
      * @param bool $admin = true
      * @param bool $admin_mode = true
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-    protected function authUserAdmin(?int $id = null, bool $admin = true, bool $admin_mode = true): Authenticatable
+    protected function authUserAdmin(bool $admin = true, bool $admin_mode = true): Authenticatable
     {
-        return $this->authUser($id, [
+        return $this->authUser([
             'admin' => $admin,
             'admin_mode' => $admin_mode,
         ]);
     }
 
     /**
-     * @param ?int $id = null
      * @param array $data = []
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-    protected function authUser(?int $id = null, array $data = []): Authenticatable
+    protected function authUser(array $data = []): Authenticatable
     {
-        $user = $this->user($id);
+        $user = $this->user();
         $user->fill($data);
         $user->save();
 

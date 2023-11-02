@@ -14,9 +14,7 @@ class Index extends ControllerAbstract
      */
     public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+        $this->getGuestUnauthorizedFail();
     }
 
     /**
@@ -24,10 +22,7 @@ class Index extends ControllerAbstract
      */
     public function testGetAuthUnauthorizedFail(): void
     {
-        $this->authUser();
-
-        $this->get($this->routeToController())
-            ->assertStatus(404);
+        $this->getAuthUnauthorizedFail();
     }
 
     /**
@@ -35,8 +30,7 @@ class Index extends ControllerAbstract
      */
     public function testPostGuestNotAllowedFail(): void
     {
-        $this->post($this->routeToController())
-            ->assertStatus(405);
+        $this->postGuestNotAllowedFail();
     }
 
     /**
@@ -44,32 +38,7 @@ class Index extends ControllerAbstract
      */
     public function testPostAuthNotAllowedFail(): void
     {
-        $this->authUser();
-
-        $this->post($this->routeToController())
-            ->assertStatus(405);
-    }
-
-    /**
-     * @return void
-     */
-    public function testPostAuthAdminNotAllowedFail(): void
-    {
-        $this->authUserAdmin();
-
-        $this->post($this->routeToController())
-            ->assertStatus(405);
-    }
-
-    /**
-     * @return void
-     */
-    public function testGetAuthAdminEmptySuccess(): void
-    {
-        $this->authUserAdmin();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+        $this->postAuthNotAllowedFail();
     }
 
     /**
@@ -77,11 +46,7 @@ class Index extends ControllerAbstract
      */
     public function testGetAuthAdminSuccess(): void
     {
-        $this->authUserAdmin();
-        $this->factoryCreate();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+        $this->getAuthAdminSuccess();
     }
 
     /**

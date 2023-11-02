@@ -25,8 +25,7 @@ class Device extends ControllerAbstract
      */
     public function testPostGuestNotAllowedFail(): void
     {
-        $this->post($this->routeToController())
-            ->assertStatus(405);
+        $this->postGuestNotAllowedFail();
     }
 
     /**

@@ -1,7 +1,7 @@
 /**
  * @return void
  */
-public function testGetGuestEmptySuccess(): void
+public function testGetGuestSuccess(): void
 {
     $this->get($this->routeToController())
         ->assertStatus(200);

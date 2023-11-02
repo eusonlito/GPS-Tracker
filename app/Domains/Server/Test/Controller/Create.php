@@ -19,19 +19,15 @@ class Create extends ControllerAbstract
      */
     public function testGetGuestUnauthorizedFail(): void
     {
-        $this->get($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+        $this->getGuestUnauthorizedFail();
     }
 
     /**
      * @return void
      */
-    public function testGetGuestFail(): void
+    public function testPostGuestUnauthorizedFail(): void
     {
-        $this->post($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+        $this->postGuestUnauthorizedFail();
     }
 
     /**
@@ -39,10 +35,7 @@ class Create extends ControllerAbstract
      */
     public function testGetAuthUnauthorizedFail(): void
     {
-        $this->authUser();
-
-        $this->get($this->routeToController())
-            ->assertStatus(404);
+        $this->getAuthUnauthorizedFail();
     }
 
     /**
@@ -59,20 +52,13 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthAdminEmptySuccess(): void
+    public function testGetAuthAdminSuccess(): void
     {
         $this->authUserAdmin();
 
         $this->get($this->routeToController())
             ->assertStatus(200);
-    }
 
-    /**
-     * @return void
-     */
-    public function testGetAuthAdminSuccess(): void
-    {
-        $this->authUserAdmin();
         $this->factoryCreate();
 
         $this->get($this->routeToController())
@@ -82,7 +68,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthAdminEmptySuccess(): void
+    public function testPostAuthAdminSuccess(): void
     {
         $this->authUserAdmin();
 
@@ -93,14 +79,7 @@ class Create extends ControllerAbstract
             ->assertRedirect(route('server.update', $this->rowLast()->id));
 
         $this->dataVsRow($data, $this->rowLast());
-    }
 
-    /**
-     * @return void
-     */
-    public function testPostAuthAdminSuccess(): void
-    {
-        $this->authUserAdmin();
         $this->factoryCreate();
 
         $data = $this->factoryMake()->toArray();
