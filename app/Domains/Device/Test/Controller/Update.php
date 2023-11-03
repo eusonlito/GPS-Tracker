@@ -82,7 +82,7 @@ class Update extends ControllerAbstract
      */
     public function testGetAuthUpdateAdminModeSuccess(): void
     {
-        $this->getAuthUpdateAdminModeSuccess(true, false);
+        $this->getAuthUpdateAdminModeSuccess(vehicle: true, device: false);
     }
 
     /**
@@ -90,7 +90,7 @@ class Update extends ControllerAbstract
      */
     public function testPostAuthUpdateAdminModeSuccess(): void
     {
-        $this->postAuthUpdateAdminModeSuccess(true, false, ['connected_at']);
+        $this->postAuthUpdateAdminModeSuccess(vehicle: true, device: false, exclude: ['connected_at']);
     }
 
     /**

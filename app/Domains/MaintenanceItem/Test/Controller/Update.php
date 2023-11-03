@@ -17,7 +17,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetGuestUnauthorizedFail(): void
+    public function testgetGuestUnauthorizedFail(): void
     {
         $this->getGuestUnauthorizedFail();
     }
@@ -25,7 +25,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostGuestUnauthorizedFail(): void
+    public function testpostGuestUnauthorizedFail(): void
     {
         $this->postGuestUnauthorizedFail();
     }
@@ -33,7 +33,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthSuccess(): void
+    public function testgetAuthSuccess(): void
     {
         $this->getAuthSuccess();
     }
@@ -41,7 +41,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthSuccess(): void
+    public function testpostAuthSuccess(): void
     {
         $this->postAuthSuccess();
     }
@@ -49,7 +49,23 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthUpdateSuccess(): void
+    public function testgetAuthAdminSuccess(): void
+    {
+        $this->getAuthAdminSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testpostAuthAdminSuccess(): void
+    {
+        $this->postAuthAdminSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testpostAuthUpdateSuccess(): void
     {
         $this->postAuthUpdateSuccess();
     }
@@ -57,7 +73,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthUpdateAdminSuccess(): void
+    public function testgetAuthUpdateAdminSuccess(): void
     {
         $this->getAuthUpdateAdminSuccess();
     }
@@ -65,17 +81,33 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthUpdateAdminModeSuccess(): void
+    public function testpostAuthUpdateAdminFail(): void
     {
-        $this->getAuthUpdateAdminModeSuccess(true, false);
+        $this->postAuthUpdateAdminFail(vehicle: false, device: false);
     }
 
     /**
      * @return void
      */
-    public function testPostAuthUpdateAdminModeSuccess(): void
+    public function testpostAuthUpdateAdminSuccess(): void
     {
-        $this->postAuthUpdateAdminModeSuccess(true, false);
+        $this->postAuthUpdateAdminSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthUpdateAdminModeSuccess(): void
+    {
+        $this->getAuthUpdateAdminModeSuccess(vehicle: false, device: false);
+    }
+
+    /**
+     * @return void
+     */
+    public function testpostAuthUpdateAdminModeSuccess(): void
+    {
+        $this->postAuthUpdateAdminModeSuccess(vehicle: false, device: false);
     }
 
     /**

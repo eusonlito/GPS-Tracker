@@ -30,7 +30,7 @@ class LogRead extends UnitAbstract
      */
     protected function setCurl(): void
     {
-        Curl::fake(file_get_contents(base_path('resources/app/test/server/curl-nominatim.openstreetmap.org.log')));
+        $this->curlFake('resources/app/test/server/curl-nominatim.openstreetmap.org.log');
     }
 
     /**

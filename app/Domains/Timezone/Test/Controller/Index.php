@@ -46,10 +46,7 @@ class Index extends ControllerAbstract
      */
     public function testPostAuthAdminNotAllowedFail(): void
     {
-        $this->authUserAdmin();
-
-        $this->post($this->routeToController())
-            ->assertStatus(405);
+        $this->postAuthAdminNotAllowedFail();
     }
 
     /**
@@ -57,15 +54,7 @@ class Index extends ControllerAbstract
      */
     public function testGetAuthAdminSuccess(): void
     {
-        $this->authUserAdmin();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
-
-        $this->factoryCreate();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+        $this->getAuthAdminSuccess();
     }
 
     /**

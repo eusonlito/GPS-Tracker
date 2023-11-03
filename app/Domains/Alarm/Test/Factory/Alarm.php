@@ -18,7 +18,7 @@ class Alarm extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => 'Alarm: '.$this->faker->name(),
             'type' => 'movement',
             'enabled' => true,
 

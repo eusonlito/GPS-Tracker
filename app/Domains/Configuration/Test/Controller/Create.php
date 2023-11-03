@@ -65,9 +65,9 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthAdminCreateSuccess(): void
+    public function testPostAuthCreateAdminSuccess(): void
     {
-        $this->postAuthAdminCreateSuccess('configuration.update');
+        $this->postAuthCreateAdminSuccess();
     }
 
     /**

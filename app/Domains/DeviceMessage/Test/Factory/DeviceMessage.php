@@ -19,7 +19,7 @@ class DeviceMessage extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'message' => $this->faker->text,
+            'message' => 'Device Message: '.$this->faker->text,
             'response' => $this->faker->text,
 
             'sent_at' => date('Y-m-d H:i:s'),

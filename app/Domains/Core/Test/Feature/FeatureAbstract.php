@@ -4,6 +4,7 @@ namespace App\Domains\Core\Test\Feature;
 
 use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\Core\Test\TestAbstract;
+use App\Services\Http\Curl\Curl;
 
 abstract class FeatureAbstract extends TestAbstract
 {
@@ -62,7 +63,19 @@ abstract class FeatureAbstract extends TestAbstract
         }
 
         foreach ($data as $key => $value) {
-            $this->assertEquals($value, $row->$key);
+            if (is_string($value) || is_string($row->$key)) {
+                $this->assertTrue($value == $row->$key, sprintf('[%s] %s != %s', $key, $value, $row->$key));
+            } else {
+                $this->assertEquals($value, $row->$key);
+            }
         }
+    }
+
+    /**
+     * @return void
+     */
+    protected function curlFake(string $file): void
+    {
+        Curl::fake(preg_replace(['/\n\r/', '/\n/'], ["\n", "\n\r"], file_get_contents(base_path($file))));
     }
 }

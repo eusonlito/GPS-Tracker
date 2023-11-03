@@ -3,6 +3,7 @@
 namespace App\Domains\CoreApp\Test\Feature;
 
 use Illuminate\Testing\TestResponse;
+use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\Core\Test\Feature\FeatureAbstract as FeatureAbstractCore;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\User\Model\User as UserModel;
@@ -11,15 +12,153 @@ use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 abstract class FeatureAbstract extends FeatureAbstractCore
 {
     /**
+     * @return \App\Domains\User\Model\User
+     */
+    protected function createUser(): UserModel
+    {
+        return $this->factoryCreate(UserModel::class);
+    }
+
+    /**
+     * @param ?\App\Domains\User\Model\User $user
+     *
      * @return array
      */
-    protected function createUserVehicleDevice(): array
+    protected function createUserRow(?UserModel $user = null): array
     {
-        $user = $this->factoryCreate(UserModel::class);
-        $vehicle = $this->factoryCreate(VehicleModel::class, ['user_id' => $user->id]);
-        $device = $this->factoryCreate(DeviceModel::class, ['user_id' => $user->id, 'vehicle_id' => $vehicle->id]);
+        $user = $user ?? $this->createUser();
+
+        $row = $this->factoryCreate(data: array_filter([
+            'user_id' => $user->id,
+        ]));
+
+        $this->assertEquals($row->user_id, $user->id);
+
+        return [$user, $row];
+    }
+
+    /**
+     * @param ?\App\Domains\User\Model\User $user
+     *
+     * @return \App\Domains\Vehicle\Model\Vehicle
+     */
+    protected function createVehicle(?UserModel $user = null): VehicleModel
+    {
+        return $this->factoryCreate(VehicleModel::class, array_filter([
+            'user_id' => $user?->id
+        ]));
+    }
+
+    /**
+     * @param ?\App\Domains\Vehicle\Model\Vehicle $vehicle
+     *
+     * @return \App\Domains\Device\Model\Device
+     */
+    protected function createDevice(?VehicleModel $vehicle = null): DeviceModel
+    {
+        return $this->factoryCreate(DeviceModel::class, array_filter([
+            'user_id' => $vehicle?->user_id,
+            'vehicle_id' => $vehicle?->id
+        ]));
+    }
+
+    /**
+     * @param bool $vehicle = true
+     * @param bool $device = true
+     *
+     * @return array
+     */
+    protected function createUserVehicleDevice(bool $vehicle = true, bool $device = true): array
+    {
+        $user = $this->createUser();
+        $vehicle = $vehicle ? $this->createVehicle($user) : null;
+        $device = $device ? $this->createDevice($vehicle) : null;
+
+        if ($vehicle) {
+            $this->assertEquals($vehicle->user_id, $user->id);
+        }
+
+        if ($device) {
+            $this->assertEquals($device->user_id, $user->id);
+            $this->assertEquals($device->vehicle_id, $vehicle->id);
+        }
 
         return [$user, $vehicle, $device];
+    }
+
+    /**
+     * @param bool $vehicle = true
+     * @param bool $device = true
+     *
+     * @return array
+     */
+    protected function createUserVehicleDeviceRow(bool $vehicle = true, bool $device = true): array
+    {
+        [$user, $vehicle, $device] = $this->createUserVehicleDevice($vehicle, $device);
+
+        $row = $this->createRowWithUserVehicleDevice($user, $vehicle, $device);
+
+        return [$user, $vehicle, $device, $row];
+    }
+
+    /**
+     * @param \App\Domains\User\Model\User $user
+     * @param bool $vehicle = true
+     * @param bool $device = true
+     *
+     * @return array
+     */
+    protected function createVehicleDeviceWithUser(UserModel $user, bool $vehicle = true, bool $device = true): array
+    {
+        $vehicle = $vehicle ? $this->createVehicle($user) : null;
+        $device = $device ? $this->createDevice($vehicle) : null;
+
+        return [$vehicle, $device];
+    }
+
+    /**
+     * @param \App\Domains\User\Model\User $user
+     * @param bool $vehicle = true
+     * @param bool $device = true
+     *
+     * @return array
+     */
+    protected function createVehicleDeviceRowWithUser(UserModel $user, bool $vehicle = true, bool $device = true): array
+    {
+        $vehicle = $vehicle ? $this->createVehicle($user) : null;
+        $device = $device ? $this->createDevice($vehicle) : null;
+
+        $row = $this->createRowWithUserVehicleDevice($user, $vehicle, $device);
+
+        return [$vehicle, $device, $row];
+    }
+
+    /**
+     * @param \App\Domains\User\Model\User $user
+     * @param ?\App\Domains\Vehicle\Model\Vehicle $vehicle = null
+     * @param ?\App\Domains\Device\Model\Device $device = null
+     *
+     * @return \App\Domains\Core\Model\ModelAbstract
+     */
+    protected function createRowWithUserVehicleDevice(UserModel $user, ?VehicleModel $vehicle = null, ?DeviceModel $device = null): ModelAbstract
+    {
+        $row = $this->factoryCreate(data: array_filter([
+            'user_id' => $user->id,
+            'vehicle_id' => $vehicle?->id,
+            'device_id' => $device?->id,
+        ]));
+
+        $this->assertEquals($row->user_id, $user->id);
+
+        if ($vehicle) {
+            $this->assertEquals($row->vehicle_id, $vehicle->id);
+        }
+
+        if ($device) {
+            $this->assertEquals($row->device_id, $device->id);
+        }
+
+        return $row;
     }
 
     /**
@@ -161,6 +300,28 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     /**
      * @return void
      */
+    public function getAuthAdminNotAllowedFail(): void
+    {
+        $this->authUserAdmin();
+
+        $this->get($this->routeToController())
+            ->assertStatus(405);
+    }
+
+    /**
+     * @return void
+     */
+    public function postAuthAdminNotAllowedFail(): void
+    {
+        $this->authUserAdmin();
+
+        $this->post($this->routeToController())
+            ->assertStatus(405);
+    }
+
+    /**
+     * @return void
+     */
     public function getAuthAdminSuccess(): void
     {
         $this->authUserAdmin();
@@ -191,44 +352,6 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     }
 
     /**
-     * @param ?string $redirect = null
-     * @param array $exclude = []
-     *
-     * @return void
-     */
-    public function postAuthAdminCreateSuccess(?string $redirect = null, array $exclude = []): void
-    {
-        $this->authUserAdmin();
-
-        $data = $this->factoryMake()->toArray();
-
-        $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($redirect ?? $this->route, $this->rowLast()->id));
-
-        $this->dataVsRow($data, $this->rowLast(), $exclude);
-    }
-
-    /**
-     * @param array $exclude = []
-     *
-     * @return void
-     */
-    public function postAuthAdminUpdateSuccess(array $exclude = []): void
-    {
-        $this->authUserAdmin();
-
-        $row = $this->factoryCreate();
-        $data = $this->factoryMake()->toArray();
-
-        $this->post(route($this->route, $row->id), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($this->route, $row->id));
-
-        $this->dataVsRow($data, $this->rowLast(), $exclude);
-    }
-
-    /**
      * @param string $name = 'name'
      *
      * @return void
@@ -248,18 +371,22 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      * @param string $name = 'name'
      * @param bool $vehicle = true
      * @param bool $device = true
+     * @param bool $multiple = false
      *
      * @return void
      */
-    public function getAuthListOnlyOwnSucess(string $name = 'name', bool $vehicle = true, bool $device = true): void
+    public function getAuthListOnlyOwnSucess(string $name = 'name', bool $vehicle = true, bool $device = true, bool $multiple = false): void
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUser();
+        $user2 = $this->createUser();
 
-        $row1 = $this->factoryCreate(data: ['user_id' => $user1->id]);
-        $row2 = $this->factoryCreate(data: ['user_id' => $user2->id]);
+        if ($multiple) {
+            $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
+            $this->createVehicleDeviceRowWithUser($user2, $vehicle, $device);
+        }
 
-        $this->auth($user1);
+        [$vehicle1, $device1, $row1] = $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
+        [$vehicle2, $device2, $row2] = $this->createVehicleDeviceRowWithUser($user2, $vehicle, $device);
 
         $response = $this->get($this->routeToController().'?vehicle_id=&device_id=')
             ->assertStatus(200)
@@ -299,22 +426,22 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      * @param string $name = 'name'
      * @param bool $vehicle = true
      * @param bool $device = true
+     * @param bool $multiple = false
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function getAuthListAdminSuccess(string $name = 'name', bool $vehicle = true, bool $device = true): TestResponse
+    public function getAuthListAdminSuccess(string $name = 'name', bool $vehicle = true, bool $device = true, bool $multiple = false): TestResponse
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUserAdmin(true, false);
+        $user2 = $this->createUser();
 
-        $row1 = $this->factoryCreate(data: ['user_id' => $user1->id]);
-        $row2 = $this->factoryCreate(data: ['user_id' => $user2->id]);
+        if ($multiple) {
+            $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
+            $this->createVehicleDeviceRowWithUser($user2, $vehicle, $device);
+        }
 
-        $user1->admin = true;
-        $user1->admin_mode = false;
-        $user1->save();
-
-        $this->auth($user1);
+        [$vehicle1, $device1, $row1] = $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
+        [$vehicle2, $device2, $row2] = $this->createVehicleDeviceRowWithUser($user2, $vehicle, $device);
 
         $response = $this->get($this->routeToController().'?user_id=&vehicle_id=&device_id=')
             ->assertStatus(200)
@@ -339,22 +466,22 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      * @param string $name = 'name'
      * @param bool $vehicle = true
      * @param bool $device = true
+     * @param bool $multiple = false
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function getAuthListAdminModeSuccess(string $name = 'name', bool $vehicle = true, bool $device = true): TestResponse
+    public function getAuthListAdminModeSuccess(string $name = 'name', bool $vehicle = true, bool $device = true, bool $multiple = false): TestResponse
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUserAdmin(true, true);
+        $user2 = $this->createUser();
 
-        $row1 = $this->factoryCreate(data: ['user_id' => $user1->id]);
-        $row2 = $this->factoryCreate(data: ['user_id' => $user2->id]);
+        if ($multiple) {
+            $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
+            $this->createVehicleDeviceRowWithUser($user2, $vehicle, $device);
+        }
 
-        $user1->admin = true;
-        $user1->admin_mode = true;
-        $user1->save();
-
-        $this->auth($user1);
+        [$vehicle1, $device1, $row1] = $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
+        [$vehicle2, $device2, $row2] = $this->createVehicleDeviceRowWithUser($user2, $vehicle, $device);
 
         $response = $this->get($this->routeToController().'?user_id=&vehicle_id=&device_id=')
             ->assertStatus(200)
@@ -395,11 +522,11 @@ abstract class FeatureAbstract extends FeatureAbstractCore
 
     /**
      * @param ?string $redirect = null
-     * @param array $skip = []
+     * @param array $exclude = []
      *
      * @return void
      */
-    public function postAuthCreateSuccess(?string $redirect = null, array $skip = []): void
+    public function postAuthCreateSuccess(?string $redirect = null, array $exclude = []): void
     {
         $this->authUser();
 
@@ -407,34 +534,71 @@ abstract class FeatureAbstract extends FeatureAbstractCore
 
         $this->post($this->routeToController(), $data + $this->action())
             ->assertStatus(302)
-            ->assertRedirect(route($redirect ?? $this->route, $this->rowLast()->id));
+            ->assertRedirect(route($this->routeCreateToUpdate($redirect), $this->rowLast()->id));
 
-        $this->dataVsRow($data, $this->rowLast(), $skip);
+        $this->dataVsRow($data, $this->rowLast(), $exclude);
     }
 
     /**
+     * @param bool $vehicle = true
+     * @param bool $device = true
+     *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function getAuthCreateAdminSuccess(): TestResponse
+    public function getAuthCreateAdminSuccess(bool $vehicle = true, bool $device = true): TestResponse
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUserAdmin(true, false);
 
-        $row1 = $this->factoryCreate(data: ['user_id' => $user1->id]);
-        $row2 = $this->factoryCreate(data: ['user_id' => $user2->id]);
+        $this->createVehicleDeviceWithUser($user1, $vehicle, $device);
 
-        $this->assertEquals($row1->user_id, $user1->id);
-        $this->assertEquals($row2->user_id, $user2->id);
-
-        $user1->admin = true;
-        $user1->admin_mode = false;
-        $user1->save();
-
-        $this->auth($user1);
+        [$user2] = $this->createUserVehicleDevice($vehicle, $device);
 
         return $this->get($this->routeToController())
             ->assertStatus(200)
             ->assertDontSeeText($user2->name);
+    }
+
+    /**
+     * @param ?string $redirect = null
+     * @param bool $vehicle = true
+     * @param bool $device = true
+     *
+     * @return \Illuminate\Testing\TestResponse
+     */
+    public function postAuthCreateAdminFail(?string $redirect = null, bool $vehicle = true, bool $device = true): TestResponse
+    {
+        $user1 = $this->authUserAdmin(true, false);
+
+        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice($vehicle, $device);
+
+        $data = $this->dataWithUserVehicleDeviceMake($user2);
+
+        $response = $this->post($this->routeToController(), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route($this->routeCreateToUpdate($redirect), $this->rowLast()->id));
+
+        $this->assertEquals($this->rowLast()->user_id, $user1->id);
+
+        return $response;
+    }
+
+    /**
+     * @param ?string $redirect = null
+     * @param array $exclude = []
+     *
+     * @return void
+     */
+    public function postAuthCreateAdminSuccess(?string $redirect = null, array $exclude = []): void
+    {
+        $this->authUserAdmin(true, false);
+
+        $data = $this->factoryMake()->toArray();
+
+        $this->post($this->routeToController(), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route($this->routeCreateToUpdate($redirect), $this->rowLast()->id));
+
+        $this->dataVsRow($data, $this->rowLast(), $exclude);
     }
 
     /**
@@ -445,20 +609,10 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function getAuthCreateAdminModeSuccess(bool $vehicle = true, bool $device = true): TestResponse
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUserAdmin(true, true);
 
-        $row1 = $this->factoryCreate(data: ['user_id' => $user1->id]);
-        $row2 = $this->factoryCreate(data: ['user_id' => $user2->id]);
-
-        $this->assertEquals($row1->user_id, $user1->id);
-        $this->assertEquals($row2->user_id, $user2->id);
-
-        $user1->admin = true;
-        $user1->admin_mode = true;
-        $user1->save();
-
-        $this->auth($user1);
+        [$vehicle1, $device1, $row1] = $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
+        [$user2, $vehicle2, $device2, $row2] = $this->createUserVehicleDeviceRow($vehicle, $device);
 
         $response = $this->get($this->routeToController().'?user_id=')
             ->assertStatus(200)
@@ -494,61 +648,48 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     }
 
     /**
-     * @param ?string $redirect = null
+     * @param bool $vehicle = true
+     * @param bool $device = true
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function postAuthCreateAdminSuccess(?string $redirect = null): TestResponse
+    public function postAuthCreateAdminModeFail(bool $vehicle = true, bool $device = true): TestResponse
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUserAdmin(true, true);
 
-        $user1->admin = true;
-        $user1->admin_mode = false;
-        $user1->save();
+        [$vehicle1, $device1] = $this->createVehicleDeviceWithUser($user1, $vehicle, $device);
 
-        $this->auth($user1);
+        $data = $this->dataWithUserVehicleDeviceMake($this->createUser(), $vehicle1, $device1);
 
-        $data = ['user_id' => $user2->id] + $this->factoryMake()->toArray();
-
-        $response = $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($redirect ?? $this->route, $this->rowLast()->id));
-
-        $this->assertEquals($this->rowLast()->user_id, $user1->id);
-
-        return $response;
+        return $this->post($this->routeToController(), $data + $this->action())
+            ->assertStatus(422);
     }
 
     /**
      * @param ?string $redirect = null
      * @param bool $vehicle = true
      * @param bool $device = true
+     * @param array $exclude = []
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function postAuthCreateAdminModeSuccess(?string $redirect = null, bool $vehicle = true, bool $device = true): TestResponse
+    public function postAuthCreateAdminModeSuccess(?string $redirect = null, bool $vehicle = true, bool $device = true, array $exclude = []): TestResponse
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUserAdmin(true, true);
 
-        $user1->admin = true;
-        $user1->admin_mode = true;
-        $user1->save();
+        [$vehicle1, $device1] = $this->createVehicleDeviceWithUser($user1, $vehicle, $device);
 
-        $this->auth($user1);
+        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice($vehicle, $device);
 
-        $data = [
-            'user_id' => $user2->id,
-            'vehicle_id' => $vehicle2->id,
-            'device_id' => $device2->id,
-        ] + $this->factoryMake()->toArray();
+        $data = $this->dataWithUserVehicleDeviceMake($user2, $vehicle2, $device2);
 
         $response = $this->post($this->routeToController(), $data + $this->action())
             ->assertStatus(302)
-            ->assertRedirect(route($redirect ?? $this->route, $this->rowLast()->id));
+            ->assertRedirect(route($this->routeCreateToUpdate($redirect), $this->rowLast()->id));
 
         $row = $this->rowLast();
+
+        $this->dataVsRow($data, $row, $exclude);
 
         $this->assertEquals($row->user_id, $user2->id);
 
@@ -564,27 +705,45 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     }
 
     /**
+     * @param array $exclude = []
+     *
+     * @return void
+     */
+    public function postAuthUpdateSuccess(array $exclude = []): void
+    {
+        $this->authUser();
+
+        $row = $this->factoryCreate();
+        $data = $this->factoryMake()->toArray();
+
+        $this->post(route($this->route, $row->id), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route($this->route, $row->id));
+
+        $this->dataVsRow($data, $this->rowLast(), $exclude);
+    }
+
+    /**
+     * @param bool $vehicle = true
+     * @param bool $device = true
+     *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function postAuthCreateAdminModeFail(): TestResponse
+    public function postAuthUpdateAdminFail(bool $vehicle = true, bool $device = true): TestResponse
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUserAdmin(true, false);
 
-        $user1->admin = true;
-        $user1->admin_mode = true;
-        $user1->save();
+        [$user1, $row] = $this->createUserRow($user1);
 
-        $this->auth($user1);
+        $data = $this->dataWithUserVehicleDeviceMake($this->createUser());
 
-        $data = [
-            'user_id' => $user2->id,
-            'vehicle_id' => $vehicle1->id,
-            'device_id' => $device1->id,
-        ] + $this->factoryMake()->toArray();
+        $response = $this->post(route($this->route, $row->id), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route($this->route, $row->id));
 
-        return $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(422);
+        $this->assertEquals($this->rowLast()->user_id, $user1->id);
+
+        return $response;
     }
 
     /**
@@ -592,20 +751,10 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function getAuthUpdateAdminSuccess(): TestResponse
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUserAdmin(true, false);
 
-        $row1 = $this->factoryCreate(data: ['user_id' => $user1->id]);
-        $row2 = $this->factoryCreate(data: ['user_id' => $user2->id]);
-
-        $this->assertEquals($row1->user_id, $user1->id);
-        $this->assertEquals($row2->user_id, $user2->id);
-
-        $user1->admin = true;
-        $user1->admin_mode = false;
-        $user1->save();
-
-        $this->auth($user1);
+        [$user1, $row1] = $this->createUserRow($user1);
+        [$user2, $row2] = $this->createUserRow();
 
         $this->get(route($this->route, $row2->id))
             ->assertStatus(404);
@@ -616,6 +765,25 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     }
 
     /**
+     * @param array $exclude = []
+     *
+     * @return void
+     */
+    public function postAuthUpdateAdminSuccess(array $exclude = []): void
+    {
+        $this->authUserAdmin();
+
+        $row = $this->factoryCreate();
+        $data = $this->factoryMake()->toArray();
+
+        $this->post(route($this->route, $row->id), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route($this->route, $row->id));
+
+        $this->dataVsRow($data, $this->rowLast(), $exclude);
+    }
+
+    /**
      * @param bool $vehicle = true
      * @param bool $device = true
      *
@@ -623,20 +791,10 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function getAuthUpdateAdminModeSuccess(bool $vehicle = true, bool $device = true): TestResponse
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUserAdmin(true, true);
 
-        $row1 = $this->factoryCreate(data: ['user_id' => $user1->id]);
-        $row2 = $this->factoryCreate(data: ['user_id' => $user2->id]);
-
-        $this->assertEquals($row1->user_id, $user1->id);
-        $this->assertEquals($row2->user_id, $user2->id);
-
-        $user1->admin = true;
-        $user1->admin_mode = true;
-        $user1->save();
-
-        $this->auth($user1);
+        [$vehicle1, $device1, $row1] = $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
+        [$user2, $vehicle2, $device2, $row2] = $this->createUserVehicleDeviceRow($vehicle, $device);
 
         $response = $this->get(route($this->route, $row1->id).'?user_id=')
             ->assertStatus(200)
@@ -644,12 +802,12 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertSeeText($user2->name);
 
         if ($vehicle) {
-            $response->assertDontSeeText($vehicle1->name);
+            $response->assertSeeText($vehicle1->name);
             $response->assertDontSeeText($vehicle2->name);
         }
 
         if ($device) {
-            $response->assertDontSeeText($device1->name);
+            $response->assertSeeText($device1->name);
             $response->assertDontSeeText($device2->name);
         }
 
@@ -674,51 +832,6 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertSeeText($user2->name);
 
         if ($vehicle) {
-            $response->assertDontSeeText($vehicle1->name);
-            $response->assertSeeText($vehicle2->name);
-        }
-
-        if ($device) {
-            $response->assertDontSeeText($device1->name);
-            $response->assertSeeText($device2->name);
-        }
-
-        $response = $this->get(route($this->route, $row2->id).'?user_id=')
-            ->assertStatus(200)
-            ->assertSeeText($user1->name)
-            ->assertSeeText($user2->name);
-
-        if ($vehicle) {
-            $response->assertDontSeeText($vehicle1->name);
-            $response->assertDontSeeText($vehicle2->name);
-        }
-
-        if ($device) {
-            $response->assertDontSeeText($device1->name);
-            $response->assertDontSeeText($device2->name);
-        }
-
-        $response = $this->get(route($this->route, $row2->id).'?user_id='.$user2->id)
-            ->assertStatus(200)
-            ->assertSeeText($user1->name)
-            ->assertSeeText($user2->name);
-
-        if ($vehicle) {
-            $response->assertDontSeeText($vehicle1->name);
-            $response->assertSeeText($vehicle2->name);
-        }
-
-        if ($device) {
-            $response->assertDontSeeText($device1->name);
-            $response->assertSeeText($device2->name);
-        }
-
-        $response = $this->get(route($this->route, $row2->id).'?user_id='.$user1->id)
-            ->assertStatus(200)
-            ->assertSeeText($user1->name)
-            ->assertSeeText($user2->name);
-
-        if ($vehicle) {
             $response->assertSeeText($vehicle1->name);
             $response->assertDontSeeText($vehicle2->name);
         }
@@ -732,79 +845,47 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     }
 
     /**
-     * @param array $skip = []
-     *
-     * @return void
-     */
-    public function postAuthUpdateSuccess(array $skip = []): void
-    {
-        $this->authUser();
-
-        $row = $this->factoryCreate();
-        $data = $this->factoryMake()->toArray();
-
-        $this->post(route($this->route, $row->id), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($this->route, $row->id));
-
-        $this->dataVsRow($data, $this->rowLast(), $skip);
-    }
-
-    /**
-     * @return \Illuminate\Testing\TestResponse
-     */
-    public function postAuthUpdateAdminSuccess(): TestResponse
-    {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
-
-        $row = $this->factoryCreate(data: ['user_id' => $user1->id]);
-
-        $this->assertEquals($row->user_id, $user1->id);
-
-        $user1->admin = true;
-        $user1->admin_mode = false;
-        $user1->save();
-
-        $this->auth($user1);
-
-        $data = ['user_id' => $user2->id] + $this->factoryMake()->toArray();
-
-        $response = $this->post(route($this->route, $row->id), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($this->route, $row->id));
-
-        $this->assertEquals($this->rowLast()->user_id, $user1->id);
-
-        return $response;
-    }
-
-    /**
      * @param bool $vehicle = true
      * @param bool $device = true
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function postAuthUpdateAdminModeSuccess(bool $vehicle = true, bool $device = true): TestResponse
+    public function postAuthUpdateAdminModeFail(bool $vehicle = true, bool $device = true): TestResponse
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUserAdmin(true, true);
 
-        $row = $this->factoryCreate(data: ['user_id' => $user1->id]);
+        [$vehicle1, $device1, $row] = $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
+        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice($vehicle, $device);
 
-        $this->assertEquals($row->user_id, $user1->id);
+        $data = $this->dataWithUserVehicleDeviceMake($user2, $vehicle2, $device2);
 
-        $user1->admin = true;
-        $user1->admin_mode = true;
-        $user1->save();
+        return $this->post(route($this->route, $row->id), $data + $this->action())
+            ->assertStatus(422);
+    }
 
-        $this->auth($user1);
+    /**
+     * @param bool $vehicle = true
+     * @param bool $device = true
+     * @param array $exclude = []
+     *
+     * @return \Illuminate\Testing\TestResponse
+     */
+    public function postAuthUpdateAdminModeSuccess(bool $vehicle = true, bool $device = true, array $exclude = []): TestResponse
+    {
+        $user1 = $this->authUserAdmin(true, true);
 
-        $data = [
-            'user_id' => $user2->id,
-            'vehicle_id' => $vehicle2->id,
-            'device_id' => $device2->id,
-        ] + $this->factoryMake()->toArray();
+        [$vehicle1, $device1] = $this->createVehicleDeviceWithUser($user1, $vehicle, $device);
+        [$user2, $vehicle2, $device2, $row] = $this->createUserVehicleDeviceRow($vehicle, $device);
+
+        if ($vehicle) {
+            $vehicle2 = $this->createVehicle($user2);
+        }
+
+        if ($device) {
+            $device2 = $this->createDevice($vehicle2);
+        }
+
+        $data = $this->dataWithUserVehicleDeviceMake($user2, $vehicle2, $device2);
 
         $response = $this->post(route($this->route, $row->id), $data + $this->action())
             ->assertStatus(302)
@@ -812,59 +893,19 @@ abstract class FeatureAbstract extends FeatureAbstractCore
 
         $row = $this->rowLast();
 
-        $this->assertEquals($row->user_id, $user1->id);
+        $this->assertEquals($row->user_id, $user2->id);
 
         if ($vehicle) {
-            $this->assertEquals($row->vehicle_id, $vehicle1->id);
+            $this->assertEquals($row->vehicle_id, $vehicle2->id);
         }
 
         if ($device) {
-            $this->assertEquals($row->device_id, $device1->id);
+            $this->assertEquals($row->device_id, $device2->id);
         }
 
+        $this->dataVsRow(['user_id' => $row->user_id] + $data, $row, $exclude);
+
         return $response;
-    }
-
-    /**
-     * @return \Illuminate\Testing\TestResponse
-     */
-    public function postAuthUpdateAdminModeFail(): TestResponse
-    {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
-
-        $row = $this->factoryCreate(data: ['user_id' => $user1->id]);
-
-        $this->assertEquals($row->user_id, $user1->id);
-
-        $user1->admin = true;
-        $user1->admin_mode = true;
-        $user1->save();
-
-        $this->auth($user1);
-
-        $data = [
-            'user_id' => $user2->id,
-            'vehicle_id' => $vehicle1->id,
-            'device_id' => $device1->id,
-        ] + $this->factoryMake()->toArray();
-
-        return $this->post(route($this->route, $row->id), $data + $this->action())
-            ->assertStatus(422);
-    }
-
-    /**
-     * @param string $redirect
-     *
-     * @return void
-     */
-    public function getAuthDeleteSuccess(string $redirect): void
-    {
-        $this->authUser();
-
-        $this->get($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route($redirect));
     }
 
     /**
@@ -879,17 +920,17 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     }
 
     /**
-     * @param string $redirect
+     * @param ?string $redirect = null
      *
      * @return void
      */
-    public function postAuthDeleteSuccess(string $redirect): void
+    public function getAuthDeleteSuccess(?string $redirect = null): void
     {
         $this->authUser();
 
-        $this->post($this->routeToController(), $this->action())
+        $this->get($this->routeToController())
             ->assertStatus(302)
-            ->assertRedirect(route($redirect));
+            ->assertRedirect(route($this->routeUpdateToIndex($redirect)));
     }
 
     /**
@@ -904,24 +945,29 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     }
 
     /**
+     * @param ?string $redirect = null
+     *
+     * @return void
+     */
+    public function postAuthDeleteSuccess(?string $redirect = null): void
+    {
+        $this->authUser();
+
+        $this->post($this->routeToController(), $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route($this->routeUpdateToIndex($redirect)));
+    }
+
+    /**
      * @return void
      */
     public function getAuthAdminDeleteFail(): void
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $this->authUserAdmin(true, false);
 
-        $row = $this->factoryCreate(data: ['user_id' => $user2->id]);
+        [$user2, $row2] = $this->createUserRow();
 
-        $this->assertEquals($row->user_id, $user2->id);
-
-        $user1->admin = true;
-        $user1->admin_mode = false;
-        $user1->save();
-
-        $this->auth($user1);
-
-        $this->get(route($this->route, $row->id), $this->action())
+        $this->get(route($this->route, $row2->id), $this->action())
             ->assertStatus(404);
     }
 
@@ -930,70 +976,85 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function postAuthAdminDeleteFail(): void
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $this->authUserAdmin(true, false);
 
-        $row = $this->factoryCreate(data: ['user_id' => $user2->id]);
+        [$user2, $row2] = $this->createUserRow();
 
-        $this->assertEquals($row->user_id, $user2->id);
-
-        $user1->admin = true;
-        $user1->admin_mode = false;
-        $user1->save();
-
-        $this->auth($user1);
-
-        $this->post(route($this->route, $row->id), $this->action())
+        $this->post(route($this->route, $row2->id), $this->action())
             ->assertStatus(404);
     }
 
     /**
-     * @param string $redirect
+     * @param ?string $redirect = null
      *
      * @return void
      */
-    public function getAuthAdminModeDeleteSuccess(string $redirect): void
+    public function getAuthAdminModeDeleteSuccess(?string $redirect = null): void
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $this->authUserAdmin(true, true);
 
-        $row = $this->factoryCreate(data: ['user_id' => $user2->id]);
+        [$user2, $row2] = $this->createUserRow();
 
-        $this->assertEquals($row->user_id, $user2->id);
-
-        $user1->admin = true;
-        $user1->admin_mode = true;
-        $user1->save();
-
-        $this->auth($user1);
-
-        $this->get(route($this->route, $row->id))
+        $this->get(route($this->route, $row2->id))
             ->assertStatus(302)
-            ->assertRedirect(route($redirect));
+            ->assertRedirect(route($this->routeUpdateToIndex($redirect)));
     }
 
     /**
-     * @param string $redirect
+     * @param ?string $redirect = null
      *
      * @return void
      */
-    public function postAuthAdminModeDeleteSuccess(string $redirect): void
+    public function postAuthAdminModeDeleteSuccess(?string $redirect = null): void
     {
-        [$user1, $vehicle1, $device1] = $this->createUserVehicleDevice();
-        [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice();
+        $user1 = $this->authUserAdmin(true, true);
 
-        $row = $this->factoryCreate(data: ['user_id' => $user2->id]);
+        [$user2, $row2] = $this->createUserRow();
 
-        $this->assertEquals($row->user_id, $user2->id);
-
-        $user1->admin = true;
-        $user1->admin_mode = true;
-        $user1->save();
-
-        $this->auth($user1);
-
-        $this->post(route($this->route, $row->id), $this->action())
+        $this->post(route($this->route, $row2->id), $this->action())
             ->assertStatus(302)
-            ->assertRedirect(route($redirect));
+            ->assertRedirect(route($this->routeUpdateToIndex($redirect)));
+    }
+
+    /**
+     * @param \App\Domains\User\Model\User $user
+     * @param ?\App\Domains\Vehicle\Model\Vehicle $vehicle = null
+     * @param ?\App\Domains\Device\Model\Device $device = null
+     *
+     * @return array
+     */
+    protected function dataWithUserVehicleDeviceMake(UserModel $user, ?VehicleModel $vehicle = null, ?DeviceModel $device = null): array
+    {
+        $data = ['user_id' => $user->id];
+
+        if ($vehicle) {
+            $data['vehicle_id'] = $vehicle->id;
+        }
+
+        if ($device) {
+            $data['device_id'] = $device->id;
+        }
+
+        return $data + $this->factoryMake()->toArray();
+    }
+
+    /**
+     * @param ?string $redirect = null
+     *
+     * @return string
+     */
+    protected function routeCreateToUpdate(?string $redirect = null): string
+    {
+        return $redirect ?: str_replace('.create', '.update', $this->route);
+    }
+
+    /**
+     * @param ?string $redirect = null
+     *
+     * @return string
+     */
+    protected function routeUpdateToIndex(?string $redirect = null): string
+    {
+        return $redirect ?: str_replace('.update', '.index', $this->route);
     }
 }

@@ -38,64 +38,39 @@ class UpdateBoolean extends ControllerAbstract
      */
     public function testPostAuthUnauthorizedFail(): void
     {
-        $this->authUser();
-
-        $this->post($this->routeToController())
-            ->assertStatus(404);
+        $this->postAuthUnauthorizedFail();
     }
 
     /**
      * @return void
      */
-    public function testGetAuthInvalidFail(): void
+    public function testGetAuthAdminInvalidFail(): void
     {
-        $this->authUserAdmin();
-
-        $this->get($this->routeFactoryCreateModel(null, 'invalid'))
-            ->assertStatus(422);
+        $this->getAuthAdminInvalidFail();
     }
 
     /**
      * @return void
      */
-    public function testPostAuthInvalidFail(): void
+    public function testPostAuthAdminInvalidFail(): void
     {
-        $this->authUserAdmin();
-
-        $this->post($this->routeFactoryCreateModel(null, 'invalid'))
-            ->assertStatus(422);
+        $this->postAuthAdminInvalidFail();
     }
 
     /**
      * @return void
      */
-    public function testGetAuthSuccess(): void
+    public function testGetAuthAdminSuccess(): void
     {
-        $this->authUserAdmin();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
-
-        $this->factoryCreate();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+        $this->getAuthAdminSuccess();
     }
 
     /**
      * @return void
      */
-    public function testPostAuthSuccess(): void
+    public function testPostAuthAdminSuccess(): void
     {
-        $this->authUserAdmin();
-
-        $this->post($this->routeToController())
-            ->assertStatus(200);
-
-        $this->factoryCreate();
-
-        $this->post($this->routeToController())
-            ->assertStatus(200);
+        $this->postAuthAdminSuccess();
     }
 
     /**

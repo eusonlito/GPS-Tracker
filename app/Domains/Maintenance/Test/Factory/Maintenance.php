@@ -21,7 +21,7 @@ class Maintenance extends FactoryAbstract
         return [
             'date_at' => date('Y-m-d'),
 
-            'name' => $this->faker->name,
+            'name' => 'Maintenance: '.$this->faker->name,
             'workshop' => $this->faker->name,
             'description' => $this->faker->text,
 

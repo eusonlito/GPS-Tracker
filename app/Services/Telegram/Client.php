@@ -81,7 +81,7 @@ class Client
      */
     protected function getUpdates(): array
     {
-        return $this->request('GET', '/getUpdates')->result;
+        return $this->request('GET', '/getUpdates')->result ?? [];
     }
 
     /**
@@ -108,9 +108,9 @@ class Client
      * @param string $path
      * @param array $body = []
      *
-     * @return array|\stdClass
+     * @return array|\stdClass|null
      */
-    protected function request(string $method, string $path, array $body = []): array|stdClass
+    protected function request(string $method, string $path, array $body = []): array|stdClass|null
     {
         return Curl::new()
             ->setMethod($method)

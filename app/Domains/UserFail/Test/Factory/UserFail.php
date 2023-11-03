@@ -18,7 +18,7 @@ class UserFail extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'text' => $this->faker->email(),
+            'text' => 'User Fail: '.$this->faker->email(),
             'ip' => $this->faker->ip,
 
             'user_id' => (rand(1, 0) ? $this->userFirstOrFactory() : null),

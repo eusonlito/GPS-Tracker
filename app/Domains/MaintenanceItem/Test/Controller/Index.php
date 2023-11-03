@@ -12,7 +12,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetGuestUnauthorizedFail(): void
+    public function testgetGuestUnauthorizedFail(): void
     {
         $this->getGuestUnauthorizedFail();
     }
@@ -20,7 +20,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostGuestNotAllowedFail(): void
+    public function testpostGuestNotAllowedFail(): void
     {
         $this->postGuestNotAllowedFail();
     }
@@ -28,7 +28,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthNotAllowedFail(): void
+    public function testpostAuthNotAllowedFail(): void
     {
         $this->postAuthNotAllowedFail();
     }
@@ -36,9 +36,49 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthSuccess(): void
+    public function testgetAuthSuccess(): void
     {
         $this->getAuthSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthAdminSuccess(): void
+    {
+        $this->getAuthAdminSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthListSuccess(): void
+    {
+        $this->getAuthListSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthListOnlyOwnSucess(): void
+    {
+        $this->getAuthListOnlyOwnSucess(vehicle: false, device: false);
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthListAdminSuccess(): void
+    {
+        $this->getAuthListAdminSuccess(vehicle: false, device: false);
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthListAdminModeSuccess(): void
+    {
+        $this->getAuthListAdminModeSuccess(vehicle: false, device: false);
     }
 
     /**

@@ -43,10 +43,7 @@ class UpdateParser extends ControllerAbstract
      */
     public function testPostAuthUnauthorizedFail(): void
     {
-        $this->authUser();
-
-        $this->post($this->routeToController())
-            ->assertStatus(404);
+        $this->postAuthUnauthorizedFail();
     }
 
     /**
@@ -54,15 +51,7 @@ class UpdateParser extends ControllerAbstract
      */
     public function testGetAuthAdminSuccess(): void
     {
-        $this->authUserAdmin();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
-
-        $this->factoryCreate();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+        $this->getAuthAdminSuccess();
     }
 
     /**
@@ -70,10 +59,7 @@ class UpdateParser extends ControllerAbstract
      */
     public function testPostAuthAdminEmptyFail(): void
     {
-        $this->authUserAdmin();
-
-        $this->post($this->routeToController(), $this->action())
-            ->assertStatus(422);
+        $this->postAuthAdminEmptyFail();
     }
 
     /**

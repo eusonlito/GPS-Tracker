@@ -18,7 +18,7 @@ class UserSession extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'auth' => $this->faker->email(),
+            'auth' => 'User Session: '.$this->faker->email(),
             'ip' => $this->faker->ip,
 
             'created_at' => date('Y-m-d H:i:s'),

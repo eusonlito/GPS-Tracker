@@ -36,8 +36,21 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
+    public function testGetAuthNoVehicleFail(): void
+    {
+        $this->authUser();
+
+        $this->get($this->routeToController())
+            ->assertStatus(302)
+            ->assertRedirect(route('vehicle.create'));
+    }
+
+    /**
+     * @return void
+     */
     public function testGetAuthSuccess(): void
     {
+        $this->createVehicle();
         $this->getAuthSuccess();
     }
 
@@ -46,6 +59,7 @@ class Index extends ControllerAbstract
      */
     public function testGetAuthListSuccess(): void
     {
+        $this->createVehicle();
         $this->getAuthListSuccess();
     }
 
@@ -54,6 +68,7 @@ class Index extends ControllerAbstract
      */
     public function testGetAuthListOnlyOwnSucess(): void
     {
+        $this->createVehicle();
         $this->getAuthListOnlyOwnSucess(device: false);
     }
 
@@ -62,6 +77,7 @@ class Index extends ControllerAbstract
      */
     public function testGetAuthListAdminSuccess(): void
     {
+        $this->createVehicle();
         $this->getAuthListAdminSuccess(device: false);
     }
 
@@ -70,6 +86,7 @@ class Index extends ControllerAbstract
      */
     public function testGetAuthListAdminModeSuccess(): void
     {
+        $this->createVehicle();
         $this->getAuthListAdminModeSuccess(device: false);
     }
 

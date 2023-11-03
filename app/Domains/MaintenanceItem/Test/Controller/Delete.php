@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Alarm\Test\Controller;
+namespace App\Domains\MaintenanceItem\Test\Controller;
 
 class Delete extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'alarm.update';
+    protected string $route = 'maintenance-item.update';
 
     /**
      * @var string

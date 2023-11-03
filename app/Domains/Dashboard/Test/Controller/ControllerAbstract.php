@@ -2,6 +2,7 @@
 
 namespace App\Domains\Dashboard\Test\Controller;
 
+use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\CoreApp\Test\Feature\FeatureAbstract;
 
 abstract class ControllerAbstract extends FeatureAbstract
@@ -11,6 +12,6 @@ abstract class ControllerAbstract extends FeatureAbstract
      */
     protected function getModelClass(): string
     {
-        return '';
+        return TripModel::class;
     }
 }

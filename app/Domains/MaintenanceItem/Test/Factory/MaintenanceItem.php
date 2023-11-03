@@ -18,7 +18,7 @@ class MaintenanceItem extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
+            'name' => 'Maintenance Item: '.$this->faker->name,
             'user_id' => $this->userFirstOrFactory(),
         ];
     }

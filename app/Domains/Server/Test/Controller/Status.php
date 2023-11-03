@@ -38,10 +38,7 @@ class Status extends ControllerAbstract
      */
     public function testPostAuthUnauthorizedFail(): void
     {
-        $this->authUser();
-
-        $this->post($this->routeToController())
-            ->assertStatus(404);
+        $this->postAuthUnauthorizedFail();
     }
 
     /**
@@ -49,15 +46,7 @@ class Status extends ControllerAbstract
      */
     public function testGetAuthAdminSuccess(): void
     {
-        $this->authUserAdmin();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
-
-        $this->factoryCreate();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+        $this->getAuthAdminSuccess();
     }
 
     /**
@@ -65,15 +54,7 @@ class Status extends ControllerAbstract
      */
     public function testPostAuthAdminSuccess(): void
     {
-        $this->authUserAdmin();
-
-        $this->post($this->routeToController())
-            ->assertStatus(200);
-
-        $this->factoryCreate();
-
-        $this->post($this->routeToController())
-            ->assertStatus(200);
+        $this->postAuthAdminSuccess();
     }
 
     /**

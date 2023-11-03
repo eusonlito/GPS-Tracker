@@ -17,7 +17,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetGuestUnauthorizedFail(): void
+    public function testgetGuestUnauthorizedFail(): void
     {
         $this->getGuestUnauthorizedFail();
     }
@@ -25,7 +25,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostGuestUnauthorizedFail(): void
+    public function testpostGuestUnauthorizedFail(): void
     {
         $this->postGuestUnauthorizedFail();
     }
@@ -33,49 +33,112 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthSuccess(): void
+    public function testGetAuthNoVehicleFail(): void
     {
+        $this->authUser();
+
+        $this->get($this->routeToController())
+            ->assertStatus(302)
+            ->assertRedirect(route('vehicle.create'));
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthSuccess(): void
+    {
+        $this->createVehicle();
         $this->getAuthSuccess();
     }
 
     /**
      * @return void
      */
-    public function testPostAuthSuccess(): void
+    public function testpostAuthSuccess(): void
     {
+        $this->createVehicle();
         $this->postAuthSuccess();
     }
 
     /**
      * @return void
      */
-    public function testPostAuthCreateSuccess(): void
+    public function testgetAuthAdminSuccess(): void
     {
-        $this->postAuthCreateSuccess('maintenance.update');
+        $this->createVehicle();
+        $this->getAuthAdminSuccess();
     }
 
     /**
      * @return void
      */
-    public function testGetAuthCreateAdminSuccess(): void
+    public function testpostAuthAdminSuccess(): void
     {
-        $this->getAuthCreateAdminSuccess();
+        $this->createVehicle();
+        $this->postAuthAdminSuccess();
     }
 
     /**
      * @return void
      */
-    public function testGetAuthCreateAdminModeSuccess(): void
+    public function testpostAuthCreateSuccess(): void
     {
-        $this->getAuthCreateAdminModeSuccess(true, false);
+        $this->createVehicle();
+        $this->postAuthCreateSuccess();
     }
 
     /**
      * @return void
      */
-    public function testPostAuthCreateAdminModeSuccess(): void
+    public function testgetAuthCreateAdminSuccess(): void
     {
-        $this->postAuthCreateAdminModeSuccess('maintenance.update', true, false);
+        $this->createVehicle();
+        $this->getAuthCreateAdminSuccess(device: false);
+    }
+
+    /**
+     * @return void
+     */
+    public function testpostAuthCreateAdminFail(): void
+    {
+        $this->createVehicle();
+        $this->postAuthCreateAdminFail(device: false);
+    }
+
+    /**
+     * @return void
+     */
+    public function testpostAuthCreateAdminSuccess(): void
+    {
+        $this->createVehicle();
+        $this->postAuthCreateAdminSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthCreateAdminModeSuccess(): void
+    {
+        $this->createVehicle();
+        $this->getAuthCreateAdminModeSuccess(device: false);
+    }
+
+    /**
+     * @return void
+     */
+    public function testpostAuthCreateAdminModeFail(): void
+    {
+        $this->createVehicle();
+        $this->postAuthCreateAdminModeFail(device: false);
+    }
+
+    /**
+     * @return void
+     */
+    public function testpostAuthCreateAdminModeSuccess(): void
+    {
+        $this->createVehicle();
+        $this->postAuthCreateAdminModeSuccess(device: false);
     }
 
     /**

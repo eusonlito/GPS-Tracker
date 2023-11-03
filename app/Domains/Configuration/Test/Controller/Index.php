@@ -12,7 +12,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetGuestUnauthorizedFail(): void
+    public function testgetGuestUnauthorizedFail(): void
     {
         $this->getGuestUnauthorizedFail();
     }
@@ -20,15 +20,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthUnauthorizedFail(): void
-    {
-        $this->getAuthUnauthorizedFail();
-    }
-
-    /**
-     * @return void
-     */
-    public function testPostGuestNotAllowedFail(): void
+    public function testpostGuestNotAllowedFail(): void
     {
         $this->postGuestNotAllowedFail();
     }
@@ -36,7 +28,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthNotAllowedFail(): void
+    public function testpostAuthNotAllowedFail(): void
     {
         $this->postAuthNotAllowedFail();
     }
@@ -44,7 +36,15 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthAdminSuccess(): void
+    public function testgetAuthUnauthorizedFail(): void
+    {
+        $this->getAuthUnauthorizedFail();
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthAdminSuccess(): void
     {
         $this->getAuthAdminSuccess();
     }

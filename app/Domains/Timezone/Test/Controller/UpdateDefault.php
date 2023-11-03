@@ -38,10 +38,7 @@ class UpdateDefault extends ControllerAbstract
      */
     public function testPostAuthUnauthorizedFail(): void
     {
-        $this->authUser();
-
-        $this->post($this->routeToController())
-            ->assertStatus(404);
+        $this->postAuthUnauthorizedFail();
     }
 
     /**
@@ -49,35 +46,15 @@ class UpdateDefault extends ControllerAbstract
      */
     public function testGetAuthSuccess(): void
     {
-        $this->authUserAdmin();
-
-        $this->get($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('dashboard.index'));
-
-        $this->factoryCreate();
-
-        $this->get($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('dashboard.index'));
+        $this->getAuthAdminSuccess();
     }
 
     /**
      * @return void
      */
-    public function testPostAuthSuccess(): void
+    public function testPostAuthAdminSuccess(): void
     {
-        $this->authUserAdmin();
-
-        $this->post($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('dashboard.index'));
-
-        $this->factoryCreate();
-
-        $this->post($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('dashboard.index'));
+        $this->postAuthAdminSuccess();
     }
 
     /**

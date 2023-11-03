@@ -19,7 +19,7 @@ class City extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => 'City: '.$this->faker->name(),
 
             'point' => Model::pointFromLatitudeLongitude(42.34818, -7.9126),
 

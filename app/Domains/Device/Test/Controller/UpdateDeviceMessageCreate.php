@@ -42,12 +42,6 @@ class UpdateDeviceMessageCreate extends ControllerAbstract
         $this->get($this->routeToController())
             ->assertStatus(302)
             ->assertRedirect(route('dashboard.index'));
-
-        $this->factoryCreate();
-
-        $this->get($this->routeToController())
-            ->assertStatus(302)
-            ->assertRedirect(route('dashboard.index'));
     }
 
     /**
@@ -56,14 +50,6 @@ class UpdateDeviceMessageCreate extends ControllerAbstract
     public function testPostAuthSuccess(): void
     {
         $this->authUser();
-
-        $data = $this->factoryMake(DeviceMessageModel::class)->toArray();
-
-        $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route('dashboard.index'));
-
-        $this->factoryCreate();
 
         $data = $this->factoryMake(DeviceMessageModel::class)->toArray();
 

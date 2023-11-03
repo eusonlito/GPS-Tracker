@@ -18,7 +18,7 @@ class Language extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => ($name = $this->faker->name),
+            'name' => 'Language: '.($name = $this->faker->name),
             'code' => str_slug($name),
             'locale' => $this->faker->name(),
 

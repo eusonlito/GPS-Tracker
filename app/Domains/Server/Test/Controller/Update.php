@@ -43,10 +43,7 @@ class Update extends ControllerAbstract
      */
     public function testPostAuthUnauthorizedFail(): void
     {
-        $this->authUser();
-
-        $this->post($this->routeToController())
-            ->assertStatus(404);
+        $this->postAuthUnauthorizedFail();
     }
 
     /**
@@ -54,41 +51,23 @@ class Update extends ControllerAbstract
      */
     public function testGetAuthAdminSuccess(): void
     {
-        $this->authUserAdmin();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
-
-        $this->factoryCreate();
-
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+        $this->getAuthAdminSuccess();
     }
 
     /**
      * @return void
      */
-    public function testPostAuthAdminSuccess(): void
+    public function testgetAuthUpdateAdminSuccess(): void
     {
-        $this->authUserAdmin();
+        $this->getAuthUpdateAdminSuccess();
+    }
 
-        $data = $this->factoryMake()->toArray();
-
-        $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($this->route, $this->rowLast()->id));
-
-        $this->dataVsRow($data, $this->rowLast());
-
-        $this->factoryCreate();
-
-        $data = $this->factoryMake()->toArray();
-
-        $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route($this->route, $this->rowLast()->id));
-
-        $this->dataVsRow($data, $this->rowLast());
+    /**
+     * @return void
+     */
+    public function testpostAuthUpdateAdminSuccess(): void
+    {
+        $this->postAuthUpdateAdminSuccess();
     }
 
     /**

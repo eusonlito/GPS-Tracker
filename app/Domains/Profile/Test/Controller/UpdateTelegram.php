@@ -2,7 +2,7 @@
 
 namespace App\Domains\Profile\Test\Controller;
 
-use App\Services\Http\Curl\Curl;
+
 
 class UpdateTelegram extends ControllerAbstract
 {
@@ -70,6 +70,6 @@ class UpdateTelegram extends ControllerAbstract
      */
     protected function setCurl(): void
     {
-        Curl::fake(file_get_contents(base_path('resources/app/test/profile/api.telegram.org.log')));
+        $this->curlFake('resources/app/test/profile/api.telegram.org.log');
     }
 }

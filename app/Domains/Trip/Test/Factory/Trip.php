@@ -22,7 +22,7 @@ class Trip extends FactoryAbstract
     {
         return [
             'code' => $this->faker->uuid(),
-            'name' => $this->faker->name(),
+            'name' => 'Trip: '.$this->faker->name(),
 
             'distance' => rand(0, 1000),
             'time' => rand(0, 1000),

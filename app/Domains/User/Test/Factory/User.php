@@ -19,7 +19,7 @@ class User extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => 'User: '.$this->faker->name(),
             'email' => ($email = $this->faker->companyEmail()),
             'password' => Hash::make($email),
             'preferences' => $this->definitionPreferences(),

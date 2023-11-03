@@ -18,7 +18,7 @@ class Country extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => ($name = $this->faker->name),
+            'name' => 'Country: '.($name = $this->faker->name),
             'code' => str_slug($name),
         ];
     }

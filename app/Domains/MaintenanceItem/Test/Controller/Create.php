@@ -17,7 +17,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetGuestUnauthorizedFail(): void
+    public function testgetGuestUnauthorizedFail(): void
     {
         $this->getGuestUnauthorizedFail();
     }
@@ -25,7 +25,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostGuestUnauthorizedFail(): void
+    public function testpostGuestUnauthorizedFail(): void
     {
         $this->postGuestUnauthorizedFail();
     }
@@ -33,7 +33,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthSuccess(): void
+    public function testgetAuthSuccess(): void
     {
         $this->getAuthSuccess();
     }
@@ -41,9 +41,65 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthCreateSuccess(): void
+    public function testpostAuthSuccess(): void
     {
-        $this->postAuthCreateSuccess('maintenance-item.update');
+        $this->postAuthSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthAdminSuccess(): void
+    {
+        $this->getAuthAdminSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testpostAuthAdminSuccess(): void
+    {
+        $this->postAuthAdminSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testpostAuthCreateSuccess(): void
+    {
+        $this->postAuthCreateSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthCreateAdminSuccess(): void
+    {
+        $this->getAuthCreateAdminSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testpostAuthCreateAdminFail(): void
+    {
+        $this->postAuthCreateAdminFail();
+    }
+
+    /**
+     * @return void
+     */
+    public function testpostAuthCreateAdminSuccess(): void
+    {
+        $this->postAuthCreateAdminSuccess();
+    }
+
+    /**
+     * @return void
+     */
+    public function testgetAuthCreateAdminModeSuccess(): void
+    {
+        $this->getAuthCreateAdminModeSuccess(vehicle: false, device: false);
     }
 
     /**
