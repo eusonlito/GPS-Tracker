@@ -5,7 +5,6 @@ namespace App\Domains\Server\Test\Unit;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as TripModel;
-use App\Services\Http\Curl\Curl;
 
 class LogRead extends UnitAbstract
 {

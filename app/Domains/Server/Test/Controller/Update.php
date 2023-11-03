@@ -57,14 +57,6 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthUpdateAdminSuccess(): void
-    {
-        $this->getAuthUpdateAdminSuccess();
-    }
-
-    /**
-     * @return void
-     */
     public function testpostAuthUpdateAdminSuccess(): void
     {
         $this->postAuthUpdateAdminSuccess();

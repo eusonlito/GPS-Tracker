@@ -2,8 +2,6 @@
 
 namespace App\Domains\Profile\Test\Controller;
 
-
-
 class UpdateTelegram extends ControllerAbstract
 {
     /**

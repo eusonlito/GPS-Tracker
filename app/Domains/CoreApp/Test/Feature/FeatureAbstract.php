@@ -26,7 +26,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     protected function createUserRow(?UserModel $user = null): array
     {
-        $user = $user ?? $this->createUser();
+        $user ??= $this->createUser();
 
         $row = $this->factoryCreate(data: array_filter([
             'user_id' => $user->id,
@@ -45,7 +45,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     protected function createVehicle(?UserModel $user = null): VehicleModel
     {
         return $this->factoryCreate(VehicleModel::class, array_filter([
-            'user_id' => $user?->id
+            'user_id' => $user?->id,
         ]));
     }
 
@@ -58,7 +58,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     {
         return $this->factoryCreate(DeviceModel::class, array_filter([
             'user_id' => $vehicle?->user_id,
-            'vehicle_id' => $vehicle?->id
+            'vehicle_id' => $vehicle?->id,
         ]));
     }
 
@@ -300,6 +300,28 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     /**
      * @return void
      */
+    public function getAuthAdminInvalidFail(): void
+    {
+        $this->authUserAdmin();
+
+        $this->get($this->routeFactoryCreateModel(null, 'invalid'))
+            ->assertStatus(422);
+    }
+
+    /**
+     * @return void
+     */
+    public function postAuthAdminInvalidFail(): void
+    {
+        $this->authUserAdmin();
+
+        $this->post($this->routeFactoryCreateModel(null, 'invalid'))
+            ->assertStatus(422);
+    }
+
+    /**
+     * @return void
+     */
     public function getAuthAdminNotAllowedFail(): void
     {
         $this->authUserAdmin();
@@ -523,10 +545,11 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     /**
      * @param ?string $redirect = null
      * @param array $exclude = []
+     * @param array $only = []
      *
      * @return void
      */
-    public function postAuthCreateSuccess(?string $redirect = null, array $exclude = []): void
+    public function postAuthCreateSuccess(?string $redirect = null, array $exclude = [], array $only = []): void
     {
         $this->authUser();
 
@@ -536,7 +559,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertStatus(302)
             ->assertRedirect(route($this->routeCreateToUpdate($redirect), $this->rowLast()->id));
 
-        $this->dataVsRow($data, $this->rowLast(), $exclude);
+        $this->dataVsRow($data, $this->rowLast(), $exclude, $only);
     }
 
     /**
@@ -585,10 +608,11 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     /**
      * @param ?string $redirect = null
      * @param array $exclude = []
+     * @param array $only = []
      *
      * @return void
      */
-    public function postAuthCreateAdminSuccess(?string $redirect = null, array $exclude = []): void
+    public function postAuthCreateAdminSuccess(?string $redirect = null, array $exclude = [], array $only = []): void
     {
         $this->authUserAdmin(true, false);
 
@@ -598,7 +622,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertStatus(302)
             ->assertRedirect(route($this->routeCreateToUpdate($redirect), $this->rowLast()->id));
 
-        $this->dataVsRow($data, $this->rowLast(), $exclude);
+        $this->dataVsRow($data, $this->rowLast(), $exclude, $only);
     }
 
     /**
@@ -670,10 +694,11 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      * @param bool $vehicle = true
      * @param bool $device = true
      * @param array $exclude = []
+     * @param array $only = []
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function postAuthCreateAdminModeSuccess(?string $redirect = null, bool $vehicle = true, bool $device = true, array $exclude = []): TestResponse
+    public function postAuthCreateAdminModeSuccess(?string $redirect = null, bool $vehicle = true, bool $device = true, array $exclude = [], array $only = []): TestResponse
     {
         $user1 = $this->authUserAdmin(true, true);
 
@@ -687,18 +712,18 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertStatus(302)
             ->assertRedirect(route($this->routeCreateToUpdate($redirect), $this->rowLast()->id));
 
-        $row = $this->rowLast();
+        $row1 = $this->rowLast();
 
-        $this->dataVsRow($data, $row, $exclude);
+        $this->dataVsRow($data, $row1, $exclude, $only);
 
-        $this->assertEquals($row->user_id, $user2->id);
+        $this->assertEquals($row1->user_id, $user2->id);
 
         if ($vehicle) {
-            $this->assertEquals($row->vehicle_id, $vehicle2->id);
+            $this->assertEquals($row1->vehicle_id, $vehicle2->id);
         }
 
         if ($device) {
-            $this->assertEquals($row->device_id, $device2->id);
+            $this->assertEquals($row1->device_id, $device2->id);
         }
 
         return $response;
@@ -706,10 +731,11 @@ abstract class FeatureAbstract extends FeatureAbstractCore
 
     /**
      * @param array $exclude = []
+     * @param array $only = []
      *
      * @return void
      */
-    public function postAuthUpdateSuccess(array $exclude = []): void
+    public function postAuthUpdateSuccess(array $exclude = [], array $only = []): void
     {
         $this->authUser();
 
@@ -720,7 +746,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertStatus(302)
             ->assertRedirect(route($this->route, $row->id));
 
-        $this->dataVsRow($data, $this->rowLast(), $exclude);
+        $this->dataVsRow($data, $this->rowLast(), $exclude, $only);
     }
 
     /**
@@ -731,9 +757,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function postAuthUpdateAdminFail(bool $vehicle = true, bool $device = true): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, false);
+        $user = $this->authUserAdmin(true, false);
 
-        [$user1, $row] = $this->createUserRow($user1);
+        [$user, $row] = $this->createUserRow($user);
 
         $data = $this->dataWithUserVehicleDeviceMake($this->createUser());
 
@@ -741,7 +767,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertStatus(302)
             ->assertRedirect(route($this->route, $row->id));
 
-        $this->assertEquals($this->rowLast()->user_id, $user1->id);
+        $this->assertEquals($this->rowLast()->user_id, $user->id);
 
         return $response;
     }
@@ -766,10 +792,11 @@ abstract class FeatureAbstract extends FeatureAbstractCore
 
     /**
      * @param array $exclude = []
+     * @param array $only = []
      *
      * @return void
      */
-    public function postAuthUpdateAdminSuccess(array $exclude = []): void
+    public function postAuthUpdateAdminSuccess(array $exclude = [], array $only = []): void
     {
         $this->authUserAdmin();
 
@@ -780,7 +807,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertStatus(302)
             ->assertRedirect(route($this->route, $row->id));
 
-        $this->dataVsRow($data, $this->rowLast(), $exclude);
+        $this->dataVsRow($data, $this->rowLast(), $exclude, $only);
     }
 
     /**
@@ -845,6 +872,25 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     }
 
     /**
+     * @return \Illuminate\Testing\TestResponse
+     */
+    public function getAuthUpdateAdminModeNoUserSuccess(): TestResponse
+    {
+        $user1 = $this->authUserAdmin(true, true);
+
+        [$user1, $row1] = $this->createUserRow($user1);
+        [$user2, $row2] = $this->createUserRow();
+
+        $response = $this->get(route($this->route, $row1->id))
+            ->assertStatus(200);
+
+        $response = $this->get(route($this->route, $row2->id))
+            ->assertStatus(200);
+
+        return $response;
+    }
+
+    /**
      * @param bool $vehicle = true
      * @param bool $device = true
      *
@@ -854,12 +900,12 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     {
         $user1 = $this->authUserAdmin(true, true);
 
-        [$vehicle1, $device1, $row] = $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
+        [$vehicle1, $device1, $row1] = $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
         [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice($vehicle, $device);
 
         $data = $this->dataWithUserVehicleDeviceMake($user2, $vehicle2, $device2);
 
-        return $this->post(route($this->route, $row->id), $data + $this->action())
+        return $this->post(route($this->route, $row1->id), $data + $this->action())
             ->assertStatus(422);
     }
 
@@ -867,15 +913,16 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      * @param bool $vehicle = true
      * @param bool $device = true
      * @param array $exclude = []
+     * @param array $only = []
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function postAuthUpdateAdminModeSuccess(bool $vehicle = true, bool $device = true, array $exclude = []): TestResponse
+    public function postAuthUpdateAdminModeSuccess(bool $vehicle = true, bool $device = true, array $exclude = [], array $only = []): TestResponse
     {
         $user1 = $this->authUserAdmin(true, true);
 
         [$vehicle1, $device1] = $this->createVehicleDeviceWithUser($user1, $vehicle, $device);
-        [$user2, $vehicle2, $device2, $row] = $this->createUserVehicleDeviceRow($vehicle, $device);
+        [$user2, $vehicle2, $device2, $row2] = $this->createUserVehicleDeviceRow($vehicle, $device);
 
         if ($vehicle) {
             $vehicle2 = $this->createVehicle($user2);
@@ -887,23 +934,63 @@ abstract class FeatureAbstract extends FeatureAbstractCore
 
         $data = $this->dataWithUserVehicleDeviceMake($user2, $vehicle2, $device2);
 
-        $response = $this->post(route($this->route, $row->id), $data + $this->action())
+        $response = $this->post(route($this->route, $row2->id), $data + $this->action())
             ->assertStatus(302)
-            ->assertRedirect(route($this->route, $row->id));
+            ->assertRedirect(route($this->route, $row2->id));
 
-        $row = $this->rowLast();
+        $row2 = $row2->fresh();
 
-        $this->assertEquals($row->user_id, $user2->id);
+        $this->assertEquals($row2->user_id, $user2->id);
 
         if ($vehicle) {
-            $this->assertEquals($row->vehicle_id, $vehicle2->id);
+            $this->assertEquals($row2->vehicle_id, $vehicle2->id);
         }
 
         if ($device) {
-            $this->assertEquals($row->device_id, $device2->id);
+            $this->assertEquals($row2->device_id, $device2->id);
         }
 
-        $this->dataVsRow(['user_id' => $row->user_id] + $data, $row, $exclude);
+        $this->dataVsRow(['user_id' => $row2->user_id] + $data, $row2, $exclude, $only);
+
+        return $response;
+    }
+
+    /**
+     * @param array $exclude = []
+     * @param array $only = []
+     *
+     * @return \Illuminate\Testing\TestResponse
+     */
+    public function postAuthUpdateAdminModeNoUserSuccess(array $exclude = [], array $only = []): TestResponse
+    {
+        $user1 = $this->authUserAdmin(true, true);
+
+        [$user1, $row1] = $this->createUserRow($user1);
+        [$user2, $row2] = $this->createUserRow();
+
+        $data = $this->factoryMake()->toArray();
+
+        $response = $this->post(route($this->route, $row1->id), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route($this->route, $row1->id));
+
+        $row1 = $row1->fresh();
+
+        $this->assertEquals($row1->user_id, $user1->id);
+
+        $this->dataVsRow(['user_id' => $row1->user_id] + $data, $row1, $exclude, $only);
+
+        $data = $this->factoryMake()->toArray();
+
+        $response = $this->post(route($this->route, $row2->id), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route($this->route, $row2->id));
+
+        $row2 = $row2->fresh();
+
+        $this->assertEquals($row2->user_id, $user2->id);
+
+        $this->dataVsRow(['user_id' => $row2->user_id] + $data, $row2, $exclude, $only);
 
         return $response;
     }

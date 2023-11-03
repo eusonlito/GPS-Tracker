@@ -2,18 +2,18 @@
 
 @section ('content')
 
+@if ($users_multiple)
+
+<div class="box p-5 mt-5">
+    <div class="p-2">
+        <x-select name="user_id" :options="$users" value="id" text="name" id="maintenance-update-user" :label="__('maintenance-update.user')" readonly disabled></x-select>
+    </div>
+</div>
+
+@endif
+
 <form method="post" enctype="multipart/form-data">
     <input type="hidden" name="_action" value="update" />
-
-    @if ($users_multiple)
-
-    <div class="box p-5 mt-5">
-        <div class="p-2">
-            <x-select name="user_id" :options="$users" value="id" text="name" id="maintenance-update-user" :label="__('maintenance-update.user')" readonly disabled></x-select>
-        </div>
-    </div>
-
-    @endif
 
     @include ('domains.maintenance.molecules.create-update')
 

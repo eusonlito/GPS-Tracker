@@ -2,7 +2,7 @@
 
 namespace App\Domains\Trip\Test\Controller;
 
-class Update extends ControllerAbstract
+class Delete extends ControllerAbstract
 {
     /**
      * @var string
@@ -12,7 +12,7 @@ class Update extends ControllerAbstract
     /**
      * @var string
      */
-    protected string $action = 'update';
+    protected string $action = 'delete';
 
     /**
      * @return void
@@ -65,49 +65,41 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthUpdateSuccess(): void
+    public function testgetAuthDeleteFail(): void
     {
-        $this->postAuthUpdateSuccess(only: ['name', 'code', 'shared', 'shared_public']);
+        $this->getAuthDeleteFail();
     }
 
     /**
      * @return void
      */
-    public function testgetAuthUpdateAdminSuccess(): void
+    public function testpostAuthDeleteSuccess(): void
     {
-        $this->getAuthUpdateAdminSuccess();
+        $this->postAuthDeleteSuccess();
     }
 
     /**
      * @return void
      */
-    public function testpostAuthUpdateAdminFail(): void
+    public function testgetAuthAdminDeleteFail(): void
     {
-        $this->postAuthUpdateAdminFail(vehicle: false, device: false);
+        $this->getAuthAdminDeleteFail();
     }
 
     /**
      * @return void
      */
-    public function testpostAuthUpdateAdminSuccess(): void
+    public function testpostAuthAdminDeleteFail(): void
     {
-        $this->postAuthUpdateAdminSuccess(only: ['name', 'code', 'shared', 'shared_public']);
+        $this->postAuthAdminDeleteFail();
     }
 
     /**
      * @return void
      */
-    public function testgetAuthUpdateAdminModeSuccess(): void
+    public function testpostAuthAdminModeDeleteSuccess(): void
     {
-        $this->getAuthUpdateAdminModeSuccess(vehicle: false, device: false);
-    }
-
-    /**
-     * @return void
-     */
-    public function testpostAuthUpdateAdminModeSuccess(): void
-    {
-        $this->postAuthUpdateAdminModeSuccess(vehicle: false, device: false, only: ['name', 'code', 'shared', 'shared_public']);
+        $this->postAuthAdminModeDeleteSuccess();
     }
 
     /**

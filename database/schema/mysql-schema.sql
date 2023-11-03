@@ -507,6 +507,7 @@ CREATE TABLE `user` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `language_id` bigint unsigned NOT NULL,
+  `admin_mode` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_email_unique` (`email`),
   KEY `user_language_fk` (`language_id`),
@@ -639,3 +640,4 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (60,'2023_10_05_190
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (61,'2023_10_05_235000_trip_index',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (62,'2023_10_23_235000_maintenance_item',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (63,'2023_10_25_003000_maintenance_maintenance_item_amount_gross',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (64,'2023_10_31_185000_user_admin_mode',1);

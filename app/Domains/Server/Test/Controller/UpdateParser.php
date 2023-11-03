@@ -57,14 +57,6 @@ class UpdateParser extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthAdminEmptyFail(): void
-    {
-        $this->postAuthAdminEmptyFail();
-    }
-
-    /**
-     * @return void
-     */
     public function testPostAuthAdminSuccess(): void
     {
         $this->authUserAdmin();

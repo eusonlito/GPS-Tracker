@@ -17,7 +17,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetGuestUnauthorizedFail(): void
+    public function testgetGuestUnauthorizedFail(): void
     {
         $this->getGuestUnauthorizedFail();
     }
@@ -25,7 +25,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostGuestUnauthorizedFail(): void
+    public function testpostGuestUnauthorizedFail(): void
     {
         $this->postGuestUnauthorizedFail();
     }
@@ -33,7 +33,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthSuccess(): void
+    public function testgetAuthSuccess(): void
     {
         $this->getAuthSuccess();
     }
@@ -41,27 +41,65 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testPostAuthSuccess(): void
+    public function testpostAuthSuccess(): void
     {
-        $this->authUser();
+        $this->postAuthSuccess();
+    }
 
-        $data = $this->factoryMake()->toArray();
+    /**
+     * @return void
+     */
+    public function testgetAuthAdminSuccess(): void
+    {
+        $this->getAuthAdminSuccess();
+    }
 
-        $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route('vehicle.update', $this->rowLast()->id));
+    /**
+     * @return void
+     */
+    public function testpostAuthAdminSuccess(): void
+    {
+        $this->postAuthAdminSuccess();
+    }
 
-        $this->dataVsRow($data, $this->rowLast());
+    /**
+     * @return void
+     */
+    public function testpostAuthCreateSuccess(): void
+    {
+        $this->postAuthCreateSuccess();
+    }
 
-        $this->factoryCreate();
+    /**
+     * @return void
+     */
+    public function testgetAuthCreateAdminSuccess(): void
+    {
+        $this->getAuthCreateAdminSuccess();
+    }
 
-        $data = $this->factoryMake()->toArray();
+    /**
+     * @return void
+     */
+    public function testpostAuthCreateAdminFail(): void
+    {
+        $this->postAuthCreateAdminFail();
+    }
 
-        $this->post($this->routeToController(), $data + $this->action())
-            ->assertStatus(302)
-            ->assertRedirect(route('vehicle.update', $this->rowLast()->id));
+    /**
+     * @return void
+     */
+    public function testpostAuthCreateAdminSuccess(): void
+    {
+        $this->postAuthCreateAdminSuccess();
+    }
 
-        $this->dataVsRow($data, $this->rowLast());
+    /**
+     * @return void
+     */
+    public function testgetAuthCreateAdminModeSuccess(): void
+    {
+        $this->getAuthCreateAdminModeSuccess(vehicle: false, device: false);
     }
 
     /**

@@ -12,6 +12,7 @@ use Tests\CreatesApplication;
 use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\Core\Traits\Factory;
 use App\Domains\User\Model\User as UserModel;
+use App\Services\Http\Curl\Curl;
 use Database\Seeders\Database as DatabaseSeed;
 
 abstract class TestAbstract extends TestsAbstract
@@ -185,6 +186,39 @@ abstract class TestAbstract extends TestsAbstract
     protected function action(?string $action = null): array
     {
         return ['_action' => $action ?: $this->action];
+    }
+
+    /**
+     * @param array $data
+     * @param \App\Domains\Core\Model\ModelAbstract $row
+     * @param array $exclude = []
+     * @param array $only = []
+     *
+     * @return void
+     */
+    protected function dataVsRow(array $data, ModelAbstract $row, array $exclude = [], array $only = []): void
+    {
+        if ($only) {
+            $data = helper()->arrayKeysWhitelist($data, $only);
+        } else {
+            $data = helper()->arrayKeysBlacklist($data, array_merge(['created_at', 'updated_at'], $exclude));
+        }
+
+        foreach ($data as $key => $value) {
+            if (is_scalar($value) && is_scalar($row->$key)) {
+                $this->assertTrue($value == $row->$key, sprintf('[%s] %s != %s', $key, $value, $row->$key));
+            } else {
+                $this->assertEquals($value, $row->$key);
+            }
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function curlFake(string $file): void
+    {
+        Curl::fake(preg_replace(['/\n\r/', '/\n/'], ["\n", "\n\r"], file_get_contents(base_path($file))));
     }
 
     /**

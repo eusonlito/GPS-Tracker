@@ -10,11 +10,6 @@ class UpdateStat extends ControllerAbstract
     protected string $route = 'trip.update.stat';
 
     /**
-     * @var string
-     */
-    protected string $action = 'updateStats';
-
-    /**
      * @return void
      */
     public function testGetGuestUnauthorizedFail(): void

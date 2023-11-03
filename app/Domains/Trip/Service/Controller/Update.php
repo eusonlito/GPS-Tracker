@@ -33,7 +33,7 @@ class Update extends ControllerAbstract
      */
     public function data(): array
     {
-        return [
+        return $this->dataCore() + [
             'row' => $this->row,
         ];
     }

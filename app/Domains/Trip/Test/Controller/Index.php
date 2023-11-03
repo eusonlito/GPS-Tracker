@@ -2,8 +2,6 @@
 
 namespace App\Domains\Trip\Test\Controller;
 
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
-
 class Index extends ControllerAbstract
 {
     /**
@@ -52,16 +50,44 @@ class Index extends ControllerAbstract
      */
     public function testGetAuthSuccess(): void
     {
-        $this->authUser();
-        $this->factoryCreate(VehicleModel::class);
+        $this->createVehicle();
+        $this->getAuthSuccess();
+    }
 
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+    /**
+     * @return void
+     */
+    public function testGetAuthListSuccess(): void
+    {
+        $this->createVehicle();
+        $this->getAuthListSuccess();
+    }
 
-        $this->factoryCreate();
+    /**
+     * @return void
+     */
+    public function testGetAuthListOnlyOwnSucess(): void
+    {
+        $this->createVehicle();
+        $this->getAuthListOnlyOwnSucess(device: false);
+    }
 
-        $this->get($this->routeToController())
-            ->assertStatus(200);
+    /**
+     * @return void
+     */
+    public function testGetAuthListAdminSuccess(): void
+    {
+        $this->createVehicle();
+        $this->getAuthListAdminSuccess(device: false);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetAuthListAdminModeSuccess(): void
+    {
+        $this->createVehicle();
+        $this->getAuthListAdminModeSuccess(device: false);
     }
 
     /**

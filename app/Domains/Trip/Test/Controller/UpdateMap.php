@@ -10,11 +10,6 @@ class UpdateMap extends ControllerAbstract
     protected string $route = 'trip.update.map';
 
     /**
-     * @var string
-     */
-    protected string $action = '';
-
-    /**
      * @return void
      */
     public function testGetGuestUnauthorizedFail(): void

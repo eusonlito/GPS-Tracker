@@ -44,9 +44,20 @@ class UpdateDefault extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthSuccess(): void
+    public function testGetAuthAdminSuccess(): void
     {
-        $this->getAuthAdminSuccess();
+        $this->authUserAdmin();
+
+        $row = $this->factoryCreate(data: ['default' => false]);
+
+        $this->assertFalse($row->default);
+
+        $this->get($this->route(null, $row->id))
+            ->assertStatus(302);
+
+        $row = $row->fresh();
+
+        $this->assertTrue($row->default);
     }
 
     /**
@@ -54,7 +65,18 @@ class UpdateDefault extends ControllerAbstract
      */
     public function testPostAuthAdminSuccess(): void
     {
-        $this->postAuthAdminSuccess();
+        $this->authUserAdmin();
+
+        $row = $this->factoryCreate(data: ['default' => false]);
+
+        $this->assertFalse($row->default);
+
+        $this->post($this->route(null, $row->id))
+            ->assertStatus(302);
+
+        $row = $row->fresh();
+
+        $this->assertTrue($row->default);
     }
 
     /**
