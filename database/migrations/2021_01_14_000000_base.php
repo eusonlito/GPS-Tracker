@@ -211,6 +211,33 @@ return new class extends MigrationAbstract {
             $table->unsignedBigInteger('vehicle_id');
         });
 
+        Schema::create('maintenance_item', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name')->index();
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('user_id');
+        });
+
+        Schema::create('maintenance_maintenance_item', function (Blueprint $table) {
+            $table->id();
+
+            $table->unsignedDecimal('quantity', 10, 2)->default(0);
+            $table->unsignedDecimal('amount_gross', 10, 2)->default(0);
+            $table->unsignedDecimal('amount_net', 10, 2)->default(0);
+            $table->unsignedDecimal('tax_percent', 10, 2)->default(0);
+            $table->unsignedDecimal('tax_amount', 10, 2)->default(0);
+            $table->unsignedDecimal('subtotal', 10, 2)->default(0);
+            $table->unsignedDecimal('total', 10, 2)->default(0);
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('maintenance_id');
+            $table->unsignedBigInteger('maintenance_item_id');
+        });
+
         Schema::create('position', function (Blueprint $table) {
             $table->id();
 
@@ -340,6 +367,7 @@ return new class extends MigrationAbstract {
 
             $table->boolean('enabled')->default(0);
             $table->boolean('admin')->default(0);
+            $table->boolean('admin_mode')->default(0);
 
             $this->timestamps($table);
 
@@ -432,6 +460,19 @@ return new class extends MigrationAbstract {
             $this->foreignOnDeleteCascade($table, 'vehicle');
         });
 
+        Schema::table('maintenance_item', function (Blueprint $table) {
+            $this->tableAddUnique($table, ['name', 'user_id']);
+
+            $this->foreignOnDeleteCascade($table, 'user');
+        });
+
+        Schema::table('maintenance_maintenance_item', function (Blueprint $table) {
+            $this->tableAddUnique($table, ['maintenance_id', 'maintenance_item_id']);
+
+            $this->foreignOnDeleteCascade($table, 'maintenance');
+            $this->foreignOnDeleteCascade($table, 'maintenance_item');
+        });
+
         Schema::table('position', function (Blueprint $table) {
             $table->spatialIndex('point');
 
@@ -457,6 +498,8 @@ return new class extends MigrationAbstract {
         });
 
         Schema::table('trip', function (Blueprint $table) {
+            $this->tableAddIndex($table, ['shared_public', 'shared', 'device_id', 'end_utc_at']);
+
             $this->foreignOnDeleteSetNull($table, 'device');
             $this->foreignOnDeleteCascade($table, 'timezone');
             $this->foreignOnDeleteCascade($table, 'user');
