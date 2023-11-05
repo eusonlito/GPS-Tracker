@@ -77,7 +77,6 @@ class Index extends ControllerAbstract
 
         return $this->cache(
             fn () => TripModel::query()
-                ->selectSimple()
                 ->byVehicleId($this->vehicle()->id)
                 ->whenDeviceId($this->device()?->id)
                 ->listSimple()

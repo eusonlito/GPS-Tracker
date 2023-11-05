@@ -200,7 +200,7 @@ class Trip extends BuilderAbstract
      */
     public function listSimple(): self
     {
-        return $this->select('id', 'name', 'end_utc_at', 'distance', 'time')->orderByStartUtcAtDesc();
+        return $this->selectSimple()->orderByStartUtcAtDesc();
     }
 
     /**
