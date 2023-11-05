@@ -81,6 +81,14 @@ class City extends BuilderAbstract
     }
 
     /**
+     * @return self
+     */
+    public function selectRelated(): self
+    {
+        return $this->selectOnly('id', 'name', 'state_id')->withSimple('state');
+    }
+
+    /**
      * @param float $latitude
      * @param float $longitude
      *

@@ -50,7 +50,7 @@ class Index extends ControllerAbstract
                 ->whenUserId($this->user()?->id)
                 ->withMaintenancesCount()
                 ->withStats()
-                ->withUser()
+                ->withSimple('user')
                 ->orderByMaintenancesCount()
                 ->list()
                 ->get()

@@ -96,4 +96,14 @@ abstract class BuilderAbstract extends BuilderAbstractCore
     {
         return $this->when($vehicle_id, static fn ($q) => $q->byVehicleId($vehicle_id));
     }
+
+    /**
+     * @param string $relation
+     *
+     * @return self
+     */
+    public function withSimple(string $relation): self
+    {
+        return $this->with([$relation => static fn ($q) => $q->selectRelated()]);
+    }
 }

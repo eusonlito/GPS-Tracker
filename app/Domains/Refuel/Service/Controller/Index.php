@@ -81,8 +81,8 @@ class Index extends ControllerAbstract
                 ->whenUserId($this->user()?->id)
                 ->whenVehicleId((int)$this->request->input('vehicle_id'))
                 ->whenDateAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
-                ->withUser()
-                ->withVehicle()
+                ->withSimple('user')
+                ->withSimple('vehicle')
                 ->list()
                 ->get()
         );

@@ -17,9 +17,9 @@ class Vehicle extends BuilderAbstract
     /**
      * @return self
      */
-    public function listRelatedSimple(): self
+    public function selectRelated(): self
     {
-        return $this->select('id', 'name', 'user_id');
+        return $this->selectOnly('id', 'name', 'user_id');
     }
 
     /**

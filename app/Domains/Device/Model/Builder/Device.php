@@ -36,6 +36,14 @@ class Device extends BuilderAbstract
     }
 
     /**
+     * @return self
+     */
+    public function selectRelated(): self
+    {
+        return $this->selectOnly('id', 'name', 'user_id', 'vehicle_id');
+    }
+
+    /**
      * @param ?bool $finished
      *
      * @return self

@@ -175,9 +175,9 @@ class Index extends ControllerAbstract
                 ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
                 ->whenShared($this->requestBool('shared'))
                 ->whenSharedPublic($this->requestBool('shared_public'))
-                ->withDevice()
-                ->withUser()
-                ->withVehicle()
+                ->withSimple('device')
+                ->withSimple('user')
+                ->withSimple('vehicle')
                 ->list()
                 ->get()
         );

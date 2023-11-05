@@ -19,9 +19,9 @@ class User extends BuilderAbstract
     /**
      * @return self
      */
-    public function listRelatedSimple(): self
+    public function selectRelated(): self
     {
-        return $this->select('id', 'name');
+        return $this->selectOnly('id', 'name');
     }
 
     /**
@@ -29,6 +29,6 @@ class User extends BuilderAbstract
      */
     public function listSimple(): self
     {
-        return $this->select('id', 'name')->orderBy('name', 'ASC');
+        return $this->selectRelated()->orderBy('name', 'ASC');
     }
 }

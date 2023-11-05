@@ -50,4 +50,12 @@ class State extends BuilderAbstract
     {
         return $this->orderBy('name', 'ASC');
     }
+
+    /**
+     * @return self
+     */
+    public function selectRelated(): self
+    {
+        return $this->selectOnly('id', 'name', 'country_id');
+    }
 }
