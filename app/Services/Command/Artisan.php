@@ -160,7 +160,7 @@ class Artisan
      */
     protected function phpIsCli(): bool
     {
-        return ((PHP_SAPI === 'cli') || defined('STDIN'));
+        return (PHP_SAPI === 'cli') || defined('STDIN');
     }
 
     /**
