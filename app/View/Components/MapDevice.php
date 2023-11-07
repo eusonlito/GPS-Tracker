@@ -24,9 +24,9 @@ class MapDevice extends Component
     }
 
     /**
-     * @return ?\Illuminate\View\View
+     * @return \Illuminate\View\View
      */
-    public function render(): ?View
+    public function render(): View
     {
         return view('components.map-device', [
             'id' => uniqid(),

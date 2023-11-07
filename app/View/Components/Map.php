@@ -31,14 +31,18 @@ class Map extends Component
     }
 
     /**
-     * @return ?\Illuminate\View\View
+     * @return bool
      */
-    public function render(): ?View
+    public function shouldRender(): bool
     {
-        if ($this->positions->isEmpty()) {
-            return null;
-        }
+        return $this->positions->isNotEmpty();
+    }
 
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function render(): View
+    {
         return view('components.map', [
             'positionsJson' => $this->positionsJson(),
             'alarmsJson' => $this->alarmsJson(),

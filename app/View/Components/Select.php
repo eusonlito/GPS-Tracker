@@ -10,56 +10,6 @@ use Illuminate\View\View;
 class Select extends Component
 {
     /**
-     * @var \Illuminate\Http\Request
-     */
-    public Request $request;
-
-    /**
-     * @var string
-     */
-    public string $value;
-
-    /**
-     * @var array
-     */
-    public array $text;
-
-    /**
-     * @var array
-     */
-    public array $options;
-
-    /**
-     * @var string|array
-     */
-    public string|array $selected;
-
-    /**
-     * @var string
-     */
-    public string $label;
-
-    /**
-     * @var string
-     */
-    public string $name;
-
-    /**
-     * @var string
-     */
-    public string $id;
-
-    /**
-     * @var bool
-     */
-    public bool $valueOnly;
-
-    /**
-     * @var bool
-     */
-    public bool $optionsWithAttributes;
-
-    /**
      * @param \Illuminate\Http\Request $request
      * @param array|\Illuminate\Support\Collection $options,
      * @param string $value = '',
@@ -75,37 +25,31 @@ class Select extends Component
      * @return self
      */
     public function __construct(
-        Request $request,
-        array|Collection $options,
-        string $value = '',
-        string|int|array $text = '',
-        string $label = '',
-        string $name = '',
-        string $id = '',
-        mixed $selected = null,
-        string $placeholder = '',
-        bool $valueOnly = false,
-        bool $optionsWithAttributes = false,
+        public Request $request,
+        public array|Collection $options,
+        public string $value = '',
+        public string|int|array $text = '',
+        public string $label = '',
+        public string $name = '',
+        public string $id = '',
+        public array|string|null $selected = null,
+        public string $placeholder = '',
+        public bool $valueOnly = false,
+        public bool $optionsWithAttributes = false,
     ) {
-        $this->request = $request;
-        $this->name = $name;
-        $this->value = $value;
-        $this->valueOnly = $valueOnly;
-        $this->optionsWithAttributes = $optionsWithAttributes;
         $this->text = array_filter((array)$text);
         $this->selected = $this->selected($selected);
         $this->options = $this->options($options);
-        $this->label = $label;
         $this->id = $id ?: 'input-'.uniqid();
         $this->placeholder($placeholder);
     }
 
     /**
-     * @param mixed $selected
+     * @param array|string|null $selected
      *
      * @return string|array
      */
-    protected function selected(mixed $selected): string|array
+    protected function selected(array|string|null $selected): string|array
     {
         $selected ??= $this->request->input(helper()->arrayKeyDot($this->name));
 

@@ -10,16 +10,6 @@ class Message extends Component
     /**
      * @var string
      */
-    public string $message = '';
-
-    /**
-     * @var string
-     */
-    public string $type;
-
-    /**
-     * @var string
-     */
     public string $class;
 
     /**
@@ -29,21 +19,29 @@ class Message extends Component
      *
      * @return self
      */
-    public function __construct(string $type, string $bag = '', string $message = '')
-    {
-        $this->type($type);
+    public function __construct(
+        readonly protected string $type,
+        readonly protected string $bag = '',
+        public string $message = ''
+    ) {
         $this->class();
-        $this->message($bag, $message);
+        $this->message();
     }
 
     /**
-     * @param string $type
-     *
-     * @return void
+     * @return bool
      */
-    protected function type(string $type): void
+    public function shouldRender(): bool
     {
-        $this->type = $type;
+        return boolval($this->message);
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function render(): View
+    {
+        return view('components.message');
     }
 
     /**
@@ -56,30 +54,21 @@ class Message extends Component
     }
 
     /**
-     * @param string $bag
-     * @param string $message
-     *
      * @return void
      */
-    protected function message(string $bag, string $message): void
+    protected function message(): void
     {
-        if ($message) {
-            $this->message = $message;
-        } elseif ($bag) {
-            $this->message = $this->messageBag($bag);
-        } else {
-            $this->message = $this->messageType();
-        }
+        $this->message ??= $this->bag
+            ? $this->messageBag()
+            : $this->messageType();
     }
 
     /**
-     * @param string $bag
-     *
      * @return string
      */
-    protected function messageBag(string $bag): string
+    protected function messageBag(): string
     {
-        return service()->message()->get($this->type, $bag)->first();
+        return service()->message()->get($this->type, $this->bag)->first();
     }
 
     /**
@@ -92,17 +81,5 @@ class Message extends Component
         }
 
         return reset($messages)->first();
-    }
-
-    /**
-     * @return ?\Illuminate\View\View
-     */
-    public function render(): ?View
-    {
-        if (empty($this->message)) {
-            return null;
-        }
-
-        return view('components.message');
     }
 }
