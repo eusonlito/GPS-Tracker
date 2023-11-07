@@ -1479,16 +1479,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.30.1",
+            "version": "v10.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "7a2da50258c4d0f693b738d3f3c69b2693aea6c1"
+                "reference": "507ce9b28bce4b5e4140c28943092ca38e9a52e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/7a2da50258c4d0f693b738d3f3c69b2693aea6c1",
-                "reference": "7a2da50258c4d0f693b738d3f3c69b2693aea6c1",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/507ce9b28bce4b5e4140c28943092ca38e9a52e4",
+                "reference": "507ce9b28bce4b5e4140c28943092ca38e9a52e4",
                 "shasum": ""
             },
             "require": {
@@ -1677,7 +1677,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-11-01T13:52:17+00:00"
+            "time": "2023-11-07T13:48:30+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -8592,16 +8592,16 @@
         },
         {
             "name": "laravel/pint",
-            "version": "v1.13.5",
+            "version": "v1.13.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "df105cf8ce7a8f0b8a9425ff45cd281a5448e423"
+                "reference": "3e3d2ab01c7d8b484c18e6100ecf53639c744fa7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/df105cf8ce7a8f0b8a9425ff45cd281a5448e423",
-                "reference": "df105cf8ce7a8f0b8a9425ff45cd281a5448e423",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/3e3d2ab01c7d8b484c18e6100ecf53639c744fa7",
+                "reference": "3e3d2ab01c7d8b484c18e6100ecf53639c744fa7",
                 "shasum": ""
             },
             "require": {
@@ -8612,13 +8612,13 @@
                 "php": "^8.1.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.34.1",
-                "illuminate/view": "^10.26.2",
-                "laravel-zero/framework": "^10.1.2",
+                "friendsofphp/php-cs-fixer": "^3.38.0",
+                "illuminate/view": "^10.30.1",
+                "laravel-zero/framework": "^10.3.0",
                 "mockery/mockery": "^1.6.6",
                 "nunomaduro/larastan": "^2.6.4",
                 "nunomaduro/termwind": "^1.15.1",
-                "pestphp/pest": "^2.20.0"
+                "pestphp/pest": "^2.24.2"
             },
             "bin": [
                 "builds/pint"
@@ -8654,7 +8654,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2023-10-26T09:26:10+00:00"
+            "time": "2023-11-07T17:59:57+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -12482,16 +12482,16 @@
         },
         {
             "name": "spatie/ray",
-            "version": "1.39.0",
+            "version": "1.40.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ray.git",
-                "reference": "7ab6bd01dc6a8ecdd836b3182d40a04308ae0c75"
+                "reference": "d2477d80996416ac33066f4fef8c6bd6e393fedd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ray/zipball/7ab6bd01dc6a8ecdd836b3182d40a04308ae0c75",
-                "reference": "7ab6bd01dc6a8ecdd836b3182d40a04308ae0c75",
+                "url": "https://api.github.com/repos/spatie/ray/zipball/d2477d80996416ac33066f4fef8c6bd6e393fedd",
+                "reference": "d2477d80996416ac33066f4fef8c6bd6e393fedd",
                 "shasum": ""
             },
             "require": {
@@ -12542,7 +12542,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/ray/issues",
-                "source": "https://github.com/spatie/ray/tree/1.39.0"
+                "source": "https://github.com/spatie/ray/tree/1.40.0"
             },
             "funding": [
                 {
@@ -12554,7 +12554,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2023-09-18T10:36:07+00:00"
+            "time": "2023-11-07T13:53:06+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
