@@ -16,7 +16,7 @@ class Available extends MiddlewareAbstract
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if ($this->exists() === false) {
+        if ($this->exists($request) === false) {
             return redirect()->route('device.create');
         }
 

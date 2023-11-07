@@ -7,7 +7,7 @@ use UnexpectedValueException;
 class Read
 {
     /**
-     * @var stream
+     * @var mixed
      */
     protected mixed $fp;
 

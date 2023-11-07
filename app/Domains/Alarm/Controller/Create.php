@@ -4,7 +4,6 @@ namespace App\Domains\Alarm\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Alarm\Service\Type\Manager as TypeManager;
 use App\Domains\Alarm\Service\Controller\Create as ControllerService;
 
 class Create extends ControllerAbstract
@@ -17,8 +16,6 @@ class Create extends ControllerAbstract
         if ($response = $this->actionPost('create')) {
             return $response;
         }
-
-        $typeService = TypeManager::new();
 
         $this->meta('title', __('alarm-create.meta-title'));
 
