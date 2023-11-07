@@ -1,6 +1,8 @@
 <?php
 
+use App\Services\Logger\DeprecationsDaily;
 use App\Services\Logger\LaravelDaily;
+use App\Services\Logger\Mail;
 
 return [
 
@@ -28,7 +30,7 @@ return [
     |
     */
 
-    'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
+    'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'deprecations-custom'),
 
     /*
     |--------------------------------------------------------------------------
@@ -48,7 +50,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['daily-custom'],
             'ignore_exceptions' => false,
         ],
 
@@ -59,8 +61,20 @@ return [
         ],
 
         'daily' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/laravel.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => env('LOG_DAYS', 360),
+        ],
+
+        'daily-custom' => [
             'driver' => 'custom',
             'via' => LaravelDaily::class,
+        ],
+
+        'deprecations-custom' => [
+            'driver' => 'custom',
+            'via' => DeprecationsDaily::class,
         ],
 
         'request' => [
@@ -69,6 +83,12 @@ return [
 
         'database' => [
             'enabled' => env('LOG_DATABASE', false),
+        ],
+
+        'mail' => [
+            'driver' => 'custom',
+            'via' => Mail::class,
+            'enabled' => env('LOG_MAIL', true),
         ],
 
         'emergency' => [

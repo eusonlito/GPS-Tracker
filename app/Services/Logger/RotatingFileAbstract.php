@@ -5,33 +5,28 @@ namespace App\Services\Logger;
 abstract class RotatingFileAbstract
 {
     /**
-     * @var array
-     */
-    protected static array $logger = [];
-
-    /**
      * @var string
      */
     protected static string $name;
 
     /**
      * @param string $title
-     * @param mixed $data
+     * @param mixed $data = null
      *
      * @return void
      */
-    public static function info(string $title, $data = []): void
+    public static function info(string $title, mixed $data = null): void
     {
         static::write(__FUNCTION__, $title, $data);
     }
 
     /**
      * @param string $title
-     * @param mixed $data
+     * @param mixed $data = null
      *
      * @return void
      */
-    public static function error(string $title, $data = []): void
+    public static function error(string $title, mixed $data = null): void
     {
         static::write(__FUNCTION__, $title, $data);
     }
@@ -57,16 +52,8 @@ abstract class RotatingFileAbstract
 
         clearstatcache(true, $file);
 
-        if (is_file($file)) {
-            return $file;
-        }
-
-        $dir = dirname($file);
-
-        clearstatcache(true, $dir);
-
-        if (is_dir($dir) === false) {
-            mkdir($dir, 0o755, true);
+        if (is_file($file) === false) {
+            helper()->mkdir($file, true);
         }
 
         return $file;
@@ -99,10 +86,10 @@ abstract class RotatingFileAbstract
      */
     protected static function toString(mixed $contents): string
     {
-        if (!is_string($contents) && !is_numeric($contents)) {
-            $contents = json_encode($contents, JSON_UNESCAPED_LINE_TERMINATORS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        if (is_string($contents) || is_numeric($contents)) {
+            return '['.$contents.']';
         }
 
-        return '['.$contents.']';
+        return json_encode($contents, JSON_UNESCAPED_LINE_TERMINATORS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 }

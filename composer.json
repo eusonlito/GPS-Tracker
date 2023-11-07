@@ -96,7 +96,6 @@
             "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
             "@php artisan db:seed --force --ansi --class=\"Database\\Seeders\\Database\"",
-            "@php artisan core:maintenance:migration:clean",
             "@php artisan server:manifest:generate",
             "@php artisan queue:restart --ansi",
             "@composer artisan-server-start-all"
@@ -107,7 +106,6 @@
             "@composer install --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
             "@php artisan db:seed --class=\"Database\\Seeders\\Database\"",
-            "@php artisan core:maintenance:migration:clean",
             "@php artisan server:manifest:generate",
             "@composer artisan-cache-clear",
             "@php artisan queue:restart --ansi",
@@ -119,7 +117,6 @@
             "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
             "@php artisan db:seed --class=\"Database\\Seeders\\Database\" --force",
-            "@php artisan core:maintenance:migration:clean",
             "@php artisan server:manifest:generate",
             "@php artisan queue:restart --ansi",
             "@composer artisan-server-start-all"
