@@ -146,9 +146,21 @@ class Artisan
      */
     protected function php(): string
     {
+        if ($this->phpIsCli()) {
+            return PHP_BINARY;
+        }
+
         $version = PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;
 
         return trim(exec('which php'.$version.' || which php'));
+    }
+
+    /**
+     * @return bool
+     */
+    protected function phpIsCli(): bool
+    {
+        return ((PHP_SAPI === 'cli') || defined('STDIN'));
     }
 
     /**
