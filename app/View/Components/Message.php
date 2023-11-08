@@ -58,7 +58,11 @@ class Message extends Component
      */
     protected function message(): void
     {
-        $this->message ??= $this->bag
+        if ($this->message) {
+            return;
+        }
+
+        $this->message = $this->bag
             ? $this->messageBag()
             : $this->messageType();
     }
