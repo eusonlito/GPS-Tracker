@@ -4,7 +4,7 @@ namespace App\Domains\User\Controller;
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => 'user.auth.redirect'], static function () {
+Route::group(['middleware' => ['user.auth.redirect']], static function () {
     Route::any('/user/auth', AuthCredentials::class)->name('user.auth.credentials');
 });
 

@@ -9,5 +9,6 @@
     'save' => 'Guardar',
     'shared-url' => 'URL Pública:',
     'success' => 'El dispositivo ha sido actualizado correctamente',
+    'transfer' => 'Transferir',
     'user' => 'Usuario',
 ];

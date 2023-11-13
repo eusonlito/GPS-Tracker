@@ -7,6 +7,7 @@ use App\Domains\Configuration\Middleware\Request as ConfigurationRequest;
 use App\Domains\IpLock\Middleware\Check as IpLockCheck;
 use App\Domains\Language\Middleware\Request as LanguageRequest;
 use App\Domains\User\Middleware\Admin as UserAdmin;
+use App\Domains\User\Middleware\AdminMode as UserAdminMode;
 use App\Domains\User\Middleware\AuthRedirect as UserAuthRedirect;
 use App\Domains\User\Middleware\Enabled as UserEnabled;
 use App\Domains\User\Middleware\Request as UserRequest;
@@ -48,9 +49,17 @@ class Kernel extends KernelVendor
         ],
 
         'user-auth-admin' => [
+            IpLockCheck::class,
             UserRequest::class,
             UserEnabled::class,
             UserAdmin::class,
+        ],
+
+        'user-auth-admin-mode' => [
+            IpLockCheck::class,
+            UserRequest::class,
+            UserEnabled::class,
+            UserAdminMode::class,
         ],
     ];
 
@@ -60,6 +69,7 @@ class Kernel extends KernelVendor
     protected $middlewareAliases = [
         'vehicle.available' => VehicleAvailable::class,
         'user.admin' => UserAdmin::class,
+        'user.admin-mode' => UserAdminMode::class,
         'user.auth.redirect' => UserAuthRedirect::class,
         'user.enabled' => UserEnabled::class,
         'user.request' => UserRequest::class,

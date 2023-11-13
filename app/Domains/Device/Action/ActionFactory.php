@@ -52,4 +52,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(UpdateDeviceMessageCreate::class);
     }
+
+    /**
+     * @return \App\Domains\Device\Model\Device
+     */
+    public function updateTransfer(): Model
+    {
+        return $this->actionHandle(UpdateTransfer::class, $this->validate()->updateTransfer());
+    }
 }
