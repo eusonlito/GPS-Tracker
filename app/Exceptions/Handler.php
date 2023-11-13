@@ -45,6 +45,17 @@ class Handler extends HandlerVendor
     }
 
     /**
+     * @return array
+     */
+    protected function context(): array
+    {
+        return parent::context() + [
+            'url' => request()?->fullUrl(),
+            'method' => request()?->getMethod(),
+        ];
+    }
+
+    /**
      * @param \Throwable $e
      *
      * @return void
