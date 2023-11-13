@@ -52,9 +52,11 @@
         </div>
     </div>
 
-    @if ($admin)
+    @if ($admin || $manager)
 
     <div class="box p-5 mt-5">
+        @if ($manager)
+
         <div class="p-2">
             <div class="form-check">
                 <input type="checkbox" name="manager_mode" value="1" class="form-check-switch" id="profile-update-manager_mode" {{ $REQUEST->input('manager_mode') ? 'checked' : '' }}>
@@ -62,12 +64,18 @@
             </div>
         </div>
 
+        @endif
+
+        @if ($admin)
+
         <div class="p-2">
             <div class="form-check">
                 <input type="checkbox" name="admin_mode" value="1" class="form-check-switch" id="profile-update-admin_mode" {{ $REQUEST->input('admin_mode') ? 'checked' : '' }}>
                 <label for="profile-update-admin_mode" class="form-check-label">{{ __('profile.admin_mode') }}</label>
             </div>
         </div>
+
+        @endif
     </div>
 
     @endif

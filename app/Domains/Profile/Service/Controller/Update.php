@@ -26,6 +26,7 @@ class Update extends ControllerAbstract
     {
         return [
             'admin' => $this->auth->admin,
+            'manager' => $this->auth->manager,
             'languages' => $this->languages(),
             'preferences_units_distance' => $this->preferencesUnitsDistance(),
             'preferences_units_volume' => $this->preferencesUnitsVolume(),

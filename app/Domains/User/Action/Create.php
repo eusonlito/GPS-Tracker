@@ -28,8 +28,6 @@ class Create extends ActionAbstract
     {
         $this->dataName();
         $this->dataEmail();
-        $this->dataAdmin();
-        $this->dataEnabled();
         $this->dataPassword();
         $this->dataPreferences();
         $this->dataLanguageId();
@@ -49,22 +47,6 @@ class Create extends ActionAbstract
     protected function dataEmail(): void
     {
         $this->data['email'] = strtolower($this->data['email']);
-    }
-
-    /**
-     * @return void
-     */
-    protected function dataAdmin(): void
-    {
-        $this->data['admin'] ??= 1;
-    }
-
-    /**
-     * @return void
-     */
-    protected function dataEnabled(): void
-    {
-        $this->data['enabled'] ??= 1;
     }
 
     /**
