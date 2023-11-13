@@ -11,15 +11,19 @@
         </div>
     </div>
 
+    @if ($trips)
+
     <div class="box p-5 mt-5">
         <div class="p-2">
-            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" id="device-update-transfer-vehicle" :label="__('device-update-transfer.vehicle')" required></x-select>
+            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" id="device-update-transfer-vehicle" :label="__('device-update-transfer.vehicle', ['count' => $trips])" required></x-select>
         </div>
 
         <div class="p-2">
-            <x-select name="device_id" :options="$devices" value="id" text="name" id="device-update-transfer-device" :label="__('device-update-transfer.device')" required></x-select>
+            <x-select name="device_id" :options="$devices" value="id" text="name" id="device-update-transfer-device" :label="__('device-update-transfer.device', ['count' => $trips])" required></x-select>
         </div>
     </div>
+
+    @endif
 
     <div class="box p-5 mt-5">
         <div class="text-right">

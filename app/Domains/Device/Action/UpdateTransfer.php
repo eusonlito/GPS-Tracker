@@ -15,6 +15,7 @@ class UpdateTransfer extends ActionAbstract
      */
     public function handle(): Model
     {
+        $this->data();
         $this->check();
         $this->save();
 
@@ -24,11 +25,44 @@ class UpdateTransfer extends ActionAbstract
     /**
      * @return void
      */
+    protected function data(): void
+    {
+        $this->dataTrips();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataTrips(): void
+    {
+        $this->data['trips'] = TripModel::query()
+            ->byDeviceId($this->row->id)
+            ->exists();
+    }
+
+    /**
+     * @return void
+     */
     protected function check(): void
     {
+        $this->checkTrips();
         $this->checkUserId();
         $this->checkVehicleId();
         $this->checkDeviceId();
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkTrips(): void
+    {
+        if ($this->data['trips'] === false) {
+            return;
+        }
+
+        if (empty($this->data['vehicle_id']) || empty($this->data['device_id'])) {
+            $this->exceptionValidator(__('device-update-transfer.error.trips-exists'));
+        }
     }
 
     /**
@@ -57,7 +91,7 @@ class UpdateTransfer extends ActionAbstract
      */
     protected function checkVehicleId(): void
     {
-        if ($this->checkVehicleIdExists() === false) {
+        if ($this->data['trips'] && ($this->checkVehicleIdExists() === false)) {
             $this->exceptionValidator(__('device-update-transfer.error.vehicle-exists'));
         }
     }
@@ -78,7 +112,7 @@ class UpdateTransfer extends ActionAbstract
      */
     protected function checkDeviceId(): void
     {
-        if ($this->checkDeviceIdExists() === false) {
+        if ($this->data['trips'] && ($this->checkDeviceIdExists() === false)) {
             $this->exceptionValidator(__('device-update-transfer.error.device-exists'));
         }
     }
@@ -110,6 +144,10 @@ class UpdateTransfer extends ActionAbstract
      */
     protected function saveTrip(): void
     {
+        if ($this->data['trips'] === false) {
+            return;
+        }
+
         TripModel::query()
             ->byDeviceId($this->row->id)
             ->update($this->saveTripData());
@@ -131,6 +169,10 @@ class UpdateTransfer extends ActionAbstract
      */
     protected function savePosition(): void
     {
+        if ($this->data['trips'] === false) {
+            return;
+        }
+
         PositionModel::query()
             ->byDeviceId($this->row->id)
             ->update($this->savePositionData());

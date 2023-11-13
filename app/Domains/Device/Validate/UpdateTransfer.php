@@ -13,8 +13,8 @@ class UpdateTransfer extends ValidateAbstract
     {
         return [
             'user_id' => ['bail', 'integer', 'required'],
-            'vehicle_id' => ['bail', 'integer', 'required'],
-            'device_id' => ['bail', 'integer', 'required'],
+            'vehicle_id' => ['bail', 'integer'],
+            'device_id' => ['bail', 'integer'],
         ];
     }
 }

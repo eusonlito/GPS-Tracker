@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use App\Domains\Device\Model\Device as Model;
 use App\Domains\Device\Model\Collection\Device as Collection;
+use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\User\Model\Collection\User as UserCollection;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
@@ -34,6 +35,7 @@ class UpdateTransfer extends ControllerAbstract
             'devices' => $this->devices(),
             'users' => $this->users(),
             'vehicles' => $this->vehicles(),
+            'trips' => $this->trips(),
         ];
     }
 
@@ -69,5 +71,15 @@ class UpdateTransfer extends ControllerAbstract
             ->byUserId($this->row->user_id)
             ->list()
             ->get();
+    }
+
+    /**
+     * @return int
+     */
+    protected function trips(): int
+    {
+        return TripModel::query()
+            ->byDeviceId($this->row->id)
+            ->count();
     }
 }
