@@ -21,6 +21,7 @@ class Alarm extends BuilderAbstract
                 ->orWhere(static fn ($q) => $q->checkFenceIn($latitude, $longitude))
                 ->orWhere(static fn ($q) => $q->checkFenceOut($latitude, $longitude))
                 ->orWhere(static fn ($q) => $q->checkMovement($speed))
+                ->orWhere(static fn ($q) => $q->checkVibration())
                 ->orWhere(static fn ($q) => $q->checkOverspeed($speed))
                 ->orWhere(static fn ($q) => $q->checkPolygonIn($latitude, $longitude))
                 ->orWhere(static fn ($q) => $q->checkPolygonOut($latitude, $longitude))
@@ -153,6 +154,14 @@ class Alarm extends BuilderAbstract
                 ST_SRID(POINT(%f, %f), 4326)
             ) = FALSE
             EOT;
+    }
+
+    /**
+     * @return self
+     */
+    public function checkVibration(): self
+    {
+        return $this->byType('vibration');
     }
 
     /**

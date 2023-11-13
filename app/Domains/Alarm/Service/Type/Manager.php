@@ -11,7 +11,7 @@ class Manager
      * @const
      */
     protected const FORMATS = [
-        'fence-in', 'fence-out', 'polygon-in', 'polygon-out', 'movement', 'overspeed',
+        'fence-in', 'fence-out', 'movement', 'overspeed', 'polygon-in', 'polygon-out', 'vibration',
     ];
 
     /**
@@ -30,10 +30,11 @@ class Manager
         return [
             'fence-in' => __('alarm-type-fence-in.title'),
             'fence-out' => __('alarm-type-fence-out.title'),
-            'polygon-in' => __('alarm-type-polygon-in.title'),
-            'polygon-out' => __('alarm-type-polygon-out.title'),
             'movement' => __('alarm-type-movement.title'),
             'overspeed' => __('alarm-type-overspeed.title'),
+            'polygon-in' => __('alarm-type-polygon-in.title'),
+            'polygon-out' => __('alarm-type-polygon-out.title'),
+            'vibration' => __('alarm-type-vibration.title'),
         ];
     }
 
@@ -68,10 +69,11 @@ class Manager
         return match ($code) {
             'fence-in' => $this->classFormat('FenceIn'),
             'fence-out' => $this->classFormat('FenceOut'),
-            'polygon-in' => $this->classFormat('PolygonIn'),
-            'polygon-out' => $this->classFormat('PolygonOut'),
             'movement' => $this->classFormat('Movement'),
             'overspeed' => $this->classFormat('Overspeed'),
+            'polygon-in' => $this->classFormat('PolygonIn'),
+            'polygon-out' => $this->classFormat('PolygonOut'),
+            'vibration' => $this->classFormat('Vibration'),
             default => throw new UnexpectedValueException(__('alarm-type.error.invalid')),
         };
     }
