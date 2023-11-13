@@ -5,8 +5,8 @@
 <form method="post">
     <div class="box p-5 mt-5">
         <div class="p-2">
-            <label for="user-telegram-username" class="form-label">{{ __('profile-update-telegram.username') }}</label>
-            <input type="text" name="telegram[username]" class="form-control form-control-lg" id="user-telegram-username" value="{{ $REQUEST->input('telegram.username') }}">
+            <label for="profile-update-telegram-username" class="form-label">{{ __('profile-update-telegram.username') }}</label>
+            <input type="text" name="telegram[username]" class="form-control form-control-lg" id="profile-update-telegram-username" value="{{ $REQUEST->input('telegram.username') }}">
         </div>
     </div>
 
@@ -32,8 +32,8 @@
 
     <div class="box p-5 mt-5">
         <div class="p-2">
-            <label for="user-password_current" class="form-label">{{ __('profile-update-telegram.password_current') }}</label>
-            <input type="password" name="password_current" class="form-control form-control-lg" id="user-password_current">
+            <label for="profile-update-password_current" class="form-label">{{ __('profile-update-telegram.password_current') }}</label>
+            <input type="password" name="password_current" class="form-control form-control-lg" id="profile-update-password_current">
         </div>
     </div>
 

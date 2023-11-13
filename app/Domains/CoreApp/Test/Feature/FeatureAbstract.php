@@ -454,7 +454,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function getAuthListAdminSuccess(string $name = 'name', bool $vehicle = true, bool $device = true, bool $multiple = false): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, false);
+        $user1 = $this->authUserAdmin();
         $user2 = $this->createUser();
 
         if ($multiple) {
@@ -492,9 +492,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function getAuthListAdminModeSuccess(string $name = 'name', bool $vehicle = true, bool $device = true, bool $multiple = false): TestResponse
+    public function getAuthListManagerSuccess(string $name = 'name', bool $vehicle = true, bool $device = true, bool $multiple = false): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, true);
+        $user1 = $this->authUserManager();
         $user2 = $this->createUser();
 
         if ($multiple) {
@@ -570,7 +570,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function getAuthCreateAdminSuccess(bool $vehicle = true, bool $device = true): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, false);
+        $user1 = $this->authUserAdmin();
 
         $this->createVehicleDeviceWithUser($user1, $vehicle, $device);
 
@@ -590,7 +590,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function postAuthCreateAdminFail(?string $redirect = null, bool $vehicle = true, bool $device = true): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, false);
+        $user1 = $this->authUserAdmin();
 
         [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice($vehicle, $device);
 
@@ -614,7 +614,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function postAuthCreateAdminSuccess(?string $redirect = null, array $exclude = [], array $only = []): void
     {
-        $this->authUserAdmin(true, false);
+        $this->authUserAdmin();
 
         $data = $this->factoryMake()->toArray();
 
@@ -631,9 +631,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function getAuthCreateAdminModeSuccess(bool $vehicle = true, bool $device = true): TestResponse
+    public function getAuthCreateManagerSuccess(bool $vehicle = true, bool $device = true): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, true);
+        $user1 = $this->authUserManager();
 
         [$vehicle1, $device1, $row1] = $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
         [$user2, $vehicle2, $device2, $row2] = $this->createUserVehicleDeviceRow($vehicle, $device);
@@ -677,9 +677,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function postAuthCreateAdminModeFail(bool $vehicle = true, bool $device = true): TestResponse
+    public function postAuthCreateManagerFail(bool $vehicle = true, bool $device = true): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, true);
+        $user1 = $this->authUserManager();
 
         [$vehicle1, $device1] = $this->createVehicleDeviceWithUser($user1, $vehicle, $device);
 
@@ -698,9 +698,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function postAuthCreateAdminModeSuccess(?string $redirect = null, bool $vehicle = true, bool $device = true, array $exclude = [], array $only = []): TestResponse
+    public function postAuthCreateManagerSuccess(?string $redirect = null, bool $vehicle = true, bool $device = true, array $exclude = [], array $only = []): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, true);
+        $user1 = $this->authUserManager();
 
         [$vehicle1, $device1] = $this->createVehicleDeviceWithUser($user1, $vehicle, $device);
 
@@ -757,7 +757,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function postAuthUpdateAdminFail(bool $vehicle = true, bool $device = true): TestResponse
     {
-        $user = $this->authUserAdmin(true, false);
+        $user = $this->authUserAdmin();
 
         [$user, $row] = $this->createUserRow($user);
 
@@ -777,7 +777,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function getAuthUpdateAdminSuccess(): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, false);
+        $user1 = $this->authUserAdmin();
 
         [$user1, $row1] = $this->createUserRow($user1);
         [$user2, $row2] = $this->createUserRow();
@@ -816,9 +816,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function getAuthUpdateAdminModeSuccess(bool $vehicle = true, bool $device = true): TestResponse
+    public function getAuthUpdateManagerSuccess(bool $vehicle = true, bool $device = true): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, true);
+        $user1 = $this->authUserManager();
 
         [$vehicle1, $device1, $row1] = $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
         [$user2, $vehicle2, $device2, $row2] = $this->createUserVehicleDeviceRow($vehicle, $device);
@@ -874,9 +874,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     /**
      * @return \Illuminate\Testing\TestResponse
      */
-    public function getAuthUpdateAdminModeNoUserSuccess(): TestResponse
+    public function getAuthUpdateManagerNoUserSuccess(): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, true);
+        $user1 = $this->authUserManager();
 
         [$user1, $row1] = $this->createUserRow($user1);
         [$user2, $row2] = $this->createUserRow();
@@ -896,9 +896,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function postAuthUpdateAdminModeFail(bool $vehicle = true, bool $device = true): TestResponse
+    public function postAuthUpdateManagerFail(bool $vehicle = true, bool $device = true): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, true);
+        $user1 = $this->authUserManager();
 
         [$vehicle1, $device1, $row1] = $this->createVehicleDeviceRowWithUser($user1, $vehicle, $device);
         [$user2, $vehicle2, $device2] = $this->createUserVehicleDevice($vehicle, $device);
@@ -917,9 +917,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function postAuthUpdateAdminModeSuccess(bool $vehicle = true, bool $device = true, array $exclude = [], array $only = []): TestResponse
+    public function postAuthUpdateManagerSuccess(bool $vehicle = true, bool $device = true, array $exclude = [], array $only = []): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, true);
+        $user1 = $this->authUserManager();
 
         [$vehicle1, $device1] = $this->createVehicleDeviceWithUser($user1, $vehicle, $device);
         [$user2, $vehicle2, $device2, $row2] = $this->createUserVehicleDeviceRow($vehicle, $device);
@@ -961,9 +961,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      *
      * @return \Illuminate\Testing\TestResponse
      */
-    public function postAuthUpdateAdminModeNoUserSuccess(array $exclude = [], array $only = []): TestResponse
+    public function postAuthUpdateManagerNoUserSuccess(array $exclude = [], array $only = []): TestResponse
     {
-        $user1 = $this->authUserAdmin(true, true);
+        $user1 = $this->authUserManager();
 
         [$user1, $row1] = $this->createUserRow($user1);
         [$user2, $row2] = $this->createUserRow();
@@ -1050,7 +1050,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function getAuthAdminDeleteFail(): void
     {
-        $this->authUserAdmin(true, false);
+        $this->authUserAdmin();
 
         [$user2, $row2] = $this->createUserRow();
 
@@ -1063,7 +1063,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      */
     public function postAuthAdminDeleteFail(): void
     {
-        $this->authUserAdmin(true, false);
+        $this->authUserAdmin();
 
         [$user2, $row2] = $this->createUserRow();
 
@@ -1076,9 +1076,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      *
      * @return void
      */
-    public function getAuthAdminModeDeleteSuccess(?string $redirect = null): void
+    public function getAuthManagerDeleteSuccess(?string $redirect = null): void
     {
-        $this->authUserAdmin(true, true);
+        $this->authUserManager();
 
         [$user2, $row2] = $this->createUserRow();
 
@@ -1092,9 +1092,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
      *
      * @return void
      */
-    public function postAuthAdminModeDeleteSuccess(?string $redirect = null): void
+    public function postAuthManagerDeleteSuccess(?string $redirect = null): void
     {
-        $user1 = $this->authUserAdmin(true, true);
+        $user1 = $this->authUserManager();
 
         [$user2, $row2] = $this->createUserRow();
 

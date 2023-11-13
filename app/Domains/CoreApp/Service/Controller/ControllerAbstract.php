@@ -84,7 +84,7 @@ abstract class ControllerAbstract extends ControllerAbstractCore
     protected function users(): UserCollection
     {
         return $this->cache(function () {
-            if ($this->auth->adminMode() === false) {
+            if ($this->auth->managerMode() === false) {
                 return new UserCollection();
             }
 
@@ -110,7 +110,7 @@ abstract class ControllerAbstract extends ControllerAbstractCore
     protected function user(bool $empty = true): ?UserModel
     {
         return $this->cache(function () use ($empty) {
-            if ($this->auth->adminMode() === false) {
+            if ($this->auth->managerMode() === false) {
                 return $this->auth;
             }
 

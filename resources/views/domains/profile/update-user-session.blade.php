@@ -3,7 +3,7 @@
 @section ('content')
 
 <div class="overflow-auto scroll-visible header-sticky">
-    <table id="user-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-pagination="user-list-table-pagination" data-table-sort>
+    <table id="profile-update-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-pagination="profile-update-list-table-pagination" data-table-sort>
         <thead>
             <tr>
                 <th>{{ __('profile-update-user-session.created_at') }}</th>
@@ -25,7 +25,7 @@
         </tbody>
     </table>
 
-    <ul id="user-list-table-pagination" class="pagination justify-end"></ul>
+    <ul id="profile-update-list-table-pagination" class="pagination justify-end"></ul>
 </div>
 
 @stop

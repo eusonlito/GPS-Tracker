@@ -37,7 +37,7 @@ class UpdateTransfer extends ActionAbstract
     protected function checkUserId(): void
     {
         if ($this->checkUserIdExists() === false) {
-            $this->exceptionValidator(__('device-create.error.user-exists'));
+            $this->exceptionValidator(__('device-update-transfer.error.user-exists'));
         }
     }
 
@@ -58,7 +58,7 @@ class UpdateTransfer extends ActionAbstract
     protected function checkVehicleId(): void
     {
         if ($this->checkVehicleIdExists() === false) {
-            $this->exceptionValidator(__('device-create.error.vehicle-exists'));
+            $this->exceptionValidator(__('device-update-transfer.error.vehicle-exists'));
         }
     }
 
@@ -79,7 +79,7 @@ class UpdateTransfer extends ActionAbstract
     protected function checkDeviceId(): void
     {
         if ($this->checkDeviceIdExists() === false) {
-            $this->exceptionValidator(__('device-create.error.device-exists'));
+            $this->exceptionValidator(__('device-update-transfer.error.device-exists'));
         }
     }
 

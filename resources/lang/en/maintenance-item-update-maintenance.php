@@ -4,7 +4,7 @@
     'date_at' => 'Date',
     'filter' => 'Filter...',
     'mainteance' => 'Maintenance',
-    'meta-title' => 'Maintenance &gt; Item &gt; :title &gt; Maintenance',
+    'meta-title' => 'Maintenance > Item > :title > Maintenance',
     'quantity' => 'Quantity',
     'subtotal' => 'Subtotal',
     'tax_amount' => 'VAT',

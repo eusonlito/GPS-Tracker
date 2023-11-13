@@ -117,28 +117,28 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthCreateAdminModeSuccess(): void
+    public function testgetAuthCreateManagerSuccess(): void
     {
         $this->createVehicle();
-        $this->getAuthCreateAdminModeSuccess(device: false);
+        $this->getAuthCreateManagerSuccess(device: false);
     }
 
     /**
      * @return void
      */
-    public function testpostAuthCreateAdminModeFail(): void
+    public function testpostAuthCreateManagerFail(): void
     {
         $this->createVehicle();
-        $this->postAuthCreateAdminModeFail(device: false);
+        $this->postAuthCreateManagerFail(device: false);
     }
 
     /**
      * @return void
      */
-    public function testpostAuthCreateAdminModeSuccess(): void
+    public function testpostAuthCreateManagerSuccess(): void
     {
         $this->createVehicle();
-        $this->postAuthCreateAdminModeSuccess(device: false);
+        $this->postAuthCreateManagerSuccess(device: false);
     }
 
     /**

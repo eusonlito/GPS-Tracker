@@ -5,7 +5,7 @@
     'create' => 'Create',
     'filter' => 'Filter...',
     'maintenances_count' => 'Maintenance',
-    'meta-title' => 'Maintenance &gt; Items',
+    'meta-title' => 'Maintenance > Items',
     'name' => 'Name',
     'quantity_sum' => 'Quantity',
     'total_sum' => 'Total',

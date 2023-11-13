@@ -80,17 +80,17 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthUpdateAdminModeSuccess(): void
+    public function testGetAuthUpdateManagerSuccess(): void
     {
-        $this->getAuthUpdateAdminModeSuccess(vehicle: true, device: false);
+        $this->getAuthUpdateManagerSuccess(vehicle: true, device: false);
     }
 
     /**
      * @return void
      */
-    public function testPostAuthUpdateAdminModeSuccess(): void
+    public function testPostAuthUpdateManagerSuccess(): void
     {
-        $this->postAuthUpdateAdminModeSuccess(vehicle: true, device: false, exclude: ['connected_at']);
+        $this->postAuthUpdateManagerSuccess(vehicle: true, device: false, exclude: ['connected_at']);
     }
 
     /**

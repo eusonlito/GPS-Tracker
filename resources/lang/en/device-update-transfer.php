@@ -1,6 +1,11 @@
 <?php return [
     'device' => 'Assign current trips to this device',
-    'meta-title' => 'Devices &gt; :title &gt; Transfer',
+    'error' => [
+        'device-exists' => 'The selected device is no longer available',
+        'user-exists' => 'The selected user is no longer available',
+        'vehicle-exists' => 'The selected vehicle is no longer available',
+    ],
+    'meta-title' => 'Devices > :title > Transfer',
     'save' => 'Transfer',
     'success' => 'The device has been transferred successfully',
     'user' => 'Assign this device to the user',

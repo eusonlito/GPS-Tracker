@@ -101,4 +101,12 @@ class User extends ModelAbstract implements Authenticatable
     {
         return $this->admin && $this->admin_mode;
     }
+
+    /**
+     * @return bool
+     */
+    public function managerMode(): bool
+    {
+        return $this->manager && $this->manager_mode;
+    }
 }

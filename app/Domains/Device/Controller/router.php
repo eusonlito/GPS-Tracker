@@ -15,6 +15,6 @@ Route::group(['middleware' => ['user-auth']], static function () {
     Route::any('/device/{id}/device-message/{device_message_id}', UpdateDeviceMessageUpdate::class)->name('device.update.device-message.update');
 });
 
-Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
+Route::group(['middleware' => ['user-auth-manager-mode']], static function () {
     Route::any('/device/{id}/transfer', UpdateTransfer::class)->name('device.update.transfer');
 });

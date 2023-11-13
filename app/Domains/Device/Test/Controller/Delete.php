@@ -97,9 +97,9 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthAdminModeDeleteSuccess(): void
+    public function testpostAuthManagerDeleteSuccess(): void
     {
-        $this->postAuthAdminModeDeleteSuccess();
+        $this->postAuthManagerDeleteSuccess();
     }
 
     /**

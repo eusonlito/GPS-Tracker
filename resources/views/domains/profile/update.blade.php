@@ -7,21 +7,21 @@
 
     <div class="box p-5 mt-5">
         <div class="p-2">
-            <label for="user-name" class="form-label">{{ __('profile-update.name') }}</label>
-            <input type="text" name="name" class="form-control form-control-lg" id="user-name" value="{{ $REQUEST->input('name') }}" required>
+            <label for="profile-update-name" class="form-label">{{ __('profile-update.name') }}</label>
+            <input type="text" name="name" class="form-control form-control-lg" id="profile-update-name" value="{{ $REQUEST->input('name') }}" required>
         </div>
 
         <div class="p-2">
-            <label for="user-email" class="form-label">{{ __('profile-update.email') }}</label>
-            <input type="email" name="email" class="form-control form-control-lg" id="user-email" value="{{ $REQUEST->input('email') }}" required>
+            <label for="profile-update-email" class="form-label">{{ __('profile-update.email') }}</label>
+            <input type="email" name="email" class="form-control form-control-lg" id="profile-update-email" value="{{ $REQUEST->input('email') }}" required>
         </div>
 
         <div class="p-2">
-            <label for="user-password" class="form-label">{{ __('profile-update.password') }}</label>
+            <label for="profile-update-password" class="form-label">{{ __('profile-update.password') }}</label>
 
             <div class="input-group">
-                <input type="password" name="password" class="form-control form-control-lg" id="user-password">
-                <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.show') }}" data-password-show="#user-password" tabindex="-1">@icon('eye', 'w-5 h-5')</button>
+                <input type="password" name="password" class="form-control form-control-lg" id="profile-update-password">
+                <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.show') }}" data-password-show="#profile-update-password" tabindex="-1">@icon('eye', 'w-5 h-5')</button>
             </div>
         </div>
 
@@ -57,8 +57,15 @@
     <div class="box p-5 mt-5">
         <div class="p-2">
             <div class="form-check">
-                <input type="checkbox" name="admin_mode" value="1" class="form-check-switch" id="user-admin_mode" {{ $REQUEST->input('admin_mode') ? 'checked' : '' }}>
-                <label for="user-admin_mode" class="form-check-label">{{ __('user-update.admin_mode') }}</label>
+                <input type="checkbox" name="manager_mode" value="1" class="form-check-switch" id="profile-update-manager_mode" {{ $REQUEST->input('manager_mode') ? 'checked' : '' }}>
+                <label for="profile-update-manager_mode" class="form-check-label">{{ __('profile.manager_mode') }}</label>
+            </div>
+        </div>
+
+        <div class="p-2">
+            <div class="form-check">
+                <input type="checkbox" name="admin_mode" value="1" class="form-check-switch" id="profile-update-admin_mode" {{ $REQUEST->input('admin_mode') ? 'checked' : '' }}>
+                <label for="profile-update-admin_mode" class="form-check-label">{{ __('profile.admin_mode') }}</label>
             </div>
         </div>
     </div>
@@ -67,8 +74,8 @@
 
     <div class="box p-5 mt-5">
         <div class="p-2">
-            <label for="user-password_current" class="form-label">{{ __('profile-update.password_current') }}</label>
-            <input type="password" name="password_current" class="form-control form-control-lg" id="user-password_current" required>
+            <label for="profile-update-password_current" class="form-label">{{ __('profile-update.password_current') }}</label>
+            <input type="password" name="password_current" class="form-control form-control-lg" id="profile-update-password_current" required>
         </div>
     </div>
 

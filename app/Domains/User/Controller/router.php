@@ -16,7 +16,7 @@ Route::group(['middleware' => ['user-auth']], static function () {
     Route::any('/user/disabled', Disabled::class)->name('user.disabled');
 });
 
-Route::group(['middleware' => ['user-auth-admin']], static function () {
+Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
     Route::get('/user', Index::class)->name('user.index');
     Route::any('/user/create', Create::class)->name('user.create');
     Route::any('/user/{id}', Update::class)->name('user.update');

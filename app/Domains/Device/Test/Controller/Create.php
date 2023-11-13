@@ -65,17 +65,17 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthCreateAdminModeSuccess(): void
+    public function testGetAuthCreateManagerSuccess(): void
     {
-        $this->getAuthCreateAdminModeSuccess(true, false);
+        $this->getAuthCreateManagerSuccess(true, false);
     }
 
     /**
      * @return void
      */
-    public function testPostAuthCreateAdminModeSuccess(): void
+    public function testPostAuthCreateManagerSuccess(): void
     {
-        $this->postAuthCreateAdminModeSuccess('device.update', true, false, ['code', 'connected_at']);
+        $this->postAuthCreateManagerSuccess('device.update', true, false, ['code', 'connected_at']);
     }
 
     /**

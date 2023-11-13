@@ -16,6 +16,7 @@ class Update extends ValidateAbstract
             'email' => ['bail', 'required', 'email:filter'],
             'password' => ['bail', 'min:8'],
             'admin' => ['bail', 'boolean'],
+            'manager' => ['bail', 'boolean'],
             'enabled' => ['bail', 'boolean'],
             'language_id' => ['bail', 'required', 'integer'],
         ];

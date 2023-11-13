@@ -32,6 +32,7 @@ class Update extends ActionAbstract
         $this->dataLanguageId();
         $this->dataPreferences();
         $this->dataAdminMode();
+        $this->dataManagerMode();
     }
 
     /**
@@ -92,6 +93,14 @@ class Update extends ActionAbstract
     /**
      * @return void
      */
+    protected function dataManagerMode(): void
+    {
+        $this->data['manager_mode'] = $this->row->manager && $this->data['manager_mode'];
+    }
+
+    /**
+     * @return void
+     */
     protected function check(): void
     {
         $this->checkEmail();
@@ -118,6 +127,7 @@ class Update extends ActionAbstract
         $this->row->language_id = $this->data['language_id'];
         $this->row->preferences = $this->data['preferences'];
         $this->row->admin_mode = $this->data['admin_mode'];
+        $this->row->manager_mode = $this->data['manager_mode'];
 
         $this->row->save();
     }

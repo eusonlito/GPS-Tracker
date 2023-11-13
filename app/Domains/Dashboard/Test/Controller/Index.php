@@ -116,7 +116,9 @@ class Index extends ControllerAbstract
         ] = $this->createUsersVehiclesDevicesTrips();
 
         $user1->admin = true;
-        $user1->admin_mode = false;
+        $user1->admin_mode = true;
+        $user1->manager = false;
+        $user1->manager_false = false;
         $user1->save();
 
         $this->auth($user1);
@@ -135,7 +137,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthListAdminModeSuccess(): void
+    public function testgetAuthListManagerSuccess(): void
     {
         [
             $user1,
@@ -148,8 +150,10 @@ class Index extends ControllerAbstract
             $row2
         ] = $this->createUsersVehiclesDevicesTrips();
 
-        $user1->admin = true;
-        $user1->admin_mode = true;
+        $user1->admin = false;
+        $user1->admin_mode = false;
+        $user1->manager = true;
+        $user1->manager_mode = true;
         $user1->save();
 
         $this->auth($user1);

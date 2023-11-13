@@ -39,7 +39,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     {
         $this->row = Model::query()
             ->byId($id)
-            ->byUserOrAdmin($this->auth)
+            ->byUserOrManager($this->auth)
             ->firstOr(fn () => $this->exceptionNotFound(__('device.error.not-found')));
     }
 

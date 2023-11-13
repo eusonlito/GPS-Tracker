@@ -6,6 +6,7 @@
     'email' => 'Courriel',
     'enabled' => 'Actif',
     'filter' => 'Filtre...',
+    'manager' => 'Gestionnaire',
     'meta-title' => 'Utilisateurs',
     'name' => 'Nom',
     'updated_at' => 'Mis à jour',

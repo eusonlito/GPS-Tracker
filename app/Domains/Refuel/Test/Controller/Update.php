@@ -97,25 +97,25 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthUpdateAdminModeSuccess(): void
+    public function testgetAuthUpdateManagerSuccess(): void
     {
-        $this->getAuthUpdateAdminModeSuccess(device: false);
+        $this->getAuthUpdateManagerSuccess(device: false);
     }
 
     /**
      * @return void
      */
-    public function testpostAuthUpdateAdminModeFail(): void
+    public function testpostAuthUpdateManagerFail(): void
     {
-        $this->postAuthUpdateAdminModeFail(device: false);
+        $this->postAuthUpdateManagerFail(device: false);
     }
 
     /**
      * @return void
      */
-    public function testpostAuthUpdateAdminModeSuccess(): void
+    public function testpostAuthUpdateManagerSuccess(): void
     {
-        $this->postAuthUpdateAdminModeSuccess(device: false);
+        $this->postAuthUpdateManagerSuccess(device: false);
     }
 
     /**

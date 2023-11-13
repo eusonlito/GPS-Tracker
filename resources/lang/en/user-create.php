@@ -6,6 +6,7 @@
         'email-exists' => 'Another user with the same email already exists',
     ],
     'language' => 'Language',
+    'manager' => 'Manager',
     'meta-title' => 'Users > Create',
     'name' => 'Name',
     'password' => 'Password',

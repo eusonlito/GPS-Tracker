@@ -366,6 +366,10 @@ return new class extends MigrationAbstract {
             $table->jsonb('telegram')->nullable();
 
             $table->boolean('enabled')->default(0);
+
+            $table->boolean('manager')->default(0);
+            $table->boolean('manager_mode')->default(0);
+
             $table->boolean('admin')->default(0);
             $table->boolean('admin_mode')->default(0);
 

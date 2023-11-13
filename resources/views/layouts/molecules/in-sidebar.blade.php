@@ -103,7 +103,7 @@
             </a>
         </li>
 
-        @if ($AUTH->admin)
+        @if ($AUTH->adminMode())
 
         <li>
             <a href="{{ route('configuration.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'configuration.') ? 'side-menu--active' : '' }}">

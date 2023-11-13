@@ -68,9 +68,9 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetAuthListAdminModeSuccess(): void
+    public function testGetAuthListManagerSuccess(): void
     {
-        $this->getAuthListAdminModeSuccess(device: false);
+        $this->getAuthListManagerSuccess(device: false);
     }
 
     /**

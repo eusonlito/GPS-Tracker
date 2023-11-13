@@ -26,6 +26,8 @@ class User extends FactoryAbstract
             'telegram' => $this->definitionTelegram(),
             'admin' => false,
             'admin_mode' => false,
+            'manager' => false,
+            'manager_mode' => false,
             'enabled' => true,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),

@@ -113,6 +113,7 @@ class Update extends ActionAbstract
         $this->row->name = $this->data['name'];
         $this->row->email = $this->data['email'];
         $this->row->admin = $this->data['admin'];
+        $this->row->manager = $this->data['manager'];
         $this->row->enabled = $this->data['enabled'];
         $this->row->password = $this->data['password'];
         $this->row->language_id = $this->data['language_id'];

@@ -15,7 +15,7 @@ abstract class ActionAbstract extends ActionAbstractCore
             return $this->row->user_id;
         }
 
-        if ($this->auth->adminMode() && ($this->data['user_id'] ?? false)) {
+        if ($this->auth->managerMode() && ($this->data['user_id'] ?? false)) {
             return $this->data['user_id'];
         }
 

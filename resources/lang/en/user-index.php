@@ -6,6 +6,7 @@
     'email' => 'Email',
     'enabled' => 'Active',
     'filter' => 'Filter...',
+    'manager' => 'Manager',
     'meta-title' => 'Users',
     'name' => 'Name',
     'updated_at' => 'Updated',

@@ -60,7 +60,7 @@ class Create extends ActionAbstract
     {
         return DeviceModel::query()
             ->byId($this->data['device_id'])
-            ->byUserOrAdmin($this->auth)
+            ->byUserOrManager($this->auth)
             ->exists();
     }
 

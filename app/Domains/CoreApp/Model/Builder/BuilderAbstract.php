@@ -32,9 +32,9 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      *
      * @return self
      */
-    public function byUserOrAdmin(UserModel $user): self
+    public function byUserOrManager(UserModel $user): self
     {
-        return $this->when($user->adminMode() === false, static fn ($q) => $q->byUserId($user->id));
+        return $this->when($user->managerMode() === false, static fn ($q) => $q->byUserId($user->id));
     }
 
     /**
