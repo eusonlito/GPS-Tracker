@@ -106,7 +106,9 @@ class Create extends ActionAbstract
             'password' => $this->data['password'],
             'preferences' => $this->data['preferences'],
             'admin' => $this->data['admin'],
+            'admin_mode' => $this->data['admin'],
             'manager' => $this->data['manager'],
+            'manager_mode' => $this->data['manager'],
             'enabled' => $this->data['enabled'],
             'language_id' => $this->data['language_id'],
         ])->fresh();
