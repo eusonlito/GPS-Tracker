@@ -155,6 +155,7 @@ git pull
 4. Open your web browser and goto http://localhost:8080
 
 ### Initial Configuration
+
 1. In `Servers` > `List` > `Create`, we register a server on the connection port you wish (It is recommended to start from 8090).
 2. In `Servers` > `Status`, we select the server we just created and press the `Start/Restart` button.
 3. The server should appear started in the upper listing of `Servers` > `Status`.
