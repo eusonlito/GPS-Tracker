@@ -65,8 +65,14 @@ select {
         }
     }
 
-    > ul ul li > .side-menu {
+    > ul ul li > a.side-menu {
         margin-left: 10px;
+
+        &.side-menu--active {
+            .side-menu__icon, .side-menu__title {
+                color: white;
+            }
+        }
     }
 }
 
