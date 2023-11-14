@@ -154,9 +154,19 @@ git pull
 
 4. Ya podemos acceder desde http://localhost:8080
 
-### Conexión vía Socket
+### Configuración Inicial
 
-El puerto abierto para la conexión de dispositivos con protocolo H02 se realiza por defecto en el puerto `8091`, pero puede ser personalizado desde el panel de configuración (como administrador).
+1. En `Servidores` > `Lista` > `Crear` damos de alta un servidor en el puerto de conexión que desees (Se recomienda a partir del 8090).
+2. En `Servidores` > `Estado` Seleccionamos el servidor que acabamos de crear y pulsamos el botón de `Iniciar/Reiniciar`.
+3. Se servidor debería aparecer iniciado en el listado superior de `Servidores` > `Estado`.
+4. Si el servidor no se inicia, podemos revisar los logs generados en la carpeta `laravel` del menú `Servidores` > `Logs`.
+5. Ahora podemos crear un vehículo en `Vehículos` > `Crear`. Rellenamos los campos necesarios y lo guardamos.
+6. Una vez disponemos de vehículo vamos a crear un dispositivo desde `Dispositivos` > `Lista` > `Crear`. Es importante indicar correctamente el `Número de Serie` ya que es el identificador que enviará el dispositivo al servidor y con el que podrá ser reconocido. Le asociamos el vehículo que acabamos de crear y guardamos.
+7. A partir de aquí sólo queda esperar a recibir las primeras conexiones desde el dispositivo para generar los primeros viajes.
+8. Para configurar la conexión a nuestro servidor un dipositivo Sinotrack sigue los pasos indicados a continuación.
+9. Si tienes problemas para recibir la conexión desde el dispositivo puedes ir a `Servidores` > `Lista` > `Editar` y activar el modo debug. Una vez guardado el cambio recuerda reiniciar el servidor en `Servidores` > `Estado`.
+
+### Conexión vía Socket
 
 Para configurar tu dispositivo vía SMS puedes hacerlo con el siguiente comando:
 

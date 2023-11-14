@@ -154,9 +154,18 @@ git pull
 
 4. Open your web browser and goto http://localhost:8080
 
-### Server connection
+### Initial Configuration
+1. In `Servers` > `List` > `Create`, we register a server on the connection port you wish (It is recommended to start from 8090).
+2. In `Servers` > `Status`, we select the server we just created and press the `Start/Restart` button.
+3. The server should appear started in the upper listing of `Servers` > `Status`.
+4. If the server does not start, we can check the logs generated in the `laravel` folder from the `Servers` > `Logs` menu.
+5. Now we can create a vehicle in `Vehicles` > `Create`. We fill in the necessary fields and save it.
+6. Once we have a vehicle, we go to create a device from `Devices` > `List` > `Create`. It is important to correctly indicate the `Serial Number` as it is the identifier that the device will send to the server and by which it can be recognized. We associate it with the vehicle we just created and save.
+7. From here, we only have to wait to receive the first connections from the device to generate the first trips.
+8. To configure the connection to our server for a Sinotrack device, follow the steps below.
+9. If you have problems receiving the connection from the device you can go to `Servers` > `List` > `Edit` and enable debug mode. Once the change is saved remember to restart the server in `Servers` > `Status`.
 
-The default port for devices with H02 protocol is `8091`, but it can be customized on configuration panel (as admin).
+### Server connection
 
 To configure your device via SMS you can do it with the following command:
 
