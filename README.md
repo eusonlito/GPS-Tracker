@@ -165,7 +165,7 @@ git pull
 8. To configure the connection to our server for a Sinotrack device, follow the steps below.
 9. If you have problems receiving the connection from the device you can go to `Servers` > `List` > `Edit` and enable debug mode. Once the change is saved remember to restart the server in `Servers` > `Status`.
 
-### Server connection
+### Device connection
 
 To configure your device via SMS you can do it with the following command:
 

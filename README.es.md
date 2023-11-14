@@ -166,7 +166,7 @@ git pull
 8. Para configurar la conexión a nuestro servidor un dipositivo Sinotrack sigue los pasos indicados a continuación.
 9. Si tienes problemas para recibir la conexión desde el dispositivo puedes ir a `Servidores` > `Lista` > `Editar` y activar el modo debug. Una vez guardado el cambio recuerda reiniciar el servidor en `Servidores` > `Estado`.
 
-### Conexión vía Socket
+### Conexión del Dispositivo
 
 Para configurar tu dispositivo vía SMS puedes hacerlo con el siguiente comando:
 
