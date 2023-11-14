@@ -41,8 +41,8 @@
                         {{ $each->typeFormat()->title() }}
                         @endif
                     </td>
-                    <td class="text-left w-1"><a href="#" data-map-point="{{ $each->position_id }}" class="d-t-m-o max-w-2xs" title="{{ $each->name }}">{{ $each->name }}</a></td>
-                    <td class="text-left"><a href="#" data-map-point="{{ $each->position_id }}" class="d-t-m-o max-w-2xs" title="{{ $each->typeFormat()->message() }}">{{ $each->typeFormat()->message() }}</a></td>
+                    <td class="text-left w-1"><a href="#" data-map-point="{{ $each->position_id }}" class="d-t-m-o max-w-15" title="{{ $each->name }}">{{ $each->name }}</a></td>
+                    <td class="text-left"><a href="#" data-map-point="{{ $each->position_id }}" class="d-t-m-o max-w-15" title="{{ $each->typeFormat()->message() }}">{{ $each->typeFormat()->message() }}</a></td>
                     <td class="text-left">@arrayAsBadges($each->typeFormat()->config())</td>
                     <td class="w-1">@status($each->telegram)</td>
                     <td class="w-1"><a href="#" data-map-point="{{ $each->position_id }}" class="d-t-m-o max-w-xs">@dateWithTimezone($each->created_at, $row->timezone->zone)</a></td>

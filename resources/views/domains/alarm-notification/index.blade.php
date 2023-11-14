@@ -65,12 +65,12 @@
                     {{ $row->typeFormat()->title() }}
                     @endif
                 </td>
-                <td class="text-left w-1"><span class="d-t-m-o max-w-2xs" title="{{ $row->name }}">{{ $row->name }}</span></td>
-                <td class="text-left"><span class="d-t-m-o max-w-2xs" title="{{ $row->typeFormat()->message() }}">{{ $row->typeFormat()->message() }}</span></td>
-                <td class="text-left"><span class="d-t-m-o max-w-2xs" title="@arrayAsText($row->typeFormat()->config())">@arrayAsBadges($row->typeFormat()->config())</span></td>
+                <td class="text-left w-1"><span class="d-t-m-o max-w-15" title="{{ $row->name }}">{{ $row->name }}</span></td>
+                <td class="text-left"><span class="d-t-m-o max-w-15" title="{{ $row->typeFormat()->message() }}">{{ $row->typeFormat()->message() }}</span></td>
+                <td class="text-left"><span class="d-t-m-o max-w-15" title="@arrayAsText($row->typeFormat()->config())">@arrayAsBadges($row->typeFormat()->config())</span></td>
                 <td class="text-left">
                     @if ($row->trip)
-                    <a href="{{ route('trip.update.alarm-notification', $row->trip->id) }}#position-id-{{ $row->position?->id }}" title="{{ $row->trip->name }}" class="d-t-m-o max-w-2xs">{{ $row->trip->name }}</a>
+                    <a href="{{ route('trip.update.alarm-notification', $row->trip->id) }}#position-id-{{ $row->position?->id }}" title="{{ $row->trip->name }}" class="d-t-m-o max-w-15">{{ $row->trip->name }}</a>
                     @endif
                 </td>
                 <td class="w-1">@dateLocal($row->date_at)</td>

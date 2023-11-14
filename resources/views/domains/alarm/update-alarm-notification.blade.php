@@ -23,12 +23,12 @@
             @foreach ($notifications as $each)
 
             <tr>
-                <td class="text-left w-1"><span class="d-t-m-o max-w-2xs" title="{{ $each->name }}">{{ $each->name }}</span></td>
-                <td class="text-left"><span class="d-t-m-o max-w-2xs" title="{{ $each->typeFormat()->message() }}">{{ $each->typeFormat()->message() }}</span></td>
-                <td class="text-left"><span class="d-t-m-o max-w-2xs" title="@arrayAsText($each->typeFormat()->config())">@arrayAsBadges($each->typeFormat()->config())</span></td>
+                <td class="text-left w-1"><span class="d-t-m-o max-w-15" title="{{ $each->name }}">{{ $each->name }}</span></td>
+                <td class="text-left"><span class="d-t-m-o max-w-15" title="{{ $each->typeFormat()->message() }}">{{ $each->typeFormat()->message() }}</span></td>
+                <td class="text-left"><span class="d-t-m-o max-w-15" title="@arrayAsText($each->typeFormat()->config())">@arrayAsBadges($each->typeFormat()->config())</span></td>
                 <td class="text-left">
                     @if ($each->trip)
-                    <a href="{{ route('trip.update.alarm-notification', $each->trip->id) }}#position-id-{{ $each->position?->id }}" title="{{ $each->trip->name }}" class="d-t-m-o max-w-2xs">{{ $each->trip->name }}</a>
+                    <a href="{{ route('trip.update.alarm-notification', $each->trip->id) }}#position-id-{{ $each->position?->id }}" title="{{ $each->trip->name }}" class="d-t-m-o max-w-15">{{ $each->trip->name }}</a>
                     @endif
                 </td>
                 <td class="w-1">@dateLocal($each->date_at)</td>
