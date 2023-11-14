@@ -10,6 +10,11 @@ use Illuminate\View\View;
 class Select extends Component
 {
     /**
+     * @var string
+     */
+    public string $class;
+
+    /**
      * @param \Illuminate\Http\Request $request
      * @param array|\Illuminate\Support\Collection $options,
      * @param string $value = '',
@@ -42,6 +47,7 @@ class Select extends Component
         $this->options = $this->options($options);
         $this->id = $id ?: 'input-'.uniqid();
         $this->placeholder($placeholder);
+        $this->class();
     }
 
     /**
@@ -248,6 +254,14 @@ class Select extends Component
             'text' => $placeholder,
             'selected' => false,
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    protected function class(): void
+    {
+        $this->class = 'form-select form-select-lg bg-white';
     }
 
     /**

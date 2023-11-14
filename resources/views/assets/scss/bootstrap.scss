@@ -166,6 +166,14 @@ select {
     max-width: 15rem;
 }
 
+.min-w-5 {
+    min-width: 5rem;
+}
+
+.min-w-16 {
+    min-width: 16rem;
+}
+
 ::-webkit-file-upload-button {
     display: none;
 }
