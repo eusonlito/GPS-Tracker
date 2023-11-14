@@ -17,7 +17,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetGuestUnauthorizedFail(): void
+    public function testGetGuestUnauthorizedFail(): void
     {
         $this->getGuestUnauthorizedFail();
     }
@@ -25,7 +25,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostGuestUnauthorizedFail(): void
+    public function testPostGuestUnauthorizedFail(): void
     {
         $this->postGuestUnauthorizedFail();
     }
@@ -33,7 +33,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthSuccess(): void
+    public function testGetAuthSuccess(): void
     {
         $this->getAuthSuccess();
     }
@@ -41,7 +41,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthSuccess(): void
+    public function testPostAuthSuccess(): void
     {
         $this->postAuthSuccess();
     }
@@ -49,7 +49,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthAdminSuccess(): void
+    public function testGetAuthAdminSuccess(): void
     {
         $this->getAuthAdminSuccess();
     }
@@ -57,7 +57,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthAdminSuccess(): void
+    public function testPostAuthAdminSuccess(): void
     {
         $this->postAuthAdminSuccess();
     }
@@ -65,7 +65,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthCreateSuccess(): void
+    public function testPostAuthCreateSuccess(): void
     {
         $this->postAuthCreateSuccess();
     }
@@ -73,7 +73,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthCreateAdminSuccess(): void
+    public function testGetAuthCreateAdminSuccess(): void
     {
         $this->getAuthCreateAdminSuccess();
     }
@@ -81,7 +81,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthCreateAdminFail(): void
+    public function testPostAuthCreateAdminFail(): void
     {
         $this->postAuthCreateAdminFail();
     }
@@ -89,7 +89,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthCreateAdminSuccess(): void
+    public function testPostAuthCreateAdminSuccess(): void
     {
         $this->postAuthCreateAdminSuccess();
     }
@@ -97,7 +97,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthCreateManagerSuccess(): void
+    public function testGetAuthCreateManagerSuccess(): void
     {
         $this->getAuthCreateManagerSuccess(vehicle: false, device: false);
     }

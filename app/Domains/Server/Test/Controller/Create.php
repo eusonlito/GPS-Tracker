@@ -57,7 +57,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthCreateAdminSuccess(): void
+    public function testGetAuthCreateAdminSuccess(): void
     {
         $this->getAuthCreateAdminSuccess();
     }
@@ -65,7 +65,7 @@ class Create extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthCreateAdminSuccess(): void
+    public function testPostAuthCreateAdminSuccess(): void
     {
         $this->postAuthCreateAdminSuccess();
     }

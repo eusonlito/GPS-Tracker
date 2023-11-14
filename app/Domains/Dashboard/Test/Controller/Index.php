@@ -12,7 +12,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetGuestUnauthorizedFail(): void
+    public function testGetGuestUnauthorizedFail(): void
     {
         $this->getGuestUnauthorizedFail();
     }
@@ -20,7 +20,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostGuestNotAllowedFail(): void
+    public function testPostGuestNotAllowedFail(): void
     {
         $this->postGuestNotAllowedFail();
     }
@@ -28,7 +28,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthNotAllowedFail(): void
+    public function testPostAuthNotAllowedFail(): void
     {
         $this->postAuthNotAllowedFail();
     }
@@ -36,7 +36,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthSuccess(): void
+    public function testGetAuthSuccess(): void
     {
         $this->getAuthSuccess();
     }
@@ -44,7 +44,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthAdminSuccess(): void
+    public function testGetAuthAdminSuccess(): void
     {
         $this->getAuthAdminSuccess();
     }
@@ -52,7 +52,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthListSuccess(): void
+    public function testGetAuthListSuccess(): void
     {
         $this->getAuthListSuccess();
     }
@@ -60,7 +60,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthListOnlyOwnSucess(): void
+    public function testGetAuthListOnlyOwnSucess(): void
     {
         [
             $user1,
@@ -102,7 +102,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthListAdminSuccess(): void
+    public function testGetAuthListAdminSuccess(): void
     {
         [
             $user1,
@@ -118,7 +118,7 @@ class Index extends ControllerAbstract
         $user1->admin = true;
         $user1->admin_mode = true;
         $user1->manager = false;
-        $user1->manager_false = false;
+        $user1->manager_mode = false;
         $user1->save();
 
         $this->auth($user1);
@@ -137,7 +137,7 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthListManagerSuccess(): void
+    public function testGetAuthListManagerSuccess(): void
     {
         [
             $user1,

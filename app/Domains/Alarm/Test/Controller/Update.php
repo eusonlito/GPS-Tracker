@@ -17,7 +17,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetGuestUnauthorizedFail(): void
+    public function testGetGuestUnauthorizedFail(): void
     {
         $this->getGuestUnauthorizedFail();
     }
@@ -25,7 +25,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostGuestUnauthorizedFail(): void
+    public function testPostGuestUnauthorizedFail(): void
     {
         $this->postGuestUnauthorizedFail();
     }
@@ -33,7 +33,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthSuccess(): void
+    public function testGetAuthSuccess(): void
     {
         $this->getAuthSuccess();
     }
@@ -41,7 +41,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthSuccess(): void
+    public function testPostAuthSuccess(): void
     {
         $this->postAuthSuccess();
     }
@@ -49,7 +49,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthAdminSuccess(): void
+    public function testGetAuthAdminSuccess(): void
     {
         $this->getAuthAdminSuccess();
     }
@@ -57,7 +57,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthAdminSuccess(): void
+    public function testPostAuthAdminSuccess(): void
     {
         $this->postAuthAdminSuccess();
     }
@@ -65,7 +65,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthUpdateSuccess(): void
+    public function testPostAuthUpdateSuccess(): void
     {
         $this->postAuthUpdateSuccess();
     }
@@ -73,7 +73,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthUpdateAdminSuccess(): void
+    public function testGetAuthUpdateAdminSuccess(): void
     {
         $this->getAuthUpdateAdminSuccess();
     }
@@ -81,7 +81,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthUpdateAdminFail(): void
+    public function testPostAuthUpdateAdminFail(): void
     {
         $this->postAuthUpdateAdminFail(vehicle: false, device: false);
     }
@@ -89,7 +89,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthUpdateAdminSuccess(): void
+    public function testPostAuthUpdateAdminSuccess(): void
     {
         $this->postAuthUpdateAdminSuccess();
     }
@@ -97,7 +97,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthUpdateManagerSuccess(): void
+    public function testGetAuthUpdateManagerSuccess(): void
     {
         $this->getAuthUpdateManagerSuccess(vehicle: false, device: false);
     }
@@ -105,7 +105,7 @@ class Update extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthUpdateManagerSuccess(): void
+    public function testPostAuthUpdateManagerSuccess(): void
     {
         $this->postAuthUpdateManagerSuccess(vehicle: false, device: false);
     }

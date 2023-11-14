@@ -17,7 +17,7 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetGuestUnauthorizedFail(): void
+    public function testGetGuestUnauthorizedFail(): void
     {
         $this->getGuestUnauthorizedFail();
     }
@@ -25,7 +25,7 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostGuestUnauthorizedFail(): void
+    public function testPostGuestUnauthorizedFail(): void
     {
         $this->postGuestUnauthorizedFail();
     }
@@ -33,7 +33,7 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthSuccess(): void
+    public function testGetAuthSuccess(): void
     {
         $this->getAuthSuccess();
     }
@@ -41,7 +41,7 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthSuccess(): void
+    public function testPostAuthSuccess(): void
     {
         $this->postAuthSuccess();
     }
@@ -49,7 +49,7 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthAdminSuccess(): void
+    public function testGetAuthAdminSuccess(): void
     {
         $this->getAuthAdminSuccess();
     }
@@ -57,7 +57,7 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthAdminSuccess(): void
+    public function testPostAuthAdminSuccess(): void
     {
         $this->postAuthAdminSuccess();
     }
@@ -65,7 +65,7 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthDeleteFail(): void
+    public function testGetAuthDeleteFail(): void
     {
         $this->getAuthDeleteFail();
     }
@@ -73,7 +73,7 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthDeleteSuccess(): void
+    public function testPostAuthDeleteSuccess(): void
     {
         $this->postAuthDeleteSuccess();
     }
@@ -81,7 +81,7 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testgetAuthAdminDeleteFail(): void
+    public function testGetAuthAdminDeleteFail(): void
     {
         $this->getAuthAdminDeleteFail();
     }
@@ -89,7 +89,7 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthAdminDeleteFail(): void
+    public function testPostAuthAdminDeleteFail(): void
     {
         $this->postAuthAdminDeleteFail();
     }
@@ -97,7 +97,7 @@ class Delete extends ControllerAbstract
     /**
      * @return void
      */
-    public function testpostAuthManagerDeleteSuccess(): void
+    public function testPostAuthManagerDeleteSuccess(): void
     {
         $this->postAuthManagerDeleteSuccess();
     }
