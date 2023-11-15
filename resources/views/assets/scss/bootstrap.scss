@@ -3,8 +3,16 @@ html {
     background-color: rgba(7, 26, 80, var(--tw-bg-opacity));
 }
 
-html, body, .main {
+html body {
     padding: 0;
+}
+
+.main {
+    padding: 0.8rem 0.8rem 0.8rem 0;
+
+    @media (max-width: 767px) {
+        padding: 0;
+    }
 }
 
 form {
@@ -41,8 +49,19 @@ select {
 }
 
 .wrapper .wrapper-box {
+    border-radius: 1.3rem;
+
     @media (max-width: 767px) {
+        border-radius: 0;
         margin-top: 0;
+    }
+}
+
+.wrapper .wrapper-box .content {
+    border-radius: 1.3rem;
+
+    @media (max-width: 767px) {
+        border-radius: 0;
     }
 }
 
