@@ -172,7 +172,7 @@ class Trip extends ModelAbstract
      */
     public function updateDistanceTime(): void
     {
-        static::DB()->statement('
+        static::db()->statement('
             UPDATE `trip`, (
                 WITH `summary` AS (
                     SELECT `trip_id`, ST_Distance(

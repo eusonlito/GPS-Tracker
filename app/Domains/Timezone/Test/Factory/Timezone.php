@@ -21,7 +21,7 @@ class Timezone extends FactoryAbstract
             'zone' => $this->faker->name(),
             'default' => true,
 
-            'geojson' => Model::DB()->raw(Model::emptyGeoJSON()),
+            'geojson' => Model::db()->raw(Model::emptyGeoJSON()),
         ];
     }
 }

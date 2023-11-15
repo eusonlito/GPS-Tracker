@@ -79,10 +79,15 @@ class Index extends ControllerAbstract
      *
      * @return void
      */
-    protected function setconfiguration(int $enabled, string $slug): void
+    protected function setConfiguration(int $enabled, string $slug): void
     {
-        ConfigurationModel::byKey('shared_enabled')->update(['value' => $enabled]);
-        ConfigurationModel::byKey('shared_slug')->update(['value' => $slug]);
+        ConfigurationModel::query()
+            ->byKey('shared_enabled')
+            ->update(['value' => $enabled]);
+
+        ConfigurationModel::query()
+            ->byKey('shared_slug')
+            ->update(['value' => $slug]);
     }
 
     /**

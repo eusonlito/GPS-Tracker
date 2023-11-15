@@ -46,7 +46,7 @@ abstract class ModelAbstract extends Model
     /**
      * @return \Illuminate\Database\ConnectionInterface
      */
-    public static function DB(): ConnectionInterface
+    public static function db(): ConnectionInterface
     {
         return DB::connection();
     }

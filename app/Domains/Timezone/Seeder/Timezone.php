@@ -33,6 +33,6 @@ class Timezone extends SeederAbstract
      */
     protected function geojson(): Expression
     {
-        return Model::DB()->raw(Model::emptyGeoJSON());
+        return Model::db()->raw(Model::emptyGeoJSON());
     }
 }
