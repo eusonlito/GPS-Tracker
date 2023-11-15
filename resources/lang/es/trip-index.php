@@ -1,6 +1,5 @@
 <?php return [
     'actions' => 'Acciones',
-    'alarms' => 'Alarmas',
     'city' => 'Ciudad',
     'country' => 'País',
     'device' => 'Dispositivo',
@@ -15,7 +14,6 @@
     'messages' => 'Mensajes',
     'meta-title' => 'Viajes',
     'name' => 'Nombre',
-    'notifications' => 'Notificaciones',
     'radius' => 'Radio',
     'search' => 'Buscar',
     'shared' => 'Compartido',

@@ -34,6 +34,9 @@
     <table id="device-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
         <thead>
             <tr>
+                <th>{{ __('device-index.name') }}</th>
+                <th>{{ __('device-index.model') }}</th>
+
                 @if ($user_empty)
                 <th>{{ __('device-index.user') }}</th>
                 @endif
@@ -42,8 +45,6 @@
                 <th>{{ __('device-index.vehicle') }}</th>
                 @endif
 
-                <th>{{ __('device-index.name') }}</th>
-                <th>{{ __('device-index.model') }}</th>
                 <th>{{ __('device-index.connected_at') }}</th>
                 <th>{{ __('device-index.enabled') }}</th>
                 <th>{{ __('device-index.shared') }}</th>
@@ -58,6 +59,9 @@
             @php ($link = route('device.update', $row->id))
 
             <tr>
+                <td><a href="{{ $link }}" class="block">{{ $row->name }}</a></td>
+                <td><a href="{{ $link }}" class="block">{{ $row->model }}</a></td>
+
                 @if ($user_empty)
                 <td><a href="{{ $link }}" class="block">{{ $row->user->name }}</a></td>
                 @endif
@@ -66,8 +70,6 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->vehicle->name ?? '-' }}</a></td>
                 @endif
 
-                <td><a href="{{ $link }}" class="block">{{ $row->name }}</a></td>
-                <td><a href="{{ $link }}" class="block">{{ $row->model }}</a></td>
                 <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->connected_at, $row->vehicle?->timezone->zone, 'Y-m-d H:i:s')</a></td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}" class="w-1">@status($row->enabled)</td>
                 <td data-table-sort-value="{{ (int)$row->shared }}" class="w-1"><a href="{{ route('device.update.boolean', [$row->id, 'shared']) }}" class="block" data-update-boolean="shared">@status($row->shared)</a></td>

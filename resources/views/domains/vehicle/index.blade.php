@@ -34,8 +34,9 @@
                 <th>{{ __('vehicle-index.plate') }}</th>
                 <th>{{ __('vehicle-index.timezone') }}</th>
                 <th>{{ __('vehicle-index.enabled') }}</th>
-                <th>{{ __('trip-index.alarms') }}</th>
-                <th>{{ __('trip-index.notifications') }}</th>
+                <th>{{ __('vehicle-index.devices') }}</th>
+                <th>{{ __('vehicle-index.alarms') }}</th>
+                <th>{{ __('vehicle-index.notifications') }}</th>
             </tr>
         </thead>
 
@@ -53,6 +54,7 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->plate }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->timezone->zone }}</a></td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}" class="w-1">@status($row->enabled)</td>
+                <td class="w-1"><a href="{{ route('vehicle.update.device', $row->id) }}">{{ $row->devices_count }}</a></td>
                 <td class="w-1"><a href="{{ route('vehicle.update.alarm', $row->id) }}">{{ $row->alarms_count }}</a></td>
                 <td class="w-1">
                     <a href="{{ route('vehicle.update.alarm-notification', $row->id) }}" class="{{ $row->alarms_notifications_pending_count ? 'text-warning' : 'text-success' }}">

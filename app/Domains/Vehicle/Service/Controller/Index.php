@@ -51,6 +51,7 @@ class Index extends ControllerAbstract
                 ->withAlarmsCount()
                 ->withAlarmsNotificationsCount()
                 ->withAlarmsNotificationsPendingCount()
+                ->withDevicesCount()
                 ->withTimezone()
                 ->withUser()
                 ->list()

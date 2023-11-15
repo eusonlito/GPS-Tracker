@@ -77,6 +77,14 @@ class Vehicle extends BuilderAbstract
     /**
      * @return self
      */
+    public function withDevicesCount(): self
+    {
+        return $this->withCount('devices');
+    }
+
+    /**
+     * @return self
+     */
     public function withTimezone(): self
     {
         return $this->with('timezone');

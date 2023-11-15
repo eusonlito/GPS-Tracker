@@ -24,6 +24,7 @@ class UpdateAlarm extends ActionAbstract
     protected function data(): void
     {
         $this->data['related'] = AlarmModel::query()
+            ->byUserId($this->row->user_id)
             ->byIds($this->data['related'])
             ->pluck('id')
             ->all();

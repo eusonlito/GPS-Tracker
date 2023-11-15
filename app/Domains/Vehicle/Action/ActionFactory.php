@@ -43,4 +43,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(UpdateAlarm::class, $this->validate()->updateAlarm());
     }
+
+    /**
+     * @return \App\Domains\Vehicle\Model\Vehicle
+     */
+    public function updateDevice(): Model
+    {
+        return $this->actionHandle(UpdateDevice::class, $this->validate()->updateDevice());
+    }
 }

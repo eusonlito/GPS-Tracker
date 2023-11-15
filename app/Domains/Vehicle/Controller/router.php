@@ -10,4 +10,5 @@ Route::group(['middleware' => ['user-auth']], static function () {
     Route::any('/vehicle/{id}', Update::class)->name('vehicle.update');
     Route::any('/vehicle/{id}/alarm', UpdateAlarm::class)->name('vehicle.update.alarm');
     Route::any('/vehicle/{id}/alarm-notification', UpdateAlarmNotification::class)->name('vehicle.update.alarm-notification');
+    Route::any('/vehicle/{id}/device', UpdateDevice::class)->name('vehicle.update.device');
 });
