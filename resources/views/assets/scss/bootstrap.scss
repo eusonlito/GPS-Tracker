@@ -67,6 +67,7 @@ select {
 
 .side-nav {
     color: #b3bdd9;
+    padding-top: 1rem;
 
     .side-menu {
         height: 45px;
@@ -91,6 +92,17 @@ select {
             .side-menu__icon, .side-menu__title {
                 color: white;
             }
+        }
+    }
+
+    .logo {
+        display: block;
+        width: 70px;
+        margin: 0 auto 2rem auto;
+
+        @media (max-width: 1279px) {
+            width: 40px;
+            margin-bottom: 1.5rem;
         }
     }
 }

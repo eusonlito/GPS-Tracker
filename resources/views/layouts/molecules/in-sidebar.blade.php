@@ -1,5 +1,11 @@
-<nav class="side-nav py-8">
+<nav class="side-nav">
     <ul>
+        <li>
+            <a href="{{ route('dashboard.index') }}">
+                <img src="@asset('/build/images/logo.svg')" class="logo" />
+            </a>
+        </li>
+
         <li>
             <a href="{{ route('dashboard.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'dashboard.') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('home')</div>
