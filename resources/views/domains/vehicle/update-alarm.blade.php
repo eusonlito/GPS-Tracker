@@ -11,7 +11,6 @@
                 <tr>
                     <th class="w-1">{{ __('vehicle-update-alarm.type') }}</th>
                     <th class="text-left w-1">{{ __('vehicle-update-alarm.name') }}</th>
-                    <th class="text-left">{{ __('vehicle-update-alarm.config') }}</th>
                     <th class="w-1">{{ __('vehicle-update-alarm.created_at') }}</th>
                     <th class="w-1">{{ __('vehicle-update-alarm.telegram') }}</th>
                     <th class="w-1">{{ __('vehicle-update-alarm.enabled') }}</th>
@@ -27,7 +26,6 @@
                 <tr>
                     <td class="w-1"><a href="{{ $link }}" class="block">{{ $each->typeFormat()->title() }}</a></td>
                     <td class="text-left w-1"><a href="{{ $link }}" class="block">{{ $each->name }}</a></td>
-                    <td class="text-left"><span class="block whitespace-normal">@arrayAsBadges($each->typeFormat()->config())</span></td>
                     <td class="w-1">@dateWithTimezone($each->created_at)</td>
                     <td class="w-1">@status($each->telegram)</td>
                     <td class="w-1">@status($each->enabled)</td>

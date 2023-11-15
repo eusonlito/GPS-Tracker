@@ -10,7 +10,6 @@
             <tr>
                 <th class="text-left w-1">{{ __('alarm-update-alarm-notification.name') }}</th>
                 <th class="text-left">{{ __('alarm-update-alarm-notification.message') }}</th>
-                <th class="text-left">{{ __('alarm-update-alarm-notification.config') }}</th>
                 <th class="text-left">{{ __('alarm-update-alarm-notification.trip') }}</th>
                 <th class="w-1">{{ __('alarm-update-alarm-notification.created_at') }}</th>
                 <th class="w-1">{{ __('alarm-update-alarm-notification.telegram') }}</th>
@@ -25,7 +24,6 @@
             <tr>
                 <td class="text-left w-1"><span class="d-t-m-o max-w-15" title="{{ $each->name }}">{{ $each->name }}</span></td>
                 <td class="text-left"><span class="d-t-m-o max-w-15" title="{{ $each->typeFormat()->message() }}">{{ $each->typeFormat()->message() }}</span></td>
-                <td class="text-left"><span class="d-t-m-o max-w-15" title="@arrayAsText($each->typeFormat()->config())">@arrayAsBadges($each->typeFormat()->config())</span></td>
                 <td class="text-left">
                     @if ($each->trip)
                     <a href="{{ route('trip.update.alarm-notification', $each->trip->id) }}#position-id-{{ $each->position?->id }}" title="{{ $each->trip->name }}" class="d-t-m-o max-w-15">{{ $each->trip->name }}</a>

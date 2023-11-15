@@ -37,7 +37,6 @@
                 <th class="text-left w-1">{{ __('alarm-notification-index.alarm') }}</th>
                 <th class="text-left w-1">{{ __('alarm-notification-index.name') }}</th>
                 <th class="text-left">{{ __('alarm-notification-index.message') }}</th>
-                <th class="text-left">{{ __('alarm-notification-index.config') }}</th>
                 <th class="text-left">{{ __('alarm-notification-index.trip') }}</th>
                 <th class="w-1">{{ __('alarm-notification-index.created_at') }}</th>
                 <th class="w-1">{{ __('alarm-notification-index.telegram') }}</th>
@@ -67,7 +66,6 @@
                 </td>
                 <td class="text-left w-1"><span class="d-t-m-o max-w-15" title="{{ $row->name }}">{{ $row->name }}</span></td>
                 <td class="text-left"><span class="d-t-m-o max-w-15" title="{{ $row->typeFormat()->message() }}">{{ $row->typeFormat()->message() }}</span></td>
-                <td class="text-left"><span class="d-t-m-o max-w-15" title="@arrayAsText($row->typeFormat()->config())">@arrayAsBadges($row->typeFormat()->config())</span></td>
                 <td class="text-left">
                     @if ($row->trip)
                     <a href="{{ route('trip.update.alarm-notification', $row->trip->id) }}#position-id-{{ $row->position?->id }}" title="{{ $row->trip->name }}" class="d-t-m-o max-w-15">{{ $row->trip->name }}</a>

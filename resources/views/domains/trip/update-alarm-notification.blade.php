@@ -23,7 +23,6 @@
                     <th class="text-left w-1">{{ __('trip-update-alarm-notification.alarm') }}</th>
                     <th class="text-left w-1">{{ __('trip-update-alarm-notification.name') }}</th>
                     <th class="text-left">{{ __('trip-update-alarm-notification.message') }}</th>
-                    <th class="text-left">{{ __('trip-update-alarm-notification.config') }}</th>
                     <th class="w-1">{{ __('trip-update-alarm-notification.telegram') }}</th>
                     <th class="w-1">{{ __('trip-update-alarm-notification.created_at') }}</th>
                     <th class="w-1">{{ __('trip-update-alarm-notification.closed_at') }}</th>
@@ -43,7 +42,6 @@
                     </td>
                     <td class="text-left w-1"><a href="#" data-map-point="{{ $each->position_id }}" class="d-t-m-o max-w-15" title="{{ $each->name }}">{{ $each->name }}</a></td>
                     <td class="text-left"><a href="#" data-map-point="{{ $each->position_id }}" class="d-t-m-o max-w-15" title="{{ $each->typeFormat()->message() }}">{{ $each->typeFormat()->message() }}</a></td>
-                    <td class="text-left">@arrayAsBadges($each->typeFormat()->config())</td>
                     <td class="w-1">@status($each->telegram)</td>
                     <td class="w-1"><a href="#" data-map-point="{{ $each->position_id }}" class="d-t-m-o max-w-xs">@dateWithTimezone($each->created_at, $row->timezone->zone)</a></td>
                     <td class="w-1">

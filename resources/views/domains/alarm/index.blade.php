@@ -38,7 +38,6 @@
 
                 <th class="w-1">{{ __('alarm-index.type') }}</th>
                 <th class="text-left w-1">{{ __('alarm-index.name') }}</th>
-                <th class="text-left">{{ __('alarm-index.config') }}</th>
                 <th class="w-1">{{ __('alarm-index.vehicles') }}</th>
                 <th class="w-1">{{ __('alarm-index.notifications') }}</th>
                 <th class="w-1">{{ __('alarm-index.created_at') }}</th>
@@ -59,7 +58,6 @@
 
                 <td class="w-1"><a href="{{ $link }}" class="block">{{ $row->typeFormat()->title() }}</a></td>
                 <td class="text-left w-1"><a href="{{ $link }}" class="block">{{ $row->name }}</a></td>
-                <td class="text-left"><a href="{{ $link }}" class="block whitespace-normal">@arrayAsBadges($row->typeFormat()->config())</a></td>
                 <td class="w-1"><a href="{{ route('alarm.update.vehicle', $row->id) }}">{{ $row->vehicles_count }}</a></td>
                 <td class="w-1">
                     <a href="{{ route('alarm.update.alarm-notification', $row->id) }}" class="{{ $row->notifications_pending_count ? 'text-warning' : 'text-success' }}">
