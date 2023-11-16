@@ -96,13 +96,15 @@ select {
     }
 
     .logo {
+        transition: 0.2s;
+
         display: block;
         width: 70px;
         height: 70px;
         margin: 0 auto 2rem auto;
         color: #b1bdd7;
 
-        &.active {
+        &:hover, &.active {
             color: #f1f5f8;
         }
 
@@ -137,12 +139,14 @@ select {
         }
 
         .logo {
+            transition: 0.2s;
+
             display: block;
             width: 26px;
             height: 26px;
             color: #b1bdd7;
 
-            &.active {
+            &:hover, &.active {
                 color: #f1f5f8;
             }
         }
@@ -155,6 +159,24 @@ select {
     border-bottom: 1px solid #CCC;
     box-shadow: 20px 3px 20px #0000000b;
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+
+.unauthenticated {
+    .logo {
+        display: block;
+        margin: 0 auto 2rem auto;
+        width: 80px;
+        height: 80px;
+        color: #b1bdd7;
+    }
+
+    a.logo {
+        transition: 0.2s;
+
+        &:hover {
+            color: #666;
+        }
+    }
 }
 
 .table-report img {

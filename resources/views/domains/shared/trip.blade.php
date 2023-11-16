@@ -1,16 +1,8 @@
-@extends ('layouts.empty')
+@extends ('layouts.shared')
 
 @section ('body')
 
 <div class="my-5">
-    @if ($device->shared)
-
-    <div class="box px-5 py-2 mb-5">
-        <a href="{{ route('shared.device', $device->code) }}">&laquo; {{ __('common.back')}}</a>
-    </div>
-
-    @endif
-
     <div class="lg:flex lg:space-x-4">
         <div class="flex-1 mb-2">
             <h2 class="box px-5 py-2 mb-5 font-medium text-xl sm:text-2xl">{{ $trip->name }}</h2>

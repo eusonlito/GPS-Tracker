@@ -7,12 +7,12 @@ class Update extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'user:update {--id=} {--name=} {--email=} {--password=} {--admin} {--enabled}';
+    protected $signature = 'user:update {--id=} {--name=} {--email=} {--password=} {--language_id=} {--admin} {--manager} {--enabled}';
 
     /**
      * @var string
      */
-    protected $description = 'Update User with {--name=} {--email=} {--password=} {--admin} {--enabled}';
+    protected $description = 'Update User with {--name=} {--email=} {--password=} {--language_id=} {--admin} {--manager} {--enabled}';
 
     /**
      * @return void
@@ -47,6 +47,6 @@ class Update extends CommandAbstract
      */
     protected function output(): void
     {
-        $this->info(helper()->jsonEncode($this->row->only('id', 'name', 'email', 'admin', 'enabled')));
+        $this->info(helper()->jsonEncode($this->row->only('id', 'name', 'email', 'admin', 'manager', 'enabled')));
     }
 }

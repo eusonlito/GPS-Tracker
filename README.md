@@ -156,7 +156,7 @@ git pull
 
 ### Initial Configuration
 
-1. In `Servers` > `List` > `Create`, we register a server on the connection port you wish (It is recommended to start from 8090).
+1. By default a server is created for protocol `H02` (Sinotrack) on port `8091`. If you wish you can customize this configuration in `Servers` > `List`.
 2. In `Servers` > `Status`, we select the server we just created and press the `Start/Restart` button.
 3. The server should appear started in the upper listing of `Servers` > `Status`.
 4. If the server does not start, we can check the logs generated in the `laravel` folder from the `Servers` > `Logs` menu.

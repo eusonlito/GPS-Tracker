@@ -7,12 +7,12 @@ class Create extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'user:create {--email=} {--name=} {--password=} {--admin} {--enabled}';
+    protected $signature = 'user:create {--email=} {--name=} {--password=} {--language_id=} {--admin} {--manager} {--enabled}';
 
     /**
      * @var string
      */
-    protected $description = 'Create User with {--email=} {--name=} {--password=} {--admin} {--enabled}';
+    protected $description = 'Create User with {--email=} {--name=} {--password=} {--language_id=} {--admin} {--manager} {--enabled}';
 
     /**
      * @return void
@@ -24,7 +24,7 @@ class Create extends CommandAbstract
         $this->checkOptions(['email', 'name', 'password']);
         $this->requestWithOptions();
 
-        $this->info($this->factory()->action()->create()->only('id', 'email', 'name', 'admin', 'enabled'));
+        $this->info($this->factory()->action()->create()->only('id', 'email', 'name', 'admin', 'manager', 'enabled'));
 
         $this->info('[END]');
     }

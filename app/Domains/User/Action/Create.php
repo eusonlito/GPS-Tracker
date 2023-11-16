@@ -72,7 +72,7 @@ class Create extends ActionAbstract
     {
         $this->data['language_id'] = LanguageModel::query()
             ->selectOnly('id')
-            ->whenIdOrDefault((int)$this->data['language_id'])
+            ->whenIdOrDefault(intval($this->data['language_id']))
             ->firstOrFail()
             ->id;
     }

@@ -1,4 +1,4 @@
-@extends ('layouts.empty')
+@extends ('layouts.shared')
 
 @section ('body')
 

@@ -77,7 +77,8 @@
         ],
 
         "artisan-cache": [
-            "@php artisan optimize --ansi"
+            "@php artisan optimize --ansi",
+            "@php artisan view:cache --ansi"
         ],
 
         "artisan-server-start-all": [

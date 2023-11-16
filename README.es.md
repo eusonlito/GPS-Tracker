@@ -156,7 +156,7 @@ git pull
 
 ### Configuración Inicial
 
-1. En `Servidores` > `Lista` > `Crear` damos de alta un servidor en el puerto de conexión que desees (Se recomienda a partir del 8090).
+1. Por defecto se crea un servidor para el protocolo `H02` (Sinotrack) en el puerto `8091`. Si lo deseas puedes personalizar esta configuración en `Servidores` > `Lista`.
 2. En `Servidores` > `Estado` Seleccionamos el servidor que acabamos de crear y pulsamos el botón de `Iniciar/Reiniciar`.
 3. Se servidor debería aparecer iniciado en el listado superior de `Servidores` > `Estado`.
 4. Si el servidor no se inicia, podemos revisar los logs generados en la carpeta `laravel` del menú `Servidores` > `Logs`.
