@@ -98,7 +98,13 @@ select {
     .logo {
         display: block;
         width: 70px;
+        height: 70px;
         margin: 0 auto 2rem auto;
+        color: #b1bdd7;
+
+        &.active {
+            color: #f1f5f8;
+        }
 
         @media (max-width: 1279px) {
             width: 40px;
@@ -128,7 +134,17 @@ select {
             color: white;
             font-size: 1.2rem;
             line-height: 1.6rem;
-            margin-top: 0.2rem;
+        }
+
+        .logo {
+            display: block;
+            width: 26px;
+            height: 26px;
+            color: #b1bdd7;
+
+            &.active {
+                color: #f1f5f8;
+            }
         }
     }
 }
