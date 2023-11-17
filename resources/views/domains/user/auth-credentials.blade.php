@@ -15,11 +15,11 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
             <div class="mb-3">
-                <input type="text" class="border w-full p-3" name="email" placeholder="{{ __('user-auth-credentials.email') }}" autofocus required>
+                <input type="text" value="{{ config('demo.user') }}" class="border w-full p-3" name="email" placeholder="{{ __('user-auth-credentials.email') }}" autofocus required>
             </div>
 
             <div class="mb-6">
-                <input type="password" class="border w-full p-3" name="password" placeholder="{{ __('user-auth-credentials.password') }}" required>
+                <input type="password" value="{{ config('demo.user') }}" class="border w-full p-3" name="password" placeholder="{{ __('user-auth-credentials.password') }}" required>
             </div>
 
             <div class="mt-5 xl:mt-8 text-center">
