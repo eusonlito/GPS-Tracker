@@ -20,8 +20,11 @@ import Ajax from './ajax';
         element.addEventListener('click', (e) => {
             e.preventDefault();
 
-
-            new Ajax(element.href).setMethod('POST').setCallback(response => toogle(element, response)).send();
+            new Ajax(element.href)
+                .setMethod('POST')
+                .setCallback(response => toogle(element, response))
+                .setErrorCallback(response => window.alert(response.message))
+                .send();
         });
     });
 })();
