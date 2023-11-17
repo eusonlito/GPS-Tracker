@@ -10,6 +10,10 @@ Plataforma de gestión de dispositivos Sinotrack ST-90x creada con Laravel 10 + 
 - MySQL 8.0.12 o superior
 - Redis
 
+### Demo
+
+Puedes probar la versión de demostración en https://tracker-demo.lito.com.es/
+
 ### Instalación Local
 
 1. Creamos la base de datos en MySQL.
