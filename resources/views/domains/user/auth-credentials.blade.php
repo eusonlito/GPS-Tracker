@@ -27,6 +27,10 @@
             </div>
         </form>
     </div>
+
+    <div class="p-5 text-center text-xl font-bold">
+        <a href="https://github.com/eusonlito/GPS-Tracker" target="_blank">GitHub</a>
+    </div>
 </div>
 
 @stop
