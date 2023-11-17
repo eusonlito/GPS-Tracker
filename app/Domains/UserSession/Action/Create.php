@@ -33,6 +33,7 @@ class Create extends ActionAbstract
     protected function dataIp(): void
     {
         $this->data['ip'] ??= $this->request->ip();
+        $this->data['ip'] = preg_replace('/[0-9]{1,2}\./', 'XX.', $this->data['ip']);
     }
 
     /**
