@@ -43,7 +43,18 @@ class Process
      */
     protected function listExec(): string
     {
-        return trim((string)shell_exec('ps -ef | grep -- "artisan server:start:port.*--port=" | grep -v "grep"'));
+        return trim((string)shell_exec($this->listExecCmd()));
+    }
+
+    /**
+     * @return string
+     */
+    protected function listExecCmd(): string
+    {
+        return 'ps -ef'
+            .' | grep "'.base_path().'"'
+            .' | grep -- "artisan server:start:port.*--port="'
+            .' | grep -v "grep"';
     }
 
     /**
