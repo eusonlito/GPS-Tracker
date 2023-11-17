@@ -99,8 +99,8 @@ select {
         transition: 0.2s;
 
         display: block;
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         margin: 0 auto 2rem auto;
         color: #b1bdd7;
 
@@ -109,7 +109,8 @@ select {
         }
 
         @media (max-width: 1279px) {
-            width: 40px;
+            width: 30px;
+            height: 30px;
             margin-bottom: 1.5rem;
         }
     }
