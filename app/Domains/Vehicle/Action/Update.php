@@ -9,6 +9,10 @@ class Update extends CreateUpdateAbstract
      */
     protected function save(): void
     {
+        if (config('demo.enabled') && ($this->row?->id === 1)) {
+            $this->exceptionValidator(__('demo.error.not-allowed'));
+        }
+
         $this->row->name = $this->data['name'];
         $this->row->plate = $this->data['plate'];
         $this->row->timezone_auto = $this->data['timezone_auto'];

@@ -17,6 +17,10 @@ class UpdateBoolean extends UpdateBooleanCoreApp
      */
     protected function before(): void
     {
+        if (config('demo.enabled') && ($this->row?->id === 1)) {
+            $this->exceptionValidator(__('demo.error.not-allowed'));
+        }
+
         $this->row->code = $this->row->code ?: helper()->uuid();
     }
 }

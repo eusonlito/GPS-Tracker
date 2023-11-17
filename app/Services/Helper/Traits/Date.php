@@ -20,6 +20,52 @@ trait Date
     }
 
     /**
+     * @param string|int $start
+     * @param string|int $end
+     *
+     * @return string
+     */
+    public function dateDiffHuman(string|int $start, string|int $end): string
+    {
+        if (is_int($start)) {
+            $start = '@'.$start;
+        }
+
+        if (is_int($end)) {
+            $end = '@'.$end;
+        }
+
+        $diff = date_create($start)->diff(date_create($end));
+        $human = [];
+
+        if ($diff->d === 1) {
+            $human[] = '1 '.__('common.day');
+        } elseif ($diff->d) {
+            $human[] = $diff->format('%a').' '.__('common.days');
+        }
+
+        if ($diff->h === 1) {
+            $human[] = '1 '.__('common.hour');
+        } elseif ($diff->h) {
+            $human[] = $diff->format('%h').' '.__('common.hours');
+        }
+
+        if ($diff->i === 1) {
+            $human[] = '1 '.__('common.minute');
+        } elseif ($diff->i) {
+            $human[] = $diff->format('%i').' '.__('common.minutes');
+        }
+
+        if (empty($human)) {
+            return __('common.now');
+        }
+
+        $last = array_pop($human);
+
+        return implode(', ', $human).' '.__('common.and').' '.$last;
+    }
+
+    /**
      * @param ?string $date
      * @param ?string $default = '-'
      *

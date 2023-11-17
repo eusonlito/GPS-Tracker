@@ -12,6 +12,10 @@ class UpdateAlarm extends ActionAbstract
      */
     public function handle(): Model
     {
+        if (config('demo.enabled') && ($this->row?->id === 1)) {
+            $this->exceptionValidator(__('demo.error.not-allowed'));
+        }
+
         $this->data();
         $this->save();
 

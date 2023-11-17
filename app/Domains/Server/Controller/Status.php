@@ -40,6 +40,10 @@ class Status extends ControllerAbstract
      */
     protected function startPorts(): RedirectResponse
     {
+        if (config('demo.enabled')) {
+            $this->exceptionValidator(__('demo.error.not-allowed'));
+        }
+
         $this->action()->startPorts();
 
         $this->sessionMessage('success', __('server-status.start-success'));
@@ -52,6 +56,10 @@ class Status extends ControllerAbstract
      */
     protected function stopPorts(): RedirectResponse
     {
+        if (config('demo.enabled')) {
+            $this->exceptionValidator(__('demo.error.not-allowed'));
+        }
+
         $this->action()->stopPorts();
 
         $this->sessionMessage('success', __('server-status.stop-success'));

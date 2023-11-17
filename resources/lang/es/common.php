@@ -1,6 +1,8 @@
 <?php return [
-    'back' => 'Volver',
+    'and' => 'y',
     'close' => 'Cerrar',
+    'day' => 'día',
+    'days' => 'días',
     'error' => [
         'method-not-allowed' => 'Método no Permitido',
         'not-found' => 'No Encontrado',
@@ -9,5 +11,10 @@
         'system' => 'Error del Sistema',
     ],
     'generate' => 'Generar',
+    'hour' => 'hora',
+    'hours' => 'horas',
+    'minute' => 'minuto',
+    'minutes' => 'minutos',
+    'now' => 'ahora',
     'show' => 'Mostrar',
 ];

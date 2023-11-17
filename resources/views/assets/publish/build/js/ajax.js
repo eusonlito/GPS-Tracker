@@ -1,13 +1,13 @@
 'use strict';
 
-class Ajax {
+export default class {
     constructor(url, method) {
         this.setUrl(url);
         this.setMethod(method);
         this.setBody();
         this.setCallback();
         this.setCallbackParameters();
-        this.setError();
+        this.setErrorCallback();
         this.setHeaders();
         this.setJson(true);
 
@@ -68,6 +68,12 @@ class Ajax {
         return this;
     }
 
+    setQuery(query) {
+        this.query = query;
+
+        return this;
+    }
+
     setBody(body) {
         this.body = body;
 
@@ -92,14 +98,14 @@ class Ajax {
         return this;
     }
 
-    setError(error) {
-        this.error = error || function (message) { console.error(message) };
+    setErrorCallback(callback) {
+        this.errorCallback = callback || function (message) { console.error(message) };
 
         return this;
     }
 
     send() {
-        return fetch(this.url, this.sendData()).then(async response => {
+        return fetch(this.sendUrl(), this.sendData()).then(async response => {
             response = await this.sendResponse(response);
 
             if (typeof response === 'undefined') {
@@ -111,7 +117,17 @@ class Ajax {
             if (!this.jsonResponse) {
                 document.dispatchEvent(new Event('ajax'));
             }
-        }).catch(error => this.error(error));
+        }).catch(error => this.errorCallback(error));
+    }
+
+    sendUrl() {
+        if (this.isObjectEmpty(this.query)) {
+            return this.url;
+        }
+
+        return this.url
+            + (this.url.includes('?') ? '&' : '?')
+            + this.queryToUrl(this.query);
     }
 
     sendData() {
@@ -160,11 +176,11 @@ class Ajax {
         try {
             data = JSON.parse(text);
         } catch (error) {
-            return this.error(error);
+            return this.errorCallback(text);
         }
 
         if (!response.ok) {
-            return this.error(data.message);
+            return this.errorCallback(data);
         }
 
         return data;
@@ -172,9 +188,37 @@ class Ajax {
 
     sendResponseHtml(response, text) {
         if (!response.ok) {
-            return this.error(text);
+            return this.errorCallback(text);
         }
 
         return text;
+    }
+
+    queryToUrl(params, prefix) {
+        if (!params) {
+            return '';
+        }
+
+        const query = Object.keys(params).map((key) => {
+            const value  = params[key];
+
+            if (params.constructor === Array) {
+                key = `${prefix}[]`;
+            } else if (params.constructor === Object) {
+                key = (prefix ? `${prefix}[${key}]` : key);
+            }
+
+            if (typeof value === 'object') {
+                return this.queryToUrl(value, key);
+            }
+
+            return `${key}=${encodeURIComponent(value)}`;
+        });
+
+        return [].concat.apply([], query).join('&');
+    }
+
+    isObjectEmpty(object) {
+        return !object || !Object.keys(object).length;
     }
 };

@@ -9,6 +9,10 @@ class Delete extends ActionAbstract
      */
     public function handle(): void
     {
+        if (config('demo.enabled') && ($this->row?->id === 1)) {
+            $this->exceptionValidator(__('demo.error.not-allowed'));
+        }
+
         $this->delete();
     }
 

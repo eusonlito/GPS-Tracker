@@ -11,6 +11,7 @@ use App\Domains\Core\Action\ActionFactoryAbstract;
 use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\Core\Traits\Factory;
 use App\Exceptions\NotFoundException;
+use App\Exceptions\ValidatorException;
 
 abstract class ControllerAbstract extends Controller
 {
@@ -119,5 +120,15 @@ abstract class ControllerAbstract extends Controller
     final protected function exceptionNotFound(string $message = ''): void
     {
         throw new NotFoundException($message ?: __('common.error.not-found'));
+    }
+
+    /**
+     * @param string $message
+     *
+     * @return void
+     */
+    final protected function exceptionValidator(string $message): void
+    {
+        throw new ValidatorException($message);
     }
 }
