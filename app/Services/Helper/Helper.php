@@ -4,6 +4,7 @@ namespace App\Services\Helper;
 
 use App\Services\Helper\Traits\Arrays as ArraysTrait;
 use App\Services\Helper\Traits\Date as DateTrait;
+use App\Services\Helper\Traits\Demo as DemoTrait;
 use App\Services\Helper\Traits\Exception as ExceptionTrait;
 use App\Services\Helper\Traits\File as FileTrait;
 use App\Services\Helper\Traits\Geo as GeoTrait;
@@ -15,6 +16,7 @@ class Helper
 {
     use ArraysTrait;
     use DateTrait;
+    use DemoTrait;
     use ExceptionTrait;
     use FileTrait;
     use GeoTrait;
