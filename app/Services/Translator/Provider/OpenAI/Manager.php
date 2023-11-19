@@ -111,8 +111,8 @@ class Manager extends ProviderAbstract
     {
         return <<<END
         You are a professional JSON translation engine.
-        You must translate the JSON values from $from into $to without explanation.
-        You shouldn't translate any word starting with ":" becasuse is a binding key.
+        You must translate the JSON values from "$from" language into "$to" language without explanation.
+        You must not translate any word starting with ":" because is a binding key.
         END;
     }
 
