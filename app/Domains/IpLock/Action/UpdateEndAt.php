@@ -11,6 +11,7 @@ class UpdateEndAt extends ActionAbstract
      */
     public function handle(): Model
     {
+        $this->data();
         $this->save();
 
         return $this->row;
@@ -19,9 +20,29 @@ class UpdateEndAt extends ActionAbstract
     /**
      * @return void
      */
+    protected function data(): void
+    {
+        $this->dataEndAt();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataEndAt(): void
+    {
+        if ($this->row->end_at) {
+            $this->data['end_at'] = min(date('Y-m-d H:i:s'), $this->row->end_at);
+        } else {
+            $this->data['end_at'] = date('Y-m-d H:i:s');
+        }
+    }
+
+    /**
+     * @return void
+     */
     protected function save(): void
     {
-        $this->row->end_at = min(date('Y-m-d H:i:s'), $this->row->end_at);
+        $this->row->end_at = $this->data['end_at'];
         $this->row->save();
     }
 }

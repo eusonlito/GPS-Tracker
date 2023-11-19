@@ -15,8 +15,20 @@ class Check extends MiddlewareAbstract
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        $this->factory()->action()->check();
+        $this->factory()->action($this->actionData($request))->check();
 
         return $next($request);
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return array
+     */
+    protected function actionData(Request $request): array
+    {
+        return [
+            'ip' => $request->ip(),
+        ];
     }
 }

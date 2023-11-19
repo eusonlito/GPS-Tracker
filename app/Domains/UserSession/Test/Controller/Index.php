@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Controller;
+namespace App\Domains\UserSession\Test\Controller;
 
-class UserSession extends ControllerAbstract
+class Index extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'user.user-session';
+    protected string $route = 'user-session.index';
 
     /**
      * @return void

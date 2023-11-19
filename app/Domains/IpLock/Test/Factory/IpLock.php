@@ -18,8 +18,7 @@ class IpLock extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'ip' => $this->faker->ip,
-
+            'ip' => $this->faker->ipv4(),
             'end_at' => date('Y-m-d H:i:s', strtotime('+10 minutes')),
         ];
     }

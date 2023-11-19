@@ -1,5 +1,5 @@
 <?php return [
-    'and' => 'y',
+    'and' => 'et',
     'close' => 'Fermer',
     'day' => 'jour',
     'days' => 'jour',

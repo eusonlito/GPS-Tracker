@@ -4,7 +4,7 @@ namespace App\Domains\IpLock\Validate;
 
 use App\Domains\Core\Validate\ValidateAbstract;
 
-class Check extends ValidateAbstract
+class Lock extends ValidateAbstract
 {
     /**
      * @return array
