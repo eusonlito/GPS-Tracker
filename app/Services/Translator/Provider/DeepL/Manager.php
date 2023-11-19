@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Services\Translator\Provider\Deepl;
+namespace App\Services\Translator\Provider\DeepL;
 
 use stdClass;
 use App\Exceptions\UnexpectedValueException;
