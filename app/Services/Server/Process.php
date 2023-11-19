@@ -52,7 +52,7 @@ class Process
     protected function listExecCmd(): string
     {
         return 'ps -ef'
-            .' | grep "'.base_path().'"'
+            .' | grep -- "'.base_path().'"'
             .' | grep -- "artisan server:start:port.*--port="'
             .' | grep -v "grep"';
     }
