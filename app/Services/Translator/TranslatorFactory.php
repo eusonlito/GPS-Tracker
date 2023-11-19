@@ -37,7 +37,7 @@ class TranslatorFactory
      */
     protected static function class(string $provider): string
     {
-        $class = __NAMESPACE__.'\\Provider\\'.ucfirst($provider).'\\Manager';
+        $class = __NAMESPACE__.'\\Provider\\'.$provider.'\\Manager';
 
         if (class_exists($class)) {
             return $class;
