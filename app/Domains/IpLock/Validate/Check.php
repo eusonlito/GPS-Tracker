@@ -12,7 +12,7 @@ class Check extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'ip' => ['bail', 'nullable'],
+            'ip' => ['bail', 'required', 'ip'],
         ];
     }
 }

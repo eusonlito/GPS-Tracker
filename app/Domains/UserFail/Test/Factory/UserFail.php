@@ -19,7 +19,7 @@ class UserFail extends FactoryAbstract
     {
         return [
             'text' => 'User Fail: '.$this->faker->email(),
-            'ip' => $this->faker->ip,
+            'ip' => $this->faker->ipv4(),
 
             'user_id' => (rand(1, 0) ? $this->userFirstOrFactory() : null),
         ];

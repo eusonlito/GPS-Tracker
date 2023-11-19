@@ -6,6 +6,7 @@
     'device' => 'Appareils',
     'device-index' => 'Liste',
     'device-map' => 'Carte',
+    'ip-lock' => 'IP bloquées',
     'logout' => 'Sortie',
     'maintenance' => 'Maintenance',
     'maintenance-index' => 'Liste d\'articles',
@@ -20,7 +21,6 @@
     'trip' => 'Déplacements',
     'user' => 'Utilisateurs',
     'user-index' => 'Liste des',
-    'user-ip-lock' => 'IP bloquées',
     'user-session' => 'Sessions',
     'vehicle' => 'Véhicules',
 ];

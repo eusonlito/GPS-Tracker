@@ -1,10 +1,11 @@
 <?php return [
     'actions' => 'Actions',
-    'created_at' => 'Début',
+    'create' => 'Ajouter',
+    'created_at' => 'Commencer',
     'end_at' => 'Fin',
     'filter' => 'Filtrer...',
     'ip' => 'IP',
-    'meta-title' => 'Utilisateurs > IP bloquées',
+    'meta-title' => 'Utilisateurs &gt; IP bloquées',
     'time' => 'Temps',
     'unlock' => 'Débloquer',
 ];

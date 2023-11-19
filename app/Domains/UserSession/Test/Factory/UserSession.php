@@ -19,7 +19,7 @@ class UserSession extends FactoryAbstract
     {
         return [
             'auth' => 'User Session: '.$this->faker->email(),
-            'ip' => $this->faker->ip,
+            'ip' => $this->faker->ipv4(),
 
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),

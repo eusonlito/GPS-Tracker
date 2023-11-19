@@ -82,7 +82,7 @@ class Create extends ActionAbstract
 
         $action = $this->factory('IpLock')->action($this->saveIpLockData());
 
-        $action->create();
+        $action->lock();
         $action->check();
     }
 

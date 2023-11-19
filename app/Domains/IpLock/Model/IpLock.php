@@ -60,6 +60,10 @@ class IpLock extends ModelAbstract
      */
     public function time(): string
     {
+        if (empty($this->end_at)) {
+            return '-';
+        }
+
         return helper()->timeHuman(strtotime($this->end_at) - strtotime($this->created_at));
     }
 
@@ -68,6 +72,7 @@ class IpLock extends ModelAbstract
      */
     public function finished(): bool
     {
-        return $this->end_at <= date('Y-m-d H:i:s');
+        return $this->end_at
+            && ($this->end_at <= date('Y-m-d H:i:s'));
     }
 }

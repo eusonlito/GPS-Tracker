@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Controller;
+namespace App\Domains\IpLock\Test\Controller;
 
-class IpLock extends ControllerAbstract
+class Index extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'user.ip-lock';
+    protected string $route = 'ip-lock.index';
 
     /**
      * @return void

@@ -118,7 +118,7 @@
             </a>
         </li>
 
-        @php ($active = str_starts_with($ROUTE, 'user.'))
+        @php ($active = str_starts_with($ROUTE, 'user.') || str_starts_with($ROUTE, 'user-session.') || str_starts_with($ROUTE, 'ip-lock.'))
 
         <li>
             <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
@@ -130,23 +130,23 @@
 
             <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
                 <li>
-                    <a href="{{ route('user.index') }}" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
+                    <a href="{{ route('user.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'user.') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">@icon('list')</div>
                         <div class="side-menu__title">{{ __('in-sidebar.user-index') }}</div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('user.user-session') }}" class="side-menu {{ ($ROUTE === 'user.user-session') ? 'side-menu--active' : '' }}">
+                    <a href="{{ route('user-session.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'user-session.') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">@icon('key')</div>
                         <div class="side-menu__title">{{ __('in-sidebar.user-session') }}</div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('user.ip-lock') }}" class="side-menu {{ ($ROUTE === 'user.ip-lock') ? 'side-menu--active' : '' }}">
+                    <a href="{{ route('ip-lock.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'ip-lock.') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">@icon('lock')</div>
-                        <div class="side-menu__title">{{ __('in-sidebar.user-ip-lock') }}</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.ip-lock') }}</div>
                     </a>
                 </li>
             </ul>

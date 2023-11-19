@@ -12,24 +12,7 @@ class Check extends ActionAbstract
      */
     public function handle(): void
     {
-        $this->data();
         $this->check();
-    }
-
-    /**
-     * @return void
-     */
-    protected function data(): void
-    {
-        $this->dataIp();
-    }
-
-    /**
-     * @return void
-     */
-    protected function dataIp(): void
-    {
-        $this->data['ip'] ??= $this->request->ip();
     }
 
     /**

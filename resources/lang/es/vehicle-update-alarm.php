@@ -1,5 +1,4 @@
 <?php return [
-    'config' => 'Configuración',
     'created_at' => 'Creada',
     'enabled' => 'Activa',
     'filter' => 'Filtrar...',

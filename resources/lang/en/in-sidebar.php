@@ -6,6 +6,7 @@
     'device' => 'Devices',
     'device-index' => 'List',
     'device-map' => 'Map',
+    'ip-lock' => 'Blocked IPs',
     'logout' => 'Logout',
     'maintenance' => 'Maintenances',
     'maintenance-index' => 'List',
@@ -20,7 +21,6 @@
     'trip' => 'Trips',
     'user' => 'Users',
     'user-index' => 'List',
-    'user-ip-lock' => 'Blocked IPs',
     'user-session' => 'Sessions',
     'vehicle' => 'Vehicles',
 ];

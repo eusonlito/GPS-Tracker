@@ -1,5 +1,4 @@
 <?php return [
-    'back' => 'Revenir',
     'close' => 'Fermer',
     'error' => [
         'method-not-allowed' => 'Méthode non autorisée',

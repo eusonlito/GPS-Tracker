@@ -124,7 +124,7 @@
             </a>
         </li>
 
-        @php ($active = str_starts_with($ROUTE, 'user.'))
+        @php ($active = str_starts_with($ROUTE, 'user.') || str_starts_with($ROUTE, 'user-session.') || str_starts_with($ROUTE, 'ip-lock.'))
 
         <li>
             <a href="javascript:;" class="menu {{ $active ? 'menu--active' : '' }}">
@@ -136,23 +136,23 @@
 
             <ul class="{{ $active ? 'menu__sub-open' : '' }}">
                 <li>
-                    <a href="{{ route('user.index') }}" class="menu {{ $active ? 'menu--active' : '' }}">
+                    <a href="{{ route('user.index') }}" class="menu {{ str_starts_with($ROUTE, 'user.') ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('list')</div>
                         <div class="menu__title">{{ __('in-sidebar.user-index') }}</div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('user.user-session') }}" class="menu {{ ($ROUTE === 'user.user-session') ? 'menu--active' : '' }}">
+                    <a href="{{ route('user-session.index') }}" class="menu {{ str_starts_with($ROUTE, 'user-session.') ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('key')</div>
                         <div class="menu__title">{{ __('in-sidebar.user-session') }}</div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('user.ip-lock') }}" class="menu {{ ($ROUTE === 'user.ip-lock') ? 'menu--active' : '' }}">
+                    <a href="{{ route('ip-lock.index') }}" class="menu {{ str_starts_with($ROUTE, 'ip-lock.') ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('lock')</div>
-                        <div class="menu__title">{{ __('in-sidebar.user-ip-lock') }}</div>
+                        <div class="menu__title">{{ __('in-sidebar.ip-lock') }}</div>
                     </a>
                 </li>
             </ul>

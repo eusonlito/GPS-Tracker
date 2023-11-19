@@ -21,11 +21,35 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return ?\App\Domains\IpLock\Model\IpLock
+     * @return \App\Domains\IpLock\Model\IpLock
      */
-    public function create(): ?Model
+    public function create(): Model
     {
         return $this->actionHandle(Create::class, $this->validate()->create());
+    }
+
+    /**
+     * @return void
+     */
+    public function delete(): void
+    {
+        $this->actionHandle(Delete::class);
+    }
+
+    /**
+     * @return ?\App\Domains\IpLock\Model\IpLock
+     */
+    public function lock(): ?Model
+    {
+        return $this->actionHandle(Lock::class, $this->validate()->lock());
+    }
+
+    /**
+     * @return \App\Domains\IpLock\Model\IpLock
+     */
+    public function update(): Model
+    {
+        return $this->actionHandle(Update::class, $this->validate()->update());
     }
 
     /**
