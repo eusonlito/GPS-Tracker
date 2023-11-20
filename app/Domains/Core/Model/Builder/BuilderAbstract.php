@@ -34,13 +34,31 @@ abstract class BuilderAbstract extends Builder
     }
 
     /**
+     * @param string|array $column
+     * @param bool $raw = false
+     *
+     * @return string|array
+     */
+    public function addTable(string|array $column, bool $raw = false): string|array
+    {
+        $table = $this->getTable();
+        $quote = $raw ? '`' : '';
+
+        if (is_string($column)) {
+            return $quote.$table.$quote.'.'.$quote.$column.$quote;
+        }
+
+        return array_map(fn ($column) => $quote.$table.$quote.'.'.$quote.$column.$quote, $column);
+    }
+
+    /**
      * @param string $created_at
      *
      * @return self
      */
     public function byCreatedAtAfter(string $created_at): self
     {
-        return $this->where('created_at', '>=', $created_at);
+        return $this->where($this->addTable('created_at'), '>=', $created_at);
     }
 
     /**
@@ -50,7 +68,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function byId(int $id): self
     {
-        return $this->where($this->getTable().'.id', $id);
+        return $this->where($this->addTable('id'), $id);
     }
 
     /**
@@ -60,7 +78,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function byIdNext(int $id): self
     {
-        return $this->where('id', '>', $id);
+        return $this->where($this->addTable('id'), '>', $id);
     }
 
     /**
@@ -70,7 +88,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function byIdPrevious(int $id): self
     {
-        return $this->where('id', '<', $id);
+        return $this->where($this->addTable('id'), '<', $id);
     }
 
     /**
@@ -80,7 +98,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function byIdNot(int $id): self
     {
-        return $this->where($this->getTable().'.id', '!=', $id);
+        return $this->where($this->addTable('id'), '!=', $id);
     }
 
     /**
@@ -90,7 +108,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function byIds(array $ids): self
     {
-        return $this->whereIntegerInRaw($this->getTable().'.id', $ids);
+        return $this->whereIntegerInRaw($this->addTable('id'), $ids);
     }
 
     /**
@@ -100,7 +118,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function byIdsNot(array $ids): self
     {
-        return $this->orWhereIntegerNotInRaw($this->getTable().'.id', $ids);
+        return $this->orWhereIntegerNotInRaw($this->addTable('id'), $ids);
     }
 
     /**
@@ -110,7 +128,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function byUserId(int $user_id): self
     {
-        return $this->where($this->getTable().'.user_id', $user_id);
+        return $this->where($this->addTable('user_id'), $user_id);
     }
 
     /**
@@ -120,7 +138,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function enabled(bool $enabled = true): self
     {
-        return $this->where($this->getTable().'.enabled', $enabled);
+        return $this->where($this->addTable('enabled'), $enabled);
     }
 
     /**
@@ -128,7 +146,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function list(): self
     {
-        return $this->orderBy($this->getTable().'.id', 'DESC');
+        return $this->orderBy($this->addTable('id'), 'DESC');
     }
 
     /**
@@ -136,7 +154,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function orderByCreatedAtAsc(): self
     {
-        return $this->orderBy($this->getTable().'.created_at', 'ASC');
+        return $this->orderBy($this->addTable('created_at'), 'ASC');
     }
 
     /**
@@ -144,7 +162,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function orderByCreatedAtDesc(): self
     {
-        return $this->orderBy($this->getTable().'.created_at', 'DESC');
+        return $this->orderBy($this->addTable('created_at'), 'DESC');
     }
 
     /**
@@ -152,7 +170,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function orderByFirst(): self
     {
-        return $this->orderBy($this->getTable().'.id', 'ASC');
+        return $this->orderBy($this->addTable('id'), 'ASC');
     }
 
     /**
@@ -160,7 +178,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function orderByLast(): self
     {
-        return $this->orderBy($this->getTable().'.id', 'DESC');
+        return $this->orderBy($this->addTable('id'), 'DESC');
     }
 
     /**
@@ -168,7 +186,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function orderByUpdatedAtAsc(): self
     {
-        return $this->orderBy($this->getTable().'.updated_at', 'ASC');
+        return $this->orderBy($this->addTable('updated_at'), 'ASC');
     }
 
     /**
@@ -176,7 +194,32 @@ abstract class BuilderAbstract extends Builder
      */
     public function orderByUpdatedAtDesc(): self
     {
-        return $this->orderBy($this->getTable().'.updated_at', 'DESC');
+        return $this->orderBy($this->addTable('updated_at'), 'DESC');
+    }
+
+    /**
+     * @param string $column
+     * @param ?string $mode
+     *
+     * @return self
+     */
+    public function orderByColumn(string $column, ?string $mode): self
+    {
+        return $this->orderBy($column, $this->orderMode($mode));
+    }
+
+    /**
+     * @param ?string $mode
+     * @param string $default = 'ASC'
+     *
+     * @return string
+     */
+    public function orderMode(?string $mode, string $default = 'ASC'): string
+    {
+        return match ($mode = strtoupper($mode)) {
+            'ASC', 'DESC' => $mode,
+            default => $default,
+        };
     }
 
     /**
@@ -201,13 +244,15 @@ abstract class BuilderAbstract extends Builder
      * @param array $columns
      * @param string $search
      *
-     * @return void
+     * @return self
      */
-    private function searchLikeColumns(Builder $q, array $columns, string $search): void
+    protected function searchLikeColumns(Builder $q, array $columns, string $search): self
     {
         foreach ($columns as $each) {
-            $q->orWhere($this->getTable().'.'.$each, 'LIKE', $search);
+            $q->orWhere($this->addTable($each), 'LIKE', $search);
         }
+
+        return $q;
     }
 
     /**
@@ -218,7 +263,7 @@ abstract class BuilderAbstract extends Builder
     protected function searchLikeString(string $search): ?string
     {
         $search = trim(preg_replace('/[^\p{L}0-9]/u', ' ', $search));
-        $search = array_filter(explode(' ', $search), static fn ($value) => strlen($value) > 2);
+        $search = array_filter(explode(' ', $search), static fn ($value) => strlen($value) >= 2);
 
         return $search ? ('%'.implode('%', $search).'%') : null;
     }
@@ -251,13 +296,5 @@ abstract class BuilderAbstract extends Builder
     public function whenIdNext(int $id): self
     {
         return $this->when($id, static fn ($q) => $q->byIdNext($id));
-    }
-
-    /**
-     * @return self
-     */
-    public function withUser(): self
-    {
-        return $this->with('user');
     }
 }

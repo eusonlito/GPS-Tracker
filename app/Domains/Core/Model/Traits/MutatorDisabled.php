@@ -95,43 +95,7 @@ trait MutatorDisabled
      *
      * @return bool
      */
-    protected function isClassCastable($key): bool
-    {
-        return false;
-    }
-
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-     *
-     * @param string $key
-     *
-     * @return bool
-     */
     protected function isEnumCastable($key): bool
-    {
-        return false;
-    }
-
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-     *
-     * @param string $key
-     *
-     * @return bool
-     */
-    protected function isClassDeviable($key): bool
-    {
-        return false;
-    }
-
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-     *
-     * @param string $key
-     *
-     * @return bool
-     */
-    protected function isClassSerializable($key): bool
     {
         return false;
     }

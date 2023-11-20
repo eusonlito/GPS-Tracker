@@ -110,10 +110,10 @@ class Manager extends ProviderAbstract
     protected function requestBodyMessagesSystemContent(string $from, string $to): string
     {
         return <<<END
-        You are a professional JSON translation engine.
-        You must translate the JSON values from "$from" language into "$to" language without explanation.
-        You must not translate any word starting with ":" because is a binding key.
-        END;
+            You are a professional JSON translation engine.
+            You must translate the JSON values from "$from" language into "$to" language without explanation.
+            You must not translate any word starting with ":" because is a binding key.
+            END;
     }
 
     /**

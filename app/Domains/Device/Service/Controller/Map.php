@@ -55,7 +55,7 @@ class Map extends ControllerAbstract
                 ->whenUserId($this->user()?->id)
                 ->whenVehicleId($this->vehicle()?->id)
                 ->whenIds($this->requestArray('ids'))
-                ->whenTripFinished($this->requestBool('finished'))
+                ->whenTripFinished($this->requestBool('finished', null))
                 ->withUser()
                 ->withVehicle()
                 ->withWhereHasPositionLast()

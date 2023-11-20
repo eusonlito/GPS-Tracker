@@ -6,12 +6,13 @@ use DateTime;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\DB;
+use App\Domains\Core\Model\Traits\Column as ColumnTrait;
 use App\Domains\Core\Model\Traits\DateDisabled as DateDisabledTrait;
 use App\Domains\Core\Model\Traits\MutatorDisabled as MutatorDisabledTrait;
 
 abstract class PivotAbstract extends Pivot
 {
-    use DateDisabledTrait, MutatorDisabledTrait;
+    use ColumnTrait, DateDisabledTrait, MutatorDisabledTrait;
 
     /**
      * @var bool
@@ -29,7 +30,7 @@ abstract class PivotAbstract extends Pivot
     public $timestamps = false;
 
     /**
-     * @var array
+     * @var array<string>|bool
      */
     protected $guarded = [];
 

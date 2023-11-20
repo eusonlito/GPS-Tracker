@@ -106,4 +106,12 @@ abstract class BuilderAbstract extends BuilderAbstractCore
     {
         return $this->with([$relation => static fn ($q) => $q->selectRelated()]);
     }
+
+    /**
+     * @return self
+     */
+    public function withUser(): self
+    {
+        return $this->with('user');
+    }
 }

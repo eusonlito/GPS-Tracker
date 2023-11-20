@@ -56,22 +56,22 @@ abstract class ControllerAbstract
 
     /**
      * @param string $key
-     * @param ?array $default = null
+     * @param ?array $default = []
      *
      * @return ?array
      */
-    protected function requestArray(string $key, ?array $default = null): ?array
+    protected function requestArray(string $key, ?array $default = []): ?array
     {
         return (array)$this->request->input($key) ?: $default;
     }
 
     /**
      * @param string $key
-     * @param ?bool $default = null
+     * @param ?bool $default = false
      *
      * @return ?bool
      */
-    protected function requestBool(string $key, ?bool $default = null): ?bool
+    protected function requestBool(string $key, ?bool $default = false): ?bool
     {
         return match ($this->request->input($key)) {
             'true', '1' => true,
@@ -81,12 +81,44 @@ abstract class ControllerAbstract
     }
 
     /**
+     * @param string $key
+     * @param ?int $default = 0
+     *
+     * @return ?int
+     */
+    protected function requestInteger(string $key, ?int $default = 0): ?int
+    {
+        return intval($this->request->input($key)) ?: $default;
+    }
+
+    /**
+     * @param string $key
+     * @param ?string $default = ''
+     *
+     * @return ?string
+     */
+    protected function requestString(string $key, ?string $default = ''): ?string
+    {
+        return strval($this->request->input($key)) ?: $default;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return void
+     */
+    protected function requestMerge(array $data): void
+    {
+        $this->request->merge($this->request->input() + $data);
+    }
+
+    /**
      * @param array $data = []
      * @param ?\App\Domains\Core\Model\ModelAbstract $row = null
      *
      * @return void
      */
-    final protected function requestMergeWithRow(array $data = [], ?ModelAbstract $row = null): void
+    protected function requestMergeWithRow(array $data = [], ?ModelAbstract $row = null): void
     {
         $this->request->merge($this->request->input() + $data + $this->requestMergeWithRowAsArray($row));
     }
@@ -96,7 +128,7 @@ abstract class ControllerAbstract
      *
      * @return array
      */
-    final protected function requestMergeWithRowAsArray(?ModelAbstract $row): array
+    protected function requestMergeWithRowAsArray(?ModelAbstract $row): array
     {
         if ($row) {
             return $row->toArray();
