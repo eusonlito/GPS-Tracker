@@ -16,6 +16,6 @@ return [
             'key' => env('OPENAI_KEY'),
             'model' => env('OPENAI_MODEL', 'gpt-4-1106-preview'),
             'temperature' => env('OPENAI_TEMPERATURE', 0),
-        ]
+        ],
     ],
 ];

@@ -58,7 +58,7 @@ class Index extends ControllerAbstract
             fn () => DeviceModel::query()
                 ->whereSharedPublic()
                 ->whenIds($this->requestArray('ids'))
-                ->whenTripFinished($this->requestBool('finished'))
+                ->whenTripFinished($this->requestBool('finished', null))
                 ->withVehicle()
                 ->withWhereHasPositionLast()
                 ->list()
