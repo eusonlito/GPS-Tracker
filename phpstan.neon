@@ -12,7 +12,6 @@ parameters:
         - '#Access to an undefined property object::#'
         - '#Access to an undefined property .*Abstract#'
         - '#Access to an undefined property .*\\Model#'
-        - '#Access to an undefined property Faker\\Generator#'
         - '#App\\Domains\\User\\Model\\User.* does not accept Illuminate\\Contracts\\Auth\\Authenticatable#'
         - '#Call to an undefined .*Abstract#'
         - '#Call to an undefined method Illuminate\\Contracts\\Queue\\ShouldQueue#'

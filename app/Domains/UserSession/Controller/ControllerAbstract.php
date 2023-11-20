@@ -13,14 +13,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     protected ?Model $row;
 
     /**
-     * @return void
-     */
-    protected function rowAuth(): void
-    {
-        $this->row = $this->auth;
-    }
-
-    /**
      * @param int $id
      *
      * @return void

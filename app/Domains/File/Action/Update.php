@@ -2,50 +2,16 @@
 
 namespace App\Domains\File\Action;
 
-use App\Domains\File\Model\File as Model;
-
-class Update extends ActionAbstract
+class Update extends CreateUpdateAbstract
 {
     /**
-     * @return \App\Domains\File\Model\File
-     */
-    public function handle(): Model
-    {
-        if (config('demo.enabled') && ($this->row?->user_id === 1)) {
-            $this->exceptionValidator(__('demo.error.not-allowed'));
-        }
-
-        $this->delete();
-        $this->create();
-
-        return $this->row;
-    }
-
-    /**
      * @return void
      */
-    protected function delete(): void
+    protected function saveRow(): void
     {
-        $this->factory()->action()->delete();
-    }
-
-    /**
-     * @return void
-     */
-    protected function create(): void
-    {
-        $this->row = $this->factory()->action($this->createData())->create();
-    }
-
-    /**
-     * @return array
-     */
-    protected function createData(): array
-    {
-        return [
-            'related_table' => $this->row->related_table,
-            'related_id' => $this->row->related_id,
-            'file' => $this->data['file'],
-        ];
+        $this->row->name = $this->data['name'];
+        $this->row->path = $this->data['path'];
+        $this->row->size = $this->data['size'];
+        $this->row->save();
     }
 }

@@ -123,10 +123,12 @@ class Manager extends ProviderAbstract
      */
     protected function requestBodyMessagesUser(array $strings): array
     {
-        return [[
-            'role' => 'user',
-            'content' => json_encode($strings),
-        ]];
+        return [
+            [
+                'role' => 'user',
+                'content' => json_encode($strings),
+            ]
+        ];
     }
 
     /**
