@@ -135,13 +135,16 @@ abstract class MigrationAbstract extends Migration
      */
     protected function foreign(Blueprint $table, string $remote, ?string $alias = null): ForeignKeyDefinition
     {
-        $name = ($alias ?: $remote);
+        $name = ($alias ?: $remote.'_id');
+        $column = $alias ?: $remote;
 
         if ($this->driver() === 'pgsql') {
-            $table->index($name.'_id', $this->indexName($table, $name, 'id_index'));
+            $table->index($name, $this->indexName($table, $column, 'id_index'));
         }
 
-        return $table->foreign($name.'_id', $this->indexName($table, $name, 'fk'))->references('id')->on($remote);
+        return $table->foreign($name, $this->indexName($table, $column, 'fk'))
+            ->references('id')
+            ->on($remote);
     }
 
     /**
@@ -236,6 +239,23 @@ abstract class MigrationAbstract extends Migration
     protected function tableHasIndex(string $table, string|array $name, ?string $suffix = null): bool
     {
         return $this->db()->getDoctrineSchemaManager()->listTableDetails($table)->hasIndex($this->indexName($table, $name, $suffix));
+    }
+
+    /**
+     * @param string $table
+     * @param string|array $name
+     * @param ?string $suffix = null
+     *
+     * @return bool
+     */
+    protected function tableHasForeign(string $table, string|array $name, ?string $suffix = null): bool
+    {
+        $index = $this->indexName($table, $name, $suffix);
+
+        return boolval(array_filter(
+            $this->db()->getDoctrineSchemaManager()->listTableForeignKeys($table),
+            static fn ($foreign) => $foreign->getName() === $index
+        ));
     }
 
     /**

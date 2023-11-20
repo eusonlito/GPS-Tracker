@@ -6,12 +6,13 @@ use DateTime;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Domains\Core\Model\Traits\Column as ColumnTrait;
 use App\Domains\Core\Model\Traits\DateDisabled as DateDisabledTrait;
 use App\Domains\Core\Model\Traits\MutatorDisabled as MutatorDisabledTrait;
 
 abstract class ModelAbstract extends Model
 {
-    use DateDisabledTrait, MutatorDisabledTrait;
+    use ColumnTrait, DateDisabledTrait, MutatorDisabledTrait;
 
     /**
      * @var bool
