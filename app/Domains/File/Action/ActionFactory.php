@@ -2,8 +2,9 @@
 
 namespace App\Domains\File\Action;
 
-use App\Domains\File\Model\File as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\File\Model\File as Model;
+use App\Domains\File\Model\Collection\File as Collection;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -34,5 +35,13 @@ class ActionFactory extends ActionFactoryAbstract
     public function update(): Model
     {
         return $this->actionHandle(Update::class, $this->validate()->update());
+    }
+
+    /**
+     * @return \App\Domains\File\Model\Collection\File
+     */
+    public function upload(): Collection
+    {
+        return $this->actionHandle(Upload::class, $this->validate()->upload());
     }
 }

@@ -22,7 +22,7 @@ class Select extends Component
      * @param string $label = '',
      * @param string $name = '',
      * @param string $id = '',
-     * @param mixed $selected = null,
+     * @param array|string|null $selected = null,
      * @param string $placeholder = ''
      * @param bool $valueOnly = false
      * @param bool $optionsWithAttributes = false

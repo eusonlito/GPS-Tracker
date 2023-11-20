@@ -2,14 +2,11 @@
 
 namespace App\Domains\Maintenance\Action;
 
-use App\Domains\File\Action\Traits\RelatedCreateUpdate as FileRelatedCreateUpdate;
 use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
 {
-    use FileRelatedCreateUpdate;
-
     /**
      * @return void
      */
@@ -64,5 +61,26 @@ abstract class CreateUpdateAbstract extends ActionAbstract
             ->byId($this->data['vehicle_id'])
             ->byUserId($this->data['user_id'])
             ->exists();
+    }
+
+    /**
+     * @return void
+     */
+    protected function files(): void
+    {
+        $this->factory('File')->action($this->filesData())->upload();
+    }
+
+    /**
+     * @return array
+     */
+    protected function filesData(): array
+    {
+        return [
+            'files' => $this->request->all('files')['files'],
+            'related_table' => $this->row->getTable(),
+            'related_id' => $this->row->id,
+            'user_id' => $this->data['user_id'],
+        ];
     }
 }

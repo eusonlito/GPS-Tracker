@@ -50,8 +50,8 @@ class Handler extends HandlerVendor
     protected function context(): array
     {
         return parent::context() + [
-            'url' => request()?->fullUrl(),
-            'method' => request()?->getMethod(),
+            'url' => request()->fullUrl(),
+            'method' => request()->getMethod(),
         ];
     }
 

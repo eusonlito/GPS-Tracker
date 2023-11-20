@@ -5,6 +5,8 @@ namespace App\Domains\Core\Model\Traits;
 trait Column
 {
     /**
+     * @psalm-suppress UndefinedConstant
+     *
      * @return array
      */
     public static function getTableColumns(): array
