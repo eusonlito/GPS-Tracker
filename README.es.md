@@ -2,7 +2,18 @@
 
 # GPS Tracker (Laravel 10 + PHP 8.1 + MySQL 8)
 
-Plataforma de gestión de dispositivos Sinotrack ST-90x creada con Laravel 10 + PHP 8.1 y MySQL 8.
+Este proyecto es una plataforma de gestión para dispositivos Sinotrack ST-90x OsmAnd y Queclink desarrollada utilizando Laravel 10, PHP 8.1 y MySQL 8. Esta solución integral de rastreo GPS está diseñada para ofrecer un rendimiento robusto y una interfaz de usuario intuitiva, adecuada tanto para usuarios individuales como para empresas que necesitan gestionar múltiples dispositivos de rastreo. Esta plataforma está pensada como una posible alternativa a [Traccar](https://github.com/traccar/traccar).
+
+### Características Clave
+
+* **Plataforma moderna con interface amigable:** La plataforma utiliza Laravel 10 para proporcionar una experiencia de usuario fluida y una interfaz gráfica atractiva.
+* **Compatibilidad con PHP 8.1:** Aprovecha las últimas características de PHP 8.1, incluyendo mejoras en el rendimiento y seguridad. También es compatible con las versiones superiores de PHP.
+* **Gestión de Datos con MySQL 8:** Utiliza MySQL 8.0.12 o superior para una gestión eficiente y segura de grandes volúmenes de datos de rastreo, así como una amplio soporte de funcionalidades GIS.
+* **Seguimiento en Tiempo Real:** Permite a los usuarios seguir la ubicación y el estado de sus dispositivos Sinotrack ST-90x en tiempo real.
+* **Informes Detallados:** Genera informes completos que ayudan en la toma de decisiones y en el análisis de datos.
+* **Alarmas y Notificaciones:** Configura alarmas personalizadas (geovalla, movimiento, velocidad, etc...) para eventos específicos relacionados con los dispositivos de rastreo. Las notificaciones se pueden configurar a través de Telegram.
+* **Soporte Multiusuario:** Admite la creación de múltiples cuentas de usuario con diferentes niveles de acceso y permisos.
+* **Entorno Público:** Si lo deseas puedes generar enlaces para viajes individuales y compartirlos públicamente. También puedes compartir directamente un dispositivo donde todos sus viajes serán visibles de forma pública.
 
 ### Requisitos
 
@@ -30,7 +41,7 @@ git clone https://github.com/eusonlito/GPS-Tracker.git
 cp .env.example .env
 ```
 
-4. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.1).
+4. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.1 o superior).
 
 ```bash
 ./composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
