@@ -1,7 +1,7 @@
 <?php return [
     'connected_at' => 'Last Connection',
     'create' => 'Create Device',
-    'enabled' => 'Active',
+    'enabled' => 'Enabled',
     'filter' => 'Filter...',
     'map' => 'Map',
     'meta-title' => 'Devices',

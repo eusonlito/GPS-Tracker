@@ -2,7 +2,7 @@
     'create' => 'Create',
     'created_at' => 'Created',
     'debug' => 'Debug',
-    'enabled' => 'Active',
+    'enabled' => 'Enabled',
     'filter' => 'Filter...',
     'logs' => 'Logs',
     'meta-title' => 'Servers',
