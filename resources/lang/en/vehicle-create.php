@@ -1,5 +1,5 @@
 <?php return [
-    'enabled' => 'Active',
+    'enabled' => 'Enabled',
     'error' => [
         'timezone-exists' => 'Selected Time Zone is no longer available',
     ],

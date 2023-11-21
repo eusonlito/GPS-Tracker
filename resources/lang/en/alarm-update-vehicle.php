@@ -1,5 +1,5 @@
 <?php return [
-    'enabled' => 'Active',
+    'enabled' => 'Enabled',
     'filter' => 'Filter...',
     'meta-title' => 'Alarms > :title > Vehicles',
     'name' => 'Name',

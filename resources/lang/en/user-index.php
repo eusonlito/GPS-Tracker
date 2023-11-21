@@ -4,7 +4,7 @@
     'create' => 'Create',
     'created_at' => 'Created',
     'email' => 'Email',
-    'enabled' => 'Active',
+    'enabled' => 'Enabled',
     'filter' => 'Filter...',
     'manager' => 'Manager',
     'meta-title' => 'Users',

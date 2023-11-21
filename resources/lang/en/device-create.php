@@ -1,5 +1,5 @@
 <?php return [
-    'enabled' => 'Active',
+    'enabled' => 'Enabled',
     'error' => [
         'code-exists' => 'The indicated code already exists',
         'serial-exists' => 'The specified serial already exists',

@@ -2,7 +2,18 @@
 
 # GPS Tracker (Laravel 10 + PHP 8.1 + MySQL 8)
 
-Sinotrack ST-90x device management platform built with Laravel 10 + PHP 8.1 and MySQL 8.
+This project is a management platform for Sinotrack ST-90x OsmAnd and Queclink devices developed using Laravel 10, PHP 8.1 and MySQL 8. This comprehensive GPS tracking solution is designed to offer robust performance and an intuitive user interface, suitable for both individual users and companies that need to manage multiple tracking devices. This platform is intended as a possible alternative to [Traccar](https://github.com/traccar/traccar).
+
+### Features
+
+* **Modern platform with user-friendly interface:** The platform uses Laravel 10 to provide a smooth user experience and an attractive graphical interface.
+* **PHP 8.1 compatibility:** Leverages the latest features of PHP 8.1, including performance and security enhancements. It is also compatible with higher versions of PHP.
+* **Data Management with MySQL 8:** Uses MySQL 8.0.12 or higher for efficient and secure management of large volumes of tracking data, as well as extensive support for GIS functionality.
+* **Real-Time Tracking:** Allows users to track the location and status of their Sinotrack ST-90x devices in real time.
+* **Detailed Reporting:** Generates comprehensive reports that aid in decision making and data analysis.
+* **Alarms and Notifications:** Configure custom alarms (geofence, motion, speed, etc...) for specific events related to the tracking devices. Notifications can be configured via Telegram.
+* **Multi-User Support:** Supports the creation of multiple user accounts with different levels of access and permissions.
+* **Public Environment:** If you wish you can generate links for individual trips and share them publicly. You can also directly share a device where all its trips will be publicly visible.
 
 ### Requirements
 

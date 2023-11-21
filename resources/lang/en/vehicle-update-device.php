@@ -1,5 +1,5 @@
 <?php return [
-    'enabled' => 'Active',
+    'enabled' => 'Enabled',
     'filter' => 'Filter...',
     'meta-title' => 'Vehicles > :title > Devices',
     'model' => 'Model',
