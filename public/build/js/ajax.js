@@ -1,6 +1,6 @@
 'use strict';
 
-export default class {
+class Ajax {
     constructor(url, method) {
         this.setUrl(url);
         this.setMethod(method);

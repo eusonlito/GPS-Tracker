@@ -127,7 +127,7 @@ class Manager extends ProviderAbstract
             [
                 'role' => 'user',
                 'content' => json_encode($strings),
-            ]
+            ],
         ];
     }
 

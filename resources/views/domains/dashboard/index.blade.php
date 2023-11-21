@@ -2,21 +2,9 @@
 
 @section ('body')
 
-@if (($users->count() === 1) && $vehicles->isEmpty())
+@if ($onboarding)
 
-<img class="m-auto mt-10 lg:mt-20 h-60" src="@asset('build/images/vehicle.svg')">
-
-<div class="mt-10 text-center">
-    <a href="{{ route('vehicle.create') }}" class="btn bg-white py-3 px-4">{{ __('dashboard-index.vehicle-create') }}</a>
-</div>
-
-@elseif (($users->count() === 1) && $devices->isEmpty())
-
-<img class="m-auto mt-10 lg:mt-20 h-60" src="@asset('build/images/device.svg')">
-
-<div class="mt-10 text-center">
-    <a href="{{ route('device.create') }}" class="btn bg-white py-3 px-4">{{ __('dashboard-index.device-create') }}</a>
-</div>
+@include ('domains.dashboard.molecules.onboarding')
 
 @else
 
@@ -26,7 +14,7 @@
     <div class="lg:flex lg:space-x-4">
         @if ($users_multiple)
 
-        <div class="{{ $trip ? '': 'flex-1' }} mb-2">
+        <div class="flex-1 mb-2">
             <x-select name="user_id" :options="$users" value="id" text="name" data-change-submit></x-select>
         </div>
 
@@ -47,8 +35,6 @@
         </div>
 
         @endif
-
-        @if ($trips->isNotEmpty())
 
         <div class="flex-1 mb-4">
             <div class="flex">
@@ -78,12 +64,8 @@
             <a href="{{ route('trip.update.alarm-notification', $trip->id) }}" class="btn bg-white mr-2">@icon('bell', 'w-4 h-4 sm:w-6 sm:h-6')</a>
             <a href="{{ route('trip.update.merge', $trip->id) }}" class="btn bg-white">@icon('git-merge', 'w-4 h-4 sm:w-6 sm:h-6')</a>
         </div>
-
-        @endif
     </div>
 </form>
-
-@if ($trip)
 
 <x-map
     :trip="$trip"
@@ -93,16 +75,6 @@
     :data-map-show-last="$trip->finished()"
     :data-map-positions-url="route('trip.update.position', $trip->id)"
 ></x-map>
-
-@else
-
-<img class="m-auto mt-10 lg:mt-20 h-60" src="@asset('build/images/trip.svg')">
-
-<div class="mt-10 text-center">
-    <div class="text-xl lg:text-2xl font-medium">{{ __('dashboard-index.trip-wating') }}</div>
-</div>
-
-@endif
 
 @endif
 
