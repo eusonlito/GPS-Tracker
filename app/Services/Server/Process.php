@@ -51,7 +51,8 @@ class Process
      */
     protected function listExecCmd(): string
     {
-        return 'ps -ef'
+        return 'export COLUMNS=256;'
+            .' ps -ef'
             .' | grep -- "'.base_path().'"'
             .' | grep -- "artisan server:start:port.*--port="'
             .' | grep -v "grep"';
