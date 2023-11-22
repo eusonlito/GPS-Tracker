@@ -11,6 +11,7 @@ use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNot
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Trip\Model\Collection\Trip as TripCollection;
 use App\Domains\Trip\Model\Trip as TripModel;
+use App\Domains\Server\Model\Server as ServerModel;
 
 class Index extends ControllerAbstract
 {
@@ -43,6 +44,8 @@ class Index extends ControllerAbstract
     public function data(): array
     {
         return [
+            'onboarding' => $this->onboarding(),
+            'server' => $this->server(),
             'users' => $this->users(),
             'users_multiple' => $this->usersMultiple(),
             'user' => $this->user(false),
@@ -64,6 +67,36 @@ class Index extends ControllerAbstract
             'alarms' => $this->alarms(),
             'alarm_notifications' => $this->alarmNotifications(),
         ];
+    }
+
+    /**
+     * @return bool
+     */
+    protected function onboarding(): bool
+    {
+        return ($this->vehicles()->count() === 0)
+            || ($this->devices()->count() === 0)
+            || ($this->trips()->count() === 0);
+    }
+
+    /**
+     * @return ?\App\Domains\Server\Model\Server
+     */
+    protected function server(): ?ServerModel
+    {
+        if ($this->auth->adminMode() === false) {
+            return null;
+        }
+
+        if ($this->onboarding() === false) {
+            return null;
+        }
+
+        return $this->cache(
+            fn () => ServerModel::query()
+                ->enabled()
+                ->first()
+        );
     }
 
     /**
