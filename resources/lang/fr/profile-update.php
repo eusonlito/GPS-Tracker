@@ -2,6 +2,8 @@
     'email' => 'Courriel',
     'error' => [
         'email-exists' => 'Un autre utilisateur avec le même email existe déjà',
+        'language-exists' => 'La langue sélectionnée n\'est plus disponible',
+        'timezone-exists' => 'Le fuseau horaire sélectionné n\'est plus disponible',
     ],
     'language' => 'Langue',
     'meta-title' => 'Profil de l\'utilisateur',
@@ -27,4 +29,5 @@
     'sessions' => 'Sessions',
     'success' => 'Ton profil a été mis à jour avec succès',
     'telegram' => 'Télégramme',
+    'timezone' => 'Fuseau horaire',
 ];

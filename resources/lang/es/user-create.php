@@ -3,7 +3,11 @@
     'email' => 'Email',
     'enabled' => 'Activo',
     'error' => [
+        'admin-own' => 'No es posible desactivar la opción de administrador de tu propio usuario',
         'email-exists' => 'Ya existe otro usuario con ese mismo email',
+        'enabled-own' => 'No es posible desactivar a tu propio usuario',
+        'language-exists' => 'El idioma seleccionado ya no está disponible',
+        'timezone-exists' => 'La zona horaria seleccionada ya no está disponible',
     ],
     'language' => 'Idioma',
     'manager' => 'Manager',

@@ -4,8 +4,7 @@ namespace App\Domains\User\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Language\Model\Language as LanguageModel;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+use App\Domains\User\Service\Controller\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -20,10 +19,15 @@ class Create extends ControllerAbstract
 
         $this->meta('title', __('user-create.meta-title'));
 
-        return $this->page('user.create', [
-            'languages' => LanguageModel::query()->list()->get(),
-            'timezones' => TimezoneModel::query()->list()->get(),
-        ]);
+        return $this->page('user.create', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 
     /**

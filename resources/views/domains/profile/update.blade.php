@@ -25,8 +25,14 @@
             </div>
         </div>
 
-        <div class="p-2">
-            <x-select name="language_id" :options="$languages" value="id" text="name" :label="__('profile-update.language')" required></x-select>
+        <div class="lg:flex">
+            <div class="flex-1 p-2">
+                <x-select name="language_id" :options="$languages" value="id" text="name" :label="__('profile-update.language')" required></x-select>
+            </div>
+
+            <div class="flex-1 p-2">
+                <x-select name="timezone_id" :options="$timezones" value="id" text="zone" :label="__('profile-update.timezone')" required></x-select>
+            </div>
         </div>
     </div>
 

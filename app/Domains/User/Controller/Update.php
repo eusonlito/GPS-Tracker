@@ -4,8 +4,7 @@ namespace App\Domains\User\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Language\Model\Language as LanguageModel;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+use App\Domains\User\Service\Controller\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -22,16 +21,17 @@ class Update extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow();
-
         $this->meta('title', __('user-update.meta-title', ['title' => $this->row->name]));
 
-        return $this->page('user.update', [
-            'row' => $this->row,
-            'languages' => LanguageModel::query()->list()->get(),
-            'timezones' => TimezoneModel::query()->list()->get(),
-            'can_be_deleted' => ($this->row->id !== $this->auth->id),
-        ]);
+        return $this->page('user.update', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
     }
 
     /**
