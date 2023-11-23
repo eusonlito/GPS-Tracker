@@ -1,24 +1,24 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Profile\Action;
+namespace App\Domains\User\Action;
 
 use Illuminate\Support\Facades\Hash;
 use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\User\Model\User as Model;
-use App\Exceptions\ValidatorException;
 
-class Update extends ActionAbstract
+abstract class CreateUpdateAbstract extends ActionAbstract
 {
+    /**
+     * @return void
+     */
+    abstract protected function save(): void;
+
     /**
      * @return \App\Domains\User\Model\User
      */
     public function handle(): Model
     {
-        if (config('demo.enabled') && ($this->row?->id === 1)) {
-            $this->exceptionValidator(__('demo.error.not-allowed'));
-        }
-
         $this->data();
         $this->check();
         $this->save();
@@ -35,8 +35,8 @@ class Update extends ActionAbstract
         $this->dataEmail();
         $this->dataPassword();
         $this->dataPreferences();
-        $this->dataAdminMode();
-        $this->dataManagerMode();
+        $this->dataLanguageId();
+        $this->dataTimezoneId();
     }
 
     /**
@@ -72,23 +72,51 @@ class Update extends ActionAbstract
      */
     protected function dataPreferences(): void
     {
-        $this->data['preferences'] += (array)$this->row->preferences;
+        $this->data['preferences'] = $this->row->preferences ?? [];
     }
 
     /**
      * @return void
      */
-    protected function dataAdminMode(): void
+    protected function dataLanguageId(): void
     {
-        $this->data['admin_mode'] = $this->row->admin && $this->data['admin_mode'];
+        if ($this->data['language_id']) {
+            return;
+        }
+
+        $this->data['language_id'] = $this->row->language_id ?? $this->dataLanguageIdDefault();
+    }
+
+    /**
+     * @return int
+     */
+    protected function dataLanguageIdDefault(): int
+    {
+        return LanguageModel::query()
+            ->whereDefault()
+            ->value('id');
     }
 
     /**
      * @return void
      */
-    protected function dataManagerMode(): void
+    protected function dataTimezoneId(): void
     {
-        $this->data['manager_mode'] = $this->row->manager && $this->data['manager_mode'];
+        if ($this->data['timezone_id']) {
+            return;
+        }
+
+        $this->data['timezone_id'] = $this->row->timezone_id ?? $this->dataTimezoneIdDefault();
+    }
+
+    /**
+     * @return int
+     */
+    protected function dataTimezoneIdDefault(): int
+    {
+        return TimezoneModel::query()
+            ->whereDefault()
+            ->value('id');
     }
 
     /**
@@ -97,6 +125,7 @@ class Update extends ActionAbstract
     protected function check(): void
     {
         $this->checkEmail();
+        $this->checkStatus();
         $this->checkLanguageId();
         $this->checkTimezoneId();
     }
@@ -107,7 +136,7 @@ class Update extends ActionAbstract
     protected function checkEmail(): void
     {
         if ($this->checkEmailExists()) {
-            throw new ValidatorException(__('profile-update.error.email-exists'));
+            $this->exceptionValidator(__('user-create.error.email-exists'));
         }
     }
 
@@ -117,9 +146,27 @@ class Update extends ActionAbstract
     protected function checkEmailExists(): bool
     {
         return Model::query()
-            ->byIdNot($this->row->id)
+            ->byIdNot($this->row->id ?? 0)
             ->byEmail($this->data['email'])
             ->exists();
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkStatus(): void
+    {
+        if ($this->row?->id !== $this->auth->id) {
+            return;
+        }
+
+        if (empty($this->data['admin'])) {
+            throw new ValidatorException(__('user-create.error.admin-own'));
+        }
+
+        if (empty($this->data['enabled'])) {
+            throw new ValidatorException(__('user-create.error.enabled-own'));
+        }
     }
 
     /**
@@ -128,7 +175,7 @@ class Update extends ActionAbstract
     protected function checkLanguageId(): void
     {
         if ($this->checkLanguageIdExists() === false) {
-            throw new ValidatorException(__('profile-update.error.language-exists'));
+            $this->exceptionValidator(__('user-create.error.language-exists'));
         }
     }
 
@@ -148,7 +195,7 @@ class Update extends ActionAbstract
     protected function checkTimezoneId(): void
     {
         if ($this->checkTimezoneIdExists() === false) {
-            throw new ValidatorException(__('profile-update.error.timezone-exists'));
+            $this->exceptionValidator(__('user-create.error.timezone-exists'));
         }
     }
 
@@ -160,22 +207,5 @@ class Update extends ActionAbstract
         return TimezoneModel::query()
             ->byId($this->data['timezone_id'])
             ->exists();
-    }
-
-    /**
-     * @return void
-     */
-    protected function save(): void
-    {
-        $this->row->name = $this->data['name'];
-        $this->row->email = $this->data['email'];
-        $this->row->password = $this->data['password'];
-        $this->row->preferences = $this->data['preferences'];
-        $this->row->admin_mode = $this->data['admin_mode'];
-        $this->row->manager_mode = $this->data['manager_mode'];
-        $this->row->language_id = $this->data['language_id'];
-        $this->row->timezone_id = $this->data['timezone_id'];
-
-        $this->row->save();
     }
 }

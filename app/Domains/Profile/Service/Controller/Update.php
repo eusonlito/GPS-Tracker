@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\Language\Model\Collection\Language as LanguageCollection;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
 
 class Update extends ControllerAbstract
 {
@@ -28,6 +30,7 @@ class Update extends ControllerAbstract
             'admin' => $this->auth->admin,
             'manager' => $this->auth->manager,
             'languages' => $this->languages(),
+            'timezones' => $this->timezones(),
             'preferences_units_distance' => $this->preferencesUnitsDistance(),
             'preferences_units_volume' => $this->preferencesUnitsVolume(),
             'preferences_units_money' => $this->preferencesUnitsMoney(),
@@ -42,6 +45,16 @@ class Update extends ControllerAbstract
     protected function languages(): LanguageCollection
     {
         return LanguageModel::query()
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return \App\Domains\Timezone\Model\Collection\Timezone
+     */
+    protected function timezones(): TimezoneCollection
+    {
+        return TimezoneModel::query()
             ->list()
             ->get();
     }

@@ -2,6 +2,8 @@
     'email' => 'Email',
     'error' => [
         'email-exists' => 'Another user with the same email already exists',
+        'language-exists' => 'The selected language is no longer available',
+        'timezone-exists' => 'The selected time zone is no longer available',
     ],
     'language' => 'Language',
     'meta-title' => 'Profile',
@@ -27,4 +29,5 @@
     'sessions' => 'Sessions',
     'success' => 'Your profile has been successfully updated',
     'telegram' => 'Telegram',
+    'timezone' => 'Time Zone',
 ];

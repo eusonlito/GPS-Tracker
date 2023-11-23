@@ -17,7 +17,6 @@ class Update extends ValidateAbstract
             'email' => ['bail', 'required', 'email:filter'],
             'password' => ['bail', 'min:8'],
             'password_current' => ['bail', 'required', 'current_password'],
-            'language_id' => ['bail', 'required', 'integer'],
             'preferences' => ['bail', 'required', 'array'],
             'preferences.units' => ['bail', 'required', 'array'],
             'preferences.units.decimal' => ['bail', 'required', Rule::in([',', '.'])],
@@ -27,6 +26,8 @@ class Update extends ValidateAbstract
             'preferences.units.volume' => ['bail', 'required', 'in:liter,gallon'],
             'admin_mode' => ['bail', 'boolean'],
             'manager_mode' => ['bail', 'boolean'],
+            'language_id' => ['bail', 'required', 'integer'],
+            'timezone_id' => ['bail', 'required', 'integer'],
         ];
     }
 }
