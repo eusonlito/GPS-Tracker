@@ -18,7 +18,8 @@ class Update extends ValidateAbstract
             'admin' => ['bail', 'boolean'],
             'manager' => ['bail', 'boolean'],
             'enabled' => ['bail', 'boolean'],
-            'language_id' => ['bail', 'required', 'integer'],
+            'language_id' => ['bail', 'nullable', 'integer'],
+            'timezone_id' => ['bail', 'nullable', 'integer'],
         ];
     }
 }

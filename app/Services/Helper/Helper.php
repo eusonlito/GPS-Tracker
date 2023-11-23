@@ -21,4 +21,9 @@ class Helper
     use MiscTrait;
     use NumberTrait;
     use UnitTrait;
+
+    /**
+     * @var array
+     */
+    protected array $cache = [];
 }

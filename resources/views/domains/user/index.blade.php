@@ -37,11 +37,11 @@
             <tr>
                 <td class="text-left"><a href="{{ $link }}" class="block">{{ $row->name }}</a></td>
                 <td class="text-left"><a href="{{ $link }}" class="block">{{ $row->email }}</a></td>
-                <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->created_at)</a></td>
-                <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->updated_at)</a></td>
-                <td data-table-sort-value="{{ (int)$row->admin }}">@status($row->manager)</td>
-                <td data-table-sort-value="{{ (int)$row->admin }}">@status($row->admin)</td>
-                <td data-table-sort-value="{{ (int)$row->enabled }}">@status($row->enabled)</td>
+                <td data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->created_at)</a></td>
+                <td data-table-sort-value="{{ $row->updated_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->updated_at)</a></td>
+                <td data-table-sort-value="{{ intval($row->admin) }}">@status($row->manager)</td>
+                <td data-table-sort-value="{{ intval($row->admin) }}">@status($row->admin)</td>
+                <td data-table-sort-value="{{ intval($row->enabled) }}">@status($row->enabled)</td>
                 <td class="w-1">
                     <a href="{{ route('user.update.user-session', $row->id) }}">@icon('key', 'w-4 h-4')</a>
                 </td>

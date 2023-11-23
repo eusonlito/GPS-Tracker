@@ -47,6 +47,16 @@ class Timezone extends BuilderAbstract
     }
 
     /**
+     * @param ?int $id
+     *
+     * @return self
+     */
+    public function whenIdOrDefault(?int $id): self
+    {
+        return $this->when($id, static fn ($q) => $q->byId($id), static fn ($q) => $q->whereDefault(true));
+    }
+
+    /**
      * @param bool $default = true
      *
      * @return self

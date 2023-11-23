@@ -4,6 +4,7 @@ namespace App\Domains\User\Action;
 
 use Illuminate\Support\Facades\Hash;
 use App\Domains\Language\Model\Language as LanguageModel;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\User\Model\User as Model;
 use App\Exceptions\ValidatorException;
 
@@ -31,6 +32,7 @@ class Create extends ActionAbstract
         $this->dataPassword();
         $this->dataPreferences();
         $this->dataLanguageId();
+        $this->dataTimezoneId();
     }
 
     /**
@@ -72,7 +74,19 @@ class Create extends ActionAbstract
     {
         $this->data['language_id'] = LanguageModel::query()
             ->selectOnly('id')
-            ->whenIdOrDefault(intval($this->data['language_id']))
+            ->whenIdOrDefault($this->data['language_id'])
+            ->firstOrFail()
+            ->id;
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataTimezoneId(): void
+    {
+        $this->data['timezone_id'] = TimezoneModel::query()
+            ->selectOnly('id')
+            ->whenIdOrDefault($this->data['timezone_id'])
             ->firstOrFail()
             ->id;
     }
@@ -111,6 +125,7 @@ class Create extends ActionAbstract
             'manager_mode' => $this->data['manager'],
             'enabled' => $this->data['enabled'],
             'language_id' => $this->data['language_id'],
+            'timezone_id' => $this->data['timezone_id'],
         ])->fresh();
     }
 }

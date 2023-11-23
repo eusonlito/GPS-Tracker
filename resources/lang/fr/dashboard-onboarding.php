@@ -1,6 +1,5 @@
 <?php return [
     'device' => [
-        'text' => 'Appareil :name déjà disponible',
         'text-peding' => 'L\'appareil sera associé à un véhicule',
         'title' => 'Créer un Appareil',
     ],
@@ -15,7 +14,6 @@
         'title' => 'En attente de Voyages',
     ],
     'vehicle' => [
-        'text' => 'Véhicule :name déjà disponible',
         'text-peding' => 'Le véhicule pourra disposer d\'un ou plusieurs appareils',
         'title' => 'Créer un Véhicule',
     ],

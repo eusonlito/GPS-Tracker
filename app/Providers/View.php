@@ -46,6 +46,10 @@ class View extends ServiceProvider
             return "<?= \App\Services\Html\Html::dateWithTimezone($expression); ?>";
         });
 
+        Blade::directive('dateWithUserTimezone', function (string $expression) {
+            return "<?= \App\Services\Html\Html::dateWithUserTimezone($expression); ?>";
+        });
+
         Blade::directive('distanceHuman', function (string $expression) {
             return "<?= helper()->distanceHuman($expression); ?>";
         });

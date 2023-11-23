@@ -23,7 +23,7 @@
             @php ($link = $row->user ? route('user.update', $row->user->id) : null)
 
             <tr>
-                <td data-table-sort-value="{{ $row->created_at }}">@dateWithTimezone($row->created_at)</td>
+                <td data-table-sort-value="{{ $row->created_at }}">@dateWithUserTimezone($row->created_at)</td>
                 <td>
                     @if ($link)
                     <a href="{{ $link }}">{{ $row->auth }}</a>

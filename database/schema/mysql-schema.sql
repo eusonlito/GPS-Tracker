@@ -510,10 +510,13 @@ CREATE TABLE `user` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `language_id` bigint unsigned NOT NULL,
+  `timezone_id` bigint unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_email_unique` (`email`),
   KEY `user_language_fk` (`language_id`),
-  CONSTRAINT `user_language_fk` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE CASCADE
+  KEY `user_timezone_fk` (`timezone_id`),
+  CONSTRAINT `user_language_fk` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `user_timezone_fk` FOREIGN KEY (`timezone_id`) REFERENCES `timezone` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `user_fail`;
@@ -644,3 +647,4 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (62,'2023_10_23_235
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (63,'2023_10_25_003000_maintenance_maintenance_item_amount_gross',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (64,'2023_10_31_185000_user_admin_mode',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (65,'2023_10_31_185000_user_manager',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (66,'2023_11_23_003000_user_timezone_id',1);

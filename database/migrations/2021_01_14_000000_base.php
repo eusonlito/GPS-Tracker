@@ -376,6 +376,7 @@ return new class extends MigrationAbstract {
             $this->timestamps($table);
 
             $table->unsignedBigInteger('language_id');
+            $table->unsignedBigInteger('timezone_id');
         });
 
         Schema::create('user_fail', function (Blueprint $table) {
@@ -512,6 +513,7 @@ return new class extends MigrationAbstract {
 
         Schema::table('user', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'language');
+            $this->foreignOnDeleteCascade($table, 'timezone');
         });
 
         Schema::table('user_fail', function (Blueprint $table) {

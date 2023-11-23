@@ -64,9 +64,9 @@
                         {{ $row->notifications_count.($row->notifications_pending_count ? ('/'.$row->notifications_pending_count) : '') }}
                     </a>
                 </td>
-                <td class="w-1"><a href="{{ $link }}" class="block">@dateWithTimezone($row->created_at)</a></td>
-                <td class="w-1"><a href="{{ route('alarm.update.boolean', [$row->id, 'telegram']) }}" class="block" data-update-boolean="telegram">@status($row->telegram)</a></td>
-                <td class="w-1"><a href="{{ route('alarm.update.boolean', [$row->id, 'enabled']) }}" class="block" data-update-boolean="enabled">@status($row->enabled)</a></td>
+                <td class="w-1" data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->created_at)</a></td>
+                <td class="w-1" data-table-sort-value="{{ intval($row->telegram) }}"><a href="{{ route('alarm.update.boolean', [$row->id, 'telegram']) }}" class="block" data-update-boolean="telegram">@status($row->telegram)</a></td>
+                <td class="w-1" data-table-sort-value="{{ intval($row->enabled) }}"><a href="{{ route('alarm.update.boolean', [$row->id, 'enabled']) }}" class="block" data-update-boolean="enabled">@status($row->enabled)</a></td>
             </tr>
 
             @endforeach

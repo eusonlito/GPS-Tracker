@@ -33,8 +33,8 @@
 
             <tr>
                 <td><a href="{{ $link }}" class="block">{{ $row->ip }}</a></td>
-                <td data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateWithTimezone($row->created_at)</a></td>
-                <td data-table-sort-value="{{ $row->end_at }}"><a href="{{ $link }}" class="block">@dateWithTimezone($row->end_at)</a></td>
+                <td data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->created_at)</a></td>
+                <td data-table-sort-value="{{ $row->end_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->end_at)</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->time() }}</a></td>
                 <td class="w-1">
                     @if ($row->finished() === false)

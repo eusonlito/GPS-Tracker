@@ -1,6 +1,5 @@
 <?php return [
     'device' => [
-        'text' => 'Device :name now available',
         'text-peding' => 'The device will be associated with a vehicle',
         'title' => 'Create a Device',
     ],
@@ -15,7 +14,6 @@
         'title' => 'Waiting for Trips',
     ],
     'vehicle' => [
-        'text' => 'Vehicle :name now available',
         'text-peding' => 'The vehicle will be able to have one or several devices',
         'title' => 'Create a Vehicle',
     ],

@@ -29,7 +29,7 @@
             <tr>
                 <td><a href="{{ $link }}" class="block text-left">{{ $each->name }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $each->type }}</a></td>
-                <td><a href="{{ $link }}" class="block">{{ $each->updated_at }}</a></td>
+                <td data-table-sort-value="{{ $each->updated_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($each->updated_at)</a></td>
                 <td data-table-sort-value="{{ $each->size }}"><a href="{{ $link }}" class="block">@sizeHuman($each->size)</a></td>
             </tr>
 

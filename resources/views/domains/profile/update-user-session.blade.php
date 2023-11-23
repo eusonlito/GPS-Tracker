@@ -16,7 +16,7 @@
             @foreach ($sessions as $each)
 
             <tr>
-                <td data-table-sort-value="{{ $each->created_at }}">@dateWithTimezone($each->created_at)</td>
+                <td data-table-sort-value="{{ $each->created_at }}">@dateWithUserTimezone($each->created_at)</td>
                 <td>{{ $each->ip }}</td>
                 <td data-table-sort-value="{{ (int)$each->success }}">@status($each->success)</td>
             </tr>

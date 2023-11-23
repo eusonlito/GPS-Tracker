@@ -99,9 +99,8 @@ class Gpx
      */
     protected function positions(): PositionCollection
     {
-        static $cache;
-
-        return $cache ??= $this->trip->positions()
+        return $this->trip
+            ->positions()
             ->orderByDateUtcAtAsc()
             ->withTimezone()
             ->get();
