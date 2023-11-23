@@ -70,7 +70,7 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->vehicle->name ?? '-' }}</a></td>
                 @endif
 
-                <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->connected_at, $row->vehicle?->timezone->zone, 'Y-m-d H:i:s')</a></td>
+                <td><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->connected_at, 'Y-m-d H:i:s')</a></td>
                 <td data-table-sort-value="{{ (int)$row->enabled }}" class="w-1">@status($row->enabled)</td>
                 <td data-table-sort-value="{{ (int)$row->shared }}" class="w-1"><a href="{{ route('device.update.boolean', [$row->id, 'shared']) }}" class="block" data-update-boolean="shared">@status($row->shared)</a></td>
                 <td data-table-sort-value="{{ (int)$row->shared_public }}" class="w-1"><a href="{{ route('device.update.boolean', [$row->id, 'shared_public']) }}" class="block" data-update-boolean="shared_public">@status($row->shared_public)</a></td>

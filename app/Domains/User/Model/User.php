@@ -7,8 +7,9 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\Language\Model\Language as LanguageModel;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\User\Model\Builder\User as Builder;
 use App\Domains\User\Model\Collection\User as Collection;
 use App\Domains\User\Model\Traits\Preferences as PreferencesTrait;
@@ -92,6 +93,14 @@ class User extends ModelAbstract implements Authenticatable
     public function sessions(): HasMany
     {
         return $this->hasMany(UserSessionModel::class, static::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function timezone(): BelongsTo
+    {
+        return $this->belongsTo(TimezoneModel::class, TimezoneModel::FOREIGN);
     }
 
     /**

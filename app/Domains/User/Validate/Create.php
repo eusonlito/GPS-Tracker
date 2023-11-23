@@ -19,6 +19,7 @@ class Create extends ValidateAbstract
             'manager' => ['bail', 'boolean'],
             'enabled' => ['bail', 'boolean'],
             'language_id' => ['bail', 'nullable', 'integer'],
+            'timezone_id' => ['bail', 'nullable', 'integer'],
         ];
     }
 }

@@ -109,6 +109,17 @@ class Html
     }
 
     /**
+     * @param ?string $date
+     * @param string $format = 'd/m/Y H:i'
+     *
+     * @return string
+     */
+    public static function dateWithUserTimezone(?string $date, string $format = 'd/m/Y H:i'): string
+    {
+        return static::dateWithTimezone($date, app('user')->timezone->zone, $format);
+    }
+
+    /**
      * @param string $text
      * @param int $limit = 140
      * @param string $end = '...'

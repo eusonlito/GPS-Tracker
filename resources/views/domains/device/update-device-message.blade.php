@@ -44,9 +44,9 @@
             <tr>
                 <td class="text-left w-1"><span class="d-t-m-o max-w-sm" title="{{ $each->message }}">{{ $each->message }}</span></td>
                 <td class="text-left"><span class="block whitespace-normal">{{ $each->response }}</span></td>
-                <td class="w-1"><span class="block">@dateWithTimezone($each->created_at, null, 'Y-m-d H:i:s')</span></td>
-                <td class="w-1"><span class="block">@dateWithTimezone($each->sent_at, null, 'Y-m-d H:i:s')</span></td>
-                <td class="w-1"><span class="block">@dateWithTimezone($each->response_at, null, 'Y-m-d H:i:s')</span></td>
+                <td class="w-1" data-table-sort-value="{{ $each->created_at }}"><span class="block">@dateWithUserTimezone($each->created_at, 'Y-m-d H:i:s')</span></td>
+                <td class="w-1" data-table-sort-value="{{ $each->sent_at }}"><span class="block">@dateWithUserTimezone($each->sent_at, 'Y-m-d H:i:s')</span></td>
+                <td class="w-1" data-table-sort-value="{{ $each->response_at }}"><span class="block">@dateWithUserTimezone($each->response_at, 'Y-m-d H:i:s')</span></td>
                 <td class="w-1">
                     <a href="{{ $link }}" data-toggle="modal" data-target="#delete-modal" data-delete-modal-one class="text-danger">
                         @icon('trash', 'w-4 h-4')

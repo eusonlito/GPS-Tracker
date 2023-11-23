@@ -44,19 +44,21 @@ class Index extends ControllerAbstract
     public function data(): array
     {
         return [
+            'user' => $this->user(false),
+            'vehicle' => $this->vehicle(false),
+            'device' => $this->device(false),
+
             'onboarding' => $this->onboarding(),
             'server' => $this->server(),
+
             'users' => $this->users(),
             'users_multiple' => $this->usersMultiple(),
-            'user' => $this->user(false),
             'user_empty' => $this->userEmpty(),
             'vehicles' => $this->vehicles(),
             'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(false),
             'vehicle_empty' => $this->vehicleEmpty(),
             'devices' => $this->devices(),
             'devices_multiple' => $this->devicesMultiple(),
-            'device' => $this->device(false),
             'device_empty' => $this->deviceEmpty(),
             'trips' => $this->trips(),
             'trip' => $this->trip(),

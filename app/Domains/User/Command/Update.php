@@ -7,12 +7,12 @@ class Update extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'user:update {--id=} {--name=} {--email=} {--password=} {--language_id=} {--admin} {--manager} {--enabled}';
+    protected $signature = 'user:update {--id=} {--name=} {--email=} {--password=} {--admin} {--manager} {--enabled}';
 
     /**
      * @var string
      */
-    protected $description = 'Update User with {--name=} {--email=} {--password=} {--language_id=} {--admin} {--manager} {--enabled}';
+    protected $description = 'Update User with {--name=} {--email=} {--password=} {--admin} {--manager} {--enabled}';
 
     /**
      * @return void

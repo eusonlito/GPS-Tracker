@@ -12,4 +12,5 @@
     'password' => 'Mot de passe',
     'save' => 'Sauvegarder',
     'success' => 'L\'utilisateur a été créé avec succès',
+    'timezone' => 'Fuseau horaire',
 ];

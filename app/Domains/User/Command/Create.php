@@ -7,12 +7,12 @@ class Create extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'user:create {--email=} {--name=} {--password=} {--language_id=} {--admin} {--manager} {--enabled}';
+    protected $signature = 'user:create {--email=} {--name=} {--password=} {--admin} {--manager} {--enabled}';
 
     /**
      * @var string
      */
-    protected $description = 'Create User with {--email=} {--name=} {--password=} {--language_id=} {--admin} {--manager} {--enabled}';
+    protected $description = 'Create User with {--email=} {--name=} {--password=} {--admin} {--manager} {--enabled}';
 
     /**
      * @return void

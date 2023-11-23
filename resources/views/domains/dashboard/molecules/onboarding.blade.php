@@ -26,7 +26,7 @@
             <img src="@asset('build/images/server.svg')" class="w-14 w-lg-32 max-h-16" />
         </div>
 
-        <div class="p-5">
+        <div class="p-5 flex-1">
             @if ($server)
 
             <span class="text-xl font-bold strikethrough">{{ __('dashboard-onboarding.server.title') }}</span>
@@ -52,11 +52,14 @@
             <img src="@asset('build/images/vehicle.svg')" class="w-14 w-lg-32 max-h-16" />
         </div>
 
-        <div class="p-5">
+        <div class="p-5 flex-1">
             @if ($vehicle)
 
             <span class="text-xl font-bold strikethrough">{{ __('dashboard-onboarding.vehicle.title') }}</span>
-            <p class="w-full text-slate-500 mt-0.5">{{ __('dashboard-onboarding.vehicle.text', ['name' => $vehicle->name]) }}</p>
+
+            <form method="GET">
+                <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" data-change-submit></x-select>
+            </form>
 
             @else
 
@@ -76,11 +79,14 @@
             <img src="@asset('build/images/device.svg')" class="w-14 w-lg-32 max-h-16" />
         </div>
 
-        <div class="p-5">
+        <div class="p-5 flex-1">
             @if ($device)
 
             <span class="text-xl font-bold strikethrough">{{ __('dashboard-onboarding.device.title') }}</span>
-            <p class="w-full text-slate-500 mt-0.5">{{ __('dashboard-onboarding.device.text', ['name' => $device->name]) }}</p>
+
+            <form method="GET">
+                <x-select name="device_id" :options="$devices" value="id" text="name" data-change-submit></x-select>
+            </form>
 
             @else
 
@@ -100,7 +106,7 @@
             <img src="@asset('build/images/trip.svg')" class="w-14 w-lg-32 max-h-16" />
         </div>
 
-        <div class="p-5">
+        <div class="p-5 flex-1">
             <span class="text-xl font-bold">{{ __('dashboard-onboarding.trip.title') }}</span>
             <p class="w-full text-slate-500 mt-0.5">{{ __('dashboard-onboarding.trip.text') }}</p>
         </div>

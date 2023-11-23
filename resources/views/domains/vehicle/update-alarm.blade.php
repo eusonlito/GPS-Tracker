@@ -26,7 +26,7 @@
                 <tr>
                     <td class="w-1"><a href="{{ $link }}" class="block">{{ $each->typeFormat()->title() }}</a></td>
                     <td class="text-left w-1"><a href="{{ $link }}" class="block">{{ $each->name }}</a></td>
-                    <td class="w-1">@dateWithTimezone($each->created_at)</td>
+                    <td class="w-1" data-table-sort-value="{{ $each->created_at }}">@dateWithUserTimezone($each->created_at)</td>
                     <td class="w-1">@status($each->telegram)</td>
                     <td class="w-1">@status($each->enabled)</td>
                     <td class="w-1"><input type="checkbox" name="related[]" value="{{ $each->id }}" {{ $each->vehiclePivot ? 'checked' : '' }} /></td>

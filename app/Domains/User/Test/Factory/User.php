@@ -32,6 +32,7 @@ class User extends FactoryAbstract
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             'language_id' => 1,
+            'timezone_id' => 343,
         ];
     }
 

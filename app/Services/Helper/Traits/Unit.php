@@ -267,9 +267,7 @@ trait Unit
      */
     protected function unitPreferences(): array
     {
-        static $cache;
-
-        return $cache ??= (app('user')->preferences['units'] ?? []) + [
+        return $this->cache[__FUNCTION__] ??= (app('user')->preferences['units'] ?? []) + [
             'money' => 'euro',
             'volume' => 'liter',
             'decimal' => ',',

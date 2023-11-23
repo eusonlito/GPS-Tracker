@@ -12,4 +12,5 @@
     'password' => 'Password',
     'save' => 'Save',
     'success' => 'The user has been successfully created',
+    'timezone' => 'Time Zone',
 ];

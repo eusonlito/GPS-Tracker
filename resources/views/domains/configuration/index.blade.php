@@ -35,8 +35,8 @@
                 <td class="text-left w-1"><a href="{{ $link }}" class="block">{{ $row->key }}</a></td>
                 <td><a href="{{ $link }}" class="block">{{ $row->value }}</a></td>
                 <td class="text-left"><a href="{{ $link }}" class="d-t-m-o">{{ $row->description }}</a></td>
-                <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->created_at)</a></td>
-                <td><a href="{{ $link }}" class="block">@dateWithTimezone($row->updated_at)</a></td>
+                <td data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->created_at)</a></td>
+                <td data-table-sort-value="{{ $row->updated_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->updated_at)</a></td>
             </tr>
 
             @endforeach

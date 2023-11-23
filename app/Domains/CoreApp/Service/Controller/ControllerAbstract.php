@@ -57,11 +57,11 @@ abstract class ControllerAbstract extends ControllerAbstractCore
         return $this->cache(function () use ($empty) {
             $device_id = $this->request->input('device_id');
 
-            if ($device_id === '') {
+            if ($empty && ($device_id === '')) {
                 return;
             }
 
-            if ($empty && ($device_id === null)) {
+            if ($device_id === null) {
                 return $this->devices()->first();
             }
 

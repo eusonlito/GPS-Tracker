@@ -5,6 +5,7 @@ namespace App\Domains\User\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use App\Domains\Language\Model\Language as LanguageModel;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 
 class Update extends ControllerAbstract
 {
@@ -28,6 +29,7 @@ class Update extends ControllerAbstract
         return $this->page('user.update', [
             'row' => $this->row,
             'languages' => LanguageModel::query()->list()->get(),
+            'timezones' => TimezoneModel::query()->list()->get(),
             'can_be_deleted' => ($this->row->id !== $this->auth->id),
         ]);
     }

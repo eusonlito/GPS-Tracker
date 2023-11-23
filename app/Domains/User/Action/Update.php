@@ -4,6 +4,7 @@ namespace App\Domains\User\Action;
 
 use Illuminate\Support\Facades\Hash;
 use App\Domains\Language\Model\Language as LanguageModel;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\User\Model\User as Model;
 use App\Exceptions\ValidatorException;
 
@@ -34,6 +35,7 @@ class Update extends ActionAbstract
         $this->dataEmail();
         $this->dataPassword();
         $this->dataLanguageId();
+        $this->dataTimezoneId();
     }
 
     /**
@@ -69,7 +71,47 @@ class Update extends ActionAbstract
      */
     protected function dataLanguageId(): void
     {
-        $this->data['language_id'] = LanguageModel::query()->byId($this->data['language_id'])->firstOrFail()->id;
+        if ($this->data['language_id']) {
+            $this->data['language_id'] = $this->dataLanguageIdQuery();
+        } else {
+            $this->data['language_id'] = $this->row->language_id;
+        }
+    }
+
+    /**
+     * @return int
+     */
+    protected function dataLanguageIdQuery(): int
+    {
+        return LanguageModel::query()
+            ->selectOnly('id')
+            ->byId($this->data['language_id'])
+            ->firstOrFail()
+            ->id;
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataTimezoneId(): void
+    {
+        if ($this->data['timezone_id']) {
+            $this->data['timezone_id'] = $this->dataTimezoneIdQuery();
+        } else {
+            $this->data['timezone_id'] = $this->row->timezone_id;
+        }
+    }
+
+    /**
+     * @return int
+     */
+    protected function dataTimezoneIdQuery(): int
+    {
+        return TimezoneModel::query()
+            ->selectOnly('id')
+            ->byId($this->data['timezone_id'])
+            ->firstOrFail()
+            ->id;
     }
 
     /**
@@ -121,6 +163,7 @@ class Update extends ActionAbstract
         $this->row->enabled = $this->data['enabled'];
         $this->row->password = $this->data['password'];
         $this->row->language_id = $this->data['language_id'];
+        $this->row->timezone_id = $this->data['timezone_id'];
 
         $this->row->save();
     }

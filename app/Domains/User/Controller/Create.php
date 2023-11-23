@@ -5,6 +5,7 @@ namespace App\Domains\User\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use App\Domains\Language\Model\Language as LanguageModel;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 
 class Create extends ControllerAbstract
 {
@@ -21,6 +22,7 @@ class Create extends ControllerAbstract
 
         return $this->page('user.create', [
             'languages' => LanguageModel::query()->list()->get(),
+            'timezones' => TimezoneModel::query()->list()->get(),
         ]);
     }
 
