@@ -34,7 +34,7 @@ class Overspeed extends FormatAbstract
     public function validate(): void
     {
         if ($this->config()['speed'] === 0) {
-            $this->validateException(__('alarm-type-overspeed.error.speed'));
+            $this->exceptionValidator(__('alarm-type-overspeed.error.speed'));
         }
     }
 

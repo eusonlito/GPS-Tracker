@@ -36,15 +36,15 @@ class FenceOut extends FormatAbstract
         $config = $this->config();
 
         if (empty($config['latitude'])) {
-            $this->validateException(__('alarm-type-fence-out.error.latitude'));
+            $this->exceptionValidator(__('alarm-type-fence-out.error.latitude'));
         }
 
         if (empty($config['longitude'])) {
-            $this->validateException(__('alarm-type-fence-out.error.longitude'));
+            $this->exceptionValidator(__('alarm-type-fence-out.error.longitude'));
         }
 
         if (empty($config['radius'])) {
-            $this->validateException(__('alarm-type-fence-out.error.radius'));
+            $this->exceptionValidator(__('alarm-type-fence-out.error.radius'));
         }
     }
 
