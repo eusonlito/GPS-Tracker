@@ -53,7 +53,7 @@ abstract class FormatAbstract
      *
      * @return void
      */
-    protected function validateException(string $message): void
+    protected function exceptionValidator(string $message): void
     {
         throw new ValidatorException($message);
     }

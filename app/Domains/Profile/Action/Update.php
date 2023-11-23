@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\User\Model\User as Model;
-use App\Exceptions\ValidatorException;
 
 class Update extends ActionAbstract
 {
@@ -107,7 +106,7 @@ class Update extends ActionAbstract
     protected function checkEmail(): void
     {
         if ($this->checkEmailExists()) {
-            throw new ValidatorException(__('profile-update.error.email-exists'));
+            $this->exceptionValidator(__('profile-update.error.email-exists'));
         }
     }
 
@@ -128,7 +127,7 @@ class Update extends ActionAbstract
     protected function checkLanguageId(): void
     {
         if ($this->checkLanguageIdExists() === false) {
-            throw new ValidatorException(__('profile-update.error.language-exists'));
+            $this->exceptionValidator(__('profile-update.error.language-exists'));
         }
     }
 
@@ -148,7 +147,7 @@ class Update extends ActionAbstract
     protected function checkTimezoneId(): void
     {
         if ($this->checkTimezoneIdExists() === false) {
-            throw new ValidatorException(__('profile-update.error.timezone-exists'));
+            $this->exceptionValidator(__('profile-update.error.timezone-exists'));
         }
     }
 

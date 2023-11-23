@@ -161,11 +161,11 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         }
 
         if (empty($this->data['admin'])) {
-            throw new ValidatorException(__('user-create.error.admin-own'));
+            $this->exceptionValidator(__('user-create.error.admin-own'));
         }
 
         if (empty($this->data['enabled'])) {
-            throw new ValidatorException(__('user-create.error.enabled-own'));
+            $this->exceptionValidator(__('user-create.error.enabled-own'));
         }
     }
 
