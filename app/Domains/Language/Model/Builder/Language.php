@@ -25,6 +25,14 @@ class Language extends BuilderAbstract
     }
 
     /**
+     * @return self
+     */
+    public function selectSession(): self
+    {
+        return $this->select('id', 'code', 'name', 'locale');
+    }
+
+    /**
      * @param ?int $id
      *
      * @return self
@@ -41,6 +49,6 @@ class Language extends BuilderAbstract
      */
     public function whereDefault(bool $default = true): self
     {
-        return $this->where('default', $default);
+        return $this->where($this->addTable('default'), $default);
     }
 }
