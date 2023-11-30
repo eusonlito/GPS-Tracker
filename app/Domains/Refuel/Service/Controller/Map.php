@@ -54,7 +54,7 @@ class Map extends ControllerAbstract
             fn () => Model::query()
                 ->whenUserId($this->user()?->id)
                 ->whenVehicleId($this->vehicle()?->id)
-                ->withPosition()
+                ->withWhereHasPosition()
                 ->withVehicle()
                 ->list()
                 ->get()
