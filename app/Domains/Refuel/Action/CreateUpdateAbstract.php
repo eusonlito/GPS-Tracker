@@ -3,6 +3,7 @@
 namespace App\Domains\Refuel\Action;
 
 use App\Domains\Refuel\Model\Refuel as Model;
+use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
@@ -30,6 +31,18 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     protected function data(): void
     {
         $this->dataUserId();
+        $this->dataPositionId();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataPositionId(): void
+    {
+        $this->data['position_id'] = PositionModel::query()
+            ->byUserId($this->data['user_id'])
+            ->nearToDateAt($this->data['date_at'])
+            ->value('id');
     }
 
     /**

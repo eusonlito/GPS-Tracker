@@ -32,6 +32,16 @@ abstract class FactoryAbstract extends Factory
     }
 
     /**
+     * @param string $class
+     *
+     * @return \Closure
+     */
+    protected function lastOrFactory(string $class): Closure
+    {
+        return static fn () => $class::orderBy('id', 'DESC')->first() ?: $class::factory();
+    }
+
+    /**
      * @return \Closure
      */
     protected function userFirstOrFactory(): Closure

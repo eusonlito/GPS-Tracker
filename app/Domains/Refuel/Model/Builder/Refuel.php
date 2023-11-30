@@ -84,6 +84,14 @@ class Refuel extends BuilderAbstract
     /**
      * @return self
      */
+    public function withPosition(): self
+    {
+        return $this->with('position');
+    }
+
+    /**
+     * @return self
+     */
     public function withVehicle(): self
     {
         return $this->with('vehicle');

@@ -5,6 +5,7 @@
     'distance_total' => 'Total distance',
     'end-at' => 'End',
     'filter' => 'Filter...',
+    'map' => 'Map',
     'meta-title' => 'Refuelings',
     'price' => 'Price',
     'quantity' => 'Quantity',

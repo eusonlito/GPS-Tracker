@@ -5,6 +5,7 @@
     'distance_total' => 'Distancia total',
     'end-at' => 'Fin',
     'filter' => 'Filtrar...',
+    'map' => 'Mapa',
     'meta-title' => 'Repostajes',
     'price' => 'Precio',
     'quantity' => 'Cantidad',

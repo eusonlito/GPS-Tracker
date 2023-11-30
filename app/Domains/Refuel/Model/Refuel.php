@@ -4,10 +4,11 @@ namespace App\Domains\Refuel\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Refuel\Model\Builder\Refuel as Builder;
 use App\Domains\Refuel\Model\Collection\Refuel as Collection;
 use App\Domains\Refuel\Test\Factory\Refuel as TestFactory;
-use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
@@ -56,6 +57,14 @@ class Refuel extends ModelAbstract
     protected static function newFactory(): TestFactory
     {
         return TestFactory::new();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function position(): BelongsTo
+    {
+        return $this->belongsTo(PositionModel::class, PositionModel::FOREIGN);
     }
 
     /**

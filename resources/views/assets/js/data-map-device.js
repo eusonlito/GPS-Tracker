@@ -38,7 +38,7 @@ import { dateUtc, dateToIso } from './helper'
             return;
         }
 
-        const localStorage = new LocalStorage('map');
+        const localStorage = new LocalStorage('map-device');
 
         mapListToggle.addEventListener('click', (e) => {
             e.preventDefault();

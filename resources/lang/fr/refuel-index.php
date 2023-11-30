@@ -5,6 +5,7 @@
     'distance_total' => 'Distance totale',
     'end-at' => 'Fin',
     'filter' => 'Filtre...',
+    'map' => 'Carte',
     'meta-title' => 'Recharges',
     'price' => 'Prix',
     'quantity' => 'Quantité',
