@@ -2,6 +2,8 @@
 
 namespace App\Domains\Language\Action;
 
+use App\Domains\Language\Model\Language as Model;
+
 class Set extends ActionAbstract
 {
     /**
@@ -9,7 +11,19 @@ class Set extends ActionAbstract
      */
     public function handle(): void
     {
+        $this->row();
         $this->set();
+    }
+
+    /**
+     * @return void
+     */
+    protected function row(): void
+    {
+        $this->row ??= Model::query()
+            ->selectSession()
+            ->whereDefault()
+            ->first();
     }
 
     /**

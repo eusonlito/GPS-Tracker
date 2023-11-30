@@ -46,7 +46,10 @@ class Request extends ActionAbstract
      */
     protected function rowCode(): ?Model
     {
-        return Model::query()->byCode($this->rowCodeFromHeader())->first();
+        return Model::query()
+            ->selectSession()
+            ->byCode($this->rowCodeFromHeader())
+            ->first();
     }
 
     /**
@@ -66,7 +69,10 @@ class Request extends ActionAbstract
      */
     protected function rowDefault(): ?Model
     {
-        return Model::query()->whereDefault(true)->first();
+        return Model::query()
+            ->selectSession()
+            ->whereDefault(true)
+            ->first();
     }
 
     /**

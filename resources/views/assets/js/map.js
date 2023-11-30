@@ -32,6 +32,7 @@ export default class {
         this.layer = null;
         this.layerMarkers = null;
         this.layerDevices = null;
+        this.layerRefuels = null;
 
         this.point = [];
         this.pointLatLng = [];
@@ -119,6 +120,22 @@ export default class {
         this.layerDevices = new L.FeatureGroup();
 
         this.getLayer().addLayer(this.layerDevices);
+
+        return this;
+    }
+
+    getLayerRefuels() {
+        if (!this.layerRefuels) {
+            this.setLayerRefuels();
+        }
+
+        return this.layerRefuels;
+    }
+
+    setLayerRefuels() {
+        this.layerRefuels = new L.FeatureGroup();
+
+        this.getLayer().addLayer(this.layerRefuels);
 
         return this;
     }
@@ -608,6 +625,61 @@ export default class {
         return device && device.id && device.name && this.isValidPoint(device.position);
     }
 
+    setRefuels(refuels) {
+        this.getLayer().removeLayer(this.getLayerRefuels());
+        this.setLayerRefuels();
+
+        this.array(refuels).forEach((refuel) => this.setRefuel(refuel));
+
+        return this;
+    }
+
+    setRefuel(refuel, options) {
+            console.log(refuel);
+        if (!this.isValidRefuel(refuel)) {
+            return this;
+        }
+
+        const id = refuel.id;
+        const latLng = this.getLatLng(refuel.position);
+        const html = this.refuelPopupHtml(refuel);
+
+        this.markers[id] = new L.Marker(latLng, this.getRefuelMarkerOptions(refuel, options))
+            .bindPopup(html, this.getRefuelBindPopupOptions(refuel))
+            .bindTooltip(refuel.price, this.getRefuelTooltipOptions(refuel))
+            .on('click', (e) => this.showMarker(id))
+            .addTo(this.getLayerRefuels());
+
+        return this;
+    }
+
+    getRefuelMarkerOptions(refuel, options) {
+        return {
+            opacity: 0,
+            icon: L.divIcon(),
+        };
+    }
+
+    getRefuelBindPopupOptions(refuel) {
+        return {
+            offset: new L.Point(0, -25)
+        };
+    }
+
+    getRefuelTooltipOptions(refuel) {
+        return {
+            interactive: true,
+            permanent: true,
+            direction: 'top',
+            className: 'map-refuel-label',
+            opacity: 1,
+        };
+    }
+
+    isValidRefuel(refuel) {
+        return refuel && refuel.id && refuel.date_at && this.isValidPoint(refuel.position);
+    }
+
     setIcon(name, point, options) {
         if (this.icons[name]) {
             this.getMap().removeLayer(this.icons[name]);
@@ -834,6 +906,11 @@ export default class {
         }
 
         return html + this.popupHtml(device.position);
+    }
+
+    refuelPopupHtml(refuel) {
+        return this.popupHtmlLine('vehicle', refuel.vehicle.name)
+            + this.popupHtml(refuel.position);
     }
 
     popupHtml(marker) {
