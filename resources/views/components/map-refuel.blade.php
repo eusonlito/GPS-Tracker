@@ -34,10 +34,10 @@
 
                 <tr>
                     <td class="w-1"><input type="checkbox" name="visible[]" value="{{ $each->id }}" data-map-list-visible checked /></td>
-                    <td class="w-1" data-sort-value={{ $each->date_at }}><a href="#" data-map-point="{{ $each->id }}">@dateLocal($each->date_at)</a></td>
+                    <td class="w-1" data-table-sort-value={{ $each->date_at }}><a href="#" data-map-point="{{ $each->id }}">@dateLocal($each->date_at)</a></td>
                     <td class="w-1"><a href="#">{{ $each->vehicle->name ?? '-' }}</a></td>
-                    <td class="w-1"><a href="#">@unitHumanRaw('money', $each->price, 3)</a></td>
-                    <td class="w-1"><a href="#">@unitHumanRaw('money', $each->total)</a></td>
+                    <td class="w-1" data-table-sort-value="{{ $each->price }}"><a href="#">@unitHumanRaw('money', $each->price, 3)</a></td>
+                    <td class="w-1" data-table-sort-value="{{ $each->total }}"><a href="#">@unitHumanRaw('money', $each->total)</a></td>
                 </tr>
 
                 @endforeach
