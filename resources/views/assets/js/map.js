@@ -635,7 +635,6 @@ export default class {
     }
 
     setRefuel(refuel, options) {
-            console.log(refuel);
         if (!this.isValidRefuel(refuel)) {
             return this;
         }
