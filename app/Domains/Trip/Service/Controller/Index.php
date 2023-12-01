@@ -172,7 +172,7 @@ class Index extends ControllerAbstract
                 ->whenUserId($this->user()?->id)
                 ->whenVehicleId($this->vehicle()?->id)
                 ->whenDeviceId($this->device()?->id)
-                ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
+                ->whenStartUtcAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
                 ->whenShared($this->requestBool('shared', null))
                 ->whenSharedPublic($this->requestBool('shared_public', null))
                 ->withSimple('device')

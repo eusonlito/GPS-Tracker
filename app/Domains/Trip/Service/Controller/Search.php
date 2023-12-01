@@ -50,12 +50,8 @@ class Search extends Index
     protected function countries(): CountryCollection
     {
         return $this->cache(function () {
-            if (empty($vehicle_id = $this->vehicle()?->id)) {
-                return new CountryCollection();
-            }
-
             return CountryModel::query()
-                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($vehicle_id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'), $this->request->input('start_end'))
                 ->list()
                 ->get();
         });
@@ -77,17 +73,13 @@ class Search extends Index
     protected function states(): StateCollection
     {
         return $this->cache(function () {
-            if (empty($vehicle_id = $this->vehicle()?->id)) {
-                return new StateCollection();
-            }
-
             if (empty($country_id = intval($this->country()?->id))) {
                 return new StateCollection();
             }
 
             return StateModel::query()
                 ->byCountryId($country_id)
-                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($vehicle_id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'), $this->request->input('start_end'))
                 ->list()
                 ->get();
         });
@@ -109,17 +101,13 @@ class Search extends Index
     protected function cities(): CityCollection
     {
         return $this->cache(function () {
-            if (empty($vehicle_id = $this->vehicle()?->id)) {
-                return new CityCollection();
-            }
-
             if (empty($state_id = intval($this->state()?->id))) {
                 return new CityCollection();
             }
 
             return CityModel::query()
                 ->byStateId($state_id)
-                ->byVehicleIdWhenTripStartUtcAtDateBeforeAfter($vehicle_id, $this->request->input('end_at'), $this->request->input('start_at'), $this->request->input('start_end'))
+                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'), $this->request->input('start_end'))
                 ->list()
                 ->get();
         });
@@ -163,7 +151,7 @@ class Search extends Index
                 ->whenUserId($this->user()?->id)
                 ->whenVehicleId($this->vehicle()?->id)
                 ->whenDeviceId($this->device()?->id)
-                ->whenStartUtcAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
+                ->whenStartUtcAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
                 ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
                 ->whenShared($this->requestBool('shared', null))
                 ->whenSharedPublic($this->requestBool('shared_public', null))

@@ -15,7 +15,7 @@ class Trip extends BuilderAbstract
      */
     public function byCityId(int $city_id, ?string $start_end = null): self
     {
-        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byCityId($city_id)->whenStartEnd($start_end));
+        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byCityId($city_id)->whenTripStartEnd($start_end));
     }
 
     /**
@@ -36,7 +36,7 @@ class Trip extends BuilderAbstract
      */
     public function byCountryId(int $country_id, ?string $start_end = null): self
     {
-        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byCountryId($country_id)->whenStartEnd($start_end));
+        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byCountryId($country_id)->whenTripStartEnd($start_end));
     }
 
     /**
@@ -109,7 +109,7 @@ class Trip extends BuilderAbstract
      */
     public function byStateId(int $state_id, ?string $start_end = null): self
     {
-        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byStateId($state_id)->whenStartEnd($start_end));
+        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byStateId($state_id)->whenTripStartEnd($start_end));
     }
 
     /**
@@ -263,9 +263,9 @@ class Trip extends BuilderAbstract
      *
      * @return self
      */
-    public function whenStartUtcAtDateBeforeAfter(?string $before_start_utc_at, ?string $after_start_utc_at): self
+    public function whenStartUtcAtDateBetween(?string $before_start_utc_at, ?string $after_start_utc_at): self
     {
-        return $this->whenStartUtcAtDateBefore($before_start_utc_at)->whenStartUtcAtDateAfter($after_start_utc_at);
+        return $this->whenStartUtcAtDateAfter($before_start_utc_at)->whenStartUtcAtDateBefore($after_start_utc_at);
     }
 
     /**
@@ -294,6 +294,21 @@ class Trip extends BuilderAbstract
     public function whenStatsEmpty(): self
     {
         return $this->whereNull('stats');
+    }
+
+    /**
+     * @param ?int $user_id
+     * @param ?int $vehicle_id
+     * @param ?string $before_start_utc_at
+     * @param ?string $after_start_utc_at
+     *
+     * @return self
+     */
+    public function whenUserIdVehicleIdStartUtcAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_start_utc_at, ?string $after_start_utc_at): self
+    {
+        return $this->whenUserId($user_id)
+            ->whenVehicleId($vehicle_id)
+            ->whenStartUtcAtDateBetween($before_start_utc_at, $after_start_utc_at);
     }
 
     /**

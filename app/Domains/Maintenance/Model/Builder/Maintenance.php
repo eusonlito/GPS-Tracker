@@ -11,7 +11,7 @@ class Maintenance extends BuilderAbstract
      *
      * @return self
      */
-    public function byDateAtDateAfter(string $date_at): self
+    public function byDateAtAfter(string $date_at): self
     {
         return $this->whereDate('date_at', '>=', $date_at);
     }
@@ -21,7 +21,7 @@ class Maintenance extends BuilderAbstract
      *
      * @return self
      */
-    public function byDateAtDateBefore(string $date_at): self
+    public function byDateAtBefore(string $date_at): self
     {
         return $this->whereDate('date_at', '<=', $date_at);
     }
@@ -56,9 +56,9 @@ class Maintenance extends BuilderAbstract
      *
      * @return self
      */
-    public function whenDateAtDateBeforeAfter(?string $before_date_at, ?string $after_date_at): self
+    public function whenDateAtBetween(?string $before_date_at, ?string $after_date_at): self
     {
-        return $this->whenDateAtDateBefore($before_date_at)->whenDateAtDateAfter($after_date_at);
+        return $this->whenDateAtBefore($after_date_at)->whenDateAtAfter($before_date_at);
     }
 
     /**
@@ -66,9 +66,9 @@ class Maintenance extends BuilderAbstract
      *
      * @return self
      */
-    public function whenDateAtDateAfter(?string $date_at): self
+    public function whenDateAtAfter(?string $date_at): self
     {
-        return $this->when($date_at, static fn ($q) => $q->byDateAtDateAfter($date_at));
+        return $this->when($date_at, static fn ($q) => $q->byDateAtAfter($date_at));
     }
 
     /**
@@ -76,9 +76,9 @@ class Maintenance extends BuilderAbstract
      *
      * @return self
      */
-    public function whenDateAtDateBefore(?string $date_at): self
+    public function whenDateAtBefore(?string $date_at): self
     {
-        return $this->when($date_at, static fn ($q) => $q->byDateAtDateBefore($date_at));
+        return $this->when($date_at, static fn ($q) => $q->byDateAtBefore($date_at));
     }
 
     /**

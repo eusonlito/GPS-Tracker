@@ -119,6 +119,7 @@ class GetOrNew extends ActionAbstract
         $this->row = Model::query()->firstOrCreate([
             'name' => $this->locate->city,
             'state_id' => $this->state->id,
+            'country_id' => $this->country->id,
         ], [
             'point' => Model::pointFromLatitudeLongitude($this->data['latitude'], $this->data['longitude']),
         ]);
