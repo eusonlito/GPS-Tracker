@@ -5,7 +5,6 @@ namespace App\Domains\Trip\Action;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as Model;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Create extends ActionAbstract
 {
@@ -15,24 +14,13 @@ class Create extends ActionAbstract
     protected DeviceModel $device;
 
     /**
-     * @var \App\Domains\Vehicle\Model\Vehicle
-     */
-    protected VehicleModel $vehicle;
-
-    /**
-     * @var \App\Domains\Timezone\Model\Timezone
-     */
-    protected TimezoneModel $timezone;
-
-    /**
      * @return \App\Domains\Trip\Model\Trip
      */
     public function handle(): Model
     {
         $this->device();
-        $this->vehicle();
-        $this->timezone();
         $this->data();
+        $this->check();
         $this->save();
 
         return $this->row;
@@ -43,25 +31,7 @@ class Create extends ActionAbstract
      */
     protected function device(): void
     {
-        $this->device = DeviceModel::query()
-            ->findOrFail($this->data['device_id']);
-    }
-
-    /**
-     * @return void
-     */
-    protected function vehicle(): void
-    {
-        $this->vehicle = $this->device->vehicle;
-    }
-
-    /**
-     * @return void
-     */
-    protected function timezone(): void
-    {
-        $this->timezone = TimezoneModel::query()
-            ->findOrFail($this->data['timezone_id']);
+        $this->device = DeviceModel::query()->findOrFail($this->data['device_id']);
     }
 
     /**
@@ -75,6 +45,9 @@ class Create extends ActionAbstract
         $this->dataEndUtcAt();
         $this->dataShared();
         $this->dataSharedPublic();
+        $this->dataDeviceId();
+        $this->dataUserId();
+        $this->dataVehicleId();
     }
 
     /**
@@ -128,6 +101,58 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
+    protected function dataDeviceId(): void
+    {
+        $this->data['device_id'] = $this->device->id;
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataUserId(): void
+    {
+        $this->data['user_id'] = $this->device->user_id;
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataVehicleId(): void
+    {
+        $this->data['vehicle_id'] = $this->device->vehicle_id;
+    }
+
+    /**
+     * @return void
+     */
+    protected function check(): void
+    {
+        $this->checkTimezoneId();
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkTimezoneId(): void
+    {
+        if ($this->checkTimezoneIdExists() === false) {
+            $this->exceptionValidator(__('trip-create.error.timezone_id-exists'));
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkTimezoneIdExists(): bool
+    {
+        return TimezoneModel::query()
+            ->byId($this->data['timezone_id'])
+            ->exists();
+    }
+
+    /**
+     * @return void
+     */
     protected function save(): void
     {
         $this->row = Model::query()->create([
@@ -139,10 +164,10 @@ class Create extends ActionAbstract
             'end_utc_at' => $this->data['end_utc_at'],
             'shared' => $this->data['shared'],
             'shared_public' => $this->data['shared_public'],
-            'device_id' => $this->device->id,
-            'timezone_id' => $this->timezone->id,
-            'user_id' => $this->device->user_id,
-            'vehicle_id' => $this->vehicle->id,
+            'device_id' => $this->data['device_id'],
+            'timezone_id' => $this->data['timezone_id'],
+            'user_id' => $this->data['user_id'],
+            'vehicle_id' => $this->data['vehicle_id'],
         ]);
     }
 }

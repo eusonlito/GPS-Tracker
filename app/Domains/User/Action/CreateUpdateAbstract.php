@@ -156,7 +156,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     protected function checkStatus(): void
     {
-        if ($this->row?->id !== $this->auth->id) {
+        if (empty($this->row->id) || ($this->row?->id !== $this->auth?->id)) {
             return;
         }
 

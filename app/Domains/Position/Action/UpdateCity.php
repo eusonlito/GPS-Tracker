@@ -52,6 +52,8 @@ class UpdateCity extends ActionAbstract
         }
 
         $this->row->city_id = $this->city->id;
+        $this->row->state_id = $this->city->state_id;
+        $this->row->country_id = $this->city->country_id;
         $this->row->save();
     }
 }

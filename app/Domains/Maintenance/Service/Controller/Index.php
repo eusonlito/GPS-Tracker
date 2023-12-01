@@ -80,7 +80,7 @@ class Index extends ControllerAbstract
                 ->whenUserId($this->user()?->id)
                 ->whenSearch($this->request->input('search'))
                 ->whenVehicleId((int)$this->request->input('vehicle_id'))
-                ->whenDateAtDateBeforeAfter($this->request->input('end_at'), $this->request->input('start_at'))
+                ->whenDateAtBetween($this->request->input('start_at'), $this->request->input('end_at'))
                 ->withSimple('user')
                 ->withSimple('vehicle')
                 ->list()

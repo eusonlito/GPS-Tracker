@@ -289,6 +289,7 @@ return new class extends MigrationAbstract {
 
             $this->timestamps($table);
 
+            $table->unsignedBigInteger('position_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vehicle_id');
         });

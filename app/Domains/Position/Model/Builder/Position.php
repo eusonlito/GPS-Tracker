@@ -2,9 +2,9 @@
 
 namespace App\Domains\Position\Model\Builder;
 
-use App\Domains\City\Model\City as CityModel;
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\CoreApp\Model\Builder\Traits\Gis as GisTrait;
+use App\Domains\Refuel\Model\Refuel as RefuelModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 
 class Position extends BuilderAbstract
@@ -28,7 +28,7 @@ class Position extends BuilderAbstract
      */
     public function byCountryId(int $country_id): self
     {
-        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byCountryId($country_id));
+        return $this->where('country_id', $country_id);
     }
 
     /**
@@ -43,17 +43,17 @@ class Position extends BuilderAbstract
 
     /**
      * @param int $device_id
-     * @param ?string $trip_before_start_utc_at
-     * @param ?string $trip_after_start_utc_at
-     * @param ?string $trip_start_end
+     * @param ?string $before_start_utc_at
+     * @param ?string $after_start_utc_at
+     * @param ?string $start_end
      *
      * @return self
      */
-    public function byDeviceIdWhenTripStartUtcAtDateBeforeAfter(int $device_id, ?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at, ?string $trip_start_end): self
+    public function byDeviceIdWhenTripStartUtcAtDateBetween(int $device_id, ?string $before_start_utc_at, ?string $after_start_utc_at, ?string $start_end): self
     {
         return $this->byDeviceId($device_id)
-            ->whenTripStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at)
-            ->whenStartEnd($trip_start_end);
+            ->whenTripStartUtcAtDateBetween($before_start_utc_at, $after_start_utc_at)
+            ->whenTripStartEnd($start_end);
     }
 
     /**
@@ -75,7 +75,7 @@ class Position extends BuilderAbstract
      */
     public function byStateId(int $state_id): self
     {
-        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byStateId($state_id));
+        return $this->where('state_id', $state_id);
     }
 
     /**
@@ -99,29 +99,29 @@ class Position extends BuilderAbstract
     }
 
     /**
-     * @param ?string $trip_before_start_utc_at
-     * @param ?string $trip_after_start_utc_at
+     * @param ?string $before_start_utc_at
+     * @param ?string $after_start_utc_at
      *
      * @return self
      */
-    public function byTripStartUtcAtDateBeforeAfter(?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at): self
+    public function byTripStartUtcAtDateBetween(?string $before_start_utc_at, ?string $after_start_utc_at): self
     {
-        return $this->whereIn('trip_id', TripModel::query()->selectOnly('id')->whenStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at));
+        return $this->whereIn('trip_id', TripModel::query()->selectOnly('id')->whenStartUtcAtDateBetween($before_start_utc_at, $after_start_utc_at));
     }
 
     /**
      * @param int $vehicle_id
-     * @param ?string $trip_before_start_utc_at
-     * @param ?string $trip_after_start_utc_at
-     * @param ?string $trip_start_end
+     * @param ?string $before_start_utc_at
+     * @param ?string $after_start_utc_at
+     * @param ?string $start_end
      *
      * @return self
      */
-    public function byVehicleIdWhenTripStartUtcAtDateBeforeAfter(int $vehicle_id, ?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at, ?string $trip_start_end): self
+    public function byVehicleIdWhenTripStartUtcAtDateBetween(int $vehicle_id, ?string $before_start_utc_at, ?string $after_start_utc_at, ?string $start_end): self
     {
         return $this->byVehicleId($vehicle_id)
-            ->whenTripStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at)
-            ->whenStartEnd($trip_start_end);
+            ->whenTripStartUtcAtDateBetween($before_start_utc_at, $after_start_utc_at)
+            ->whenTripStartEnd($start_end);
     }
 
     /**
@@ -229,34 +229,60 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @param ?int $user_id
+     * @param ?int $vehicle_id
+     * @param ?string $before_date_at
+     * @param ?string $after_date_at
+     *
+     * @return self
+     */
+    public function whenRefuelUserIdVehicleIdDateAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_date_at, ?string $after_date_at): self
+    {
+        return $this->whereIn('id', RefuelModel::query()->selectOnly('position_id')->whenUserIdVehicleIdDateAtBetween($user_id, $vehicle_id, $before_date_at, $after_date_at));
+    }
+
+    /**
      * @param ?string $start_end
      *
      * @return self
      */
-    public function whenStartEnd(?string $start_end): self
+    public function whenTripStartEnd(?string $start_end): self
     {
         return match ($start_end) {
-            'start' => $this->whereStart(),
-            'end' => $this->whereEnd(),
+            'start' => $this->whereTripStart(),
+            'end' => $this->whereTripEnd(),
             default => $this,
         };
     }
 
     /**
-     * @param ?string $trip_before_start_utc_at
-     * @param ?string $trip_after_start_utc_at
+     * @param ?string $before_start_utc_at
+     * @param ?string $after_start_utc_at
      *
      * @return self
      */
-    public function whenTripStartUtcAtDateBeforeAfter(?string $trip_before_start_utc_at, ?string $trip_after_start_utc_at): self
+    public function whenTripStartUtcAtDateBetween(?string $before_start_utc_at, ?string $after_start_utc_at): self
     {
-        return $this->when($trip_before_start_utc_at || $trip_after_start_utc_at, static fn ($q) => $q->byTripStartUtcAtDateBeforeAfter($trip_before_start_utc_at, $trip_after_start_utc_at));
+        return $this->when($before_start_utc_at || $after_start_utc_at, static fn ($q) => $q->byTripStartUtcAtDateBetween($before_start_utc_at, $after_start_utc_at));
+    }
+
+    /**
+     * @param ?int $user_id
+     * @param ?int $vehicle_id
+     * @param ?string $before_date_at
+     * @param ?string $after_date_at
+     *
+     * @return self
+     */
+    public function whenTripUserIdVehicleIdStartUtcAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_start_utc_at, ?string $after_start_utc_at): self
+    {
+        return $this->whereIn('trip_id', TripModel::query()->selectOnly('id')->whenUserIdVehicleIdStartUtcAtBetween($user_id, $vehicle_id, $before_start_utc_at, $after_start_utc_at));
     }
 
     /**
      * @return self
      */
-    public function whereEnd(): self
+    public function whereTripEnd(): self
     {
         return $this->whereRaw('`date_utc_at` IN (SELECT MAX(`date_utc_at`) FROM `position` GROUP BY `trip_id`)');
     }
@@ -264,7 +290,7 @@ class Position extends BuilderAbstract
     /**
      * @return self
      */
-    public function whereStart(): self
+    public function whereTripStart(): self
     {
         return $this->whereRaw('`date_utc_at` IN (SELECT MIN(`date_utc_at`) FROM `position` GROUP BY `trip_id`)');
     }
