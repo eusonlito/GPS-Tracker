@@ -21,7 +21,6 @@
         <table id="map-refuel-list-table-{{ $id }}" class="table table-report font-medium text-center whitespace-nowrap text-xs" data-map-list-table data-table-sort>
             <thead>
                 <tr>
-                    <th class="w-1"><input type="checkbox" data-checkall="#map-refuel-list-table-{{ $id }} > tbody" checked /></th>
                     <th class="w-1">{{ __('map-refuel.date_at') }}</th>
                     <th class="w-1">{{ __('map-refuel.vehicle') }}</th>
                     <th class="w-1">{{ __('map-refuel.price') }}</th>
@@ -33,7 +32,6 @@
                 @foreach ($refuels as $each)
 
                 <tr>
-                    <td class="w-1"><input type="checkbox" name="visible[]" value="{{ $each->id }}" data-map-list-visible checked /></td>
                     <td class="w-1" data-table-sort-value={{ $each->date_at }}><a href="#" data-map-point="{{ $each->id }}">@dateLocal($each->date_at)</a></td>
                     <td class="w-1"><a href="#">{{ $each->vehicle->name ?? '-' }}</a></td>
                     <td class="w-1" data-table-sort-value="{{ $each->price }}"><a href="#">@unitHumanRaw('money', $each->price, 3)</a></td>
