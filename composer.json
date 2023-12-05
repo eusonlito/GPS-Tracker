@@ -90,6 +90,7 @@
         ],
 
         "deploy": [
+            "Composer\\Config::disableProcessTimeout",
             "rm -f bootstrap/cache/*.php",
             "git checkout .",
             "git pull",
@@ -103,6 +104,7 @@
         ],
 
         "deploy-dev": [
+            "Composer\\Config::disableProcessTimeout",
             "rm -f bootstrap/cache/*.php",
             "@composer install --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
@@ -114,6 +116,7 @@
         ],
 
         "deploy-docker": [
+            "Composer\\Config::disableProcessTimeout",
             "rm -f bootstrap/cache/*.php",
             "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
