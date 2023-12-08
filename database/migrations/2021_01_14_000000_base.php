@@ -91,6 +91,7 @@ return new class extends MigrationAbstract {
 
             $this->timestamps($table);
 
+            $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('state_id');
         });
 
@@ -184,7 +185,6 @@ return new class extends MigrationAbstract {
             $table->string('code')->unique();
             $table->string('locale')->unique();
 
-            $table->boolean('default')->default(0);
             $table->boolean('enabled')->default(0);
 
             $this->timestamps($table);
@@ -254,7 +254,9 @@ return new class extends MigrationAbstract {
             $this->timestamps($table);
 
             $table->unsignedBigInteger('city_id')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('device_id')->nullable();
+            $table->unsignedBigInteger('state_id')->nullable();
             $table->unsignedBigInteger('timezone_id');
             $table->unsignedBigInteger('trip_id');
             $table->unsignedBigInteger('user_id');
@@ -443,6 +445,7 @@ return new class extends MigrationAbstract {
         Schema::table('city', function (Blueprint $table) {
             $table->spatialIndex('point');
 
+            $this->foreignOnDeleteCascade($table, 'country');
             $this->foreignOnDeleteCascade($table, 'state');
         });
 
@@ -483,7 +486,9 @@ return new class extends MigrationAbstract {
             $table->spatialIndex('point');
 
             $this->foreignOnDeleteSetNull($table, 'city');
+            $this->foreignOnDeleteSetNull($table, 'country');
             $this->foreignOnDeleteSetNull($table, 'device');
+            $this->foreignOnDeleteSetNull($table, 'state');
             $this->foreignOnDeleteCascade($table, 'timezone');
             $this->foreignOnDeleteCascade($table, 'trip');
             $this->foreignOnDeleteCascade($table, 'user');

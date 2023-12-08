@@ -31,7 +31,6 @@ class Language extends ModelAbstract
      * @var array<string, string>
      */
     protected $casts = [
-        'default' => 'boolean',
         'enabled' => 'boolean',
     ];
 

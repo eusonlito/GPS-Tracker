@@ -21,7 +21,8 @@ class Language extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->orderBy('default', 'DESC')->orderBy('name', 'ASC');
+        return $this->orderByRaw('IF (`code` = ?, TRUE, FALSE) DESC', config('app.locale'))
+            ->orderBy('name', 'ASC');
     }
 
     /**
@@ -39,16 +40,14 @@ class Language extends BuilderAbstract
      */
     public function whenIdOrDefault(?int $id): self
     {
-        return $this->when($id, static fn ($q) => $q->byId($id), static fn ($q) => $q->whereDefault(true));
+        return $this->when($id, static fn ($q) => $q->byId($id), static fn ($q) => $q->whereDefault());
     }
 
     /**
-     * @param bool $default = true
-     *
      * @return self
      */
-    public function whereDefault(bool $default = true): self
+    public function whereDefault(): self
     {
-        return $this->where($this->addTable('default'), $default);
+        return $this->where($this->addTable('code'), config('app.locale'));
     }
 }
