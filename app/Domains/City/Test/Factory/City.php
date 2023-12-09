@@ -4,6 +4,7 @@ namespace App\Domains\City\Test\Factory;
 
 use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\City\Model\City as Model;
+use App\Domains\Country\Model\Country as CountryModel;
 use App\Domains\State\Model\State as StateModel;
 
 class City extends FactoryAbstract
@@ -23,6 +24,7 @@ class City extends FactoryAbstract
 
             'point' => Model::pointFromLatitudeLongitude(42.34818, -7.9126),
 
+            'country_id' => $this->firstOrFactory(CountryModel::class),
             'state_id' => $this->firstOrFactory(StateModel::class),
         ];
     }

@@ -71,7 +71,7 @@ class Request extends ActionAbstract
     {
         return Model::query()
             ->selectSession()
-            ->whereDefault(true)
+            ->whereDefault()
             ->first();
     }
 

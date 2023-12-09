@@ -11,7 +11,7 @@
         "laravel/framework": "^10.0",
         "laravel/helpers": "^1.6",
         "predis/predis": "^2.1.1",
-        "sentry/sentry-laravel": "^3.2",
+        "sentry/sentry-laravel": "^4.1",
         "sibyx/phpgpx": "^1.2.1"
     },
     "require-dev": {
@@ -20,7 +20,7 @@
         "friendsofphp/php-cs-fixer": "^3.14.3",
         "laravel/pint": "^1.4.1",
         "nunomaduro/collision": "^7.0",
-        "nunomaduro/larastan": "^2.4",
+        "larastan/larastan": "^2.7",
         "nunomaduro/phpinsights": "^2.8",
         "phpcompatibility/php-compatibility": "^9.3",
         "phpunit/phpunit": "^10.0",

@@ -22,7 +22,6 @@ class Language extends FactoryAbstract
             'code' => str_slug($name),
             'locale' => $this->faker->name(),
 
-            'default' => true,
             'enabled' => true,
         ];
     }
