@@ -119,7 +119,7 @@ class Artisan
      */
     protected function logFileDatePrefix(): string
     {
-        return date_create()->format('Y-m-d/'.($this->logDaily ? '' : 'H_i_s_u-'));
+        return date_create()->format('Y/m/d/'.($this->logDaily ? '' : 'H_i_s_u-'));
     }
 
     /**

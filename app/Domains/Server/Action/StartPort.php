@@ -222,6 +222,6 @@ class StartPort extends ActionAbstract
      */
     protected function logFile(string $suffix = ''): string
     {
-        return base_path('storage/logs/server/'.date('Y-m-d').'/'.$this->row->port.$suffix.'.log');
+        return base_path('storage/logs/server/'.date('Y/m/d').'/'.$this->row->port.$suffix.'.log');
     }
 }

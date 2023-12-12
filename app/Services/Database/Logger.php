@@ -219,7 +219,7 @@ class Logger
         $file = array_filter(explode('-', preg_replace('/[^a-z0-9]+/i', '-', Request::path())));
         $file = implode('-', array_map(fn ($value) => substr($value, 0, 20), $file)) ?: '-';
 
-        $this->files[$name] = storage_path('logs/query/'.$name.'/'.date('Y-m-d').'/'.substr($file, 0, 150).'.log');
+        $this->files[$name] = storage_path('logs/query/'.$name.'/'.date('Y/m/d').'/'.substr($file, 0, 150).'.log');
     }
 
     /**
