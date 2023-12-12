@@ -64,12 +64,20 @@ abstract class MonologRotatingFileAbstract
         $formatter = new LineFormatter("[%datetime%]: %message% %extra% %context%\n");
         $formatter->setMaxNormalizeDepth(10000);
 
-        $handler = new StreamHandler(storage_path('logs/'.static::$name.'/'.date('Y/m/d').'.log'));
+        $handler = new StreamHandler(static::loggerFile());
         $handler->setFormatter($formatter);
 
         $logger = new Logger(static::$name);
         $logger->pushHandler($handler);
 
         return static::$logger[static::$name] = $logger;
+    }
+
+    /**
+     * @return string
+     */
+    protected static function loggerFile(): string
+    {
+        return storage_path('logs/'.static::$name.'/'.date('Y/m/Y-m-d').'.log');
     }
 }

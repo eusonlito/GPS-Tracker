@@ -50,10 +50,18 @@ abstract class DailyAbstract
      */
     public function handler(): StreamHandler
     {
-        $handler = new StreamHandler(storage_path('logs/'.$this->name().'/'.date('Y/m/d').'.log'), 'DEBUG');
+        $handler = new StreamHandler($this->handlerFile(), 'DEBUG');
         $handler->setFormatter($this->formatter());
 
         return $handler;
+    }
+
+    /**
+     * @return string
+     */
+    public function handlerFile(): string
+    {
+        return storage_path('logs/'.$this->name().'/'.date('Y/m/Y-m-d').'.log');
     }
 
     /**

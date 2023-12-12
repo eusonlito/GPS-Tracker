@@ -48,7 +48,7 @@ abstract class RotatingFileAbstract
      */
     protected static function file(): string
     {
-        $file = storage_path('logs/'.static::$name.'/'.date('Y/m/d').'.log');
+        $file = storage_path('logs/'.static::$name.'/'.date('Y/m/Y-m-d').'.log');
 
         clearstatcache(true, $file);
 
