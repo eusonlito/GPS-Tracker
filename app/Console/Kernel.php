@@ -68,7 +68,7 @@ class Kernel extends KernelVendor
      */
     protected function log(): string
     {
-        $file = storage_path('logs/artisan/'.date('Y-m-d').'/schedule-command-queue-work.log');
+        $file = storage_path('logs/artisan/'.date('Y/m/d').'/schedule-command-queue-work.log');
 
         helper()->mkdir($file, true);
 
