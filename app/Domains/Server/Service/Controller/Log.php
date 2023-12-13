@@ -174,8 +174,8 @@ class Log extends ControllerAbstract
             return $b->name <=> $a->name;
         }
 
-        $aIsDate = preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}/', $a->name);
-        $bIsDate = preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}/', $b->name);
+        $aIsDate = preg_match('/^[0-9]/', $a->name);
+        $bIsDate = preg_match('/^[0-9]/', $b->name);
 
         if ($aIsDate !== $bIsDate) {
             return $aIsDate ? -1 : 1;
