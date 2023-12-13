@@ -96,17 +96,25 @@ class LastOrNew extends ActionAbstract
     }
 
     /**
-     * @return \App\Domains\Trip\Model\Trip
+     * @return void
      */
-    protected function rowCreate(): Model
+    protected function rowCreate(): void
     {
-        return $this->row = $this->factory()->action([
+        $this->row = $this->factory()->action($this->rowCreateData())->create();
+    }
+
+    /**
+     * @return array
+     */
+    protected function rowCreateData(): array
+    {
+        return [
             'start_at' => $this->data['date_at'],
             'start_utc_at' => $this->data['date_utc_at'],
             'device_id' => $this->device->id,
             'timezone_id' => $this->data['timezone_id'],
             'vehicle_id' => $this->vehicle->id,
-        ])->create();
+        ];
     }
 
     /**

@@ -13,7 +13,7 @@ class Log
      */
     public static function write(string $url, string $status, array $data): void
     {
-        $dir = storage_path('logs/curl/'.date('Y-m-d'));
+        $dir = storage_path('logs/curl/'.date('Y/m/d'));
 
         $file = preg_replace(['/[^a-zA-Z0-9-]/', '/\-{2,}/'], ['-', '-'], $url);
         $file = date('H-i-s').'-'.microtime(true).'-'.$status.'-'.substr($file, 0, 200).'.json';
