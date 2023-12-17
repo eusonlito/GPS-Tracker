@@ -917,11 +917,23 @@ export default class {
             + this.popupHtmlLine('clock', marker.date_at)
             + this.popupHtmlLine('location', '<a href="https://maps.google.com/?q=' + marker.latitude + ',' + marker.longitude + '" rel="nofollow noopener noreferrer" target="_blank">' + marker.latitude + ',' + marker.longitude + '</a>')
             + this.popupHtmlLine('speed', marker.speed_human)
-            + this.popupHtmlLine('world', marker.city + ' (' + marker.state + ')');
+            + this.popupHtmlLineLocation(marker);
     }
 
     popupHtmlLine(type, value) {
+        if (!value || !value.length) {
+            return '';
+        }
+
         return '<p style="margin: 0 !important; padding: 3px 20px 3px 0 !important; white-space: nowrap; vertical-align: middle !important;"><span style="margin-right: 5px">' + this.svg(type) + '</span> ' + value + '</p>';
+    }
+
+    popupHtmlLineLocation(marker) {
+        if (!marker.city || !marker.state) {
+            return '';
+        }
+
+        return this.popupHtmlLine('world', marker.city + ' (' + marker.state + ')');
     }
 
     array(array) {
