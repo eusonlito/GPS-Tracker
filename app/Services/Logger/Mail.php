@@ -33,7 +33,7 @@ class Mail
         $date = new DateTime();
         $date->setTimezone(new DateTimeZone('UTC'));
 
-        return storage_path('logs/mail/'.$date->format('Y/m/d/H:i:s.u').'.log');
+        return storage_path('logs/mail/'.$date->format('Y/m/d/H-i-s-u').'.log');
     }
 
     /**

@@ -43,7 +43,7 @@
 
     @endif
 
-    <a href="{{ $vehicle ? route('vehicle.index') : route('vehicle.create') }}" class="box flex items-center mb-5">
+    <{!! $vehicle ? 'div' : ('a href="'.route('vehicle.create').'"') !!} class="box flex items-center mb-5">
         <div class="text-4xl font-bold py-5 px-9">
             {{ ++$step }}
         </div>
@@ -68,9 +68,9 @@
 
             @endif
         </div>
-    </a>
+    </{{ $vehicle ? 'div' : 'a' }}>
 
-    <a href="{{ $device ? route('device.index') : route('device.create') }}" class="box flex items-center mb-5">
+    <{!! $device ? 'div' : ('a href="'.route('device.create').'"') !!} class="box flex items-center mb-5">
         <div class="text-4xl font-bold py-5 px-9">
             {{ ++$step }}
         </div>
@@ -95,7 +95,7 @@
 
             @endif
         </div>
-    </a>
+    </{{ $device ? 'div' : 'a' }}>
 
     <a href="{{ route('dashboard.index') }}" class="box flex items-center">
         <div class="text-4xl font-bold py-5 px-9">
