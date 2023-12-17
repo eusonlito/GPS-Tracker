@@ -9,7 +9,7 @@ class Delete extends ActionAbstract
      */
     public function handle(): void
     {
-        if (config('demo.enabled') && ($this->row?->device_id === 1)) {
+        if (config('demo.enabled')) {
             $this->exceptionValidator(__('demo.error.not-allowed'));
         }
 

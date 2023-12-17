@@ -16,7 +16,7 @@ class UpdateDeviceMessageCreate extends ActionAbstract
      */
     public function handle(): DeviceMessageModel
     {
-        if (config('demo.enabled') && ($this->row?->id === 1)) {
+        if (config('demo.enabled')) {
             $this->exceptionValidator(__('demo.error.not-allowed'));
         }
 

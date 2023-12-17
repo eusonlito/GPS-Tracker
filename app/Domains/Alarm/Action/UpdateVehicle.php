@@ -12,7 +12,7 @@ class UpdateVehicle extends ActionAbstract
      */
     public function handle(): Model
     {
-        if (config('demo.enabled') && ($this->row?->user_id === 1)) {
+        if (config('demo.enabled')) {
             $this->exceptionValidator(__('demo.error.not-allowed'));
         }
 

@@ -15,7 +15,7 @@ class UpdateTransfer extends ActionAbstract
      */
     public function handle(): Model
     {
-        if (config('demo.enabled') && ($this->row?->id === 1)) {
+        if (config('demo.enabled')) {
             $this->exceptionValidator(__('demo.error.not-allowed'));
         }
 
