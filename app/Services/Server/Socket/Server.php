@@ -174,11 +174,36 @@ class Server extends ServerAbstract
             return;
         }
 
-        $response = Client::new($client, $handler)->handle();
+        try {
+            $this->clientReadHandle($client, $handler);
+        } catch (Throwable $e) {
+            $this->clientReadError($client, $e);
+        }
+    }
 
-        if ($response === false) {
+    /**
+     * @param \stdClass $client
+     * @param \Closure $handler
+     *
+     * @return void
+     */
+    protected function clientReadHandle(stdClass $client, Closure $handler): void
+    {
+        if (Client::new($client, $handler)->handle() === false) {
             $this->close($client->socket);
         }
+    }
+
+    /**
+     * @param \stdClass $client
+     * @param \Throwable $e
+     *
+     * @return void
+     */
+    protected function clientReadError(stdClass $client, Throwable $e): void
+    {
+        $this->close($client->socket);
+        $this->error($e);
     }
 
     /**
@@ -321,6 +346,8 @@ class Server extends ServerAbstract
      */
     protected function error(Throwable $e): void
     {
+        logger()->error($e);
+
         if ($this->errorIsReportable($e)) {
             report($e);
         }
