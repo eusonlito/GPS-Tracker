@@ -17,6 +17,10 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     public function handle(): Model
     {
+        if (config('demo.enabled')) {
+            $this->exceptionValidator(__('demo.error.not-allowed'));
+        }
+
         $this->data();
         $this->check();
         $this->save();

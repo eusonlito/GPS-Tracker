@@ -14,6 +14,10 @@ class UpdateBoolean extends ControllerAbstract
      */
     public function __invoke(int $id): JsonResponse
     {
+        if (config('demo.enabled')) {
+            $this->exceptionValidator(__('demo.error.not-allowed'));
+        }
+
         $this->row($id);
 
         return $this->json($this->fractal($this->action()->updateBoolean()));

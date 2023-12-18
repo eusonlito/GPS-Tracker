@@ -9,10 +9,6 @@ class Update extends CreateUpdateAbstract
      */
     protected function save(): void
     {
-        if (config('demo.enabled')) {
-            $this->exceptionValidator(__('demo.error.not-allowed'));
-        }
-
         $this->row->name = $this->data['name'];
         $this->row->email = $this->data['email'];
         $this->row->password = $this->data['password'];
