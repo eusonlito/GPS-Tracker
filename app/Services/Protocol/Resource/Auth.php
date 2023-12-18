@@ -2,14 +2,14 @@
 
 namespace App\Services\Protocol\Resource;
 
-class Sms extends ResourceAbstract
+class Auth extends ResourceAbstract
 {
     /**
      * @return array
      */
     protected function attributesAvailable(): array
     {
-        return ['body', 'maker', 'serial', 'type', 'payload', 'response'];
+        return ['body', 'serial', 'response'];
     }
 
     /**
@@ -17,7 +17,7 @@ class Sms extends ResourceAbstract
      */
     public function format(): string
     {
-        return 'sms';
+        return 'auth';
     }
 
     /**
@@ -25,8 +25,7 @@ class Sms extends ResourceAbstract
      */
     public function isValid(): bool
     {
-        return $this->serial()
-            && $this->type();
+        return boolval($this->serial());
     }
 
     /**
@@ -40,31 +39,7 @@ class Sms extends ResourceAbstract
     /**
      * @return string
      */
-    public function maker(): string
-    {
-        return $this->attribute(__FUNCTION__);
-    }
-
-    /**
-     * @return string
-     */
     public function serial(): string
-    {
-        return $this->attribute(__FUNCTION__);
-    }
-
-    /**
-     * @return string
-     */
-    public function type(): string
-    {
-        return $this->attribute(__FUNCTION__);
-    }
-
-    /**
-     * @return array
-     */
-    public function payload(): array
     {
         return $this->attribute(__FUNCTION__);
     }

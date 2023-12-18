@@ -202,6 +202,8 @@ class Client
      */
     protected function error(Throwable $e): void
     {
+        logger()->error($e);
+
         if ($this->errorIsReportable($e)) {
             report($e);
         }

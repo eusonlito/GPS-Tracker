@@ -25,8 +25,7 @@ class Command extends ResourceAbstract
      */
     public function isValid(): bool
     {
-        return $this->maker()
-            && $this->serial()
+        return $this->serial()
             && $this->type();
     }
 
