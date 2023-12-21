@@ -151,15 +151,7 @@ class Location extends ParserAbstract
      */
     protected function datetime(): ?string
     {
-        $fix = explode('.', $this->values[5])[0];
-
-        if (strlen($fix) === 6) {
-            $value = substr($this->values[2], 0, 6).$fix;
-        } else {
-            $value = $this->values[2];
-        }
-
-        $date = str_split($value, 2);
+        $date = str_split($this->values[2], 2);
 
         if (count($date) !== 6) {
             return null;
