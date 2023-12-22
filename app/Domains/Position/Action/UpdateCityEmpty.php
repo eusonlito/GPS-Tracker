@@ -32,7 +32,7 @@ class UpdateCityEmpty extends ActionAbstract
     {
         return Model::query()
             ->withoutCity()
-            ->orderByDateUtcAtAsc()
+            ->orderByDateUtcAtDesc()
             ->pluck('id')
             ->all();
     }
