@@ -46,19 +46,19 @@ class Location extends ParserAbstract
     protected function bodyIsValidRegExp(): string
     {
         return '/^'
-            .'imei:[0-9]+,'          //  0 - serial
-            .'[^,]*,'                //  1 - type
-            .'[0-9]{6,},'            //  2 - datetime
-            .'[^,]*,'                //  3 - rfid
-            .'[FL],'                 //  4 - signal
-            .'[0-9\.]+,'             //  5 - fix time
-            .'[AV],'                 //  6 - signal
-            .'[0-9]+\.[0-9]+,'       //  7 - latitude
-            .'[NS],'                 //  8 - latitude direction
-            .'[0-9]+\.[0-9]+,'       //  9 - longitude
-            .'[EW],'                 // 10 - longitude direction
-            .'[0-9]+\.[0-9]+,'       // 11 - speed
-            .'[0-9\.]*,?'            // 12 - direction
+            .'imei:[0-9]+,'    //  0 - serial
+            .'[^,]*,'          //  1 - type
+            .'[0-9]{6,},'      //  2 - datetime
+            .'[^,]*,'          //  3 - rfid
+            .'[FL],'           //  4 - signal
+            .'[0-9\.]+,'       //  5 - fix time
+            .'[AV],'           //  6 - signal
+            .'[0-9]+\.[0-9]+,' //  7 - latitude
+            .'[NS],'           //  8 - latitude direction
+            .'[0-9]+\.[0-9]+,' //  9 - longitude
+            .'[EW],'           // 10 - longitude direction
+            .'[0-9]+\.[0-9]+,' // 11 - speed
+            .'[0-9\.]*,?'      // 12 - direction
             .'/';
     }
 
@@ -151,15 +151,7 @@ class Location extends ParserAbstract
      */
     protected function datetime(): ?string
     {
-        $fix = explode('.', $this->values[5])[0];
-
-        if (strlen($fix) === 6) {
-            $value = substr($this->values[2], 0, 6).$fix;
-        } else {
-            $value = $this->values[2];
-        }
-
-        $date = str_split($value, 2);
+        $date = str_split($this->values[2], 2);
 
         if (count($date) !== 6) {
             return null;
@@ -184,6 +176,25 @@ class Location extends ParserAbstract
      */
     protected function response(): string
     {
-        return 'ON';
+        return match ($this->type()) {
+            'help me' => $this->responseHelpMe(),
+            default => $this->responseDefault(),
+        };
+    }
+
+    /**
+     * @return string
+     */
+    protected function responseHelpMe(): string
+    {
+        return '**,'.$this->values[0].',E;';
+    }
+
+    /**
+     * @return string
+     */
+    protected function responseDefault(): string
+    {
+        return '';
     }
 }

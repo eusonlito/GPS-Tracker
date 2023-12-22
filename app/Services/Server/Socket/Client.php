@@ -47,7 +47,7 @@ class Client
         $resources = $this->readHandle($buffer);
 
         if (empty($resources)) {
-            return (bool)$this->writeEmpty();
+            return true;
         }
 
         foreach ($resources as $resource) {
@@ -92,14 +92,6 @@ class Client
     }
 
     /**
-     * @return int
-     */
-    protected function writeEmpty(): int
-    {
-        return (int)socket_write($this->client->socket, 'OK', 2);
-    }
-
-    /**
      * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
      *
      * @return void
@@ -118,7 +110,9 @@ class Client
      */
     protected function readResourceResponse(ResourceAbstract $resource): void
     {
-        socket_write($this->client->socket, $response = $resource->response(), strlen($response));
+        if ($response = $resource->response()) {
+            socket_write($this->client->socket, $response, strlen($response));
+        }
     }
 
     /**
