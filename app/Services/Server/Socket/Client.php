@@ -47,7 +47,7 @@ class Client
         $resources = $this->readHandle($buffer);
 
         if (empty($resources)) {
-            return (bool)$this->writeEmpty();
+            return true;
         }
 
         foreach ($resources as $resource) {
@@ -89,14 +89,6 @@ class Client
         }
 
         return [];
-    }
-
-    /**
-     * @return int
-     */
-    protected function writeEmpty(): int
-    {
-        return (int)socket_write($this->client->socket, 'OK', 2);
     }
 
     /**
