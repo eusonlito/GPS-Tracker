@@ -14,7 +14,7 @@ class Nominatim extends LocateAbstract
         }
 
         return new Resource(
-            $this->first($response, ['municipality', 'city', 'village', 'borough']),
+            $this->first($response, ['municipality', 'city', 'town', 'village', 'county', 'borough']),
             $this->first($response, ['province', 'state']),
             $response['country'],
             strtolower($response['country_code'])
