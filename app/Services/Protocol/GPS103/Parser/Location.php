@@ -127,7 +127,7 @@ class Location extends ParserAbstract
      */
     protected function speed(): float
     {
-        return round((float)$this->values[11], 2);
+        return round((float)$this->values[11] * 1.852, 2);
     }
 
     /**
