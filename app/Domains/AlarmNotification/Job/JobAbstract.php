@@ -30,6 +30,6 @@ abstract class JobAbstract extends JobAbstractCore
      */
     protected function row(): Model
     {
-        return Model::query()->findOrFail($this->id);
+        return Model::query()->byId($this->id)->firstOr(fn () => $this->findOrDeleteJob());
     }
 }
