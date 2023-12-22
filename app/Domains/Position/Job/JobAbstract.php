@@ -2,7 +2,6 @@
 
 namespace App\Domains\Position\Job;
 
-use Illuminate\Queue\Middleware\WithoutOverlapping;
 use App\Domains\Position\Model\Position as Model;
 use App\Domains\Core\Job\JobAbstract as JobAbstractCore;
 
