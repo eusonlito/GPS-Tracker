@@ -35,7 +35,7 @@ class Nominatim extends LocateAbstract
     protected function requestUrl(): string
     {
         return sprintf(
-            'https://nominatim.openstreetmap.org/reverse?lat=%s&lon=%s&format=jsonv2&zoom=18&addressdetails=1&accept-language=es',
+            'https://nominatim.openstreetmap.org/reverse?lat=%s&lon=%s&format=jsonv2&zoom=18&addressdetails=1',
             $this->latitude,
             $this->longitude
         );

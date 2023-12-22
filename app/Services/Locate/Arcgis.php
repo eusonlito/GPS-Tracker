@@ -35,7 +35,7 @@ class Arcgis extends LocateAbstract
     protected function requestUrl(): string
     {
         return sprintf(
-            'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?f=pjson&langCode=ES&featureTypes=&location=%f,%f',
+            'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?f=pjson&featureTypes=&location=%f,%f',
             $this->longitude,
             $this->latitude,
         );
