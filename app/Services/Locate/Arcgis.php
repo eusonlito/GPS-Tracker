@@ -14,8 +14,8 @@ class Arcgis extends LocateAbstract
         }
 
         return new Resource(
-            $response['City'],
-            $response['Subregion'],
+            $this->first($response, ['City', 'District']),
+            $this->first($response, ['Subregion', 'Region']),
             $response['CntryName'],
             strtolower(substr($response['CountryCode'], 0, 2)),
         );
