@@ -46,19 +46,19 @@ class Location extends ParserAbstract
     protected function bodyIsValidRegExp(): string
     {
         return '/^'
-            .'imei:[0-9]+,'          //  0 - serial
-            .'[^,]*,'                //  1 - type
-            .'[0-9]{6,},'            //  2 - datetime
-            .'[^,]*,'                //  3 - rfid
-            .'[FL],'                 //  4 - signal
-            .'[0-9\.]+,'             //  5 - fix time
-            .'[AV],'                 //  6 - signal
-            .'[0-9]+\.[0-9]+,'       //  7 - latitude
-            .'[NS],'                 //  8 - latitude direction
-            .'[0-9]+\.[0-9]+,'       //  9 - longitude
-            .'[EW],'                 // 10 - longitude direction
-            .'[0-9]+\.[0-9]+,'       // 11 - speed
-            .'[0-9\.]*,?'            // 12 - direction
+            .'imei:[0-9]+,'    //  0 - serial
+            .'[^,]*,'          //  1 - type
+            .'[0-9]{6,},'      //  2 - datetime
+            .'[^,]*,'          //  3 - rfid
+            .'[FL],'           //  4 - signal
+            .'[0-9\.]+,'       //  5 - fix time
+            .'[AV],'           //  6 - signal
+            .'[0-9]+\.[0-9]+,' //  7 - latitude
+            .'[NS],'           //  8 - latitude direction
+            .'[0-9]+\.[0-9]+,' //  9 - longitude
+            .'[EW],'           // 10 - longitude direction
+            .'[0-9]+\.[0-9]+,' // 11 - speed
+            .'[0-9\.]*,?'      // 12 - direction
             .'/';
     }
 
