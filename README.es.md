@@ -1,5 +1,9 @@
 [English](README.md)
 
+<p align="center">
+    <img src="https://github.com/eusonlito/GPS-Tracker/assets/644551/ef440878-fde8-4ec0-95db-c28e968f3249">
+</p>
+
 # GPS Tracker (Laravel 10 + PHP 8.1 + MySQL 8)
 
 Este proyecto es una plataforma de gestión para dispositivos Sinotrack ST-90x OsmAnd y Queclink desarrollada utilizando Laravel 10, PHP 8.1 y MySQL 8. Esta solución integral de rastreo GPS está diseñada para ofrecer un rendimiento robusto y una interfaz de usuario intuitiva, adecuada tanto para usuarios individuales como para empresas que necesitan gestionar múltiples dispositivos de rastreo. Esta plataforma está pensada como una posible alternativa a [Traccar](https://github.com/traccar/traccar).
