@@ -176,6 +176,25 @@ class Location extends ParserAbstract
      */
     protected function response(): string
     {
-        return 'ON';
+        return match ($this->type()) {
+            'help me' => $this->responseHelpMe(),
+            default => $this->responseDefault(),
+        };
+    }
+
+    /**
+     * @return string
+     */
+    protected function responseHelpMe(): string
+    {
+        return '**,'.$this->values[0].',E;';
+    }
+
+    /**
+     * @return string
+     */
+    protected function responseDefault(): string
+    {
+        return '';
     }
 }
