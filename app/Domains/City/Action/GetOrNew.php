@@ -69,6 +69,7 @@ class GetOrNew extends ActionAbstract
     {
         return Model::query()
             ->selectDistance($this->data['latitude'], $this->data['longitude'])
+            ->byDistanceMax(1000)
             ->orderByDistance()
             ->first();
     }

@@ -14,7 +14,7 @@ class Nominatim extends LocateAbstract
         }
 
         return new Resource(
-            $this->first($response, ['municipality', 'city', 'village', 'borough']),
+            $this->first($response, ['municipality', 'city', 'town', 'village', 'county', 'borough']),
             $this->first($response, ['province', 'state']),
             $response['country'],
             strtolower($response['country_code'])
@@ -35,7 +35,7 @@ class Nominatim extends LocateAbstract
     protected function requestUrl(): string
     {
         return sprintf(
-            'https://nominatim.openstreetmap.org/reverse?lat=%s&lon=%s&format=jsonv2&zoom=18&addressdetails=1&accept-language=es',
+            'https://nominatim.openstreetmap.org/reverse?lat=%s&lon=%s&format=jsonv2&zoom=18&addressdetails=1',
             $this->latitude,
             $this->longitude
         );

@@ -2,7 +2,6 @@
 
 namespace App\Domains\Position\Job;
 
-use Illuminate\Queue\Middleware\WithoutOverlapping;
 use App\Domains\Position\Model\Position as Model;
 use App\Domains\Core\Job\JobAbstract as JobAbstractCore;
 
@@ -22,7 +21,7 @@ abstract class JobAbstract extends JobAbstractCore
      */
     public function middleware(): array
     {
-        return [(new WithoutOverlapping((string)$this->id))->expireAfter(30)];
+        return [$this->middlewareWithoutOverlapping()];
     }
 
     /**
@@ -30,6 +29,6 @@ abstract class JobAbstract extends JobAbstractCore
      */
     protected function row(): Model
     {
-        return Model::query()->findOrFail($this->id);
+        return Model::query()->byId($this->id)->firstOr(fn () => $this->findOrDeleteJob());
     }
 }
