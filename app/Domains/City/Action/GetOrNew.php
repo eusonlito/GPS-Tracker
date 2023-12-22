@@ -33,7 +33,7 @@ class GetOrNew extends ActionAbstract
         $this->locate();
 
         if ($this->locateIsValid() === false) {
-            return $this->near();
+            return null;
         }
 
         $this->country();
@@ -60,17 +60,6 @@ class GetOrNew extends ActionAbstract
             && $this->locate->city
             && $this->locate->state
             && $this->locate->country;
-    }
-
-    /**
-     * @return ?\App\Domains\City\Model\City
-     */
-    protected function near(): ?Model
-    {
-        return Model::query()
-            ->selectDistance($this->data['latitude'], $this->data['longitude'])
-            ->orderByDistance()
-            ->first();
     }
 
     /**
