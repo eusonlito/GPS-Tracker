@@ -11,4 +11,12 @@ abstract class CommandAbstract extends CommandAbstractSahred
      * @var \App\Domains\Position\Model\Position
      */
     protected Model $row;
+
+    /**
+     * @return void
+     */
+    protected function row(): void
+    {
+        $this->row = Model::query()->findOrFail($this->checkOption('id'));
+    }
 }

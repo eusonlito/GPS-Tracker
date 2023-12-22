@@ -28,7 +28,8 @@ class UpdateCity extends ActionAbstract
      */
     protected function city(): void
     {
-        $this->city = $this->factory('City')->action($this->cityData())->getOrNew();
+        $this->city = $this->row->city
+            ?: $this->factory('City')->action($this->cityData())->getOrNew();
     }
 
     /**
@@ -47,7 +48,7 @@ class UpdateCity extends ActionAbstract
      */
     protected function save(): void
     {
-        if (empty($this->city)) {
+        if ($this->city?->id === $this->row->city_id) {
             return;
         }
 
