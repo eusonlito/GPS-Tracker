@@ -300,7 +300,23 @@ class Position extends BuilderAbstract
      */
     public function withCity(): self
     {
-        return $this->with(['city' => static fn ($q) => $q->withSimple('state')]);
+        return $this->with('city');
+    }
+
+    /**
+     * @return self
+     */
+    public function withCityState(): self
+    {
+        return $this->withCity()->withState();
+    }
+
+    /**
+     * @return self
+     */
+    public function withCountry(): self
+    {
+        return $this->with('country');
     }
 
     /**
@@ -317,6 +333,14 @@ class Position extends BuilderAbstract
     public function withDevice(): self
     {
         return $this->with('device');
+    }
+
+    /**
+     * @return self
+     */
+    public function withState(): self
+    {
+        return $this->with('state');
     }
 
     /**

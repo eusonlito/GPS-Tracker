@@ -134,7 +134,7 @@ class Device extends BuilderAbstract
      */
     public function withWhereHasPositionLast(): self
     {
-        return $this->withWhereHas('positionLast', static fn ($q) => $q->withCity());
+        return $this->withWhereHas('positionLast', static fn ($q) => $q->withCityState());
     }
 
     /**

@@ -194,7 +194,7 @@ class Index extends ControllerAbstract
         return $this->cache(
             fn () => $this->trip()
                 ->positions()
-                ->withCity()
+                ->withCityState()
                 ->list()
                 ->get()
         );

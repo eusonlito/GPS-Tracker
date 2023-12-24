@@ -101,7 +101,7 @@ class MapRefuel extends Component
             'speed' => helper()->unit('speed', $position->speed),
             'speed_human' => helper()->unitHuman('speed', $position->speed),
             'city' => $position->city?->name,
-            'state' => $position->city?->state->name,
+            'state' => $position->state?->name,
         ];
     }
 }

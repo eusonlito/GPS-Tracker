@@ -41,6 +41,16 @@ class Country extends BuilderAbstract
     }
 
     /**
+     * @param string $name
+     *
+     * @return self
+     */
+    public function byName(string $name): self
+    {
+        return $this->where('name', $name);
+    }
+
+    /**
      * @param int $vehicle_id
      * @param ?string $before_start_utc_at
      * @param ?string $after_start_utc_at

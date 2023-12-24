@@ -69,6 +69,6 @@ class State extends ModelAbstract
      */
     public function country(): BelongsTo
     {
-        return $this->belongsTo(CountryModel::class, CountryModel::FOREIGN)->withDefault();
+        return $this->belongsTo(CountryModel::class, CountryModel::FOREIGN);
     }
 }

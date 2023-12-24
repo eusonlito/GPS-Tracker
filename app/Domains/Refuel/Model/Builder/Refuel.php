@@ -186,7 +186,7 @@ class Refuel extends BuilderAbstract
      */
     public function withWhereHasPosition(): self
     {
-        return $this->withWhereHas('position', static fn ($q) => $q->withCity());
+        return $this->withWhereHas('position', static fn ($q) => $q->withCityState());
     }
 
     /**

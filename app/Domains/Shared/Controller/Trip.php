@@ -58,7 +58,7 @@ class Trip extends ControllerAbstract
     protected function positions(): PositionCollection
     {
         return $this->trip->positions()
-            ->withCity()
+            ->withCityState()
             ->list()
             ->get();
     }
@@ -86,7 +86,7 @@ class Trip extends ControllerAbstract
     {
         return $this->trip->positions()
             ->byIdNext((int)$this->request->input('id_from'))
-            ->withCity()
+            ->withCityState()
             ->list()
             ->get();
     }
