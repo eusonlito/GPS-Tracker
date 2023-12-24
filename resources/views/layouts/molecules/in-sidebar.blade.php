@@ -186,6 +186,40 @@
             </ul>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'city.') || str_starts_with($ROUTE, 'state.') || str_starts_with($ROUTE, 'country.'))
+
+        <li>
+            <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('map-pin')</div>
+                <div class="side-menu__title">
+                    {{ __('in-sidebar.location') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                </div>
+            </a>
+
+            <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('city.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'city.') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('list')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.city-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('state.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'state.') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('list')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.state-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('country.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'country.') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('list')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.country-index') }}</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         <li>
             <a href="{{ route('timezone.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'timezone.') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('globe')</div>

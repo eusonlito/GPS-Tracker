@@ -9,6 +9,7 @@ use App\Domains\City\Model\Collection\City as Collection;
 use App\Domains\City\Test\Factory\City as TestFactory;
 use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\CoreApp\Model\Traits\Gis as GisTrait;
+use App\Domains\Country\Model\Country as CountryModel;
 use App\Domains\State\Model\State as StateModel;
 
 class City extends ModelAbstract
@@ -30,6 +31,13 @@ class City extends ModelAbstract
      * @const string
      */
     public const FOREIGN = 'city_id';
+
+    /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'alias' => 'array',
+    ];
 
     /**
      * @return void
@@ -70,8 +78,16 @@ class City extends ModelAbstract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(CountryModel::class, CountryModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function state(): BelongsTo
     {
-        return $this->belongsTo(StateModel::class, StateModel::FOREIGN)->withDefault();
+        return $this->belongsTo(StateModel::class, StateModel::FOREIGN);
     }
 }

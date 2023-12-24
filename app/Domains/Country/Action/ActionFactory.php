@@ -19,4 +19,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(GetOrNew::class, $this->validate()->getOrNew());
     }
+
+    /**
+     * @return \App\Domains\Country\Model\Country
+     */
+    public function update(): Model
+    {
+        return $this->actionHandle(Update::class, $this->validate()->update());
+    }
 }

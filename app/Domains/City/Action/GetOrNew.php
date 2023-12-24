@@ -117,11 +117,44 @@ class GetOrNew extends ActionAbstract
      */
     protected function row(): void
     {
-        $this->row = Model::query()->firstOrCreate([
+        $this->row = $this->rowByName()
+            ?: $this->rowByAlias()
+            ?: $this->rowByCreate();
+    }
+
+    /**
+     * @return ?\App\Domains\City\Model\City
+     */
+    protected function rowByName(): ?Model
+    {
+        return Model::query()
+            ->byName($this->locate->city)
+            ->byStateId($this->state->id)
+            ->byCountryId($this->country->id)
+            ->first();
+    }
+
+    /**
+     * @return ?\App\Domains\City\Model\City
+     */
+    protected function rowByAlias(): ?Model
+    {
+        return Model::query()
+            ->byAlias($this->locate->city)
+            ->byStateId($this->state->id)
+            ->byCountryId($this->country->id)
+            ->first();
+    }
+
+    /**
+     * @return \App\Domains\City\Model\City
+     */
+    protected function rowByCreate(): Model
+    {
+        return Model::query()->create([
             'name' => $this->locate->city,
             'state_id' => $this->state->id,
             'country_id' => $this->country->id,
-        ], [
             'point' => Model::pointFromLatitudeLongitude($this->data['latitude'], $this->data['longitude']),
         ]);
     }

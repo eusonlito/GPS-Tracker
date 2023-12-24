@@ -28,6 +28,13 @@ class Country extends ModelAbstract
     public const FOREIGN = 'country_id';
 
     /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'alias' => 'array',
+    ];
+
+    /**
      * @param array $models
      *
      * @return \App\Domains\Country\Model\Collection\Country

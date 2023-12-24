@@ -8,6 +8,26 @@ use App\Domains\Position\Model\Position as PositionModel;
 class Country extends BuilderAbstract
 {
     /**
+     * @param string $alias
+     *
+     * @return self
+     */
+    public function byAlias(string $alias): self
+    {
+        return $this->whereJsonContains('alias', $alias);
+    }
+
+    /**
+     * @param string $code
+     *
+     * @return self
+     */
+    public function byCode(string $code): self
+    {
+        return $this->where('code', $code);
+    }
+
+    /**
      * @param int $device_id
      * @param ?string $before_start_utc_at
      * @param ?string $after_start_utc_at

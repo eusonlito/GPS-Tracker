@@ -21,9 +21,39 @@ class GetOrNew extends ActionAbstract
      */
     protected function row(): void
     {
-        $this->row = Model::query()->firstOrCreate(
-            ['code' => $this->data['code']],
-            ['name' => $this->data['name']],
-        );
+        $this->row = $this->rowByName()
+            ?: $this->rowByAlias()
+            ?: $this->rowByCreate();
+    }
+
+    /**
+     * @return ?\App\Domains\Country\Model\Country
+     */
+    protected function rowByName(): ?Model
+    {
+        return Model::query()
+            ->byCode($this->data['code'])
+            ->first();
+    }
+
+    /**
+     * @return ?\App\Domains\Country\Model\Country
+     */
+    protected function rowByAlias(): ?Model
+    {
+        return Model::query()
+            ->byAlias($this->data['name'])
+            ->first();
+    }
+
+    /**
+     * @return \App\Domains\Country\Model\Country
+     */
+    protected function rowByCreate(): Model
+    {
+        return Model::query()->create([
+            'code' => $this->data['code'],
+            'name' => $this->data['name'],
+        ]);
     }
 }

@@ -30,6 +30,13 @@ class State extends ModelAbstract
     public const FOREIGN = 'state_id';
 
     /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'alias' => 'array',
+    ];
+
+    /**
      * @param array $models
      *
      * @return \App\Domains\State\Model\Collection\State
