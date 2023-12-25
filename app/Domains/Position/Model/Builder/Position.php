@@ -254,7 +254,7 @@ class Position extends BuilderAbstract
         return $this->selectRaw('
             `id`, `speed`, `direction`, `signal`, `date_at`, `date_utc_at`, `created_at`, `updated_at`,
             ROUND(ST_Longitude(`point`), 5) AS `longitude`, ROUND(ST_Latitude(`point`), 5) AS `latitude`,
-            `city_id`, `device_id`, `timezone_id`, `trip_id`, `user_id`, `vehicle_id`
+            `country_id`, `city_id`, `device_id`, `state_id`, `timezone_id`, `trip_id`, `user_id`, `vehicle_id`
         ');
     }
 
