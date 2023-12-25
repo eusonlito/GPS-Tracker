@@ -22,6 +22,16 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @param array $city_ids
+     *
+     * @return self
+     */
+    public function byCityIds(array $city_ids): self
+    {
+        return $this->whereIntegerInRaw('city_id', $city_ids);
+    }
+
+    /**
      * @param int $country_id
      *
      * @return self
@@ -29,6 +39,16 @@ class Position extends BuilderAbstract
     public function byCountryId(int $country_id): self
     {
         return $this->where('country_id', $country_id);
+    }
+
+    /**
+     * @param array $country_ids
+     *
+     * @return self
+     */
+    public function byCountryIds(array $country_ids): self
+    {
+        return $this->whereIntegerInRaw('country_id', $country_ids);
     }
 
     /**
@@ -76,6 +96,16 @@ class Position extends BuilderAbstract
     public function byStateId(int $state_id): self
     {
         return $this->where('state_id', $state_id);
+    }
+
+    /**
+     * @param array $state_ids
+     *
+     * @return self
+     */
+    public function byStateIds(array $state_ids): self
+    {
+        return $this->whereIntegerInRaw('state_id', $state_ids);
     }
 
     /**

@@ -90,4 +90,25 @@ class City extends ModelAbstract
     {
         return $this->belongsTo(StateModel::class, StateModel::FOREIGN);
     }
+
+    /**
+     * @return string
+     */
+    public function latitudeLongitudeUrl(): string
+    {
+        return sprintf('https://maps.google.com/?q=%s,%s', $this->latitude, $this->longitude);
+    }
+
+    /**
+     * @return string
+     */
+    public function latitudeLongitudeLink(): string
+    {
+        return sprintf(
+            '<a href="%s" rel="nofollow noopener noreferrer" target="_blank">%.5f,%.5f</a>',
+            $this->latitudeLongitudeUrl(),
+            $this->latitude,
+            $this->longitude,
+        );
+    }
 }

@@ -28,6 +28,16 @@ class State extends BuilderAbstract
     }
 
     /**
+     * @param array $country_ids
+     *
+     * @return self
+     */
+    public function byCountryIds(array $country_ids): self
+    {
+        return $this->whereIntegerInRaw('country_id', $country_ids);
+    }
+
+    /**
      * @param int $device_id
      * @param ?string $before_start_utc_at
      * @param ?string $after_start_utc_at

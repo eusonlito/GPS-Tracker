@@ -6,6 +6,7 @@
         'country-exists' => 'Le pays sélectionné n\'est pas disponible',
         'state-exists' => 'La province sélectionnée n\'est pas disponible',
     ],
+    'merge' => '',
     'meta-title' => 'Villes &gt; :titre',
     'name' => 'Nom',
     'save' => 'Sauvegarder',

@@ -27,4 +27,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(Update::class, $this->validate()->update());
     }
+
+    /**
+     * @return \App\Domains\City\Model\City
+     */
+    public function updateMerge(): Model
+    {
+        return $this->actionHandle(UpdateMerge::class, $this->validate()->updateMerge());
+    }
 }

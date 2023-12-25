@@ -5,6 +5,7 @@
     'error' => [
         'country-exists' => 'Le pays sélectionné n\'est pas disponible',
     ],
+    'merge' => '',
     'meta-title' => 'Provinces &gt; :title',
     'name' => 'Nom',
     'save' => 'Sauvegarder',

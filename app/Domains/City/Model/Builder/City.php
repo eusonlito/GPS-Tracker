@@ -28,13 +28,13 @@ class City extends BuilderAbstract
     }
 
     /**
-     * @param string $name
+     * @param array $country_ids
      *
      * @return self
      */
-    public function byName(string $name): self
+    public function byCountryIds(array $country_ids): self
     {
-        return $this->where('name', $name);
+        return $this->whereIntegerInRaw('country_id', $country_ids);
     }
 
     /**
@@ -61,6 +61,16 @@ class City extends BuilderAbstract
     }
 
     /**
+     * @param string $name
+     *
+     * @return self
+     */
+    public function byName(string $name): self
+    {
+        return $this->where('name', $name);
+    }
+
+    /**
      * @param int $state_id
      *
      * @return self
@@ -68,6 +78,16 @@ class City extends BuilderAbstract
     public function byStateId(int $state_id): self
     {
         return $this->where('state_id', $state_id);
+    }
+
+    /**
+     * @param array $state_ids
+     *
+     * @return self
+     */
+    public function byStateIds(array $state_ids): self
+    {
+        return $this->whereIntegerInRaw('state_id', $state_ids);
     }
 
     /**

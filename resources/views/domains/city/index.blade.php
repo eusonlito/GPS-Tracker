@@ -12,6 +12,7 @@
                 <th class="text-left">{{ __('city-index.alias') }}</th>
                 <th class="text-left">{{ __('city-index.state') }}</th>
                 <th class="text-left">{{ __('city-index.country') }}</th>
+                <th>{{ __('city-index.coordinates') }}</th>
             </tr>
         </thead>
 
@@ -25,6 +26,7 @@
                 <td class="text-left"><a href="{{ $link }}" class="block">{{ implode(', ', $row->alias ?? []) }}</a></td>
                 <td class="text-left">{{ $row->state->name }}</td>
                 <td class="text-left">{{ $row->country->name }}</td>
+                <td>{!! $row->latitudeLongitudeLink() !!}</td>
             </tr>
 
             @endforeach

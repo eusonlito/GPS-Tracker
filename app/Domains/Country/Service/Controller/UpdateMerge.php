@@ -1,21 +1,22 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\City\Service\Controller;
+namespace App\Domains\Country\Service\Controller;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
-use App\Domains\City\Model\City as Model;
-use App\Domains\City\Model\Collection\City as Collection;
+use Illuminate\Http\Request;
+use App\Domains\Country\Model\Country as Model;
+use App\Domains\Country\Model\Collection\Country as Collection;
 
-class Index extends ControllerAbstract
+class UpdateMerge extends ControllerAbstract
 {
     /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Country\Model\Country $row
      *
      * @return self
      */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
     {
     }
 
@@ -25,21 +26,20 @@ class Index extends ControllerAbstract
     public function data(): array
     {
         return [
+            'row' => $this->row,
             'list' => $this->list(),
         ];
     }
 
     /**
-     * @return \App\Domains\City\Model\Collection\City
+     * @return \App\Domains\Country\Model\Collection\Country
      */
     protected function list(): Collection
     {
         return $this->cache(
             fn () => Model::query()
+                ->byIdNot($this->row->id)
                 ->list()
-                ->selectPointAsLatitudeLongitude()
-                ->withState()
-                ->withCountry()
                 ->get()
         );
     }
