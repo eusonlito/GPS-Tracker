@@ -42,6 +42,7 @@ class Update extends ActionAbstract
     protected function data(): void
     {
         $this->dataAlias();
+        $this->dataPoint();
     }
 
     /**
@@ -50,6 +51,17 @@ class Update extends ActionAbstract
     protected function dataAlias(): void
     {
         $this->data['alias'] = array_filter(array_map('trim', explode(',', $this->data['alias'])));
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataPoint(): void
+    {
+        $this->data['point'] = Model::pointFromLatitudeLongitude(
+            round($this->data['latitude'], 5),
+            round($this->data['longitude'], 5),
+        );
     }
 
     /**
@@ -117,6 +129,7 @@ class Update extends ActionAbstract
     {
         $this->row->name = $this->data['name'];
         $this->row->alias = $this->data['alias'];
+        $this->row->point = $this->data['point'];
         $this->row->state_id = $this->data['state_id'];
         $this->row->country_id = $this->data['country_id'];
         $this->row->save();

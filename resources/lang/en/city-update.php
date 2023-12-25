@@ -6,6 +6,8 @@
         'country-exists' => 'The selected country is not available',
         'state-exists' => 'The selected province is not available',
     ],
+    'latitude' => 'Latitude',
+    'longitude' => 'Longitude',
     'merge' => 'Join',
     'meta-title' => 'Cities &gt; :title',
     'name' => 'Name',

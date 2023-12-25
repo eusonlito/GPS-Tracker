@@ -14,6 +14,8 @@ class Update extends ValidateAbstract
         return [
             'name' => ['bail', 'required'],
             'alias' => ['bail', 'string'],
+            'latitude' => ['bail', 'numeric', 'required'],
+            'longitude' => ['bail', 'numeric', 'required'],
             'state_id' => ['bail', 'required', 'integer'],
             'country_id' => ['bail', 'required', 'integer'],
         ];
