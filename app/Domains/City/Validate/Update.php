@@ -13,7 +13,7 @@ class Update extends ValidateAbstract
     {
         return [
             'name' => ['bail', 'required'],
-            'alias' => ['bail'],
+            'alias' => ['bail', 'string'],
             'state_id' => ['bail', 'required', 'integer'],
             'country_id' => ['bail', 'required', 'integer'],
         ];

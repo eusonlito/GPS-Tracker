@@ -20,7 +20,7 @@ class State extends FactoryAbstract
     {
         return [
             'name' => 'State: '.$this->faker->name(),
-
+            'alias' => [$this->faker->name()],
             'country_id' => $this->firstOrFactory(CountryModel::class),
         ];
     }
