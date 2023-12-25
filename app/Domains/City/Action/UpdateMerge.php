@@ -93,7 +93,19 @@ class UpdateMerge extends ActionAbstract
     {
         PositionModel::query()
             ->byCityIds($this->data['ids'])
-            ->update(['city_id' => $this->row->id]);
+            ->update($this->savePositionData());
+    }
+
+    /**
+     * @return array
+     */
+    protected function savePositionData(): array
+    {
+        return [
+            'city_id' => $this->row->id,
+            'state_id' => $this->row->state_id,
+            'country_id' => $this->row->country_id,
+        ];
     }
 
     /**
