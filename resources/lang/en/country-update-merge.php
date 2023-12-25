@@ -1,12 +1,12 @@
 <?php return [
-    'alias' => '',
+    'alias' => 'Alias',
     'error' => [
-        'ids-empty' => '',
+        'ids-empty' => 'No country selected',
     ],
-    'filter' => '',
-    'merge' => '',
-    'meta-title' => '',
-    'name' => '',
-    'select' => '',
-    'success' => '',
+    'filter' => 'Filter...',
+    'merge' => 'Join',
+    'meta-title' => 'Countries &gt; :title &gt; Join',
+    'name' => 'Name',
+    'select' => 'Select',
+    'success' => 'Countries have been successfully joined',
 ];

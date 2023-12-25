@@ -6,7 +6,7 @@
         'country-exists' => 'The selected country is not available',
         'state-exists' => 'The selected province is not available',
     ],
-    'merge' => '',
+    'merge' => 'Join',
     'meta-title' => 'Cities &gt; :title',
     'name' => 'Name',
     'save' => 'Save',

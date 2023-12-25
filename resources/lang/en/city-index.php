@@ -1,6 +1,6 @@
 <?php return [
     'alias' => 'Alias',
-    'coordinates' => '',
+    'coordinates' => 'Coordinates',
     'country' => 'Country',
     'filter' => 'Filter...',
     'meta-title' => 'Cities',

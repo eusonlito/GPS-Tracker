@@ -5,7 +5,7 @@
     'error' => [
         'code-exists' => 'The indicated code already exists in another country',
     ],
-    'merge' => '',
+    'merge' => 'Join',
     'meta-title' => 'Countries &gt; :title',
     'name' => 'Name',
     'save' => 'Save',

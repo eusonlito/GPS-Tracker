@@ -1,13 +1,13 @@
 <?php return [
-    'alias' => '',
-    'country' => '',
+    'alias' => 'Alias',
+    'country' => 'Pays',
     'error' => [
-        'ids-empty' => '',
+        'ids-empty' => 'Aucune province n\'a été sélectionnée',
     ],
-    'filter' => '',
-    'merge' => '',
-    'meta-title' => '',
-    'name' => '',
-    'select' => '',
-    'success' => '',
+    'filter' => 'Filtre...',
+    'merge' => 'Rejoindre',
+    'meta-title' => 'Provinces &gt; :title &gt; Rejoindre',
+    'name' => 'Nom',
+    'select' => 'Sélectionner',
+    'success' => 'Les provinces ont été fusionnées avec succès',
 ];
