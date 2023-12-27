@@ -86,12 +86,12 @@ L.GeometryUtil = GeometryUtil;
     const layers = Map.getControlLayers();
 
     const heatmapLayer = new HeatmapOverlay({
-        radius: 25,
+        radius: 12,
         maxOpacity: .5,
         scaleRadius: false,
         useLocalExtrema: true,
-        latField: 'latitude',
-        lngField: 'longitude',
+        latField: 'cell_y',
+        lngField: 'cell_x',
         valueField: 'value'
     });
 

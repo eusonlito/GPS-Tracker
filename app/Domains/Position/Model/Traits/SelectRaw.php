@@ -22,25 +22,33 @@ trait SelectRaw
         }
 
         static::db()->unprepared('
-            SET @cellSize = 0.0001;
-
             SET @boundingBox = ST_SRID(ST_MakeEnvelope(
                 Point('.$bounding_box['longitude_min'].', '.$bounding_box['latitude_min'].'),
                 Point('.$bounding_box['longitude_max'].', '.$bounding_box['latitude_max'].')
             ), 4326);
+
+            SET @distance = ST_Distance_Sphere(
+                Point('.$bounding_box['longitude_min'].', '.$bounding_box['latitude_min'].'),
+                Point('.$bounding_box['longitude_max'].', '.$bounding_box['latitude_min'].')
+            ) / 1000;
+
+            SET @multiplier = ROUND(@distance);
+            SET @multiplier = IF(@multiplier > 0, @multiplier, 1);
+
+            SET @cellSize = ROUND(0.00001 * @multiplier, 5);
         ');
 
         return static::db()->select('
             SELECT
-                ROUND(`latitude` / @cellSize) * @cellSize + @cellSize / 2 AS `latitude`,
-                ROUND(`longitude` / @cellSize) * @cellSize + @cellSize / 2 AS `longitude`,
+                ROUND(ROUND(`position`.`latitude` / @cellSize) * @cellSize + @cellSize / 2, 5) AS `cell_y`,
+                ROUND(ROUND(`position`.`longitude` / @cellSize) * @cellSize + @cellSize / 2, 5) AS `cell_x`,
                 COUNT(*) AS `value`
             FROM `position`
             WHERE (
-                `trip_id` IN ('.$tripBuilder->select('id')->toRawSql().')
-                AND ST_Within(`point`, @boundingBox)
+                `position`.`trip_id` IN ('.$tripBuilder->select('id')->toRawSql().')
+                AND ST_Within(`position`.`point`, @boundingBox)
             )
-            GROUP BY `latitude`, `longitude`
+            GROUP BY `cell_y`, `cell_x`
             ORDER BY `value` DESC
             LIMIT 20000;
         ');
