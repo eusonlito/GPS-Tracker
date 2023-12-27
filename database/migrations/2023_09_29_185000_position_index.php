@@ -10,17 +10,9 @@ return new class extends MigrationAbstract {
      */
     public function up(): void
     {
-        $this->map();
+        $this->defineTypePoint();
         $this->tables();
         $this->upFinish();
-    }
-
-    /**
-     * @return void
-     */
-    protected function map(): void
-    {
-        $this->db()->getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('point', 'array');
     }
 
     /**

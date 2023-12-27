@@ -11,6 +11,8 @@ use App\Domains\Country\Model\Country as CountryModel;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Model\Builder\Position as Builder;
 use App\Domains\Position\Model\Collection\Position as Collection;
+use App\Domains\Position\Model\Traits\Query as QueryTrait;
+use App\Domains\Position\Model\Traits\SelectRaw as SelectRawTrait;
 use App\Domains\Position\Test\Factory\Position as TestFactory;
 use App\Domains\State\Model\State as StateModel;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
@@ -21,6 +23,8 @@ class Position extends ModelAbstract
 {
     use GisTrait;
     use HasFactory;
+    use QueryTrait;
+    use SelectRawTrait;
 
     /**
      * @var string

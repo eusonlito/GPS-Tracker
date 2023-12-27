@@ -17,7 +17,7 @@
         @endif
 
         <div class="lg:ml-4 mt-2 lg:mt-0 bg-white">
-            <a href="{{ route('maintenance-item.create') }}" class="btn form-control-lg">{{ __('maintenance-item-index.create') }}</a>
+            <a href="{{ route('maintenance-item.create') }}" class="btn form-control-lg whitespace-nowrap">{{ __('maintenance-item-index.create') }}</a>
         </div>
     </div>
 </form>

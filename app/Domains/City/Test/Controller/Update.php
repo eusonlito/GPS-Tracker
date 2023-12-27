@@ -63,7 +63,10 @@ class Update extends ControllerAbstract
 
         $row = $this->factoryCreate();
         $data = $this->factoryMake()->toArray();
+
         $data['alias'] = implode(',', $data['alias']);
+        $data['latitude'] = 42.34818;
+        $data['longitude'] = -7.9126;
 
         unset($data['point']);
 

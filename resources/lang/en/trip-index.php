@@ -8,6 +8,7 @@
     'end-at' => 'End',
     'end_at' => 'End',
     'filter' => 'Filter...',
+    'heatmap' => 'Heatmap',
     'latitude' => 'Latitude',
     'longitude' => 'Longitude',
     'map' => 'Show Map',

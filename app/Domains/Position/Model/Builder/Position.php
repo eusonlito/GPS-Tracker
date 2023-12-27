@@ -6,6 +6,7 @@ use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\CoreApp\Model\Builder\Traits\Gis as GisTrait;
 use App\Domains\Refuel\Model\Refuel as RefuelModel;
 use App\Domains\Trip\Model\Trip as TripModel;
+use App\Domains\Trip\Model\Builder\Trip as TripBuilder;
 
 class Position extends BuilderAbstract
 {
@@ -129,6 +130,16 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @param \App\Domains\Trip\Model\Builder\Trip $query
+     *
+     * @return self
+     */
+    public function byTripQuery(TripBuilder $query): self
+    {
+        return $this->whereIn('trip_id', $query->select('id'));
+    }
+
+    /**
      * @param ?string $before_start_utc_at
      * @param ?string $after_start_utc_at
      *
@@ -237,13 +248,22 @@ class Position extends BuilderAbstract
     /**
      * @return self
      */
+    public function selectOnlyBoundingBox(): self
+    {
+        return $this->withoutGlobalScope('selectPointAsLatitudeLongitude')->selectRaw('
+            MIN(`position`.`latitude`) AS `latitude_min`,
+            MIN(`position`.`longitude`) AS `longitude_min`,
+            MAX(`position`.`latitude`) AS `latitude_max`,
+            MAX(`position`.`longitude`) AS `longitude_max`
+        ');
+    }
+
+    /**
+     * @return self
+     */
     public function selectLatitudeLongitude(): self
     {
-        return $this->selectRaw('
-            ROUND(ST_Longitude(`position`.`point`), 5) AS `longitude`,
-            ROUND(ST_Latitude(`position`.`point`), 5) AS `latitude`,
-            NULL AS `point`
-        ');
+        return $this->selectRaw('`position`.`longitude`, `position`.`latitude`, NULL AS `point`');
     }
 
     /**
@@ -253,8 +273,8 @@ class Position extends BuilderAbstract
     {
         return $this->selectRaw('
             `id`, `speed`, `direction`, `signal`, `date_at`, `date_utc_at`, `created_at`, `updated_at`,
-            ROUND(ST_Longitude(`point`), 5) AS `longitude`, ROUND(ST_Latitude(`point`), 5) AS `latitude`,
-            `country_id`, `city_id`, `device_id`, `state_id`, `timezone_id`, `trip_id`, `user_id`, `vehicle_id`
+            `longitude`, `latitude`, `country_id`, `city_id`, `device_id`, `state_id`, `timezone_id`,
+            `trip_id`, `user_id`, `vehicle_id`
         ');
     }
 

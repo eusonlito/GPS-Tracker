@@ -29,11 +29,11 @@
         </div>
 
         <div class="lg:ml-4 mt-2 lg:mt-0 bg-white">
-            <button type="submit" class="btn form-control-lg">{{ __('maintenance-index.send') }}</button>
+            <button type="submit" class="btn form-control-lg whitespace-nowrap">{{ __('maintenance-index.send') }}</button>
         </div>
 
         <div class="lg:ml-4 mt-2 lg:mt-0 bg-white">
-            <a href="{{ route('maintenance.create') }}" class="btn form-control-lg">{{ __('maintenance-index.create') }}</a>
+            <a href="{{ route('maintenance.create') }}" class="btn form-control-lg whitespace-nowrap">{{ __('maintenance-index.create') }}</a>
         </div>
     </div>
 </form>

@@ -154,8 +154,8 @@ class City extends BuilderAbstract
     public function selectPointAsLatitudeLongitude(): self
     {
         return $this->selectRaw('
-            `id`, `alias`, `name`, `created_at`, `updated_at`, `state_id`, `country_id`,
-            ROUND(ST_Longitude(`point`), 5) AS `longitude`, ROUND(ST_Latitude(`point`), 5) AS `latitude`
+            `id`, `alias`, `name`, `longitude`, `latitude`,
+            `created_at`, `updated_at`, `state_id`, `country_id`
         ');
     }
 
