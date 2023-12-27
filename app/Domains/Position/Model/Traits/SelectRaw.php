@@ -50,7 +50,7 @@ trait SelectRaw
             )
             GROUP BY `cell_y`, `cell_x`
             ORDER BY `value` DESC
-            LIMIT 20000;
+            LIMIT 10000;
         ');
     }
 
