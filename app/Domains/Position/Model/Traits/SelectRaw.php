@@ -32,10 +32,7 @@ trait SelectRaw
                 Point('.$bounding_box['longitude_max'].', '.$bounding_box['latitude_min'].')
             ) / 1000;
 
-            SET @multiplier = ROUND(@distance);
-            SET @multiplier = IF(@multiplier > 0, @multiplier, 1);
-
-            SET @cellSize = ROUND(0.00001 * @multiplier, 5);
+            SET @cellSize = ROUND(0.00001 * @distance, 5);
         ');
 
         return static::db()->select('
