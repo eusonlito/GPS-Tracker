@@ -152,7 +152,7 @@ class StartPort extends ActionAbstract
      */
     protected function logContent(string $body): string
     {
-        if ($this->isBinary($body) === false) {
+        if ($this->isBinary($body)) {
             $body = bin2hex($body);
         }
 
