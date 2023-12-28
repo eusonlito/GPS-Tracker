@@ -152,10 +152,6 @@ class StartPort extends ActionAbstract
      */
     protected function logContent(string $body): string
     {
-        if ($this->isBinary($body)) {
-            $body = bin2hex($body);
-        }
-
         return '['.date('c').'] '.$body."\n";
     }
 
@@ -227,15 +223,5 @@ class StartPort extends ActionAbstract
     protected function logFile(string $suffix = ''): string
     {
         return base_path('storage/logs/server/'.date('Y/m/d').'/'.$this->row->port.$suffix.'.log');
-    }
-
-    /**
-     * @param string $body
-     *
-     * @return bool
-     */
-    protected function isBinary(string $body): bool
-    {
-        return mb_check_encoding($body, 'UTF-8') === false;
     }
 }

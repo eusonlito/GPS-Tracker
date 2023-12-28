@@ -70,7 +70,21 @@ class Client
             return null;
         }
 
+        if ($this->readBufferIsBinary($buffer)) {
+            $buffer = bin2hex($buffer);
+        }
+
         return trim($buffer);
+    }
+
+    /**
+     * @param string $buffer
+     *
+     * @return bool
+     */
+    protected function readBufferIsBinary(string $buffer): bool
+    {
+        return mb_check_encoding($buffer, 'UTF-8') === false;
     }
 
     /**
