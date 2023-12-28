@@ -37,7 +37,39 @@ class GetOrNew extends ActionAbstract
      */
     protected function row(): void
     {
-        $this->row = Model::query()->firstOrCreate([
+        $this->row = $this->rowByName()
+            ?: $this->rowByAlias()
+            ?: $this->rowByCreate();
+    }
+
+    /**
+     * @return ?\App\Domains\State\Model\State
+     */
+    protected function rowByName(): ?Model
+    {
+        return Model::query()
+            ->byName($this->data['name'])
+            ->byCountryId($this->country->id)
+            ->first();
+    }
+
+    /**
+     * @return ?\App\Domains\State\Model\State
+     */
+    protected function rowByAlias(): ?Model
+    {
+        return Model::query()
+            ->byAlias($this->data['name'])
+            ->byCountryId($this->country->id)
+            ->first();
+    }
+
+    /**
+     * @return \App\Domains\State\Model\State
+     */
+    protected function rowByCreate(): Model
+    {
+        return Model::query()->create([
             'name' => $this->data['name'],
             'country_id' => $this->country->id,
         ]);

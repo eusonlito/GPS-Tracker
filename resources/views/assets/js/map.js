@@ -162,7 +162,7 @@ export default class {
         this.setControlScale();
     }
 
-    getControlLayers() {
+    static getControlLayers() {
         return {
             OpenStreetMap: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxNativeZoom: 19,
@@ -187,7 +187,7 @@ export default class {
     }
 
     setControlLayers() {
-        L.control.layers(this.getControlLayers(), null, { position: 'topright', collapsed: true })
+        L.control.layers(this.constructor.getControlLayers(), null, { position: 'topright', collapsed: true })
             .addTo(this.getMap());
 
         this.getMap().on('baselayerchange', (e) => {
@@ -198,7 +198,7 @@ export default class {
     }
 
     setControlLayerDefault() {
-        const layers = this.getControlLayers();
+        const layers = this.constructor.getControlLayers();
         let name = this.localStorage.get('layer');
 
         if (!name || !layers[name]) {

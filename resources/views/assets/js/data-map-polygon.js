@@ -1,6 +1,7 @@
 import L from 'leaflet';
 import GeometryUtil from 'leaflet-geometryutil';
 import 'leaflet-draw';
+import Map from './map';
 
 L.GeometryUtil = GeometryUtil;
 
@@ -22,22 +23,7 @@ L.GeometryUtil = GeometryUtil;
     const latitude = element.dataset.mapPolygonLatitude || 40.416729;
     const longitude = element.dataset.mapPolygonLongitude || -3.703339;
 
-    const layers = {
-        OpenStreetMap: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxNativeZoom: 19,
-            maxZoom: 22
-        }),
-        GoogleStreets: L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            maxNativeZoom: 20,
-            maxZoom: 22,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        }),
-        GoogleSatellite: L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-            maxNativeZoom: 20,
-            maxZoom: 22,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        })
-    };
+   const layers = Map.getControlLayers();
 
     const map = L.map(element, {
         attributionControl: false,

@@ -8,6 +8,26 @@ use App\Domains\Position\Model\Position as PositionModel;
 class Country extends BuilderAbstract
 {
     /**
+     * @param string $alias
+     *
+     * @return self
+     */
+    public function byAlias(string $alias): self
+    {
+        return $this->whereJsonContains('alias', $alias);
+    }
+
+    /**
+     * @param string $code
+     *
+     * @return self
+     */
+    public function byCode(string $code): self
+    {
+        return $this->where('code', $code);
+    }
+
+    /**
      * @param int $device_id
      * @param ?string $before_start_utc_at
      * @param ?string $after_start_utc_at
@@ -18,6 +38,16 @@ class Country extends BuilderAbstract
     public function byDeviceIdWhenTripStartUtcAtDateBetween(int $device_id, ?string $before_start_utc_at, ?string $after_start_utc_at, ?string $start_end): self
     {
         return $this->whereIn('id', PositionModel::query()->selectOnly('country_id')->byDeviceIdWhenTripStartUtcAtDateBetween($device_id, $before_start_utc_at, $after_start_utc_at, $start_end));
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return self
+     */
+    public function byName(string $name): self
+    {
+        return $this->where('name', $name);
     }
 
     /**

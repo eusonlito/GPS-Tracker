@@ -5,6 +5,8 @@ import './data-map-fence.js';
 import './data-map-polygon.js';
 import './data-map-device.js';
 import './data-map-refuel.js';
+import './data-map-point.js';
+import './data-map-heat.js';
 import './data-current-datetime.js';
 import './nav-tabs.js';
 

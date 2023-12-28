@@ -45,6 +45,7 @@
     "dependencies": {
         "leaflet-draw": "^1.0.4",
         "leaflet-geometryutil": "^0.10.3",
+        "leaflet-heatmap": "^1.0.0",
         "leaflet-polycolor": "^2.0.5",
         "leaflet-rotatedmarker": "^0.2.0",
         "leaflet-spline": "^0.1.3",

@@ -49,11 +49,11 @@
         @endif
 
         <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
-            <a href="{{ route('refuel.map') }}" class="btn form-control-lg">{{ __('refuel-index.map') }}</a>
+            <a href="{{ route('refuel.map') }}" class="btn form-control-lg whitespace-nowrap">{{ __('refuel-index.map') }}</a>
         </div>
 
         <div class="lg:ml-4 mt-2 lg:mt-0 bg-white">
-            <a href="{{ route('refuel.create') }}" class="btn form-control-lg">{{ __('refuel-index.create') }}</a>
+            <a href="{{ route('refuel.create') }}" class="btn form-control-lg whitespace-nowrap">{{ __('refuel-index.create') }}</a>
         </div>
     </div>
 </form>

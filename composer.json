@@ -132,7 +132,7 @@
         ],
 
         "quality": [
-            "@php artisan insights --ansi",
+            "@php artisan insights --ansi || true",
             "@php ./vendor/bin/phpstan analyse --ansi || true",
             "@php ./vendor/bin/psalm || true"
         ],

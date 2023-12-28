@@ -43,7 +43,7 @@ class UpdateAlarmNotification extends ControllerAbstract
         return $this->cache(
             fn () => PositionModel::query()
                 ->byTripId($this->row->id)
-                ->withCity()
+                ->withCityState()
                 ->list()
                 ->get()
         );

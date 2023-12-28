@@ -66,7 +66,7 @@ class UpdatePosition extends UpdateAbstract
         return PositionModel::query()
             ->byTripId($this->row->id)
             ->byIdNext((int)$this->request->input('id_from'))
-            ->withCity()
+            ->withCityState()
             ->list()
             ->get();
     }

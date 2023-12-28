@@ -21,6 +21,7 @@ class City extends FactoryAbstract
     {
         return [
             'name' => 'City: '.$this->faker->name(),
+            'alias' => [$this->faker->name()],
 
             'point' => Model::pointFromLatitudeLongitude(42.34818, -7.9126),
 

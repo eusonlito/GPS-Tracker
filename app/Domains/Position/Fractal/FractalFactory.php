@@ -22,8 +22,8 @@ class FractalFactory extends FractalAbstract
             'direction' => $row->direction,
             'speed' => helper()->unit('speed', $row->speed),
             'speed_human' => helper()->unitHuman('speed', $row->speed),
-            'city' => $row->city->name,
-            'state' => $row->city->state->name,
+            'city' => $row->city?->name,
+            'state' => $row->state?->name,
         ];
     }
 }

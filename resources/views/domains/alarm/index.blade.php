@@ -23,7 +23,7 @@
         <button type="button" class="sm:ml-4 mt-2 sm:mt-0 bg-white btn form-control-lg" data-notification-request data-notification-request-granted="{{ __('alarm-index.notifications-granted') }}" data-notification-request-denied="{{ __('alarm-index.notifications-denied') }}">{{ __('alarm-index.notifications-enable') }}</button>
 
         <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
-            <a href="{{ route('alarm.create') }}" class="btn form-control-lg">{{ __('alarm-index.create') }}</a>
+            <a href="{{ route('alarm.create') }}" class="btn form-control-lg whitespace-nowrap">{{ __('alarm-index.create') }}</a>
         </div>
     </div>
 </form>

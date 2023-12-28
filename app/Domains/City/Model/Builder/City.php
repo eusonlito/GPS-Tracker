@@ -8,6 +8,16 @@ use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 class City extends BuilderAbstract
 {
     /**
+     * @param string $alias
+     *
+     * @return self
+     */
+    public function byAlias(string $alias): self
+    {
+        return $this->whereJsonContains('alias', $alias);
+    }
+
+    /**
      * @param int $country_id
      *
      * @return self
@@ -18,13 +28,13 @@ class City extends BuilderAbstract
     }
 
     /**
-     * @param int $state_id
+     * @param array $country_ids
      *
      * @return self
      */
-    public function byStateId(int $state_id): self
+    public function byCountryIds(array $country_ids): self
     {
-        return $this->where('state_id', $state_id);
+        return $this->whereIntegerInRaw('country_id', $country_ids);
     }
 
     /**
@@ -51,6 +61,36 @@ class City extends BuilderAbstract
     }
 
     /**
+     * @param string $name
+     *
+     * @return self
+     */
+    public function byName(string $name): self
+    {
+        return $this->where('name', $name);
+    }
+
+    /**
+     * @param int $state_id
+     *
+     * @return self
+     */
+    public function byStateId(int $state_id): self
+    {
+        return $this->where('state_id', $state_id);
+    }
+
+    /**
+     * @param array $state_ids
+     *
+     * @return self
+     */
+    public function byStateIds(array $state_ids): self
+    {
+        return $this->whereIntegerInRaw('state_id', $state_ids);
+    }
+
+    /**
      * @param int $vehicle_id
      * @param ?string $before_start_utc_at
      * @param ?string $after_start_utc_at
@@ -68,7 +108,7 @@ class City extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->selectOnly('id', 'name', 'state_id', 'country_id')->orderBy('name', 'ASC');
+        return $this->selectOnly('id', 'name', 'alias', 'state_id', 'country_id')->orderBy('name', 'ASC');
     }
 
     /**
@@ -114,8 +154,8 @@ class City extends BuilderAbstract
     public function selectPointAsLatitudeLongitude(): self
     {
         return $this->selectRaw('
-            `id`, `name`, `created_at`, `updated_at`, `state_id`, `country_id`,
-            ROUND(ST_Longitude(`point`), 5) AS `longitude`, ROUND(ST_Latitude(`point`), 5) AS `latitude`
+            `id`, `alias`, `name`, `longitude`, `latitude`,
+            `created_at`, `updated_at`, `state_id`, `country_id`
         ');
     }
 
@@ -127,9 +167,29 @@ class City extends BuilderAbstract
      *
      * @return self
      */
-    public function whenRefuelUserIdVehicleIdDateAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_date_at, ?string $after_date_at): self
+    public function whenCityUserIdVehicleIdDateAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_date_at, ?string $after_date_at): self
     {
-        return $this->whereIn('id', PositionModel::query()->selectOnly('city_id')->whenRefuelUserIdVehicleIdDateAtBetween($user_id, $vehicle_id, $before_date_at, $after_date_at));
+        return $this->whereIn('id', PositionModel::query()->selectOnly('city_id')->whenCityUserIdVehicleIdDateAtBetween($user_id, $vehicle_id, $before_date_at, $after_date_at));
+    }
+
+    /**
+     * @param ?int $country_id
+     *
+     * @return self
+     */
+    public function whenCountryId(?int $country_id): self
+    {
+        return $this->when($country_id, static fn ($q) => $q->byCountryId($country_id));
+    }
+
+    /**
+     * @param ?int $state_id
+     *
+     * @return self
+     */
+    public function whenStateId(?int $state_id): self
+    {
+        return $this->when($state_id, static fn ($q) => $q->byStateId($state_id));
     }
 
     /**
@@ -143,6 +203,14 @@ class City extends BuilderAbstract
     public function whenTripUserIdVehicleIdStartUtcAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_start_utc_at, ?string $after_start_utc_at): self
     {
         return $this->whereIn('id', PositionModel::query()->selectOnly('city_id')->whenTripUserIdVehicleIdStartUtcAtBetween($user_id, $vehicle_id, $before_start_utc_at, $after_start_utc_at));
+    }
+
+    /**
+     * @return self
+     */
+    public function withCountry(): self
+    {
+        return $this->with('country');
     }
 
     /**

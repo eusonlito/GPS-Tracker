@@ -6,6 +6,7 @@ use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\CoreApp\Model\Builder\Traits\Gis as GisTrait;
 use App\Domains\Refuel\Model\Refuel as RefuelModel;
 use App\Domains\Trip\Model\Trip as TripModel;
+use App\Domains\Trip\Model\Builder\Trip as TripBuilder;
 
 class Position extends BuilderAbstract
 {
@@ -22,6 +23,16 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @param array $city_ids
+     *
+     * @return self
+     */
+    public function byCityIds(array $city_ids): self
+    {
+        return $this->whereIntegerInRaw('city_id', $city_ids);
+    }
+
+    /**
      * @param int $country_id
      *
      * @return self
@@ -29,6 +40,16 @@ class Position extends BuilderAbstract
     public function byCountryId(int $country_id): self
     {
         return $this->where('country_id', $country_id);
+    }
+
+    /**
+     * @param array $country_ids
+     *
+     * @return self
+     */
+    public function byCountryIds(array $country_ids): self
+    {
+        return $this->whereIntegerInRaw('country_id', $country_ids);
     }
 
     /**
@@ -79,6 +100,16 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @param array $state_ids
+     *
+     * @return self
+     */
+    public function byStateIds(array $state_ids): self
+    {
+        return $this->whereIntegerInRaw('state_id', $state_ids);
+    }
+
+    /**
      * @param int $trip_id
      *
      * @return self
@@ -96,6 +127,16 @@ class Position extends BuilderAbstract
     public function byTripIds(array $trip_ids): self
     {
         return $this->whereIntegerInRaw('trip_id', $trip_ids);
+    }
+
+    /**
+     * @param \App\Domains\Trip\Model\Builder\Trip $query
+     *
+     * @return self
+     */
+    public function byTripQuery(TripBuilder $query): self
+    {
+        return $this->whereIn('trip_id', $query->select('id'));
     }
 
     /**
@@ -207,13 +248,22 @@ class Position extends BuilderAbstract
     /**
      * @return self
      */
+    public function selectOnlyBoundingBox(): self
+    {
+        return $this->withoutGlobalScope('selectPointAsLatitudeLongitude')->selectRaw('
+            MIN(`position`.`latitude`) AS `latitude_min`,
+            MIN(`position`.`longitude`) AS `longitude_min`,
+            MAX(`position`.`latitude`) AS `latitude_max`,
+            MAX(`position`.`longitude`) AS `longitude_max`
+        ');
+    }
+
+    /**
+     * @return self
+     */
     public function selectLatitudeLongitude(): self
     {
-        return $this->selectRaw('
-            ROUND(ST_Longitude(`position`.`point`), 5) AS `longitude`,
-            ROUND(ST_Latitude(`position`.`point`), 5) AS `latitude`,
-            NULL AS `point`
-        ');
+        return $this->selectRaw('`position`.`longitude`, `position`.`latitude`, NULL AS `point`');
     }
 
     /**
@@ -223,8 +273,8 @@ class Position extends BuilderAbstract
     {
         return $this->selectRaw('
             `id`, `speed`, `direction`, `signal`, `date_at`, `date_utc_at`, `created_at`, `updated_at`,
-            ROUND(ST_Longitude(`point`), 5) AS `longitude`, ROUND(ST_Latitude(`point`), 5) AS `latitude`,
-            `city_id`, `device_id`, `timezone_id`, `trip_id`, `user_id`, `vehicle_id`
+            `longitude`, `latitude`, `country_id`, `city_id`, `device_id`, `state_id`, `timezone_id`,
+            `trip_id`, `user_id`, `vehicle_id`
         ');
     }
 
@@ -300,7 +350,23 @@ class Position extends BuilderAbstract
      */
     public function withCity(): self
     {
-        return $this->with(['city' => static fn ($q) => $q->withSimple('state')]);
+        return $this->with('city');
+    }
+
+    /**
+     * @return self
+     */
+    public function withCityState(): self
+    {
+        return $this->withCity()->withState();
+    }
+
+    /**
+     * @return self
+     */
+    public function withCountry(): self
+    {
+        return $this->with('country');
     }
 
     /**
@@ -317,6 +383,14 @@ class Position extends BuilderAbstract
     public function withDevice(): self
     {
         return $this->with('device');
+    }
+
+    /**
+     * @return self
+     */
+    public function withState(): self
+    {
+        return $this->with('state');
     }
 
     /**

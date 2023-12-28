@@ -60,18 +60,17 @@ class UpdateMerge extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->savePoints();
+        $this->savePosition();
         $this->saveRow();
     }
 
     /**
      * @return void
      */
-    protected function savePoints(): void
+    protected function savePosition(): void
     {
         PositionModel::query()
             ->byTripIds($this->data['ids'])
-            ->byIdNot($this->row->id)
             ->update(['trip_id' => $this->row->id]);
     }
 
@@ -88,6 +87,8 @@ class UpdateMerge extends ActionAbstract
      */
     protected function delete(): void
     {
-        Model::query()->byIds($this->data['ids'])->delete();
+        Model::query()
+            ->byIds($this->data['ids'])
+            ->delete();
     }
 }

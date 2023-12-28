@@ -19,4 +19,20 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(GetOrNew::class, $this->validate()->getOrNew());
     }
+
+    /**
+     * @return \App\Domains\State\Model\State
+     */
+    public function update(): Model
+    {
+        return $this->actionHandle(Update::class, $this->validate()->update());
+    }
+
+    /**
+     * @return \App\Domains\State\Model\State
+     */
+    public function updateMerge(): Model
+    {
+        return $this->actionHandle(UpdateMerge::class, $this->validate()->updateMerge());
+    }
 }

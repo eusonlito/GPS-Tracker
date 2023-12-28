@@ -20,6 +20,7 @@ class Country extends FactoryAbstract
         return [
             'name' => 'Country: '.($name = $this->faker->name),
             'code' => str_slug($name),
+            'alias' => [$this->faker->name()],
         ];
     }
 }

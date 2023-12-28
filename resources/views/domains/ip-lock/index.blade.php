@@ -9,7 +9,7 @@
         </div>
 
         <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
-            <a href="{{ route('ip-lock.create') }}" class="btn form-control-lg">{{ __('ip-lock-index.create') }}</a>
+            <a href="{{ route('ip-lock.create') }}" class="btn form-control-lg whitespace-nowrap">{{ __('ip-lock-index.create') }}</a>
         </div>
     </div>
 </form>

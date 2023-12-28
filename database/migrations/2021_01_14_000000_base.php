@@ -10,8 +10,10 @@ return new class extends MigrationAbstract {
      */
     public function up(): void
     {
+        $this->defineTypePoint();
         $this->functions();
         $this->tables();
+        $this->unprepared();
         $this->keys();
         $this->upFinish();
     }
@@ -424,6 +426,30 @@ return new class extends MigrationAbstract {
     /**
      * @return void
      */
+    protected function unprepared(): void
+    {
+        $this->db()->unprepared('
+            ALTER TABLE `alarm_notification`
+            ADD COLUMN `latitude` DOUBLE AS (ROUND(ST_LATITUDE(`point`), 5)) STORED,
+            ADD COLUMN `longitude` DOUBLE AS (ROUND(ST_LONGITUDE(`point`), 5)) STORED;
+        ');
+
+        $this->db()->unprepared('
+            ALTER TABLE `city`
+            ADD COLUMN `latitude` DOUBLE AS (ROUND(ST_LATITUDE(`point`), 5)) STORED,
+            ADD COLUMN `longitude` DOUBLE AS (ROUND(ST_LONGITUDE(`point`), 5)) STORED;
+        ');
+
+        $this->db()->unprepared('
+            ALTER TABLE `position`
+            ADD COLUMN `latitude` DOUBLE AS (ROUND(ST_LATITUDE(`point`), 5)) STORED,
+            ADD COLUMN `longitude` DOUBLE AS (ROUND(ST_LONGITUDE(`point`), 5)) STORED;
+        ');
+    }
+
+    /**
+     * @return void
+     */
     protected function keys(): void
     {
         Schema::table('alarm', function (Blueprint $table) {
@@ -431,6 +457,11 @@ return new class extends MigrationAbstract {
         });
 
         Schema::table('alarm_notification', function (Blueprint $table) {
+            $table->spatialIndex('point');
+
+            $this->tableAddIndex($table, 'latitude');
+            $this->tableAddIndex($table, 'longitude');
+
             $this->foreignOnDeleteSetNull($table, 'alarm');
             $this->foreignOnDeleteSetNull($table, 'position');
             $this->foreignOnDeleteSetNull($table, 'trip');
@@ -444,6 +475,9 @@ return new class extends MigrationAbstract {
 
         Schema::table('city', function (Blueprint $table) {
             $table->spatialIndex('point');
+
+            $this->tableAddIndex($table, 'latitude');
+            $this->tableAddIndex($table, 'longitude');
 
             $this->foreignOnDeleteCascade($table, 'country');
             $this->foreignOnDeleteCascade($table, 'state');
@@ -484,6 +518,9 @@ return new class extends MigrationAbstract {
 
         Schema::table('position', function (Blueprint $table) {
             $table->spatialIndex('point');
+
+            $this->tableAddIndex($table, 'latitude');
+            $this->tableAddIndex($table, 'longitude');
 
             $this->foreignOnDeleteSetNull($table, 'city');
             $this->foreignOnDeleteSetNull($table, 'country');

@@ -30,6 +30,13 @@ class State extends ModelAbstract
     public const FOREIGN = 'state_id';
 
     /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'alias' => 'array',
+    ];
+
+    /**
      * @param array $models
      *
      * @return \App\Domains\State\Model\Collection\State
@@ -62,6 +69,6 @@ class State extends ModelAbstract
      */
     public function country(): BelongsTo
     {
-        return $this->belongsTo(CountryModel::class, CountryModel::FOREIGN)->withDefault();
+        return $this->belongsTo(CountryModel::class, CountryModel::FOREIGN);
     }
 }

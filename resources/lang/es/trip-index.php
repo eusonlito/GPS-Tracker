@@ -8,6 +8,7 @@
     'end-at' => 'Fin',
     'end_at' => 'Fin',
     'filter' => 'Filtrar...',
+    'heatmap' => 'Mapa de Calor',
     'latitude' => 'Latitud',
     'longitude' => 'Longitud',
     'map' => 'Mostrar Mapa',

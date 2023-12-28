@@ -158,15 +158,17 @@
             </ul>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'server.'))
+
         <li>
-            <a href="javascript:;" class="menu {{ str_starts_with($ROUTE, 'server.') ? 'menu--active' : '' }}">
+            <a href="javascript:;" class="menu {{ $active ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('radio')</div>
                 <div class="menu__title">
-                    {{ __('in-sidebar.server') }} <div class="menu__sub-icon">@icon('chevron-down')</div>
+                    {{ __('in-sidebar.server') }} <div class="menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
                 </div>
             </a>
 
-            <ul class="{{ str_starts_with($ROUTE, 'server.') ? 'menu__sub-open' : '' }}">
+            <ul class="{{ $active ? 'menu__sub-open' : '' }}">
                 <li>
                     <a href="{{ route('server.status') }}" class="menu {{ ($ROUTE === 'server.status') ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('activity')</div>
@@ -185,6 +187,40 @@
                     <a href="{{ route('server.log') }}" class="menu {{ ($ROUTE === 'server.log') ? 'menu--active' : '' }}">
                         <div class="menu__icon">@icon('file-text')</div>
                         <div class="menu__title">{{ __('in-sidebar.server-log') }}</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        @php ($active = str_starts_with($ROUTE, 'city.') || str_starts_with($ROUTE, 'state.') || str_starts_with($ROUTE, 'country.'))
+
+        <li>
+            <a href="javascript:;" class="menu {{ $active ? 'menu--active' : '' }}">
+                <div class="menu__icon">@icon('map-pin')</div>
+                <div class="menu__title">
+                    {{ __('in-sidebar.location') }} <div class="menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                </div>
+            </a>
+
+            <ul class="{{ str_starts_with($ROUTE, 'city.') ? 'menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('city.index') }}" class="menu {{ str_starts_with($ROUTE, 'city.') ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('list')</div>
+                        <div class="menu__title">{{ __('in-sidebar.city-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('state.index') }}" class="menu {{ str_starts_with($ROUTE, 'state.') ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('list')</div>
+                        <div class="menu__title">{{ __('in-sidebar.state-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('country.index') }}" class="menu {{ str_starts_with($ROUTE, 'country.') ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('list')</div>
+                        <div class="menu__title">{{ __('in-sidebar.country-index') }}</div>
                     </a>
                 </li>
             </ul>

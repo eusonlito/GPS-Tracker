@@ -5,12 +5,16 @@ namespace App\Domains\Position\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Domains\City\Model\City as CityModel;
+use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\Traits\Gis as GisTrait;
+use App\Domains\Country\Model\Country as CountryModel;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Model\Builder\Position as Builder;
 use App\Domains\Position\Model\Collection\Position as Collection;
+use App\Domains\Position\Model\Traits\Query as QueryTrait;
+use App\Domains\Position\Model\Traits\SelectRaw as SelectRawTrait;
 use App\Domains\Position\Test\Factory\Position as TestFactory;
-use App\Domains\CoreApp\Model\ModelAbstract;
-use App\Domains\CoreApp\Model\Traits\Gis as GisTrait;
+use App\Domains\State\Model\State as StateModel;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
@@ -19,6 +23,8 @@ class Position extends ModelAbstract
 {
     use GisTrait;
     use HasFactory;
+    use QueryTrait;
+    use SelectRawTrait;
 
     /**
      * @var string
@@ -87,7 +93,15 @@ class Position extends ModelAbstract
      */
     public function city(): BelongsTo
     {
-        return $this->belongsTo(CityModel::class, CityModel::FOREIGN)->withDefault();
+        return $this->belongsTo(CityModel::class, CityModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(CountryModel::class, CountryModel::FOREIGN);
     }
 
     /**
@@ -96,6 +110,14 @@ class Position extends ModelAbstract
     public function device(): BelongsTo
     {
         return $this->belongsTo(DeviceModel::class, DeviceModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo(StateModel::class, StateModel::FOREIGN);
     }
 
     /**

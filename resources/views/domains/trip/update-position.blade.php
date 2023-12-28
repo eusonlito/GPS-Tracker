@@ -39,7 +39,13 @@
                             <tr>
                                 <td class="w-1"><a href="#" data-map-point="{{ $each->id }}">{{ $each->date_at }}</a></td>
                                 <td class="w-1">{!! $each->latitudeLongitudeLink() !!}</td>
-                                <td><span class="d-t-m-o max-w-15" title="{{ $each->city->name }} ({{ $each->city->state->name }})">{{ $each->city->name }} ({{ $each->city->state->name }})</span></td>
+                                <td>
+                                    @if ($each->city)
+                                    <span class="d-t-m-o max-w-15" title="{{ $each->city->name }} ({{ $each->state->name }})">{{ $each->city->name }} ({{ $each->state->name }})</span>
+                                    @else
+                                    -
+                                    @endif
+                                </td>
                                 <td class="w-1" data-table-sort-value="{{ $each->speed }}">@unitHuman('speed', $each->speed)</td>
                                 <td class="w-1">@status((bool)$each->signal)</td>
                                 <td class="w-1"><input type="checkbox" name="position_ids[]" value="{{ $each->id }}" /></td>
