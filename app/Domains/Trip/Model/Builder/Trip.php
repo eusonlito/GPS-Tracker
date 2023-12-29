@@ -122,15 +122,15 @@ class Trip extends BuilderAbstract
     }
 
     /**
-     * @param string $start_utc_at
+     * @param string $end_utc_at
      * @param int $minutes
      *
      * @return self
      */
-    public function byStartUtcAtNearestMinutes(string $start_utc_at, int $minutes): self
+    public function byEndUtcAtNearestMinutes(string $end_utc_at, int $minutes): self
     {
-        return $this->whereRaw('ABS(TIMESTAMPDIFF(MINUTE, `start_utc_at`, ?)) < ?', [$start_utc_at, $minutes])
-            ->orderByStartUtcAtNearest($start_utc_at);
+        return $this->whereRaw('ABS(TIMESTAMPDIFF(MINUTE, `end_utc_at`, ?)) < ?', [$end_utc_at, $minutes])
+            ->orderByEndUtcAtNearest($end_utc_at);
     }
 
     /**
@@ -185,13 +185,13 @@ class Trip extends BuilderAbstract
     }
 
     /**
-     * @param string $start_utc_at
+     * @param string $end_utc_at
      *
      * @return self
      */
-    public function orderByStartUtcAtNearest(string $start_utc_at): self
+    public function orderByEndUtcAtNearest(string $end_utc_at): self
     {
-        return $this->orderByRaw('ABS(TIMESTAMPDIFF(MINUTE, `start_utc_at`, ?)) ASC', [$start_utc_at]);
+        return $this->orderByRaw('ABS(TIMESTAMPDIFF(MINUTE, `end_utc_at`, ?)) ASC', [$end_utc_at]);
     }
 
     /**
