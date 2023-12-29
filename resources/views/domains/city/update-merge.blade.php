@@ -18,6 +18,8 @@
                         <th class="text-left">{{ __('city-update-merge.alias') }}</th>
                         <th class="text-left">{{ __('city-update-merge.state') }}</th>
                         <th class="text-left">{{ __('city-update-merge.country') }}</th>
+                        <th>{{ __('city-update-merge.created_at') }}</th>
+                        <th>{{ __('city-update-merge.updated_at') }}</th>
                         <th>{{ __('city-update-merge.select') }}</th>
                     </tr>
                 </thead>
@@ -32,6 +34,8 @@
                         <td class="text-left"><a href="{{ $link }}" class="block">{{ implode(', ', $each->alias ?? []) }}</a></td>
                         <td class="text-left">{{ $each->state->name }}</td>
                         <td class="text-left">{{ $each->country->name }}</td>
+                        <td class="w-1" data-table-sort-value="{{ $each->created_at }}"><a href="{{ $link }}" class="block">@dateLocal($each->created_at)</a></td>
+                        <td class="w-1" data-table-sort-value="{{ $each->updated_at }}"><a href="{{ $link }}" class="block">@dateLocal($each->updated_at)</a></td>
                         <td class="w-1">
                             @if ($each->id !== $row->id)
                             <input type="checkbox" name="ids[]" value="{{ $each->id }}" />

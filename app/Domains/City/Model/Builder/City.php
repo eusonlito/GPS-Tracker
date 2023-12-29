@@ -108,7 +108,15 @@ class City extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->selectOnly('id', 'name', 'alias', 'state_id', 'country_id')->orderBy('name', 'ASC');
+        return $this->selectOnly(
+            'id',
+            'name',
+            'alias',
+            'created_at',
+            'updated_at',
+            'state_id',
+            'country_id'
+        )->orderBy('name', 'ASC');
     }
 
     /**

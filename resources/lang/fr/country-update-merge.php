@@ -1,5 +1,6 @@
 <?php return [
     'alias' => 'Alias',
+    'created_at' => 'Créé',
     'error' => [
         'ids-empty' => 'Aucun pays sélectionné',
     ],
@@ -9,4 +10,5 @@
     'name' => 'Nom',
     'select' => 'Sélectionner',
     'success' => 'Les pays ont été joints avec succès',
+    'updated_at' => 'Mis à jour',
 ];

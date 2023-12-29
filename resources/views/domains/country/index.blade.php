@@ -11,6 +11,8 @@
                 <th class="text-left">{{ __('country-index.code') }}</th>
                 <th class="text-left">{{ __('country-index.name') }}</th>
                 <th class="text-left">{{ __('country-index.alias') }}</th>
+                <th class="text-left">{{ __('country-index.created_at') }}</th>
+                <th class="text-left">{{ __('country-index.updated_at') }}</th>
             </tr>
         </thead>
 
@@ -23,6 +25,8 @@
                 <td class="text-left"><a href="{{ $link }}" class="block">{{ $row->code }}</a></td>
                 <td class="text-left"><a href="{{ $link }}" class="block">{{ $row->name }}</a></td>
                 <td class="text-left"><a href="{{ $link }}" class="block">{{ implode(', ', $row->alias ?? []) }}</a></td>
+                <td class="w-1" data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->created_at)</a></td>
+                <td class="w-1" data-table-sort-value="{{ $row->updated_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->updated_at)</a></td>
             </tr>
 
             @endforeach
