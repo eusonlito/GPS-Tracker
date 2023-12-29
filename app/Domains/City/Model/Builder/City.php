@@ -44,7 +44,7 @@ class City extends BuilderAbstract
      */
     public function byDistanceMax(int $distance): self
     {
-        return $this->where('distance', '<=', $distance);
+        return $this->having('distance', '<=', $distance);
     }
 
     /**

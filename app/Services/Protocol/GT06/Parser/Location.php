@@ -171,7 +171,7 @@ class Location extends ParserAbstract
      */
     protected function datetime(): ?string
     {
-        return $this->cache[__FUNCTION__];
+        return $this->cache[__FUNCTION__] ?? null;
     }
 
     /**
@@ -191,6 +191,10 @@ class Location extends ParserAbstract
      */
     protected function timezone(): ?string
     {
+        if (isset($this->cache['latitude'], $this->cache['longitude']) === false) {
+            return null;
+        }
+
         return $this->cache[__FUNCTION__] ??= helper()->latitudeLongitudeTimezone(
             $this->latitude(),
             $this->longitude(),
