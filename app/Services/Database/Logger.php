@@ -121,7 +121,7 @@ class Logger
 
         helper()->mkdir($this->files[$name], true);
 
-        $this->write($name, "\n".'['.date('Y-m-d H:i:s').'] ['.Request::method().'] '.Request::fullUrl()."\n");
+        $this->write($name, '['.date('Y-m-d H:i:s').'] ['.Request::method().'] '.Request::fullUrl());
     }
 
     /**
@@ -163,11 +163,19 @@ class Logger
             }
         }
 
+        $log = [];
+
         if ($connection['log_backtrace']) {
-            $this->write($name, $this->backtrace());
+            $log[] = '# '.$this->backtrace();
         }
 
-        $this->write($name, vsprintf(str_replace(['%', '?'], ['%%', '%s'], $sql), $bindings));
+        if ($connection['log_time']) {
+            $log[] = '# Time: '.sprintf('%0.5f', $query->time / 1000);
+        }
+
+        $log[] = "\n".$this->normalizeSql($sql, $bindings);
+
+        $this->write($name, implode("\n", $log));
     }
 
     /**
@@ -175,16 +183,13 @@ class Logger
      */
     protected function backtrace(): string
     {
-        $backtrace = current(array_filter(
-            debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
-            fn ($line) => $this->backtraceIsValid($line)
-        ));
+        $backtrace = current(array_filter(debug_backtrace(2), fn ($line) => $this->backtraceIsValid($line)));
 
         if (empty($backtrace)) {
-            return "\n".'#';
+            return '';
         }
 
-        return "\n".'# '.str_replace($this->base, '', $backtrace['file']).'#'.$backtrace['line'];
+        return str_replace($this->base, '', $backtrace['file']).'#'.$backtrace['line'];
     }
 
     /**
@@ -194,19 +199,26 @@ class Logger
      */
     protected function backtraceIsValid(array $line): bool
     {
-        if (empty($line['file'])) {
-            return false;
-        }
+        $file = $line['file'] ?? null;
 
-        $file = $line['file'];
-
-        if ($file === __FILE__) {
+        if (empty($file) || ($file === __FILE__)) {
             return false;
         }
 
         return str_starts_with($file, $this->base.'/app/')
             || str_starts_with($file, $this->base.'/config/')
             || str_starts_with($file, $this->base.'/database/');
+    }
+
+    /**
+     * @param string $sql
+     * @param array $bindings
+     *
+     * @return string
+     */
+    protected function normalizeSql(string $sql, array $bindings): string
+    {
+        return preg_replace(["/\n+/", "/\n\s+/"], ["\n", ' '], vsprintf(str_replace(['%', '?'], ['%%', '%s'], $sql), $bindings));
     }
 
     /**
@@ -230,6 +242,6 @@ class Logger
      */
     protected function write(string $name, string $message): void
     {
-        file_put_contents($this->files[$name], "\n".preg_replace(["/\n+/", "/\n\s+/"], ["\n", ' '], $message), FILE_APPEND | LOCK_EX);
+        file_put_contents($this->files[$name], "\n".$message."\n", FILE_APPEND | LOCK_EX);
     }
 }
