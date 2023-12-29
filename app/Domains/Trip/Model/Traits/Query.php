@@ -14,7 +14,7 @@ trait Query
         return self::query()
             ->selectSimple()
             ->byVehicleId($this->vehicle->id)
-            ->byStartUtcAtNext($this->start_utc_at)
+            ->byStartUtcAtAfter($this->start_utc_at)
             ->first();
     }
 
@@ -26,7 +26,7 @@ trait Query
         return self::query()
             ->selectSimple()
             ->byVehicleId($this->vehicle->id)
-            ->byStartUtcAtPrevious($this->start_utc_at)
+            ->byStartUtcAtBefore($this->start_utc_at)
             ->first();
     }
 }

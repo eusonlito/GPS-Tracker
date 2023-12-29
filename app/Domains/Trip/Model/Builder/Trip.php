@@ -66,7 +66,27 @@ class Trip extends BuilderAbstract
      *
      * @return self
      */
-    public function byStartUtcAtDateAfter(string $start_utc_at): self
+    public function byStartUtcAtAfterEqualNear(string $start_utc_at): self
+    {
+        return $this->where('start_utc_at', '>=', $start_utc_at)->orderByStartUtcAtAsc();
+    }
+
+    /**
+     * @param string $start_utc_at
+     *
+     * @return self
+     */
+    public function byStartUtcAtBeforeEqualNear(string $start_utc_at): self
+    {
+        return $this->where('start_utc_at', '<=', $start_utc_at)->orderByStartUtcAtDesc();
+    }
+
+    /**
+     * @param string $start_utc_at
+     *
+     * @return self
+     */
+    public function byStartUtcAtDateAfterEqual(string $start_utc_at): self
     {
         return $this->whereDate('start_utc_at', '>=', $start_utc_at);
     }
@@ -76,7 +96,7 @@ class Trip extends BuilderAbstract
      *
      * @return self
      */
-    public function byStartUtcAtDateBefore(string $start_utc_at): self
+    public function byStartUtcAtDateBeforeEqual(string $start_utc_at): self
     {
         return $this->whereDate('start_utc_at', '<=', $start_utc_at);
     }
@@ -86,7 +106,7 @@ class Trip extends BuilderAbstract
      *
      * @return self
      */
-    public function byStartUtcAtNext(string $start_utc_at): self
+    public function byStartUtcAtAfter(string $start_utc_at): self
     {
         return $this->where('start_utc_at', '>', $start_utc_at)->orderByStartUtcAtAsc();
     }
@@ -96,9 +116,21 @@ class Trip extends BuilderAbstract
      *
      * @return self
      */
-    public function byStartUtcAtPrevious(string $start_utc_at): self
+    public function byStartUtcAtBefore(string $start_utc_at): self
     {
         return $this->where('start_utc_at', '<', $start_utc_at)->orderByStartUtcAtDesc();
+    }
+
+    /**
+     * @param string $start_utc_at
+     * @param int $minutes
+     *
+     * @return self
+     */
+    public function byStartUtcAtNearestMinutes(string $start_utc_at, int $minutes): self
+    {
+        return $this->whereRaw('ABS(TIMESTAMPDIFF(MINUTE, `start_utc_at`, ?)) < ?', [$start_utc_at, $minutes])
+            ->orderByStartUtcAtNearest($start_utc_at);
     }
 
     /**
@@ -118,26 +150,6 @@ class Trip extends BuilderAbstract
     public function list(): self
     {
         return $this->orderByStartUtcAtDesc();
-    }
-
-    /**
-     * @param string $start_utc_at
-     *
-     * @return self
-     */
-    public function nearToStartUtcAtBefore(string $start_utc_at): self
-    {
-        return $this->where('start_utc_at', '<=', $start_utc_at)->orderByStartUtcAtDesc();
-    }
-
-    /**
-     * @param string $start_utc_at
-     *
-     * @return self
-     */
-    public function nearToStartUtcAtNext(string $start_utc_at): self
-    {
-        return $this->where('start_utc_at', '>=', $start_utc_at)->orderByStartUtcAtAsc();
     }
 
     /**
@@ -170,6 +182,16 @@ class Trip extends BuilderAbstract
     public function orderByStartUtcAtDesc(): self
     {
         return $this->orderBy('start_utc_at', 'DESC');
+    }
+
+    /**
+     * @param string $start_utc_at
+     *
+     * @return self
+     */
+    public function orderByStartUtcAtNearest(string $start_utc_at): self
+    {
+        return $this->orderByRaw('ABS(TIMESTAMPDIFF(MINUTE, `start_utc_at`, ?)) ASC', [$start_utc_at]);
     }
 
     /**
@@ -275,7 +297,7 @@ class Trip extends BuilderAbstract
      */
     public function whenStartUtcAtDateAfter(?string $start_utc_at): self
     {
-        return $this->when($start_utc_at, static fn ($q) => $q->byStartUtcAtDateAfter($start_utc_at));
+        return $this->when($start_utc_at, static fn ($q) => $q->byStartUtcAtDateAfterEqual($start_utc_at));
     }
 
     /**
@@ -285,7 +307,7 @@ class Trip extends BuilderAbstract
      */
     public function whenStartUtcAtDateBefore(?string $start_utc_at): self
     {
-        return $this->when($start_utc_at, static fn ($q) => $q->byStartUtcAtDateBefore($start_utc_at));
+        return $this->when($start_utc_at, static fn ($q) => $q->byStartUtcAtDateBeforeEqual($start_utc_at));
     }
 
     /**

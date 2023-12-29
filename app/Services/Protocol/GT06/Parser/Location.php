@@ -2,17 +2,22 @@
 
 namespace App\Services\Protocol\GT06\Parser;
 
+use App\Services\Buffer\Bit as BufferBit;
+use App\Services\Buffer\Byte as BufferByte;
 use App\Services\Protocol\Resource\Location as LocationResource;
 
 class Location extends ParserAbstract
 {
     /**
+     * @var \App\Services\Buffer\Byte
+     */
+    protected BufferByte $buffer;
+
+    /**
      * @return ?\App\Services\Protocol\Resource\Location
      */
     public function resource(): ?LocationResource
     {
-        $this->values = [];
-
         if ($this->bodyIsValid() === false) {
             return null;
         }
@@ -39,7 +44,7 @@ class Location extends ParserAbstract
     public function bodyIsValid(): bool
     {
         return ($this->data['serial'] ?? false)
-            && (bool)preg_match($this->bodyIsValidRegExp(), $this->body, $this->values);
+            && (bool)preg_match($this->bodyIsValidRegExp(), $this->body);
     }
 
     /**
@@ -67,12 +72,11 @@ class Location extends ParserAbstract
      */
     protected function modules(): void
     {
-        $body = substr($this->body, 10, -8);
+        $buffer = new BufferByte(substr($this->body, 10, -8));
 
-        while (strlen($body) > 12) {
-            $type = substr($body, 0, 4);
-            $length = hexdec(substr($body, 4, 4)) * 2;
-            $content = substr($body, 8, $length);
+        while ($buffer->length() > 6) {
+            $type = $buffer->string(2);
+            $content = $buffer->new($buffer->int(2));
 
             match ($type) {
                 '0011' => $this->moduleCellTower($content),
@@ -80,50 +84,56 @@ class Location extends ParserAbstract
                 '002C' => $this->moduleTimestamp($content),
                 default => null,
             };
-
-            $body = substr($body, 8 + $length);
         }
     }
 
     /**
-     * @param string $content
+     * @param \App\Services\Buffer\Byte $buffer
      *
      * @return void
      */
-    protected function moduleGps(string $content): void
+    protected function moduleGps(BufferByte $buffer): void
     {
-        $this->cache['datetime'] = date('Y-m-d H:i:s', hexdec(substr($content, 0, 8)));
+        $this->cache['datetime'] = date('Y-m-d H:i:s', $buffer->int(4));
 
-        $this->cache['latitude'] = hexdec(substr($content, 14, 8)) / 60 / 30000;
-        $this->cache['longitude'] = hexdec(substr($content, 22, 8)) / 60 / 30000;
+        $this->cache['latitude'] = round($buffer->int(4, 7) / 60 / 30000, 5);
+        $this->cache['longitude'] = round($buffer->int(4) / 60 / 30000, 5);
 
-        $this->cache['speed'] = round(hexdec(substr($content, 30, 2)) * 1.852, 2);
+        $this->cache['speed'] = round($buffer->int(1) * 1.852, 2);
 
-        $flags = substr($content, 23);
+        $flags = $buffer->int();
 
-        $this->cache['direction'] = hexdec(substr($flags, 2, 2));
-        $this->cache['signal'] = hexdec(substr($flags, 8, 2));
+        $this->cache['direction'] = BufferBit::to($flags, 10);
+        $this->cache['signal'] = intval(BufferBit::check($flags, 12));
+
+        if (BufferBit::check($flags, 10) === false) {
+            $this->cache['latitude'] = -$this->cache['latitude'];
+        }
+
+        if (BufferBit::check($flags, 11)) {
+            $this->cache['longitude'] = -$this->cache['longitude'];
+        }
     }
 
     /**
-     * @param string $content
+     * @param \App\Services\Buffer\Byte $buffer
      *
      * @return void
      */
-    protected function moduleCellTower(string $content): void
+    protected function moduleCellTower(BufferByte $buffer): void
     {
-        $this->cache['mcc'] = hexdec(substr($content, 0, 4));
-        $this->cache['mnc'] = hexdec(substr($content, 4, 4));
+        $this->cache['mcc'] = $buffer->int(2);
+        $this->cache['mnc'] = $buffer->int(2);
     }
 
     /**
-     * @param string $content
+     * @param \App\Services\Buffer\Byte $buffer
      *
      * @return void
      */
-    protected function moduleTimestamp(string $content): void
+    protected function moduleTimestamp(BufferByte $buffer): void
     {
-        $this->cache['datetime'] = date('Y-m-d H:i:s', hexdec($content));
+        $this->cache['datetime'] = date('Y-m-d H:i:s', $buffer->int());
     }
 
     /**
