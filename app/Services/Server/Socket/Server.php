@@ -88,6 +88,38 @@ class Server extends ServerAbstract
     }
 
     /**
+     * @return void
+     */
+    protected function create(): void
+    {
+        $this->socket = socket_create(AF_INET, $this->socketType, $this->socketProtocol);
+    }
+
+    /**
+     * @return void
+     */
+    protected function reuse(): void
+    {
+        socket_set_option($this->socket, SOL_SOCKET, SO_REUSEADDR, 1);
+    }
+
+    /**
+     * @return void
+     */
+    protected function bind(): void
+    {
+        socket_bind($this->socket, '0.0.0.0', $this->port);
+    }
+
+    /**
+     * @return void
+     */
+    protected function listen(): void
+    {
+        socket_listen($this->socket);
+    }
+
+    /**
      * @param \Closure $handler
      *
      * @return void
@@ -188,38 +220,6 @@ class Server extends ServerAbstract
         $connection->close();
 
         $this->error($e);
-    }
-
-    /**
-     * @return void
-     */
-    protected function create(): void
-    {
-        $this->socket = socket_create(AF_INET, $this->socketType, $this->socketProtocol);
-    }
-
-    /**
-     * @return void
-     */
-    protected function reuse(): void
-    {
-        socket_set_option($this->socket, SOL_SOCKET, SO_REUSEADDR, 1);
-    }
-
-    /**
-     * @return void
-     */
-    protected function bind(): void
-    {
-        socket_bind($this->socket, '0.0.0.0', $this->port);
-    }
-
-    /**
-     * @return void
-     */
-    protected function listen(): void
-    {
-        socket_listen($this->socket);
     }
 
     /**
