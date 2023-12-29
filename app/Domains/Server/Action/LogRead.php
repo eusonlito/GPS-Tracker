@@ -19,6 +19,11 @@ class LogRead extends ActionAbstract
     protected ProtocolAbstract $protocol;
 
     /**
+     * @var array
+     */
+    protected array $resourceData = [];
+
+    /**
      * @return void
      */
     public function handle(): void
@@ -69,7 +74,9 @@ class LogRead extends ActionAbstract
     protected function iterate(): void
     {
         foreach (file($this->file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
-            $this->store(explode(' ', $line)[1]);
+            if (count($line = explode(' ', $line)) > 1) {
+                $this->store($line[1]);
+            }
         }
     }
 
@@ -80,7 +87,7 @@ class LogRead extends ActionAbstract
      */
     protected function store(string $body): void
     {
-        foreach ($this->protocol->resources($body) as $resource) {
+        foreach ($this->protocol->resources($body, $this->resourceData) as $resource) {
             $this->save($resource);
         }
     }
@@ -94,6 +101,10 @@ class LogRead extends ActionAbstract
     {
         if ($resource->format() === 'location') {
             $this->factory('Position')->action($this->saveData($resource))->create();
+        }
+
+        if ($data = $resource->data()) {
+            $this->resourceData = $data;
         }
     }
 

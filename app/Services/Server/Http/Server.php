@@ -109,7 +109,7 @@ class Server extends ServerAbstract
         $this->clients[] = (object)[
             'socket' => stream_socket_accept($this->socket, 1),
             'timestamp' => time(),
-            'data' => null,
+            'data' => [],
         ];
     }
 

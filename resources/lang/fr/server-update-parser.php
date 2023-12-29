@@ -9,6 +9,7 @@
     'log' => 'Protocole Log :name',
     'longitude' => 'Longitude',
     'meta-title' => 'Serveurs > :title > Parser',
+    'response' => 'Réponse',
     'send' => 'Envoyer',
     'serial' => 'Série',
     'signal' => 'Signal',

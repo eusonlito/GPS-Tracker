@@ -44,7 +44,7 @@ class City extends BuilderAbstract
      */
     public function byDistanceMax(int $distance): self
     {
-        return $this->where('distance', '<=', $distance);
+        return $this->having('distance', '<=', $distance);
     }
 
     /**
@@ -108,7 +108,15 @@ class City extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->selectOnly('id', 'name', 'alias', 'state_id', 'country_id')->orderBy('name', 'ASC');
+        return $this->selectOnly(
+            'id',
+            'name',
+            'alias',
+            'created_at',
+            'updated_at',
+            'state_id',
+            'country_id'
+        )->orderBy('name', 'ASC');
     }
 
     /**
@@ -160,19 +168,6 @@ class City extends BuilderAbstract
     }
 
     /**
-     * @param ?int $user_id
-     * @param ?int $vehicle_id
-     * @param ?string $before_date_at
-     * @param ?string $after_date_at
-     *
-     * @return self
-     */
-    public function whenCityUserIdVehicleIdDateAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_date_at, ?string $after_date_at): self
-    {
-        return $this->whereIn('id', PositionModel::query()->selectOnly('city_id')->whenCityUserIdVehicleIdDateAtBetween($user_id, $vehicle_id, $before_date_at, $after_date_at));
-    }
-
-    /**
      * @param ?int $country_id
      *
      * @return self
@@ -180,6 +175,19 @@ class City extends BuilderAbstract
     public function whenCountryId(?int $country_id): self
     {
         return $this->when($country_id, static fn ($q) => $q->byCountryId($country_id));
+    }
+
+    /**
+     * @param ?int $user_id
+     * @param ?int $vehicle_id
+     * @param ?string $before_date_at
+     * @param ?string $after_date_at
+     *
+     * @return self
+     */
+    public function whenRefuelUserIdVehicleIdDateAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_date_at, ?string $after_date_at): self
+    {
+        return $this->whereIn('id', PositionModel::query()->selectOnly('city_id')->whenRefuelUserIdVehicleIdDateAtBetween($user_id, $vehicle_id, $before_date_at, $after_date_at));
     }
 
     /**
@@ -195,8 +203,8 @@ class City extends BuilderAbstract
     /**
      * @param ?int $user_id
      * @param ?int $vehicle_id
-     * @param ?string $before_date_at
-     * @param ?string $after_date_at
+     * @param ?string $before_start_utc_at
+     * @param ?string $after_start_utc_at
      *
      * @return self
      */

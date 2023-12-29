@@ -38,10 +38,11 @@ class Manager extends ProtocolAbstract
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      *
      * @param string $body
+     * @param array $data = []
      *
      * @return array
      */
-    public function resources(string $body): array
+    public function resources(string $body, array $data = []): array
     {
         return [];
     }
@@ -50,10 +51,11 @@ class Manager extends ProtocolAbstract
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      *
      * @param string $body
+     * @param array $data = []
      *
      * @return ?\App\Services\Protocol\Resource\ResourceAbstract
      */
-    public function resource(string $body): ?ResourceAbstract
+    public function resource(string $body, array $data = []): ?ResourceAbstract
     {
         return null;
     }

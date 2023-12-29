@@ -26,15 +26,17 @@ abstract class ProtocolAbstract
 
     /**
      * @param string $body
+     * @param array $data = []
      *
      * @return array
      */
-    abstract public function resources(string $body): array;
+    abstract public function resources(string $body, array $data = []): array;
 
     /**
      * @param string $body
+     * @param array $data = []
      *
      * @return ?\App\Services\Protocol\Resource\ResourceAbstract
      */
-    abstract public function resource(string $body): ?ResourceAbstract;
+    abstract public function resource(string $body, array $data = []): ?ResourceAbstract;
 }

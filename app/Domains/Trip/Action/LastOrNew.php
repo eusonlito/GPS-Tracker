@@ -3,7 +3,6 @@
 namespace App\Domains\Trip\Action;
 
 use App\Domains\Device\Model\Device as DeviceModel;
-use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as Model;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
@@ -58,49 +57,51 @@ class LastOrNew extends ActionAbstract
      */
     protected function row(): void
     {
-        $this->rowByPrevious();
-
-        if ($this->rowIsValid()) {
-            return;
-        }
-
-        $this->rowByNext();
-
-        if ($this->rowIsValid()) {
-            return;
-        }
-
-        $this->rowCreate();
+        $this->row = $this->rowByNearStartUtcAtMinutes()
+            ?: $this->rowByNearStartUtcAt()
+            ?: $this->rowCreate();
     }
 
     /**
-     * @return void
+     * @return ?\App\Domains\Trip\Model\Trip
      */
-    protected function rowByPrevious(): void
+    protected function rowByNearStartUtcAtMinutes(): ?Model
     {
-        $this->row = Model::query()
+        $waitMinutes = $this->waitMinutes();
+
+        if ($waitMinutes === 0) {
+            return null;
+        }
+
+        return Model::query()
             ->byDeviceId($this->device->id)
-            ->nearToStartUtcAtBefore($this->data['date_utc_at'])
+            ->byStartUtcAtNearestMinutes($this->data['date_utc_at'], $waitMinutes)
             ->first();
     }
 
     /**
-     * @return void
+     * @return ?\App\Domains\Trip\Model\Trip
      */
-    protected function rowByNext(): void
+    protected function rowByNearStartUtcAt(): ?Model
     {
-        $this->row = Model::query()
+        $waitMinutes = $this->waitMinutes();
+
+        if ($waitMinutes) {
+            return null;
+        }
+
+        return Model::query()
             ->byDeviceId($this->device->id)
-            ->nearToStartUtcAtNext($this->data['date_utc_at'])
+            ->orderByStartUtcAtNearest($this->data['date_utc_at'])
             ->first();
     }
 
     /**
-     * @return void
+     * @return \App\Domains\Trip\Model\Trip
      */
-    protected function rowCreate(): void
+    protected function rowCreate(): Model
     {
-        $this->row = $this->factory()->action($this->rowCreateData())->create();
+        return $this->factory()->action($this->rowCreateData())->create();
     }
 
     /**
@@ -118,63 +119,10 @@ class LastOrNew extends ActionAbstract
     }
 
     /**
-     * @return bool
-     */
-    protected function rowIsValid(): bool
-    {
-        return $this->row
-            && ($this->rowIsValidAfter() || $this->rowIsValidWait());
-    }
-
-    /**
-     * @return bool
-     */
-    protected function rowIsValidAfter(): bool
-    {
-        return (bool)PositionModel::query()
-            ->byTripId($this->row->id)
-            ->nextToDateUtcAt($this->data['date_utc_at'])
-            ->count();
-    }
-
-    /**
-     * @return bool
-     */
-    protected function rowIsValidWait(): bool
-    {
-        $dateUtcAt = $this->rowIsValidWaitDateUtcAt();
-
-        if ($dateUtcAt === null) {
-            return true;
-        }
-
-        $wait = app('configuration')->int('trip_wait_minutes');
-
-        if (($wait === 0) || ($wait >= $this->rowIsValidWaitMinutes($dateUtcAt))) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @return ?string
-     */
-    protected function rowIsValidWaitDateUtcAt(): ?string
-    {
-        return PositionModel::query()
-            ->byTripId($this->row->id)
-            ->nearToDateUtcAt($this->data['date_utc_at'])
-            ->value('date_utc_at');
-    }
-
-    /**
-     * @param string $dateUtcAt
-     *
      * @return int
      */
-    protected function rowIsValidWaitMinutes(string $dateUtcAt): int
+    protected function waitMinutes(): int
     {
-        return (int)abs((strtotime($this->data['date_utc_at']) - strtotime($dateUtcAt)) / 60);
+        return app('configuration')->int('trip_wait_minutes');
     }
 }

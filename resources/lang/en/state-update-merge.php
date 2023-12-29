@@ -1,6 +1,7 @@
 <?php return [
     'alias' => 'Alias',
     'country' => 'Country',
+    'created_at' => 'Created',
     'error' => [
         'ids-empty' => 'No province has been selected',
     ],
@@ -10,4 +11,5 @@
     'name' => 'Name',
     'select' => 'Select',
     'success' => 'Provinces have been successfully joined',
+    'updated_at' => 'Updated',
 ];

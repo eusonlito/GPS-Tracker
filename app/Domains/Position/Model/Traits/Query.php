@@ -18,7 +18,6 @@ trait Query
             ->selectOnlyBoundingBox()
             ->byTripQuery($tripBuilder)
             ->toBase()
-            ->get()
             ->first();
     }
 }

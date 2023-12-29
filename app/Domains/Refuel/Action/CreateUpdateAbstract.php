@@ -41,7 +41,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     {
         $this->data['position_id'] = PositionModel::query()
             ->byUserId($this->data['user_id'])
-            ->nearToDateAt($this->data['date_at'])
+            ->byDateAtBeforeEqualNear($this->data['date_at'])
             ->value('id');
     }
 

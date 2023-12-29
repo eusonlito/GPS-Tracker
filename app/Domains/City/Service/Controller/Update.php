@@ -33,9 +33,9 @@ class Update extends ControllerAbstract
     }
 
     /**
-     * @return void
+     * @return string
      */
-    protected function requestAlias()
+    protected function requestAlias(): string
     {
         return $this->request->input('alias')
             ?: implode(',', $this->row->alias ?? []);

@@ -1,8 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Services\Protocol\Queclink;
+namespace App\Services\Protocol\GT06;
 
-use App\Services\Protocol\Queclink\Parser\Location as LocationParser;
+use App\Services\Protocol\GT06\Parser\Auth as AuthParser;
+use App\Services\Protocol\GT06\Parser\Heartbeat as HeartbeatParser;
+use App\Services\Protocol\GT06\Parser\Location as LocationParser;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Server\Socket\Server;
@@ -13,6 +15,8 @@ class Manager extends ProtocolAbstract
      * @const array
      */
     protected const PARSERS = [
+        AuthParser::class,
+        HeartbeatParser::class,
         LocationParser::class,
     ];
 
@@ -21,7 +25,7 @@ class Manager extends ProtocolAbstract
      */
     public function code(): string
     {
-        return 'queclink';
+        return 'gt06';
     }
 
     /**
@@ -29,7 +33,7 @@ class Manager extends ProtocolAbstract
      */
     public function name(): string
     {
-        return 'Queclink';
+        return 'GT06';
     }
 
     /**
@@ -62,9 +66,7 @@ class Manager extends ProtocolAbstract
      */
     protected function bodies(string $body): array
     {
-        preg_match_all('/\+[^\$]+\$/', $body, $matches);
-
-        return $matches[0];
+        return array_filter(array_map('trim', explode('0d0a', $body)));
     }
 
     /**

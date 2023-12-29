@@ -178,7 +178,7 @@ class Create extends ActionAbstract
     {
         $this->previous = Model::query()
             ->byDeviceId($this->device->id)
-            ->nearToDateUtcAt($this->data['date_utc_at'])
+            ->byDateUtcAtBeforeEqualNear($this->data['date_utc_at'])
             ->first();
     }
 

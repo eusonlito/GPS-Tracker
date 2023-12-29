@@ -7,6 +7,11 @@ use Closure;
 abstract class ServerAbstract
 {
     /**
+     * @var \App\Services\Server\Pool
+     */
+    protected Pool $pool;
+
+    /**
      * @var \App\Services\Server\Process
      */
     protected Process $process;
@@ -38,6 +43,8 @@ abstract class ServerAbstract
      */
     public function __construct(protected int $port)
     {
+        $this->pool = new Pool();
+        $this->process = new Process();
     }
 
     /**
@@ -45,7 +52,7 @@ abstract class ServerAbstract
      */
     public function kill(): void
     {
-        $this->process()->kill($this->port);
+        $this->process->kill($this->port);
     }
 
     /**
@@ -53,14 +60,6 @@ abstract class ServerAbstract
      */
     public function isBusy(): bool
     {
-        return $this->process()->isBusy($this->port);
-    }
-
-    /**
-     * @return \App\Services\Server\Process
-     */
-    protected function process(): Process
-    {
-        return $this->process ??= new Process();
+        return $this->process->isBusy($this->port);
     }
 }

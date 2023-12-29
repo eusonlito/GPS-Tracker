@@ -97,8 +97,9 @@
 
                 <td class="text-left"><a href="{{ $link }}" class="d-t-m-o max-w-md" title="{{ $row->name }}">{{ $row->name }}</a></td>
 
-                <td><a href="{{ $link }}" class="block">{{ $row->start_at }}</a></td>
-                <td><a href="{{ $link }}" class="block">{{ $row->end_at }}</a></td>
+                <td class="w-1" data-table-sort-value="{{ $row->start_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->start_at)</a></td>
+                <td class="w-1" data-table-sort-value="{{ $row->end_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->end_at)</a></td>
+
                 <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block">@unitHuman('distance', $row->distance)</a></td>
                 <td data-table-sort-value="{{ $row->time }}"><a href="{{ $link }}" class="block">@timeHuman($row->time)</a></td>
                 <td data-table-sort-value="{{ (int)$row->shared }}" class="w-1"><a href="{{ route('trip.update.boolean', [$row->id, 'shared']) }}" class="block" data-update-boolean="shared">@status($row->shared)</a></td>

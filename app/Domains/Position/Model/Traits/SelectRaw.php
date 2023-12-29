@@ -9,11 +9,10 @@ trait SelectRaw
     /**
      * @param \App\Domains\Trip\Model\Builder\Trip $tripBuilder
      * @param array $bounding_box = []
-     * @param int $gridSize = 100
      *
      * @return array
      */
-    public static function heatmap(TripBuilder $tripBuilder, array $bounding_box = [], ?int $gridSize = 100): array
+    public static function heatmap(TripBuilder $tripBuilder, array $bounding_box = []): array
     {
         $bounding_box = static::heatmapBoundingBox($bounding_box ?: static::tripQueryBoundingBox($tripBuilder));
 

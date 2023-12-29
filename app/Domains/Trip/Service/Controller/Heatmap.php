@@ -57,7 +57,7 @@ class Heatmap extends Index
     {
         return $this->cache(function () {
             return CountryModel::query()
-                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'), $this->request->input('start_end'))
+                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
                 ->list()
                 ->get();
         });
@@ -85,7 +85,7 @@ class Heatmap extends Index
 
             return StateModel::query()
                 ->byCountryId($country_id)
-                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'), $this->request->input('start_end'))
+                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
                 ->list()
                 ->get();
         });
@@ -113,7 +113,7 @@ class Heatmap extends Index
 
             return CityModel::query()
                 ->byStateId($state_id)
-                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'), $this->request->input('start_end'))
+                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
                 ->list()
                 ->get();
         });

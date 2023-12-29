@@ -4,9 +4,7 @@ namespace App\Services\Protocol\GPS103;
 
 use App\Services\Protocol\GPS103\Parser\Auth as AuthParser;
 use App\Services\Protocol\GPS103\Parser\Heartbeat as HeartbeatParser;
-use App\Services\Protocol\GPS103\Parser\Command as CommandParser;
 use App\Services\Protocol\GPS103\Parser\Location as LocationParser;
-use App\Services\Protocol\GPS103\Parser\Sms as SmsParser;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Server\Socket\Server;
@@ -20,8 +18,6 @@ class Manager extends ProtocolAbstract
         AuthParser::class,
         HeartbeatParser::class,
         LocationParser::class,
-        SmsParser::class,
-        CommandParser::class,
     ];
 
     /**
@@ -54,12 +50,13 @@ class Manager extends ProtocolAbstract
 
     /**
      * @param string $body
+     * @param array $data = []
      *
      * @return array
      */
-    public function resources(string $body): array
+    public function resources(string $body, array $data = []): array
     {
-        return array_filter(array_map($this->resource(...), $this->bodies($body)));
+        return array_filter(array_map(fn ($body) => $this->resource($body, $data), $this->bodies($body)));
     }
 
     /**
@@ -74,13 +71,14 @@ class Manager extends ProtocolAbstract
 
     /**
      * @param string $body
+     * @param array $data = []
      *
      * @return ?\App\Services\Protocol\Resource\ResourceAbstract
      */
-    public function resource(string $body): ?ResourceAbstract
+    public function resource(string $body, array $data = []): ?ResourceAbstract
     {
         foreach (static::PARSERS as $parser) {
-            if (($resource = $parser::new($body)->resource()) && $resource->isValid()) {
+            if (($resource = $parser::new($body, $data)->resource()) && $resource->isValid()) {
                 return $resource;
             }
         }

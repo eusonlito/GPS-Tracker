@@ -69,11 +69,20 @@ abstract class ResourceAbstract
 
     /**
      * @param string $key
+     * @param mixed $default = null
      *
      * @return mixed
      */
-    protected function attribute(string $key): mixed
+    protected function attribute(string $key, mixed $default = null): mixed
     {
-        return $this->attributes[$key] ?? null;
+        return $this->attributes[$key] ?? $default;
+    }
+
+    /**
+     * @return ?array
+     */
+    public function data(): ?array
+    {
+        return $this->attribute(__FUNCTION__);
     }
 }

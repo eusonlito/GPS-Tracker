@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Services\Protocol\Queclink\Parser;
+namespace App\Services\Protocol\GT06\Parser;
 
 use App\Services\Protocol\Resource\ResourceAbstract;
 

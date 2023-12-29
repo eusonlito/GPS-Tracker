@@ -11,7 +11,7 @@ class Location extends ResourceAbstract
     {
         return [
             'body', 'maker', 'serial', 'type', 'latitude', 'longitude', 'speed',
-            'signal', 'direction', 'datetime', 'timezone', 'country', 'response',
+            'signal', 'direction', 'datetime', 'timezone', 'country', 'data', 'response',
         ];
     }
 

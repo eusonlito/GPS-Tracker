@@ -13,6 +13,8 @@
                 <th class="text-left">{{ __('city-index.state') }}</th>
                 <th class="text-left">{{ __('city-index.country') }}</th>
                 <th>{{ __('city-index.coordinates') }}</th>
+                <th>{{ __('city-index.created_at') }}</th>
+                <th>{{ __('city-index.updated_at') }}</th>
             </tr>
         </thead>
 
@@ -27,6 +29,8 @@
                 <td class="text-left">{{ $row->state->name }}</td>
                 <td class="text-left">{{ $row->country->name }}</td>
                 <td>{!! $row->latitudeLongitudeLink() !!}</td>
+                <td class="w-1" data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->created_at)</a></td>
+                <td class="w-1" data-table-sort-value="{{ $row->updated_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->updated_at)</a></td>
             </tr>
 
             @endforeach

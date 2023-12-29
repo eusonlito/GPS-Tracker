@@ -9,7 +9,7 @@ class Heartbeat extends ResourceAbstract
      */
     protected function attributesAvailable(): array
     {
-        return ['body', 'serial', 'response'];
+        return ['body', 'serial', 'data', 'response'];
     }
 
     /**

@@ -5,8 +5,8 @@ namespace App\Services\Server\Socket;
 use Closure;
 use Exception;
 use Socket;
-use stdClass;
 use Throwable;
+use App\Services\Server\Connection;
 use App\Services\Server\ServerAbstract;
 
 class Server extends ServerAbstract
@@ -30,11 +30,6 @@ class Server extends ServerAbstract
      * @var int
      */
     protected int $socketProtocol = 0;
-
-    /**
-     * @var array
-     */
-    protected array $clients = [];
 
     /**
      * @param string $type
@@ -93,120 +88,6 @@ class Server extends ServerAbstract
     }
 
     /**
-     * @param \Closure $handler
-     *
-     * @return void
-     */
-    protected function read(Closure $handler): void
-    {
-        do {
-            usleep(1000);
-
-            $this->clientFilter();
-
-            $sockets = $this->clientSockets();
-
-            if ($this->select($sockets) === 0) {
-                continue;
-            }
-
-            if (in_array($this->socket, $sockets)) {
-                $sockets = $this->clientAdd($sockets);
-            }
-
-            foreach ($sockets as $socket) {
-                $this->clientRead($socket, $handler);
-            }
-        } while (true);
-    }
-
-    /**
-     * @param array &$sockets
-     *
-     * @return int
-     */
-    protected function select(array &$sockets): int
-    {
-        $write = $except = null;
-
-        array_push($sockets, $this->socket);
-
-        return intval(socket_select($sockets, $write, $except, null));
-    }
-
-    /**
-     * @param array $sockets
-     *
-     * @return array
-     */
-    protected function clientAdd(array $sockets): array
-    {
-        $this->clientAccept();
-
-        unset($sockets[array_search($this->socket, $sockets)]);
-
-        return array_values($sockets);
-    }
-
-    /**
-     * @return void
-     */
-    protected function clientAccept(): void
-    {
-        $this->clients[] = (object)[
-            'socket' => socket_accept($this->socket),
-            'timestamp' => time(),
-            'data' => null,
-        ];
-    }
-
-    /**
-     * @param \Socket $socket
-     * @param \Closure $handler
-     *
-     * @return void
-     */
-    protected function clientRead(Socket $socket, Closure $handler): void
-    {
-        $client = $this->clientBySocket($socket);
-
-        if ($client === null) {
-            return;
-        }
-
-        try {
-            $this->clientReadHandle($client, $handler);
-        } catch (Throwable $e) {
-            $this->clientReadError($client, $e);
-        }
-    }
-
-    /**
-     * @param \stdClass $client
-     * @param \Closure $handler
-     *
-     * @return void
-     */
-    protected function clientReadHandle(stdClass $client, Closure $handler): void
-    {
-        if (Client::new($client, $handler)->handle() === false) {
-            $this->close($client->socket);
-        }
-    }
-
-    /**
-     * @param \stdClass $client
-     * @param \Throwable $e
-     *
-     * @return void
-     */
-    protected function clientReadError(stdClass $client, Throwable $e): void
-    {
-        $this->close($client->socket);
-        $this->error($e);
-    }
-
-    /**
      * @return void
      */
     protected function create(): void
@@ -239,51 +120,106 @@ class Server extends ServerAbstract
     }
 
     /**
-     * @param \Socket $socket
+     * @param \Closure $handler
      *
-     * @return ?\stdClass
+     * @return void
      */
-    protected function clientBySocket(Socket $socket): ?stdClass
+    protected function read(Closure $handler): void
     {
-        foreach ($this->clients as $client) {
-            if ($client->socket === $socket) {
-                return $client;
-            }
-        }
+        do {
+            usleep(1000);
 
-        return null;
+            $sockets = $this->pool->sockets();
+
+            if ($this->select($sockets) === 0) {
+                continue;
+            }
+
+            if (in_array($this->socket, $sockets)) {
+                $this->connectionAdd($sockets);
+            }
+
+            foreach ($this->pool->get() as $connection) {
+                $this->connectionRead($connection, $handler);
+            }
+        } while (true);
     }
 
     /**
-     * @return array
+     * @param array &$sockets
+     *
+     * @return int
      */
-    protected function clientSockets(): array
+    protected function select(array &$sockets): int
     {
-        return array_filter(array_column($this->clients, 'socket'));
+        $write = $except = null;
+
+        array_push($sockets, $this->socket);
+
+        return intval(socket_select($sockets, $write, $except, null));
+    }
+
+    /**
+     * @param array $sockets
+     *
+     * @return void
+     */
+    protected function connectionAdd(array $sockets): void
+    {
+        $this->connectionAccept();
+
+        unset($sockets[array_search($this->socket, $sockets)]);
     }
 
     /**
      * @return void
      */
-    protected function clientFilter(): void
+    protected function connectionAccept(): void
     {
-        foreach ($this->clients as &$client) {
-            if (empty($client->socket)) {
-                $client = null;
-
-                continue;
-            }
-
-            if ((time() - $client->timestamp) < static::SOCKET_TIMEOUT) {
-                continue;
-            }
-
-            $this->close($client->socket);
-
-            $client = null;
+        if ($socket = socket_accept($this->socket)) {
+            $this->pool->add(new Connection($socket));
         }
+    }
 
-        $this->clients = array_filter($this->clients);
+    /**
+     * @param \App\Services\Server\Connection $connection
+     * @param \Closure $handler
+     *
+     * @return void
+     */
+    protected function connectionRead(Connection $connection, Closure $handler): void
+    {
+        try {
+            $this->connectionReadHandle($connection, $handler);
+        } catch (Throwable $e) {
+            $this->connectionReadError($connection, $e);
+        }
+    }
+
+    /**
+     * @param \App\Services\Server\Connection $connection
+     * @param \Closure $handler
+     *
+     * @return void
+     */
+    protected function connectionReadHandle(Connection $connection, Closure $handler): void
+    {
+        if (Client::new($connection, $handler)->handle() === false) {
+            $connection->close();
+        }
+    }
+
+    /**
+     * @param \App\Services\Server\Connection $connection
+     * @param \Throwable $e
+     *
+     * @return void
+     */
+    protected function connectionReadError(Connection $connection, Throwable $e): void
+    {
+        $connection->close();
+
+        $this->error($e);
     }
 
     /**
@@ -327,15 +263,12 @@ class Server extends ServerAbstract
      */
     public function stop(): void
     {
-        foreach ($this->clientSockets() as $client) {
-            $this->close($client);
-        }
+        $this->pool->stop();
 
         if ($this->socket) {
             $this->close($this->socket);
         }
 
-        $this->clients = [];
         $this->socket = null;
     }
 

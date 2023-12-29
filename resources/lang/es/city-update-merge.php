@@ -1,6 +1,7 @@
 <?php return [
     'alias' => 'Alias',
     'country' => 'País',
+    'created_at' => 'Creada',
     'error' => [
         'ids-empty' => 'No se ha seleccionado ninguna ciudad',
     ],
@@ -11,4 +12,5 @@
     'select' => 'Seleccionar',
     'state' => 'Provincia',
     'success' => 'Las ciudades han sido unidas correctamente',
+    'updated_at' => 'Actualizada',
 ];

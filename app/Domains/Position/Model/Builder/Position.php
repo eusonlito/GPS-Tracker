@@ -53,6 +53,16 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @param string $date_at
+     *
+     * @return self
+     */
+    public function byDateAtBeforeEqualNear(string $date_at): self
+    {
+        return $this->where('date_at', '<=', $date_at)->orderByDateAtDesc();
+    }
+
+    /**
      * @param string $date_utc_at
      *
      * @return self
@@ -60,6 +70,26 @@ class Position extends BuilderAbstract
     public function byDateUtcAt(string $date_utc_at): self
     {
         return $this->where('date_utc_at', $date_utc_at);
+    }
+
+    /**
+     * @param string $date_utc_at
+     *
+     * @return self
+     */
+    public function byDateUtcAtAfter(string $date_utc_at): self
+    {
+        return $this->where('date_utc_at', '>', $date_utc_at);
+    }
+
+    /**
+     * @param string $date_utc_at
+     *
+     * @return self
+     */
+    public function byDateUtcAtBeforeEqualNear(string $date_utc_at): self
+    {
+        return $this->where('date_utc_at', '<=', $date_utc_at)->orderByDateUtcAtDesc();
     }
 
     /**
@@ -171,36 +201,6 @@ class Position extends BuilderAbstract
     public function list(): self
     {
         return $this->orderByDateUtcAtAsc();
-    }
-
-    /**
-     * @param string $date_at
-     *
-     * @return self
-     */
-    public function nearToDateAt(string $date_at): self
-    {
-        return $this->where('date_at', '<=', $date_at)->orderByDateAtDesc();
-    }
-
-    /**
-     * @param string $date_utc_at
-     *
-     * @return self
-     */
-    public function nearToDateUtcAt(string $date_utc_at): self
-    {
-        return $this->where('date_utc_at', '<=', $date_utc_at)->orderByDateUtcAtDesc();
-    }
-
-    /**
-     * @param string $date_utc_at
-     *
-     * @return self
-     */
-    public function nextToDateUtcAt(string $date_utc_at): self
-    {
-        return $this->where('date_utc_at', '>', $date_utc_at);
     }
 
     /**
@@ -319,8 +319,8 @@ class Position extends BuilderAbstract
     /**
      * @param ?int $user_id
      * @param ?int $vehicle_id
-     * @param ?string $before_date_at
-     * @param ?string $after_date_at
+     * @param ?string $before_start_utc_at
+     * @param ?string $after_start_utc_at
      *
      * @return self
      */

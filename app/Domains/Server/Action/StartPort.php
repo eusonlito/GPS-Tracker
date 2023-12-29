@@ -125,14 +125,15 @@ class StartPort extends ActionAbstract
 
     /**
      * @param string $body
+     * @param array $data
      *
      * @return array
      */
-    protected function store(string $body): array
+    protected function store(string $body, array $data): array
     {
         $this->logDebug($body);
 
-        $resources = $this->protocol->resources($body);
+        $resources = $this->protocol->resources($body, $data);
 
         if (empty($resources)) {
             return [];

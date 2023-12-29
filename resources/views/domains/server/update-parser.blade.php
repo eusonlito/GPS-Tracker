@@ -36,6 +36,7 @@
                 <th class="w-1">{{ __('server-update-parser.signal') }}</th>
                 <th class="w-1">{{ __('server-update-parser.date_utc_at') }}</th>
                 <th class="w-1">{{ __('server-update-parser.timezone') }}</th>
+                <th class="w-1">{{ __('server-update-parser.response') }}</th>
                 <th>{{ __('server-update-parser.line') }}</th>
             </tr>
         </thead>
@@ -50,6 +51,7 @@
 
                 <td>{{ $resource->format() }}</td>
                 <td>{{ $resource->serial() }}</td>
+
                 <td class="{{ $each['device'] ? 'text-success' : 'text-danger' }}">{{ $each['device']?->name ?: '-' }}</td>
 
                 @if ($resource->format() === 'location')
@@ -68,12 +70,16 @@
 
                 @endif
 
+                <td>{{ $resource->response() }}</td>
+
                 @empty
 
                 <td></td>
                 <td></td>
+
                 <td class="text-danger">-</td>
 
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

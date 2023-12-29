@@ -50,7 +50,8 @@ return [
             'timezone' => '+00:00',
             'options' => [],
             'log' => (bool)env('DB_LOG', false),
-            'log_backtrace' => (bool)env('DB_LOG_BACKTRACE'),
+            'log_backtrace' => (bool)env('DB_LOG_BACKTRACE', true),
+            'log_time' => (bool)env('DB_LOG_TIME', true),
         ],
 
         'test' => [
@@ -70,6 +71,7 @@ return [
             'options' => [],
             'log' => false,
             'log_backtrace' => false,
+            'log_time' => false,
         ],
     ],
 
