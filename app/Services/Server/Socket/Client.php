@@ -3,11 +3,10 @@
 namespace App\Services\Server\Socket;
 
 use Closure;
-use Socket;
-use stdClass;
 use Throwable;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Services\Protocol\Resource\ResourceAbstract;
+use App\Services\Server\Connection;
 
 class Client
 {
@@ -20,12 +19,12 @@ class Client
     }
 
     /**
-     * @param \stdClass $client
+     * @param \App\Services\Server\Connection $connection
      * @param \Closure $handler
      *
      * @return self
      */
-    public function __construct(protected stdClass $client, protected Closure $handler)
+    public function __construct(protected Connection $connection, protected Closure $handler)
     {
     }
 
@@ -62,11 +61,11 @@ class Client
      */
     protected function readBuffer(): ?string
     {
-        if ($this->isSocket($this->client->socket) === false) {
+        if ($this->connection->isValid() === false) {
             return null;
         }
 
-        if (empty($buffer = socket_read($this->client->socket, 2048))) {
+        if (empty($buffer = socket_read($this->connection->getSocket(), 2048))) {
             return null;
         }
 
@@ -94,10 +93,10 @@ class Client
      */
     protected function readHandle(string $buffer): array
     {
-        $this->client->timestamp = time();
+        $this->connection->refresh();
 
         try {
-            return ($this->handler)($buffer);
+            return ($this->handler)($buffer, $this->connection->getData());
         } catch (Throwable $e) {
             $this->error($e);
         }
@@ -112,6 +111,7 @@ class Client
      */
     protected function readResource(ResourceAbstract $resource): void
     {
+        $this->readResourceData($resource);
         $this->readResourceResponse($resource);
         $this->readResourceMessagesRead($resource);
         $this->readResourceMessagesWrite($resource);
@@ -122,10 +122,22 @@ class Client
      *
      * @return void
      */
+    protected function readResourceData(ResourceAbstract $resource): void
+    {
+        if ($data = $resource->data()) {
+            $this->connection->setData($data);
+        }
+    }
+
+    /**
+     * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
+     *
+     * @return void
+     */
     protected function readResourceResponse(ResourceAbstract $resource): void
     {
         if ($response = $resource->response()) {
-            socket_write($this->client->socket, $response, strlen($response));
+            socket_write($this->connection->getSocket(), $response, strlen($response));
         }
     }
 
@@ -190,17 +202,7 @@ class Client
         $message->sent_at = date('Y-m-d H:i:s');
         $message->save();
 
-        socket_write($this->client->socket, $response = $message->message(), strlen($response));
-    }
-
-    /**
-     * @param mixed $socket
-     *
-     * @return bool
-     */
-    protected function isSocket(mixed $socket): bool
-    {
-        return $socket && ($socket instanceof Socket);
+        socket_write($this->connection->getSocket(), $response = $message->message(), strlen($response));
     }
 
     /**

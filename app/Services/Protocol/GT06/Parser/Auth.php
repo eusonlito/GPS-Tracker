@@ -21,6 +21,7 @@ class Auth extends ParserAbstract
             'body' => $this->body,
             'serial' => $this->serial(),
             'response' => $this->response(),
+            'data' => $this->data(),
         ]);
     }
 
@@ -38,14 +39,14 @@ class Auth extends ParserAbstract
     protected function bodyIsValidRegExp(): string
     {
         return '/^'
-            .'([0-9]{2})'    // 1 - length
-            .'(01)'          // 2 - protocol
-            .'([0-9]{16})'   // 3 - serial
-            .'([0-9]{4})'    // 4 - type
-            .'([0-9]{4})'    // 5 - timezone
-            .'([0-9a-f]{4})' // 6 - serial information
-            .'([0-9a-f]{4})' // 7 - error check
-            .'(0d0a)'        // 8 - stop
+            .'(7878)'        // 1 - start
+            .'([0-9a-f]{2})' // 2 - length
+            .'(01)'          // 3 - protocol
+            .'([0-9]{16})'   // 4 - serial
+            .'([0-9]{4})'    // 5 - type
+            .'([0-9]{4})'    // 6 - timezone
+            .'([0-9a-f]{4})' // 7 - serial information
+            .'([0-9a-f]{4})' // 8 - error check
             .'$/';
     }
 
@@ -54,7 +55,15 @@ class Auth extends ParserAbstract
      */
     protected function serial(): string
     {
-        return $this->values[3];
+        return $this->values[4];
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ['serial' => $this->serial()];
     }
 
     /**
@@ -62,13 +71,6 @@ class Auth extends ParserAbstract
      */
     protected function response(): string
     {
-        return hex2bin(
-            '7878'
-            .$this->values[1]
-            .$this->values[2]
-            .$this->values[6]
-            .$this->values[7]
-            .$this->values[8]
-        );
+        return "\x78\x78\x05\x01\x00\x01\xD9\xDC\x0D\x0A";
     }
 }

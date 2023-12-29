@@ -107,7 +107,7 @@ abstract class IndexMapAbstract extends ControllerAbstract
     {
         return $this->cache(function () {
             return CountryModel::query()
-                ->whenRefuelUserIdVehicleIdDateAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'), $this->request->input('start_end'))
+                ->whenRefuelUserIdVehicleIdDateAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
                 ->list()
                 ->get();
         });
@@ -135,7 +135,7 @@ abstract class IndexMapAbstract extends ControllerAbstract
 
             return StateModel::query()
                 ->byCountryId($country_id)
-                ->whenRefuelUserIdVehicleIdDateAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'), $this->request->input('start_end'))
+                ->whenRefuelUserIdVehicleIdDateAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
                 ->list()
                 ->get();
         });

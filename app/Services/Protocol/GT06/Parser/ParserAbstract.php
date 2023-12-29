@@ -41,10 +41,11 @@ abstract class ParserAbstract
 
     /**
      * @param string $body
+     * @param array $data = []
      *
      * @return self
      */
-    public function __construct(protected readonly string $body)
+    public function __construct(protected readonly string $body, protected readonly array $data = [])
     {
     }
 }

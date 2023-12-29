@@ -9,7 +9,7 @@ class Command extends ResourceAbstract
      */
     protected function attributesAvailable(): array
     {
-        return ['body', 'maker', 'serial', 'type', 'payload', 'response'];
+        return ['body', 'maker', 'serial', 'type', 'payload', 'data', 'response'];
     }
 
     /**

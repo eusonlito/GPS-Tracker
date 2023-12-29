@@ -87,8 +87,8 @@ class Country extends BuilderAbstract
     /**
      * @param ?int $user_id
      * @param ?int $vehicle_id
-     * @param ?string $before_date_at
-     * @param ?string $after_date_at
+     * @param ?string $before_start_utc_at
+     * @param ?string $after_start_utc_at
      *
      * @return self
      */

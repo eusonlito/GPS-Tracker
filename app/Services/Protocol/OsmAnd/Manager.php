@@ -44,25 +44,27 @@ class Manager extends ProtocolAbstract
 
     /**
      * @param string $body
+     * @param array $data = []
      *
      * @return array
      */
-    public function resources(string $body): array
+    public function resources(string $body, array $data = []): array
     {
-        return array_filter([$this->resource($body)]);
+        return array_filter([$this->resource($body, $data)]);
     }
 
     /**
      * @param string $body
+     * @param array $data = []
      *
      * @return ?\App\Services\Protocol\Resource\ResourceAbstract
      */
-    public function resource(string $body): ?ResourceAbstract
+    public function resource(string $body, array $data = []): ?ResourceAbstract
     {
         $body = $this->body($body);
 
         foreach (static::PARSERS as $parser) {
-            if (($resource = $parser::new($body)->resource()) && $resource->isValid()) {
+            if (($resource = $parser::new($body, $data)->resource()) && $resource->isValid()) {
                 return $resource;
             }
         }
