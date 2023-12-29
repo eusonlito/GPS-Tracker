@@ -57,15 +57,15 @@ class LastOrNew extends ActionAbstract
      */
     protected function row(): void
     {
-        $this->row = $this->rowByNearStartUtcAtMinutes()
-            ?: $this->rowByNearStartUtcAt()
+        $this->row = $this->rowByNearEndUtcAtMinutes()
+            ?: $this->rowByNearEndUtcAt()
             ?: $this->rowCreate();
     }
 
     /**
      * @return ?\App\Domains\Trip\Model\Trip
      */
-    protected function rowByNearStartUtcAtMinutes(): ?Model
+    protected function rowByNearEndUtcAtMinutes(): ?Model
     {
         $waitMinutes = $this->waitMinutes();
 
@@ -75,14 +75,14 @@ class LastOrNew extends ActionAbstract
 
         return Model::query()
             ->byDeviceId($this->device->id)
-            ->byStartUtcAtNearestMinutes($this->data['date_utc_at'], $waitMinutes)
+            ->byEndUtcAtNearestMinutes($this->data['date_utc_at'], $waitMinutes)
             ->first();
     }
 
     /**
      * @return ?\App\Domains\Trip\Model\Trip
      */
-    protected function rowByNearStartUtcAt(): ?Model
+    protected function rowByNearEndUtcAt(): ?Model
     {
         $waitMinutes = $this->waitMinutes();
 
@@ -92,7 +92,7 @@ class LastOrNew extends ActionAbstract
 
         return Model::query()
             ->byDeviceId($this->device->id)
-            ->orderByStartUtcAtNearest($this->data['date_utc_at'])
+            ->orderByEndUtcAtNearest($this->data['date_utc_at'])
             ->first();
     }
 
