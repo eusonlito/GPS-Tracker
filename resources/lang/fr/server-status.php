@@ -1,7 +1,9 @@
 <?php return [
     'command' => 'Commande',
+    'cpu' => 'UNITÉ CENTRALE',
     'debug' => 'Débogage',
     'enabled' => 'Actif',
+    'memory' => 'Mémoire',
     'meta-title' => 'Serveurs > Statut',
     'owner' => 'Propriétaire',
     'pid' => 'PID',
@@ -12,5 +14,4 @@
     'started' => 'Démarrer',
     'stop' => 'Arrêter',
     'stop-success' => 'Les serveurs ont été arrêtés avec succès',
-    'time' => 'Temps',
 ];

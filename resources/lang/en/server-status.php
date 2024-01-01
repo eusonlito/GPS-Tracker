@@ -1,7 +1,9 @@
 <?php return [
     'command' => 'Command',
+    'cpu' => 'CPU',
     'debug' => 'Debug',
     'enabled' => 'Enabled',
+    'memory' => 'Memory',
     'meta-title' => 'Servers > Status',
     'owner' => 'Owner',
     'pid' => 'PID',
@@ -12,5 +14,4 @@
     'started' => 'Home',
     'stop' => 'Stop',
     'stop-success' => 'The servers have been stopped successfully',
-    'time' => 'Time',
 ];

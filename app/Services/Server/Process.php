@@ -52,7 +52,7 @@ class Process
     protected function listExecCmd(): string
     {
         return 'export COLUMNS=256;'
-            .' ps -ef'
+            .' ps -eo pid,user,lstart,rss,pcpu,cmd'
             .' | grep -- "'.base_path().'"'
             .' | grep -- "artisan server:start:port.*--port="'
             .' | grep -v "grep"';
@@ -65,16 +65,17 @@ class Process
      */
     protected function listProcess(string $process): stdClass
     {
-        $process = preg_split('/\s+/', $process, 8);
+        $process = preg_split('/\s+/', trim($process), 10);
 
-        preg_match('/\-\-port=([0-9]+)/', $process[7], $port);
+        preg_match('/\-\-port=([0-9]+)/', $process[9], $port);
 
         return (object)[
-            'owner' => $process[0],
-            'pid' => (int)$process[1],
-            'start' => $process[4],
-            'time' => $process[6],
-            'command' => $process[7],
+            'pid' => (int)$process[0],
+            'owner' => $process[1],
+            'start' => date('Y-m-d H:i:s', strtotime($process[3].' '.$process[4].' '.$process[6].' '.$process[5])),
+            'memory' => round($process[7] / 1024, 2),
+            'cpu' => $process[8],
+            'command' => $process[9],
             'port' => (int)$port[1],
         ];
     }
