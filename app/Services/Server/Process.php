@@ -82,21 +82,36 @@ class Process
     /**
      * @param int $port
      *
-     * @return void
+     * @return bool
      */
-    public function kill(int $port): void
+    public function kill(int $port): bool
+    {
+        foreach (['SIGINT', 'SIGTERM', 'SIGKILL'] as $signal) {
+            if ($this->killSignal($port, $signal)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param int $port
+     * @param string $signal
+     *
+     * @return bool
+     */
+    public function killSignal(int $port, string $signal): bool
     {
         if ($this->isBusy($port) === false) {
-            return;
+            return true;
         }
 
-        shell_exec('fuser -k -SIGINT '.$port.'/tcp > /dev/null 2>&1');
+        shell_exec(sprintf('fuser -k -%s %s/tcp > /dev/null 2>&1', $signal, $port));
 
-        $count = 0;
+        sleep(1);
 
-        while (($count < 5) && $this->isBusy($port)) {
-            sleep(++$count);
-        }
+        return $this->isBusy($port) === false;
     }
 
     /**
@@ -106,9 +121,15 @@ class Process
      */
     public function isBusy(int $port): bool
     {
+        $errno = $errstr = null;
+
         try {
-            $fp = fsockopen('0.0.0.0', $port);
+            $fp = fsockopen('0.0.0.0', $port, $errno, $errstr, 1);
         } catch (Throwable $e) {
+            return false;
+        }
+
+        if (is_resource($fp) === false) {
             return false;
         }
 
