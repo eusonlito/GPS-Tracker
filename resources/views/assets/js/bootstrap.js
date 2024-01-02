@@ -18,6 +18,7 @@ import './data-password-show.js';
 import './data-calculator.js';
 import './data-checkall.js';
 import './data-copy.js';
+import './data-select.js';
 import './data-click-one.js';
 import './data-delete-modal-one.js';
 import './data-input-insert.js';

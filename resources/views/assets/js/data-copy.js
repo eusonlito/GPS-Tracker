@@ -10,7 +10,7 @@
         document.body.appendChild(element);
 
         element.select();
-        element.setSelectionRange(0, 99999);
+        element.setSelectionRange(0, Number.MAX_SAFE_INTEGER);
 
         document.execCommand('copy');
 
