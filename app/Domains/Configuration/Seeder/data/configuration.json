@@ -2,30 +2,30 @@
     {
         "key": "position_filter_distance",
         "value": 5,
-        "description": "Descartar posiciones si la anterior para ese viaje está a menos de X metros de la actual"
+        "description": "Discard positions if the previous position for same trip is less than X meters from the current one"
     },
 
     {
         "key": "trip_wait_minutes",
         "value": 15,
-        "description": "Esperar X minutos entre posiciones para crear un nuevo viaje"
+        "description": "Wait X minutes between positions to create a new trip"
     },
 
     {
         "key": "position_filter_signal",
         "value": 1,
-        "description": "Descartar posiciones que no contengan una señal válida"
+        "description": "Discard positions that do not contain a valid signal"
     },
 
     {
         "key": "shared_enabled",
         "value": 0,
-        "description": "Activar o Desactivar el panel público de dispositivos compartidos (/shared)"
+        "description": "Enable or Disable the public panel of shared devices (/shared)"
     },
 
     {
         "key": "shared_slug",
         "value": "",
-        "description": "Añadir un slug a la ruta /shared para evitar el acceso directo en la URL genérica"
+        "description": "Add a slug to the /shared path to avoid direct access in the generic URL"
     }
 ]
