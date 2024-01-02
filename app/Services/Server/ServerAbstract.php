@@ -62,4 +62,12 @@ abstract class ServerAbstract
     {
         return $this->process->isBusy($this->port);
     }
+
+    /**
+     * @return bool
+     */
+    public function isLocked(): bool
+    {
+        return $this->process->isLocked($this->port);
+    }
 }
