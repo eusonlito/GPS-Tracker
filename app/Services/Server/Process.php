@@ -127,7 +127,7 @@ class Process
         try {
             $fp = fsockopen('0.0.0.0', $port, $errno, $errstr, 1);
         } catch (Throwable $e) {
-            return false;
+            return $errno !== 111;
         }
 
         if (is_resource($fp) === false) {
