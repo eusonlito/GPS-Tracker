@@ -209,6 +209,10 @@ class Server extends ServerAbstract
      */
     protected function gracefulShutdown(): void
     {
+        if (function_exists('pcntl_signal') === false) {
+            return;
+        }
+
         pcntl_signal(SIGINT, [$this, 'gracefulShutdownHandler']);
         pcntl_signal(SIGTERM, [$this, 'gracefulShutdownHandler']);
     }
