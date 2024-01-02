@@ -52,6 +52,7 @@ class Process
     protected function listExecCmd(): string
     {
         return 'export COLUMNS=256;'
+            .' LC_ALL=C'
             .' ps -eo pid,user,lstart,rss,pcpu,cmd'
             .' | grep -- "'.base_path().'"'
             .' | grep -- "artisan server:start:port.*--port="'
