@@ -72,13 +72,13 @@ class Process
         preg_match('/\-\-port=([0-9]+)/', $process[9], $port);
 
         return (object)[
-            'pid' => (int)$process[0],
+            'pid' => intval($process[0]),
             'owner' => $process[1],
             'start' => date('Y-m-d H:i:s', strtotime($process[3].' '.$process[4].' '.$process[6].' '.$process[5])),
-            'memory' => round($process[7] / 1024, 2),
-            'cpu' => $process[8],
+            'memory' => round(floatval($process[7]) / 1024, 2),
+            'cpu' => round(floatval($process[8]), 2),
             'command' => $process[9],
-            'port' => (int)$port[1],
+            'port' => intval($port[1]),
         ];
     }
 
