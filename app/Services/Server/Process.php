@@ -55,6 +55,7 @@ class Process
             .' ps -eo pid,user,lstart,rss,pcpu,cmd'
             .' | grep -- "'.base_path().'"'
             .' | grep -- "artisan server:start:port.*--port="'
+            .' | sort'
             .' | grep -v "grep"';
     }
 

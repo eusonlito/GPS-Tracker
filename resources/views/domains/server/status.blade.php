@@ -11,12 +11,12 @@
                 <thead>
                     <tr>
                         <th>{{ __('server-status.port') }}</th>
-                        <th>{{ __('server-status.pid') }}</th>
-                        <th>{{ __('server-status.owner') }}</th>
                         <th>{{ __('server-status.started') }}</th>
                         <th>{{ __('server-status.cpu') }}</th>
                         <th>{{ __('server-status.memory') }}</th>
-                        <th>{{ __('server-status.command') }}</th>
+                        <th>{{ __('server-status.pid') }}</th>
+                        <th>{{ __('server-status.owner') }}</th>
+                        <th class="text-left">{{ __('server-status.command') }}</th>
                         <th class="w-1"><input type="checkbox" data-checkall="#server-status-proccess-list-table > tbody" /></th>
                     </tr>
                 </thead>
@@ -26,12 +26,12 @@
 
                     <tr>
                         <td>{{ $each->port }}</td>
-                        <td>{{ $each->pid }}</td>
-                        <td>{{ $each->owner }}</td>
                         <td>{{ $each->start }}</td>
                         <td>{{ $each->cpu }}</td>
                         <td>{{ $each->memory }}</td>
-                        <td>{{ $each->command }}</td>
+                        <td>{{ $each->pid }}</td>
+                        <td>{{ $each->owner }}</td>
+                        <td class="text-left">{{ $each->command }}</td>
                         <td class="w-1"><input type="checkbox" name="ports[]" value="{{ $each->port }}" /></td>
                     </tr>
 
