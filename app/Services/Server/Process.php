@@ -139,4 +139,22 @@ class Process
 
         return true;
     }
+
+    /**
+     * @param int $port
+     *
+     * @return bool
+     */
+    public function isLocked(int $port): bool
+    {
+        $errno = $errstr = null;
+
+        try {
+            $fp = fsockopen('0.0.0.0', $port, $errno, $errstr, 1);
+        } catch (Throwable $e) {
+            return $errno === 110;
+        }
+
+        return false;
+    }
 }

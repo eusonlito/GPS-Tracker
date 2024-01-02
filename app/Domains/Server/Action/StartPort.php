@@ -92,7 +92,7 @@ class StartPort extends ActionAbstract
      */
     protected function kill(): void
     {
-        if ($this->data['reset']) {
+        if ($this->data['reset'] || $this->server->isLocked()) {
             $this->server->kill();
         }
     }
