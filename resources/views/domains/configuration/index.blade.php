@@ -7,10 +7,6 @@
         <div class="flex-grow mt-2 sm:mt-0">
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('configuration-index.filter') }}" data-table-search="#configuration-list-table" />
         </div>
-
-        <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
-            <a href="{{ route('configuration.create') }}" class="btn form-control-lg whitespace-nowrap">{{ __('configuration-index.create') }}</a>
-        </div>
     </div>
 </form>
 
