@@ -25,7 +25,7 @@ class Create extends CreateUpdateAbstract
     protected function request(): void
     {
         $this->requestMergeWithRow([
-            'user_id' => $this->user(false)->id,
+            'user_id' => $this->user()->id,
         ], $this->previous());
     }
 
@@ -36,7 +36,7 @@ class Create extends CreateUpdateAbstract
     {
         return Model::query()
             ->selectOnly('distance_total', 'price')
-            ->byUserId($this->user(false)->id)
+            ->byUserId($this->user()->id)
             ->orderByLast()
             ->firstOrNew();
     }

@@ -10,6 +10,16 @@ use App\Domains\Device\Model\Device as Model;
 class Map extends ControllerAbstract
 {
     /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @var bool
+     */
+    protected bool $vehicleEmpty = true;
+
+    /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
      *
@@ -25,10 +35,8 @@ class Map extends ControllerAbstract
      */
     protected function filters(): void
     {
-        $this->request->merge([
-            'user_id' => $this->auth->preference('user_id', $this->request->input('user_id')),
-            'vehicle_id' => $this->auth->preference('vehicle_id', $this->request->input('vehicle_id')),
-        ]);
+        $this->filtersUserId();
+        $this->filtersVehicleId();
     }
 
     /**

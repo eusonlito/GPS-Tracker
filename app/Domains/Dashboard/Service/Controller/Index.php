@@ -16,6 +16,11 @@ use App\Domains\Server\Model\Server as ServerModel;
 class Index extends ControllerAbstract
 {
     /**
+     * @var bool
+     */
+    protected bool $deviceEmpty = true;
+
+    /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
      *
@@ -31,11 +36,9 @@ class Index extends ControllerAbstract
      */
     protected function filters(): void
     {
-        $this->request->merge([
-            'user_id' => $this->auth->preference('user_id', $this->request->input('user_id')),
-            'vehicle_id' => $this->auth->preference('vehicle_id', $this->request->input('vehicle_id')),
-            'device_id' => $this->auth->preference('device_id', $this->request->input('device_id')),
-        ]);
+        $this->filtersUserId();
+        $this->filtersVehicleId();
+        $this->filtersDeviceId();
     }
 
     /**
@@ -44,9 +47,9 @@ class Index extends ControllerAbstract
     public function data(): array
     {
         return [
-            'user' => $this->user(false),
-            'vehicle' => $this->vehicle(false),
-            'device' => $this->device(false),
+            'user' => $this->user(),
+            'vehicle' => $this->vehicle(),
+            'device' => $this->device(),
 
             'onboarding' => $this->onboarding(),
             'server' => $this->server(),
