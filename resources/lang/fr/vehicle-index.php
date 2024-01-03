@@ -4,6 +4,7 @@
     'devices' => 'Appareils',
     'enabled' => 'Actif',
     'filter' => 'Filtre...',
+    'map' => 'Carte',
     'meta-title' => 'Véhicules',
     'name' => 'Nom',
     'notifications' => 'Notifications',

@@ -27,4 +27,6 @@
     'user-index' => 'Lista',
     'user-session' => 'Sesiones',
     'vehicle' => 'Vehículos',
+    'vehicle-index' => 'Lista',
+    'vehicle-map' => 'Mapa',
 ];

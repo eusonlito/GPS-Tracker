@@ -54,11 +54,31 @@
             </ul>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'vehicle.'))
+
         <li>
-            <a href="{{ route('vehicle.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'vehicle.') ? 'side-menu--active' : '' }}">
+            <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('truck')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.vehicle') }}</div>
+                <div class="side-menu__title">
+                    {{ __('in-sidebar.vehicle') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                </div>
             </a>
+
+            <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('vehicle.index') }}" class="side-menu {{ ($active && ($ROUTE !== 'vehicle.map')) ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('list')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.vehicle-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('vehicle.map') }}" class="side-menu {{ ($ROUTE === 'vehicle.map') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('map')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.vehicle-map') }}</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         @php ($active = str_starts_with($ROUTE, 'device.'))

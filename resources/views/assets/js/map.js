@@ -32,6 +32,7 @@ export default class {
         this.layer = null;
         this.layerMarkers = null;
         this.layerDevices = null;
+        this.layerVehicles = null;
         this.layerRefuels = null;
 
         this.point = [];
@@ -53,8 +54,6 @@ export default class {
         this.markers = {};
 
         this.listTable = null;
-
-        this.devicesTripUrl = null;
 
         this.localStorage = new LocalStorage('map');
 
@@ -120,6 +119,22 @@ export default class {
         this.layerDevices = new L.FeatureGroup();
 
         this.getLayer().addLayer(this.layerDevices);
+
+        return this;
+    }
+
+    getLayerVehicles() {
+        if (!this.layerVehicles) {
+            this.setLayerVehicles();
+        }
+
+        return this.layerVehicles;
+    }
+
+    setLayerVehicles() {
+        this.layerVehicles = new L.FeatureGroup();
+
+        this.getLayer().addLayer(this.layerVehicles);
 
         return this;
     }
@@ -565,12 +580,6 @@ export default class {
         return { icon: L.icon(this.merge(defaults, options)) };
     }
 
-    setDevicesTripUrl(devicesTripUrl) {
-        this.devicesTripUrl = devicesTripUrl;
-
-        return this;
-    }
-
     setDevices(devices) {
         this.getLayer().removeLayer(this.getLayerDevices());
         this.setLayerDevices();
@@ -623,6 +632,70 @@ export default class {
 
     isValidDevice(device) {
         return device && device.id && device.name && this.isValidPoint(device.position);
+    }
+
+    setVehicles(vehicles) {
+        this.getLayer().removeLayer(this.getLayerVehicles());
+        this.setLayerVehicles();
+
+        this.array(vehicles).forEach((vehicle) => this.setVehicle(vehicle));
+
+        return this;
+    }
+
+    setVehicle(vehicle, options) {
+        if (!this.isValidVehicle(vehicle)) {
+            return this;
+        }
+
+        const id = vehicle.id;
+        const latLng = this.getLatLng(vehicle.position);
+        const html = this.vehiclePopupHtml(vehicle);
+
+        this.markers[id] = new L.Marker(latLng, this.getVehicleMarkerOptions(vehicle, options))
+            .bindPopup(html, this.getVehicleBindPopupOptions(vehicle))
+            .bindTooltip(this.getVehicleBindTooltipTitle(vehicle), this.getVehicleTooltipOptions(vehicle))
+            .on('click', (e) => this.showMarker(id))
+            .addTo(this.getLayerVehicles());
+
+        return this;
+    }
+
+    getVehicleMarkerOptions(vehicle, options) {
+        return {
+            opacity: 0,
+            icon: L.divIcon(),
+        };
+    }
+
+    getVehicleBindTooltipTitle(vehicle) {
+        let title = vehicle.name;
+
+        if (vehicle.plate && vehicle.plate.length) {
+             title += '<br />' + vehicle.plate;
+        }
+
+        return title;
+    }
+
+    getVehicleBindPopupOptions(vehicle) {
+        return {
+            offset: new L.Point(0, -25)
+        };
+    }
+
+    getVehicleTooltipOptions(vehicle) {
+        return {
+            interactive: true,
+            permanent: true,
+            direction: 'top',
+            className: 'map-vehicle-label',
+            opacity: 1,
+        };
+    }
+
+    isValidVehicle(vehicle) {
+        return vehicle && vehicle.id && vehicle.name && this.isValidPoint(vehicle.position);
     }
 
     setRefuels(refuels) {
@@ -748,7 +821,7 @@ export default class {
         }
 
         const latLng = this.getLatLng(marker);
-        const html = this.popupHtml(marker);
+        const html = this.popupHtmlPosition(marker);
 
         L.marker(latLng, this.getMarkerOptions(marker, options, optionsIcon))
             .bindPopup(html)
@@ -904,17 +977,22 @@ export default class {
             html += this.popupHtmlLine('device', device.name);
         }
 
-        return html + this.popupHtml(device.position);
+        return html + this.popupHtmlPosition(device.position);
+    }
+
+    vehiclePopupHtml(vehicle) {
+        return this.popupHtmlLine('vehicle', vehicle.name)
+            + this.popupHtmlLine('plate', vehicle.plate)
+            + this.popupHtmlPosition(vehicle.position);
     }
 
     refuelPopupHtml(refuel) {
         return this.popupHtmlLine('vehicle', refuel.vehicle.name)
-            + this.popupHtml(refuel.position);
+            + this.popupHtmlPosition(refuel.position);
     }
 
-    popupHtml(marker) {
-        return ''
-            + this.popupHtmlLine('clock', marker.date_at)
+    popupHtmlPosition(marker) {
+        return this.popupHtmlLine('clock', marker.date_at)
             + this.popupHtmlLine('location', '<a href="https://maps.google.com/?q=' + marker.latitude + ',' + marker.longitude + '" rel="nofollow noopener noreferrer" target="_blank">' + marker.latitude + ',' + marker.longitude + '</a>')
             + this.popupHtmlLine('speed', marker.speed_human)
             + this.popupHtmlLineLocation(marker);

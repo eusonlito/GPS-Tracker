@@ -7,9 +7,9 @@ import { dateUtc, dateToIso } from './helper'
 (function () {
     'use strict';
 
-    const element = document.querySelector('[data-map-devices]');
+    const element = document.querySelector('[data-map-vehicles]');
 
-    if (!element || !element.dataset.mapDevices) {
+    if (!element || !element.dataset.mapVehicles) {
         return;
     }
 
@@ -19,11 +19,11 @@ import { dateUtc, dateToIso } from './helper'
         return;
     }
 
-    let devices = [];
+    let vehicles = [];
 
     try {
-        devices = JSON.parse(element.dataset.mapDevices)
-            .filter(device => device.position)
+        vehicles = JSON.parse(element.dataset.mapVehicles)
+            .filter(vehicle => vehicle.position)
             .sort((a, b) => a.name < b.name ? -1 : 1);
     } catch (e) {
         return;
@@ -38,7 +38,7 @@ import { dateUtc, dateToIso } from './helper'
             return;
         }
 
-        const localStorage = new LocalStorage('map-device');
+        const localStorage = new LocalStorage('map-vehicle');
 
         mapListToggle.addEventListener('click', (e) => {
             e.preventDefault();
@@ -97,7 +97,7 @@ import { dateUtc, dateToIso } from './helper'
     };
 
     const updateCallback = (list) => {
-        map.setDevices(list);
+        map.setVehicles(list);
     };
 
     const filterListener = () => {
@@ -145,7 +145,7 @@ import { dateUtc, dateToIso } from './helper'
 
     filterListener();
 
-    map.setDevices(devices);
+    map.setVehicles(vehicles);
 
     const mapPointClick = function (e, point) {
         e.preventDefault();
@@ -155,7 +155,7 @@ import { dateUtc, dateToIso } from './helper'
 
     map.setListTable(document.querySelector('[data-map-list-table]'));
 
-    if (devices.length) {
+    if (vehicles.length) {
         map.fitBounds();
     }
 

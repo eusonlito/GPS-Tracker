@@ -3,6 +3,7 @@
 namespace App\Domains\Vehicle\Model\Builder;
 
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
+use App\Domains\Trip\Model\Trip as TripModel;
 
 class Vehicle extends BuilderAbstract
 {
@@ -28,6 +29,26 @@ class Vehicle extends BuilderAbstract
     public function selectSimple(): self
     {
         return $this->select('id', 'name', 'plate', 'enabled', 'timezone_id', 'user_id');
+    }
+
+    /**
+     * @param ?bool $finished
+     *
+     * @return self
+     */
+    public function whenTripFinished(?bool $finished): self
+    {
+        return $this->when(is_bool($finished), static fn ($q) => $q->whereTripFinished($finished));
+    }
+
+    /**
+     * @param bool $finished = true
+     *
+     * @return self
+     */
+    public function whereTripFinished(bool $finished = true): self
+    {
+        return $this->whereIn('id', TripModel::query()->select('vehicle_id')->whereFinished($finished));
     }
 
     /**
@@ -88,5 +109,13 @@ class Vehicle extends BuilderAbstract
     public function withTimezone(): self
     {
         return $this->with('timezone');
+    }
+
+    /**
+     * @return self
+     */
+    public function withWhereHasPositionLast(): self
+    {
+        return $this->withWhereHas('positionLast', static fn ($q) => $q->withCityState());
     }
 }

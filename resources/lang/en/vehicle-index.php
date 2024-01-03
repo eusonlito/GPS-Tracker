@@ -4,6 +4,7 @@
     'devices' => 'Devices',
     'enabled' => 'Enabled',
     'filter' => 'Filter...',
+    'map' => 'Map',
     'meta-title' => 'Vehicles',
     'name' => 'Name',
     'notifications' => 'Notifications',

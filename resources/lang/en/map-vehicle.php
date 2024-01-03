@@ -6,5 +6,4 @@
     ],
     'name' => 'Name',
     'plate' => 'Registration',
-    'vehicle' => 'Vehicle',
 ];

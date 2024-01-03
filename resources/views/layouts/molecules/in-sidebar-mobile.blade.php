@@ -60,11 +60,31 @@
             </ul>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'vehicle.'))
+
         <li>
-            <a href="{{ route('vehicle.index') }}" class="menu {{ str_starts_with($ROUTE, 'vehicle.') ? 'menu--active' : '' }}">
+            <a href="javascript:;" class="menu {{ $active ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('truck')</div>
-                <div class="menu__title">{{ __('in-sidebar.vehicle') }}</div>
+                <div class="menu__title">
+                    {{ __('in-sidebar.vehicle') }} <div class="menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                </div>
             </a>
+
+            <ul class="{{ $active ? 'menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('vehicle.index') }}" class="menu {{ ($active && ($ROUTE !== 'vehicle.map')) ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('list')</div>
+                        <div class="menu__title">{{ __('in-sidebar.vehicle-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('vehicle.map') }}" class="menu {{ ($ROUTE === 'vehicle.map') ? 'menu--active' : '' }}">
+                        <div class="menu__icon">@icon('map')</div>
+                        <div class="menu__title">{{ __('in-sidebar.vehicle-map') }}</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         @php ($active = str_starts_with($ROUTE, 'device.'))
