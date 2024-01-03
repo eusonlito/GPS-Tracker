@@ -20,11 +20,38 @@
             </a>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'refuel.'))
+
         <li>
-            <a href="{{ route('refuel.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'refuel.') ? 'side-menu--active' : '' }}">
+            <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('battery-charging')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.refuel') }}</div>
+                <div class="side-menu__title">
+                    {{ __('in-sidebar.refuel') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                </div>
             </a>
+
+            <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('refuel.index') }}" class="side-menu {{ ($ROUTE === 'refuel.index') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('list')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.refuel-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('refuel.create') }}" class="side-menu {{ ($ROUTE === 'refuel.create') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('plus-circle')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.refuel-create') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('refuel.map') }}" class="side-menu {{ ($ROUTE === 'refuel.map') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('map')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.refuel-map') }}</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         @php ($active = str_starts_with($ROUTE, 'maintenance'))
@@ -39,9 +66,16 @@
 
             <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
                 <li>
-                    <a href="{{ route('maintenance.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'maintenance.') ? 'side-menu--active' : '' }}">
+                    <a href="{{ route('maintenance.index') }}" class="side-menu {{ ($ROUTE === 'maintenance.index') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">@icon('list')</div>
                         <div class="side-menu__title">{{ __('in-sidebar.maintenance-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('maintenance.create') }}" class="side-menu {{ ($ROUTE === 'maintenance.create') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('plus-circle')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.maintenance-create') }}</div>
                     </a>
                 </li>
 
@@ -66,9 +100,16 @@
 
             <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
                 <li>
-                    <a href="{{ route('vehicle.index') }}" class="side-menu {{ ($active && ($ROUTE !== 'vehicle.map')) ? 'side-menu--active' : '' }}">
+                    <a href="{{ route('vehicle.index') }}" class="side-menu {{ ($ROUTE === 'vehicle.index') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">@icon('list')</div>
                         <div class="side-menu__title">{{ __('in-sidebar.vehicle-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('vehicle.create') }}" class="side-menu {{ ($ROUTE === 'vehicle.create') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('plus-circle')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.vehicle-create') }}</div>
                     </a>
                 </li>
 
@@ -93,9 +134,16 @@
 
             <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
                 <li>
-                    <a href="{{ route('device.index') }}" class="side-menu {{ ($active && ($ROUTE !== 'device.map')) ? 'side-menu--active' : '' }}">
+                    <a href="{{ route('device.index') }}" class="side-menu {{ ($ROUTE === 'device.index') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">@icon('list')</div>
                         <div class="side-menu__title">{{ __('in-sidebar.device-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('device.create') }}" class="side-menu {{ ($ROUTE === 'device.create') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('plus-circle')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.device-create') }}</div>
                     </a>
                 </li>
 
@@ -108,37 +156,43 @@
             </ul>
         </li>
 
+        @php ($active = str_starts_with($ROUTE, 'alarm'))
+
         <li>
-            <a href="{{ route('alarm.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'alarm.') ? 'side-menu--active' : '' }}">
+            <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('bell')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.alarm') }}</div>
+                <div class="side-menu__title">
+                    {{ __('in-sidebar.alarm') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+                </div>
             </a>
-        </li>
 
-        <li>
-            <a href="{{ route('alarm-notification.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'alarm-notification.') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('alert-triangle')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.alarm-notification') }}</div>
-            </a>
-        </li>
+            <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('alarm.index') }}" class="side-menu {{ ($ROUTE === 'alarm.index') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('list')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.alarm-index') }}</div>
+                    </a>
+                </li>
 
-        <li>
-            <a href="{{ route('profile.update') }}" class="side-menu {{ str_starts_with($ROUTE, 'profile.update') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('user')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.profile') }}</div>
-            </a>
+                <li>
+                    <a href="{{ route('alarm.create') }}" class="side-menu {{ ($ROUTE === 'alarm.create') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('plus-circle')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.alarm-create') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('alarm-notification.index') }}" class="side-menu {{ ($ROUTE === 'alarm-notification.index') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('alert-triangle')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.alarm-notification') }}</div>
+                    </a>
+                </li>
+            </ul>
         </li>
 
         @if ($AUTH->adminMode())
 
-        <li>
-            <a href="{{ route('configuration.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'configuration.') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('settings')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.configuration') }}</div>
-            </a>
-        </li>
-
-        @php ($active = str_starts_with($ROUTE, 'user.') || str_starts_with($ROUTE, 'user-session.') || str_starts_with($ROUTE, 'ip-lock.'))
+        @php ($active = str_starts_with($ROUTE, 'user') || str_starts_with($ROUTE, 'ip-lock.'))
 
         <li>
             <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
@@ -150,9 +204,16 @@
 
             <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
                 <li>
-                    <a href="{{ route('user.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'user.') ? 'side-menu--active' : '' }}">
+                    <a href="{{ route('user.index') }}" class="side-menu {{ ($ROUTE === 'user.index') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">@icon('list')</div>
                         <div class="side-menu__title">{{ __('in-sidebar.user-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('user.create') }}" class="side-menu {{ ($ROUTE === 'user.create') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('plus-circle')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.user-create') }}</div>
                     </a>
                 </li>
 
@@ -191,9 +252,16 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('server.index') }}" class="side-menu {{ in_array($ROUTE, ['server.index', 'server.create', 'server.update']) ? 'side-menu--active' : '' }}">
+                    <a href="{{ route('server.index') }}" class="side-menu {{ ($ROUTE === 'server.index') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">@icon('list')</div>
                         <div class="side-menu__title">{{ __('in-sidebar.server-index') }}</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('server.create') }}" class="side-menu {{ ($ROUTE === 'server.create') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('plus-circle')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.server-create') }}</div>
                     </a>
                 </li>
 
@@ -247,7 +315,21 @@
             </a>
         </li>
 
+        <li>
+            <a href="{{ route('configuration.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'configuration.') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('settings')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.configuration') }}</div>
+            </a>
+        </li>
+
         @endif
+
+        <li>
+            <a href="{{ route('profile.update') }}" class="side-menu {{ str_starts_with($ROUTE, 'profile.update') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('user')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.profile') }}</div>
+            </a>
+        </li>
 
         <li>
             <a href="{{ route('user.logout') }}" class="side-menu">
