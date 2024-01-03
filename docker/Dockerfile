@@ -1,4 +1,4 @@
-FROM php:8.2
+FROM php:8.3
 
 RUN apt-get update -y
 RUN apt-get upgrade -y
