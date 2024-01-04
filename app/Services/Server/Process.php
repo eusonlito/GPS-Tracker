@@ -156,6 +156,8 @@ class Process
             return $errno === 110;
         }
 
+        fclose($fp);
+
         return false;
     }
 }
