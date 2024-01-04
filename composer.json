@@ -126,6 +126,18 @@
             "@composer artisan-server-start-all"
         ],
 
+        "deploy-demo": [
+            "Composer\\Config::disableProcessTimeout",
+            "rm -f bootstrap/cache/*.php",
+            "git checkout .",
+            "git pull",
+            "@composer env-version --ansi",
+            "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
+            "@php artisan migrate --force --ansi",
+            "@php artisan db:seed --force --ansi --class=\"Database\\Seeders\\Database\"",
+            "@php artisan server:manifest:generate"
+        ],
+
         "fix": [
             "@php ./vendor/bin/php-cs-fixer fix -v --ansi",
             "@php ./vendor/bin/pint -v"
