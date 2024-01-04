@@ -2,6 +2,7 @@
 
 namespace App\Domains\Position\Model\Builder;
 
+use App\Domains\City\Model\City as CityModel;
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\CoreApp\Model\Builder\Traits\Gis as GisTrait;
 use App\Domains\Refuel\Model\Refuel as RefuelModel;
@@ -39,7 +40,7 @@ class Position extends BuilderAbstract
      */
     public function byCountryId(int $country_id): self
     {
-        return $this->where('country_id', $country_id);
+        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byCountryId($country_id));
     }
 
     /**
@@ -49,7 +50,7 @@ class Position extends BuilderAbstract
      */
     public function byCountryIds(array $country_ids): self
     {
-        return $this->whereIntegerInRaw('country_id', $country_ids);
+        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byCountryIds($country_ids));
     }
 
     /**
@@ -126,7 +127,7 @@ class Position extends BuilderAbstract
      */
     public function byStateId(int $state_id): self
     {
-        return $this->where('state_id', $state_id);
+        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byStateId($state_id));
     }
 
     /**
@@ -136,7 +137,7 @@ class Position extends BuilderAbstract
      */
     public function byStateIds(array $state_ids): self
     {
-        return $this->whereIntegerInRaw('state_id', $state_ids);
+        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byStateIds($state_ids));
     }
 
     /**
@@ -166,7 +167,7 @@ class Position extends BuilderAbstract
      */
     public function byTripQuery(TripBuilder $query): self
     {
-        return $this->whereIn('trip_id', $query->select('id'));
+        return $this->whereIn('trip_id', $query->selectOnly('id'));
     }
 
     /**
@@ -283,8 +284,8 @@ class Position extends BuilderAbstract
     {
         return $this->selectRaw('
             `id`, `speed`, `direction`, `signal`, `date_at`, `date_utc_at`, `created_at`, `updated_at`,
-            `longitude`, `latitude`, `country_id`, `city_id`, `device_id`, `state_id`, `timezone_id`,
-            `trip_id`, `user_id`, `vehicle_id`
+            `longitude`, `latitude`, `city_id`, `device_id`, `timezone_id`, `trip_id`, `user_id`,
+            `vehicle_id`
         ');
     }
 
@@ -368,15 +369,7 @@ class Position extends BuilderAbstract
      */
     public function withCityState(): self
     {
-        return $this->withCity()->withState();
-    }
-
-    /**
-     * @return self
-     */
-    public function withCountry(): self
-    {
-        return $this->with('country');
+        return $this->with(['city' => static fn ($q) => $q->withState()]);
     }
 
     /**
@@ -393,14 +386,6 @@ class Position extends BuilderAbstract
     public function withDevice(): self
     {
         return $this->with('device');
-    }
-
-    /**
-     * @return self
-     */
-    public function withState(): self
-    {
-        return $this->with('state');
     }
 
     /**

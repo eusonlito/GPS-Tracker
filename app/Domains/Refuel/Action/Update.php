@@ -18,9 +18,7 @@ class Update extends CreateUpdateAbstract
         $this->row->point = $this->data['point'];
         $this->row->date_at = $this->data['date_at'];
         $this->row->city_id = $this->data['city_id'];
-        $this->row->country_id = $this->data['country_id'];
         $this->row->position_id = $this->data['position_id'];
-        $this->row->state_id = $this->data['state_id'];
         $this->row->vehicle_id = $this->data['vehicle_id'];
 
         $this->row->save();

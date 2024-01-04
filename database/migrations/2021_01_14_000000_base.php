@@ -257,9 +257,7 @@ return new class extends MigrationAbstract {
             $this->timestamps($table);
 
             $table->unsignedBigInteger('city_id')->nullable();
-            $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('device_id')->nullable();
-            $table->unsignedBigInteger('state_id')->nullable();
             $table->unsignedBigInteger('timezone_id');
             $table->unsignedBigInteger('trip_id');
             $table->unsignedBigInteger('user_id');
@@ -297,9 +295,7 @@ return new class extends MigrationAbstract {
             $this->timestamps($table);
 
             $table->unsignedBigInteger('city_id')->nullable();
-            $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('position_id')->nullable();
-            $table->unsignedBigInteger('state_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vehicle_id');
         });
@@ -535,9 +531,7 @@ return new class extends MigrationAbstract {
             $this->tableAddIndex($table, 'longitude');
 
             $this->foreignOnDeleteSetNull($table, 'city');
-            $this->foreignOnDeleteSetNull($table, 'country');
             $this->foreignOnDeleteSetNull($table, 'device');
-            $this->foreignOnDeleteSetNull($table, 'state');
             $this->foreignOnDeleteCascade($table, 'timezone');
             $this->foreignOnDeleteCascade($table, 'trip');
             $this->foreignOnDeleteCascade($table, 'user');
@@ -548,9 +542,7 @@ return new class extends MigrationAbstract {
             $table->spatialIndex('point');
 
             $this->foreignOnDeleteSetNull($table, 'city');
-            $this->foreignOnDeleteSetNull($table, 'country');
             $this->foreignOnDeleteSetNull($table, 'position');
-            $this->foreignOnDeleteSetNull($table, 'state');
             $this->foreignOnDeleteCascade($table, 'user');
             $this->foreignOnDeleteCascade($table, 'vehicle');
         });

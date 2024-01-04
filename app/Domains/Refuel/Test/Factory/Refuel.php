@@ -5,8 +5,6 @@ namespace App\Domains\Refuel\Test\Factory;
 use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\City\Model\City as CityModel;
-use App\Domains\Country\Model\Country as CountryModel;
-use App\Domains\State\Model\State as StateModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Refuel extends FactoryAbstract
@@ -34,8 +32,6 @@ class Refuel extends FactoryAbstract
             'date_at' => date('Y-m-d H:i:s'),
 
             'city_id' => $this->firstOrFactory(CityModel::class),
-            'country_id' => $this->firstOrFactory(CountryModel::class),
-            'state_id' => $this->firstOrFactory(StateModel::class),
             'user_id' => $this->userFirstOrFactory(),
             'vehicle_id' => $this->firstOrFactory(VehicleModel::class),
         ];

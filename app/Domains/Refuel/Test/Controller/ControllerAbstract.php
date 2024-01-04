@@ -122,8 +122,6 @@ abstract class ControllerAbstract extends FeatureAbstract
             'longitude' => -7.9126,
 
             'city_id' => null,
-            'country_id' => null,
-            'state_id' => null,
         ];
     }
 }

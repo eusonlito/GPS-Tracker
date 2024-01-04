@@ -48,7 +48,7 @@ class Vehicle extends BuilderAbstract
      */
     public function whereTripFinished(bool $finished = true): self
     {
-        return $this->whereIn('id', TripModel::query()->select('vehicle_id')->whereFinished($finished));
+        return $this->whereIn('id', TripModel::query()->selectOnly('vehicle_id')->whereFinished($finished));
     }
 
     /**

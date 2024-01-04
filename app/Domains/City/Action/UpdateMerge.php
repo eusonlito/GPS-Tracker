@@ -4,8 +4,6 @@ namespace App\Domains\City\Action;
 
 use App\Domains\City\Model\City as Model;
 use App\Domains\City\Model\Collection\City as Collection;
-use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Refuel\Model\Refuel as RefuelModel;
 
 class UpdateMerge extends ActionAbstract
 {
@@ -82,60 +80,6 @@ class UpdateMerge extends ActionAbstract
      * @return void
      */
     protected function save(): void
-    {
-        $this->savePosition();
-        $this->saveRefuel();
-        $this->saveRow();
-    }
-
-    /**
-     * @return void
-     */
-    protected function savePosition(): void
-    {
-        PositionModel::query()
-            ->byCityIds($this->data['ids'])
-            ->update($this->savePositionData());
-    }
-
-    /**
-     * @return array
-     */
-    protected function savePositionData(): array
-    {
-        return [
-            'city_id' => $this->row->id,
-            'state_id' => $this->row->state_id,
-            'country_id' => $this->row->country_id,
-        ];
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveRefuel(): void
-    {
-        RefuelModel::query()
-            ->byCityIds($this->data['ids'])
-            ->update($this->saveRefuelData());
-    }
-
-    /**
-     * @return array
-     */
-    protected function saveRefuelData(): array
-    {
-        return [
-            'city_id' => $this->row->id,
-            'state_id' => $this->row->state_id,
-            'country_id' => $this->row->country_id,
-        ];
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveRow(): void
     {
         $this->row->alias = $this->data['alias'];
         $this->row->save();

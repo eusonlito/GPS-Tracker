@@ -4,8 +4,6 @@ namespace App\Domains\State\Action;
 
 use App\Domains\City\Model\City as CityModel;
 use App\Domains\Country\Model\Country as CountryModel;
-use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Refuel\Model\Refuel as RefuelModel;
 use App\Domains\State\Model\State as Model;
 
 class Update extends ActionAbstract
@@ -87,8 +85,6 @@ class Update extends ActionAbstract
     {
         $this->saveRow();
         $this->saveCity();
-        $this->savePosition();
-        $this->saveRefuel();
     }
 
     /**
@@ -112,34 +108,6 @@ class Update extends ActionAbstract
         }
 
         CityModel::query()->byStateId($this->row->id)->update([
-            'country_id' => $this->row->country_id,
-        ]);
-    }
-
-    /**
-     * @return void
-     */
-    protected function savePosition(): void
-    {
-        if ($this->relocate === false) {
-            return;
-        }
-
-        PositionModel::query()->byStateId($this->row->id)->update([
-            'country_id' => $this->row->country_id,
-        ]);
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveRefuel(): void
-    {
-        if ($this->relocate === false) {
-            return;
-        }
-
-        RefuelModel::query()->byStateId($this->row->id)->update([
             'country_id' => $this->row->country_id,
         ]);
     }

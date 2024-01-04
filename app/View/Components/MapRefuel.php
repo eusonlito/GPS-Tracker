@@ -62,7 +62,7 @@ class MapRefuel extends Component
             'longitude' => $refuel->longitude,
             'direction' => $refuel->direction,
             'city' => $refuel->city?->name,
-            'state' => $refuel->state?->name,
+            'state' => $refuel->city?->state->name,
             'vehicle' => $this->refuelsJsonMapVehicle($refuel->vehicle),
         ];
     }

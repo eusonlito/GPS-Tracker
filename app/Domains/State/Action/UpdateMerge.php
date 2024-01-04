@@ -3,8 +3,6 @@
 namespace App\Domains\State\Action;
 
 use App\Domains\City\Model\City as CityModel;
-use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Refuel\Model\Refuel as RefuelModel;
 use App\Domains\State\Model\State as Model;
 use App\Domains\State\Model\Collection\State as Collection;
 
@@ -84,41 +82,8 @@ class UpdateMerge extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->savePosition();
-        $this->saveRefuel();
         $this->saveCity();
         $this->saveRow();
-    }
-
-    /**
-     * @return void
-     */
-    protected function savePosition(): void
-    {
-        PositionModel::query()
-            ->byStateIds($this->data['ids'])
-            ->update($this->saveRelatedData());
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveRefuel(): void
-    {
-        RefuelModel::query()
-            ->byStateIds($this->data['ids'])
-            ->update($this->saveRelatedData());
-    }
-
-    /**
-     * @return array
-     */
-    protected function saveRelatedData(): array
-    {
-        return [
-            'state_id' => $this->row->id,
-            'country_id' => $this->row->country_id,
-        ];
     }
 
     /**

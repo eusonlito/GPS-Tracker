@@ -65,15 +65,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     protected function dataLocation(): void
     {
-        if ($this->dataLocationDifferent()) {
-            $this->data['city_id'] = null;
-            $this->data['country_id'] = null;
-            $this->data['state_id'] = null;
-        } else {
-            $this->data['city_id'] = $this->row->city_id;
-            $this->data['country_id'] = $this->row->country_id;
-            $this->data['state_id'] = $this->row->state_id;
-        }
+        $this->data['city_id'] = $this->dataLocationDifferent() ? null : $this->row->city_id;
     }
 
     /**

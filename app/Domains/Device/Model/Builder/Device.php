@@ -80,7 +80,7 @@ class Device extends BuilderAbstract
      */
     public function whereTripFinished(bool $finished = true): self
     {
-        return $this->whereIn('id', TripModel::query()->select('device_id')->whereFinished($finished));
+        return $this->whereIn('id', TripModel::query()->selectOnly('device_id')->whereFinished($finished));
     }
 
     /**
@@ -90,7 +90,7 @@ class Device extends BuilderAbstract
      */
     public function whereTripSharedPublic(bool $shared_public = true): self
     {
-        return $this->whereIn('id', TripModel::query()->select('device_id')->whereSharedPublic($shared_public));
+        return $this->whereIn('id', TripModel::query()->selectOnly('device_id')->whereSharedPublic($shared_public));
     }
 
     /**
