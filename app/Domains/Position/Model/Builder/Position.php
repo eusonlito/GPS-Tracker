@@ -212,6 +212,16 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @param string $date_at
+     *
+     * @return self
+     */
+    public function orderByDateAtNearest(string $date_at): self
+    {
+        return $this->orderByRaw('ABS(TIMESTAMPDIFF(SECOND, `date_at`, ?)) ASC', [$date_at]);
+    }
+
+    /**
      * @return self
      */
     public function orderByDateUtcAtAsc(): self

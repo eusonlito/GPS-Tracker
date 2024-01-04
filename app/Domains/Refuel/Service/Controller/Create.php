@@ -4,6 +4,7 @@ namespace App\Domains\Refuel\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
+use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Refuel\Model\Refuel as Model;
 
 class Create extends CreateUpdateAbstract
@@ -24,9 +25,37 @@ class Create extends CreateUpdateAbstract
      */
     protected function request(): void
     {
-        $this->requestMergeWithRow([
-            'user_id' => $this->user()->id,
-        ], $this->previous());
+        $this->requestMergeWithRow($this->requestMergeWithRowData(), $this->previous());
+    }
+
+    /**
+     * @return array
+     */
+    protected function requestMergeWithRowData(): array
+    {
+        return $this->requestMergeWithRowUserId()
+            + $this->requestMergeWithRowLocation();
+    }
+
+    /**
+     * @return array
+     */
+    protected function requestMergeWithRowUserId(): array
+    {
+        return ['user_id' => $this->user()->id];
+    }
+
+    /**
+     * @return array
+     */
+    protected function requestMergeWithRowLocation(): array
+    {
+        return PositionModel::query()
+            ->selectOnly('latitude', 'longitude')
+            ->byUserId($this->user()->id)
+            ->orderByLast()
+            ->firstOrNew()
+            ->only('latitude', 'longitude');
     }
 
     /**

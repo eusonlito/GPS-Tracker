@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Position\Command;
+namespace App\Domains\Refuel\Command;
 
 class UpdateCityEmpty extends CommandAbstract
 {
     /**
      * @var string
      */
-    protected $signature = 'position:update:city:empty';
+    protected $signature = 'refuel:update:city:empty';
 
     /**
      * @var string
      */
-    protected $description = 'Update All Positions with Empty City';
+    protected $description = 'Update All Refuels with Empty City';
 
     /**
      * @return void

@@ -23,7 +23,6 @@ import { dateUtc, dateToIso } from './helper'
 
     try {
         refuels = JSON.parse(element.dataset.mapRefuels)
-            .filter(refuel => refuel.position)
             .sort((a, b) => a.date_at > b.date_at ? -1 : 1);
     } catch (e) {
         return;

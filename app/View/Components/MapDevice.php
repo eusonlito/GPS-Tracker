@@ -42,6 +42,7 @@ class MapDevice extends Component
     protected function devicesJson(): string
     {
         return $this->devices
+            ->toBase()
             ->map($this->devicesJsonMap(...))
             ->sortBy('name')
             ->values()

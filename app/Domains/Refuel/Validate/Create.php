@@ -18,6 +18,8 @@ class Create extends ValidateAbstract
             'quantity_before' => ['bail', 'numeric'],
             'price' => ['bail', 'required', 'numeric'],
             'total' => ['bail', 'required', 'numeric'],
+            'latitude' => ['bail', 'required', 'numeric', 'between:-90,90'],
+            'longitude' => ['bail', 'required', 'numeric', 'between:-180,180'],
             'date_at' => ['bail', 'required', 'date_format:Y-m-d H:i:s'],
             'user_id' => ['bail', 'integer'],
             'vehicle_id' => ['bail', 'required', 'integer'],

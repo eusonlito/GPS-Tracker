@@ -39,8 +39,8 @@ class Map extends IndexMapAbstract
                 ->whenVehicleId($this->vehicle()?->id)
                 ->whenDateAtBetween($this->request->input('start_at'), $this->request->input('end_at'))
                 ->whenCityStateCountryId($this->city()?->id, $this->state()?->id, $this->country()?->id)
-                ->withWhereHasPosition()
                 ->withSimple('vehicle')
+                ->withCityState()
                 ->list()
                 ->get()
         );

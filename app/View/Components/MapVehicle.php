@@ -41,6 +41,7 @@ class MapVehicle extends Component
     protected function vehiclesJson(): string
     {
         return $this->vehicles
+            ->toBase()
             ->map($this->vehiclesJsonMap(...))
             ->sortBy('name')
             ->values()

@@ -20,6 +20,8 @@ L.GeometryUtil = GeometryUtil;
         return
     }
 
+    const zoom = parseInt(element.dataset.mapPointZoom || 13);
+
     latitude.value = latitude.value || 40.416729;
     longitude.value = longitude.value || -3.703339;
 
@@ -49,7 +51,7 @@ L.GeometryUtil = GeometryUtil;
         attributionControl: false,
         zoomControl: true,
         zoomSnap: 1,
-        zoom: 13
+        zoom: zoom
     });
 
     L.control.layers({ ...layers }, null, { collapsed: true }).addTo(map);

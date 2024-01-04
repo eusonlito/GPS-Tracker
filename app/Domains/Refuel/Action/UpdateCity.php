@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Position\Action;
+namespace App\Domains\Refuel\Action;
 
 use App\Domains\City\Model\City as CityModel;
-use App\Domains\Position\Model\Position as Model;
+use App\Domains\Refuel\Model\Refuel as Model;
 
 class UpdateCity extends ActionAbstract
 {
@@ -13,7 +13,7 @@ class UpdateCity extends ActionAbstract
     protected ?CityModel $city;
 
     /**
-     * @return \App\Domains\Position\Model\Position
+     * @return \App\Domains\Refuel\Model\Refuel
      */
     public function handle(): Model
     {

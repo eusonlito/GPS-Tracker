@@ -18,6 +18,7 @@ class Create extends CreateUpdateAbstract
             'quantity_before' => $this->data['quantity_before'],
             'price' => $this->data['price'],
             'total' => $this->data['total'],
+            'point' => $this->data['point'],
             'date_at' => $this->data['date_at'],
             'position_id' => $this->data['position_id'],
             'user_id' => $this->data['user_id'],

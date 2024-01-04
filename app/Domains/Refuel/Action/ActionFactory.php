@@ -35,4 +35,20 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandle(Update::class, $this->validate()->update());
     }
+
+    /**
+     * @return \App\Domains\Refuel\Model\Refuel
+     */
+    public function updateCity(): Model
+    {
+        return $this->actionHandle(UpdateCity::class);
+    }
+
+    /**
+     * @return void
+     */
+    public function updateCityEmpty(): void
+    {
+        $this->actionHandle(UpdateCityEmpty::class);
+    }
 }

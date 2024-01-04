@@ -713,7 +713,7 @@ export default class {
         }
 
         const id = refuel.id;
-        const latLng = this.getLatLng(refuel.position);
+        const latLng = this.getLatLng(refuel);
         const html = this.refuelPopupHtml(refuel);
 
         this.markers[id] = new L.Marker(latLng, this.getRefuelMarkerOptions(refuel, options))
@@ -749,7 +749,7 @@ export default class {
     }
 
     isValidRefuel(refuel) {
-        return refuel && refuel.id && refuel.date_at && this.isValidPoint(refuel.position);
+        return refuel && refuel.id && refuel.date_at && this.isValidPoint(refuel);
     }
 
     setIcon(name, point, options) {
@@ -988,7 +988,9 @@ export default class {
 
     refuelPopupHtml(refuel) {
         return this.popupHtmlLine('vehicle', refuel.vehicle.name)
-            + this.popupHtmlPosition(refuel.position);
+            + this.popupHtmlLine('clock', refuel.date_at)
+            + this.popupHtmlLine('location', '<a href="https://maps.google.com/?q=' + refuel.latitude + ',' + refuel.longitude + '" rel="nofollow noopener noreferrer" target="_blank">' + refuel.latitude + ',' + refuel.longitude + '</a>')
+            + this.popupHtmlLineLocation(refuel);
     }
 
     popupHtmlPosition(marker) {

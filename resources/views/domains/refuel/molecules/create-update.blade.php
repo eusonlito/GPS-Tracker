@@ -43,4 +43,18 @@
             <input type="number" name="total" class="form-control form-control-lg" id="refuel-total" value="{{ $REQUEST->input('total') }}" min="0" step="any" required data-calculator-total data-calculator-total-first="#refuel-quantity" data-calculator-total-second="#refuel-price">
         </div>
     </div>
+
+    <div class="md:flex">
+        <div class="flex-1 p-2">
+            <label for="refuel-latitude" class="form-label">{{ __('refuel-update.latitude') }}</label>
+            <input type="number" name="latitude" class="form-control form-control-lg" id="refuel-latitude" value="{{ $REQUEST->input('latitude') }}" step="any" required>
+        </div>
+
+        <div class="flex-1 p-2">
+            <label for="refuel-longitude" class="form-label">{{ __('refuel-update.longitude') }}</label>
+            <input type="number" name="longitude" class="form-control form-control-lg" id="refuel-longitude" value="{{ $REQUEST->input('longitude') }}" step="any" required>
+        </div>
+    </div>
+
+    <div class="map-point mt-5" data-map-point data-map-point-latitude="#refuel-latitude" data-map-point-longitude="#refuel-longitude" data-map-point-zoom="18"></div>
 </div>

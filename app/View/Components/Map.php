@@ -56,6 +56,7 @@ class Map extends Component
     protected function positionsJson(): string
     {
         return $this->positions
+            ->toBase()
             ->map($this->positionsJsonMap(...))
             ->sortByDesc('date_at')
             ->values()

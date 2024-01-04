@@ -4,16 +4,21 @@ namespace App\Domains\Refuel\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Domains\City\Model\City as CityModel;
 use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\Country\Model\Country as CountryModel;
+use App\Domains\CoreApp\Model\Traits\Gis as GisTrait;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Refuel\Model\Builder\Refuel as Builder;
 use App\Domains\Refuel\Model\Collection\Refuel as Collection;
 use App\Domains\Refuel\Test\Factory\Refuel as TestFactory;
+use App\Domains\State\Model\State as StateModel;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Refuel extends ModelAbstract
 {
+    use GisTrait;
     use HasFactory;
 
     /**
@@ -62,9 +67,33 @@ class Refuel extends ModelAbstract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(CityModel::class, CityModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(CountryModel::class, CountryModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function position(): BelongsTo
     {
         return $this->belongsTo(PositionModel::class, PositionModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function state(): BelongsTo
+    {
+        return $this->belongsTo(StateModel::class, StateModel::FOREIGN);
     }
 
     /**

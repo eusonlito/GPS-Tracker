@@ -36,9 +36,9 @@ class Position extends FactoryAbstract
             'date_utc_at' => date('Y-m-d H:i:s'),
 
             'city_id' => $this->firstOrFactory(CityModel::class),
-            'state_id' => $this->firstOrFactory(StateModel::class),
             'country_id' => $this->firstOrFactory(CountryModel::class),
             'device_id' => $this->firstOrFactory(DeviceModel::class),
+            'state_id' => $this->firstOrFactory(StateModel::class),
             'timezone_id' => $this->firstOrFactory(TimezoneModel::class),
             'trip_id' => $this->firstOrFactory(TripModel::class),
             'user_id' => $this->userFirstOrFactory(),

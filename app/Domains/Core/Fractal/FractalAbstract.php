@@ -59,7 +59,11 @@ abstract class FractalAbstract
      */
     final protected function collection(string $function, Collection $value, array $args): array
     {
-        return $value->map(fn ($each) => $this->call($function, $each, $args))->values()->toArray();
+        return $value
+            ->toBase()
+            ->map(fn ($each) => $this->call($function, $each, $args))
+            ->values()
+            ->toArray();
     }
 
     /**

@@ -2,8 +2,9 @@
 
 namespace App\Domains\Refuel\Action;
 
-use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Refuel\Model\Refuel as Model;
+use App\Domains\Refuel\Job\UpdateCity as UpdateCityJob;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
@@ -21,6 +22,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         $this->data();
         $this->check();
         $this->save();
+        $this->job();
 
         return $this->row;
     }
@@ -31,7 +33,20 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     protected function data(): void
     {
         $this->dataUserId();
+        $this->dataPoint();
         $this->dataPositionId();
+        $this->dataLocation();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataPoint(): void
+    {
+        $this->data['point'] = Model::pointFromLatitudeLongitude(
+            $this->data['latitude'],
+            $this->data['longitude'],
+        );
     }
 
     /**
@@ -41,8 +56,34 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     {
         $this->data['position_id'] = PositionModel::query()
             ->byUserId($this->data['user_id'])
-            ->byDateAtBeforeEqualNear($this->data['date_at'])
+            ->orderByDateAtNearest($this->data['date_at'])
             ->value('id');
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataLocation(): void
+    {
+        if ($this->dataLocationDifferent()) {
+            $this->data['city_id'] = null;
+            $this->data['country_id'] = null;
+            $this->data['state_id'] = null;
+        } else {
+            $this->data['city_id'] = $this->row->city_id;
+            $this->data['country_id'] = $this->row->country_id;
+            $this->data['state_id'] = $this->row->state_id;
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function dataLocationDifferent(): bool
+    {
+        return empty($this->row)
+            || ($this->row->latitude !== $this->data['latitude'])
+            || ($this->row->longitude !== $this->data['longitude']);
     }
 
     /**
@@ -72,5 +113,13 @@ abstract class CreateUpdateAbstract extends ActionAbstract
             ->byId($this->data['vehicle_id'])
             ->byUserId($this->data['user_id'])
             ->exists();
+    }
+
+    /**
+     * @return void
+     */
+    protected function job(): void
+    {
+        UpdateCityJob::dispatch($this->row->id);
     }
 }

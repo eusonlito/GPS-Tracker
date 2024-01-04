@@ -32,7 +32,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             'user_id' => $user->id,
         ]));
 
-        $this->assertEquals($row->user_id, $user->id);
+        $this->assertEquals($row->user_id, $user->id, '$row->user_id, $user->id');
 
         return [$user, $row];
     }
@@ -75,12 +75,12 @@ abstract class FeatureAbstract extends FeatureAbstractCore
         $device = $device ? $this->createDevice($vehicle) : null;
 
         if ($vehicle) {
-            $this->assertEquals($vehicle->user_id, $user->id);
+            $this->assertEquals($vehicle->user_id, $user->id, '$vehicle->user_id, $user->id');
         }
 
         if ($device) {
-            $this->assertEquals($device->user_id, $user->id);
-            $this->assertEquals($device->vehicle_id, $vehicle->id);
+            $this->assertEquals($device->user_id, $user->id, '$device->user_id, $user->id');
+            $this->assertEquals($device->vehicle_id, $vehicle->id, '$device->vehicle_id, $vehicle->id');
         }
 
         return [$user, $vehicle, $device];
@@ -148,14 +148,14 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             'device_id' => $device?->id,
         ]));
 
-        $this->assertEquals($row->user_id, $user->id);
+        $this->assertEquals($row->user_id, $user->id, '$row->user_id, $user->id');
 
         if ($vehicle) {
-            $this->assertEquals($row->vehicle_id, $vehicle->id);
+            $this->assertEquals($row->vehicle_id, $vehicle->id, '$row->vehicle_id, $vehicle->id');
         }
 
         if ($device) {
-            $this->assertEquals($row->device_id, $device->id);
+            $this->assertEquals($row->device_id, $device->id, '$row->device_id, $device->id');
         }
 
         return $row;
@@ -716,14 +716,14 @@ abstract class FeatureAbstract extends FeatureAbstractCore
 
         $this->dataVsRow($data, $row1, $exclude, $only);
 
-        $this->assertEquals($row1->user_id, $user2->id);
+        $this->assertEquals($row1->user_id, $user2->id, '$row1->user_id, $user2->id');
 
         if ($vehicle) {
-            $this->assertEquals($row1->vehicle_id, $vehicle2->id);
+            $this->assertEquals($row1->vehicle_id, $vehicle2->id, '$row1->vehicle_id, $vehicle2->id');
         }
 
         if ($device) {
-            $this->assertEquals($row1->device_id, $device2->id);
+            $this->assertEquals($row1->device_id, $device2->id, '$row1->device_id, $device2->id');
         }
 
         return $response;
@@ -938,16 +938,16 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertStatus(302)
             ->assertRedirect(route($this->route, $row2->id));
 
-        $row2 = $row2->fresh();
+        $row2 = $this->rowFresh($row2);
 
-        $this->assertEquals($row2->user_id, $user2->id);
+        $this->assertEquals($row2->user_id, $user2->id, '$row2->user_id, $user2->id');
 
         if ($vehicle) {
-            $this->assertEquals($row2->vehicle_id, $vehicle2->id);
+            $this->assertEquals($row2->vehicle_id, $vehicle2->id, '$row2->vehicle_id, $vehicle2->id');
         }
 
         if ($device) {
-            $this->assertEquals($row2->device_id, $device2->id);
+            $this->assertEquals($row2->device_id, $device2->id, '$row2->device_id, $device2->id');
         }
 
         $this->dataVsRow(['user_id' => $row2->user_id] + $data, $row2, $exclude, $only);
@@ -974,9 +974,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertStatus(302)
             ->assertRedirect(route($this->route, $row1->id));
 
-        $row1 = $row1->fresh();
+        $row1 = $this->rowFresh($row1);
 
-        $this->assertEquals($row1->user_id, $user1->id);
+        $this->assertEquals($row1->user_id, $user1->id, '$row1->user_id, $user1->id');
 
         $this->dataVsRow(['user_id' => $row1->user_id] + $data, $row1, $exclude, $only);
 
@@ -986,9 +986,9 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertStatus(302)
             ->assertRedirect(route($this->route, $row2->id));
 
-        $row2 = $row2->fresh();
+        $row2 = $this->rowFresh($row2);
 
-        $this->assertEquals($row2->user_id, $user2->id);
+        $this->assertEquals($row2->user_id, $user2->id, '$row2->user_id, $user2->id');
 
         $this->dataVsRow(['user_id' => $row2->user_id] + $data, $row2, $exclude, $only);
 
