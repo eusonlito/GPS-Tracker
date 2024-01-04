@@ -42,6 +42,7 @@ class MapDevice extends Component
     protected function devicesJson(): string
     {
         return $this->devices
+            ->toBase()
             ->map($this->devicesJsonMap(...))
             ->sortBy('name')
             ->values()
@@ -101,7 +102,7 @@ class MapDevice extends Component
             'speed' => helper()->unit('speed', $position->speed),
             'speed_human' => helper()->unitHuman('speed', $position->speed),
             'city' => $position->city?->name,
-            'state' => $position->state?->name,
+            'state' => $position->city?->state->name,
         ];
     }
 

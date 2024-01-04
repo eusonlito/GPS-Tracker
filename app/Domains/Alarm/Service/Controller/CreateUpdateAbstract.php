@@ -18,7 +18,7 @@ abstract class CreateUpdateAbstract extends ControllerAbstract
     protected function request()
     {
         $this->requestMergeWithRow([
-            'user_id' => $this->user(false)->id,
+            'user_id' => $this->user()->id,
         ]);
     }
 
@@ -61,7 +61,7 @@ abstract class CreateUpdateAbstract extends ControllerAbstract
 
         return $this->cache(
             fn () => PositionModel::query()
-                ->byUserId($this->user(false)->id)
+                ->byUserId($this->user()->id)
                 ->orderByDateUtcAtDesc()
                 ->first()
         );

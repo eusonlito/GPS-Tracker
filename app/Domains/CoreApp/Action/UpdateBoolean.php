@@ -11,6 +11,10 @@ abstract class UpdateBoolean extends ActionAbstract
      */
     public function handle(): ModelAbstract
     {
+        if (config('demo.enabled')) {
+            $this->exceptionValidator(__('demo.error.not-allowed'));
+        }
+
         $this->before();
         $this->check();
         $this->data();

@@ -6,7 +6,6 @@ use Illuminate\View\Component;
 use Illuminate\View\View;
 use App\Domains\Refuel\Model\Collection\Refuel as RefuelCollection;
 use App\Domains\Refuel\Model\Refuel as RefuelModel;
-use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class MapRefuel extends Component
@@ -40,6 +39,7 @@ class MapRefuel extends Component
     protected function refuelsJson(): string
     {
         return $this->refuels
+            ->toBase()
             ->map($this->refuelsJsonMap(...))
             ->sortByDesc('date_at')
             ->values()
@@ -58,7 +58,11 @@ class MapRefuel extends Component
             'date_at' => $refuel->date_at,
             'price' => $refuel->price,
             'total' => $refuel->total,
-            'position' => $this->refuelsJsonMapPosition($refuel->position),
+            'latitude' => $refuel->latitude,
+            'longitude' => $refuel->longitude,
+            'direction' => $refuel->direction,
+            'city' => $refuel->city?->name,
+            'state' => $refuel->city?->state->name,
             'vehicle' => $this->refuelsJsonMapVehicle($refuel->vehicle),
         ];
     }
@@ -77,31 +81,6 @@ class MapRefuel extends Component
         return [
             'id' => $vehicle->id,
             'name' => $vehicle->name,
-        ];
-    }
-
-    /**
-     * @param ?\App\Domains\Position\Model\Position $position
-     *
-     * @return ?array
-     */
-    protected function refuelsJsonMapPosition(?PositionModel $position): ?array
-    {
-        if ($position === null) {
-            return null;
-        }
-
-        return [
-            'id' => $position->id,
-            'date_at' => $position->date_at,
-            'date_utc_at' => $position->date_utc_at,
-            'latitude' => $position->latitude,
-            'longitude' => $position->longitude,
-            'direction' => $position->direction,
-            'speed' => helper()->unit('speed', $position->speed),
-            'speed_human' => helper()->unitHuman('speed', $position->speed),
-            'city' => $position->city?->name,
-            'state' => $position->state?->name,
         ];
     }
 }

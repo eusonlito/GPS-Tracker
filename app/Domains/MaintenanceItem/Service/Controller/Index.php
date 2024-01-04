@@ -10,6 +10,11 @@ use App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem as Collection;
 class Index extends ControllerAbstract
 {
     /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
      *
@@ -25,9 +30,7 @@ class Index extends ControllerAbstract
      */
     protected function filters(): void
     {
-        $this->request->merge([
-            'user_id' => $this->auth->preference('user_id', $this->request->input('user_id')),
-        ]);
+        $this->filtersUserId();
     }
 
     /**

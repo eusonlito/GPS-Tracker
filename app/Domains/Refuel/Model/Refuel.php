@@ -4,7 +4,9 @@ namespace App\Domains\Refuel\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Domains\City\Model\City as CityModel;
 use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\CoreApp\Model\Traits\Gis as GisTrait;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Refuel\Model\Builder\Refuel as Builder;
 use App\Domains\Refuel\Model\Collection\Refuel as Collection;
@@ -14,6 +16,7 @@ use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Refuel extends ModelAbstract
 {
+    use GisTrait;
     use HasFactory;
 
     /**
@@ -57,6 +60,14 @@ class Refuel extends ModelAbstract
     protected static function newFactory(): TestFactory
     {
         return TestFactory::new();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(CityModel::class, CityModel::FOREIGN);
     }
 
     /**

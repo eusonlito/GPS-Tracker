@@ -22,6 +22,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
         $this->check();
         $this->save();
+        $this->start();
 
         return $this->row;
     }
@@ -53,5 +54,21 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         if (array_key_exists($this->data['protocol'], config('protocols')) === false) {
             $this->exceptionValidator(__('server-create.error.protocol-not-exists'));
         }
+    }
+
+    /**
+     * @return void
+     */
+    protected function start(): void
+    {
+        $this->factory()->action($this->startData())->startPorts();
+    }
+
+    /**
+     * @return array
+     */
+    protected function startData(): array
+    {
+        return ['ports' => [$this->row->port]];
     }
 }

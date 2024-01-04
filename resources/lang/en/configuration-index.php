@@ -1,5 +1,4 @@
 <?php return [
-    'create' => 'Create',
     'created_at' => 'Created',
     'description' => 'Description',
     'filter' => 'Filter...',

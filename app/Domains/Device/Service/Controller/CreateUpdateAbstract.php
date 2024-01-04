@@ -11,7 +11,7 @@ abstract class CreateUpdateAbstract extends ControllerAbstract
     {
         $this->requestMergeWithRow([
             'code' => ($this->row->code ?? helper()->uuid()),
-            'user_id' => $this->user(false)->id,
+            'user_id' => $this->user()->id,
         ]);
     }
 

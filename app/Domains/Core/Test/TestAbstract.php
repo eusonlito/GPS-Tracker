@@ -72,10 +72,7 @@ abstract class TestAbstract extends TestsAbstract
      */
     protected function user(): Authenticatable
     {
-        $model = $this->getUserClass();
-
-        return $model::query()->orderBy('id', 'ASC')->first()
-            ?: $this->factoryCreate($model);
+        return $this->rowFirst($this->getUserClass());
     }
 
     /**
@@ -83,9 +80,19 @@ abstract class TestAbstract extends TestsAbstract
      */
     protected function userLast(): Authenticatable
     {
-        $model = $this->getUserClass();
+        return $this->rowLast($this->getUserClass());
+    }
 
-        return $model::query()->orderBy('id', 'DESC')->first()
+    /**
+     * @param ?string $model = null
+     *
+     * @return \App\Domains\Core\Model\ModelAbstract
+     */
+    protected function rowFirst(?string $model = null): ModelAbstract
+    {
+        $model = $model ?: $this->getModelClass();
+
+        return $model::query()->orderBy('id', 'ASC')->first()
             ?: $this->factoryCreate($model);
     }
 
@@ -99,7 +106,17 @@ abstract class TestAbstract extends TestsAbstract
         $model = $model ?: $this->getModelClass();
 
         return $model::query()->orderBy('id', 'DESC')->first()
-            ?: $model::factory()->create();
+            ?: $this->factoryCreate($model);
+    }
+
+    /**
+     * @param \App\Domains\Core\Model\ModelAbstract $row
+     *
+     * @return \App\Domains\Core\Model\ModelAbstract
+     */
+    protected function rowFresh(ModelAbstract $row): ModelAbstract
+    {
+        return $row->fresh();
     }
 
     /**

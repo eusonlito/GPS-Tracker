@@ -4,10 +4,8 @@ namespace App\Domains\Position\Test\Factory;
 
 use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\City\Model\City as CityModel;
-use App\Domains\Country\Model\Country as CountryModel;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Model\Position as Model;
-use App\Domains\State\Model\State as StateModel;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
@@ -36,8 +34,6 @@ class Position extends FactoryAbstract
             'date_utc_at' => date('Y-m-d H:i:s'),
 
             'city_id' => $this->firstOrFactory(CityModel::class),
-            'state_id' => $this->firstOrFactory(StateModel::class),
-            'country_id' => $this->firstOrFactory(CountryModel::class),
             'device_id' => $this->firstOrFactory(DeviceModel::class),
             'timezone_id' => $this->firstOrFactory(TimezoneModel::class),
             'trip_id' => $this->firstOrFactory(TripModel::class),

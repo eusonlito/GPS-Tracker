@@ -25,7 +25,7 @@ class Create extends CreateUpdateAbstract
     protected function request(): void
     {
         $this->requestMergeWithRow([
-            'user_id' => $this->user(false)->id,
+            'user_id' => $this->user()->id,
             'timezone_id' => $this->timezoneId(),
         ]);
     }

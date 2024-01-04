@@ -145,7 +145,6 @@ import { dateUtc, dateToIso } from './helper'
 
     filterListener();
 
-    map.setDevicesTripUrl(element.dataset.mapTripUrl);
     map.setDevices(devices);
 
     const mapPointClick = function (e, point) {

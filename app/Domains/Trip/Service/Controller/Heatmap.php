@@ -179,8 +179,6 @@ class Heatmap extends Index
                 ->whenDeviceId($this->device()?->id)
                 ->whenStartUtcAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
                 ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
-                ->whenShared($this->requestBool('shared', null))
-                ->whenSharedPublic($this->requestBool('shared_public', null))
         );
     }
 

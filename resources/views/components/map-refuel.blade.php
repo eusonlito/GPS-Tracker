@@ -1,4 +1,4 @@
-<app-map class="map map-list-hidden" data-map-refuel data-map-refuels="{{ $refuelsJson }}" data-map-trip-url="{{ route('dashboard.index') }}" {{ $attributes }}>
+<app-map class="map map-list-hidden" data-map-refuel data-map-refuels="{{ $refuelsJson }}" {{ $attributes }}>
     <div class="map-map {{ $sidebarHidden ? 'w-full' : '' }}" data-map-map>
         <div class="map-map-render" data-map-render data-map-control-markers-disabled></div>
     </div>
@@ -25,17 +25,21 @@
                     <th class="w-1">{{ __('map-refuel.vehicle') }}</th>
                     <th class="w-1">{{ __('map-refuel.price') }}</th>
                     <th class="w-1">{{ __('map-refuel.total') }}</th>
+                    <th class="w-1"></th>
                 </tr>
             </thead>
 
             <tbody>
                 @foreach ($refuels as $each)
 
+                @php ($link = route('refuel.update', $each->id))
+
                 <tr>
                     <td class="w-1" data-table-sort-value={{ $each->date_at }}><a href="#" data-map-point="{{ $each->id }}">@dateLocal($each->date_at)</a></td>
                     <td class="w-1"><a href="#">{{ $each->vehicle->name ?? '-' }}</a></td>
                     <td class="w-1" data-table-sort-value="{{ $each->price }}"><a href="#">@unitHumanRaw('money', $each->price, 3)</a></td>
                     <td class="w-1" data-table-sort-value="{{ $each->total }}"><a href="#">@unitHumanRaw('money', $each->total)</a></td>
+                    <td class="w-1 pt-01"><a href="{{ $link }}" class="block">@icon('edit', 'w-4 h-4')</a></td>
                 </tr>
 
                 @endforeach

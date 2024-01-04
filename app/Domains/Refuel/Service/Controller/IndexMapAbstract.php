@@ -20,6 +20,16 @@ abstract class IndexMapAbstract extends ControllerAbstract
     protected const DATE_REGEXP = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
 
     /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @var bool
+     */
+    protected bool $vehicleEmpty = true;
+
+    /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
      *
@@ -81,10 +91,8 @@ abstract class IndexMapAbstract extends ControllerAbstract
      */
     protected function filtersIds(): void
     {
-        $this->request->merge([
-            'user_id' => $this->auth->preference('user_id', $this->request->input('user_id')),
-            'vehicle_id' => $this->auth->preference('vehicle_id', $this->request->input('vehicle_id')),
-        ]);
+        $this->filtersUserId();
+        $this->filtersVehicleId();
     }
 
     /**

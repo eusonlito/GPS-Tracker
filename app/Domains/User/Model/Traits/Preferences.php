@@ -6,12 +6,12 @@ trait Preferences
 {
     /**
      * @param string $key
-     * @param mixed $input
+     * @param mixed $input = null
      * @param mixed $default = null
      *
      * @return mixed
      */
-    public function preference(string $key, mixed $input, mixed $default = null): mixed
+    public function preference(string $key, mixed $input = null, mixed $default = null): mixed
     {
         if ($input !== null) {
             return $this->preferenceSet($key, $input);

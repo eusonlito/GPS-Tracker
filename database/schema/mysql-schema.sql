@@ -47,7 +47,6 @@ CREATE TABLE `alarm_notification` (
   `latitude` double GENERATED ALWAYS AS (round(st_latitude(`point`),5)) STORED,
   `longitude` double GENERATED ALWAYS AS (round(st_longitude(`point`),5)) STORED,
   PRIMARY KEY (`id`),
-  SPATIAL KEY `alarm_notification_point_index` (`point`),
   SPATIAL KEY `alarm_notification_point_spatialindex` (`point`),
   KEY `alarm_notification_latitude_index` (`latitude`),
   KEY `alarm_notification_longitude_index` (`longitude`),
@@ -98,7 +97,6 @@ CREATE TABLE `city` (
   KEY `city_longitude_index` (`longitude`),
   KEY `city_country_fk` (`country_id`),
   KEY `city_state_fk` (`state_id`),
-  SPATIAL KEY `city_point_index` (`point`),
   CONSTRAINT `city_country_fk` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE CASCADE,
   CONSTRAINT `city_state_fk` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -361,9 +359,7 @@ CREATE TABLE `position` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `city_id` bigint unsigned DEFAULT NULL,
-  `country_id` bigint unsigned DEFAULT NULL,
   `device_id` bigint unsigned DEFAULT NULL,
-  `state_id` bigint unsigned DEFAULT NULL,
   `timezone_id` bigint unsigned NOT NULL,
   `trip_id` bigint unsigned NOT NULL,
   `user_id` bigint unsigned NOT NULL,
@@ -375,18 +371,13 @@ CREATE TABLE `position` (
   KEY `position_latitude_index` (`latitude`),
   KEY `position_longitude_index` (`longitude`),
   KEY `position_city_fk` (`city_id`),
-  KEY `position_country_fk` (`country_id`),
-  KEY `position_state_fk` (`state_id`),
   KEY `position_timezone_fk` (`timezone_id`),
   KEY `position_vehicle_fk` (`vehicle_id`),
-  SPATIAL KEY `position_point_index` (`point`),
   KEY `position_device_id_date_utc_at_index` (`device_id`,`date_utc_at`),
   KEY `position_trip_id_date_utc_at_index` (`trip_id`,`date_utc_at`),
   KEY `position_user_id_date_utc_at_index` (`user_id`,`date_utc_at`),
   CONSTRAINT `position_city_fk` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `position_country_fk` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE SET NULL,
   CONSTRAINT `position_device_fk` FOREIGN KEY (`device_id`) REFERENCES `device` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `position_state_fk` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE SET NULL,
   CONSTRAINT `position_timezone_fk` FOREIGN KEY (`timezone_id`) REFERENCES `timezone` (`id`) ON DELETE CASCADE,
   CONSTRAINT `position_trip_fk` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE,
   CONSTRAINT `position_user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
@@ -419,15 +410,24 @@ CREATE TABLE `refuel` (
   `quantity_before` decimal(6,2) unsigned NOT NULL,
   `price` decimal(7,3) unsigned NOT NULL,
   `total` decimal(6,2) unsigned NOT NULL,
+  `point` point NOT NULL /*!80003 SRID 4326 */,
   `date_at` datetime NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `city_id` bigint unsigned DEFAULT NULL,
   `position_id` bigint unsigned DEFAULT NULL,
   `user_id` bigint unsigned NOT NULL,
   `vehicle_id` bigint unsigned NOT NULL,
+  `latitude` double GENERATED ALWAYS AS (round(st_latitude(`point`),5)) STORED,
+  `longitude` double GENERATED ALWAYS AS (round(st_longitude(`point`),5)) STORED,
   PRIMARY KEY (`id`),
+  SPATIAL KEY `refuel_point_spatialindex` (`point`),
+  KEY `refuel_city_fk` (`city_id`),
+  KEY `refuel_position_fk` (`position_id`),
   KEY `refuel_user_fk` (`user_id`),
   KEY `refuel_vehicle_fk` (`vehicle_id`),
+  CONSTRAINT `refuel_city_fk` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `refuel_position_fk` FOREIGN KEY (`position_id`) REFERENCES `position` (`id`) ON DELETE SET NULL,
   CONSTRAINT `refuel_user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `refuel_vehicle_fk` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicle` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -675,3 +675,5 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (68,'2023_11_30_230
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (69,'2023_11_30_230000_position_state_country',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (70,'2023_12_08_133000_language_default',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (71,'2023_12_27_203000_point_latitude_longitude',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (72,'2024_01_04_193000_refuel_point',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (73,'2024_01_04_203000_city_only',1);

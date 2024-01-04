@@ -16,6 +16,10 @@ class StopAll extends ActionAbstract
      */
     public function handle(): void
     {
+        if (config('demo.enabled')) {
+            $this->exceptionValidator(__('demo.error.not-allowed'));
+        }
+
         if ($this->runningUnitTests()) {
             return;
         }

@@ -90,6 +90,6 @@ abstract class RotatingFileAbstract
             return '['.$contents.']';
         }
 
-        return json_encode($contents, JSON_UNESCAPED_LINE_TERMINATORS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        return json_encode($contents, JSON_INVALID_UTF8_SUBSTITUTE | JSON_UNESCAPED_LINE_TERMINATORS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 }

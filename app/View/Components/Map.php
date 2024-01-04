@@ -56,6 +56,7 @@ class Map extends Component
     protected function positionsJson(): string
     {
         return $this->positions
+            ->toBase()
             ->map($this->positionsJsonMap(...))
             ->sortByDesc('date_at')
             ->values()
@@ -78,7 +79,7 @@ class Map extends Component
             'speed' => helper()->unit('speed', $position->speed),
             'speed_human' => helper()->unitHuman('speed', $position->speed),
             'city' => $position->city?->name,
-            'state' => $position->state?->name,
+            'state' => $position->city?->state->name,
         ];
     }
 

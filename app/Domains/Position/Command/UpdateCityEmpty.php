@@ -12,7 +12,7 @@ class UpdateCityEmpty extends CommandAbstract
     /**
      * @var string
      */
-    protected $description = 'Update Positions with City when Empty';
+    protected $description = 'Update All Positions with Empty City';
 
     /**
      * @return void

@@ -1,0 +1,197 @@
+import Ajax from './ajax';
+import Feather from './feather';
+import LocalStorage from './local-storage';
+import Map from './map';
+import { dateUtc, dateToIso } from './helper'
+
+(function () {
+    'use strict';
+
+    const element = document.querySelector('[data-map-vehicles]');
+
+    if (!element || !element.dataset.mapVehicles) {
+        return;
+    }
+
+    const render = element.querySelector('[data-map-render]');
+
+    if (!render) {
+        return;
+    }
+
+    let vehicles = [];
+
+    try {
+        vehicles = JSON.parse(element.dataset.mapVehicles)
+            .filter(vehicle => vehicle.position)
+            .sort((a, b) => a.name < b.name ? -1 : 1);
+    } catch (e) {
+        return;
+    }
+
+    const map = new Map(render);
+
+    (function () {
+        const mapListToggle = element.querySelector('[data-map-list-toggle]');
+
+        if (!mapListToggle) {
+            return;
+        }
+
+        const localStorage = new LocalStorage('map-vehicle');
+
+        mapListToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const show = element.classList.contains('map-list-hidden');
+
+            element.classList.add('map-list-moving');
+            element.classList.toggle('map-list-hidden');
+
+            mapListToggle.innerHTML = show ? '⟼' : '⟻';
+
+            localStorage.set('list', show);
+
+            setTimeout(() => {
+                element.classList.remove('map-list-moving');
+                map.invalidateSize();
+            }, 500);
+        });
+
+        if (localStorage.get('list')) {
+            mapListToggle.dispatchEvent(new Event('click'));
+        }
+    })();
+
+    const filterVisible = element.querySelectorAll('[data-map-list-visible]');
+    const filterFinished = element.querySelector('[data-map-trip-finished]');
+
+    const update = () => {
+        new Ajax(window.location.href, 'GET')
+            .setAjax(true)
+            .setQuery(updateQuery())
+            .setJsonResponse(true)
+            .setCallback(updateCallback)
+            .send();
+    };
+
+    const updateQuery = () => {
+        return {
+            ids: updateQueryIds(),
+            finished: updateQueryFinished()
+        };
+    };
+
+    const updateQueryIds = () => {
+        if (!filterVisible.length) {
+            return;
+        }
+
+        return Array.from(filterVisible)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
+    };
+
+    const updateQueryFinished = () => {
+        return filterFinished?.value;
+    };
+
+    const updateCallback = (list) => {
+        map.setVehicles(list);
+    };
+
+    const filterListener = () => {
+        filterVisibleListener();
+        filterFinishedListener();
+    };
+
+    const filterVisibleListener = () => {
+        if (!filterVisible.length) {
+            return;
+        }
+
+        let timeout;
+
+        const event = (e) => {
+            e.preventDefault();
+
+            clearTimeout(timeout);
+
+            timeout = setTimeout(update, 800);
+        };
+
+        filterVisible.forEach((checkbox) => {
+            if (checkbox) {
+                checkbox.addEventListener('change', event);
+            }
+        });
+    };
+
+    const filterFinishedListener = () => {
+        if (!filterFinished) {
+            return;
+        }
+
+        let timeout;
+
+        filterFinished.addEventListener('change', (e) => {
+            e.preventDefault();
+
+            clearTimeout(timeout);
+
+            timeout = setTimeout(update, 800);
+        });
+    };
+
+    filterListener();
+
+    map.setVehicles(vehicles);
+
+    const mapPointClick = function (e, point) {
+        e.preventDefault();
+
+        map.showMarker(point.dataset.mapPoint);
+    };
+
+    map.setListTable(document.querySelector('[data-map-list-table]'));
+
+    if (vehicles.length) {
+        map.fitBounds();
+    }
+
+    document.querySelectorAll('[data-map-point]').forEach(point => {
+        point.addEventListener('click', (e) => mapPointClick(e, point));
+    });
+
+    const live = document.querySelector('[data-map-live]');
+
+    let interval;
+
+    if (live) {
+        live.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            if (interval) {
+                liveStop();
+            } else {
+                liveStart();
+            }
+        });
+    }
+
+    const liveStop = function () {
+        clearInterval(interval);
+
+        interval = null;
+
+        Feather(live, 'play')
+    };
+
+    const liveStart = function () {
+        update();
+
+        interval = setInterval(update, 10000);
+
+        Feather(live, 'pause')
+    };
+})();

@@ -27,6 +27,10 @@ class StartPort extends ActionAbstract
      */
     public function handle(): void
     {
+        if (config('demo.enabled')) {
+            $this->exceptionValidator(__('demo.error.not-allowed'));
+        }
+
         $this->row();
         $this->data();
         $this->protocol();
@@ -92,7 +96,7 @@ class StartPort extends ActionAbstract
      */
     protected function kill(): void
     {
-        if ($this->data['reset']) {
+        if ($this->data['reset'] || $this->server->isLocked()) {
             $this->server->kill();
         }
     }

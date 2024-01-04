@@ -13,14 +13,6 @@ class ActionFactory extends ActionFactoryAbstract
     protected ?Model $row;
 
     /**
-     * @return \App\Domains\Configuration\Model\Configuration
-     */
-    public function create(): Model
-    {
-        return $this->actionHandle(Create::class, $this->validate()->create());
-    }
-
-    /**
      * @return void
      */
     public function request(): void

@@ -15,7 +15,9 @@ class Update extends CreateUpdateAbstract
         $this->row->quantity_before = $this->data['quantity_before'];
         $this->row->price = $this->data['price'];
         $this->row->total = $this->data['total'];
+        $this->row->point = $this->data['point'];
         $this->row->date_at = $this->data['date_at'];
+        $this->row->city_id = $this->data['city_id'];
         $this->row->position_id = $this->data['position_id'];
         $this->row->vehicle_id = $this->data['vehicle_id'];
 

@@ -62,13 +62,12 @@ class Update extends ControllerAbstract
         $this->authUserAdmin();
 
         $row = $this->factoryCreate();
-        $data = $this->factoryMake()->toArray();
-
-        $data['alias'] = implode(',', $data['alias']);
-        $data['latitude'] = 42.34818;
-        $data['longitude'] = -7.9126;
-
-        unset($data['point']);
+        $data = $this->factoryMake(data: [
+            'point' => null,
+            'alias' => 'Name,Name2',
+            'latitude' => 42.34818,
+            'longitude' => -7.9126,
+        ])->toArray();
 
         $this->post(route($this->route, $row->id), $data + $this->action())
             ->assertStatus(302)

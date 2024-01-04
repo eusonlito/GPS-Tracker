@@ -52,9 +52,11 @@ class Process
     protected function listExecCmd(): string
     {
         return 'export COLUMNS=256;'
-            .' ps -ef'
+            .' LC_ALL=C'
+            .' ps -eo pid,user,lstart,rss,pcpu,cmd'
             .' | grep -- "'.base_path().'"'
             .' | grep -- "artisan server:start:port.*--port="'
+            .' | sort'
             .' | grep -v "grep"';
     }
 
@@ -65,38 +67,54 @@ class Process
      */
     protected function listProcess(string $process): stdClass
     {
-        $process = preg_split('/\s+/', $process, 8);
+        $process = preg_split('/\s+/', trim($process), 10);
 
-        preg_match('/\-\-port=([0-9]+)/', $process[7], $port);
+        preg_match('/\-\-port=([0-9]+)/', $process[9], $port);
 
         return (object)[
-            'owner' => $process[0],
-            'pid' => (int)$process[1],
-            'start' => $process[4],
-            'time' => $process[6],
-            'command' => $process[7],
-            'port' => (int)$port[1],
+            'pid' => intval($process[0]),
+            'owner' => $process[1],
+            'start' => date('Y-m-d H:i:s', strtotime($process[3].' '.$process[4].' '.$process[6].' '.$process[5])),
+            'memory' => round(floatval($process[7]) / 1024, 2),
+            'cpu' => round(floatval($process[8]), 2),
+            'command' => $process[9],
+            'port' => intval($port[1]),
         ];
     }
 
     /**
      * @param int $port
      *
-     * @return void
+     * @return bool
      */
-    public function kill(int $port): void
+    public function kill(int $port): bool
+    {
+        foreach (['SIGINT', 'SIGTERM', 'SIGKILL'] as $signal) {
+            if ($this->killSignal($port, $signal)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param int $port
+     * @param string $signal
+     *
+     * @return bool
+     */
+    public function killSignal(int $port, string $signal): bool
     {
         if ($this->isBusy($port) === false) {
-            return;
+            return true;
         }
 
-        shell_exec('fuser -k -SIGINT '.$port.'/tcp > /dev/null 2>&1');
+        shell_exec(sprintf('fuser -k -%s %s/tcp > /dev/null 2>&1', $signal, $port));
 
-        $count = 0;
+        sleep(1);
 
-        while (($count < 5) && $this->isBusy($port)) {
-            sleep(++$count);
-        }
+        return $this->isBusy($port) === false;
     }
 
     /**
@@ -106,14 +124,40 @@ class Process
      */
     public function isBusy(int $port): bool
     {
+        $errno = $errstr = null;
+
         try {
-            $fp = fsockopen('0.0.0.0', $port);
+            $fp = fsockopen('0.0.0.0', $port, $errno, $errstr, 1);
         } catch (Throwable $e) {
+            return $errno !== 111;
+        }
+
+        if (is_resource($fp) === false) {
             return false;
         }
 
         fclose($fp);
 
         return true;
+    }
+
+    /**
+     * @param int $port
+     *
+     * @return bool
+     */
+    public function isLocked(int $port): bool
+    {
+        $errno = $errstr = null;
+
+        try {
+            $fp = fsockopen('0.0.0.0', $port, $errno, $errstr, 1);
+        } catch (Throwable $e) {
+            return $errno === 110;
+        }
+
+        fclose($fp);
+
+        return false;
     }
 }

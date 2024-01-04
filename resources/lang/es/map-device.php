@@ -5,5 +5,6 @@
         'finished-yes' => 'Viajes Finalizados',
     ],
     'name' => 'Nombre',
+    'plate' => 'Matrícula',
     'vehicle' => 'Vehículo',
 ];

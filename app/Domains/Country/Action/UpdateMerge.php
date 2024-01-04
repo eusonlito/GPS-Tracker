@@ -5,7 +5,6 @@ namespace App\Domains\Country\Action;
 use App\Domains\City\Model\City as CityModel;
 use App\Domains\Country\Model\Country as Model;
 use App\Domains\Country\Model\Collection\Country as Collection;
-use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\State\Model\State as StateModel;
 
 class UpdateMerge extends ActionAbstract
@@ -88,20 +87,9 @@ class UpdateMerge extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->savePosition();
         $this->saveState();
         $this->saveCity();
         $this->saveRow();
-    }
-
-    /**
-     * @return void
-     */
-    protected function savePosition(): void
-    {
-        PositionModel::query()
-            ->byCountryIds($this->data['ids'])
-            ->update(['country_id' => $this->row->id]);
     }
 
     /**

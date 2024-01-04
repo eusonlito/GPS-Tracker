@@ -37,7 +37,8 @@ return new class extends MigrationAbstract {
 
             $table->string('name')->index();
             $table->jsonb('alias')->nullable();
-            $table->point('point')->index();
+
+            $table->point('point');
 
             $this->timestamps($table);
 

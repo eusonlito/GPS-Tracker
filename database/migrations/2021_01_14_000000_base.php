@@ -58,7 +58,7 @@ return new class extends MigrationAbstract {
 
             $table->jsonb('config')->nullable();
 
-            $table->point('point', 4326)->index();
+            $table->point('point', 4326);
 
             $table->boolean('telegram')->default(0);
 
@@ -89,7 +89,8 @@ return new class extends MigrationAbstract {
 
             $table->string('name')->index();
             $table->jsonb('alias')->nullable();
-            $table->point('point', 4326)->index();
+
+            $table->point('point', 4326);
 
             $this->timestamps($table);
 
@@ -243,7 +244,7 @@ return new class extends MigrationAbstract {
         Schema::create('position', function (Blueprint $table) {
             $table->id();
 
-            $table->point('point', 4326)->index();
+            $table->point('point', 4326);
 
             $table->unsignedDecimal('speed', 6, 2);
 
@@ -256,9 +257,7 @@ return new class extends MigrationAbstract {
             $this->timestamps($table);
 
             $table->unsignedBigInteger('city_id')->nullable();
-            $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('device_id')->nullable();
-            $table->unsignedBigInteger('state_id')->nullable();
             $table->unsignedBigInteger('timezone_id');
             $table->unsignedBigInteger('trip_id');
             $table->unsignedBigInteger('user_id');
@@ -289,10 +288,13 @@ return new class extends MigrationAbstract {
             $table->unsignedDecimal('price', 7, 3);
             $table->unsignedDecimal('total', 6, 2);
 
+            $table->point('point', 4326);
+
             $table->dateTime('date_at');
 
             $this->timestamps($table);
 
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->unsignedBigInteger('position_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vehicle_id');
@@ -445,6 +447,12 @@ return new class extends MigrationAbstract {
             ADD COLUMN `latitude` DOUBLE AS (ROUND(ST_LATITUDE(`point`), 5)) STORED,
             ADD COLUMN `longitude` DOUBLE AS (ROUND(ST_LONGITUDE(`point`), 5)) STORED;
         ');
+
+        $this->db()->unprepared('
+            ALTER TABLE `refuel`
+            ADD COLUMN `latitude` DOUBLE AS (ROUND(ST_LATITUDE(`point`), 5)) STORED,
+            ADD COLUMN `longitude` DOUBLE AS (ROUND(ST_LONGITUDE(`point`), 5)) STORED;
+        ');
     }
 
     /**
@@ -523,9 +531,7 @@ return new class extends MigrationAbstract {
             $this->tableAddIndex($table, 'longitude');
 
             $this->foreignOnDeleteSetNull($table, 'city');
-            $this->foreignOnDeleteSetNull($table, 'country');
             $this->foreignOnDeleteSetNull($table, 'device');
-            $this->foreignOnDeleteSetNull($table, 'state');
             $this->foreignOnDeleteCascade($table, 'timezone');
             $this->foreignOnDeleteCascade($table, 'trip');
             $this->foreignOnDeleteCascade($table, 'user');
@@ -533,6 +539,10 @@ return new class extends MigrationAbstract {
         });
 
         Schema::table('refuel', function (Blueprint $table) {
+            $table->spatialIndex('point');
+
+            $this->foreignOnDeleteSetNull($table, 'city');
+            $this->foreignOnDeleteSetNull($table, 'position');
             $this->foreignOnDeleteCascade($table, 'user');
             $this->foreignOnDeleteCascade($table, 'vehicle');
         });

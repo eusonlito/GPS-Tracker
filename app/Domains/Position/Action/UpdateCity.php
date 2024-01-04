@@ -17,6 +17,10 @@ class UpdateCity extends ActionAbstract
      */
     public function handle(): Model
     {
+        if ($this->row->city_id) {
+            return $this->row;
+        }
+
         $this->city();
         $this->save();
 
@@ -28,9 +32,7 @@ class UpdateCity extends ActionAbstract
      */
     protected function city(): void
     {
-        $this->city = $this->row->city_id
-            ? $this->row->city
-            : $this->factory('City')->action($this->cityData())->getOrNew();
+        $this->city = $this->factory('City')->action($this->cityData())->getOrNew();
     }
 
     /**
@@ -49,13 +51,11 @@ class UpdateCity extends ActionAbstract
      */
     protected function save(): void
     {
-        if ($this->city?->id === $this->row->city_id) {
+        if (empty($this->city)) {
             return;
         }
 
         $this->row->city_id = $this->city->id;
-        $this->row->state_id = $this->city->state_id;
-        $this->row->country_id = $this->city->country_id;
         $this->row->save();
     }
 }

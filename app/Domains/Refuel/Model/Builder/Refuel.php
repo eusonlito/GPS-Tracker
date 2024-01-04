@@ -2,8 +2,8 @@
 
 namespace App\Domains\Refuel\Model\Builder;
 
+use App\Domains\City\Model\City as CityModel;
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
-use App\Domains\Position\Model\Position as PositionModel;
 
 class Refuel extends BuilderAbstract
 {
@@ -14,7 +14,17 @@ class Refuel extends BuilderAbstract
      */
     public function byCityId(int $city_id): self
     {
-        return $this->whereIn('position_id', PositionModel::selectOnly('id')->byCityId($city_id));
+        return $this->where('city_id', $city_id);
+    }
+
+    /**
+     * @param array $city_ids
+     *
+     * @return self
+     */
+    public function byCityIds(array $city_ids): self
+    {
+        return $this->whereIntegerInRaw('city_id', $city_ids);
     }
 
     /**
@@ -24,7 +34,17 @@ class Refuel extends BuilderAbstract
      */
     public function byCountryId(int $country_id): self
     {
-        return $this->whereIn('position_id', PositionModel::selectOnly('id')->byCountryId($country_id));
+        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byCountryId($country_id));
+    }
+
+    /**
+     * @param array $country_ids
+     *
+     * @return self
+     */
+    public function byCountryIds(array $country_ids): self
+    {
+        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byCountryIds($country_ids));
     }
 
     /**
@@ -54,7 +74,17 @@ class Refuel extends BuilderAbstract
      */
     public function byStateId(int $state_id): self
     {
-        return $this->whereIn('position_id', PositionModel::selectOnly('id')->byStateId($state_id));
+        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byStateId($state_id));
+    }
+
+    /**
+     * @param array $state_ids
+     *
+     * @return self
+     */
+    public function byStateIds(array $state_ids): self
+    {
+        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byStateIds($state_ids));
     }
 
     /**
@@ -184,9 +214,17 @@ class Refuel extends BuilderAbstract
     /**
      * @return self
      */
-    public function withWhereHasPosition(): self
+    public function withCity(): self
     {
-        return $this->withWhereHas('position', static fn ($q) => $q->withCityState());
+        return $this->with('city');
+    }
+
+    /**
+     * @return self
+     */
+    public function withCityState(): self
+    {
+        return $this->with(['city' => static fn ($q) => $q->withState()]);
     }
 
     /**
@@ -195,5 +233,21 @@ class Refuel extends BuilderAbstract
     public function withVehicle(): self
     {
         return $this->with('vehicle');
+    }
+
+    /**
+     * @return self
+     */
+    public function withWhereHasPosition(): self
+    {
+        return $this->withWhereHas('position', static fn ($q) => $q->withCityState());
+    }
+
+    /**
+     * @return self
+     */
+    public function withoutCity(): self
+    {
+        return $this->whereNull('city_id');
     }
 }

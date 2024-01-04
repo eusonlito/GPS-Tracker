@@ -11,11 +11,12 @@
                 <thead>
                     <tr>
                         <th>{{ __('server-status.port') }}</th>
+                        <th>{{ __('server-status.started') }}</th>
+                        <th>{{ __('server-status.cpu') }}</th>
+                        <th>{{ __('server-status.memory') }}</th>
                         <th>{{ __('server-status.pid') }}</th>
                         <th>{{ __('server-status.owner') }}</th>
-                        <th>{{ __('server-status.started') }}</th>
-                        <th>{{ __('server-status.time') }}</th>
-                        <th>{{ __('server-status.command') }}</th>
+                        <th class="text-left">{{ __('server-status.command') }}</th>
                         <th class="w-1"><input type="checkbox" data-checkall="#server-status-proccess-list-table > tbody" /></th>
                     </tr>
                 </thead>
@@ -25,11 +26,12 @@
 
                     <tr>
                         <td>{{ $each->port }}</td>
+                        <td>{{ $each->start }}</td>
+                        <td>{{ $each->cpu }}</td>
+                        <td>{{ $each->memory }}</td>
                         <td>{{ $each->pid }}</td>
                         <td>{{ $each->owner }}</td>
-                        <td>{{ $each->start }}</td>
-                        <td>{{ $each->time }}</td>
-                        <td>{{ $each->command }}</td>
+                        <td class="text-left">{{ $each->command }}</td>
                         <td class="w-1"><input type="checkbox" name="ports[]" value="{{ $each->port }}" /></td>
                     </tr>
 
@@ -63,9 +65,11 @@
                 <tbody>
                     @foreach ($list as $row)
 
+                    @php ($link = route('server.update', $row->id))
+
                     <tr>
-                        <td>{{ $row->port }}</td>
-                        <td>{{ $row->protocol }}</td>
+                        <td><a href="{{ $link }}" class="block">{{ $row->port }}</a></td>
+                        <td><a href="{{ $link }}" class="block">{{ $row->protocol }}</a></td>
                         <td class="w-1" data-table-sort-value="{{ (int)$row->debug }}"><a href="{{ route('server.update.boolean', [$row->id, 'debug']) }}" class="block" data-update-boolean="debug">@status($row->debug)</a></td>
                         <td data-table-sort-value="{{ (int)$row->enabled }}"><span class="block">@status($row->enabled)</span></td>
                         <td class="w-1">@if ($row->enabled) <input type="checkbox" name="ports[]" value="{{ $row->port }}" /> @endif</td>

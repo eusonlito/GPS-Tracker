@@ -5,7 +5,6 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as KernelVendor;
 use App\Domains\CoreMaintenance\Schedule\Manager as CoreMaintenanceScheduleManager;
-use App\Domains\Server\Schedule\Manager as ServerScheduleManager;
 
 class Kernel extends KernelVendor
 {
@@ -29,7 +28,6 @@ class Kernel extends KernelVendor
         $this->scheduleQueue($schedule);
         $this->scheduleCachePrune($schedule);
 
-        (new ServerScheduleManager($schedule))->handle();
         (new CoreMaintenanceScheduleManager($schedule))->handle();
     }
 

@@ -2,6 +2,19 @@
 
 namespace App\Domains\Configuration\Validate;
 
-class Update extends Create
+use App\Domains\Core\Validate\ValidateAbstract;
+
+class Update extends ValidateAbstract
 {
+    /**
+     * @return array
+     */
+    public function rules(): array
+    {
+        return [
+            'key' => ['bail', 'required'],
+            'value' => ['bail', 'required'],
+            'description' => ['bail', 'required'],
+        ];
+    }
 }

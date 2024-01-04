@@ -4,7 +4,6 @@ namespace App\Domains\City\Action;
 
 use App\Domains\City\Model\City as Model;
 use App\Domains\Country\Model\Country as CountryModel;
-use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\State\Model\State as StateModel;
 
 class Update extends ActionAbstract
@@ -122,35 +121,11 @@ class Update extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->saveRow();
-        $this->savePosition();
-    }
-
-    /**
-     * @return void
-     */
-    protected function saveRow(): void
-    {
         $this->row->name = $this->data['name'];
         $this->row->alias = $this->data['alias'];
         $this->row->point = $this->data['point'];
         $this->row->state_id = $this->data['state_id'];
         $this->row->country_id = $this->data['country_id'];
         $this->row->save();
-    }
-
-    /**
-     * @return void
-     */
-    protected function savePosition(): void
-    {
-        if ($this->relocate === false) {
-            return;
-        }
-
-        PositionModel::query()->byCityId($this->row->id)->update([
-            'state_id' => $this->row->state_id,
-            'country_id' => $this->row->country_id,
-        ]);
     }
 }

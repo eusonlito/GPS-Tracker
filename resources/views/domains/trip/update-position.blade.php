@@ -41,7 +41,7 @@
                                 <td class="w-1">{!! $each->latitudeLongitudeLink() !!}</td>
                                 <td>
                                     @if ($each->city)
-                                    <span class="d-t-m-o max-w-15" title="{{ $each->city->name }} ({{ $each->state->name }})">{{ $each->city->name }} ({{ $each->state->name }})</span>
+                                    <span class="d-t-m-o max-w-15" title="{{ $each->city->name }} ({{ $each->city->state->name }})">{{ $each->city->name }} ({{ $each->city->state->name }})</span>
                                     @else
                                     -
                                     @endif
