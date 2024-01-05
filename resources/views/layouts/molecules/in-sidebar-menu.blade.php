@@ -334,11 +334,31 @@
     </a>
 </li>
 
+@php ($active = str_starts_with($ROUTE, 'configuration.'))
+
 <li>
-    <a href="{{ route('configuration.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'configuration.') ? 'side-menu--active' : '' }}">
+    <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('settings')</div>
-        <div class="side-menu__title">{{ __('in-sidebar.configuration') }}</div>
+        <div class="side-menu__title">
+            {{ __('in-sidebar.configuration') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+        </div>
     </a>
+
+    <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
+        <li>
+            <a href="{{ route('configuration.index') }}" class="side-menu {{ ($ROUTE === 'configuration.index') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('list')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.configuration-index') }}</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('configuration.status') }}" class="side-menu {{ ($ROUTE === 'configuration.status') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('check-circle')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.configuration-status') }}</div>
+            </a>
+        </li>
+    </ul>
 </li>
 
 @endif

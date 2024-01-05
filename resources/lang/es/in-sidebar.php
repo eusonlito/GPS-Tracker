@@ -5,6 +5,8 @@
     'alarm-notification' => 'Notificaciones',
     'city-index' => 'Ciudades',
     'configuration' => 'Configuración',
+    'configuration-index' => 'Listar',
+    'configuration-status' => 'Estado',
     'country-index' => 'Países',
     'dashboard' => 'Dashboard',
     'device' => 'Dispositivos',
