@@ -12,6 +12,6 @@
     </div>
 
     <ul class="border-t hidden">
-        {!! str_replace('side-', '', view('layouts.molecules.in-sidebar-menu')->render()) !!}
+        {!! str_replace('side-', '', view('layouts.molecules.in-sidebar-menu')) !!}
     </ul>
 </div>
