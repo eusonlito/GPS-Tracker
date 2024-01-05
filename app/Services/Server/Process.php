@@ -151,7 +151,7 @@ class Process
         $errno = $errstr = null;
 
         try {
-            $fp = fsockopen('0.0.0.0', $port, $errno, $errstr, 1);
+            $fp = fsockopen('0.0.0.0', $port, $errno, $errstr, 5);
         } catch (Throwable $e) {
             return $errno === 110;
         }
