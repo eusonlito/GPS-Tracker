@@ -327,13 +327,6 @@
     </ul>
 </li>
 
-<li>
-    <a href="{{ route('timezone.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'timezone.') ? 'side-menu--active' : '' }}">
-        <div class="side-menu__icon">@icon('globe')</div>
-        <div class="side-menu__title">{{ __('in-sidebar.timezone') }}</div>
-    </a>
-</li>
-
 @php ($active = str_starts_with($ROUTE, 'configuration.'))
 
 <li>
@@ -359,6 +352,13 @@
             </a>
         </li>
     </ul>
+</li>
+
+<li>
+    <a href="{{ route('timezone.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'timezone.') ? 'side-menu--active' : '' }}">
+        <div class="side-menu__icon">@icon('globe')</div>
+        <div class="side-menu__title">{{ __('in-sidebar.timezone') }}</div>
+    </a>
 </li>
 
 @endif
