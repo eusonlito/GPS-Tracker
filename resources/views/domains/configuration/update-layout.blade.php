@@ -4,7 +4,7 @@
 
 <div class="box flex items-center px-5">
     <div class="nav nav-tabs flex overflow-auto whitespace-nowrap" role="tablist">
-        <a href="{{ route('configuration.update', $row->id) }}" class="p-4 {{ ($ROUTE === 'configuration.update') ? 'active' : '' }}" role="tab">{{ __('configuration-update.data') }}</a>
+        <a href="{{ route('configuration.update', $row->id) }}" class="p-4 {{ ($ROUTE === 'configuration.update') ? 'active' : '' }}" role="tab">{{ $row->key }}</a>
     </div>
 </div>
 

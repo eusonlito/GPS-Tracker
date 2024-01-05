@@ -6,5 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
     Route::get('/configuration', Index::class)->name('configuration.index');
+    Route::get('/configuration/status', Status::class)->name('configuration.status');
     Route::any('/configuration/{id}', Update::class)->name('configuration.update');
 });
