@@ -18,8 +18,8 @@ class Configuration extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'key' => 'configuration_'.uniqid(),
-            'value' => 1,
+            'key' => 'configuration_key_'.uniqid(),
+            'value' => 'configuration_value_'.uniqid(),
             'description' => 'Configuration Test',
         ];
     }

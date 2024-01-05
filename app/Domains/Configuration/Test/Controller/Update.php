@@ -67,7 +67,7 @@ class Update extends ControllerAbstract
      */
     public function testPostAuthUpdateAdminSuccess(): void
     {
-        $this->postAuthUpdateAdminSuccess();
+        $this->postAuthUpdateAdminSuccess(exclude: ['key']);
     }
 
     /**
