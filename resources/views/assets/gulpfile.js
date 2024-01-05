@@ -24,6 +24,8 @@ const
     webpack = require('webpack-stream'),
     manifest = {};
 
+const paths = require('./paths');
+
 const loadManifest = function(name) {
     if (manifest[name]) {
         return manifest[name];
@@ -38,38 +40,6 @@ const loadManifest = function(name) {
     }
 
     return manifest[name] = filesExist(files);
-};
-
-const target = './../../../public/build';
-
-let paths = {
-    from: {
-        app: './../../../app/',
-        view: './../',
-        html: './html/',
-        scss: './scss/',
-        js: './js/',
-        images: './images/',
-        theme: './theme/',
-        manifest: './manifest/',
-        publish: './publish/',
-        vendor: './node_modules/'
-    },
-
-    to: {
-        public: target + '/../',
-        build: target + '/',
-        css: target + '/css/',
-        js: target + '/js/',
-        images: target + '/images/'
-    },
-
-    directories: {
-        './theme/fonts/**': target + '/fonts/',
-        './theme/images/**': target + '/images/',
-        './node_modules/leaflet/dist/images/**': target + '/css/images/',
-        './node_modules/leaflet-draw/dist/images/**': target + '/css/images/'
-    }
 };
 
 const clean = function() {
