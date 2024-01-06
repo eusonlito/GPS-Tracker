@@ -4,7 +4,7 @@ RUN apt-get update -y
 RUN apt-get upgrade -y
 
 RUN apt install -yqq --no-install-recommends \
-    cron default-mysql-client \
+    cron default-mysql-client git \
     libbz2-dev libicu-dev libldb-dev libonig-dev \
     libxslt-dev libzip-dev procps unzip
 
