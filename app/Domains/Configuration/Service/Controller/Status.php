@@ -15,6 +15,19 @@ class Status extends ControllerAbstract
      */
     public function __construct(protected Request $request, protected Authenticatable $auth)
     {
+        $this->fetch();
+    }
+
+    /**
+     * @return void
+     */
+    protected function fetch(): void
+    {
+        if ($this->available() === false) {
+            return;
+        }
+
+        shell_exec($this->git().' fetch origin '.$this->branch());
     }
 
     /**
