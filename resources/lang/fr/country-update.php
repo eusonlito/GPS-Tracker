@@ -6,7 +6,7 @@
         'code-exists' => 'Le code indiqué existe déjà dans un autre pays',
     ],
     'merge' => 'Rejoindre',
-    'meta-title' => 'Pays &gt; :title',
+    'meta-title' => 'Pays > :title',
     'name' => 'Nom',
     'save' => 'Sauvegarder',
     'success' => 'Le pays a été sauvegardé avec succès',

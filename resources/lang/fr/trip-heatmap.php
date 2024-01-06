@@ -1,3 +1,3 @@
 <?php return [
-    'meta-title' => 'Voyage &gt; Carte thermique',
+    'meta-title' => 'Voyage > Carte thermique',
 ];

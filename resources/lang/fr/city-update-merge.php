@@ -7,7 +7,7 @@
     ],
     'filter' => 'Filtre...',
     'merge' => 'Rejoindre',
-    'meta-title' => 'Villes &gt; :titre &gt; Rejoindre',
+    'meta-title' => 'Villes > :titre > Rejoindre',
     'name' => 'Nom',
     'select' => 'Sélectionne',
     'state' => 'Province',

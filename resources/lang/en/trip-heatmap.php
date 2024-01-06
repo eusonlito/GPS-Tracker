@@ -1,3 +1,3 @@
 <?php return [
-    'meta-title' => 'Travel &gt; Heatmap',
+    'meta-title' => 'Travel > Heatmap',
 ];

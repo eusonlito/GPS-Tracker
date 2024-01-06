@@ -7,7 +7,7 @@
     ],
     'filter' => 'Filtre...',
     'merge' => 'Rejoindre',
-    'meta-title' => 'Provinces &gt; :title &gt; Rejoindre',
+    'meta-title' => 'Provinces > :title > Rejoindre',
     'name' => 'Nom',
     'select' => 'Sélectionner',
     'success' => 'Les provinces ont été fusionnées avec succès',
