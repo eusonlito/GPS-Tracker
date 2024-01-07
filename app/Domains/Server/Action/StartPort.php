@@ -4,6 +4,7 @@ namespace App\Domains\Server\Action;
 
 use App\Domains\Server\Model\Server as Model;
 use App\Domains\Server\Exception\PortBusy as PortBusyException;
+use App\Domains\Server\Exception\PortLocked as PortLockedException;
 use App\Services\Filesystem\Directory;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\ProtocolFactory;
@@ -92,9 +93,29 @@ class StartPort extends ActionAbstract
      */
     protected function kill(): void
     {
-        if ($this->data['reset'] || $this->server->isLocked()) {
-            $this->server->kill();
+        if ($this->data['reset']) {
+            $this->killByReset();
+        } elseif ($this->server->isLocked()) {
+            $this->killByLocked();
         }
+    }
+
+    /**
+     * @return void
+     */
+    protected function killByReset(): void
+    {
+        $this->server->kill();
+    }
+
+    /**
+     * @return void
+     */
+    protected function killByLocked(): void
+    {
+        logger()->error(new PortLockedException(__('server.error.port-locked', ['port' => $this->data['port']])));
+
+        $this->server->kill();
     }
 
     /**
