@@ -101,7 +101,7 @@ class Status extends ControllerAbstract
         $line = explode(': ', $line, 2);
 
         return [
-            'date' => $line[0],
+            'date' => helper()->dateFormattedToTimezone($line[0], $this->auth->timezone->zone),
             'message' => $line[1],
         ];
     }

@@ -127,13 +127,9 @@ class Process
         $errno = $errstr = null;
 
         try {
-            $fp = fsockopen('0.0.0.0', $port, $errno, $errstr, 1);
+            $fp = fsockopen('127.0.0.1', $port, $errno, $errstr, 1);
         } catch (Throwable $e) {
             return $errno !== 111;
-        }
-
-        if (is_resource($fp) === false) {
-            return false;
         }
 
         fclose($fp);
@@ -151,7 +147,7 @@ class Process
         $errno = $errstr = null;
 
         try {
-            $fp = fsockopen('0.0.0.0', $port, $errno, $errstr, 5);
+            $fp = fsockopen('127.0.0.1', $port, $errno, $errstr, 5);
         } catch (Throwable $e) {
             return $errno === 110;
         }

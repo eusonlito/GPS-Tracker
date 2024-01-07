@@ -23,7 +23,7 @@ trait Date
      * @param ?string $date
      * @param ?string $default = '-'
      *
-     * @return string
+     * @return ?string
      */
     public function dateLocal(?string $date, ?string $default = '-'): ?string
     {
@@ -148,6 +148,18 @@ trait Date
     }
 
     /**
+     * @param string $date
+     * @param string $timezone
+     * @param string $format = 'Y-m-d H:i:s'
+     *
+     * @return string
+     */
+    public function dateFormattedToTimezone(string $date, string $timezone, string $format = 'Y-m-d H:i:s'): string
+    {
+        return date_create($date)->setTimezone($this->dateTimeZone($timezone))->format($format);
+    }
+
+    /**
      * @param string $timezone
      *
      * @return \DateTimeZone
@@ -172,23 +184,5 @@ trait Date
 
         return DateTimeZone::listIdentifiers(DateTimeZone::PER_COUNTRY, strtoupper($country))
             ?: DateTimeZone::listIdentifiers();
-    }
-
-    /**
-     * @return array
-     */
-    public function months(): array
-    {
-        $format = function ($index) {
-            $formatter = new IntlDateFormatter('es_ES');
-            $formatter->setPattern('MMMM');
-
-            return ucfirst($formatter->format(mktime(0, 0, 0, $index)));
-        };
-
-        return array_combine(
-            range(1, 12),
-            array_map(static fn ($index) => $format($index), range(1, 12))
-        );
     }
 }
