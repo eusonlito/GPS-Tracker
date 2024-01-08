@@ -86,11 +86,13 @@ class Client
      */
     protected function readBuffer(): string|bool|null
     {
-        if ($this->connection->isValid() === false) {
+        try {
+            $buffer = socket_read($this->connection->getSocket(), 2048);
+        } catch (Throwable) {
             return false;
         }
 
-        if (empty($buffer = socket_read($this->connection->getSocket(), 2048))) {
+        if (empty($buffer)) {
             return null;
         }
 

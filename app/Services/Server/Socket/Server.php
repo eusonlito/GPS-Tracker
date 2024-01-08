@@ -149,8 +149,6 @@ class Server extends ServerAbstract
                 $this->connectionAdd($sockets);
             }
 
-            $this->log('[CONNECTIONS]', $this->pool->count());
-
             foreach ($this->pool->get() as $connection) {
                 $this->connectionRead($connection, $handler);
             }
@@ -199,6 +197,7 @@ class Server extends ServerAbstract
 
         $this->pool->add($connection = new Connection($this->port, $socket));
 
+        $this->log('[CONNECTIONS]', $this->pool->count());
         $this->log('['.$connection->getId().'] [CONNECTED]', $connection->__toArray());
     }
 
