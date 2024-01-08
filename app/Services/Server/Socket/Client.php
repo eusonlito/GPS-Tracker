@@ -56,6 +56,10 @@ class Client
 
         $this->log('READ', $buffer);
 
+        if ($buffer === false) {
+            return false;
+        }
+
         if (empty($buffer)) {
             return true;
         }
@@ -78,12 +82,12 @@ class Client
     }
 
     /**
-     * @return ?string
+     * @return string|bool|null
      */
-    protected function readBuffer(): ?string
+    protected function readBuffer(): string|bool|null
     {
         if ($this->connection->isValid() === false) {
-            return null;
+            return false;
         }
 
         if (empty($buffer = socket_read($this->connection->getSocket(), 2048))) {

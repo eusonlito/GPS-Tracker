@@ -136,7 +136,7 @@ class Process
 
         stream_set_timeout($fp, 1);
 
-        fread($fp, 1024);
+        fread($fp, 1);
 
         fclose($fp);
 
@@ -162,7 +162,7 @@ class Process
 
         stream_set_timeout($fp, 1);
 
-        fread($fp, 1024);
+        fread($fp, 1);
 
         fclose($fp);
 
