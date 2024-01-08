@@ -112,7 +112,7 @@ import Map from './map';
     const distance = document.querySelector('[data-map-list-distance]');
     const time = document.querySelector('[data-map-list-time]');
 
-    let interval;
+    let interval, wakeLock;
 
     if (live && element.dataset.mapPositionsUrl) {
         live.addEventListener('click', (e) => {
@@ -127,6 +127,10 @@ import Map from './map';
     }
 
     const liveStop = function () {
+        if (wakeLock) {
+            wakeLock.release().then(() => wakeLock = null);
+        }
+
         clearInterval(interval);
 
         interval = null;
@@ -135,6 +139,12 @@ import Map from './map';
     };
 
     const liveStart = function () {
+        try {
+            navigator.wakeLock.request('screen').then(enabled => wakeLock = enabled);
+        } catch (err) {
+            console.error(`${err.name}, ${err.message}`);
+        }
+
         liveStartMap();
 
         interval = setInterval(liveStartMap, 10000);

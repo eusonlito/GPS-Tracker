@@ -55,7 +55,7 @@ class Update extends ControllerAbstract
      */
     protected function requestDefaultContentsFile(): string
     {
-        return dirname(dirname(__DIR__)).'/Seeder/data/configuration.json';
+        return dirname(__DIR__, 2).'/Seeder/data/configuration.json';
     }
 
     /**

@@ -5,9 +5,14 @@ namespace App\Services\Logger;
 abstract class RotatingFileAbstract
 {
     /**
-     * @var string
+     * @return string
      */
-    protected static string $name;
+    abstract protected static function folder(): string;
+
+    /**
+     * @return string
+     */
+    abstract protected static function path(): string;
 
     /**
      * @param string $title
@@ -48,7 +53,7 @@ abstract class RotatingFileAbstract
      */
     protected static function file(): string
     {
-        $file = storage_path('logs/'.static::$name.'/'.date('Y/m/Y-m-d').'.log');
+        $file = storage_path('logs/'.static::folder().'/'.static::path().'.log');
 
         clearstatcache(true, $file);
 

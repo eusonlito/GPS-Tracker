@@ -13,6 +13,11 @@ class Connection
     protected const TIMEOUT = 600;
 
     /**
+     * @var string
+     */
+    protected string $id;
+
+    /**
      * @var int
      */
     protected int $timestamp;
@@ -20,16 +25,77 @@ class Connection
     /**
      * @var array
      */
+    protected array $client = [];
+
+    /**
+     * @var array
+     */
     protected array $data = [];
 
     /**
+     * @param int $port
      * @param ?\Socket $socket
      *
      * @return self
      */
-    public function __construct(protected ?Socket $socket)
+    public function __construct(protected int $port, protected ?Socket $socket)
     {
+        $this->setId();
+        $this->setClient();
         $this->refresh();
+    }
+
+    /**
+     * @return int
+     */
+    public function getPort(): int
+    {
+        return $this->port;
+    }
+
+    /**
+     * @return self
+     */
+    protected function setId(): self
+    {
+        $this->id = uniqid();
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return self
+     */
+    protected function setClient(): self
+    {
+        if (empty($this->socket)) {
+            return $this;
+        }
+
+        socket_getpeername($this->socket, $address, $port);
+
+        $this->client = [
+            'address' => $address,
+            'port' => $port,
+        ];
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getClient(): array
+    {
+        return $this->client;
     }
 
     /**
@@ -102,6 +168,20 @@ class Connection
         return $this->socket
             && ($this->socket instanceof Socket)
             && ((time() - $this->timestamp) < static::TIMEOUT);
+    }
+
+    /**
+     * @return array
+     */
+    public function __toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'port' => $this->getPort(),
+            'timestamp' => $this->getTimestamp(),
+            'valid' => $this->isValid(),
+            'client' => $this->getClient(),
+        ];
     }
 
     /**

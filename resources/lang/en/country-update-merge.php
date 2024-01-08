@@ -6,7 +6,7 @@
     ],
     'filter' => 'Filter...',
     'merge' => 'Join',
-    'meta-title' => 'Countries &gt; :title &gt; Join',
+    'meta-title' => 'Countries > :title > Join',
     'name' => 'Name',
     'select' => 'Select',
     'success' => 'Countries have been successfully joined',

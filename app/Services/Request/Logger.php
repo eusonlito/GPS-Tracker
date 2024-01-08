@@ -10,11 +10,6 @@ use App\Services\Logger\RotatingFileAbstract;
 class Logger extends RotatingFileAbstract
 {
     /**
-     * @var string
-     */
-    protected static string $name = 'requests';
-
-    /**
      * @var array
      */
     protected static array $exclude = [
@@ -29,6 +24,22 @@ class Logger extends RotatingFileAbstract
      * @var array
      */
     protected static array $excludeTest = ['cookie'];
+
+    /**
+     * @return string
+     */
+    protected static function folder(): string
+    {
+        return 'requests';
+    }
+
+    /**
+     * @return string
+     */
+    protected static function path(): string
+    {
+        return date('Y/m/Y-m-d');
+    }
 
     /**
      * @param \Illuminate\Http\Request $request

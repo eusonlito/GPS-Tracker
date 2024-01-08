@@ -9,7 +9,7 @@
     'latitude' => 'Latitude',
     'longitude' => 'Longitude',
     'merge' => 'Rejoindre',
-    'meta-title' => 'Villes &gt; :titre',
+    'meta-title' => 'Villes > :titre',
     'name' => 'Nom',
     'save' => 'Sauvegarder',
     'state' => 'Province',

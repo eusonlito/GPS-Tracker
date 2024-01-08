@@ -8,6 +8,7 @@ use Socket;
 use Throwable;
 use App\Services\Server\Connection;
 use App\Services\Server\ServerAbstract;
+use App\Services\Server\Logger;
 
 class Server extends ServerAbstract
 {
@@ -71,9 +72,10 @@ class Server extends ServerAbstract
     public function accept(Closure $handler): void
     {
         $this->create();
-        $this->reuse();
+        $this->option();
         $this->bind();
         $this->listen();
+        $this->nonblock();
 
         set_time_limit(0);
 
@@ -98,7 +100,7 @@ class Server extends ServerAbstract
     /**
      * @return void
      */
-    protected function reuse(): void
+    protected function option(): void
     {
         socket_set_option($this->socket, SOL_SOCKET, SO_REUSEADDR, 1);
     }
@@ -120,6 +122,14 @@ class Server extends ServerAbstract
     }
 
     /**
+     * @return void
+     */
+    protected function nonblock(): void
+    {
+        socket_set_nonblock($this->socket);
+    }
+
+    /**
      * @param \Closure $handler
      *
      * @return void
@@ -127,7 +137,7 @@ class Server extends ServerAbstract
     protected function read(Closure $handler): void
     {
         do {
-            usleep(1000);
+            usleep(10000);
 
             $sockets = $this->pool->sockets();
 
@@ -139,8 +149,14 @@ class Server extends ServerAbstract
                 $this->connectionAdd($sockets);
             }
 
-            foreach ($this->pool->get() as $connection) {
-                $this->connectionRead($connection, $handler);
+            if (empty($sockets)) {
+                continue;
+            }
+
+            foreach ($sockets as $socket) {
+                if ($connection = $this->pool->bySocket($socket)) {
+                    $this->connectionRead($connection, $handler);
+                }
             }
         } while (true);
     }
@@ -160,11 +176,11 @@ class Server extends ServerAbstract
     }
 
     /**
-     * @param array $sockets
+     * @param array &$sockets
      *
      * @return void
      */
-    protected function connectionAdd(array $sockets): void
+    protected function connectionAdd(array &$sockets): void
     {
         $this->connectionAccept();
 
@@ -176,9 +192,19 @@ class Server extends ServerAbstract
      */
     protected function connectionAccept(): void
     {
-        if ($socket = socket_accept($this->socket)) {
-            $this->pool->add(new Connection($socket));
+        if (empty($socket = socket_accept($this->socket))) {
+            return;
         }
+
+        $timeout = ['sec' => 5, 'usec' => 0];
+
+        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
+        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
+
+        $this->pool->add($connection = new Connection($this->port, $socket));
+
+        $this->log('[CONNECTIONS]', $this->pool->count());
+        $this->log('['.$connection->getId().'] [CONNECTED]', $connection->__toArray());
     }
 
     /**
@@ -204,7 +230,7 @@ class Server extends ServerAbstract
      */
     protected function connectionReadHandle(Connection $connection, Closure $handler): void
     {
-        if (Client::new($connection, $handler)->handle() === false) {
+        if (Client::new($connection, $handler)->debug($this->debug)->handle() === false) {
             $connection->close();
         }
     }
@@ -300,5 +326,18 @@ class Server extends ServerAbstract
         return (str_contains($e->getMessage(), ' closed ') === false)
             && (str_contains($e->getMessage(), ' unable to write to socket') === false)
             && (str_contains($e->getMessage(), ' reset by peer') === false);
+    }
+
+    /**
+     * @param string $message
+     * @param mixed $data = ''
+     *
+     * @return void
+     */
+    protected function log(string $message, mixed $data = ''): void
+    {
+        if ($this->debug) {
+            Logger::port($this->port)->info($message, $data);
+        }
     }
 }

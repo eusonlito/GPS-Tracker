@@ -7,9 +7,15 @@ use Throwable;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Server\Connection;
+use App\Services\Server\Logger;
 
 class Client
 {
+    /**
+     * @var bool
+     */
+    protected bool $debug = false;
+
     /**
      * @return self
      */
@@ -26,6 +32,19 @@ class Client
      */
     public function __construct(protected Connection $connection, protected Closure $handler)
     {
+        $this->log('CHECK');
+    }
+
+    /**
+     * @param bool $debug
+     *
+     * @return self
+     */
+    public function debug(bool $debug): self
+    {
+        $this->debug = $debug;
+
+        return $this;
     }
 
     /**
@@ -35,12 +54,10 @@ class Client
     {
         $buffer = $this->readBuffer();
 
-        if ($buffer === null) {
-            return false;
-        }
+        $this->log('READ', $buffer);
 
         if (empty($buffer)) {
-            return true;
+            return false;
         }
 
         $resources = $this->readHandle($buffer);
@@ -50,22 +67,28 @@ class Client
         }
 
         foreach ($resources as $resource) {
-            $this->readResource($resource);
+            $this->readResourceData($resource);
         }
+
+        $this->readResourceResponse($resource);
+        $this->readResourceMessagesRead($resource);
+        $this->readResourceMessagesWrite($resource);
 
         return true;
     }
 
     /**
-     * @return ?string
+     * @return string|bool|null
      */
-    protected function readBuffer(): ?string
+    protected function readBuffer(): string|bool|null
     {
-        if ($this->connection->isValid() === false) {
-            return null;
+        try {
+            $buffer = socket_read($this->connection->getSocket(), 2048);
+        } catch (Throwable) {
+            return false;
         }
 
-        if (empty($buffer = socket_read($this->connection->getSocket(), 2048))) {
+        if (empty($buffer)) {
             return null;
         }
 
@@ -109,19 +132,6 @@ class Client
      *
      * @return void
      */
-    protected function readResource(ResourceAbstract $resource): void
-    {
-        $this->readResourceData($resource);
-        $this->readResourceResponse($resource);
-        $this->readResourceMessagesRead($resource);
-        $this->readResourceMessagesWrite($resource);
-    }
-
-    /**
-     * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
-     *
-     * @return void
-     */
     protected function readResourceData(ResourceAbstract $resource): void
     {
         if ($data = $resource->data()) {
@@ -136,9 +146,13 @@ class Client
      */
     protected function readResourceResponse(ResourceAbstract $resource): void
     {
-        if ($response = $resource->response()) {
-            socket_write($this->connection->getSocket(), $response, strlen($response));
+        if (empty($response = $resource->response())) {
+            return;
         }
+
+        $this->log('WRITE', $response);
+
+        socket_write($this->connection->getSocket(), $response, strlen($response));
     }
 
     /**
@@ -202,7 +216,11 @@ class Client
         $message->sent_at = date('Y-m-d H:i:s');
         $message->save();
 
-        socket_write($this->connection->getSocket(), $response = $message->message(), strlen($response));
+        $contents = $message->message();
+
+        $this->log('WRITE', $contents);
+
+        socket_write($this->connection->getSocket(), $contents, strlen($contents));
     }
 
     /**
@@ -229,5 +247,18 @@ class Client
         return (str_contains($e->getMessage(), ' closed ') === false)
             && (str_contains($e->getMessage(), ' unable to write to socket') === false)
             && (str_contains($e->getMessage(), ' reset by peer') === false);
+    }
+
+    /**
+     * @param string $message
+     * @param mixed $data = ''
+     *
+     * @return void
+     */
+    protected function log(string $message, mixed $data = ''): void
+    {
+        if ($this->debug) {
+            Logger::port($this->connection->getPort())->info('['.$this->connection->getId().'] ['.$message.']', $data);
+        }
     }
 }

@@ -6,7 +6,7 @@
     ],
     'filter' => 'Filtre...',
     'merge' => 'Rejoindre',
-    'meta-title' => 'Pays &gt; :title &gt; Rejoindre',
+    'meta-title' => 'Pays > :title > Rejoindre',
     'name' => 'Nom',
     'select' => 'Sélectionner',
     'success' => 'Les pays ont été joints avec succès',

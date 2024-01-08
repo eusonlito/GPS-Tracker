@@ -15,6 +15,19 @@ class Status extends ControllerAbstract
      */
     public function __construct(protected Request $request, protected Authenticatable $auth)
     {
+        $this->fetch();
+    }
+
+    /**
+     * @return void
+     */
+    protected function fetch(): void
+    {
+        if ($this->available() === false) {
+            return;
+        }
+
+        shell_exec($this->git().' fetch origin '.$this->branch());
     }
 
     /**
@@ -25,7 +38,10 @@ class Status extends ControllerAbstract
         return [
             'available' => $this->available(),
             'updated' => $this->updated(),
-            'remote_commit' => $this->remoteCommitCommit(),
+            'current' => $this->current(),
+            'log' => $this->log(),
+            'commits' => $this->commits(),
+            'more' => $this->more(),
         ];
     }
 
@@ -34,7 +50,7 @@ class Status extends ControllerAbstract
      */
     protected function available(): bool
     {
-        return $this->cache(fn () => is_file($this->config()) && is_file($this->master()));
+        return $this->cache(fn () => $this->git() && is_dir(base_path('.git')));
     }
 
     /**
@@ -42,112 +58,87 @@ class Status extends ControllerAbstract
      */
     protected function updated(): bool
     {
-        return $this->cache(fn () => $this->available() && ($this->currentCommitSha() === $this->remoteCommitSha()));
-    }
-
-    /**
-     * @return string
-     */
-    protected function master(): string
-    {
-        return $this->cache(fn () => base_path('.git/refs/heads/master'));
-    }
-
-    /**
-     * @return string
-     */
-    protected function config(): string
-    {
-        return $this->cache(fn () => base_path('.git/config'));
+        return empty($this->log());
     }
 
     /**
      * @return ?string
      */
-    protected function currentCommitSha(): ?string
+    protected function git(): ?string
     {
-        if ($this->available() === false) {
-            return null;
-        }
-
-        return trim(file_get_contents($this->master()));
-    }
-
-    /**
-     * @return ?string
-     */
-    protected function remoteCommitSha(): ?string
-    {
-        if ($this->available() === false) {
-            return null;
-        }
-
-        return $this->remoteJson()['sha'] ?? null;
-    }
-
-    /**
-     * @return ?array
-     */
-    protected function remoteCommitCommit(): ?array
-    {
-        if ($this->available() === false) {
-            return null;
-        }
-
-        return $this->remoteJson()['commit'] ?? null;
-    }
-
-    /**
-     * @return ?array
-     */
-    protected function remoteCommit(): ?array
-    {
-        if ($this->available() === false) {
-            return null;
-        }
-
-        return $this->remoteJson();
-    }
-
-    /**
-     * @return ?array
-     */
-    protected function remoteJson(): ?array
-    {
-        if ($this->available() === false) {
-            return null;
-        }
-
-        if (empty($url = $this->remoteRepository())) {
-            return null;
-        }
-
-        return $this->cache(function () use ($url) {
-            return json_decode(file_get_contents($url, false, stream_context_create([
-                'http' => [
-                    'user_agent' => 'Eusonlito-GPS-Tracker',
-                ],
-            ])), true);
-        });
-    }
-
-    /**
-     * @return ?string
-     */
-    protected function remoteRepository(): ?string
-    {
-        if ($this->available() === false) {
-            return null;
-        }
-
         return $this->cache(function () {
-            preg_match('/github\.com:(.+)\.git$/m', file_get_contents($this->config()), $matches);
-
-            if (empty($matches)) {
-                return null;
-            }
-
-            return 'https://api.github.com/repos/'.$matches[1].'/commits/master';
+            return str_contains($git = trim(shell_exec('which git')), 'not found') ? null : $git;
         });
+    }
+
+    /**
+     * @return string
+     */
+    protected function branch(): string
+    {
+        return $this->cache(fn () => trim(shell_exec($this->git().' branch --show-current')));
+    }
+
+    /**
+     * @return array
+     */
+    protected function log(): array
+    {
+        return $this->cache(function () {
+            exec($this->git().' log --date=iso-strict --format="%cd: %s" HEAD..origin/'.$this->branch(), $output);
+
+            return array_map($this->logLine(...), $output);
+        });
+    }
+
+    /**
+     * @param string $line
+     *
+     * @return array
+     */
+    protected function logLine(string $line): array
+    {
+        $line = explode(': ', $line, 2);
+
+        return [
+            'date' => helper()->dateFormattedToTimezone($line[0], $this->auth->timezone->zone),
+            'message' => $line[1],
+        ];
+    }
+
+    /**
+     * @return ?array
+     */
+    protected function current(): ?array
+    {
+        if ($this->available() === false) {
+            return null;
+        }
+
+        return $this->logLine(trim(shell_exec($this->git().' log -1 --date=iso-strict --format="%cd: %s"')));
+    }
+
+    /**
+     * @return ?array
+     */
+    protected function commits(): ?array
+    {
+        if ($this->available() === false) {
+            return null;
+        }
+
+        return array_slice($this->log(), 0, 5);
+    }
+
+    /**
+     * @return ?int
+     */
+    protected function more(): ?int
+    {
+        if ($this->available() === false) {
+            return null;
+        }
+
+        return count($this->log()) - 5;
     }
 }

@@ -7,7 +7,7 @@
     ],
     'filter' => 'Filter...',
     'merge' => 'Join',
-    'meta-title' => 'Cities &gt; :title &gt; Join',
+    'meta-title' => 'Cities > :title > Join',
     'name' => 'Name',
     'select' => 'Select',
     'state' => 'Province',
