@@ -10,6 +10,6 @@
     <button href="#" data-scroll-bottom="#log-contents" class="btn bg-white ml-5">@icon('chevrons-down', 'w-5 h-5')</button>
 </div>
 
-<pre id="log-contents" class="p-2 bg-white w-full max-h-screen overflow-x-auto">{{ $contents }}</pre>
+<pre id="log-contents" class="p-2 bg-white w-full max-h-screen overflow-x-auto">@php ($contents())</pre>
 
 @stop

@@ -214,10 +214,10 @@ class Log extends ControllerAbstract
     }
 
     /**
-     * @return ?string
+     * @return callable
      */
-    protected function contents(): ?string
+    protected function contents(): callable
     {
-        return $this->isFile() ? file_get_contents($this->fullpath()) : null;
+        return fn () => $this->isFile() ? readfile($this->fullpath()) : null;
     }
 }
