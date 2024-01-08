@@ -150,7 +150,9 @@ class Server extends ServerAbstract
             }
 
             foreach ($sockets as $socket) {
-                $this->connectionRead($this->pool->bySocket($socket), $handler);
+                if ($connection = $this->pool->bySocket($socket)) {
+                    $this->connectionRead($connection, $handler);
+                }
             }
         } while (true);
     }
