@@ -14,9 +14,14 @@ abstract class MonologRotatingFileAbstract
     protected static array $logger = [];
 
     /**
-     * @var string
+     * @return string
      */
-    protected static string $name;
+    abstract protected static function folder(): string;
+
+    /**
+     * @return string
+     */
+    abstract protected static function path(): string;
 
     /**
      * @param string $title
@@ -57,8 +62,10 @@ abstract class MonologRotatingFileAbstract
      */
     public static function logger(): Logger
     {
-        if (isset(static::$logger[static::$name])) {
-            return static::$logger[static::$name];
+        $name = static::folder();
+
+        if (isset(static::$logger[$name])) {
+            return static::$logger[$name];
         }
 
         $formatter = new LineFormatter("[%datetime%]: %message% %extra% %context%\n");
@@ -67,10 +74,10 @@ abstract class MonologRotatingFileAbstract
         $handler = new StreamHandler(static::loggerFile());
         $handler->setFormatter($formatter);
 
-        $logger = new Logger(static::$name);
+        $logger = new Logger($name);
         $logger->pushHandler($handler);
 
-        return static::$logger[static::$name] = $logger;
+        return static::$logger[$name] = $logger;
     }
 
     /**
@@ -78,6 +85,6 @@ abstract class MonologRotatingFileAbstract
      */
     protected static function loggerFile(): string
     {
-        return storage_path('logs/'.static::$name.'/'.date('Y/m/Y-m-d').'.log');
+        return storage_path('logs/'.static::folder().'/'.static::path().'.log');
     }
 }

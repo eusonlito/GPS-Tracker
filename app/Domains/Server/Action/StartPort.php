@@ -85,7 +85,9 @@ class StartPort extends ActionAbstract
      */
     protected function server(): void
     {
-        $this->server = $this->protocol->server($this->row->port);
+        $this->server = $this->protocol
+            ->server($this->row->port)
+            ->debug($this->data['debug']);
     }
 
     /**

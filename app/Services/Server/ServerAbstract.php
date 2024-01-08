@@ -17,6 +17,11 @@ abstract class ServerAbstract
     protected Process $process;
 
     /**
+     * @var bool
+     */
+    protected bool $debug = false;
+
+    /**
      * @param \Closure $handler
      *
      * @return void
@@ -45,6 +50,18 @@ abstract class ServerAbstract
     {
         $this->pool = new Pool();
         $this->process = new Process();
+    }
+
+    /**
+     * @param bool $debug
+     *
+     * @return self
+     */
+    public function debug(bool $debug): self
+    {
+        $this->debug = $debug;
+
+        return $this;
     }
 
     /**
