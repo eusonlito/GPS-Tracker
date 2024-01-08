@@ -170,11 +170,11 @@ class Server extends ServerAbstract
     }
 
     /**
-     * @param array $sockets
+     * @param array &$sockets
      *
      * @return void
      */
-    protected function connectionAdd(array $sockets): void
+    protected function connectionAdd(array &$sockets): void
     {
         $this->connectionAccept();
 
