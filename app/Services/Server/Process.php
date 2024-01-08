@@ -132,6 +132,12 @@ class Process
             return $errno !== 111;
         }
 
+        fwrite($fp, 'PING');
+
+        stream_set_timeout($fp, 1);
+
+        fread($fp, 1024);
+
         fclose($fp);
 
         return true;
@@ -151,6 +157,12 @@ class Process
         } catch (Throwable $e) {
             return $errno === 110;
         }
+
+        fwrite($fp, 'PING');
+
+        stream_set_timeout($fp, 1);
+
+        fread($fp, 1024);
 
         fclose($fp);
 

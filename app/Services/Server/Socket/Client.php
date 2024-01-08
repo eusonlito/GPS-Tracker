@@ -56,10 +56,6 @@ class Client
 
         $this->log('READ', $buffer);
 
-        if ($buffer === null) {
-            return false;
-        }
-
         if (empty($buffer)) {
             return true;
         }
