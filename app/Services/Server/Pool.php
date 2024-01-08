@@ -32,6 +32,14 @@ class Pool
     }
 
     /**
+     * @return int
+     */
+    public function count(): int
+    {
+        return count($this->list);
+    }
+
+    /**
      * @return array
      */
     public function sockets(): array

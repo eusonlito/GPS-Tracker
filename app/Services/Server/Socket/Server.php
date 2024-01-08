@@ -149,6 +149,8 @@ class Server extends ServerAbstract
                 $this->connectionAdd($sockets);
             }
 
+            $this->log('[CONNECTIONS]', $this->pool->count());
+
             foreach ($this->pool->get() as $connection) {
                 $this->connectionRead($connection, $handler);
             }
@@ -195,12 +197,9 @@ class Server extends ServerAbstract
         socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
         socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
 
-        $connection = new Connection($this->port, $socket);
+        $this->pool->add($connection = new Connection($this->port, $socket));
 
-        $this->pool->add($connection);
-
-        $this->log('CONNECTED', $connection->__toArray());
-        $this->log('CONNECTIONS', count($this->pool->get()));
+        $this->log('['.$connection->getId().'] [CONNECTED]', $connection->__toArray());
     }
 
     /**
