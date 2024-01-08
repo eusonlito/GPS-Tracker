@@ -137,7 +137,7 @@ class Server extends ServerAbstract
     protected function read(Closure $handler): void
     {
         do {
-            usleep(1000);
+            usleep(10000);
 
             $sockets = $this->pool->sockets();
 
@@ -147,6 +147,10 @@ class Server extends ServerAbstract
 
             if (in_array($this->socket, $sockets)) {
                 $this->connectionAdd($sockets);
+            }
+
+            if (empty($sockets)) {
+                continue;
             }
 
             foreach ($sockets as $socket) {

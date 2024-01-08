@@ -56,12 +56,8 @@ class Client
 
         $this->log('READ', $buffer);
 
-        if ($buffer === false) {
-            return false;
-        }
-
         if (empty($buffer)) {
-            return true;
+            return false;
         }
 
         $resources = $this->readHandle($buffer);
