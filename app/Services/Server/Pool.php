@@ -2,6 +2,7 @@
 
 namespace App\Services\Server;
 
+use Generator;
 use Socket;
 
 class Pool
@@ -61,6 +62,22 @@ class Pool
         }
 
         return null;
+    }
+
+    /**
+     * @param array $sockets
+     *
+     * @return \Generator
+     */
+    public function bySockets(array $sockets): Generator
+    {
+        foreach ($this->list as $connection) {
+            if (in_array($connection->getSocket(), $sockets)) {
+                yield $connection;
+            }
+        }
+
+        yield from [];
     }
 
     /**

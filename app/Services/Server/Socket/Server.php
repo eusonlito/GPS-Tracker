@@ -149,7 +149,7 @@ class Server extends ServerAbstract
                 $this->connectionAdd($sockets);
             }
 
-            foreach ($this->pool->get() as $connection) {
+            foreach ($this->pool->bySockets($sockets) as $connection) {
                 $this->connectionRead($connection, $handler);
             }
         } while (true);
