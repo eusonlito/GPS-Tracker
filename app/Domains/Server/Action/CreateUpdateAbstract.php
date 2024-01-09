@@ -3,6 +3,7 @@
 namespace App\Domains\Server\Action;
 
 use App\Domains\Server\Model\Server as Model;
+use App\Services\Protocol\ProtocolFactory;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
 {
@@ -51,7 +52,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     protected function checkProtocol(): void
     {
-        if (array_key_exists($this->data['protocol'], config('protocols')) === false) {
+        if (array_key_exists($this->data['protocol'], ProtocolFactory::list()) === false) {
             $this->exceptionValidator(__('server-create.error.protocol-not-exists'));
         }
     }

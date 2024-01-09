@@ -48,7 +48,10 @@ class Delete extends ActionAbstract
      */
     protected function killIsRunning(): bool
     {
-        return $this->process->list()->where('port', $this->row->port)->isNotEmpty();
+        return $this->process
+            ->list()
+            ->where('port', $this->row->port)
+            ->isNotEmpty();
     }
 
     /**

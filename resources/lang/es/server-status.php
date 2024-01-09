@@ -3,6 +3,7 @@
     'cpu' => 'CPU',
     'debug' => 'Debug',
     'enabled' => 'Activo',
+    'log' => 'Log',
     'memory' => 'Memoria',
     'meta-title' => 'Servidores > Estado',
     'owner' => 'Propietario',

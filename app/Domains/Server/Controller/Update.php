@@ -4,6 +4,7 @@ namespace App\Domains\Server\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Services\Protocol\ProtocolFactory;
 
 class Update extends ControllerAbstract
 {
@@ -26,7 +27,7 @@ class Update extends ControllerAbstract
 
         return $this->page('server.update', [
             'row' => $this->row,
-            'protocols' => array_keys(config('protocols')),
+            'protocols' => array_keys(ProtocolFactory::list()),
         ]);
     }
 

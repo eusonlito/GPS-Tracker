@@ -23,9 +23,14 @@ class Connection
     protected int $timestamp;
 
     /**
-     * @var array
+     * @var string
      */
-    protected array $client = [];
+    protected string $clientIp;
+
+    /**
+     * @var int
+     */
+    protected int $clientPort;
 
     /**
      * @var array
@@ -33,12 +38,12 @@ class Connection
     protected array $data = [];
 
     /**
-     * @param int $port
+     * @param int $serverPort
      * @param ?\Socket $socket
      *
      * @return self
      */
-    public function __construct(protected int $port, protected ?Socket $socket)
+    public function __construct(protected int $serverPort, protected ?Socket $socket)
     {
         $this->setId();
         $this->setClient();
@@ -48,9 +53,17 @@ class Connection
     /**
      * @return int
      */
-    public function getPort(): int
+    public function getServerPort(): int
     {
-        return $this->port;
+        return $this->serverPort;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDebuggable(): bool
+    {
+        return $this->getClientIp() !== '127.0.0.1';
     }
 
     /**
@@ -82,20 +95,26 @@ class Connection
 
         socket_getpeername($this->socket, $address, $port);
 
-        $this->client = [
-            'address' => $address,
-            'port' => $port,
-        ];
+        $this->clientIp = $address;
+        $this->clientPort = $port;
 
         return $this;
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getClient(): array
+    public function getClientIp(): string
     {
-        return $this->client;
+        return $this->clientIp;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClientPort(): int
+    {
+        return $this->clientPort;
     }
 
     /**
@@ -177,10 +196,11 @@ class Connection
     {
         return [
             'id' => $this->getId(),
-            'port' => $this->getPort(),
             'timestamp' => $this->getTimestamp(),
+            'server_port' => $this->getServerPort(),
+            'client_ip' => $this->getClientIp(),
+            'client_port' => $this->getClientPort(),
             'valid' => $this->isValid(),
-            'client' => $this->getClient(),
         ];
     }
 

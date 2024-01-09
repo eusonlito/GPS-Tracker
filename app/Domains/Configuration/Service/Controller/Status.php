@@ -39,9 +39,10 @@ class Status extends ControllerAbstract
             'available' => $this->available(),
             'updated' => $this->updated(),
             'current' => $this->current(),
-            'log' => $this->log(),
-            'commits' => $this->commits(),
-            'more' => $this->more(),
+            'updated_commits' => $this->updatedCommits(),
+            'pending_commits' => $this->pendingCommits(),
+            'pending_commits_count' => $this->pendingCommitsCount(),
+            'pending_more' => $this->pendingMore(),
         ];
     }
 
@@ -58,7 +59,71 @@ class Status extends ControllerAbstract
      */
     protected function updated(): bool
     {
-        return empty($this->log());
+        if ($this->available() === false) {
+            return false;
+        }
+
+        return $this->cache(fn () => empty($this->logDiff()));
+    }
+
+    /**
+     * @return ?array
+     */
+    protected function current(): ?array
+    {
+        if ($this->available() === false) {
+            return null;
+        }
+
+        return $this->log()[0];
+    }
+
+    /**
+     * @return ?array
+     */
+    protected function updatedCommits(): ?array
+    {
+        if ($this->updated() === false) {
+            return null;
+        }
+
+        return array_slice($this->log(), 1, 6);
+    }
+
+    /**
+     * @return ?array
+     */
+    protected function pendingCommits(): ?array
+    {
+        if ($this->available() === false) {
+            return null;
+        }
+
+        return array_slice($this->logDiff(), 0, 5);
+    }
+
+    /**
+     * @return ?int
+     */
+    protected function pendingCommitsCount(): ?int
+    {
+        if ($this->available() === false) {
+            return null;
+        }
+
+        return count($this->logDiff());
+    }
+
+    /**
+     * @return ?int
+     */
+    protected function pendingMore(): ?int
+    {
+        if ($this->available() === false) {
+            return null;
+        }
+
+        return max(0, count($this->logDiff()) - 5);
     }
 
     /**
@@ -85,7 +150,19 @@ class Status extends ControllerAbstract
     protected function log(): array
     {
         return $this->cache(function () {
-            exec($this->git().' log --date=iso-strict --format="%cd: %s" HEAD..origin/'.$this->branch(), $output);
+            exec($this->git().' log -10 --date=iso-strict --format="%cd: %s"', $output);
+
+            return array_map($this->logLine(...), $output);
+        });
+    }
+
+    /**
+     * @return array
+     */
+    protected function logDiff(): array
+    {
+        return $this->cache(function () {
+            exec($this->git().' log -10 --date=iso-strict --format="%cd: %s" HEAD..origin/'.$this->branch(), $output);
 
             return array_map($this->logLine(...), $output);
         });
@@ -104,41 +181,5 @@ class Status extends ControllerAbstract
             'date' => helper()->dateFormattedToTimezone($line[0], $this->auth->timezone->zone),
             'message' => $line[1],
         ];
-    }
-
-    /**
-     * @return ?array
-     */
-    protected function current(): ?array
-    {
-        if ($this->available() === false) {
-            return null;
-        }
-
-        return $this->logLine(trim(shell_exec($this->git().' log -1 --date=iso-strict --format="%cd: %s"')));
-    }
-
-    /**
-     * @return ?array
-     */
-    protected function commits(): ?array
-    {
-        if ($this->available() === false) {
-            return null;
-        }
-
-        return array_slice($this->log(), 0, 5);
-    }
-
-    /**
-     * @return ?int
-     */
-    protected function more(): ?int
-    {
-        if ($this->available() === false) {
-            return null;
-        }
-
-        return count($this->log()) - 5;
     }
 }

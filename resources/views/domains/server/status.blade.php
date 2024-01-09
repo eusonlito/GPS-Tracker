@@ -17,6 +17,7 @@
                         <th>{{ __('server-status.pid') }}</th>
                         <th>{{ __('server-status.owner') }}</th>
                         <th class="text-left">{{ __('server-status.command') }}</th>
+                        <th>{{ __('server-status.log') }}</th>
                         <th class="w-1"><input type="checkbox" data-checkall="#server-status-proccess-list-table > tbody" /></th>
                     </tr>
                 </thead>
@@ -32,6 +33,15 @@
                         <td>{{ $each->pid }}</td>
                         <td>{{ $each->owner }}</td>
                         <td class="text-left">{{ $each->command }}</td>
+
+                        <td class="w-1">
+                            @if ($each->log)
+
+                            <a href="{{ route('server.log', ['path' => $each->log]) }}">@icon('file-text', 'w-4 h-4')</a>
+
+                            @endif
+                        </td>
+
                         <td class="w-1"><input type="checkbox" name="ports[]" value="{{ $each->port }}" /></td>
                     </tr>
 
