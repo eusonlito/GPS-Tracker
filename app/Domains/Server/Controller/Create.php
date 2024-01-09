@@ -4,6 +4,7 @@ namespace App\Domains\Server\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use App\Services\Protocol\ProtocolFactory;
 
 class Create extends ControllerAbstract
 {
@@ -21,7 +22,7 @@ class Create extends ControllerAbstract
         $this->meta('title', __('server-create.meta-title'));
 
         return $this->page('server.create', [
-            'protocols' => array_keys(config('protocols')),
+            'protocols' => array_keys(ProtocolFactory::list()),
         ]);
     }
 
