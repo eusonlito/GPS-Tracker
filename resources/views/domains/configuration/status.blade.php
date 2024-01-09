@@ -11,16 +11,29 @@
             <h2 class="mt-5 text-2xl font-medium">{{ __('configuration-status.updated') }}</h2>
         </div>
 
+        <h2 class="mr-5 mt-5 truncate text-lg font-medium">{{ __('configuration-status.current') }}</h2>
+
         <div class="box mb-3 mt-5 px-5 py-3 text-left">
             <div class="font-medium text-success">{{ $current['message'] }}</div>
             <div class="mt-0.5 text-xs text-slate-500">{{ $current['date'] }}</div>
         </div>
+
+        <h2 class="my-5 truncate text-lg font-medium">{{ __('configuration-status.previous') }}</h2>
+
+        @foreach ($updated_commits as $commit)
+
+        <div class="box mb-3 px-5 py-3 text-left">
+            <div class="font-medium text-success">{{ $commit['message'] }}</div>
+            <div class="mt-0.5 text-xs text-slate-500">{{ $commit['date'] }}</div>
+        </div>
+
+        @endforeach
 
         @elseif ($available)
 
         <div class="box p-10">
             <div class="text-warning">@icon('alert-circle', 'w-20 h-20')</div>
-            <h2 class="mt-5 text-2xl font-medium">{{ __('configuration-status.available', ['count' => count($log)]) }}</h2>
+            <h2 class="mt-5 text-2xl font-medium">{{ __('configuration-status.available', ['count' => $pending_commits_count]) }}</h2>
         </div>
 
         <div class="box mb-3 mt-5 px-5 py-3 text-left">
@@ -28,9 +41,9 @@
             <div class="mt-0.5 text-xs text-slate-500">{{ $current['date'] }}</div>
         </div>
 
-        <div class="w-full border-t border-dashed border-slate-200/60 m-5"></div>
+        <h2 class="my-5 truncate text-lg font-medium">{{ __('configuration-status.pending') }}</h2>
 
-        @foreach ($commits as $commit)
+        @foreach ($pending_commits as $commit)
 
         <div class="box mb-3 px-5 py-3 text-left">
             <div class="font-medium text-warning">{{ $commit['message'] }}</div>
@@ -39,7 +52,7 @@
 
         @endforeach
 
-        @if ($more > 0)
+        @if ($pending_more)
 
         <div class="box mb-3 px-5 py-3 font-medium">
             {{ __('configuration-status.updated-more', ['count' => $more]) }}
