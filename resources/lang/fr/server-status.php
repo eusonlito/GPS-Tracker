@@ -1,8 +1,9 @@
 <?php return [
     'command' => 'Commande',
-    'cpu' => 'UNITÉ CENTRALE',
+    'cpu' => 'CPU',
     'debug' => 'Débogage',
     'enabled' => 'Actif',
+    'log' => 'Journal',
     'memory' => 'Mémoire',
     'meta-title' => 'Serveurs > Statut',
     'owner' => 'Propriétaire',

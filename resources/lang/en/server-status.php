@@ -3,6 +3,7 @@
     'cpu' => 'CPU',
     'debug' => 'Debug',
     'enabled' => 'Enabled',
+    'log' => 'Log',
     'memory' => 'Memory',
     'meta-title' => 'Servers > Status',
     'owner' => 'Owner',

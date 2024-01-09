@@ -4,8 +4,7 @@ namespace App\Domains\Server\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Server\Model\Server as Model;
-use App\Services\Server\Process as ServerProcess;
+use App\Domains\Server\Service\Controller\Status as ControllerService;
 
 class Status extends ControllerAbstract
 {
@@ -20,10 +19,15 @@ class Status extends ControllerAbstract
 
         $this->meta('title', __('server-status.meta-title'));
 
-        return $this->page('server.status', [
-            'list' => Model::query()->list()->get(),
-            'process' => ServerProcess::new()->list(),
-        ]);
+        return $this->page('server.status', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 
     /**
