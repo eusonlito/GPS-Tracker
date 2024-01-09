@@ -59,7 +59,6 @@ class Status extends ControllerAbstract
      */
     protected function updated(): bool
     {
-        return false;
         if ($this->available() === false) {
             return false;
         }

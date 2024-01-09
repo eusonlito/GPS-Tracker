@@ -36,6 +36,8 @@
             <h2 class="mt-5 text-2xl font-medium">{{ __('configuration-status.available', ['count' => $pending_commits_count]) }}</h2>
         </div>
 
+        <h2 class="mr-5 mt-5 truncate text-lg font-medium">{{ __('configuration-status.current') }}</h2>
+
         <div class="box mb-3 mt-5 px-5 py-3 text-left">
             <div class="font-medium text-success">{{ $current['message'] }}</div>
             <div class="mt-0.5 text-xs text-slate-500">{{ $current['date'] }}</div>
