@@ -203,6 +203,10 @@ class Server extends ServerAbstract
 
         $this->pool->add($connection = new Connection($this->port, $socket));
 
+        if ($connection->isDebuggable() === false) {
+            return;
+        }
+
         $this->log('[CONNECTIONS]', $this->pool->count());
         $this->log('['.$connection->getId().'] [CONNECTED]', $connection->__toArray());
     }

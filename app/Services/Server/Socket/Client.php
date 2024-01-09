@@ -32,7 +32,6 @@ class Client
      */
     public function __construct(protected Connection $connection, protected Closure $handler)
     {
-        $this->log('CHECK');
     }
 
     /**
@@ -42,7 +41,7 @@ class Client
      */
     public function debug(bool $debug): self
     {
-        $this->debug = $debug;
+        $this->debug = $debug && $this->connection->isDebuggable();
 
         return $this;
     }
@@ -257,8 +256,10 @@ class Client
      */
     protected function log(string $message, mixed $data = ''): void
     {
-        if ($this->debug) {
-            Logger::port($this->connection->getPort())->info('['.$this->connection->getId().'] ['.$message.']', $data);
+        if ($this->debug === false) {
+            return;
         }
+
+        Logger::port($this->connection->getServerPort())->info('['.$this->connection->getId().'] ['.$message.']', $data);
     }
 }
