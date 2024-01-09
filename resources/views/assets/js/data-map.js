@@ -179,6 +179,8 @@ import Map from './map';
 
         positionLast = positions[positions.length - 1];
 
+        map.setSpeeds();
+        map.setLinePoints();
         map.setIcon('end', positionLast);
         map.flyTo(positionLast);
     };
