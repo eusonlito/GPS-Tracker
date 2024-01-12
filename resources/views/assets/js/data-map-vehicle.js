@@ -7,9 +7,9 @@ import { dateUtc, dateToIso } from './helper'
 (function () {
     'use strict';
 
-    const element = document.querySelector('[data-map-vehicles]');
+    const element = document.querySelector('[data-map-vehicle]');
 
-    if (!element || !element.dataset.mapVehicles) {
+    if (!element || !element.dataset.mapVehicleList || !element.dataset.mapVehicleList.length) {
         return;
     }
 
@@ -22,7 +22,7 @@ import { dateUtc, dateToIso } from './helper'
     let vehicles = [];
 
     try {
-        vehicles = JSON.parse(element.dataset.mapVehicles)
+        vehicles = JSON.parse(element.dataset.mapVehicleList)
             .filter(vehicle => vehicle.position)
             .sort((a, b) => a.name < b.name ? -1 : 1);
     } catch (e) {

@@ -1,0 +1,17 @@
+<?php return [
+    'city' => '',
+    'country' => '',
+    'device' => '',
+    'end-at' => '',
+    'filter' => '',
+    'filter-finished-all' => '',
+    'filter-finished-no' => '',
+    'filter-finished-yes' => '',
+    'meta-title' => '',
+    'send' => '',
+    'start-at' => '',
+    'start_end' => '',
+    'state' => '',
+    'user' => '',
+    'vehicle' => '',
+];

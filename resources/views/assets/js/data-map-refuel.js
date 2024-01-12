@@ -7,9 +7,9 @@ import { dateUtc, dateToIso } from './helper'
 (function () {
     'use strict';
 
-    const element = document.querySelector('[data-map-refuels]');
+    const element = document.querySelector('[data-map-refuel]');
 
-    if (!element || !element.dataset.mapRefuels) {
+    if (!element || !element.dataset.mapRefuelList || !element.dataset.mapRefuelList.length) {
         return;
     }
 
@@ -22,7 +22,7 @@ import { dateUtc, dateToIso } from './helper'
     let refuels = [];
 
     try {
-        refuels = JSON.parse(element.dataset.mapRefuels)
+        refuels = JSON.parse(element.dataset.mapRefuelList)
             .sort((a, b) => a.date_at > b.date_at ? -1 : 1);
     } catch (e) {
         return;

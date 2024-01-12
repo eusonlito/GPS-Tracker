@@ -2,14 +2,6 @@
     'use strict';
 
     document.querySelectorAll('[data-checkall]').forEach(element => {
-        const checkboxes = document.querySelectorAll(element.dataset.checkall + ' input[type="checkbox"]');
-
-        if (checkboxes.length) {
-            element.indeterminate = true;
-        }
-
-        checkboxes.forEach(checkbox => checkbox.dataset.checkallPrevious = checkbox.checked);
-
         const checked = (checkbox, status) => {
             if (!checkbox.offsetParent || (checkbox.checked === status)) {
                 return;
@@ -22,6 +14,18 @@
         let checkallClicks = 0;
 
         element.addEventListener('click', (e) => {
+            const checkboxes = document.querySelectorAll(element.dataset.checkall + ' input[type="checkbox"]');
+
+            if (checkboxes.length) {
+                element.indeterminate = true;
+            }
+
+            checkboxes.forEach(checkbox => {
+                if (typeof checkbox.dataset.checkallPrevious === 'undefined') {
+                    checkbox.dataset.checkallPrevious = checkbox.checked;
+                }
+            });
+
             e.stopPropagation();
 
             if (checkallClicks === 0) {

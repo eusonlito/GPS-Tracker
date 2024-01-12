@@ -50,6 +50,18 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @param string $end_utc_at
+     * @param int $minutes
+     *
+     * @return self
+     */
+    public function byEndUtcAtNearestMinutes(string $end_utc_at, int $minutes): self
+    {
+        return $this->whereRaw('ABS(TIMESTAMPDIFF(MINUTE, `end_utc_at`, ?)) < ?', [$end_utc_at, $minutes])
+            ->orderByEndUtcAtNearest($end_utc_at);
+    }
+
+    /**
      * @param float $latitude
      * @param float $longitude
      * @param float $radius
@@ -122,15 +134,13 @@ class Trip extends BuilderAbstract
     }
 
     /**
-     * @param string $end_utc_at
-     * @param int $minutes
+     * @param int $position_id
      *
      * @return self
      */
-    public function byEndUtcAtNearestMinutes(string $end_utc_at, int $minutes): self
+    public function byPositionIdFrom(int $position_id): self
     {
-        return $this->whereRaw('ABS(TIMESTAMPDIFF(MINUTE, `end_utc_at`, ?)) < ?', [$end_utc_at, $minutes])
-            ->orderByEndUtcAtNearest($end_utc_at);
+        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byIdNext($position_id));
     }
 
     /**
@@ -257,6 +267,26 @@ class Trip extends BuilderAbstract
             $fence && $latitude && $longitude && $radius,
             static fn ($q) => $q->byFence($latitude, $longitude, $radius)
         );
+    }
+
+    /**
+     * @param ?bool $finished
+     *
+     * @return self
+     */
+    public function whenFinished(?bool $finished): self
+    {
+        return $this->when(is_bool($finished), static fn ($q) => $q->whereFinished($finished));
+    }
+
+    /**
+     * @param ?int $position_id
+     *
+     * @return self
+     */
+    public function whenPositionIdFrom(?int $position_id): self
+    {
+        return $this->when($position_id, static fn ($q) => $q->byPositionIdFrom($position_id));
     }
 
     /**

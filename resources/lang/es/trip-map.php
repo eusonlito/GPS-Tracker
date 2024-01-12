@@ -1,0 +1,17 @@
+<?php return [
+    'city' => 'Ciudad',
+    'country' => 'País',
+    'device' => 'Dispositivo',
+    'end-at' => 'Fin',
+    'filter' => 'Filtrar...',
+    'filter-finished-all' => 'Todos los Viajes',
+    'filter-finished-no' => 'Viajes en Curso',
+    'filter-finished-yes' => 'Viajes Finalizados',
+    'meta-title' => 'Viajes',
+    'send' => 'Enviar',
+    'start-at' => 'Inicio',
+    'start_end' => 'Trayecto',
+    'state' => 'Provincia',
+    'user' => 'Usuario',
+    'vehicle' => 'Vehículo',
+];

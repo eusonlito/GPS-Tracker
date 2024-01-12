@@ -24,6 +24,19 @@ class FractalFactory extends FractalAbstract
      *
      * @return array
      */
+    protected function related(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'name' => $row->name,
+        ];
+    }
+
+    /**
+     * @param \App\Domains\Device\Model\Device $row
+     *
+     * @return array
+     */
     protected function map(Model $row): array
     {
         return [

@@ -303,6 +303,14 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @return self
+     */
+    public function selectRelated(): self
+    {
+        return $this->selectOnly('id', 'date_utc_at', 'longitude', 'latitude', 'trip_id')->orderByDateUtcAtAsc();
+    }
+
+    /**
      * @param ?string $start_end
      *
      * @return self
