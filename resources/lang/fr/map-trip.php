@@ -1,9 +1,9 @@
 <?php return [
-    'device' => '',
-    'distance' => '',
-    'plate' => '',
-    'start_at' => '',
-    'time' => '',
-    'user' => '',
-    'vehicle' => '',
+    'device' => 'Appareil',
+    'distance' => 'Distance',
+    'plate' => 'Enregistrement',
+    'start_at' => 'Début',
+    'time' => 'Temps',
+    'user' => 'Utilisateur',
+    'vehicle' => 'Véhicule',
 ];
