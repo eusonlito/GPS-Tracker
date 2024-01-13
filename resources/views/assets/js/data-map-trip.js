@@ -121,10 +121,12 @@ import { dateUtc, dateToIso } from './helper'
 
     const tableAddTripDistanceHuman = function (tds, trip) {
         tds[1].innerHTML = trip.distance_human;
+        tds[1].dataset.tableSortValue = trip.distance;
     };
 
     const tableAddTripTimeHuman = function (tds, trip) {
         tds[2].innerHTML = trip.time_human;
+        tds[2].dataset.tableSortValue = trip.time;
     };
 
     const tableAddTripDevice = function (tds, trip) {
