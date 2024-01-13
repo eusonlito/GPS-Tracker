@@ -38,6 +38,27 @@ class FractalFactory extends FractalAbstract
      *
      * @return array
      */
+    protected function live(Model $row): array
+    {
+        return [
+            'code' => $row->code,
+            'name' => $row->name,
+            'start_at' => $row->start_at,
+            'start_utc_at' => $row->start_utc_at,
+            'end_at' => $row->end_at,
+            'end_utc_at' => $row->end_utc_at,
+            'distance' => helper()->unit('distance', $row->distance),
+            'distance_human' => helper()->unitHuman('distance', $row->distance),
+            'time' => $row->time,
+            'positions' => $this->from('Position', 'map', $row->positions),
+        ];
+    }
+
+    /**
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return array
+     */
     protected function simple(Model $row): array
     {
         return [
