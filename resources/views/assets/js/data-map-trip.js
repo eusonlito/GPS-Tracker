@@ -130,16 +130,16 @@ import { dateUtc, dateToIso } from './helper'
     };
 
     const tableAddTripDevice = function (tds, trip) {
-        tds[3].innerHTML = trip.device.name;
+        tds[3].innerHTML = trip.device?.name;
     };
 
     const tableAddTripVehicle = function (tds, trip) {
-        tds[4].innerHTML = trip.vehicle.name;
-        tds[5].innerHTML = trip.vehicle.plate;
+        tds[4].innerHTML = trip.vehicle?.name;
+        tds[5].innerHTML = trip.vehicle?.plate;
     };
 
     const tableAddTripUser = function (tds, trip) {
-        tds[6].innerHTML = trip.user.name;
+        tds[6].innerHTML = trip.user?.name;
     };
 
     const tableAddTripUpdate = function (tds, trip) {

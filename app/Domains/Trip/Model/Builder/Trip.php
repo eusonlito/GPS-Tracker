@@ -405,6 +405,17 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @param string $relation
+     * @param bool $condition
+     *
+     * @return self
+     */
+    public function withSimpleWhen(string $relation, bool $condition): self
+    {
+        return $this->when($condition, static fn ($q) => $q->withSimple($relation));
+    }
+
+    /**
      * @return self
      */
     public function withTimezone(): self

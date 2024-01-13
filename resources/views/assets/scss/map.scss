@@ -44,6 +44,24 @@
                 border-left: 10px solid transparent;
             }
         }
+
+        .map-trip-label {
+            &.map-trip-label-start {
+                background-color: #3771c8;
+
+                &:after {
+                    border-top: 10px solid #3771c8;
+                }
+            }
+
+            &.map-trip-label-finish {
+                background-color: green;
+
+                &:after {
+                    border-top: 10px solid green;
+                }
+            }
+        }
     }
 
     .map-map-render {

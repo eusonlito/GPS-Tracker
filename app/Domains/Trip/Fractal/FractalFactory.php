@@ -26,9 +26,9 @@ class FractalFactory extends FractalAbstract
             'distance_human' => helper()->unitHuman('distance', $row->distance),
             'time' => $row->time,
             'time_human' => helper()->timeHuman($row->time),
-            'device' => $this->from('Device', 'related', $row->device),
-            'vehicle' => $this->from('Vehicle', 'related', $row->vehicle),
-            'user' => $this->from('User', 'related', $row->user),
+            'device' => $this->fromIfLoaded('Device', 'related', $row, 'device'),
+            'vehicle' => $this->fromIfLoaded('Vehicle', 'related', $row, 'vehicle'),
+            'user' => $this->fromIfLoaded('User', 'related', $row, 'user'),
             'positions' => $this->from('Position', 'related', $row->positions),
         ];
     }

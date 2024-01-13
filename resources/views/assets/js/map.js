@@ -830,8 +830,8 @@ export default class {
 
         this.setTripLayer(trip);
 
-        this.setTripMarker(trip, trip.positions[0]);
-        this.setTripMarker(trip, trip.positions[trip.positions.length - 1]);
+        this.setTripMarker(trip, trip.positions[0], { start: true });
+        this.setTripMarker(trip, trip.positions[trip.positions.length - 1], { finish: true });
         this.setTripPositions(trip, trip.positions);
     }
 
@@ -851,16 +851,16 @@ export default class {
         const latLng = this.getLatLng(position);
         const html = this.tripPopupHtml(trip);
 
-        this.markers[position.id] = new L.Marker(latLng, this.getTripMarkerOptions(trip, options))
+        this.markers[position.id] = new L.Marker(latLng, this.getTripMarkerOptions(trip))
             .bindPopup(html, this.getTripBindPopupOptions(trip))
-            .bindTooltip(this.getTripTooltipTitle(trip), this.getTripTooltipOptions(trip))
+            .bindTooltip(this.getTripTooltipTitle(trip, options), this.getTripTooltipOptions(trip, options))
             .on('click', (e) => this.setTripMarkerClick(trip, position))
             .addTo(trip.layer);
 
         return this;
     }
 
-    getTripMarkerOptions(trip, options) {
+    getTripMarkerOptions(trip) {
         return {
             opacity: 0,
             icon: L.divIcon(),
@@ -873,26 +873,54 @@ export default class {
         };
     }
 
-    getTripTooltipTitle(trip) {
-        let title = trip.device.name;
+    getTripTooltipTitle(trip, options) {
+        let title = '';
 
-        title += '<br />' + trip.vehicle.name;
+        if (options.start) {
+            title += trip.start_at;
+        } else if (options.finish) {
+            title += trip.end_at;
+        }
 
-        if (trip.vehicle.plate && trip.vehicle.plate.length) {
+        if (trip.device?.name) {
+            title += '<br />' + trip.device.name;
+        }
+
+        if (trip.vehicle?.name) {
+            title += '<br />' + trip.vehicle.name;
+        }
+
+        if (trip.vehicle?.plate) {
             title += '<br />' + trip.vehicle.plate;
         }
 
         return title;
     }
 
-    getTripTooltipOptions(trip) {
+    getTripTooltipOptions(trip, options) {
         return {
             interactive: true,
             permanent: true,
             direction: 'top',
-            className: 'map-trip-label',
+            className: this.getTripTooltipOptionsClassName(trip, options),
             opacity: 0.8,
         };
+    }
+
+    getTripTooltipOptionsClassName(trip, options) {
+        let className = 'map-trip-label';
+
+        if (!options) {
+            return className;
+        }
+
+        if (options.start) {
+            className += ' map-trip-label-start';
+        } else if (options.finish) {
+            className += ' map-trip-label-finish';
+        }
+
+        return className;
     }
 
     setTripPositions(trip, positions) {
@@ -1242,8 +1270,8 @@ export default class {
 
     tripPopupHtml(trip) {
         return this.popupHtmlLine('trip', trip.name)
-            + this.popupHtmlLine('vehicle', trip.vehicle.name)
-            + this.popupHtmlLine('device', trip.device.name)
+            + this.popupHtmlLine('vehicle', trip.vehicle?.name)
+            + this.popupHtmlLine('device', trip.device?.name)
             + this.popupHtmlLine('distance', trip.distance_human)
             + this.popupHtmlLine('clock', trip.time_human);
     }
