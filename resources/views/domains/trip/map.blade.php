@@ -76,7 +76,7 @@
 
 @if ($show)
 
-<x-map-trip data-map-trip-form="#trip-map-form" user-show="{{ $users_multiple }}"></x-map-trip>
+<x-map-trip data-map-trip-form="#trip-map-form" user-show="{{ $user_show }}" vehicle-show="{{ $vehicle_show }}" device-show="{{ $device_show }}"></x-map-trip>
 
 @endif
 

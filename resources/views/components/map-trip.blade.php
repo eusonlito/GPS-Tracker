@@ -21,12 +21,12 @@
         <table id="map-trip-list-table-{{ $id }}" class="table table-report font-medium text-center whitespace-nowrap text-xs" data-map-list-table data-table-sort>
             <thead>
                 <tr>
-                    <th class="w-1 text-left">{{ __('map-trip.start_at') }}</th>
+                    <th class="w-1">{{ __('map-trip.start_at') }}</th>
                     <th class="w-1">{{ __('map-trip.distance') }}</th>
                     <th class="w-1">{{ __('map-trip.time') }}</th>
-                    <th class="w-1">{{ __('map-trip.device') }}</th>
-                    <th class="w-1">{{ __('map-trip.vehicle') }}</th>
-                    <th class="w-1">{{ __('map-trip.plate') }}</th>
+                    <th class="w-1 {{ $deviceShow ? '' : 'hidden' }}">{{ __('map-trip.device') }}</th>
+                    <th class="w-1 {{ $vehicleShow ? '' : 'hidden' }}">{{ __('map-trip.vehicle') }}</th>
+                    <th class="w-1 {{ $vehicleShow ? '' : 'hidden' }}">{{ __('map-trip.plate') }}</th>
                     <th class="w-1 {{ $userShow ? '' : 'hidden' }}">{{ __('map-trip.user') }}</th>
                     <th class="w-1"></th>
                 </tr>
@@ -34,12 +34,12 @@
 
             <tbody>
                 <tr class="hidden">
+                    <td class="w-1 cursor-pointer"></td>
                     <td class="w-1"></td>
                     <td class="w-1"></td>
-                    <td class="w-1"></td>
-                    <td class="w-1"></td>
-                    <td class="w-1"></td>
-                    <td class="w-1"></td>
+                    <td class="w-1 {{ $deviceShow ? '' : 'hidden' }}"></td>
+                    <td class="w-1 {{ $vehicleShow ? '' : 'hidden' }}"></td>
+                    <td class="w-1 {{ $vehicleShow ? '' : 'hidden' }}"></td>
                     <td class="w-1 {{ $userShow ? '' : 'hidden' }}"></td>
                     <td class="w-1 pt-01"><a href="{{ route('trip.update', '0') }}" class="block">@icon('edit', 'w-4 h-4')</a></td>
                 </tr>

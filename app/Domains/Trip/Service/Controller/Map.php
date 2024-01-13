@@ -27,12 +27,15 @@ class Map extends Index
             'users' => $this->users(),
             'users_multiple' => $this->usersMultiple(),
             'user' => $this->user(),
+            'user_show' => $this->userShow(),
             'vehicles' => $this->vehicles(),
             'vehicles_multiple' => $this->vehiclesMultiple(),
             'vehicle' => $this->vehicle(),
+            'vehicle_show' => $this->vehicleShow(),
             'devices' => $this->devices(),
             'devices_multiple' => $this->devicesMultiple(),
             'device' => $this->device(),
+            'device_show' => $this->deviceShow(),
             'countries' => $this->countries(),
             'country' => $this->country(),
             'states' => $this->states(),
@@ -52,6 +55,30 @@ class Map extends Index
     public function json(): Collection
     {
         return $this->list();
+    }
+
+    /**
+     * @return bool
+     */
+    public function userShow(): bool
+    {
+        return empty($this->user()) && (count($this->users()) > 1);
+    }
+
+    /**
+     * @return bool
+     */
+    public function vehicleShow(): bool
+    {
+        return empty($this->vehicle()) && (count($this->vehicles()) > 1);
+    }
+
+    /**
+     * @return bool
+     */
+    public function deviceShow(): bool
+    {
+        return empty($this->device()) && (count($this->devices()) > 1);
     }
 
     /**

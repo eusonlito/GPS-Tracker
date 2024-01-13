@@ -891,7 +891,7 @@ export default class {
             permanent: true,
             direction: 'top',
             className: 'map-trip-label',
-            opacity: 0.7,
+            opacity: 0.8,
         };
     }
 
@@ -911,7 +911,7 @@ export default class {
         return {
             color: string2color(trip.id),
             weight: 5,
-            opacity: 1,
+            opacity: 0.8,
             smoothFactor: 1,
         };
     }
@@ -955,6 +955,8 @@ export default class {
         } else {
             this.setTripPositionsClickOpen(trip);
         }
+
+        this.fitBounds();
 
         return this;
     }
