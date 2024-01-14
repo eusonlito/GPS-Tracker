@@ -14,7 +14,7 @@ import Ajax from './ajax';
 import LocalStorage from './local-storage';
 import feather from './feather';
 import value2color from './value2color';
-import string2color from './string2color';
+import number2color from './number2color';
 
 export default class {
     constructor(element) {
@@ -937,7 +937,7 @@ export default class {
 
     setTripPositionsOptions(trip) {
         return {
-            color: string2color(trip.id),
+            color: number2color(trip.id),
             weight: 5,
             opacity: 0.8,
             smoothFactor: 1,
