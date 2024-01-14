@@ -45,7 +45,6 @@ class Map extends Index
             'date_min' => $this->dateMin(),
             'starts_ends' => $this->startsEnds(),
             'filter_finished' => $this->filterFinished(),
-            'show' => $this->show(),
         ];
     }
 
@@ -88,7 +87,7 @@ class Map extends Index
     {
         return $this->cache(function () {
             return CountryModel::query()
-                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
                 ->list()
                 ->get();
         });
@@ -116,7 +115,7 @@ class Map extends Index
 
             return StateModel::query()
                 ->byCountryId($country_id)
-                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
                 ->list()
                 ->get();
         });
@@ -144,7 +143,7 @@ class Map extends Index
 
             return CityModel::query()
                 ->byStateId($state_id)
-                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
                 ->list()
                 ->get();
         });
@@ -170,7 +169,7 @@ class Map extends Index
                 ->whenUserId($this->user()?->id)
                 ->whenVehicleId($this->vehicle()?->id)
                 ->whenDeviceId($this->device()?->id)
-                ->whenStartUtcAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
                 ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
                 ->whenPositionIdFrom($this->requestInteger('position_id_from'))
                 ->whenFinished($this->requestBool('finished', null))
@@ -193,13 +192,5 @@ class Map extends Index
             '0' => __('trip-map.filter-finished-no'),
             '1' => __('trip-map.filter-finished-yes'),
         ];
-    }
-
-    /**
-     * @return bool
-     */
-    protected function show(): bool
-    {
-        return $this->request->input('_action') === 'show';
     }
 }

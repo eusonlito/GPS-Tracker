@@ -87,6 +87,19 @@ class Country extends BuilderAbstract
     /**
      * @param ?int $user_id
      * @param ?int $vehicle_id
+     * @param ?string $before_start_at
+     * @param ?string $after_start_at
+     *
+     * @return self
+     */
+    public function whenTripUserIdVehicleIdStartAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_start_at, ?string $after_start_at): self
+    {
+        return $this->whereIn('id', CityModel::query()->selectOnly('country_id')->whenTripUserIdVehicleIdStartAtBetween($user_id, $vehicle_id, $before_start_at, $after_start_at));
+    }
+
+    /**
+     * @param ?int $user_id
+     * @param ?int $vehicle_id
      * @param ?string $before_start_utc_at
      * @param ?string $after_start_utc_at
      *
