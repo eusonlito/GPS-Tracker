@@ -36,8 +36,8 @@ trait SelectRaw
 
         return static::db()->select('
             SELECT
-                ROUND(ROUND(`position`.`latitude` / @cellSize) * @cellSize + @cellSize / 2, 5) AS `cell_y`,
-                ROUND(ROUND(`position`.`longitude` / @cellSize) * @cellSize + @cellSize / 2, 5) AS `cell_x`,
+                ROUND((`position`.`latitude` / @cellSize * @cellSize) + (@cellSize / 2), 5) AS `cell_y`,
+                ROUND((`position`.`longitude` / @cellSize * @cellSize) + (@cellSize / 2), 5) AS `cell_x`,
                 COUNT(*) AS `value`
             FROM `position`
             WHERE (
