@@ -40,7 +40,7 @@ class Command extends ParserAbstract
     {
         return '/^'
             .'imei:[0-9]+,'    //  0 - serial
-            .'[015][0-9]{2}'   //  1 - type
+            .'[015][0-9]{2},'  //  1 - type
             .'[0-9]{6,},'      //  2 - datetime
             .'[^,]*,'          //  3 - rfid
             .'[FL],'           //  4 - signal
