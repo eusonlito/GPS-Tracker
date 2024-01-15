@@ -38,9 +38,9 @@ class Command extends ResourceAbstract
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function maker(): string
+    public function maker(): ?string
     {
         return $this->attribute(__FUNCTION__);
     }
@@ -62,17 +62,17 @@ class Command extends ResourceAbstract
     }
 
     /**
-     * @return array
+     * @return ?array
      */
-    public function payload(): array
+    public function payload(): ?array
     {
         return $this->attribute(__FUNCTION__);
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function response(): string
+    public function response(): ?string
     {
         return $this->attribute(__FUNCTION__);
     }

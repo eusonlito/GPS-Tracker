@@ -3,6 +3,7 @@
 namespace App\Services\Protocol\GPS103;
 
 use App\Services\Protocol\GPS103\Parser\Auth as AuthParser;
+use App\Services\Protocol\GPS103\Parser\Command as CommandParser;
 use App\Services\Protocol\GPS103\Parser\Heartbeat as HeartbeatParser;
 use App\Services\Protocol\GPS103\Parser\Location as LocationParser;
 use App\Services\Protocol\ProtocolAbstract;
@@ -18,6 +19,7 @@ class Manager extends ProtocolAbstract
         AuthParser::class,
         HeartbeatParser::class,
         LocationParser::class,
+        CommandParser::class,
     ];
 
     /**
