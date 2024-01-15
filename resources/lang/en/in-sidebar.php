@@ -35,6 +35,7 @@
     'trip' => 'Trips',
     'trip-heatmap' => 'Heat Map',
     'trip-index' => 'List',
+    'trip-map' => 'Map',
     'trip-search' => 'Search',
     'user' => 'Users',
     'user-create' => 'Create',

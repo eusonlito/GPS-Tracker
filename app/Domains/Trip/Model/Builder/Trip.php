@@ -50,6 +50,18 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @param string $end_utc_at
+     * @param int $minutes
+     *
+     * @return self
+     */
+    public function byEndUtcAtNearestMinutes(string $end_utc_at, int $minutes): self
+    {
+        return $this->whereRaw('ABS(TIMESTAMPDIFF(MINUTE, `end_utc_at`, ?)) < ?', [$end_utc_at, $minutes])
+            ->orderByEndUtcAtNearest($end_utc_at);
+    }
+
+    /**
      * @param float $latitude
      * @param float $longitude
      * @param float $radius
@@ -59,6 +71,66 @@ class Trip extends BuilderAbstract
     public function byFence(float $latitude, float $longitude, float $radius): self
     {
         return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byFence($latitude, $longitude, $radius));
+    }
+
+    /**
+     * @param string $start_at
+     *
+     * @return self
+     */
+    public function byStartAtAfterEqualNear(string $start_at): self
+    {
+        return $this->where('start_at', '>=', $start_at)->orderByStartAtAsc();
+    }
+
+    /**
+     * @param string $start_at
+     *
+     * @return self
+     */
+    public function byStartAtBeforeEqualNear(string $start_at): self
+    {
+        return $this->where('start_at', '<=', $start_at)->orderByStartAtDesc();
+    }
+
+    /**
+     * @param string $start_at
+     *
+     * @return self
+     */
+    public function byStartAtDateAfterEqual(string $start_at): self
+    {
+        return $this->whereDate('start_at', '>=', $start_at);
+    }
+
+    /**
+     * @param string $start_at
+     *
+     * @return self
+     */
+    public function byStartAtDateBeforeEqual(string $start_at): self
+    {
+        return $this->whereDate('start_at', '<=', $start_at);
+    }
+
+    /**
+     * @param string $start_at
+     *
+     * @return self
+     */
+    public function byStartAtAfter(string $start_at): self
+    {
+        return $this->where('start_at', '>', $start_at)->orderByStartAtAsc();
+    }
+
+    /**
+     * @param string $start_at
+     *
+     * @return self
+     */
+    public function byStartAtBefore(string $start_at): self
+    {
+        return $this->where('start_at', '<', $start_at)->orderByStartAtDesc();
     }
 
     /**
@@ -122,15 +194,13 @@ class Trip extends BuilderAbstract
     }
 
     /**
-     * @param string $end_utc_at
-     * @param int $minutes
+     * @param int $position_id
      *
      * @return self
      */
-    public function byEndUtcAtNearestMinutes(string $end_utc_at, int $minutes): self
+    public function byPositionIdFrom(int $position_id): self
     {
-        return $this->whereRaw('ABS(TIMESTAMPDIFF(MINUTE, `end_utc_at`, ?)) < ?', [$end_utc_at, $minutes])
-            ->orderByEndUtcAtNearest($end_utc_at);
+        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byIdNext($position_id));
     }
 
     /**
@@ -149,7 +219,7 @@ class Trip extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->orderByStartUtcAtDesc();
+        return $this->orderByStartAtDesc();
     }
 
     /**
@@ -222,7 +292,7 @@ class Trip extends BuilderAbstract
      */
     public function listSimple(): self
     {
-        return $this->selectSimple()->orderByStartUtcAtDesc();
+        return $this->selectSimple()->orderByStartAtDesc();
     }
 
     /**
@@ -260,6 +330,26 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @param ?bool $finished
+     *
+     * @return self
+     */
+    public function whenFinished(?bool $finished): self
+    {
+        return $this->when(is_bool($finished), static fn ($q) => $q->whereFinished($finished));
+    }
+
+    /**
+     * @param ?int $position_id
+     *
+     * @return self
+     */
+    public function whenPositionIdFrom(?int $position_id): self
+    {
+        return $this->when($position_id, static fn ($q) => $q->byPositionIdFrom($position_id));
+    }
+
+    /**
      * @param ?bool $shared
      *
      * @return self
@@ -280,6 +370,17 @@ class Trip extends BuilderAbstract
     }
 
     /**
+     * @param ?string $before_start_at
+     * @param ?string $after_start_at
+     *
+     * @return self
+     */
+    public function whenStartAtDateBetween(?string $before_start_at, ?string $after_start_at): self
+    {
+        return $this->whenStartAtDateAfter($before_start_at)->whenStartAtDateBefore($after_start_at);
+    }
+
+    /**
      * @param ?string $before_start_utc_at
      * @param ?string $after_start_utc_at
      *
@@ -288,6 +389,26 @@ class Trip extends BuilderAbstract
     public function whenStartUtcAtDateBetween(?string $before_start_utc_at, ?string $after_start_utc_at): self
     {
         return $this->whenStartUtcAtDateAfter($before_start_utc_at)->whenStartUtcAtDateBefore($after_start_utc_at);
+    }
+
+    /**
+     * @param ?string $start_at
+     *
+     * @return self
+     */
+    public function whenStartAtDateAfter(?string $start_at): self
+    {
+        return $this->when($start_at, static fn ($q) => $q->byStartAtDateAfterEqual($start_at));
+    }
+
+    /**
+     * @param ?string $start_at
+     *
+     * @return self
+     */
+    public function whenStartAtDateBefore(?string $start_at): self
+    {
+        return $this->when($start_at, static fn ($q) => $q->byStartAtDateBeforeEqual($start_at));
     }
 
     /**
@@ -316,6 +437,21 @@ class Trip extends BuilderAbstract
     public function whenStatsEmpty(): self
     {
         return $this->whereNull('stats');
+    }
+
+    /**
+     * @param ?int $user_id
+     * @param ?int $vehicle_id
+     * @param ?string $before_start_at
+     * @param ?string $after_start_at
+     *
+     * @return self
+     */
+    public function whenUserIdVehicleIdStartAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_start_at, ?string $after_start_at): self
+    {
+        return $this->whenUserId($user_id)
+            ->whenVehicleId($vehicle_id)
+            ->whenStartAtDateBetween($before_start_at, $after_start_at);
     }
 
     /**
@@ -372,6 +508,17 @@ class Trip extends BuilderAbstract
     public function withDevice(): self
     {
         return $this->with('device');
+    }
+
+    /**
+     * @param string $relation
+     * @param bool $condition
+     *
+     * @return self
+     */
+    public function withSimpleWhen(string $relation, bool $condition): self
+    {
+        return $this->when($condition, static fn ($q) => $q->withSimple($relation));
     }
 
     /**

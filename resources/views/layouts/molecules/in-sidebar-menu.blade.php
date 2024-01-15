@@ -31,6 +31,13 @@
         </li>
 
         <li>
+            <a href="{{ route('trip.map') }}" class="side-menu {{ ($ROUTE === 'trip.map') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('map')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.trip-map') }}</div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('trip.heatmap') }}" class="side-menu {{ ($ROUTE === 'trip.heatmap') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('thermometer')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.trip-heatmap') }}</div>

@@ -78,6 +78,7 @@ class MapDevice extends Component
         return [
             'id' => $vehicle->id,
             'name' => $vehicle->name,
+            'plate' => $vehicle->plate,
         ];
     }
 

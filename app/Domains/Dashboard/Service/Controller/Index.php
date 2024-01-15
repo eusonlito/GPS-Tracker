@@ -16,11 +16,6 @@ use App\Domains\Server\Model\Server as ServerModel;
 class Index extends ControllerAbstract
 {
     /**
-     * @var bool
-     */
-    protected bool $deviceEmpty = true;
-
-    /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
      *

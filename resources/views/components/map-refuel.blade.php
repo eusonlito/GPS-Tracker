@@ -1,4 +1,4 @@
-<app-map class="map map-list-hidden" data-map-refuel data-map-refuels="{{ $refuelsJson }}" {{ $attributes }}>
+<app-map class="map map-list-hidden" data-map-refuel data-map-refuel-list="{{ $refuelsJson }}" {{ $attributes }}>
     <div class="map-map {{ $sidebarHidden ? 'w-full' : '' }}" data-map-map>
         <div class="map-map-render" data-map-render data-map-control-markers-disabled></div>
     </div>

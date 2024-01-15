@@ -12,7 +12,9 @@ leafletPolycolor(L);
 
 import Ajax from './ajax';
 import LocalStorage from './local-storage';
+import feather from './feather';
 import value2color from './value2color';
+import number2color from './number2color';
 
 export default class {
     constructor(element) {
@@ -34,6 +36,7 @@ export default class {
         this.layerDevices = null;
         this.layerVehicles = null;
         this.layerRefuels = null;
+        this.layerTrips = null;
 
         this.point = [];
         this.pointLatLng = [];
@@ -52,6 +55,8 @@ export default class {
 
         this.marker = null;
         this.markers = {};
+
+        this.trips = {};
 
         this.listTable = null;
 
@@ -151,6 +156,22 @@ export default class {
         this.layerRefuels = new L.FeatureGroup();
 
         this.getLayer().addLayer(this.layerRefuels);
+
+        return this;
+    }
+
+    getLayerTrips() {
+        if (!this.layerTrips) {
+            this.setLayerTrips();
+        }
+
+        return this.layerTrips;
+    }
+
+    setLayerTrips() {
+        this.layerTrips = new L.FeatureGroup();
+
+        this.getLayer().addLayer(this.layerTrips);
 
         return this;
     }
@@ -394,8 +415,8 @@ export default class {
         return this.speeds;
     }
 
-    setSpeeds(speeds) {
-        this.speeds =  this.getPoints().map(point => point.speed);
+    setSpeeds() {
+        this.speeds = this.getPoints().map(point => point.speed);
 
         const speedMin = Math.min(...this.speeds);
         const speedMax = Math.max(...this.speeds);
@@ -599,8 +620,8 @@ export default class {
         const html = this.devicePopupHtml(device);
 
         this.markers[id] = new L.Marker(latLng, this.getDeviceMarkerOptions(device, options))
-            .bindPopup(html, this.getDeviceBindPopupOptions(device))
-            .bindTooltip(device.name, this.getDeviceTooltipOptions(device))
+            .bindPopup(html, this.getDevicePopupOptions(device))
+            .bindTooltip(this.getDeviceTooltipTitle(device), this.getDeviceTooltipOptions(device))
             .on('click', (e) => this.showMarker(id))
             .addTo(this.getLayerDevices());
 
@@ -614,10 +635,26 @@ export default class {
         };
     }
 
-    getDeviceBindPopupOptions(device) {
+    getDevicePopupOptions(device) {
         return {
             offset: new L.Point(0, -25)
         };
+    }
+
+    getDeviceTooltipTitle(device) {
+        let title = device.name;
+
+        if (device.vehicle) {
+            if (device.name !== device.vehicle.name) {
+                title += '<br />' + device.vehicle.name;
+            }
+
+            if (device.vehicle.plate && device.vehicle.plate.length) {
+                title += '<br />' + device.vehicle.plate;
+            }
+        }
+
+        return title;
     }
 
     getDeviceTooltipOptions(device) {
@@ -653,8 +690,8 @@ export default class {
         const html = this.vehiclePopupHtml(vehicle);
 
         this.markers[id] = new L.Marker(latLng, this.getVehicleMarkerOptions(vehicle, options))
-            .bindPopup(html, this.getVehicleBindPopupOptions(vehicle))
-            .bindTooltip(this.getVehicleBindTooltipTitle(vehicle), this.getVehicleTooltipOptions(vehicle))
+            .bindPopup(html, this.getVehiclePopupOptions(vehicle))
+            .bindTooltip(this.getVehicleTooltipTitle(vehicle), this.getVehicleTooltipOptions(vehicle))
             .on('click', (e) => this.showMarker(id))
             .addTo(this.getLayerVehicles());
 
@@ -668,20 +705,20 @@ export default class {
         };
     }
 
-    getVehicleBindTooltipTitle(vehicle) {
-        let title = vehicle.name;
-
-        if (vehicle.plate && vehicle.plate.length) {
-             title += '<br />' + vehicle.plate;
-        }
-
-        return title;
-    }
-
-    getVehicleBindPopupOptions(vehicle) {
+    getVehiclePopupOptions(vehicle) {
         return {
             offset: new L.Point(0, -25)
         };
+    }
+
+    getVehicleTooltipTitle(vehicle) {
+        let title = vehicle.name;
+
+        if (vehicle.plate && vehicle.plate.length) {
+            title += '<br />' + vehicle.plate;
+        }
+
+        return title;
     }
 
     getVehicleTooltipOptions(vehicle) {
@@ -750,6 +787,232 @@ export default class {
 
     isValidRefuel(refuel) {
         return refuel && refuel.id && refuel.date_at && this.isValidPoint(refuel);
+    }
+
+    setTrips(trips) {
+        this.setTripsReset();
+
+        this.array(trips).forEach((trip) => this.setTrip(trip));
+
+        return this;
+    }
+
+    setTripsReset() {
+        const layer = this.getLayerTrips();
+
+        Object.values(this.trips).forEach(trip => {
+            if (!trip.layer) {
+                return;
+            }
+
+            if (trip.line) {
+                trip.layer.removeLayer(trip.line);
+            }
+
+            layer.removeLayer(trip.layer);
+        });
+
+        this.trips = {};
+
+        return this;
+    }
+
+    setTrip(trip, options) {
+        if (!this.isValidTrip(trip)) {
+            return this;
+        }
+
+        const id = trip.id;
+
+        if (!this.trips[id]) {
+            this.trips[id] = trip;
+        }
+
+        this.setTripLayer(trip);
+
+        this.setTripMarker(trip, trip.positions[0], { start: true });
+        this.setTripMarker(trip, trip.positions[trip.positions.length - 1], { finish: true });
+        this.setTripPositions(trip, trip.positions);
+    }
+
+    setTripLayer(trip) {
+        if (trip.layer) {
+            this.getLayerTrips().removeLayer(trip.layer);
+        }
+
+        trip.layer = new L.FeatureGroup();
+
+        this.getLayerTrips().addLayer(trip.layer);
+
+        return this;
+    }
+
+    setTripMarker(trip, position, options) {
+        const latLng = this.getLatLng(position);
+        const html = this.tripPopupHtml(trip);
+
+        this.markers[position.id] = new L.Marker(latLng, this.getTripMarkerOptions(trip))
+            .bindPopup(html, this.getTripBindPopupOptions(trip))
+            .bindTooltip(this.getTripTooltipTitle(trip, options), this.getTripTooltipOptions(trip, options))
+            .on('click', (e) => this.setTripMarkerClick(trip, position))
+            .addTo(trip.layer);
+
+        return this;
+    }
+
+    getTripMarkerOptions(trip) {
+        return {
+            opacity: 0,
+            icon: L.divIcon(),
+        };
+    }
+
+    getTripBindPopupOptions(trip) {
+        return {
+            offset: new L.Point(0, -25)
+        };
+    }
+
+    getTripTooltipTitle(trip, options) {
+        let title = '';
+
+        if (options.start) {
+            title += trip.start_at;
+        } else if (options.finish) {
+            title += trip.end_at;
+        }
+
+        if (trip.device?.name) {
+            title += '<br />' + trip.device.name;
+        }
+
+        if (trip.vehicle?.name) {
+            title += '<br />' + trip.vehicle.name;
+        }
+
+        if (trip.vehicle?.plate) {
+            title += '<br />' + trip.vehicle.plate;
+        }
+
+        return title;
+    }
+
+    getTripTooltipOptions(trip, options) {
+        return {
+            interactive: true,
+            permanent: true,
+            direction: 'top',
+            className: this.getTripTooltipOptionsClassName(trip, options),
+            opacity: 0.8,
+        };
+    }
+
+    getTripTooltipOptionsClassName(trip, options) {
+        let className = 'map-trip-label';
+
+        if (!options) {
+            return className;
+        }
+
+        if (options.start) {
+            className += ' map-trip-label-start';
+        } else if (options.finish) {
+            className += ' map-trip-label-finish';
+        }
+
+        return className;
+    }
+
+    setTripPositions(trip, positions) {
+        if (trip.line) {
+            trip.layer.removeLayer(trip.line);
+        }
+
+        trip.line = new L.Polyline(positions.map(this.getLatLng), this.setTripPositionsOptions(trip))
+            .on('click', (e) => this.setTripPositionsClick(trip))
+            .addTo(trip.layer);
+
+        return this;
+    }
+
+    setTripPositionsOptions(trip) {
+        return {
+            color: number2color(trip.id),
+            weight: 5,
+            opacity: 0.8,
+            smoothFactor: 1,
+        };
+    }
+
+    setTripMarkerClick(trip, position) {
+        if (this.marker) {
+            this.setTripMarkerClickClose(trip, position);
+        } else {
+            this.setTripMarkerClickOpen(trip, position);
+        }
+
+        return this;
+    }
+
+    setTripMarkerClickOpen(trip, position) {
+        this.marker = this.markers[position.id];
+
+        return this;
+    }
+
+    setTripMarkerClickClose(trip) {
+        if (this.marker) {
+            this.marker.closePopup();
+        }
+
+        this.marker = null;
+
+        return this;
+    }
+
+    setTripPositionsClick(trip) {
+        const layers = this.getLayerTrips().getLayers();
+        let current;
+
+        if ((layers.length === 1) && (this.trips[trip.id]?.layer === layers[0])) {
+            current = this.trips[trip.id];
+        }
+
+        if (current && (current.id === trip.id)) {
+            this.setTripPositionsClickClose(trip);
+        } else {
+            this.setTripPositionsClickOpen(trip);
+        }
+
+        this.fitBounds();
+
+        return this;
+    }
+
+    setTripPositionsClickOpen(trip) {
+        const layer = this.getLayerTrips();
+
+        Object.values(this.trips).map(current => {
+            if (current.id === trip.id) {
+                if (!layer.hasLayer(current.layer)) {
+                    layer.addLayer(current.layer);
+                }
+            } else {
+                layer.removeLayer(current.layer);
+            }
+        });
+
+        return this;
+    }
+
+    setTripPositionsClickClose(trip) {
+        this.setTrips(Object.values(this.trips));
+
+        return this;
+    }
+
+    isValidTrip(trip) {
+        return trip && trip.id && trip.name && trip.positions && trip.positions.length;
     }
 
     setIcon(name, point, options) {
@@ -966,24 +1229,29 @@ export default class {
     }
 
     devicePopupHtml(device) {
-        let html = '';
+        let html = this.popupHtmlLine('device', device.name);
 
-        if (device.vehicle && (device.name === device.vehicle.name)) {
-            html += this.popupHtmlLine('vehicle', device.vehicle.name);
-        } else if (device.vehicle) {
-            html += this.popupHtmlLine('device', device.name)
-                + this.popupHtmlLine('vehicle', device.vehicle.name);
-        } else {
-            html += this.popupHtmlLine('device', device.name);
+        if (device.vehicle) {
+            if (device.name !== device.vehicle.name) {
+                html += this.popupHtmlLine('vehicle', device.vehicle.name);
+            }
+
+            if (device.vehicle.plate && device.vehicle.plate.length) {
+                html += this.popupHtmlLine('plate', device.vehicle.plate);
+            }
         }
 
         return html + this.popupHtmlPosition(device.position);
     }
 
     vehiclePopupHtml(vehicle) {
-        return this.popupHtmlLine('vehicle', vehicle.name)
-            + this.popupHtmlLine('plate', vehicle.plate)
-            + this.popupHtmlPosition(vehicle.position);
+        let html = this.popupHtmlLine('vehicle', vehicle.name);
+
+        if (vehicle.plate && vehicle.plate.length) {
+            html += this.popupHtmlLine('plate', vehicle.plate);
+        }
+
+        return html + this.popupHtmlPosition(vehicle.position);
     }
 
     refuelPopupHtml(refuel) {
@@ -1000,12 +1268,20 @@ export default class {
             + this.popupHtmlLineLocation(marker);
     }
 
+    tripPopupHtml(trip) {
+        return this.popupHtmlLine('trip', trip.name)
+            + this.popupHtmlLine('vehicle', trip.vehicle?.name)
+            + this.popupHtmlLine('device', trip.device?.name)
+            + this.popupHtmlLine('distance', trip.distance_human)
+            + this.popupHtmlLine('clock', trip.time_human);
+    }
+
     popupHtmlLine(type, value) {
         if (!value || !value.length) {
             return '';
         }
 
-        return '<p style="margin: 0 !important; padding: 3px 20px 3px 0 !important; white-space: nowrap; vertical-align: middle !important;"><span style="margin-right: 5px">' + this.svg(type) + '</span> ' + value + '</p>';
+        return '<p style="margin: 0 !important; padding: 3px 20px 3px 0 !important; white-space: nowrap; vertical-align: middle !important;">' + this.svg(type) + ' ' + value + '</p>';
     }
 
     popupHtmlLineLocation(marker) {
@@ -1021,6 +1297,6 @@ export default class {
     }
 
     svg(name) {
-        return '<img src="' + WWW + '/build/images/map-popup-' + name + '.svg" width="15" height="15" style="display: inline-block;" />';
+        return '<span style="margin-right: 5px"><img src="' + WWW + '/build/images/map-popup-' + name + '.svg" width="15" height="15" style="display: inline-block;" /></span>';
     }
 };

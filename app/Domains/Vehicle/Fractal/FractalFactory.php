@@ -15,7 +15,25 @@ class FractalFactory extends FractalAbstract
      */
     protected function simple(Model $row): array
     {
-        return $row->only('id', 'name');
+        return [
+            'id' => $row->id,
+            'name' => $row->name,
+            'plate' => $row->plate,
+        ];
+    }
+
+    /**
+     * @param \App\Domains\Vehicle\Model\Vehicle $row
+     *
+     * @return array
+     */
+    protected function related(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'name' => $row->name,
+            'plate' => $row->plate,
+        ];
     }
 
     /**
@@ -28,6 +46,7 @@ class FractalFactory extends FractalAbstract
         return [
             'id' => $row->id,
             'name' => $row->name,
+            'plate' => $row->plate,
             'position' => $this->mapPosition($row->positionLast),
         ];
     }

@@ -15,6 +15,11 @@ class Index extends ControllerAbstract
     protected const DATE_REGEXP = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
 
     /**
+     * @const string
+     */
+    protected const START_AT_DEFAULT = '-30 days';
+
+    /**
      * @var bool
      */
     protected bool $userEmpty = true;
@@ -70,7 +75,7 @@ class Index extends ControllerAbstract
         }
 
         if (is_null($start_at) || (preg_match(static::DATE_REGEXP, $start_at) === 0)) {
-            $this->request->merge(['start_at' => date('Y-m-d', strtotime('-30 days'))]);
+            $this->request->merge(['start_at' => date('Y-m-d', strtotime(static::START_AT_DEFAULT))]);
         }
     }
 
@@ -185,7 +190,7 @@ class Index extends ControllerAbstract
                 ->whenUserId($this->user()?->id)
                 ->whenVehicleId($this->vehicle()?->id)
                 ->whenDeviceId($this->device()?->id)
-                ->whenStartUtcAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
                 ->whenShared($this->requestBool('shared', null))
                 ->whenSharedPublic($this->requestBool('shared_public', null))
                 ->withSimple('device')

@@ -57,7 +57,7 @@ class Heatmap extends Index
     {
         return $this->cache(function () {
             return CountryModel::query()
-                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
                 ->list()
                 ->get();
         });
@@ -85,7 +85,7 @@ class Heatmap extends Index
 
             return StateModel::query()
                 ->byCountryId($country_id)
-                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
                 ->list()
                 ->get();
         });
@@ -113,7 +113,7 @@ class Heatmap extends Index
 
             return CityModel::query()
                 ->byStateId($state_id)
-                ->whenTripUserIdVehicleIdStartUtcAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
                 ->list()
                 ->get();
         });
@@ -177,7 +177,7 @@ class Heatmap extends Index
                 ->whenUserId($this->user()?->id)
                 ->whenVehicleId($this->vehicle()?->id)
                 ->whenDeviceId($this->device()?->id)
-                ->whenStartUtcAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
                 ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
         );
     }

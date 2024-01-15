@@ -21,7 +21,7 @@
             width: 100%;
         }
 
-        .map-device-label, .map-vehicle-label {
+        .map-device-label, .map-vehicle-label, .map-refuel-label, .map-trip-label {
             width: fit-content;
             text-align: center;
             background-color: #1a508b;
@@ -45,27 +45,21 @@
             }
         }
 
-        .map-refuel-label {
-            width: fit-content;
-            text-align: center;
-            background-color: #1a508b;
-            color: white;
-            font-weight: bold;
+        .map-trip-label {
+            &.map-trip-label-start {
+                background-color: #3771c8;
 
-            &:after {
-                content: '';
-                display: block;
-                position: absolute;
-                left: 50%;
-                top: 100%;
-                width: 0;
-                height: 0;
-                margin-top: -1px;
-                margin-left: -10px;
-                border-top: 10px solid #1a508b;
-                border-right: 10px solid transparent;
-                border-bottom: 10px solid transparent;
-                border-left: 10px solid transparent;
+                &:after {
+                    border-top: 10px solid #3771c8;
+                }
+            }
+
+            &.map-trip-label-finish {
+                background-color: green;
+
+                &:after {
+                    border-top: 10px solid green;
+                }
             }
         }
     }
@@ -80,6 +74,10 @@
         overflow: auto;
         transition: width 0.3s linear;
         position: relative;
+
+        &.map-list-large {
+            width: 60%;
+        }
 
         table {
             width: 100%;

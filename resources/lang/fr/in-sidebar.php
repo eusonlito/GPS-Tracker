@@ -35,6 +35,7 @@
     'trip' => 'Déplacements',
     'trip-heatmap' => 'Carte de chaleur',
     'trip-index' => 'Liste',
+    'trip-map' => 'Carte',
     'trip-search' => 'Recherche',
     'user' => 'Utilisateurs',
     'user-create' => 'Créer',

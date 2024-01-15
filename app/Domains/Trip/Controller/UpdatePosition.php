@@ -47,7 +47,7 @@ class UpdatePosition extends UpdateAbstract
      */
     protected function responseJson(): JsonResponse
     {
-        return $this->json($this->factory()->fractal('map', $this->responseJsonList()));
+        return $this->json($this->factory()->fractal('live', $this->responseJsonList()));
     }
 
     /**

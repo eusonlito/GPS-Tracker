@@ -26,4 +26,19 @@ class FractalFactory extends FractalAbstract
             'state' => $row->city?->state?->name,
         ];
     }
+
+    /**
+     * @param \App\Domains\Position\Model\Position $row
+     *
+     * @return array
+     */
+    protected function related(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'date_utc_at' => $row->date_utc_at,
+            'latitude' => $row->latitude,
+            'longitude' => $row->longitude,
+        ];
+    }
 }

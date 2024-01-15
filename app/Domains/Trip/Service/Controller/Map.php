@@ -6,14 +6,18 @@ use App\Domains\City\Model\City as CityModel;
 use App\Domains\City\Model\Collection\City as CityCollection;
 use App\Domains\Country\Model\Collection\Country as CountryCollection;
 use App\Domains\Country\Model\Country as CountryModel;
-use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\State\Model\Collection\State as StateCollection;
 use App\Domains\State\Model\State as StateModel;
 use App\Domains\Trip\Model\Collection\Trip as Collection;
 use App\Domains\Trip\Model\Trip as Model;
 
-class Search extends Index
+class Map extends Index
 {
+    /**
+     * @const string
+     */
+    protected const START_AT_DEFAULT = '-1 days';
+
     /**
      * @return array
      */
@@ -23,12 +27,15 @@ class Search extends Index
             'users' => $this->users(),
             'users_multiple' => $this->usersMultiple(),
             'user' => $this->user(),
+            'user_show' => $this->userShow(),
             'vehicles' => $this->vehicles(),
             'vehicles_multiple' => $this->vehiclesMultiple(),
             'vehicle' => $this->vehicle(),
+            'vehicle_show' => $this->vehicleShow(),
             'devices' => $this->devices(),
             'devices_multiple' => $this->devicesMultiple(),
             'device' => $this->device(),
+            'device_show' => $this->deviceShow(),
             'countries' => $this->countries(),
             'country' => $this->country(),
             'states' => $this->states(),
@@ -37,11 +44,40 @@ class Search extends Index
             'city' => $this->city(),
             'date_min' => $this->dateMin(),
             'starts_ends' => $this->startsEnds(),
-            'shared' => $this->shared(),
-            'shared_public' => $this->sharedPublic(),
-            'position' => $this->position(),
-            'list' => $this->list(),
+            'filter_finished' => $this->filterFinished(),
         ];
+    }
+
+    /**
+     * @return \App\Domains\Trip\Model\Collection\Trip
+     */
+    public function json(): Collection
+    {
+        return $this->list();
+    }
+
+    /**
+     * @return bool
+     */
+    public function userShow(): bool
+    {
+        return empty($this->user()) && (count($this->users()) > 1);
+    }
+
+    /**
+     * @return bool
+     */
+    public function vehicleShow(): bool
+    {
+        return empty($this->vehicle()) && (count($this->vehicles()) > 1);
+    }
+
+    /**
+     * @return bool
+     */
+    public function deviceShow(): bool
+    {
+        return empty($this->device()) && (count($this->devices()) > 1);
     }
 
     /**
@@ -124,51 +160,37 @@ class Search extends Index
     }
 
     /**
-     * @return ?\App\Domains\Position\Model\Position
-     */
-    protected function position(): ?PositionModel
-    {
-        return $this->cache(
-            fn () => PositionModel::query()
-                ->whenUserId($this->user()?->id)
-                ->orderByDateUtcAtDesc()
-                ->first()
-        );
-    }
-
-    /**
      * @return \App\Domains\Trip\Model\Collection\Trip
      */
     protected function list(): Collection
     {
-        if ($this->listIsValid() === false) {
-            return new Collection();
-        }
-
         return $this->cache(
             fn () => Model::query()
-                ->selectSimple()
                 ->whenUserId($this->user()?->id)
                 ->whenVehicleId($this->vehicle()?->id)
                 ->whenDeviceId($this->device()?->id)
                 ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
                 ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
-                ->whenShared($this->requestBool('shared', null))
-                ->whenSharedPublic($this->requestBool('shared_public', null))
-                ->whenFence($this->request->boolean('fence'), $this->request->float('fence_latitude'), $this->request->float('fence_longitude'), $this->request->float('fence_radius'))
-                ->withDevice()
-                ->withUser()
-                ->withVehicle()
-                ->list()
+                ->whenPositionIdFrom($this->requestInteger('position_id_from'))
+                ->whenFinished($this->requestBool('finished', null))
+                ->withSimpleWhen('device', $this->device() === null)
+                ->withSimpleWhen('user', $this->user() === null)
+                ->withSimpleWhen('vehicle', $this->vehicle() === null)
+                ->withSimple('positions')
+                ->listSimple()
                 ->get()
         );
     }
 
     /**
-     * @return bool
+     * @return array
      */
-    protected function listIsValid(): bool
+    protected function filterFinished(): array
     {
-        return boolval(array_filter($this->request->except('vehicle_id', 'device_id')));
+        return [
+            '' => __('trip-map.filter-finished-all'),
+            '0' => __('trip-map.filter-finished-no'),
+            '1' => __('trip-map.filter-finished-yes'),
+        ];
     }
 }

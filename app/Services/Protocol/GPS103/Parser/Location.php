@@ -37,13 +37,22 @@ class Location extends ParserAbstract
      */
     public function bodyIsValid(): bool
     {
-        return (bool)preg_match($this->bodyIsValidRegExp(), $this->body);
+        return $this->bodyIsValidParse()
+            && $this->bodyIsValidType();
+    }
+
+    /**
+     * @return bool
+     */
+    public function bodyIsValidParse(): bool
+    {
+        return (bool)preg_match($this->typeIsValidParseExp(), $this->body);
     }
 
     /**
      * @return string
      */
-    protected function bodyIsValidRegExp(): string
+    protected function typeIsValidParseExp(): string
     {
         return '/^'
             .'imei:[0-9]+,'    //  0 - serial
@@ -60,6 +69,17 @@ class Location extends ParserAbstract
             .'[0-9]+\.[0-9]+,' // 11 - speed
             .'[0-9\.]*,?'      // 12 - direction
             .'/';
+    }
+
+    /**
+     * @return bool
+     */
+    public function bodyIsValidType(): bool
+    {
+        $type = explode(',', $this->body, 3)[1];
+
+        return ($type === '001')
+            || (is_numeric($type) === false);
     }
 
     /**

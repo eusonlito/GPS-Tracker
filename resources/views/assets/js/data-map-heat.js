@@ -11,7 +11,7 @@ L.GeometryUtil = GeometryUtil;
 
     const element = document.querySelector('[data-map-heat]');
 
-    if (!element) {
+    if (!element || !element.dataset.mapHeatForm) {
         return;
     }
 
