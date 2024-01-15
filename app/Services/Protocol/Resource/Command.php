@@ -70,9 +70,9 @@ class Command extends ResourceAbstract
     }
 
     /**
-     * @return ?string
+     * @return string
      */
-    public function response(): ?string
+    public function response(): string
     {
         return $this->attribute(__FUNCTION__);
     }
