@@ -27,6 +27,28 @@
             <x-select name="timezone_id" :options="$timezones" value="id" text="zone" :label="__('user-create.timezone')" required></x-select>
         </div>
     </div>
+
+    <div class="lg:flex">
+        <div class="flex-1 p-2">
+            <x-select name="preferences[units][distance]" :options="$preferences_units_distance" :label="__('user-create.preferences-units-distance')" required></x-select>
+        </div>
+
+        <div class="flex-1 p-2">
+            <x-select name="preferences[units][volume]" :options="$preferences_units_volume" :label="__('user-create.preferences-units-volume')" required></x-select>
+        </div>
+
+        <div class="flex-1 p-2">
+            <x-select name="preferences[units][money]" :options="$preferences_units_money" :label="__('user-create.preferences-units-money')" required></x-select>
+        </div>
+
+        <div class="flex-1 p-2">
+            <x-select name="preferences[units][decimal]" :options="$preferences_units_decimal" :label="__('user-create.preferences-units-decimal')" required></x-select>
+        </div>
+
+        <div class="flex-1 p-2">
+            <x-select name="preferences[units][thousand]" :options="$preferences_units_thousand" :label="__('user-create.preferences-units-thousand')" required></x-select>
+        </div>
+    </div>
 </div>
 
 <div class="box p-5 mt-5">
