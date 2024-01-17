@@ -32,6 +32,14 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return \App\Domains\Trip\Model\Trip
      */
+    public function import(): Model
+    {
+        return $this->actionHandle(Import::class, $this->validate()->import());
+    }
+
+    /**
+     * @return \App\Domains\Trip\Model\Trip
+     */
     public function lastOrNew(): Model
     {
         return $this->actionHandle(LastOrNew::class, $this->validate()->lastOrNew());

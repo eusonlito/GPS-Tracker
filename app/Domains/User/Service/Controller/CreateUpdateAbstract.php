@@ -12,7 +12,7 @@ abstract class CreateUpdateAbstract extends ControllerAbstract
     /**
      * @return void
      */
-    protected function request()
+    protected function request(): void
     {
         $this->requestMergeWithRow();
     }

@@ -9,6 +9,7 @@
     'end_at' => 'End',
     'filter' => 'Filter...',
     'heatmap' => 'Heatmap',
+    'import' => 'Import',
     'latitude' => 'Latitude',
     'longitude' => 'Longitude',
     'map' => 'Show Map',

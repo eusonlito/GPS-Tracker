@@ -31,6 +31,31 @@ trait Geo
     }
 
     /**
+     * @param float $lat1
+     * @param float $lng1
+     * @param float $lat2
+     * @param float $lng2
+     *
+     * @return int
+     */
+    public function coordinatesDirection(float $lat1, float $lng1, float $lat2, float $lng2): int
+    {
+        static $x = M_PI / 180;
+
+        $lat1 *= $x;
+        $lng1 *= $x;
+        $lat2 *= $x;
+        $lng2 *= $x;
+
+        $delta = $lng2 - $lng1;
+
+        $y = sin($delta) * cos($lat2);
+        $x = cos($lat1) * sin($lat2) - sin($lat1) * cos($lat2) * cos($delta);
+
+        return intval((rad2deg(atan2($y, $x)) + 360) % 360);
+    }
+
+    /**
      * @param array $geojson
      *
      * @return array

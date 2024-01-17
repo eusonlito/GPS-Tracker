@@ -47,6 +47,10 @@
         <div class="lg:ml-4 mt-2 lg:mt-0 bg-white">
             <a href="{{ route('trip.search') }}" class="btn form-control-lg whitespace-nowrap">{{ __('trip-index.search') }}</a>
         </div>
+
+        <div class="lg:ml-4 mt-2 lg:mt-0 bg-white">
+            <a href="{{ route('trip.import') }}" class="btn form-control-lg whitespace-nowrap">{{ __('trip-index.import') }}</a>
+        </div>
     </div>
 </form>
 

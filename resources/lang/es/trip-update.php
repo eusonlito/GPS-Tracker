@@ -20,4 +20,5 @@
     'shared_public' => 'Compartir Viaje Públicamente',
     'stats' => 'Estadísticas',
     'success' => 'El viaje ha sido actualizado correctamente',
+    'user' => 'Usuario',
 ];
