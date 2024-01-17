@@ -14,9 +14,9 @@ trait Geo
      * @param float $lat2
      * @param float $lng2
      *
-     * @return int
+     * @return float
      */
-    public function coordinatesDistance(float $lat1, float $lng1, float $lat2, float $lng2): int
+    public function coordinatesDistance(float $lat1, float $lng1, float $lat2, float $lng2): float
     {
         static $x = M_PI / 180;
 
@@ -27,7 +27,7 @@ trait Geo
 
         $distance = 2 * asin(sqrt(pow(sin(($lat1 - $lat2) / 2), 2) + cos($lat1) * cos($lat2) * pow(sin(($lng1 - $lng2) / 2), 2)));
 
-        return intval($distance * 6378137);
+        return $distance * 6378137;
     }
 
     /**
@@ -52,7 +52,7 @@ trait Geo
         $y = sin($delta) * cos($lat2);
         $x = cos($lat1) * sin($lat2) - sin($lat1) * cos($lat2) * cos($delta);
 
-        return intval((rad2deg(atan2($y, $x)) + 360) % 360);
+        return round(rad2deg(atan2($y, $x)) + 360) % 360;
     }
 
     /**
