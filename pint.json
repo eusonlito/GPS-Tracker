@@ -6,7 +6,6 @@
         "@PSR2": true,
         "blank_line_after_opening_tag": false,
         "cast_spaces": false,
-        "Laravel/laravel_phpdoc_alignment": false,
         "linebreak_after_opening_tag": false,
         "no_superfluous_phpdoc_tags": false,
         "no_unused_imports": true,
@@ -21,6 +20,13 @@
             "allow_single_line_empty_anonymous_classes": true,
             "anonymous_classes_opening_brace": "same_line",
             "anonymous_functions_opening_brace": "same_line"
+        },
+
+        "phpdoc_align": {
+            "align": "left",
+            "spacing": {
+                "params": 1
+            }
         }
     }
 }
