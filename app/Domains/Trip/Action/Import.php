@@ -13,6 +13,11 @@ use App\Services\Gpx\Read as GpxService;
 class Import extends ActionAbstract
 {
     /**
+     * @var array
+     */
+    protected array $points = [];
+
+    /**
      * @var \App\Domains\Timezone\Model\Timezone
      */
     protected TimezoneModel $timezone;
@@ -62,14 +67,26 @@ class Import extends ActionAbstract
     protected function dataPoints(): void
     {
         try {
-            $this->data['points'] = GpxService::new($this->data['file']->getPathName())->toArray();
-        } catch (Throwable) {
-            $this->exceptionValidator(__('trip-import.error.points-empty'));
+            $this->points = GpxService::new($this->data['file']->getPathName())->toArray();
+        } catch (Throwable $e) {
+            $this->dataPointsError($e);
         }
 
-        if (empty($this->data['points'])) {
+        if (empty($this->points)) {
             $this->exceptionValidator(__('trip-import.error.points-empty'));
         }
+    }
+
+    /**
+     * @param \Throwable $e
+     *
+     * @return void
+     */
+    protected function dataPointsError(Throwable $e): void
+    {
+        report($e);
+
+        $this->exceptionValidator(__('trip-import.error.points-empty'));
     }
 
     /**
@@ -85,7 +102,7 @@ class Import extends ActionAbstract
      */
     protected function dataStartUtcAt(): void
     {
-        $this->data['start_utc_at'] = date('Y-m-d H:i:s', $this->data['points'][array_key_first($this->data['points'])]['timestamp']);
+        $this->data['start_utc_at'] = date('Y-m-d H:i:s', $this->points[array_key_first($this->points)]['timestamp']);
     }
 
     /**
@@ -93,7 +110,7 @@ class Import extends ActionAbstract
      */
     protected function dataEndUtcAt(): void
     {
-        $this->data['end_utc_at'] = date('Y-m-d H:i:s', $this->data['points'][array_key_last($this->data['points'])]['timestamp']);
+        $this->data['end_utc_at'] = date('Y-m-d H:i:s', $this->points[array_key_last($this->points)]['timestamp']);
     }
 
     /**
@@ -208,7 +225,9 @@ class Import extends ActionAbstract
      */
     protected function savePositions(): void
     {
-        PositionModel::query()->insert(array_map($this->savePositionsData(...), $this->data['points']));
+        foreach (array_chunk($this->points, 1000) as $points) {
+            PositionModel::query()->insert(array_map($this->savePositionsData(...), $points));
+        }
     }
 
     /**

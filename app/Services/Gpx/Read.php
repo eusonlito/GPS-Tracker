@@ -49,12 +49,26 @@ class Read
         foreach ($this->gpx->tracks as $track) {
             foreach ($track->segments as $segment) {
                 foreach ($segment->points as $point) {
-                    $points[] = $point;
+                    if ($this->pointIsValid($point)) {
+                        $points[] = $point;
+                    }
                 }
             }
         }
 
         return $points;
+    }
+
+    /**
+     * @param \phpGPX\Models\Point $point
+     *
+     * @return bool
+     */
+    protected function pointIsValid(Point $point): bool
+    {
+        return $point->latitude
+            && $point->longitude
+            && $point->time;
     }
 
     /**
