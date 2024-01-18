@@ -30,7 +30,23 @@ return [
     |
     */
 
-    'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'deprecations-custom'),
+    'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'deprecations'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Maintenance Log Settings
+    |--------------------------------------------------------------------------
+    |
+    | 'zip' is responsible for generating zip files of logs after X days, and
+    | 'clean' handles the deletion of log files after X days, leveraging
+    | respective environment variables for configuration.
+    |
+    */
+
+    'maintenance' => [
+        'zip' => env('LOG_ZIP', 15),
+        'clean' => env('LOG_CLEAN', 180),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -50,29 +66,16 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily-custom'],
+            'channels' => ['daily'],
             'ignore_exceptions' => false,
         ],
 
-        'single' => [
-            'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
-            'level' => 'debug',
-        ],
-
         'daily' => [
-            'driver' => 'daily',
-            'path' => storage_path('logs/laravel.log'),
-            'level' => env('LOG_LEVEL', 'debug'),
-            'days' => env('LOG_DAYS', 360),
-        ],
-
-        'daily-custom' => [
             'driver' => 'custom',
             'via' => LaravelDaily::class,
         ],
 
-        'deprecations-custom' => [
+        'deprecations' => [
             'driver' => 'custom',
             'via' => DeprecationsDaily::class,
         ],
