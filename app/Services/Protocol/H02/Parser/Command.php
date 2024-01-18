@@ -72,7 +72,7 @@ class Command extends ParserAbstract
      */
     protected function payload(): array
     {
-        return $this->cache[__FUNCTION__] ??= explode(',', $this->values[3]);
+        return explode(',', $this->values[3]);
     }
 
     /**

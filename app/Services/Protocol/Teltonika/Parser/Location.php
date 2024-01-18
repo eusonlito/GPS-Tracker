@@ -2,6 +2,7 @@
 
 namespace App\Services\Protocol\Teltonika\Parser;
 
+use App\Services\Buffer\Bit as BufferBit;
 use App\Services\Buffer\Byte as BufferByte;
 use App\Services\Protocol\ParserAbstract;
 use App\Services\Protocol\Resource\Location as LocationResource;
@@ -12,6 +13,11 @@ class Location extends ParserAbstract
      * @var \App\Services\Buffer\Byte
      */
     protected BufferByte $buffer;
+
+    /**
+     * @var string
+     */
+    protected string $codec;
 
     /**
      * @var array
@@ -26,6 +32,18 @@ class Location extends ParserAbstract
     public function buffer(BufferByte $buffer): self
     {
         $this->buffer = $buffer;
+
+        return $this;
+    }
+
+    /**
+     * @param string $codec
+     *
+     * @return self
+     */
+    public function codec(string $codec): self
+    {
+        $this->codec = $codec;
 
         return $this;
     }
@@ -83,13 +101,21 @@ class Location extends ParserAbstract
      */
     protected function attributes(): void
     {
-        $this->buffer->int(1); // id
-        $this->buffer->int(1); // count
+        $this->buffer->intIf($this->codec, [Codec::CODEC_8_EXT, Codec::CODEC_16]);
+
+        if ($this->codec === Codec::CODEC_16) {
+            $this->buffer->int(1);
+        }
+
+        $this->buffer->intIf($this->codec, [Codec::CODEC_8_EXT]);
 
         $this->attributesBytes(1);
         $this->attributesBytes(2);
         $this->attributesBytes(4);
-        $this->attributesBytes(8);
+
+        if (in_array($this->codec, [Codec::CODEC_8, Codec::CODEC_8_EXT, Codec::CODEC_16])) {
+            $this->attributesBytes(8);
+        }
     }
 
     /**
@@ -99,10 +125,11 @@ class Location extends ParserAbstract
      */
     protected function attributesBytes(int $bytes): void
     {
-        $count = $this->buffer->int(1);
+        $count = $this->buffer->intIf($this->codec, [Codec::CODEC_8_EXT]);
 
         for ($i = 0; $i < $count; $i++) {
-            $this->attributes[$this->buffer->int(1)] = $this->buffer->int($bytes);
+            $id = $this->buffer->intIf($this->codec, [Codec::CODEC_8_EXT, Codec::CODEC_16]);
+            $this->attributes[$id] = $this->buffer->int($bytes);
         }
     }
 
@@ -203,6 +230,6 @@ class Location extends ParserAbstract
      */
     protected function response(): string
     {
-        return '';
+        return "\x00\x00\x00\x01";
     }
 }

@@ -112,4 +112,21 @@ class Byte
     {
         return strlen(substr($this->buffer, $this->index)) / 2;
     }
+
+    /**
+     * @param mixed $value
+     * @param array $values
+     *
+     * @return int
+     */
+    public function intIf(mixed $value, array $values): int
+    {
+        foreach ($values as $each) {
+            if ($each === $value) {
+                return $this->int(2);
+            }
+        }
+
+        return $this->int(1);
+    }
 }

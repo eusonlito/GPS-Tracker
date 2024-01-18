@@ -51,47 +51,38 @@ class Locations extends ParserAbstract
      */
     protected function read(): void
     {
-        $this->readCrc();
-
         $length = hexdec(substr($this->body, 8, 8));
         $buffer = new BufferByte(substr($this->body, 16, $length * 2));
 
-        if ($buffer->int(1) !== 8) {
+        $codec = $buffer->string(1);
+
+        if ($this->isValidCodec($codec) === false) {
             return;
         }
 
         $count = $buffer->int(1);
 
         for ($i = 0; $i < $count; $i++) {
-            $this->readResource($buffer);
+            $this->readResource($buffer, $codec);
         }
     }
 
     /**
-     * @return void
+     * @return bool
      */
-    protected function readCrc(): void
+    protected function isValidCodec(string $codec): bool
     {
-        $this->cache['crc'] = substr($this->body, -8);
+        return in_array($codec, [Codec::CODEC_8, Codec::CODEC_8_EXT, Codec::CODEC_16]);
     }
 
     /**
      * @param \App\Services\Buffer\Byte $buffer
+     * @param string $codec
      *
      * @return void
      */
-    protected function readResource(BufferByte $buffer): void
+    protected function readResource(BufferByte $buffer, string $codec): void
     {
-        $this->addIfValid(Location::new('', $this->readResourceData())->buffer($buffer)->resource());
-    }
-
-    /**
-     * @return array
-     */
-    protected function readResourceData(): array
-    {
-        return $this->data + [
-            'crc' => $this->cache['crc'],
-        ];
+        $this->addIfValid(Location::new('', $this->data)->buffer($buffer)->codec($codec)->resource());
     }
 }
