@@ -2,7 +2,6 @@
 
 namespace App\Services\Protocol;
 
-use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Server\ServerAbstract;
 
 abstract class ProtocolAbstract
@@ -26,17 +25,40 @@ abstract class ProtocolAbstract
 
     /**
      * @param string $body
-     * @param array $data = []
      *
      * @return array
      */
-    abstract public function resources(string $body, array $data = []): array;
+    abstract protected function bodies(string $body): array;
+
+    /**
+     * @return array
+     */
+    abstract protected function parsers(): array;
 
     /**
      * @param string $body
      * @param array $data = []
      *
-     * @return ?\App\Services\Protocol\Resource\ResourceAbstract
+     * @return array
      */
-    abstract public function resource(string $body, array $data = []): ?ResourceAbstract;
+    public function resources(string $body, array $data = []): array
+    {
+        $resources = [];
+
+        foreach ($this->bodies($body) as $body) {
+            foreach ($this->parsers() as $parser) {
+                $valid = $parser::new($body, $data)->resources();
+
+                if (empty($valid)) {
+                    continue;
+                }
+
+                $resources = array_merge($resources, $valid);
+
+                break;
+            }
+        }
+
+        return $resources;
+    }
 }

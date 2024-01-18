@@ -10,6 +10,16 @@ class Byte
     protected int $index = 0;
 
     /**
+     * @var bool
+     */
+    protected bool $tracking = false;
+
+    /**
+     * @var string
+     */
+    protected string $track = '';
+
+    /**
      * @param string $buffer
      *
      * @return self
@@ -30,6 +40,39 @@ class Byte
     }
 
     /**
+     * @param int $index
+     *
+     * @return self
+     */
+    public function index(int $index): self
+    {
+        $this->index = $index * 2;
+
+        return $this;
+    }
+
+    /**
+     * @return self
+     */
+    public function trackStart(): self
+    {
+        $this->tracking = true;
+        $this->track = '';
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function trackEnd(): string
+    {
+        $this->tracking = false;
+
+        return $this->track;
+    }
+
+    /**
      * @param ?int $length = null
      * @param ?int $index = null
      *
@@ -43,6 +86,10 @@ class Byte
         $value = substr($this->buffer, $index, $length);
 
         $this->index = $index + strlen($value);
+
+        if ($this->tracking) {
+            $this->track .= $value;
+        }
 
         return $value;
     }

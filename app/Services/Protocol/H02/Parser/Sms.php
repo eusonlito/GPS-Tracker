@@ -2,29 +2,24 @@
 
 namespace App\Services\Protocol\H02\Parser;
 
-use App\Services\Protocol\Resource\Sms as SmsResource;
+use App\Services\Protocol\ParserAbstract;
 
 class Sms extends ParserAbstract
 {
     /**
-     * @return ?\App\Services\Protocol\Resource\Sms
+     * @return array
      */
-    public function resource(): ?SmsResource
+    public function resources(): array
     {
         if ($this->bodyIsValid() === false) {
-            return null;
+            return [];
         }
 
         $this->values = explode(',', substr($this->body, 1, -1));
 
-        return new SmsResource([
-            'body' => $this->body,
-            'maker' => $this->maker(),
-            'serial' => $this->serial(),
-            'type' => $this->type(),
-            'payload' => $this->payload(),
-            'response' => $this->response(),
-        ]);
+        $this->addIfValid($this->resourceSms());
+
+        return $this->resources;
     }
 
     /**

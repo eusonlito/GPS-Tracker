@@ -19,7 +19,12 @@ class Resource
      */
     public function __construct(string $city, string $state, string $country, string $country_code)
     {
-        $this->attributes = get_defined_vars();
+        $this->attributes = [
+            'city' => $city,
+            'state' => $state,
+            'country' => $country,
+            'country_code' => $country_code,
+        ];
     }
 
     /**

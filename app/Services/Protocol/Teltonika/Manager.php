@@ -1,7 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Services\Protocol\DebugSocket;
+namespace App\Services\Protocol\Teltonika;
 
+use App\Services\Protocol\Teltonika\Parser\Auth as AuthParser;
+use App\Services\Protocol\Teltonika\Parser\Locations as LocationsParser;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Server\Socket\Server;
 
@@ -12,7 +14,7 @@ class Manager extends ProtocolAbstract
      */
     public function code(): string
     {
-        return 'debug-socket';
+        return 'teltonika';
     }
 
     /**
@@ -20,7 +22,7 @@ class Manager extends ProtocolAbstract
      */
     public function name(): string
     {
-        return 'Debug Socket';
+        return 'Teltonika';
     }
 
     /**
@@ -32,7 +34,17 @@ class Manager extends ProtocolAbstract
     {
         return Server::new($port)
             ->socketType('stream')
-            ->socketProtocol('tcp');
+            ->socketProtocol('ip');
+    }
+
+    /**
+     * @param string $body
+     *
+     * @return array
+     */
+    protected function bodies(string $body): array
+    {
+        return [$body];
     }
 
     /**
@@ -40,31 +52,9 @@ class Manager extends ProtocolAbstract
      */
     protected function parsers(): array
     {
-        return [];
-    }
-
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-     *
-     * @param string $body
-     * @param array $data = []
-     *
-     * @return array
-     */
-    public function resources(string $body, array $data = []): array
-    {
-        return [];
-    }
-
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-     *
-     * @param string $body
-     *
-     * @return array
-     */
-    protected function bodies(string $body): array
-    {
-        return [];
+        return [
+            AuthParser::class,
+            LocationsParser::class,
+        ];
     }
 }

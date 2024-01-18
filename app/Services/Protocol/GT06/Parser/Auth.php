@@ -2,27 +2,24 @@
 
 namespace App\Services\Protocol\GT06\Parser;
 
-use App\Services\Protocol\Resource\Auth as AuthResource;
+use App\Services\Protocol\ParserAbstract;
 
 class Auth extends ParserAbstract
 {
     /**
-     * @return ?\App\Services\Protocol\Resource\Auth
+     * @return array
      */
-    public function resource(): ?AuthResource
+    public function resources(): array
     {
         $this->values = [];
 
         if ($this->bodyIsValid() === false) {
-            return null;
+            return [];
         }
 
-        return new AuthResource([
-            'body' => $this->body,
-            'serial' => $this->serial(),
-            'response' => $this->response(),
-            'data' => $this->data(),
-        ]);
+        $this->addIfValid($this->resourceAuth());
+
+        return $this->resources;
     }
 
     /**

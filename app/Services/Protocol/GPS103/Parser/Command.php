@@ -2,27 +2,24 @@
 
 namespace App\Services\Protocol\GPS103\Parser;
 
-use App\Services\Protocol\Resource\Command as CommandResource;
+use App\Services\Protocol\ParserAbstract;
 
 class Command extends ParserAbstract
 {
     /**
-     * @return ?\App\Services\Protocol\Resource\Command
+     * @return array
      */
-    public function resource(): ?CommandResource
+    public function resources(): array
     {
         if ($this->bodyIsValid() === false) {
-            return null;
+            return [];
         }
 
         $this->values = explode(',', $this->body);
 
-        return new CommandResource([
-            'body' => $this->body,
-            'serial' => $this->serial(),
-            'type' => $this->type(),
-            'response' => $this->response(),
-        ]);
+        $this->addIfValid($this->resourceCommand());
+
+        return $this->resources;
     }
 
     /**
@@ -67,6 +64,14 @@ class Command extends ParserAbstract
     protected function type(): ?string
     {
         return $this->values[1];
+    }
+
+    /**
+     * @return array
+     */
+    protected function payload(): array
+    {
+        return [];
     }
 
     /**

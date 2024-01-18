@@ -3,7 +3,6 @@
 namespace App\Services\Protocol\DebugHttp;
 
 use App\Services\Protocol\ProtocolAbstract;
-use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Server\Http\Server;
 
 class Manager extends ProtocolAbstract
@@ -35,6 +34,14 @@ class Manager extends ProtocolAbstract
     }
 
     /**
+     * @return array
+     */
+    protected function parsers(): array
+    {
+        return [];
+    }
+
+    /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      *
      * @param string $body
@@ -51,12 +58,11 @@ class Manager extends ProtocolAbstract
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      *
      * @param string $body
-     * @param array $data = []
      *
-     * @return ?\App\Services\Protocol\Resource\ResourceAbstract
+     * @return array
      */
-    public function resource(string $body, array $data = []): ?ResourceAbstract
+    protected function bodies(string $body): array
     {
-        return null;
+        return [];
     }
 }

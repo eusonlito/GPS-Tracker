@@ -2,26 +2,24 @@
 
 namespace App\Services\Protocol\GT06\Parser;
 
-use App\Services\Protocol\Resource\Heartbeat as HeartbeatResource;
+use App\Services\Protocol\ParserAbstract;
 
 class Heartbeat extends ParserAbstract
 {
     /**
-     * @return ?\App\Services\Protocol\Resource\Heartbeat
+     * @return array
      */
-    public function resource(): ?HeartbeatResource
+    public function resources(): array
     {
         $this->values = [];
 
         if ($this->bodyIsValid() === false) {
-            return null;
+            return [];
         }
 
-        return new HeartbeatResource([
-            'body' => $this->body,
-            'serial' => $this->serial(),
-            'response' => $this->response(),
-        ]);
+        $this->addIfValid($this->resourceHeartbeat());
+
+        return $this->resources;
     }
 
     /**
