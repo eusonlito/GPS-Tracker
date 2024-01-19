@@ -4,38 +4,24 @@ namespace App\Services\Protocol\GT06\Parser;
 
 use App\Services\Buffer\Bit as BufferBit;
 use App\Services\Buffer\Byte as BufferByte;
-use App\Services\Protocol\Resource\Location as LocationResource;
+use App\Services\Protocol\ParserAbstract;
 
 class Location extends ParserAbstract
 {
     /**
-     * @var \App\Services\Buffer\Byte
+     * @return array
      */
-    protected BufferByte $buffer;
-
-    /**
-     * @return ?\App\Services\Protocol\Resource\Location
-     */
-    public function resource(): ?LocationResource
+    public function resources(): array
     {
         if ($this->bodyIsValid() === false) {
-            return null;
+            return [];
         }
 
         $this->modules();
 
-        return new LocationResource([
-            'body' => $this->body,
-            'serial' => $this->serial(),
-            'latitude' => $this->latitude(),
-            'longitude' => $this->longitude(),
-            'speed' => $this->speed(),
-            'signal' => $this->signal(),
-            'direction' => $this->direction(),
-            'datetime' => $this->datetime(),
-            'timezone' => $this->timezone(),
-            'response' => $this->response(),
-        ]);
+        $this->addIfValid($this->resourceLocation());
+
+        return $this->resources;
     }
 
     /**

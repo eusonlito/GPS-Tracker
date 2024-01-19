@@ -2,34 +2,24 @@
 
 namespace App\Services\Protocol\GPS103\Parser;
 
-use App\Services\Protocol\Resource\Location as LocationResource;
+use App\Services\Protocol\ParserAbstract;
 
 class Location extends ParserAbstract
 {
     /**
-     * @return ?\App\Services\Protocol\Resource\Location
+     * @return array
      */
-    public function resource(): ?LocationResource
+    public function resources(): array
     {
         if ($this->bodyIsValid() === false) {
-            return null;
+            return [];
         }
 
         $this->values = explode(',', $this->body);
 
-        return new LocationResource([
-            'body' => $this->body,
-            'serial' => $this->serial(),
-            'type' => $this->type(),
-            'latitude' => $this->latitude(),
-            'longitude' => $this->longitude(),
-            'speed' => $this->speed(),
-            'signal' => $this->signal(),
-            'direction' => $this->direction(),
-            'datetime' => $this->datetime(),
-            'timezone' => $this->timezone(),
-            'response' => $this->response(),
-        ]);
+        $this->addIfValid($this->resourceLocation());
+
+        return $this->resources;
     }
 
     /**

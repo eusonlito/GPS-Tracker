@@ -76,7 +76,10 @@ abstract class CreateUpdateAbstract extends ActionAbstract
      */
     protected function dataPreferences(): void
     {
-        $this->data['preferences'] = $this->row->preferences ?? [];
+        $this->data['preferences'] = array_replace_recursive(
+            $this->row->preferences ?? [],
+            $this->data['preferences']
+        );
     }
 
     /**

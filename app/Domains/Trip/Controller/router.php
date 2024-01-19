@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['user-auth', 'vehicle.available']], static function () {
     Route::get('/trip', Index::class)->name('trip.index');
+    Route::any('/trip/import', Import::class)->name('trip.import');
     Route::any('/trip/heatmap', Heatmap::class)->name('trip.heatmap');
     Route::any('/trip/map', Map::class)->name('trip.map');
     Route::any('/trip/search', Search::class)->name('trip.search');

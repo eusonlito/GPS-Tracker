@@ -2,6 +2,8 @@ const colors = require('@left4code/tw-starter/dist/js/colors');
 const paths = require('./paths');
 
 module.exports = {
+    darkMode: 'class',
+
     content: [
         paths.from.html + '/**/*.html',
         paths.from.app + '/Services/Html/**/*.php',

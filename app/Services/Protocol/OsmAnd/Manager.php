@@ -4,18 +4,10 @@ namespace App\Services\Protocol\OsmAnd;
 
 use App\Services\Protocol\OsmAnd\Parser\Location as LocationParser;
 use App\Services\Protocol\ProtocolAbstract;
-use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Server\Http\Server;
 
 class Manager extends ProtocolAbstract
 {
-    /**
-     * @const array
-     */
-    protected const PARSERS = [
-        LocationParser::class,
-    ];
-
     /**
      * @return string
      */
@@ -44,41 +36,25 @@ class Manager extends ProtocolAbstract
 
     /**
      * @param string $body
-     * @param array $data = []
      *
      * @return array
      */
-    public function resources(string $body, array $data = []): array
+    protected function bodies(string $body): array
     {
-        return array_filter([$this->resource($body, $data)]);
-    }
-
-    /**
-     * @param string $body
-     * @param array $data = []
-     *
-     * @return ?\App\Services\Protocol\Resource\ResourceAbstract
-     */
-    public function resource(string $body, array $data = []): ?ResourceAbstract
-    {
-        $body = $this->body($body);
-
-        foreach (static::PARSERS as $parser) {
-            if (($resource = $parser::new($body, $data)->resource()) && $resource->isValid()) {
-                return $resource;
-            }
+        if ($body = trim(explode("\n", $body)[0] ?? '')) {
+            return [$body];
         }
 
-        return null;
+        return [];
     }
 
     /**
-     * @param string $body
-     *
-     * @return string
+     * @return array
      */
-    protected function body(string $body): string
+    protected function parsers(): array
     {
-        return trim(explode("\n", $body)[0] ?? '');
+        return [
+            LocationParser::class,
+        ];
     }
 }

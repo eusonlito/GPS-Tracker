@@ -44,10 +44,10 @@
         <tbody>
             @foreach ($parsed as $each)
 
+            @forelse ($each['resources'] as $resource)
+
             <tr>
                 <td class="text-left">{{ $each['date_at'] }}</td>
-
-                @forelse ($each['resources'] as $resource)
 
                 <td>{{ $resource->format() }}</td>
                 <td>{{ $resource->serial() }}</td>
@@ -72,7 +72,13 @@
 
                 <td>{{ $resource->response() }}</td>
 
-                @empty
+                <td class="text-left">{{ $resource->body() }}</td>
+            </tr>
+
+            @empty
+
+            <tr>
+                <td class="text-left">{{ $each['date_at'] }}</td>
 
                 <td></td>
                 <td></td>
@@ -86,12 +92,13 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
 
-                @endforelse
+                <td></td>
 
                 <td class="text-left">{{ $each['line'] }}</td>
             </tr>
+
+            @endforelse
 
             @endforeach
         </tbody>

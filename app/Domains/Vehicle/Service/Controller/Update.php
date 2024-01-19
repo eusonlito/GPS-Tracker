@@ -23,7 +23,7 @@ class Update extends CreateUpdateAbstract
     /**
      * @return void
      */
-    protected function request()
+    protected function request(): void
     {
         $this->requestMergeWithRow();
     }

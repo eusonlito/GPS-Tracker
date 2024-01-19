@@ -20,4 +20,5 @@
     'shared_public' => 'Public Ride Sharing',
     'stats' => 'Statistics',
     'success' => 'The trip has been successfully updated',
+    'user' => 'User',
 ];

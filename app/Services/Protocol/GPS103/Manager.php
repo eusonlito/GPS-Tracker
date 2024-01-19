@@ -7,21 +7,10 @@ use App\Services\Protocol\GPS103\Parser\Command as CommandParser;
 use App\Services\Protocol\GPS103\Parser\Heartbeat as HeartbeatParser;
 use App\Services\Protocol\GPS103\Parser\Location as LocationParser;
 use App\Services\Protocol\ProtocolAbstract;
-use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Server\Socket\Server;
 
 class Manager extends ProtocolAbstract
 {
-    /**
-     * @const array
-     */
-    protected const PARSERS = [
-        AuthParser::class,
-        HeartbeatParser::class,
-        LocationParser::class,
-        CommandParser::class,
-    ];
-
     /**
      * @return string
      */
@@ -51,14 +40,16 @@ class Manager extends ProtocolAbstract
     }
 
     /**
-     * @param string $body
-     * @param array $data = []
-     *
      * @return array
      */
-    public function resources(string $body, array $data = []): array
+    protected function parsers(): array
     {
-        return array_filter(array_map(fn ($body) => $this->resource($body, $data), $this->bodies($body)));
+        return [
+            AuthParser::class,
+            HeartbeatParser::class,
+            LocationParser::class,
+            CommandParser::class,
+        ];
     }
 
     /**
@@ -69,22 +60,5 @@ class Manager extends ProtocolAbstract
     protected function bodies(string $body): array
     {
         return array_filter(array_map('trim', preg_split('/[\n;]/', $body)));
-    }
-
-    /**
-     * @param string $body
-     * @param array $data = []
-     *
-     * @return ?\App\Services\Protocol\Resource\ResourceAbstract
-     */
-    public function resource(string $body, array $data = []): ?ResourceAbstract
-    {
-        foreach (static::PARSERS as $parser) {
-            if (($resource = $parser::new($body, $data)->resource()) && $resource->isValid()) {
-                return $resource;
-            }
-        }
-
-        return null;
     }
 }

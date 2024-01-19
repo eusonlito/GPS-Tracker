@@ -17,7 +17,7 @@ class Parse extends ActionAbstract
     /**
      * @var array
      */
-    protected array $parsed;
+    protected array $parsed = [];
 
     /**
      * @var \App\Services\Protocol\ProtocolAbstract
@@ -73,11 +73,14 @@ class Parse extends ActionAbstract
     {
         [$line, $date_at] = array_reverse(explode(' ', trim($line), 2)) + ['', ''];
 
+        $resources = $this->protocol->resources($line, $this->parsed[0]['data'] ?? []);
+
         $this->parsed[] = [
             'line' => $line,
             'date_at' => str_replace(['[', ']'], '', $date_at),
-            'resources' => ($resources = $this->protocol->resources($line)),
+            'resources' => $resources,
             'device' => $this->lineDevice($resources),
+            'data' => $this->lineData($resources),
         ];
     }
 
@@ -93,5 +96,19 @@ class Parse extends ActionAbstract
         }
 
         return null;
+    }
+
+    /**
+     * @param array $resources
+     *
+     * @return array
+     */
+    protected function lineData(array $resources): array
+    {
+        if ($resources) {
+            return $resources[0]->data();
+        }
+
+        return [];
     }
 }

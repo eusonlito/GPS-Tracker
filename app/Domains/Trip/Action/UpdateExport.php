@@ -4,7 +4,7 @@ namespace App\Domains\Trip\Action;
 
 use Throwable;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use App\Services\Gpx\Gpx as GpxService;
+use App\Services\Gpx\Write as GpxService;
 
 class UpdateExport extends ActionAbstract
 {

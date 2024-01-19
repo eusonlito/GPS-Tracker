@@ -9,6 +9,7 @@
     'end_at' => 'Fin',
     'filter' => 'Filtrar...',
     'heatmap' => 'Mapa de Calor',
+    'import' => 'Importar',
     'latitude' => 'Latitud',
     'longitude' => 'Longitud',
     'map' => 'Mostrar Mapa',

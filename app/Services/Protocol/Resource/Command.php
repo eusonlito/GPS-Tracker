@@ -9,7 +9,7 @@ class Command extends ResourceAbstract
      */
     protected function attributesAvailable(): array
     {
-        return ['body', 'maker', 'serial', 'type', 'payload', 'data', 'response'];
+        return ['body', 'serial', 'type', 'payload', 'data', 'response'];
     }
 
     /**
@@ -33,14 +33,6 @@ class Command extends ResourceAbstract
      * @return string
      */
     public function body(): string
-    {
-        return $this->attribute(__FUNCTION__);
-    }
-
-    /**
-     * @return ?string
-     */
-    public function maker(): ?string
     {
         return $this->attribute(__FUNCTION__);
     }

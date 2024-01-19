@@ -2,26 +2,24 @@
 
 namespace App\Services\Protocol\GPS103\Parser;
 
-use App\Services\Protocol\Resource\Auth as AuthResource;
+use App\Services\Protocol\ParserAbstract;
 
 class Auth extends ParserAbstract
 {
     /**
-     * @return ?\App\Services\Protocol\Resource\Auth
+     * @return array
      */
-    public function resource(): ?AuthResource
+    public function resources(): array
     {
         if ($this->bodyIsValid() === false) {
-            return null;
+            return [];
         }
 
         $this->values = explode(',', $this->body);
 
-        return new AuthResource([
-            'body' => $this->body,
-            'serial' => $this->serial(),
-            'response' => $this->response(),
-        ]);
+        $this->addIfValid($this->resourceAuth());
+
+        return $this->resources;
     }
 
     /**

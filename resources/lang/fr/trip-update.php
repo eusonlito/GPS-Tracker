@@ -20,4 +20,5 @@
     'shared_public' => 'Le covoiturage public',
     'stats' => 'Statistiques',
     'success' => 'Le voyage a été mis à jour avec succès',
+    'user' => 'Utilisateur',
 ];

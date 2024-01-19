@@ -79,10 +79,10 @@ abstract class ResourceAbstract
     }
 
     /**
-     * @return ?array
+     * @return array
      */
-    public function data(): ?array
+    public function data(): array
     {
-        return $this->attribute(__FUNCTION__);
+        return $this->attribute(__FUNCTION__, []);
     }
 }

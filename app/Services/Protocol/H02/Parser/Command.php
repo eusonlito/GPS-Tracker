@@ -2,29 +2,24 @@
 
 namespace App\Services\Protocol\H02\Parser;
 
-use App\Services\Protocol\Resource\Command as CommandResource;
+use App\Services\Protocol\ParserAbstract;
 
 class Command extends ParserAbstract
 {
     /**
-     * @return ?\App\Services\Protocol\Resource\Command
+     * @return array
      */
-    public function resource(): ?CommandResource
+    public function resources(): array
     {
         if ($this->bodyIsValid() === false) {
-            return null;
+            return [];
         }
 
         $this->values = explode(',', substr($this->body, 1, -1));
 
-        return new CommandResource([
-            'body' => $this->body,
-            'maker' => $this->maker(),
-            'serial' => $this->serial(),
-            'type' => $this->type(),
-            'payload' => $this->payload(),
-            'response' => $this->response(),
-        ]);
+        $this->addIfValid($this->resourceCommand());
+
+        return $this->resources;
     }
 
     /**
@@ -77,7 +72,7 @@ class Command extends ParserAbstract
      */
     protected function payload(): array
     {
-        return $this->cache[__FUNCTION__] ??= explode(',', $this->values[3]);
+        return explode(',', $this->values[3]);
     }
 
     /**

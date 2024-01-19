@@ -2,36 +2,24 @@
 
 namespace App\Services\Protocol\Queclink\Parser;
 
-use App\Services\Protocol\Resource\Location as LocationResource;
+use App\Services\Protocol\ParserAbstract;
 
 class Location extends ParserAbstract
 {
     /**
-     * @return ?\App\Services\Protocol\Resource\Location
+     * @return array
      */
-    public function resource(): ?LocationResource
+    public function resources(): array
     {
         if ($this->bodyIsValid() === false) {
-            return null;
+            return [];
         }
 
         $this->values = explode(',', substr($this->body, 0, -1));
 
-        return new LocationResource([
-            'body' => $this->body,
-            'maker' => $this->maker(),
-            'serial' => $this->serial(),
-            'type' => $this->type(),
-            'latitude' => $this->latitude(),
-            'longitude' => $this->longitude(),
-            'speed' => $this->speed(),
-            'signal' => $this->signal(),
-            'direction' => $this->direction(),
-            'datetime' => $this->datetime(),
-            'country' => $this->country(),
-            'timezone' => $this->timezone(),
-            'response' => $this->response(),
-        ]);
+        $this->addIfValid($this->resourceLocation());
+
+        return $this->resources;
     }
 
     /**
@@ -68,14 +56,6 @@ class Location extends ParserAbstract
             .'[0-9A-Z]{0,4},'              // 17 - lac
             .'[0-9A-Z]{0,8},'              // 18 - cell id
             .'/';
-    }
-
-    /**
-     * @return string
-     */
-    protected function maker(): string
-    {
-        return 'Queclink';
     }
 
     /**

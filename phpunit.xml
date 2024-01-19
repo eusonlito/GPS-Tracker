@@ -58,6 +58,7 @@
       <exclude>./app/Domains/Server/Test/Unit/UnitAbstract.php</exclude>
     </testsuite>
   </testsuites>
+
   <php>
     <server name="APP_DEBUG" value="0"/>
     <server name="APP_ENV" value="testing"/>
@@ -71,6 +72,7 @@
     <server name="QUEUE_CONNECTION" value="sync"/>
     <server name="SESSION_DRIVER" value="array"/>
   </php>
+
   <source>
     <include>
       <directory suffix=".php">./app</directory>

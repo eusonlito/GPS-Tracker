@@ -79,12 +79,8 @@ class UpdateStats extends ActionAbstract
      */
     protected function iterate(): void
     {
-        $previous = null;
-
-        foreach ($this->positions as $position) {
-            $this->position($position, $previous);
-
-            $previous = $position;
+        foreach ($this->positions as $i => $position) {
+            $this->position($position, $this->positions->get($i - 1));
         }
     }
 

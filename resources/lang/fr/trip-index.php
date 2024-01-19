@@ -9,6 +9,7 @@
     'end_at' => 'Fin',
     'filter' => 'Filtre...',
     'heatmap' => 'Carte thermique',
+    'import' => 'Importation',
     'latitude' => 'Latitude',
     'longitude' => 'Longitude',
     'map' => 'Afficher la carte',

@@ -2,34 +2,22 @@
 
 namespace App\Services\Protocol\OsmAnd\Parser;
 
-use App\Services\Protocol\Resource\Location as LocationResource;
+use App\Services\Protocol\ParserAbstract;
 
 class Location extends ParserAbstract
 {
     /**
-     * @return ?\App\Services\Protocol\Resource\Location
+     * @return array
      */
-    public function resource(): ?LocationResource
+    public function resources(): array
     {
         if ($this->bodyIsValid() === false) {
-            return null;
+            return [];
         }
 
-        return new LocationResource([
-            'body' => $this->body,
-            'maker' => $this->maker(),
-            'serial' => $this->serial(),
-            'type' => $this->type(),
-            'latitude' => $this->latitude(),
-            'longitude' => $this->longitude(),
-            'speed' => $this->speed(),
-            'signal' => $this->signal(),
-            'direction' => $this->direction(),
-            'datetime' => $this->datetime(),
-            'country' => $this->country(),
-            'timezone' => $this->timezone(),
-            'response' => $this->response(),
-        ]);
+        $this->addIfValid($this->resourceLocation());
+
+        return $this->resources;
     }
 
     /**
@@ -37,15 +25,13 @@ class Location extends ParserAbstract
      */
     public function bodyIsValid(): bool
     {
-        $this->bodyIsValid ??= (bool)preg_match($this->bodyIsValidRegExp(), $this->body, $matches);
-
-        if ($this->bodyIsValid === false) {
+        if (preg_match($this->bodyIsValidRegExp(), $this->body, $matches) === 0) {
             return false;
         }
 
         parse_str($matches[1], $this->values);
 
-        return $this->bodyIsValid = ($this->values['id'] ?? false)
+        return ($this->values['id'] ?? false)
             && ($this->values['lat'] ?? false)
             && ($this->values['lon'] ?? false)
             && ($this->values['timestamp'] ?? false)
@@ -58,14 +44,6 @@ class Location extends ParserAbstract
     protected function bodyIsValidRegExp(): string
     {
         return '/GET \/\?(.*) HTTP\/1/';
-    }
-
-    /**
-     * @return ?string
-     */
-    protected function maker(): ?string
-    {
-        return $this->values['maker'] ?? null;
     }
 
     /**

@@ -15,12 +15,12 @@ use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 
-class Gpx
+class Write
 {
     /**
      * @var \phpGPX\Models\GpxFile
      */
-    protected GpxFile $file;
+    protected GpxFile $gpx;
 
     /**
      * @return self
@@ -44,7 +44,7 @@ class Gpx
      */
     public function generate(): self
     {
-        $this->file();
+        $this->gpx();
         $this->track();
 
         return $this;
@@ -55,18 +55,18 @@ class Gpx
      */
     public function toXml(): string
     {
-        return $this->file->toXML()->saveXML();
+        return $this->gpx->toXML()->saveXML();
     }
 
     /**
      * @return self
      */
-    protected function file(): self
+    protected function gpx(): self
     {
-        $this->file = new GpxFile();
-        $this->file->metadata = new Metadata();
-        $this->file->metadata->time = $this->datetime($this->trip->start_at, $this->trip->timezone->zone);
-        $this->file->metadata->description = $this->trip->name;
+        $this->gpx = new GpxFile();
+        $this->gpx->metadata = new Metadata();
+        $this->gpx->metadata->time = $this->datetime($this->trip->start_at, $this->trip->timezone->zone);
+        $this->gpx->metadata->description = $this->trip->name;
 
         return $this;
     }
@@ -89,7 +89,7 @@ class Gpx
         $track->segments[] = $segment;
         $track->recalculateStats();
 
-        $this->file->tracks[] = $track;
+        $this->gpx->tracks[] = $track;
 
         return $this;
     }
