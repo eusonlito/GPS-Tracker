@@ -2,7 +2,6 @@
 
 namespace App\Services\Protocol\Teltonika\Parser;
 
-use App\Services\Buffer\Bit as BufferBit;
 use App\Services\Buffer\Byte as BufferByte;
 use App\Services\Protocol\ParserAbstract;
 use App\Services\Protocol\Resource\Location as LocationResource;

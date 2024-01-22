@@ -4,6 +4,7 @@ namespace App\Domains\Timezone\Model\Builder;
 
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\Timezone\Model\Timezone as Model;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Timezone extends BuilderAbstract
 {
@@ -26,6 +27,16 @@ class Timezone extends BuilderAbstract
     public function byZone(string $zone): self
     {
         return $this->where('zone', $zone);
+    }
+
+    /**
+     * @param int $vehicle_id
+     *
+     * @return self
+     */
+    public function byVehicleId(int $vehicle_id): self
+    {
+        return $this->whereIn('id', VehicleModel::select('timezone_id')->byId($vehicle_id));
     }
 
     /**

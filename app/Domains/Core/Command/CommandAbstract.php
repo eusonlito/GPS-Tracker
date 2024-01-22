@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Domains\Core\Action\ActionFactoryAbstract;
 use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\Core\Traits\Factory;
@@ -100,6 +101,32 @@ abstract class CommandAbstract extends Command
     }
 
     /**
+     * @param string $key
+     *
+     * @return \Illuminate\Http\Request
+     */
+    final protected function requestOptionAsFile(string $key): Request
+    {
+        $value = $this->option($key);
+
+        if (empty($value)) {
+            return request();
+        }
+
+        if (str_starts_with($value, '/') === false) {
+            $value = base_path($value);
+        }
+
+        if (is_file($value) === false) {
+            throw new ValidatorException(sprintf('The "%s" "%s" does not exists', $key, $value));
+        }
+
+        $file = new UploadedFile($value, basename($value), mime_content_type($value), UPLOAD_ERR_OK, true);
+
+        return request()->merge([$key => $file]);
+    }
+
+    /**
      * @return \Illuminate\Http\Request
      */
     final protected function requestMergeRow(): Request
@@ -118,7 +145,7 @@ abstract class CommandAbstract extends Command
 
         if (is_null($user)) {
             $user = new $model();
-        } elseif (is_numeric($user)) {
+        } elseif (is_int($user)) {
             $user = $model::query()->findOrFail($user);
         }
 
