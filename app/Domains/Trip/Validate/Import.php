@@ -15,7 +15,7 @@ class Import extends ValidateAbstract
             'user_id' => ['bail', 'integer'],
             'device_id' => ['bail', 'required', 'integer'],
             'vehicle_id' => ['bail', 'required', 'integer'],
-            'timezone_id' => ['bail', 'required', 'integer'],
+            'timezone_id' => ['bail', 'nullable', 'integer'],
             'file' => ['bail', 'required', 'file', 'mimes:xml,gpx', 'extensions:gpx'],
         ];
     }

@@ -44,9 +44,32 @@ class Import extends ActionAbstract
      */
     protected function timezone(): void
     {
+        if ($this->data['timezone_id']) {
+            $this->timezoneById();
+        } else {
+            $this->timezoneByVehicle();
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function timezoneById(): void
+    {
         $this->timezone = TimezoneModel::query()
             ->selectOnly('id', 'zone')
             ->byId($this->data['timezone_id'])
+            ->firstOr(fn () => $this->exceptionValidator(__('trip-import.error.timezone_id-exists')));
+    }
+
+    /**
+     * @return void
+     */
+    protected function timezoneByVehicle(): void
+    {
+        $this->timezone = TimezoneModel::query()
+            ->selectOnly('id', 'zone')
+            ->byVehicleId($this->data['vehicle_id'])
             ->firstOr(fn () => $this->exceptionValidator(__('trip-import.error.timezone_id-exists')));
     }
 
@@ -63,6 +86,7 @@ class Import extends ActionAbstract
         $this->dataStartAt();
         $this->dataEndAt();
         $this->dataName();
+        $this->dataTimezoneId();
     }
 
     /**
@@ -144,6 +168,14 @@ class Import extends ActionAbstract
     /**
      * @return void
      */
+    protected function dataTimezoneId(): void
+    {
+        $this->data['timezone_id'] = $this->timezone->id;
+    }
+
+    /**
+     * @return void
+     */
     protected function check(): void
     {
         $this->checkDeviceId();
@@ -156,7 +188,7 @@ class Import extends ActionAbstract
     protected function checkDeviceId(): void
     {
         if ($this->checkDeviceIdExists() === false) {
-            $this->exceptionValidator(__('trip-import.error.device-not-found'));
+            $this->exceptionValidator(__('trip-import.error.device_id-exists'));
         }
     }
 
@@ -178,7 +210,7 @@ class Import extends ActionAbstract
     protected function checkVehicleId(): void
     {
         if ($this->checkVehicleIdExists() === false) {
-            $this->exceptionValidator(__('trip-import.error.vehicle-not-found'));
+            $this->exceptionValidator(__('trip-import.error.vehicle_id-exists'));
         }
     }
 

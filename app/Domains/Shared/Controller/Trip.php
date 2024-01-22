@@ -68,7 +68,7 @@ class Trip extends ControllerAbstract
      */
     protected function responseJson(): JsonResponse
     {
-        return $this->json($this->factory('Trip')->fractal('map', $this->responseJsonList()));
+        return $this->json($this->factory('Trip')->fractal('live', $this->responseJsonList()));
     }
 
     /**
