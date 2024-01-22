@@ -60,7 +60,6 @@ class Trip extends ControllerAbstract
         return $this->trip->positions()
             ->withCityState()
             ->list()
-            ->limit(1)
             ->get();
     }
 
@@ -89,7 +88,6 @@ class Trip extends ControllerAbstract
             ->byIdNext((int)$this->request->input('id_from'))
             ->withCityState()
             ->list()
-            ->limit(1)
             ->get();
     }
 }
