@@ -27,6 +27,7 @@ class Import extends ControllerAbstract
     protected function request(): void
     {
         $this->request->merge([
+            'user_id' => $this->user()->id,
             'timezone_id' => $this->requestTimezoneId(),
         ]);
     }
