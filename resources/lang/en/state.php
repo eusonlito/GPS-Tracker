@@ -1,5 +1,5 @@
 <?php return [
     'error' => [
-        'not-found' => 'The selected province is no longer available',
+        'not-found' => 'The selected state is no longer available',
     ],
 ];

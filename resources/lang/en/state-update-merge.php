@@ -3,13 +3,13 @@
     'country' => 'Country',
     'created_at' => 'Created',
     'error' => [
-        'ids-empty' => 'No province has been selected',
+        'ids-empty' => 'No state has been selected',
     ],
     'filter' => 'Filter...',
     'merge' => 'Join',
-    'meta-title' => 'Provinces > :title > Join',
+    'meta-title' => 'States > :title > Join',
     'name' => 'Name',
     'select' => 'Select',
-    'success' => 'Provinces have been successfully joined',
+    'success' => 'States have been successfully joined',
     'updated_at' => 'Updated',
 ];

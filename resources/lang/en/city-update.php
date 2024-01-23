@@ -4,7 +4,7 @@
     'country' => 'Country',
     'error' => [
         'country-exists' => 'The selected country is not available',
-        'state-exists' => 'The selected province is not available',
+        'state-exists' => 'The selected state is not available',
     ],
     'latitude' => 'Latitude',
     'longitude' => 'Longitude',
@@ -12,6 +12,6 @@
     'meta-title' => 'Cities > :title',
     'name' => 'Name',
     'save' => 'Save',
-    'state' => 'Province',
+    'state' => 'State',
     'success' => 'The city has been saved successfully',
 ];

@@ -30,7 +30,7 @@
     'start-at' => 'Home',
     'start_at' => 'Start',
     'start_end' => 'Journey',
-    'state' => 'Province',
+    'state' => 'State',
     'time' => 'Duration',
     'user' => 'User',
     'vehicle' => 'Vehicle',

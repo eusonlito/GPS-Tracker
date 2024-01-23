@@ -30,7 +30,7 @@
     'server-index' => 'List',
     'server-log' => 'Logs',
     'server-status' => 'Status',
-    'state-index' => 'Provinces',
+    'state-index' => 'States',
     'timezone' => 'Time Zones',
     'trip' => 'Trips',
     'trip-heatmap' => 'Heat Map',

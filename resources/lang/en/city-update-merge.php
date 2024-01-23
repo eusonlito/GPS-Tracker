@@ -10,7 +10,7 @@
     'meta-title' => 'Cities > :title > Join',
     'name' => 'Name',
     'select' => 'Select',
-    'state' => 'Province',
+    'state' => 'State',
     'success' => 'Cities have been successfully joined',
     'updated_at' => 'Updated',
 ];
