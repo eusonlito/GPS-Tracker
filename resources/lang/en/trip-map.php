@@ -8,10 +8,10 @@
     'filter-finished-no' => 'Ongoing Trips',
     'filter-finished-yes' => 'Completed Trips',
     'meta-title' => 'Trips',
-    'send' => 'Send to',
+    'send' => 'Send',
     'start-at' => 'Home',
     'start_end' => 'Route',
-    'state' => 'Province',
+    'state' => 'State',
     'user' => 'User',
     'vehicle' => 'Vehicle',
 ];

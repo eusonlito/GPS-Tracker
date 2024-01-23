@@ -6,6 +6,6 @@
     'filter' => 'Filter...',
     'meta-title' => 'Cities',
     'name' => 'Name',
-    'state' => 'Province',
+    'state' => 'State',
     'updated_at' => 'Updated',
 ];
