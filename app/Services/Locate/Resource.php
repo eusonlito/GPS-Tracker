@@ -2,6 +2,12 @@
 
 namespace App\Services\Locate;
 
+/**
+ * @property string $city
+ * @property string $state
+ * @property string $country
+ * @property string $country_code
+ */
 class Resource
 {
     /**

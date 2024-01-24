@@ -2,7 +2,7 @@
     'device' => 'Dispositivo',
     'error' => [
         'device-not-found' => 'El dispositivo seleccionado ya no se encuentra disponible',
-        'points-empty' => 'No se ha podido obtener nigún punto del fichero GPX',
+        'points-empty' => 'No se ha podido obtener nigún punto del fichero GPX. Quizás no disponga de marcas de tiempo?',
         'timezone_id-exists' => 'La zona horaria seleccionada ya no se encuentra disponible',
         'vehicle-not-found' => 'El vehículo seleccionado ya no se encuentra disponible',
     ],

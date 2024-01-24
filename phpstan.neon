@@ -13,6 +13,7 @@ parameters:
         - '#Access to an undefined property .*Abstract#'
         - '#Access to an undefined property .*\\Model#'
         - '#App\\Domains\\User\\Model\\User.* does not accept Illuminate\\Contracts\\Auth\\Authenticatable#'
+        - '#but returns Illuminate\\Database\\Eloquent\\Builder#'
         - '#Call to an undefined .*Abstract#'
         - '#Call to an undefined method Illuminate\\Contracts\\Queue\\ShouldQueue#'
         - '#Call to an undefined method Illuminate\\Database\\ConnectionInterface#'

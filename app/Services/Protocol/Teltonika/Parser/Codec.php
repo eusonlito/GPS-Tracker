@@ -5,22 +5,22 @@ namespace App\Services\Protocol\Teltonika\Parser;
 class Codec
 {
     /**
-     * @var const
+     * @const string
      */
     public const CODEC_8 = '08';
 
     /**
-     * @var const
+     * @const string
      */
     public const CODEC_8_EXT = '8e';
 
     /**
-     * @var const
+     * @const string
      */
     public const CODEC_12 = '0c';
 
     /**
-     * @var const
+     * @const string
      */
     public const CODEC_16 = '10';
 }

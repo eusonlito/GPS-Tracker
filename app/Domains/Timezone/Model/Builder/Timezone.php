@@ -36,7 +36,7 @@ class Timezone extends BuilderAbstract
      */
     public function byVehicleId(int $vehicle_id): self
     {
-        return $this->whereIn('id', VehicleModel::select('timezone_id')->byId($vehicle_id));
+        return $this->whereIn('id', VehicleModel::query()->select('timezone_id')->byId($vehicle_id));
     }
 
     /**
