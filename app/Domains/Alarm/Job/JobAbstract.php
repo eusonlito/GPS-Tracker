@@ -8,6 +8,11 @@ use App\Domains\Core\Job\JobAbstract as JobAbstractCore;
 abstract class JobAbstract extends JobAbstractCore
 {
     /**
+     * @var \App\Domains\Alarm\Model\Alarm
+     */
+    protected Model $row;
+
+    /**
      * @param int $id
      *
      * @return void

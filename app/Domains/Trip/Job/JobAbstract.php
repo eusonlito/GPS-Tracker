@@ -8,6 +8,11 @@ use App\Domains\Trip\Model\Trip as Model;
 abstract class JobAbstract extends JobAbstractCore
 {
     /**
+     * @var \App\Domains\Trip\Model\Trip
+     */
+    protected Model $row;
+
+    /**
      * @param int $id
      *
      * @return void
