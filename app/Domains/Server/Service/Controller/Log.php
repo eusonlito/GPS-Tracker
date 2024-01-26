@@ -3,6 +3,9 @@
 namespace App\Domains\Server\Service\Controller;
 
 use DirectoryIterator;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RegexIterator;
 use stdClass;
 
 class Log extends ControllerAbstract
@@ -191,8 +194,33 @@ class Log extends ControllerAbstract
      */
     protected function listContentIsValid(DirectoryIterator $fileInfo): bool
     {
-        return ($fileInfo->isDot() === false)
-            && ($fileInfo->isDir() || in_array($fileInfo->getExtension(), ['json', 'log']));
+        if ($fileInfo->isDot()) {
+            return false;
+        }
+
+        if ($fileInfo->isDir()) {
+            return $this->listContentIsValidDir($fileInfo);
+        }
+
+        return in_array($fileInfo->getExtension(), ['json', 'log']);
+    }
+
+    /**
+     * @param \DirectoryIterator $fileInfo
+     *
+     * @return bool
+     */
+    protected function listContentIsValidDir(DirectoryIterator $fileInfo): bool
+    {
+        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($fileInfo->getPathname()));
+
+        foreach (new RegexIterator($iterator, '/\.(log|json)$/i', RegexIterator::MATCH) as $file) {
+            if ($file->isFile()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
