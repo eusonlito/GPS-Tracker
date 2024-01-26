@@ -26,8 +26,8 @@ class DeviceMessage extends BuilderAbstract
     {
         return $this->when(
             $response_at,
-            static fn ($q) => $q->whereNotNull('response_at'),
-            static fn ($q) => $q->whereNull('response_at')
+            fn ($q) => $q->whereNotNull('response_at'),
+            fn ($q) => $q->whereNull('response_at')
         );
     }
 
@@ -40,8 +40,8 @@ class DeviceMessage extends BuilderAbstract
     {
         return $this->when(
             $sent_at,
-            static fn ($q) => $q->whereNotNull('sent_at'),
-            static fn ($q) => $q->whereNull('sent_at')
+            fn ($q) => $q->whereNotNull('sent_at'),
+            fn ($q) => $q->whereNull('sent_at')
         );
     }
 

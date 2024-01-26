@@ -89,6 +89,6 @@ class MaintenanceMaintenanceItem extends BuilderAbstract
      */
     public function withMaintenanceWithVehicle(): self
     {
-        return $this->with(['maintenance' => static fn ($q) => $q->withVehicle()]);
+        return $this->with(['maintenance' => fn ($q) => $q->withVehicle()]);
     }
 }

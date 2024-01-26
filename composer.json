@@ -144,9 +144,9 @@
         ],
 
         "quality": [
-            "@php artisan insights --ansi || true",
+            "@php artisan insights -v --ansi || true",
             "@php ./vendor/bin/phpstan analyse --ansi || true",
-            "@php ./vendor/bin/psalm || true"
+            "@php ./vendor/bin/psalm --no-cache || true"
         ],
 
         "translation": [

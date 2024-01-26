@@ -26,20 +26,30 @@ const
 
 const paths = require('./paths');
 
-const loadManifest = function(name) {
-    if (manifest[name]) {
-        return manifest[name];
+const loadManifest = function(name, key) {
+    const hash = name + '.' + key;
+
+    if (manifest[hash]) {
+        return manifest[hash];
     }
 
     let files = require(paths.from.manifest + name + '.json'),
         file = '';
 
-    for (let key in files) {
-        file = files[key].split('|');
-        files[key] = paths.from[file[0]] + '' + file[1];
+    if (key) {
+        files = files[key];
     }
 
-    return manifest[name] = filesExist(files);
+    if (!files.length) {
+        return manifest[hash] = '.';
+    }
+
+    for (let index in files) {
+        file = files[index].split('|');
+        files[index] = paths.from[file[0]] + '' + file[1];
+    }
+
+    return manifest[hash] = filesExist(files);
 };
 
 const clean = function() {

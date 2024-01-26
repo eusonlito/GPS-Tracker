@@ -68,7 +68,7 @@ class Maintenance extends BuilderAbstract
      */
     public function whenDateAtAfter(?string $date_at): self
     {
-        return $this->when($date_at, static fn ($q) => $q->byDateAtAfter($date_at));
+        return $this->when($date_at, fn ($q) => $q->byDateAtAfter($date_at));
     }
 
     /**
@@ -78,7 +78,7 @@ class Maintenance extends BuilderAbstract
      */
     public function whenDateAtBefore(?string $date_at): self
     {
-        return $this->when($date_at, static fn ($q) => $q->byDateAtBefore($date_at));
+        return $this->when($date_at, fn ($q) => $q->byDateAtBefore($date_at));
     }
 
     /**
@@ -88,7 +88,7 @@ class Maintenance extends BuilderAbstract
      */
     public function whenSearch(?string $search): self
     {
-        return $this->when($search, static fn ($q) => $q->searchLike(['name', 'workshop', 'description'], $search));
+        return $this->when($search, fn ($q) => $q->searchLike(['name', 'workshop', 'description'], $search));
     }
 
     /**

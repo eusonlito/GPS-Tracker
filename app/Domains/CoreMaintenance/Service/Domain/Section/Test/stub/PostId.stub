@@ -16,7 +16,7 @@ class {{ controller }} extends ControllerAbstract
 
     {{ function/testGetGuestNotAllowedFail }}
 
-    {{ function/testPostGuestSuccess }}
+    {{ function/testPostGuestEmptySuccess }}
 
     {{ function/testPostGuestSuccess }}
 

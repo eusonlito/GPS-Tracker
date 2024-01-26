@@ -125,8 +125,8 @@ class Read
      */
     protected function mapPointSpeed(Point $point, ?Point $previous): float
     {
-        if ($extension = $point->extensions?->trackPointExtension) {
-            return $extension->speed;
+        if ($speed = $point->extensions->trackPointExtension?->speed) {
+            return $speed;
         }
 
         if ($previous === null) {
@@ -154,8 +154,8 @@ class Read
      */
     protected function mapPointDirection(Point $point, ?Point $previous, ?Point $next): int
     {
-        if ($extension = $point->extensions?->trackPointExtension) {
-            return $extension->course;
+        if ($course = $point->extensions->trackPointExtension?->course) {
+            return $course;
         }
 
         if ($next) {

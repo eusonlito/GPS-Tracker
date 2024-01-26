@@ -5,7 +5,9 @@ namespace App\Domains\Core\Model;
 use DateTime;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use App\Domains\Core\Model\Traits\Column as ColumnTrait;
 use App\Domains\Core\Model\Traits\DateDisabled as DateDisabledTrait;
 use App\Domains\Core\Model\Traits\MutatorDisabled as MutatorDisabledTrait;
@@ -50,5 +52,13 @@ abstract class ModelAbstract extends Model
     public static function db(): ConnectionInterface
     {
         return DB::connection();
+    }
+
+    /**
+     * @return \Illuminate\Database\Schema\Builder
+     */
+    public static function schema(): Builder
+    {
+        return Schema::connection(static::db()->getName());
     }
 }

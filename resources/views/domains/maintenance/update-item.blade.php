@@ -25,7 +25,7 @@
                 @forelse ($itemsPivot as $each)
 
                 <tr>
-                    <td><x-select name="maintenance_item_id[]" :options="$items" value="id" text="name" :selected="$each->maintenance_item_id" :placeholder="__('maintenance-update-item.item')" required data-maintenance-update-item-maintenance_item_id class="min-w-16 max-w-xs font-size-1"></x-select></td>
+                    <td><x-select name="maintenance_item_id[]" :options="$items" value="id" text="name" :selected="$each->maintenance_item_id" :placeholder="__('maintenance-update-item.item')" required data-maintenance-update-item-maintenance_item_id class="min-w-16 max-w-xs font-size-100"></x-select></td>
                     <td><input type="number" name="amount_gross[]" value="{{ $each->amount_gross }}" class="form-control min-w-5 max-w-15" step="any" min="0" required data-maintenance-update-item-amount_gross /></td>
                     <td><input type="number" name="amount_net[]" value="{{ $each->amount_net }}" class="form-control min-w-5 max-w-15" step="any" min="0" readonly data-maintenance-update-item-amount_net tabindex="-1" /></td>
                     <td><input type="number" name="quantity[]" value="{{ $each->quantity }}" class="form-control min-w-5 max-w-5" step="any" min="0" required data-maintenance-update-item-quantity /></td>
@@ -44,7 +44,7 @@
                 @empty
 
                 <tr>
-                    <td><x-select name="maintenance_item_id[]" :options="$items" value="id" text="name" :placeholder="__('maintenance-update-item.item')" data-maintenance-update-item-maintenance_item_id class="min-w-16 max-w-xs font-size-1"></x-select></td>
+                    <td><x-select name="maintenance_item_id[]" :options="$items" value="id" text="name" :placeholder="__('maintenance-update-item.item')" data-maintenance-update-item-maintenance_item_id class="min-w-16 max-w-xs font-size-100"></x-select></td>
                     <td><input type="number" name="amount_gross[]" value="" class="form-control min-w-5 max-w-15" step="any" min="0" data-maintenance-update-item-amount_gross /></td>
                     <td><input type="number" name="amount_net[]" value="" class="form-control min-w-5 max-w-15" step="any" min="0" data-maintenance-update-item-amount_net /></td>
                     <td><input type="number" name="quantity[]" value="" class="form-control max-w-5" step="any" min="0" data-maintenance-update-item-quantity /></td>
@@ -63,7 +63,7 @@
                 @endforelse
 
                 <tr class="hidden" data-maintenance-update-item-template>
-                    <td><x-select name="maintenance_item_id[]" :options="$items" value="id" text="name" :placeholder="__('maintenance-update-item.item')" data-maintenance-update-item-maintenance_item_id class="min-w-16 max-w-xs font-size-1"></x-select></td>
+                    <td><x-select name="maintenance_item_id[]" :options="$items" value="id" text="name" :placeholder="__('maintenance-update-item.item')" data-maintenance-update-item-maintenance_item_id class="min-w-16 max-w-xs font-size-100"></x-select></td>
                     <td><input type="number" name="amount_gross[]" value="" class="form-control min-w-5 max-w-15" step="any" min="0" data-maintenance-update-item-amount_gross /></td>
                     <td><input type="number" name="amount_net[]" value="" class="form-control min-w-5 max-w-15" step="any" min="0" data-maintenance-update-item-amount_net /></td>
                     <td><input type="number" name="quantity[]" value="" class="form-control min-w-5 max-w-5" step="any" min="0" data-maintenance-update-item-quantity /></td>

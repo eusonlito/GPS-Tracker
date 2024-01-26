@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\Core\Traits\Factory;
 
 abstract class JobAbstract implements ShouldQueue
@@ -32,20 +33,32 @@ abstract class JobAbstract implements ShouldQueue
     }
 
     /**
+     * @param int|string|null $id = null
+     *
      * @return \Illuminate\Queue\Middleware\WithoutOverlapping
      */
-    protected function middlewareWithoutOverlapping(): WithoutOverlapping
+    protected function middlewareWithoutOverlapping(int|string|null $id = null): WithoutOverlapping
     {
-        return new WithoutOverlapping((string)$this->id);
+        return new WithoutOverlapping(strval($id ?: $this->id));
     }
 
     /**
      * @return void
      */
-    protected function findOrDeleteJob(): void
+    protected function deleteAndException(): void
     {
         $this->delete();
 
         throw new ModelNotFoundException();
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return \App\Domains\Core\Model\ModelAbstract
+     */
+    protected function rowOrDeleteAndException(string $class): ModelAbstract
+    {
+        return $this->row = $class::query()->byId($this->id)->firstOr(fn () => $this->deleteAndException());
     }
 }

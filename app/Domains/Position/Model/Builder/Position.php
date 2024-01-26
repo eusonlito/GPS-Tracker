@@ -373,7 +373,7 @@ class Position extends BuilderAbstract
      */
     public function whenTripStartAtDateBetween(?string $before_start_at, ?string $after_start_at): self
     {
-        return $this->when($before_start_at || $after_start_at, static fn ($q) => $q->byTripStartAtDateBetween($before_start_at, $after_start_at));
+        return $this->when($before_start_at || $after_start_at, fn ($q) => $q->byTripStartAtDateBetween($before_start_at, $after_start_at));
     }
 
     /**
@@ -384,7 +384,7 @@ class Position extends BuilderAbstract
      */
     public function whenTripStartUtcAtDateBetween(?string $before_start_utc_at, ?string $after_start_utc_at): self
     {
-        return $this->when($before_start_utc_at || $after_start_utc_at, static fn ($q) => $q->byTripStartUtcAtDateBetween($before_start_utc_at, $after_start_utc_at));
+        return $this->when($before_start_utc_at || $after_start_utc_at, fn ($q) => $q->byTripStartUtcAtDateBetween($before_start_utc_at, $after_start_utc_at));
     }
 
     /**
@@ -442,7 +442,7 @@ class Position extends BuilderAbstract
      */
     public function withCityState(): self
     {
-        return $this->with(['city' => static fn ($q) => $q->withState()]);
+        return $this->with(['city' => fn ($q) => $q->withState()]);
     }
 
     /**

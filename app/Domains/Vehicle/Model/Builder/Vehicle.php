@@ -38,7 +38,7 @@ class Vehicle extends BuilderAbstract
      */
     public function whenTripFinished(?bool $finished): self
     {
-        return $this->when(is_bool($finished), static fn ($q) => $q->whereTripFinished($finished));
+        return $this->when(is_bool($finished), fn ($q) => $q->whereTripFinished($finished));
     }
 
     /**
@@ -58,7 +58,7 @@ class Vehicle extends BuilderAbstract
      */
     public function withAlarmPivot(int $alarm_id): self
     {
-        return $this->with(['alarmPivot' => static fn ($q) => $q->byAlarmId($alarm_id)]);
+        return $this->with(['alarmPivot' => fn ($q) => $q->byAlarmId($alarm_id)]);
     }
 
     /**
@@ -83,7 +83,7 @@ class Vehicle extends BuilderAbstract
     public function withAlarmsNotificationsPendingCount(): self
     {
         return $this->withCount([
-            'alarmsNotifications as alarms_notifications_pending_count' => static fn ($q) => $q->whereClosedAt(false),
+            'alarmsNotifications as alarms_notifications_pending_count' => fn ($q) => $q->whereClosedAt(false),
         ]);
     }
 
@@ -116,6 +116,6 @@ class Vehicle extends BuilderAbstract
      */
     public function withWhereHasPositionLast(): self
     {
-        return $this->withWhereHas('positionLast', static fn ($q) => $q->withCityState());
+        return $this->withWhereHas('positionLast', fn ($q) => $q->withCityState());
     }
 }

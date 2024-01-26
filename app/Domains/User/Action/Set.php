@@ -2,14 +2,19 @@
 
 namespace App\Domains\User\Action;
 
+use Illuminate\Support\Facades\Auth;
+use App\Domains\User\Model\User as Model;
+
 class Set extends ActionAbstract
 {
     /**
-     * @return void
+     * @return \App\Domains\User\Model\User
      */
-    public function handle(): void
+    public function handle(): Model
     {
         $this->set();
+
+        return $this->row;
     }
 
     /**
@@ -17,8 +22,17 @@ class Set extends ActionAbstract
      */
     protected function set(): void
     {
+        $this->setAuth();
         $this->setRow();
         $this->setLanguage();
+    }
+
+    /**
+     * @return void
+     */
+    protected function setAuth(): void
+    {
+        Auth::login($this->row, true);
     }
 
     /**

@@ -2,10 +2,10 @@
 
 namespace App\Domains\Core\Command;
 
+use ReflectionClass;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Domains\Core\Action\ActionFactoryAbstract;
 use App\Domains\Core\Model\ModelAbstract;
@@ -149,9 +149,19 @@ abstract class CommandAbstract extends Command
             $user = $model::query()->findOrFail($user);
         }
 
-        Auth::setUser($user);
+        $this->factory($this->actingAsDomain($user), $user)->action()->set();
 
         return $this->auth = $user;
+    }
+
+    /**
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     *
+     * @return string
+     */
+    final protected function actingAsDomain(Authenticatable $user): string
+    {
+        return (new ReflectionClass($user))->getShortName();
     }
 
     /**

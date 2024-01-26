@@ -58,8 +58,8 @@ class AlarmNotification extends BuilderAbstract
     {
         return $this->when(
             $closed_at,
-            static fn ($q) => $q->whereNotNull('closed_at'),
-            static fn ($q) => $q->whereNull('closed_at')
+            fn ($q) => $q->whereNotNull('closed_at'),
+            fn ($q) => $q->whereNull('closed_at')
         );
     }
 
@@ -72,8 +72,8 @@ class AlarmNotification extends BuilderAbstract
     {
         return $this->when(
             $sent_at,
-            static fn ($q) => $q->whereNotNull('sent_at'),
-            static fn ($q) => $q->whereNull('sent_at')
+            fn ($q) => $q->whereNotNull('sent_at'),
+            fn ($q) => $q->whereNull('sent_at')
         );
     }
 

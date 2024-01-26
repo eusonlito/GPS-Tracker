@@ -50,7 +50,7 @@ class Device extends BuilderAbstract
      */
     public function whenTripFinished(?bool $finished): self
     {
-        return $this->when(is_bool($finished), static fn ($q) => $q->whereTripFinished($finished));
+        return $this->when(is_bool($finished), fn ($q) => $q->whereTripFinished($finished));
     }
 
     /**
@@ -60,7 +60,7 @@ class Device extends BuilderAbstract
      */
     public function whenShared(?bool $shared): self
     {
-        return $this->when(is_bool($shared), static fn ($q) => $q->whereShared($shared));
+        return $this->when(is_bool($shared), fn ($q) => $q->whereShared($shared));
     }
 
     /**
@@ -70,7 +70,7 @@ class Device extends BuilderAbstract
      */
     public function whenSharedPublic(?bool $shared_public): self
     {
-        return $this->when(is_bool($shared_public), static fn ($q) => $q->whereSharedPublic($shared_public));
+        return $this->when(is_bool($shared_public), fn ($q) => $q->whereSharedPublic($shared_public));
     }
 
     /**
@@ -126,7 +126,7 @@ class Device extends BuilderAbstract
      */
     public function withMessagesPendingCount(): self
     {
-        return $this->withCount(['messages as messages_pending_count' => static fn ($q) => $q->whereResponseAt()]);
+        return $this->withCount(['messages as messages_pending_count' => fn ($q) => $q->whereResponseAt()]);
     }
 
     /**
@@ -134,7 +134,7 @@ class Device extends BuilderAbstract
      */
     public function withWhereHasPositionLast(): self
     {
-        return $this->withWhereHas('positionLast', static fn ($q) => $q->withCityState());
+        return $this->withWhereHas('positionLast', fn ($q) => $q->withCityState());
     }
 
     /**
@@ -158,7 +158,7 @@ class Device extends BuilderAbstract
      */
     public function withVehicle(): self
     {
-        return $this->with(['vehicle' => static fn ($q) => $q->withTimezone()]);
+        return $this->with(['vehicle' => fn ($q) => $q->withTimezone()]);
     }
 
     /**

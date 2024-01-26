@@ -103,13 +103,14 @@ abstract class ControllerAbstract
     }
 
     /**
-     * @param array $data
+     * @param array $after = []
+     * @param array $before = []
      *
      * @return void
      */
-    protected function requestMerge(array $data): void
+    protected function requestMerge(array $after = [], array $before = []): void
     {
-        $this->request->merge($this->request->input() + $data);
+        $this->request->merge($before + $this->request->input() + $after);
     }
 
     /**

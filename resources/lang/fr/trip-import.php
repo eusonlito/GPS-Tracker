@@ -2,7 +2,7 @@
     'device' => 'Appareil',
     'error' => [
         'device-not-found' => 'L\'appareil sélectionné n\'est plus disponible',
-        'points-empty' => 'Aucun point n\'a pu être obtenu à partir du fichier GPX',
+        'points-empty' => 'Aucun point n\'a pu être obtenu à partir du fichier GPX. Peut-être le fichier ne comporte-t-il pas d\'horodatage?',
         'timezone_id-exists' => 'Le fuseau horaire sélectionné n\'est plus disponible',
         'vehicle-not-found' => 'Le véhicule sélectionné n\'est plus disponible',
     ],

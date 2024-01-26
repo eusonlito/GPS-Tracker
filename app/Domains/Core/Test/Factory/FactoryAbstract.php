@@ -9,7 +9,7 @@ use App\Domains\User\Model\User as UserModel;
 abstract class FactoryAbstract extends Factory
 {
     /**
-     * @var class-string<\App\Domains\Core\Model\ModelAbstract>
+     * @var class-string<\App\Domains\Core\Model\ModelAbstract|\App\Domains\Core\Model\PivotAbstract>
      */
     protected $model;
 

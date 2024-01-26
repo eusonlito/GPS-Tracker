@@ -2,8 +2,6 @@
 
 namespace App\Domains\Alarm\Job;
 
-use Illuminate\Queue\Middleware\WithoutOverlapping;
-
 class CheckPosition extends JobAbstract
 {
     /**
@@ -20,7 +18,7 @@ class CheckPosition extends JobAbstract
      */
     public function middleware(): array
     {
-        return [(new WithoutOverlapping((string)$this->position_id))->expireAfter(30)];
+        return [$this->middlewareWithoutOverlapping($this->position_id)->expireAfter(30)];
     }
 
     /**

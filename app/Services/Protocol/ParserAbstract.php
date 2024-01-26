@@ -136,7 +136,7 @@ abstract class ParserAbstract
      */
     protected function resourceSms(): ResourceSms
     {
-        return new SmsResource([
+        return new ResourceSms([
             'body' => $this->body(),
             'serial' => $this->serial(),
             'type' => $this->type(),

@@ -17,14 +17,14 @@ class Alarm extends BuilderAbstract
     public function check(float $latitude, float $longitude, float $speed): self
     {
         return $this->where(
-            static fn ($q) => $q
-                ->orWhere(static fn ($q) => $q->checkFenceIn($latitude, $longitude))
-                ->orWhere(static fn ($q) => $q->checkFenceOut($latitude, $longitude))
-                ->orWhere(static fn ($q) => $q->checkMovement($speed))
-                ->orWhere(static fn ($q) => $q->checkVibration())
-                ->orWhere(static fn ($q) => $q->checkOverspeed($speed))
-                ->orWhere(static fn ($q) => $q->checkPolygonIn($latitude, $longitude))
-                ->orWhere(static fn ($q) => $q->checkPolygonOut($latitude, $longitude))
+            fn ($q) => $q
+                ->orWhere(fn ($q) => $q->checkFenceIn($latitude, $longitude))
+                ->orWhere(fn ($q) => $q->checkFenceOut($latitude, $longitude))
+                ->orWhere(fn ($q) => $q->checkMovement($speed))
+                ->orWhere(fn ($q) => $q->checkVibration())
+                ->orWhere(fn ($q) => $q->checkOverspeed($speed))
+                ->orWhere(fn ($q) => $q->checkPolygonIn($latitude, $longitude))
+                ->orWhere(fn ($q) => $q->checkPolygonOut($latitude, $longitude))
         );
     }
 
@@ -172,8 +172,8 @@ class Alarm extends BuilderAbstract
     public function bySchedule(string $time): self
     {
         return $this->where(static function ($q) use ($time) {
-            $q->where(static fn ($q) => $q->whereScheduleIsEmpty())
-                ->orWhere(static fn ($q) => $q->byScheduleStart($time)->byScheduleEnd($time));
+            $q->where(fn ($q) => $q->whereScheduleIsEmpty())
+                ->orWhere(fn ($q) => $q->byScheduleStart($time)->byScheduleEnd($time));
         });
     }
 
@@ -234,7 +234,7 @@ class Alarm extends BuilderAbstract
      */
     public function withVehiclePivot(int $vehicle_id): self
     {
-        return $this->with(['vehiclePivot' => static fn ($q) => $q->byVehicleId($vehicle_id)]);
+        return $this->with(['vehiclePivot' => fn ($q) => $q->byVehicleId($vehicle_id)]);
     }
 
     /**
@@ -309,7 +309,7 @@ class Alarm extends BuilderAbstract
     public function withNotificationsPendingCount(): self
     {
         return $this->withCount([
-            'notifications as notifications_pending_count' => static fn ($q) => $q->whereClosedAt(false),
+            'notifications as notifications_pending_count' => fn ($q) => $q->whereClosedAt(false),
         ]);
     }
 }

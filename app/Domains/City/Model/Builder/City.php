@@ -174,7 +174,7 @@ class City extends BuilderAbstract
      */
     public function whenCountryId(?int $country_id): self
     {
-        return $this->when($country_id, static fn ($q) => $q->byCountryId($country_id));
+        return $this->when($country_id, fn ($q) => $q->byCountryId($country_id));
     }
 
     /**
@@ -197,7 +197,7 @@ class City extends BuilderAbstract
      */
     public function whenStateId(?int $state_id): self
     {
-        return $this->when($state_id, static fn ($q) => $q->byStateId($state_id));
+        return $this->when($state_id, fn ($q) => $q->byStateId($state_id));
     }
 
     /**

@@ -300,16 +300,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "3.7.3",
+            "version": "3.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "ce594cbc39a4866c544f1a970d285ff0548221ad"
+                "reference": "d244f2e6e6bf32bff5174e6729b57214923ecec9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/ce594cbc39a4866c544f1a970d285ff0548221ad",
-                "reference": "ce594cbc39a4866c544f1a970d285ff0548221ad",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/d244f2e6e6bf32bff5174e6729b57214923ecec9",
+                "reference": "d244f2e6e6bf32bff5174e6729b57214923ecec9",
                 "shasum": ""
             },
             "require": {
@@ -393,7 +393,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/3.7.3"
+                "source": "https://github.com/doctrine/dbal/tree/3.8.0"
             },
             "funding": [
                 {
@@ -409,7 +409,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-21T07:53:09+00:00"
+            "time": "2024-01-25T21:44:02+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -9514,16 +9514,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.56",
+            "version": "1.10.57",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "27816a01aea996191ee14d010f325434c0ee76fa"
+                "reference": "1627b1d03446904aaa77593f370c5201d2ecc34e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/27816a01aea996191ee14d010f325434c0ee76fa",
-                "reference": "27816a01aea996191ee14d010f325434c0ee76fa",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1627b1d03446904aaa77593f370c5201d2ecc34e",
+                "reference": "1627b1d03446904aaa77593f370c5201d2ecc34e",
                 "shasum": ""
             },
             "require": {
@@ -9572,7 +9572,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-15T10:43:00+00:00"
+            "time": "2024-01-24T11:51:34+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -10200,6 +10200,62 @@
                 "source": "https://github.com/bobthecow/psysh/tree/v0.12.0"
             },
             "time": "2023-12-20T15:28:09+00:00"
+        },
+        {
+            "name": "rector/rector",
+            "version": "0.19.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rectorphp/rector.git",
+                "reference": "bc96a99895bf47c6bfe70ea1b799f0081ed5a903"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/bc96a99895bf47c6bfe70ea1b799f0081ed5a903",
+                "reference": "bc96a99895bf47c6bfe70ea1b799f0081ed5a903",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8.0",
+                "phpstan/phpstan": "^1.10.56"
+            },
+            "conflict": {
+                "rector/rector-doctrine": "*",
+                "rector/rector-downgrade-php": "*",
+                "rector/rector-phpunit": "*",
+                "rector/rector-symfony": "*"
+            },
+            "bin": [
+                "bin/rector"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Instant Upgrade and Automated Refactoring of any PHP code",
+            "keywords": [
+                "automation",
+                "dev",
+                "migration",
+                "refactoring"
+            ],
+            "support": {
+                "issues": "https://github.com/rectorphp/rector/issues",
+                "source": "https://github.com/rectorphp/rector/tree/0.19.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/tomasvotruba",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-01-19T10:58:30+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -11553,16 +11609,16 @@
         },
         {
             "name": "spatie/laravel-ray",
-            "version": "1.33.1",
+            "version": "1.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ray.git",
-                "reference": "b9574cec543b932d99e68247eaeb37876c71c8eb"
+                "reference": "449c164c0ad0cf42a5abb52955d329199138604b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/b9574cec543b932d99e68247eaeb37876c71c8eb",
-                "reference": "b9574cec543b932d99e68247eaeb37876c71c8eb",
+                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/449c164c0ad0cf42a5abb52955d329199138604b",
+                "reference": "449c164c0ad0cf42a5abb52955d329199138604b",
                 "shasum": ""
             },
             "require": {
@@ -11572,8 +11628,9 @@
                 "illuminate/queue": "^7.20|^8.19|^9.0|^10.0",
                 "illuminate/support": "^7.20|^8.19|^9.0|^10.0",
                 "php": "^7.4|^8.0",
+                "rector/rector": "^0.19.2",
                 "spatie/backtrace": "^1.0",
-                "spatie/ray": "^1.37",
+                "spatie/ray": "^1.41.1",
                 "symfony/stopwatch": "4.2|^5.1|^6.0|^7.0",
                 "zbateson/mail-mime-parser": "^1.3.1|^2.0"
             },
@@ -11582,7 +11639,7 @@
                 "laravel/framework": "^7.20|^8.19|^9.0|^10.0",
                 "orchestra/testbench-core": "^5.0|^6.0|^7.0|^8.0",
                 "pestphp/pest": "^1.22",
-                "phpstan/phpstan": "^0.12.93",
+                "phpstan/phpstan": "^1.10.57",
                 "phpunit/phpunit": "^9.3",
                 "spatie/pest-plugin-snapshots": "^1.1"
             },
@@ -11622,7 +11679,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-ray/issues",
-                "source": "https://github.com/spatie/laravel-ray/tree/1.33.1"
+                "source": "https://github.com/spatie/laravel-ray/tree/1.34.0"
             },
             "funding": [
                 {
@@ -11634,7 +11691,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2024-01-04T21:36:17+00:00"
+            "time": "2024-01-25T10:39:25+00:00"
         },
         {
             "name": "spatie/macroable",
@@ -11688,16 +11745,16 @@
         },
         {
             "name": "spatie/ray",
-            "version": "1.40.1",
+            "version": "1.41.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ray.git",
-                "reference": "8e6547ff47aae2e4f615a5dcea1e5e4911b1dc9f"
+                "reference": "051a0facb1d2462fafef87ff77eb74d6f2d12944"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ray/zipball/8e6547ff47aae2e4f615a5dcea1e5e4911b1dc9f",
-                "reference": "8e6547ff47aae2e4f615a5dcea1e5e4911b1dc9f",
+                "url": "https://api.github.com/repos/spatie/ray/zipball/051a0facb1d2462fafef87ff77eb74d6f2d12944",
+                "reference": "051a0facb1d2462fafef87ff77eb74d6f2d12944",
                 "shasum": ""
             },
             "require": {
@@ -11707,8 +11764,8 @@
                 "ramsey/uuid": "^3.0|^4.1",
                 "spatie/backtrace": "^1.1",
                 "spatie/macroable": "^1.0|^2.0",
-                "symfony/stopwatch": "^4.0|^5.1|^6.0",
-                "symfony/var-dumper": "^4.2|^5.1|^6.0"
+                "symfony/stopwatch": "^4.0|^5.1|^6.0|^7.0",
+                "symfony/var-dumper": "^4.2|^5.1|^6.0|^7.0"
             },
             "require-dev": {
                 "illuminate/support": "6.x|^8.18|^9.0",
@@ -11716,9 +11773,13 @@
                 "pestphp/pest": "^1.22",
                 "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.5",
+                "rector/rector": "^0.19.2",
                 "spatie/phpunit-snapshot-assertions": "^4.2",
                 "spatie/test-time": "^1.2"
             },
+            "bin": [
+                "bin/remove-ray.sh"
+            ],
             "type": "library",
             "autoload": {
                 "files": [
@@ -11748,7 +11809,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/ray/issues",
-                "source": "https://github.com/spatie/ray/tree/1.40.1"
+                "source": "https://github.com/spatie/ray/tree/1.41.1"
             },
             "funding": [
                 {
@@ -11760,7 +11821,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2023-11-20T08:20:15+00:00"
+            "time": "2024-01-25T10:15:50+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -12411,20 +12472,20 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v6.4.0",
+            "version": "v7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
-                "reference": "fc47f1015ec80927ff64ba9094dfe8b9d48fe9f2"
+                "reference": "7bbfa3dd564a0ce12eb4acaaa46823c740f9cb7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/fc47f1015ec80927ff64ba9094dfe8b9d48fe9f2",
-                "reference": "fc47f1015ec80927ff64ba9094dfe8b9d48fe9f2",
+                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/7bbfa3dd564a0ce12eb4acaaa46823c740f9cb7a",
+                "reference": "7bbfa3dd564a0ce12eb4acaaa46823c740f9cb7a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
+                "php": ">=8.2",
                 "symfony/service-contracts": "^2.5|^3"
             },
             "type": "library",
@@ -12453,7 +12514,7 @@
             "description": "Provides a way to profile code",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/stopwatch/tree/v6.4.0"
+                "source": "https://github.com/symfony/stopwatch/tree/v7.0.0"
             },
             "funding": [
                 {
@@ -12469,7 +12530,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-16T10:14:28+00:00"
+            "time": "2023-07-05T13:06:06+00:00"
         },
         {
             "name": "symfony/var-exporter",

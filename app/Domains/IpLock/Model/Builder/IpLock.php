@@ -21,6 +21,6 @@ class IpLock extends BuilderAbstract
      */
     public function current(): self
     {
-        return $this->where(static fn ($q) => $q->where('end_at', '>=', date('Y-m-d H:i:s'))->orWhereNull('end_at'));
+        return $this->where(fn ($q) => $q->where('end_at', '>=', date('Y-m-d H:i:s'))->orWhereNull('end_at'));
     }
 }

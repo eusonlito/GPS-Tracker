@@ -36,7 +36,7 @@ class Timezone extends BuilderAbstract
      */
     public function byVehicleId(int $vehicle_id): self
     {
-        return $this->whereIn('id', VehicleModel::select('timezone_id')->byId($vehicle_id));
+        return $this->whereIn('id', VehicleModel::query()->select('timezone_id')->byId($vehicle_id));
     }
 
     /**
@@ -64,7 +64,7 @@ class Timezone extends BuilderAbstract
      */
     public function whenIdOrDefault(?int $id): self
     {
-        return $this->when($id, static fn ($q) => $q->byId($id), static fn ($q) => $q->whereDefault(true));
+        return $this->when($id, fn ($q) => $q->byId($id), fn ($q) => $q->whereDefault(true));
     }
 
     /**

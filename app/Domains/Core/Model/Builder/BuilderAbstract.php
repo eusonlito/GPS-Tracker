@@ -285,7 +285,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function whenIds(?array $ids): self
     {
-        return $this->when($ids, static fn ($q) => $q->byIds($ids));
+        return $this->when($ids, fn ($q) => $q->byIds($ids));
     }
 
     /**
@@ -295,6 +295,6 @@ abstract class BuilderAbstract extends Builder
      */
     public function whenIdNext(int $id): self
     {
-        return $this->when($id, static fn ($q) => $q->byIdNext($id));
+        return $this->when($id, fn ($q) => $q->byIdNext($id));
     }
 }

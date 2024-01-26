@@ -34,7 +34,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function byUserOrManager(UserModel $user): self
     {
-        return $this->when($user->managerMode() === false, static fn ($q) => $q->byUserId($user->id));
+        return $this->when($user->managerMode() === false, fn ($q) => $q->byUserId($user->id));
     }
 
     /**
@@ -64,7 +64,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function whenId(?int $id): self
     {
-        return $this->when($id, static fn ($q) => $q->byId($id));
+        return $this->when($id, fn ($q) => $q->byId($id));
     }
 
     /**
@@ -74,7 +74,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function whenDeviceId(?int $device_id): self
     {
-        return $this->when($device_id, static fn ($q) => $q->byDeviceId($device_id));
+        return $this->when($device_id, fn ($q) => $q->byDeviceId($device_id));
     }
 
     /**
@@ -84,7 +84,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function whenUserId(?int $user_id): self
     {
-        return $this->when($user_id, static fn ($q) => $q->byUserId($user_id));
+        return $this->when($user_id, fn ($q) => $q->byUserId($user_id));
     }
 
     /**
@@ -94,7 +94,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function whenVehicleId(?int $vehicle_id): self
     {
-        return $this->when($vehicle_id, static fn ($q) => $q->byVehicleId($vehicle_id));
+        return $this->when($vehicle_id, fn ($q) => $q->byVehicleId($vehicle_id));
     }
 
     /**
@@ -104,7 +104,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function withSimple(string $relation): self
     {
-        return $this->with([$relation => static fn ($q) => $q->selectRelated()]);
+        return $this->with([$relation => fn ($q) => $q->selectRelated()]);
     }
 
     /**
