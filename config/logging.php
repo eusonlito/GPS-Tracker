@@ -44,8 +44,8 @@ return [
     */
 
     'maintenance' => [
-        'zip' => env('LOG_ZIP', 15),
-        'clean' => env('LOG_CLEAN', 180),
+        'zip' => intval(env('LOG_ZIP', 15)),
+        'clean' => intval(env('LOG_CLEAN', 360)),
     ],
 
     /*

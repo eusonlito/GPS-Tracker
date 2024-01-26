@@ -2,11 +2,16 @@
 
 namespace App\Domains\Position\Job;
 
-use App\Domains\Position\Model\Position as Model;
 use App\Domains\Core\Job\JobAbstract as JobAbstractCore;
+use App\Domains\Position\Model\Position as Model;
 
 abstract class JobAbstract extends JobAbstractCore
 {
+    /**
+     * @var \App\Domains\Position\Model\Position
+     */
+    protected Model $row;
+
     /**
      * @param int $id
      *
