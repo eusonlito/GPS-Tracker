@@ -269,6 +269,10 @@ select {
     min-width: 16rem;
 }
 
+.max-h-screen-90 {
+    max-height: 90vh;
+}
+
 ::-webkit-file-upload-button {
     display: none;
 }

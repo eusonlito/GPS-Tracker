@@ -57,7 +57,7 @@
         @if ($pending_more)
 
         <div class="box mb-3 px-5 py-3 font-medium">
-            {{ __('configuration-status.updated-more', ['count' => $more]) }}
+            {{ __('configuration-status.updated-more', ['count' => $pending_more]) }}
         </div>
 
         @endif
