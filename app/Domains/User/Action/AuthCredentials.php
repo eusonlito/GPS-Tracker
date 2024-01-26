@@ -2,7 +2,6 @@
 
 namespace App\Domains\User\Action;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Domains\User\Exception\AuthFailed;
 use App\Domains\User\Model\User as Model;
@@ -99,7 +98,7 @@ class AuthCredentials extends ActionAbstract
      */
     protected function save(): void
     {
-        $this->saveLogin();
+        $this->saveSet();
         $this->saveAuth();
         $this->saveUserSession();
     }
@@ -107,9 +106,9 @@ class AuthCredentials extends ActionAbstract
     /**
      * @return void
      */
-    protected function saveLogin(): void
+    protected function saveSet(): void
     {
-        Auth::login($this->row, true);
+        $this->factory()->action()->set();
     }
 
     /**
@@ -117,7 +116,7 @@ class AuthCredentials extends ActionAbstract
      */
     protected function saveAuth(): void
     {
-        $this->row = $this->auth = Auth::user();
+        $this->auth = $this->row;
     }
 
     /**

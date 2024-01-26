@@ -14,7 +14,7 @@ class {{ domain }} extends BuilderAbstract
      */
     public function byEmail(string $email): self
     {
-        return $this->where('email', strtolower($email));
+        return $this->where($this->addTable('email'), strtolower($email));
     }
 
     /**
@@ -24,7 +24,10 @@ class {{ domain }} extends BuilderAbstract
      */
     public function byTeamId(int $team_id): self
     {
-        return $this->whereIn('id', TeamUserModel::query()->selectOnly('user_id')->where('team_id', $team_id));
+        return $this->whereIn(
+            $this->addTable('id'),
+            TeamUserModel::query()->selectOnly($this->addTable('user_id'))->byTeamId($team_id)
+        );
     }
 
     /**
@@ -34,6 +37,6 @@ class {{ domain }} extends BuilderAbstract
      */
     public function whereEnabled(bool $enabled): self
     {
-        return $this->where('enabled', $enabled);
+        return $this->where($this->addTable('enabled'), $enabled);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Services\Helper\Traits;
 use DateTime;
 use DateTimeZone;
 use Exception;
+use IntlDateFormatter;
 
 trait Date
 {
@@ -20,11 +21,12 @@ trait Date
 
     /**
      * @param ?string $date
+     * @param bool $time = true
      * @param ?string $default = '-'
      *
      * @return ?string
      */
-    public function dateLocal(?string $date, ?string $default = '-'): ?string
+    public function dateLocal(?string $date, bool $time = true, ?string $default = '-'): ?string
     {
         if (empty($date)) {
             return $default;
@@ -36,7 +38,7 @@ trait Date
             return $default;
         }
 
-        return date(str_contains($date, ' ') ? 'd/m/Y H:i' : 'd/m/Y', $time);
+        return date(($time && str_contains($date, ' ')) ? 'd/m/Y H:i' : 'd/m/Y', $time);
     }
 
     /**
@@ -195,5 +197,29 @@ trait Date
 
         return DateTimeZone::listIdentifiers(DateTimeZone::PER_COUNTRY, strtoupper($country))
             ?: DateTimeZone::listIdentifiers();
+    }
+
+    /**
+     * @return array
+     */
+    public function months(): array
+    {
+        static $cache;
+
+        if (isset($cache)) {
+            return $cache;
+        }
+
+        $format = function ($index) {
+            $formatter = new IntlDateFormatter('es_ES');
+            $formatter->setPattern('MMMM');
+
+            return ucfirst($formatter->format(mktime(0, 0, 0, $index)));
+        };
+
+        return $cache = array_combine(
+            range(1, 12),
+            array_map(static fn ($index) => $format($index), range(1, 12))
+        );
     }
 }

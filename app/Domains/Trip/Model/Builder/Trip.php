@@ -325,7 +325,7 @@ class Trip extends BuilderAbstract
     {
         return $this->when(
             $fence && $latitude && $longitude && $radius,
-            static fn ($q) => $q->byFence($latitude, $longitude, $radius)
+            fn ($q) => $q->byFence($latitude, $longitude, $radius)
         );
     }
 
@@ -336,7 +336,7 @@ class Trip extends BuilderAbstract
      */
     public function whenFinished(?bool $finished): self
     {
-        return $this->when(is_bool($finished), static fn ($q) => $q->whereFinished($finished));
+        return $this->when(is_bool($finished), fn ($q) => $q->whereFinished($finished));
     }
 
     /**
@@ -346,7 +346,7 @@ class Trip extends BuilderAbstract
      */
     public function whenPositionIdFrom(?int $position_id): self
     {
-        return $this->when($position_id, static fn ($q) => $q->byPositionIdFrom($position_id));
+        return $this->when($position_id, fn ($q) => $q->byPositionIdFrom($position_id));
     }
 
     /**
@@ -356,7 +356,7 @@ class Trip extends BuilderAbstract
      */
     public function whenShared(?bool $shared): self
     {
-        return $this->when(is_bool($shared), static fn ($q) => $q->whereShared($shared));
+        return $this->when(is_bool($shared), fn ($q) => $q->whereShared($shared));
     }
 
     /**
@@ -366,7 +366,7 @@ class Trip extends BuilderAbstract
      */
     public function whenSharedPublic(?bool $shared_public): self
     {
-        return $this->when(is_bool($shared_public), static fn ($q) => $q->whereSharedPublic($shared_public));
+        return $this->when(is_bool($shared_public), fn ($q) => $q->whereSharedPublic($shared_public));
     }
 
     /**
@@ -398,7 +398,7 @@ class Trip extends BuilderAbstract
      */
     public function whenStartAtDateAfter(?string $start_at): self
     {
-        return $this->when($start_at, static fn ($q) => $q->byStartAtDateAfterEqual($start_at));
+        return $this->when($start_at, fn ($q) => $q->byStartAtDateAfterEqual($start_at));
     }
 
     /**
@@ -408,7 +408,7 @@ class Trip extends BuilderAbstract
      */
     public function whenStartAtDateBefore(?string $start_at): self
     {
-        return $this->when($start_at, static fn ($q) => $q->byStartAtDateBeforeEqual($start_at));
+        return $this->when($start_at, fn ($q) => $q->byStartAtDateBeforeEqual($start_at));
     }
 
     /**
@@ -418,7 +418,7 @@ class Trip extends BuilderAbstract
      */
     public function whenStartUtcAtDateAfter(?string $start_utc_at): self
     {
-        return $this->when($start_utc_at, static fn ($q) => $q->byStartUtcAtDateAfterEqual($start_utc_at));
+        return $this->when($start_utc_at, fn ($q) => $q->byStartUtcAtDateAfterEqual($start_utc_at));
     }
 
     /**
@@ -428,7 +428,7 @@ class Trip extends BuilderAbstract
      */
     public function whenStartUtcAtDateBefore(?string $start_utc_at): self
     {
-        return $this->when($start_utc_at, static fn ($q) => $q->byStartUtcAtDateBeforeEqual($start_utc_at));
+        return $this->when($start_utc_at, fn ($q) => $q->byStartUtcAtDateBeforeEqual($start_utc_at));
     }
 
     /**
@@ -518,7 +518,7 @@ class Trip extends BuilderAbstract
      */
     public function withSimpleWhen(string $relation, bool $condition): self
     {
-        return $this->when($condition, static fn ($q) => $q->withSimple($relation));
+        return $this->when($condition, fn ($q) => $q->withSimple($relation));
     }
 
     /**

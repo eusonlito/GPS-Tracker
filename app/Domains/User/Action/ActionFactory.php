@@ -61,11 +61,11 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return void
+     * @return \App\Domains\User\Model\User
      */
-    public function set(): void
+    public function set(): Model
     {
-        $this->actionHandle(Set::class);
+        return $this->actionHandle(Set::class);
     }
 
     /**

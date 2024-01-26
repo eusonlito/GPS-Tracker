@@ -20,11 +20,11 @@ trait Misc
     /**
      * @param int $length
      * @param bool $safe = false
-     * @param bool $lower = false
+     * @param ?string $case = null
      *
      * @return string
      */
-    public function uniqidReal(int $length, bool $safe = false, bool $lower = false): string
+    public function uniqidReal(int $length, bool $safe = false, ?string $case = null): string
     {
         if ($safe) {
             $string = '23456789bcdfghjkmnpqrstwxyzBCDFGHJKMNPQRSTWXYZ';
@@ -32,9 +32,11 @@ trait Misc
             $string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         }
 
-        if ($lower) {
-            $string = strtolower($string);
-        }
+        $string = match ($case) {
+            'lower' => strtolower($string),
+            'upper' => strtoupper($string),
+            default => $string,
+        };
 
         return substr(str_shuffle(str_repeat($string, rand((int)($length / 2), $length))), 0, $length);
     }

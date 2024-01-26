@@ -103,6 +103,17 @@ trait Arrays
 
     /**
      * @param array $array
+     * @param callable $callback
+     *
+     * @return array
+     */
+    public function arrayMapKeyValue(array $array, callable $callback): array
+    {
+        return array_combine($keys = array_keys($array), array_map($callback, $keys, $array));
+    }
+
+    /**
+     * @param array $array
      *
      * @return array
      */
@@ -165,5 +176,22 @@ trait Arrays
 
             return '';
         }, array_keys($array), $array)));
+    }
+
+    /**
+     * @param string $string
+     * @param array $list
+     *
+     * @return bool
+     */
+    public function startsWithArray(string $string, array $list): bool
+    {
+        foreach ($list as $each) {
+            if (str_starts_with($string, $each)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

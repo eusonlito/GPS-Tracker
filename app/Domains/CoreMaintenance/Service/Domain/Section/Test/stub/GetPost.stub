@@ -14,11 +14,11 @@ class {{ controller }} extends ControllerAbstract
      */
     protected string $action = '{{ action }}';
 
-    {{ function/testGetGuestSuccess }}
+    {{ function/testGetGuestEmptySuccess }}
 
     {{ function/testGetGuestSuccess }}
 
-    {{ function/testPostGuestSuccess }}
+    {{ function/testPostGuestEmptySuccess }}
 
     {{ function/testPostGuestSuccess }}
 

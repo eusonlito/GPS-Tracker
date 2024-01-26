@@ -86,7 +86,7 @@ class Device extends ModelAbstract
     public function positionLast(): HasOne
     {
         return $this->hasOne(PositionModel::class, static::FOREIGN)
-            ->ofMany(['date_utc_at' => 'MAX'], static fn ($q) => $q->withoutGlobalScope('selectPointAsLatitudeLongitude'))
+            ->ofMany(['date_utc_at' => 'MAX'], fn ($q) => $q->withoutGlobalScope('selectPointAsLatitudeLongitude'))
             ->selectOnlyLatitudeLongitude();
     }
 
@@ -113,7 +113,7 @@ class Device extends ModelAbstract
     public function tripLastShared(): HasOne
     {
         return $this->hasOne(TripModel::class, static::FOREIGN)
-            ->ofMany(['endutc_at' => 'MAX'], static fn ($q) => $q->whereShared());
+            ->ofMany(['endutc_at' => 'MAX'], fn ($q) => $q->whereShared());
     }
 
     /**
@@ -122,7 +122,7 @@ class Device extends ModelAbstract
     public function tripLastSharedPublic(): HasOne
     {
         return $this->hasOne(TripModel::class, static::FOREIGN)
-            ->ofMany(['end_utc_at' => 'MAX'], static fn ($q) => $q->whereSharedPublic());
+            ->ofMany(['end_utc_at' => 'MAX'], fn ($q) => $q->whereSharedPublic());
     }
 
     /**

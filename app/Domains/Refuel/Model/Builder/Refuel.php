@@ -118,7 +118,7 @@ class Refuel extends BuilderAbstract
      */
     public function whenCityId(?int $city_id): self
     {
-        return $this->when($city_id, static fn ($q) => $q->byCityId($city_id));
+        return $this->when($city_id, fn ($q) => $q->byCityId($city_id));
     }
 
     /**
@@ -152,7 +152,7 @@ class Refuel extends BuilderAbstract
      */
     public function whenCountryId(?int $country_id): self
     {
-        return $this->when($country_id, static fn ($q) => $q->byCountryId($country_id));
+        return $this->when($country_id, fn ($q) => $q->byCountryId($country_id));
     }
 
     /**
@@ -173,7 +173,7 @@ class Refuel extends BuilderAbstract
      */
     public function whenDateAtAfter(?string $date_at): self
     {
-        return $this->when($date_at, static fn ($q) => $q->byDateAtAfter($date_at));
+        return $this->when($date_at, fn ($q) => $q->byDateAtAfter($date_at));
     }
 
     /**
@@ -183,7 +183,7 @@ class Refuel extends BuilderAbstract
      */
     public function whenDateAtBefore(?string $date_at): self
     {
-        return $this->when($date_at, static fn ($q) => $q->byDateAtBefore($date_at));
+        return $this->when($date_at, fn ($q) => $q->byDateAtBefore($date_at));
     }
 
     /**
@@ -193,7 +193,7 @@ class Refuel extends BuilderAbstract
      */
     public function whenStateId(?int $state_id): self
     {
-        return $this->when($state_id, static fn ($q) => $q->byStateId($state_id));
+        return $this->when($state_id, fn ($q) => $q->byStateId($state_id));
     }
 
     /**
@@ -224,7 +224,7 @@ class Refuel extends BuilderAbstract
      */
     public function withCityState(): self
     {
-        return $this->with(['city' => static fn ($q) => $q->withState()]);
+        return $this->with(['city' => fn ($q) => $q->withState()]);
     }
 
     /**
@@ -240,7 +240,7 @@ class Refuel extends BuilderAbstract
      */
     public function withWhereHasPosition(): self
     {
-        return $this->withWhereHas('position', static fn ($q) => $q->withCityState());
+        return $this->withWhereHas('position', fn ($q) => $q->withCityState());
     }
 
     /**

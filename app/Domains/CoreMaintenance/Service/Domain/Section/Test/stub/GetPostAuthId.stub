@@ -18,11 +18,11 @@ class {{ controller }} extends ControllerAbstract
 
     {{ function/testPostGuestUnauthorizedFail }}
 
-    {{ function/testGetAuthSuccess }}
+    {{ function/testGetAuthEmptySuccess }}
 
     {{ function/testGetAuthSuccess }}
 
-    {{ function/testPostAuthSuccess }}
+    {{ function/testPostAuthEmptySuccess }}
 
     {{ function/testPostAuthSuccess }}
 

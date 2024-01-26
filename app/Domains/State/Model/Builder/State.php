@@ -96,7 +96,7 @@ class State extends BuilderAbstract
      */
     public function whenCountryId(?int $country_id): self
     {
-        return $this->when($country_id, static fn ($q) => $q->byCountryId($country_id));
+        return $this->when($country_id, fn ($q) => $q->byCountryId($country_id));
     }
 
     /**
