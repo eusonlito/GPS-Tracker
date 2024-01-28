@@ -15,18 +15,18 @@
         "sibyx/phpgpx": "^1.2.1"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.7",
-        "brianium/paratest": "^7.1",
-        "friendsofphp/php-cs-fixer": "^3.14.3",
-        "laravel/pint": "^1.4.1",
+        "barryvdh/laravel-debugbar": "dev-master",
+        "brianium/paratest": "7.x-dev",
+        "friendsofphp/php-cs-fixer": "^3.48",
+        "laravel/pint": "dev-main",
         "nunomaduro/collision": "^7.0",
-        "larastan/larastan": "^2.7",
-        "nunomaduro/phpinsights": "^2.8",
+        "larastan/larastan": "2.x-dev",
+        "nunomaduro/phpinsights": "dev-master",
         "phpcompatibility/php-compatibility": "^9.3",
         "phpunit/phpunit": "^10.0",
-        "psalm/plugin-laravel": "^2.7",
-        "spatie/laravel-ignition": "^2.0",
-        "vimeo/psalm": "^5.6"
+        "psalm/plugin-laravel": "^2.8",
+        "spatie/laravel-ignition": "dev-main",
+        "vimeo/psalm": "^5.1"
     },
     "config": {
         "optimize-autoloader": true,
