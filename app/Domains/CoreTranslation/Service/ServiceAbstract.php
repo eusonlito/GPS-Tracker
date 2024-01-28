@@ -59,7 +59,23 @@ abstract class ServiceAbstract
      */
     protected function read(string $dir): Generator
     {
-        return DirectoryService::files($dir, ['php'], ['/node_modules/']);
+        return DirectoryService::files($dir, $this->readInclude(), $this->readExclude());
+    }
+
+    /**
+     * @return string
+     */
+    protected function readInclude(): string
+    {
+        return '/\.php$/';
+    }
+
+    /**
+     * @return string
+     */
+    protected function readExclude(): string
+    {
+        return '/\/node_modules\//';
     }
 
     /**
