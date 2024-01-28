@@ -40,7 +40,15 @@ class FileDeleteOlder extends ActionAbstract
      */
     protected function scan(): Generator
     {
-        return Directory::files($this->data['path'], $this->data['extensions']);
+        return Directory::files($this->data['path'], $this->scanInclude());
+    }
+
+    /**
+     * @return string
+     */
+    protected function scanInclude(): string
+    {
+        return '/\.('.implode('|', $this->data['extensions']).')$/i';
     }
 
     /**

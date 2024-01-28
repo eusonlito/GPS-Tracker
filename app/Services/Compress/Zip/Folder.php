@@ -134,13 +134,37 @@ class Folder
     {
         $this->open();
 
-        foreach (Directory::files($this->source, $this->extensions, $this->exclude) as $file) {
+        foreach (Directory::files($this->source, $this->compressInclude(), $this->compressExclude()) as $file) {
             $this->file($file);
         }
 
         $this->close();
 
         return $this;
+    }
+
+    /**
+     * @return ?string
+     */
+    public function compressInclude(): ?string
+    {
+        if (empty($this->extensions)) {
+            return null;
+        }
+
+        return '/\.('.implode('|', $this->extensions).')$/i';
+    }
+
+    /**
+     * @return ?string
+     */
+    public function compressExclude(): ?string
+    {
+        if (empty($this->exclude)) {
+            return null;
+        }
+
+        return '/\.('.implode('|', $this->exclude).')$/';
     }
 
     /**

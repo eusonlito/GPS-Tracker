@@ -5,27 +5,26 @@ namespace App\Services\Filesystem;
 use Generator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use RegexIterator;
 use SplFileInfo;
 
 class Directory
 {
     /**
      * @param string $dir
-     * @param array $extensions = []
-     * @param array $exclude = []
+     * @param ?string $include = null
+     * @param ?string $exclude = null
      *
      * @return \Generator
      */
-    public static function files(string $dir, array $extensions = [], array $exclude = []): Generator
+    public static function files(string $dir, ?string $include = null, ?string $exclude = null): Generator
     {
         if (is_dir($dir) === false) {
             return [];
         }
 
-        $extensions = array_map('strtolower', $extensions);
-
-        foreach (static::directoryIterator($dir) as $file) {
-            if (static::filesValid($file, $extensions, $exclude)) {
+        foreach (static::directoryIterator($dir, $include) as $file) {
+            if (static::filesValid($file, $exclude)) {
                 yield $file->getPathName();
             }
         }
@@ -33,26 +32,35 @@ class Directory
 
     /**
      * @param string $dir
+     * @param ?string $include
      *
-     * @return \RecursiveIteratorIterator
+     * @return \RecursiveIteratorIterator|\RegexIterator
      */
-    protected static function directoryIterator(string $dir): RecursiveIteratorIterator
+    protected static function directoryIterator(string $dir, ?string $include): RecursiveIteratorIterator|RegexIterator
     {
-        return new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir), RecursiveIteratorIterator::SELF_FIRST);
+        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir), RecursiveIteratorIterator::SELF_FIRST);
+
+        if ($include) {
+            $iterator = new RegexIterator($iterator, $include);
+        }
+
+        return $iterator;
     }
 
     /**
      * @param \SplFileInfo $file
-     * @param array $extensions
-     * @param array $exclude
+     * @param ?string $exclude
      *
      * @return bool
      */
-    protected static function filesValid(SplFileInfo $file, array $extensions, array $exclude): bool
+    protected static function filesValid(SplFileInfo $file, ?string $exclude): bool
     {
-        return $file->isFile()
-            && (empty($extensions) || in_array(strtolower($file->getExtension()), $extensions))
-            && (empty($exclude) || ($file->getPathName() === str_replace($exclude, '', $file->getPathName())));
+        if ($file->isDir()) {
+            return false;
+        }
+
+        return empty($exclude)
+            || (preg_match($exclude, $file->getPathName()) === 0);
     }
 
     /**

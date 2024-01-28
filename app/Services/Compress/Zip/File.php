@@ -20,7 +20,7 @@ class File
     /**
      * @var array
      */
-    protected array $exclude = ['zip'];
+    protected array $exclude = [];
 
     /**
      * @var int
@@ -43,13 +43,13 @@ class File
     }
 
     /**
-     * @param array $extensions
+     * @param array|string $extensions
      *
      * @return self
      */
-    public function extensions(array $extensions): self
+    public function extensions(array|string $extensions): self
     {
-        $this->extensions = $extensions;
+        $this->extensions = (array)$extensions;
 
         return $this;
     }
@@ -119,11 +119,31 @@ class File
      */
     public function compress(): self
     {
-        foreach (Directory::files($this->folder, $this->extensions, $this->exclude) as $file) {
+        foreach (Directory::files($this->folder, $this->compressInclude(), $this->compressExclude()) as $file) {
             $this->file($file);
         }
 
         return $this;
+    }
+
+    /**
+     * @return ?string
+     */
+    public function compressInclude(): ?string
+    {
+        if (empty($this->extensions)) {
+            return null;
+        }
+
+        return '/\.('.implode('|', $this->extensions).')$/i';
+    }
+
+    /**
+     * @return string
+     */
+    public function compressExclude(): string
+    {
+        return '/('.implode('|', array_filter(array_unique(array_merge($this->exclude, ['\.zip$'])))).')/';
     }
 
     /**
