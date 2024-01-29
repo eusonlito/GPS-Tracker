@@ -157,7 +157,7 @@ class Heatmap extends Index
                 return;
             }
 
-            $grid = PositionModel::heatmap($query, $this->requestArray('bounding_box'));
+            $grid = PositionModel::heatmap($query, $this->requestArray('bounding_box') ?: $this->bbox());
 
             return array_map(static fn ($point) => array_map('floatval', (array)$point), $grid);
         });
