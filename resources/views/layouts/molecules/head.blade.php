@@ -13,7 +13,6 @@
 
 <link rel="apple-touch-icon" type="image/png" href="@asset('build/images/webapp/logo.png')" />
 <link rel="apple-touch-startup-image" type="image/png" href="@asset('build/images/webapp/startup.png')" />
-<link rel="canonical" href="{{ config('app.url') }}">
 <link rel="icon" href="@asset('favicon.ico')" type="image/png">
 <link rel="manifest" href="@asset('manifest.json')" defer="defer"/>
 <link rel="shortcut icon" type="image/png" href="@asset('build/images/webapp/logo.png')" />
