@@ -61,7 +61,13 @@ export default class {
     }
 
     storage() {
-        const storage = localStorage.getItem(this.name);
+        let storage;
+
+        try {
+            storage = localStorage.getItem(this.name);
+        } catch (e) {
+            return false;
+        }
 
         if (!storage) {
             return {};
