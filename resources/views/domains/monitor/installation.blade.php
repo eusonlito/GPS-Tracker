@@ -3,7 +3,7 @@
 @section ('body')
 
 <div class="flex items-center justify-center">
-    <div class="text-center min-w-128 max-w-full">
+    <div class="text-center">
         @if ($updated)
 
         <div class="box p-10">

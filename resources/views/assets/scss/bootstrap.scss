@@ -156,7 +156,7 @@ select {
 
 .header-sticky table thead th {
     position: sticky;
-    top: 0px;
+    top: 0;
     border-bottom: 1px solid #CCC;
     box-shadow: 20px 3px 20px #0000000b;
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity));

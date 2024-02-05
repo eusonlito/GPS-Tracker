@@ -19,6 +19,7 @@
     'maintenance-index' => 'Lista',
     'maintenance-item' => 'Items',
     'monitor' => 'Monitor',
+    'monitor-database' => 'Base de Datos',
     'monitor-installation' => 'Instalación',
     'profile' => 'Perfil',
     'refuel' => 'Repostajes',
