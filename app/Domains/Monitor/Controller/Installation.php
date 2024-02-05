@@ -1,20 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Configuration\Controller;
+namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Configuration\Service\Controller\Status as ControllerService;
+use App\Domains\Monitor\Service\Controller\Installation as ControllerService;
 
-class Status extends ControllerAbstract
+class Installation extends ControllerAbstract
 {
     /**
      * @return \Illuminate\Http\Response
      */
     public function __invoke(): Response
     {
-        $this->meta('title', __('configuration-status.meta-title'));
+        $this->meta('title', __('monitor-installation.meta-title'));
 
-        return $this->page('configuration.status', $this->data());
+        return $this->page('monitor.installation', $this->data());
     }
 
     /**

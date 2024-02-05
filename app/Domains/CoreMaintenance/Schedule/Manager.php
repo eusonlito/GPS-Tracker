@@ -35,7 +35,7 @@ class Manager extends ScheduleAbstract
     protected function queuePruneFailed(): void
     {
         $this->command('queue:prune-failed', 'queue-prune-failed', [
-            '--hours' => 120
+            '--hours' => 120,
         ])->daily();
     }
 
