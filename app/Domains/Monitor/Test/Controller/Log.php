@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Server\Test\Controller;
+namespace App\Domains\Monitor\Test\Controller;
 
 class Log extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'server.log';
+    protected string $route = 'monitor.log';
 
     /**
      * @return void

@@ -290,13 +290,6 @@
                 <div class="side-menu__title">{{ __('in-sidebar.server-create') }}</div>
             </a>
         </li>
-
-        <li>
-            <a href="{{ route('server.log') }}" class="side-menu {{ ($ROUTE === 'server.log') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('file-text')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.server-log') }}</div>
-            </a>
-        </li>
     </ul>
 </li>
 
@@ -356,6 +349,13 @@
             <a href="{{ route('monitor.database') }}" class="side-menu {{ ($ROUTE === 'monitor.database') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('database')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.monitor-database') }}</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('monitor.log') }}" class="side-menu {{ ($ROUTE === 'monitor.log') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('file-text')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.monitor-log') }}</div>
             </a>
         </li>
     </ul>

@@ -37,7 +37,7 @@
                         <td class="w-1">
                             @if ($each->log)
 
-                            <a href="{{ route('server.log', ['path' => $each->log]) }}">@icon('file-text', 'w-4 h-4')</a>
+                            <a href="{{ route('monitor.log', ['path' => $each->log]) }}">@icon('file-text', 'w-4 h-4')</a>
 
                             @endif
                         </td>

@@ -1,6 +1,6 @@
 <?php return [
     'filter' => 'Filtre...',
-    'meta-title' => 'Serveurs > Journaux',
+    'meta-title' => 'Moniteur > Journaux',
     'name' => 'Nom',
     'size' => 'Taille',
     'type' => 'Type de journal',

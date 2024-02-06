@@ -36,9 +36,7 @@ class Database extends ControllerAbstract
             SELECT `table_name` AS `table_name`
             FROM `information_schema`.`tables`
             WHERE `table_schema` = :table_schema;
-        ', [
-            'table_schema' => $this->dbname(),
-        ]);
+        ', ['table_schema' => $this->dbname()]);
     }
 
     /**
@@ -69,9 +67,7 @@ class Database extends ControllerAbstract
                 `table_schema` = :table_schema
             ORDER BY
                 (`data_length` + `index_length`) DESC;
-        ', [
-            'table_schema' => $this->dbname(),
-        ]);
+        ', ['table_schema' => $this->dbname()]);
     }
 
     /**

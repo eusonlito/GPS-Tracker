@@ -1,12 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Server\Service\Controller;
+namespace App\Domains\Monitor\Service\Controller;
 
 use DirectoryIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RegexIterator;
 use stdClass;
+use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class Log extends ControllerAbstract
 {
@@ -36,6 +38,16 @@ class Log extends ControllerAbstract
     protected const BASE = 'storage/logs';
 
     /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
      * @return array
      */
     public function handle(): array
@@ -48,7 +60,7 @@ class Log extends ControllerAbstract
      */
     public function view(): string
     {
-        return $this->isFile() ? 'server.log-detail' : 'server.log';
+        return $this->isFile() ? 'monitor.log-detail' : 'monitor.log';
     }
 
     /**

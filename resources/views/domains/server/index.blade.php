@@ -10,7 +10,6 @@
 
         <div class="sm:ml-4 mt-2 sm:mt-0 text-center">
             <a href="{{ route('server.status') }}" class="btn form-control-lg bg-white">{{ __('server-index.status') }}</a>
-            <a href="{{ route('server.log') }}" class="btn form-control-lg bg-white ml-2">{{ __('server-index.logs') }}</a>
             <a href="{{ route('server.create') }}" class="btn form-control-lg bg-white ml-2">{{ __('server-index.create') }}</a>
         </div>
     </div>
