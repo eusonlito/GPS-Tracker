@@ -62,6 +62,17 @@
 
         @endif
 
+        <h2 class="my-5 truncate text-lg font-medium">{{ __('monitor-installation.previous') }}</h2>
+
+        @foreach ($updated_commits as $commit)
+
+        <div class="box mb-3 px-5 py-3 text-left">
+            <div class="font-medium text-success">{{ $commit['message'] }}</div>
+            <div class="mt-0.5 text-xs text-slate-500">{{ $commit['date'] }}</div>
+        </div>
+
+        @endforeach
+
         @else
 
         <div class="box p-10">
