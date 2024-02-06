@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Configuration\Service\Controller;
+namespace App\Domains\Monitor\Service\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
 
-class Status extends ControllerAbstract
+class Installation extends ControllerAbstract
 {
     /**
      * @param \Illuminate\Http\Request $request

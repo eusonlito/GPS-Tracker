@@ -11,7 +11,7 @@ import leafletPolycolor from 'leaflet-polycolor';
 leafletPolycolor(L);
 
 import Ajax from './ajax';
-import LocalStorage from './local-storage';
+import Storage from './storage';
 import feather from './feather';
 import value2color from './value2color';
 import number2color from './number2color';
@@ -60,7 +60,7 @@ export default class {
 
         this.listTable = null;
 
-        this.localStorage = new LocalStorage('map');
+        this.storage = new Storage('map');
 
         return this;
     }
@@ -227,7 +227,7 @@ export default class {
             .addTo(this.getMap());
 
         this.getMap().on('baselayerchange', (e) => {
-            this.localStorage.set('layer', e.name);
+            this.storage.set('layer', e.name);
         });
 
         return this;
@@ -235,7 +235,7 @@ export default class {
 
     setControlLayerDefault() {
         const layers = this.constructor.getControlLayers();
-        let name = this.localStorage.get('layer');
+        let name = this.storage.get('layer');
 
         if (!name || !layers[name]) {
             name = Object.keys(layers)[0];
@@ -261,7 +261,7 @@ export default class {
         L.Control.Markers = L.Control.extend({ onAdd: () => container });
         L.control.markers = (options) => new L.Control.Markers(options);
 
-        if (this.localStorage.get('markers') === true) {
+        if (this.storage.get('markers') === true) {
             container.dispatchEvent(new Event('click'));
         }
 
@@ -283,14 +283,14 @@ export default class {
 
                 map.removeLayer(layerMarkers);
 
-                this.localStorage.set('markers', false);
+                this.storage.set('markers', false);
             } else {
                 img.style.background = '#A3EA9A';
 
                 layerMarkers.addTo(map);
                 layerMarkers.bringToBack();
 
-                this.localStorage.set('markers', true);
+                this.storage.set('markers', true);
             }
         };
 

@@ -80,7 +80,7 @@ class Alert
         $trace = ['['.str_replace($base, '', $e->getFile()).' - '.$e->getLine().'] '.$message];
 
         foreach ($e->getTrace() as $line) {
-            if (empty($line['file']) || str_contains($line['file'] ?? '', '/vendor/')) {
+            if (empty($line['file']) || str_contains($line['file'], '/vendor/')) {
                 continue;
             }
 

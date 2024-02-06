@@ -290,13 +290,6 @@
                 <div class="side-menu__title">{{ __('in-sidebar.server-create') }}</div>
             </a>
         </li>
-
-        <li>
-            <a href="{{ route('server.log') }}" class="side-menu {{ ($ROUTE === 'server.log') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('file-text')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.server-log') }}</div>
-            </a>
-        </li>
     </ul>
 </li>
 
@@ -334,31 +327,45 @@
     </ul>
 </li>
 
-@php ($active = str_starts_with($ROUTE, 'configuration.'))
+@php ($active = str_starts_with($ROUTE, 'monitor.'))
 
 <li>
     <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
-        <div class="side-menu__icon">@icon('settings')</div>
+        <div class="side-menu__icon">@icon('activity')</div>
         <div class="side-menu__title">
-            {{ __('in-sidebar.configuration') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+            {{ __('in-sidebar.monitor') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
         </div>
     </a>
 
     <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
         <li>
-            <a href="{{ route('configuration.index') }}" class="side-menu {{ ($ROUTE === 'configuration.index') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('list')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.configuration-index') }}</div>
+            <a href="{{ route('monitor.installation') }}" class="side-menu {{ ($ROUTE === 'monitor.installation') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('check-circle')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.monitor-installation') }}</div>
             </a>
         </li>
 
         <li>
-            <a href="{{ route('configuration.status') }}" class="side-menu {{ ($ROUTE === 'configuration.status') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('check-circle')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.configuration-status') }}</div>
+            <a href="{{ route('monitor.database') }}" class="side-menu {{ ($ROUTE === 'monitor.database') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('database')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.monitor-database') }}</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('monitor.log') }}" class="side-menu {{ ($ROUTE === 'monitor.log') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('file-text')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.monitor-log') }}</div>
             </a>
         </li>
     </ul>
+</li>
+
+<li>
+    <a href="{{ route('configuration.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'configuration.') ? 'side-menu--active' : '' }}">
+        <div class="side-menu__icon">@icon('settings')</div>
+        <div class="side-menu__title">{{ __('in-sidebar.configuration') }}</div>
+    </a>
 </li>
 
 <li>

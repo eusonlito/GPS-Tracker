@@ -14,9 +14,29 @@ class Manager extends ScheduleAbstract
      */
     public function handle(): void
     {
+        $this->cachePruneStaleTags();
+        $this->queuePruneFailed();
         $this->fileZip();
         $this->fileDeleteOlder();
         $this->curlCacheClean();
+    }
+
+    /**
+     * @return void
+     */
+    protected function cachePruneStaleTags(): void
+    {
+        $this->command('cache:prune-stale-tags', 'cache-prune-stale-tags')->hourly();
+    }
+
+    /**
+     * @return void
+     */
+    protected function queuePruneFailed(): void
+    {
+        $this->command('queue:prune-failed', 'queue-prune-failed', [
+            '--hours' => 120,
+        ])->daily();
     }
 
     /**

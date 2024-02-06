@@ -1,6 +1,6 @@
 import Ajax from './ajax';
 import Feather from './feather';
-import LocalStorage from './local-storage';
+import Storage from './storage';
 import Map from './map';
 
 (function () {
@@ -39,7 +39,7 @@ import Map from './map';
             return;
         }
 
-        const localStorage = new LocalStorage('map');
+        const storage = new Storage('map');
 
         mapListToggle.addEventListener('click', (e) => {
             e.preventDefault();
@@ -51,7 +51,7 @@ import Map from './map';
 
             mapListToggle.innerHTML = show ? '⟼' : '⟻';
 
-            localStorage.set('list', show);
+            storage.set('list', show);
 
             setTimeout(() => {
                 element.classList.remove('map-list-moving');
@@ -59,7 +59,7 @@ import Map from './map';
             }, 500);
         });
 
-        if (localStorage.get('list')) {
+        if (storage.get('list')) {
             mapListToggle.dispatchEvent(new Event('click'));
         }
     })();
@@ -140,7 +140,9 @@ import Map from './map';
 
     const liveStart = function () {
         try {
-            navigator.wakeLock.request('screen').then(enabled => wakeLock = enabled);
+            if ('wakeLock' in navigator) {
+                navigator.wakeLock.request('screen').then(enabled => wakeLock = enabled);
+            }
         } catch (err) {
             console.error(`${err.name}, ${err.message}`);
         }

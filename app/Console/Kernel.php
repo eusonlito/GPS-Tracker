@@ -25,10 +25,18 @@ class Kernel extends KernelVendor
      */
     protected function schedule(Schedule $schedule): void
     {
+<<<<<<< HEAD
         $this->scheduleQueue($schedule);
         $this->scheduleCachePrune($schedule);
 
+=======
+        (new ServerScheduleManager($schedule))->handle();
+        (new PositionScheduleManager($schedule))->handle();
+        (new RefuelScheduleManager($schedule))->handle();
+>>>>>>> master
         (new CoreMaintenanceScheduleManager($schedule))->handle();
+
+        $this->scheduleQueue($schedule);
     }
 
     /**
@@ -45,24 +53,14 @@ class Kernel extends KernelVendor
         $schedule->command('queue:work', ['--tries' => 3, '--max-time' => 3600])
             ->withoutOverlapping()
             ->runInBackground()
-            ->appendOutputTo($this->log())
+            ->appendOutputTo($this->scheduleQueueLog())
             ->everyMinute();
-    }
-
-    /**
-     * @param \Illuminate\Console\Scheduling\Schedule $schedule
-     *
-     * @return void
-     */
-    protected function scheduleCachePrune(Schedule $schedule): void
-    {
-        $schedule->command('cache:prune-stale-tags')->hourly();
     }
 
     /**
      * @return string
      */
-    protected function log(): string
+    protected function scheduleQueueLog(): string
     {
         $file = storage_path('logs/artisan/'.date('Y/m/d').'/schedule-command-queue-work.log');
 

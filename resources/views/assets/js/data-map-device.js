@@ -1,6 +1,6 @@
 import Ajax from './ajax';
 import Feather from './feather';
-import LocalStorage from './local-storage';
+import Storage from './storage';
 import Map from './map';
 import { dateUtc, dateToIso } from './helper'
 
@@ -38,7 +38,7 @@ import { dateUtc, dateToIso } from './helper'
             return;
         }
 
-        const localStorage = new LocalStorage('map-device');
+        const storage = new Storage('map-device');
 
         mapListToggle.addEventListener('click', (e) => {
             e.preventDefault();
@@ -50,7 +50,7 @@ import { dateUtc, dateToIso } from './helper'
 
             mapListToggle.innerHTML = show ? '⟼' : '⟻';
 
-            localStorage.set('list', show);
+            storage.set('list', show);
 
             setTimeout(() => {
                 element.classList.remove('map-list-moving');
@@ -58,7 +58,7 @@ import { dateUtc, dateToIso } from './helper'
             }, 500);
         });
 
-        if (localStorage.get('list')) {
+        if (storage.get('list')) {
             mapListToggle.dispatchEvent(new Event('click'));
         }
     })();

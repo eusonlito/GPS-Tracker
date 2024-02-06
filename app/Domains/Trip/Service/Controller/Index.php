@@ -17,7 +17,7 @@ class Index extends ControllerAbstract
     /**
      * @const string
      */
-    protected const START_AT_DEFAULT = '-30 days';
+    protected const START_AT_DEFAULT = '-7 days';
 
     /**
      * @var bool
