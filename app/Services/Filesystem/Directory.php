@@ -32,6 +32,30 @@ class Directory
 
     /**
      * @param string $dir
+     * @param ?string $include = null
+     * @param ?string $exclude = null
+     *
+     * @return array
+     */
+    public static function directories(string $dir, ?string $include = null, ?string $exclude = null): array
+    {
+        if (is_dir($dir) === false) {
+            return [];
+        }
+
+        $directories = [];
+
+        foreach (static::directoryIterator($dir, $include) as $file) {
+            if (static::directoriesValid($file, $exclude)) {
+                $directories[] = $file->getPathName();
+            }
+        }
+
+        return $directories;
+    }
+
+    /**
+     * @param string $dir
      * @param ?string $include
      *
      * @return \RecursiveIteratorIterator|\RegexIterator
@@ -56,6 +80,22 @@ class Directory
     protected static function filesValid(SplFileInfo $file, ?string $exclude): bool
     {
         if ($file->isDir()) {
+            return false;
+        }
+
+        return empty($exclude)
+            || (preg_match($exclude, $file->getPathName()) === 0);
+    }
+
+    /**
+     * @param \SplFileInfo $file
+     * @param ?string $exclude
+     *
+     * @return bool
+     */
+    protected static function directoriesValid(SplFileInfo $file, ?string $exclude): bool
+    {
+        if ($file->isFile()) {
             return false;
         }
 

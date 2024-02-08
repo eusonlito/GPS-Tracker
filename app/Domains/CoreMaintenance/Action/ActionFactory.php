@@ -25,6 +25,14 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return void
      */
+    public function directoryEmptyDelete(): void
+    {
+        $this->actionHandle(DirectoryEmptyDelete::class, $this->validate()->directoryEmptyDelete());
+    }
+
+    /**
+     * @return void
+     */
     public function fileDeleteOlder(): void
     {
         $this->actionHandle(FileDeleteOlder::class, $this->validate()->fileDeleteOlder());
