@@ -2,8 +2,6 @@
 
 namespace App\Domains\CoreMaintenance\Action;
 
-use App\Services\Filesystem\Directory;
-
 class DirectoryEmptyDelete extends ActionAbstract
 {
     /**
@@ -48,7 +46,7 @@ class DirectoryEmptyDelete extends ActionAbstract
      */
     protected function scan(string $directory): array
     {
-        return array_diff(scandir($directory), ['.','..']);
+        return array_diff(scandir($directory), ['.', '..']);
     }
 
     /**
@@ -59,7 +57,7 @@ class DirectoryEmptyDelete extends ActionAbstract
     protected function directoryIsEmpty(string $directory): bool
     {
         return ($directory !== $this->data['path'])
-            && empty(array_diff(scandir($directory), ['.','..']));
+            && empty(array_diff(scandir($directory), ['.', '..']));
     }
 
     /**
