@@ -9,6 +9,7 @@ use RegexIterator;
 use stdClass;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use App\Services\Compress\Zip\Contents as ZipContents;
 
 class Log extends ControllerAbstract
 {
@@ -211,28 +212,10 @@ class Log extends ControllerAbstract
         }
 
         if ($fileInfo->isDir()) {
-            return $this->listContentIsValidDir($fileInfo);
+            return true;
         }
 
-        return in_array($fileInfo->getExtension(), ['json', 'log']);
-    }
-
-    /**
-     * @param \DirectoryIterator $fileInfo
-     *
-     * @return bool
-     */
-    protected function listContentIsValidDir(DirectoryIterator $fileInfo): bool
-    {
-        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($fileInfo->getPathname()));
-
-        foreach (new RegexIterator($iterator, '/\.(log|json)$/i', RegexIterator::MATCH) as $file) {
-            if ($file->isFile()) {
-                return true;
-            }
-        }
-
-        return false;
+        return in_array($fileInfo->getExtension(), ['json', 'log', 'zip']);
     }
 
     /**
@@ -258,6 +241,24 @@ class Log extends ControllerAbstract
      */
     protected function contents(): callable
     {
-        return fn () => $this->isFile() ? readfile($this->fullpath()) : null;
+        return fn () => $this->contentsRead();
+    }
+
+    /**
+     * @return void
+     */
+    protected function contentsRead(): void
+    {
+        $file = $this->fullpath();
+
+        if (is_file($file) === false) {
+            return;
+        }
+
+        if (preg_match('/\.zip$/', $file)) {
+            echo ZipContents::new($file)->contents();
+        } else {
+            readfile($file);
+        }
     }
 }
