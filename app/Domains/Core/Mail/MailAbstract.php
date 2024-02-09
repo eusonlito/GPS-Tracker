@@ -43,7 +43,7 @@ abstract class MailAbstract extends Mailable implements ShouldQueue
      *
      * @return self
      */
-    final public function file($file): self
+    final public function file(array|string|UploadedFile $file): self
     {
         if (is_array($file)) {
             return $this->files($file);
@@ -53,11 +53,7 @@ abstract class MailAbstract extends Mailable implements ShouldQueue
             return $this->attach($file);
         }
 
-        if ($file instanceof UploadedFile) {
-            return $this->fileUploaded($file);
-        }
-
-        return $this;
+        return $this->fileUploaded($file);
     }
 
     /**

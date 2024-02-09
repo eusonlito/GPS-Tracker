@@ -23,12 +23,13 @@ trait Number
     /**
      * @param ?float $value
      * @param int $decimals = 2
+     * @param string $symbol = '€'
      *
      * @return ?string
      */
-    public function money(?float $value, int $decimals = 2): ?string
+    public function money(?float $value, int $decimals = 2, string $symbol = '€'): ?string
     {
-        return $this->number($value, $decimals).'€';
+        return $this->number($value, $decimals).' '.$symbol;
     }
 
     /**
@@ -39,13 +40,11 @@ trait Number
      */
     public function sizeHuman(int $bytes, int $decimals = 2): string
     {
-        if ($bytes === 0) {
-            return '0B';
-        }
-
         $e = floor(log($bytes, 1024));
+        $size = round($bytes / pow(1024, $e), $decimals);
+        $unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'][$e];
 
-        return round($bytes / pow(1024, $e), $decimals).['B', 'KB', 'MB', 'GB', 'TB', 'PB'][$e];
+        return $this->number($size, $decimals).' '.$unit;
     }
 
     /**

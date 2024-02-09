@@ -51,6 +51,33 @@ trait Custom
     }
 
     /**
+     * @param float $percent
+     * @param string $class = 'h-3'
+     *
+     * @return string
+     */
+    public static function progressbar(float $percent, string $class = 'h-3'): string
+    {
+        if ($percent >= 90) {
+            $color = '#F15B38';
+        } elseif ($percent >= 50) {
+            $color = '#EDBE38';
+        } else {
+            $color = '#1E3A8A';
+        }
+
+        return strtr('
+            <div class="w-full bg-slate-200 rounded :class">
+                <div role="progressbar" aria-valuenow=":percent}" aria-valuemin="0" aria-valuemax="100" class="h-full rounded flex justify-center items-center" style="background-color: :color; width: :percent%"></div>
+            </div>
+        ', [
+            ':class' => $class,
+            ':percent' => $percent,
+            ':color' => $color,
+        ]);
+    }
+
+    /**
      * @param ?array $data
      * @param string $class = 'border text-slate-600'
      *

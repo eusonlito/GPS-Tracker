@@ -339,6 +339,13 @@
 
     <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
         <li>
+            <a href="{{ route('monitor.index') }}" class="side-menu {{ ($ROUTE === 'monitor.index') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('server')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.monitor-index') }}</div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('monitor.installation') }}" class="side-menu {{ ($ROUTE === 'monitor.installation') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('check-circle')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.monitor-installation') }}</div>
