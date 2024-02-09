@@ -340,7 +340,7 @@
     <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
         <li>
             <a href="{{ route('monitor.index') }}" class="side-menu {{ ($ROUTE === 'monitor.index') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('activity')</div>
+                <div class="side-menu__icon">@icon('server')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.monitor-index') }}</div>
             </a>
         </li>
