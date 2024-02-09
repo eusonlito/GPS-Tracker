@@ -18,9 +18,7 @@
                     <span class="font-medium">@sizeHuman($memory)</span>
                 </div>
 
-                <div class="flex-1 w-full bg-slate-200 rounded h-5 ml-5">
-                    <div role="progressbar" aria-valuenow="{{ $memory_percent }}" aria-valuemin="0" aria-valuemax="100" class="h-full rounded flex" style="background-color: #1e3a8a; width: {{ $memory_percent }}%"></div>
-                </div>
+                @progressbar($memory_percent, 'flex-1 h-5 ml-5')
 
                 <div class="font-medium ml-5">
                     {{ $memory_percent }}%
@@ -38,9 +36,7 @@
                 </div>
 
                 <div class="flex mt-2 items-center">
-                    <div class="flex-1 w-full bg-slate-200 rounded h-3">
-                        <div role="progressbar" aria-valuenow="{{ $app['memory_percent'] }}" aria-valuemin="0" aria-valuemax="100" class="h-full rounded flex justify-center items-center" style="background-color: #1e3a8a; width: {{ $app['memory_percent'] }}%"></div>
-                    </div>
+                    @progressbar($app['memory_percent'], 'flex-1 h-3')
 
                     <div class="text-slate-400 ml-3">{{ $app['memory_percent'] }}%</div>
                 </div>
@@ -65,9 +61,7 @@
                     <span class="font-medium">{{ $cpu }}</span>
                 </div>
 
-                <div class="flex-1 w-full bg-slate-200 rounded h-5 ml-5">
-                    <div role="progressbar" aria-valuenow="{{ $cpu_percent }}" aria-valuemin="0" aria-valuemax="100" class="h-full rounded flex" style="background-color: #1e3a8a; width: {{ $cpu_percent }}%"></div>
-                </div>
+                @progressbar($cpu_percent, 'flex-1 h-5 ml-5')
 
                 <div class="font-medium ml-5">
                     {{ $cpu_percent }}%
@@ -84,9 +78,7 @@
                 </div>
 
                 <div class="flex mt-2 items-center">
-                    <div class="flex-1 w-full bg-slate-200 rounded h-3">
-                        <div role="progressbar" aria-valuenow="{{ $app['cpu_percent'] }}" aria-valuemin="0" aria-valuemax="100" class="h-full rounded flex justify-center items-center" style="background-color: #1e3a8a; width: {{ $app['cpu_percent'] }}%"></div>
-                    </div>
+                    @progressbar($app['cpu_percent'], 'flex-1 h-3')
 
                     <div class="text-slate-400 ml-3">@number($app['cpu_percent'])%</div>
                 </div>
@@ -111,9 +103,7 @@
                     <span class="font-medium">@sizeHuman($disk)</span>
                 </div>
 
-                <div class="flex-1 w-full bg-slate-200 rounded h-5 ml-5">
-                    <div role="progressbar" aria-valuenow="{{ $disk_percent }}" aria-valuemin="0" aria-valuemax="100" class="h-full rounded flex" style="background-color: #1e3a8a; width: {{ $disk_percent }}%"></div>
-                </div>
+                @progressbar($disk_percent, 'flex-1 h-5 ml-5')
 
                 <div class="font-medium ml-5">
                     {{ $disk_percent }}%
@@ -131,9 +121,7 @@
                 </div>
 
                 <div class="flex mt-2 items-center">
-                    <div class="flex-1 w-full bg-slate-200 rounded h-3">
-                        <div role="progressbar" aria-valuenow="{{ $app['percent'] }}" aria-valuemin="0" aria-valuemax="100" class="h-full rounded flex justify-center items-center" style="background-color: #1e3a8a; width: {{ $app['percent'] }}%"></div>
-                    </div>
+                    @progressbar($app['percent'], 'flex-1 h-3')
 
                     <div class="text-slate-400 ml-3">{{ $app['percent'] }}%</div>
                 </div>

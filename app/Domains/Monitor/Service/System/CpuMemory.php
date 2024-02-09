@@ -121,7 +121,7 @@ class CpuMemory
      */
     protected function ps(): string
     {
-        return shell_exec('ps -eo pid,ppid,rss,pcpu,comm:50');
+        return shell_exec('ps --no-headers -eo pid,ppid,rss,pcpu,comm:50');
     }
 
     /**
