@@ -2,7 +2,7 @@
 
 namespace App\Domains\Monitor\Service\System;
 
-class CpuMemory
+class CpuMemory extends SystemAbstract
 {
     /**
      * @var int
@@ -72,8 +72,8 @@ class CpuMemory
      */
     protected function cpu(): void
     {
-        $this->cpu = intval(shell_exec('nproc'));
-        $this->cpuLoad = floatval(shell_exec('uptime | awk \'{print $8}\' | sed \'s/,/./\''));
+        $this->cpu = $this->cmdInt('nproc');
+        $this->cpuLoad = $this->cmdFloat('uptime | awk \'{print $8}\' | sed \'s/,/./\'');
         $this->cpuFree = $this->cpu - $this->cpuLoad;
         $this->cpuPercent = intval(round($this->cpuLoad / $this->cpu * 100));
     }
@@ -83,9 +83,11 @@ class CpuMemory
      */
     protected function memory(): void
     {
-        $this->memory = intval(shell_exec('free -m | awk \'NR==2{print $2}\'') * 1024 * 1024);
-        $this->memoryLoad = intval(shell_exec('free -m | awk \'NR==2{print $3}\'') * 1024 * 1024);
-        $this->memoryFree = $this->memory - $this->memoryLoad;
+        $info = $this->cmdArray('free -b | grep "Mem:"');
+
+        $this->memory = intval($info[1]);
+        $this->memoryLoad = intval($info[2]);
+        $this->memoryFree = intval($info[6]);
         $this->memoryPercent = intval(round($this->memoryLoad / $this->memory * 100));
     }
 
@@ -121,7 +123,7 @@ class CpuMemory
      */
     protected function ps(): string
     {
-        return shell_exec('ps --no-headers -eo pid,ppid,rss,pcpu,comm:50');
+        return $this->cmd('ps --no-headers -eo pid,ppid,rss,pcpu,comm:50');
     }
 
     /**
@@ -131,7 +133,7 @@ class CpuMemory
      */
     protected function lines(string $output): array
     {
-        return array_filter(explode("\n", trim($output)));
+        return array_filter(explode("\n", $output));
     }
 
     /**
