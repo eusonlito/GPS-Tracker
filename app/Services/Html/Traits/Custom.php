@@ -67,7 +67,7 @@ trait Custom
         }
 
         return strtr('
-            <div class="w-full bg-slate-200 rounded :class">
+            <div class="w-full bg-slate-200 rounded overflow-hidden :class">
                 <div role="progressbar" aria-valuenow=":percent}" aria-valuemin="0" aria-valuemax="100" class="h-full rounded flex justify-center items-center" style="background-color: :color; width: :percent%"></div>
             </div>
         ', [

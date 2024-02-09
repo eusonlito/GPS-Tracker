@@ -2,7 +2,7 @@
 
 namespace App\Domains\Monitor\Service\System;
 
-class Disk
+class Disk extends SystemAbstract
 {
     /**
      * @var int
@@ -51,10 +51,12 @@ class Disk
      */
     protected function disk(): void
     {
-        $this->disk = intval(shell_exec('df . | awk \'NR==2{print $2}\'')) * 1024;
-        $this->diskLoad = intval(shell_exec('df . | awk \'NR==2{print $3}\'')) * 1024;
-        $this->diskFree = $this->disk - $this->diskLoad;
-        $this->diskPercent = intval(round($this->diskLoad / $this->disk * 100));
+        $info = $this->cmdArray('df . | sed 1d');
+
+        $this->disk = intval($info[1]) * 1024;
+        $this->diskLoad = intval($info[2]) * 1024;
+        $this->diskFree = intval($info[3]) * 1024;
+        $this->diskPercent = intval($info[4]);
     }
 
     /**
