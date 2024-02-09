@@ -60,7 +60,7 @@ trait Custom
     {
         if ($percent >= 90) {
             $color = '#F15B38';
-        } elseif ($percent >= 50) {
+        } elseif ($percent >= 70) {
             $color = '#EDBE38';
         } else {
             $color = '#1E3A8A';
