@@ -4,7 +4,6 @@
     'debug' => 'Déboguer',
     'enabled' => 'Actif',
     'filter' => 'Filtre...',
-    'logs' => 'Journaux',
     'meta-title' => 'Serveurs',
     'port' => 'Port',
     'protocol' => 'Protocole',

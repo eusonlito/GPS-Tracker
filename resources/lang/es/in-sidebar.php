@@ -20,6 +20,7 @@
     'maintenance-item' => 'Items',
     'monitor' => 'Monitor',
     'monitor-database' => 'Base de Datos',
+    'monitor-index' => 'Sistema',
     'monitor-installation' => 'Instalación',
     'monitor-log' => 'Logs',
     'profile' => 'Perfil',
