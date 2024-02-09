@@ -10,9 +10,14 @@ class CpuMemory
     protected int $cpu;
 
     /**
-     * @var int
+     * @var float
      */
-    protected int $cpuLoad;
+    protected float $cpuLoad;
+
+    /**
+     * @var float
+     */
+    protected float $cpuFree;
 
     /**
      * @var int
@@ -28,6 +33,11 @@ class CpuMemory
      * @var int
      */
     protected int $memoryLoad;
+
+    /**
+     * @var int
+     */
+    protected int $memoryFree;
 
     /**
      * @var int
@@ -63,7 +73,7 @@ class CpuMemory
     protected function cpu(): void
     {
         $this->cpu = intval(shell_exec('nproc'));
-        $this->cpuLoad = intval(shell_exec('uptime | awk \'{print $8}\' | sed \'s/,//\''));
+        $this->cpuLoad = floatval(shell_exec('uptime | awk \'{print $8}\' | sed \'s/,/./\''));
         $this->cpuFree = $this->cpu - $this->cpuLoad;
         $this->cpuPercent = intval(round($this->cpuLoad / $this->cpu * 100));
     }
@@ -179,13 +189,10 @@ class CpuMemory
      */
     protected function summary(array $apps): array
     {
-        $memory_max = max(array_column($apps, 'memory')) * 1024;
-        $cpu_max = max(array_column($apps, 'cpu'));
-
-        return array_map(function ($app) use ($memory_max, $cpu_max) {
+        return array_map(function ($app) {
             $app['memory'] *= 1024;
-            $app['memory_percent'] = round($app['memory'] * 100 / $memory_max);
-            $app['cpu_percent'] = round($app['cpu'] * 100 / $cpu_max);
+            $app['memory_percent'] = round($app['memory'] * 100 / $this->memory);
+            $app['cpu_percent'] = $app['cpu'];
 
             return $app;
         }, $apps);

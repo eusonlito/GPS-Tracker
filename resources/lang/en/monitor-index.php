@@ -1,9 +1,6 @@
 <?php return [
-    'cpu' => 'CPU Usage',
-    'cpu-summary' => 'CPUs: :load / :total',
-    'disk-summary' => 'Disk: :load / :total',
-    'memory' => 'Memory Usage',
-    'memory-summary' => 'Memory: :load / :total',
+    'cpu' => 'CPU',
+    'disk' => 'Disk',
+    'memory' => 'Memory',
     'meta-title' => 'Monitor > System',
-    'system' => 'System',
 ];

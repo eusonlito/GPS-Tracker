@@ -25,6 +25,11 @@ class Disk
     protected int $diskPercent;
 
     /**
+     * @var array
+     */
+    protected array $apps;
+
+    /**
      * @return self
      */
     public static function new(): self
@@ -38,6 +43,7 @@ class Disk
     public function __construct()
     {
         $this->disk();
+        $this->apps();
     }
 
     /**
@@ -61,6 +67,76 @@ class Disk
             'disk_load' => $this->diskLoad,
             'disk_free' => $this->diskFree,
             'disk_percent' => $this->diskPercent,
+            'disk_apps' => $this->apps,
         ];
+    }
+
+    /**
+     * @return void
+     */
+    protected function apps(): void
+    {
+        $this->apps = $this->sort($this->acum($this->lines($this->df())));
+    }
+
+    /**
+     * @return string
+     */
+    protected function df(): string
+    {
+        return shell_exec('df | grep -v tmpfs');
+    }
+
+    /**
+     * @param string $output
+     *
+     * @return array
+     */
+    protected function lines(string $output): array
+    {
+        return array_filter(explode("\n", trim($output)));
+    }
+
+    /**
+     * @param array $lines
+     *
+     * @return array
+     */
+    protected function acum(array $lines): array
+    {
+        array_shift($lines);
+
+        $apps = [];
+
+        foreach ($lines as $line) {
+            $parts = explode(' ', trim(preg_replace('/\s+/', ' ', $line)), 6);
+
+            if (count($parts) !== 6) {
+                continue;
+            }
+
+            $apps[] = [
+                'dev' => $parts[0],
+                'size' => intval($parts[1]) * 1024,
+                'load' => intval($parts[2]) * 1024,
+                'free' => intval($parts[3]) * 1024,
+                'percent' => intval($parts[4]),
+                'mount' => $parts[5],
+            ];
+        }
+
+        return $apps;
+    }
+
+    /**
+     * @param array $apps
+     *
+     * @return array
+     */
+    protected function sort(array $apps): array
+    {
+        usort($apps, static fn ($a, $b) => $b['percent'] <=> $a['percent']);
+
+        return $apps;
     }
 }
