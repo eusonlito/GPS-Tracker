@@ -153,11 +153,10 @@ class CpuMemory
                 continue;
             }
 
-            $id = ($ppid === 1) ? $pid : $app;
-
-            if (empty($apps[$id])) {
-                $apps[$id] = [
+            if (empty($apps[$app])) {
+                $apps[$app] = [
                     'ppid' => $ppid,
+                    'pid' => $pid,
                     'app' => $app,
                     'count' => 0,
                     'memory' => 0,
@@ -165,9 +164,9 @@ class CpuMemory
                 ];
             }
 
-            $apps[$id]['memory'] += intval($parts[2]);
-            $apps[$id]['cpu'] += floatval($parts[3]);
-            $apps[$id]['count']++;
+            $apps[$app]['memory'] += intval($parts[2]);
+            $apps[$app]['cpu'] += floatval($parts[3]);
+            $apps[$app]['count']++;
         }
 
         return $apps;
