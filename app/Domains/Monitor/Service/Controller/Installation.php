@@ -83,7 +83,7 @@ class Installation extends ControllerAbstract
      */
     protected function updatedCommits(): ?array
     {
-        if ($this->updated() === false) {
+        if ($this->available() === false) {
             return null;
         }
 
