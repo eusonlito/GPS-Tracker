@@ -123,7 +123,7 @@ class CpuMemory extends SystemAbstract
      */
     protected function ps(): string
     {
-        return $this->cmd('ps --no-headers -eo pid,ppid,rss,pcpu,comm:50');
+        return $this->cmd('ps --no-headers -eo pid,ppid,rss,pcpu,comm:50,cmd:50');
     }
 
     /**
@@ -146,16 +146,16 @@ class CpuMemory extends SystemAbstract
         $apps = [];
 
         foreach ($lines as $line) {
-            $parts = explode(' ', trim(preg_replace('/\s+/', ' ', $line)), 5);
+            $parts = explode(' ', trim(preg_replace('/\s+/', ' ', $line)), 6);
 
-            if (count($parts) !== 5) {
+            if (count($parts) !== 6) {
                 continue;
             }
 
             $pid = intval($parts[0]);
             $ppid = intval($parts[1]);
 
-            if (($pid === 0) || ($ppid === 0)) {
+            if (($pid === 0) || ($ppid === 0) || ($ppid === 2)) {
                 continue;
             }
 
