@@ -10,6 +10,11 @@ class CpuMemory extends SystemAbstract
     protected int $cpu;
 
     /**
+     * @var array
+     */
+    protected array $cpuAvg;
+
+    /**
      * @var float
      */
     protected float $cpuLoad;
@@ -72,8 +77,11 @@ class CpuMemory extends SystemAbstract
      */
     protected function cpu(): void
     {
+        $info = array_map('floatval', $this->cmdArray('cat /proc/loadavg'));
+
         $this->cpu = $this->cmdInt('nproc');
-        $this->cpuLoad = $this->cmdFloat('uptime | awk \'{print $8}\' | sed \'s/,/./\'');
+        $this->cpuAvg = array_slice($info, 0, 3):
+        $this->cpuLoad = $info[0];
         $this->cpuFree = $this->cpu - $this->cpuLoad;
         $this->cpuPercent = intval(round($this->cpuLoad / $this->cpu * 100));
     }
@@ -83,11 +91,11 @@ class CpuMemory extends SystemAbstract
      */
     protected function memory(): void
     {
-        $info = $this->cmdArray('free -b | grep "Mem:"');
+        $info = array_map('intval', $this->cmdArray('free -b | grep "Mem:"'));
 
-        $this->memory = intval($info[1]);
-        $this->memoryLoad = intval($info[2]);
-        $this->memoryFree = intval($info[6]);
+        $this->memory = $info[1];
+        $this->memoryLoad = $info[2];
+        $this->memoryFree = $info[6];
         $this->memoryPercent = intval(round($this->memoryLoad / $this->memory * 100));
     }
 
@@ -106,6 +114,7 @@ class CpuMemory extends SystemAbstract
     {
         return [
             'cpu' => $this->cpu,
+            'cpu_avg' => $this->cpuAvg,
             'cpu_load' => $this->cpuLoad,
             'cpu_free' => $this->cpuFree,
             'cpu_percent' => $this->cpuPercent,
