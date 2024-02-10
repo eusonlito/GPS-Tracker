@@ -156,7 +156,7 @@ class Memory extends SystemAbstract
     protected function summary(array $apps): array
     {
         foreach ($apps as $index => $app) {
-            $apps[$index]['percent'] = round($app['size'] * 100 / $this->load);
+            $apps[$index]['percent'] = round($app['size'] * 100 / $this->size);
         }
 
         return $apps;
