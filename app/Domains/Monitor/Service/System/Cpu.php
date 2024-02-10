@@ -106,7 +106,9 @@ class Cpu extends SystemAbstract
         $apps = [];
 
         foreach ($lines as $line) {
-            if (intval($line[5]) === 0) {
+            $memory = $this->memorySize($line[5]);
+
+            if (intval($memory) === 0) {
                 continue;
             }
 
@@ -119,6 +121,7 @@ class Cpu extends SystemAbstract
             if (empty($apps[$app])) {
                 $apps[$app] = [
                     'app' => $app,
+                    'memory' => $memory,
                     'count' => 0,
                     'percent' => 0,
                 ];
@@ -152,7 +155,7 @@ class Cpu extends SystemAbstract
      */
     protected function sort(array $apps): array
     {
-        usort($apps, static fn ($a, $b) => $b['percent'] <=> $a['percent']);
+        usort($apps, static fn ($a, $b) => ($b['percent'] <=> $a['percent']) ?: ($b['memory'] <=> $a['memory']));
 
         return $apps;
     }

@@ -99,7 +99,7 @@ class Memory extends SystemAbstract
         $apps = [];
 
         foreach ($lines as $line) {
-            $size = $this->size($line[5]);
+            $size = $this->memorySize($line[5]);
 
             if ($size === 0) {
                 continue;
@@ -115,37 +115,10 @@ class Memory extends SystemAbstract
                 ];
             }
 
-            $apps[$app]['size'] += ($size - $this->size($line[6]));
+            $apps[$app]['size'] += ($size - $this->memorySize($line[6]));
         }
 
         return $apps;
-    }
-
-    /**
-     * @param string $size
-     *
-     * @return int
-     */
-    protected function size(string $size): int
-    {
-        if ($size === '0') {
-            return 0;
-        }
-
-        if (is_numeric($size)) {
-            return intval($size * 1024);
-        }
-
-        $unit = substr($size, -1);
-        $size = floatval(substr(str_replace(',', '.', $size), 0, -1)) * 1024;
-
-        return match ($unit) {
-            'm' => intval($size * 1024),
-            'g' => intval($size * 1024 * 1024),
-            't' => intval($size * 1024 * 1024 * 1024),
-            'p' => intval($size * 1024 * 1024 * 1024),
-            default => intval($size),
-        };
     }
 
     /**
