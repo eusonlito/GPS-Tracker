@@ -80,7 +80,7 @@ class CpuMemory extends SystemAbstract
         $info = array_map('floatval', $this->cmdArray('cat /proc/loadavg'));
 
         $this->cpu = $this->cmdInt('nproc');
-        $this->cpuAvg = array_slice($info, 0, 3):
+        $this->cpuAvg = array_slice($info, 0, 3);
         $this->cpuLoad = $info[0];
         $this->cpuFree = $this->cpu - $this->cpuLoad;
         $this->cpuPercent = intval(round($this->cpuLoad / $this->cpu * 100));
