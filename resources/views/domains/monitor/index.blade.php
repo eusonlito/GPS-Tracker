@@ -56,7 +56,7 @@
         <div class="border-b border-slate-200/60 p-5">
             <div class="flex">
                 <div class="font-medium">
-                    <span class="font-medium">@number($cpu_load)</span>
+                    <span class="font-medium">{{ implode(' ', $cpu_avg) }}</span>
                     /
                     <span class="font-medium">{{ $cpu }}</span>
                 </div>
