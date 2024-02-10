@@ -27,6 +27,16 @@ abstract class SystemAbstract
     /**
      * @param string $command
      *
+     * @return float
+     */
+    protected function cmdFloat(string $command): float
+    {
+        return intval($this->cmd($command));
+    }
+
+    /**
+     * @param string $command
+     *
      * @return int
      */
     protected function cmdInt(string $command): int
@@ -37,10 +47,12 @@ abstract class SystemAbstract
     /**
      * @param string $command
      *
-     * @return float
+     * @return array
      */
-    protected function cmdFloat(string $command): float
+    protected function cmdLines(string $command): array
     {
-        return intval($this->cmd($command));
+        return array_values(array_filter(array_map(function ($line) {
+            return explode(' ', trim(preg_replace('/\s+/', ' ', $line)));
+        }, explode("\n", $this->cmd($command)))));
     }
 }

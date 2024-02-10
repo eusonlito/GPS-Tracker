@@ -7,27 +7,27 @@ class Disk extends SystemAbstract
     /**
      * @var int
      */
-    protected int $disk;
+    protected int $size;
 
     /**
      * @var int
      */
-    protected int $diskLoad;
+    protected int $load;
 
     /**
      * @var int
      */
-    protected int $diskFree;
+    protected int $free;
 
     /**
      * @var int
      */
-    protected int $diskPercent;
+    protected int $percent;
 
     /**
      * @var array
      */
-    protected array $apps;
+    protected array $mounts;
 
     /**
      * @return self
@@ -42,21 +42,8 @@ class Disk extends SystemAbstract
      */
     public function __construct()
     {
-        $this->disk();
-        $this->apps();
-    }
-
-    /**
-     * @return void
-     */
-    protected function disk(): void
-    {
-        $info = $this->cmdArray('df . | sed 1d');
-
-        $this->disk = intval($info[1]) * 1024;
-        $this->diskLoad = intval($info[2]) * 1024;
-        $this->diskFree = intval($info[3]) * 1024;
-        $this->diskPercent = intval($info[4]);
+        $this->load();
+        $this->mounts();
     }
 
     /**
@@ -65,20 +52,33 @@ class Disk extends SystemAbstract
     public function get(): array
     {
         return [
-            'disk' => $this->disk,
-            'disk_load' => $this->diskLoad,
-            'disk_free' => $this->diskFree,
-            'disk_percent' => $this->diskPercent,
-            'disk_apps' => $this->apps,
+            'size' => $this->size,
+            'load' => $this->load,
+            'free' => $this->free,
+            'percent' => $this->percent,
+            'mounts' => $this->mounts,
         ];
     }
 
     /**
      * @return void
      */
-    protected function apps(): void
+    protected function load(): void
     {
-        $this->apps = $this->sort($this->acum($this->lines($this->df())));
+        $info = $this->cmdArray('df . | sed 1d');
+
+        $this->size = intval($info[1]) * 1024;
+        $this->load = intval($info[2]) * 1024;
+        $this->free = intval($info[3]) * 1024;
+        $this->percent = intval($info[4]);
+    }
+
+    /**
+     * @return void
+     */
+    protected function mounts(): void
+    {
+        $this->mounts = $this->sort($this->acum($this->lines($this->df())));
     }
 
     /**
@@ -108,7 +108,7 @@ class Disk extends SystemAbstract
     {
         array_shift($lines);
 
-        $apps = [];
+        $mounts = [];
 
         foreach ($lines as $line) {
             $parts = explode(' ', trim(preg_replace('/\s+/', ' ', $line)), 6);
@@ -117,28 +117,28 @@ class Disk extends SystemAbstract
                 continue;
             }
 
-            $apps[] = [
+            $mounts[] = [
                 'dev' => $parts[0],
                 'size' => intval($parts[1]) * 1024,
                 'load' => intval($parts[2]) * 1024,
                 'free' => intval($parts[3]) * 1024,
                 'percent' => intval($parts[4]),
-                'mount' => $parts[5],
+                'path' => $parts[5],
             ];
         }
 
-        return $apps;
+        return $mounts;
     }
 
     /**
-     * @param array $apps
+     * @param array $mounts
      *
      * @return array
      */
-    protected function sort(array $apps): array
+    protected function sort(array $mounts): array
     {
-        usort($apps, static fn ($a, $b) => $b['percent'] <=> $a['percent']);
+        usort($mounts, static fn ($a, $b) => $b['percent'] <=> $a['percent']);
 
-        return $apps;
+        return $mounts;
     }
 }
