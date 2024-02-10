@@ -93,7 +93,7 @@ class Cpu extends SystemAbstract
      */
     protected function top(): array
     {
-        return $this->cmdLines('top -b -w 512 -n 1 | sed -e "1,7d"');
+        return $this->cmdLines('top -b -w 512 -e k -n 1 | sed -e "1,7d"');
     }
 
     /**
