@@ -10,9 +10,11 @@
     </div>
 
     <div class="flex-1 p-5">
-        @foreach ($summary as $line)
-        <code class="block border-b border-slate-200/60 py-2">{{ $line }}</code>
-        @endforeach
+        <code class="block border-b border-slate-200/60 pb-2">{{ $summary['uptime'] }}</code>
+        <code class="block border-b border-slate-200/60 py-2">{{ $summary['tasks'] }}</code>
+        <code class="block border-b border-slate-200/60 py-2">{{ $summary['cpus'] }}</code>
+        <code class="block border-b border-slate-200/60 py-2">{{ $summary['memory'] }}</code>
+        <code class="block pt-2">{{ $summary['swap'] }}</code>
     </div>
 </div>
 
