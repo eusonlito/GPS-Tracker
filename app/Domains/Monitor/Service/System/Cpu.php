@@ -37,14 +37,6 @@ class Cpu extends SystemAbstract
     /**
      * @return self
      */
-    public static function new(): self
-    {
-        return new static(...func_get_args());
-    }
-
-    /**
-     * @return self
-     */
     public function __construct()
     {
         $this->load();
@@ -71,11 +63,11 @@ class Cpu extends SystemAbstract
      */
     protected function load(): void
     {
-        $info = array_map('floatval', $this->cmdArray('cat /proc/loadavg'));
+        $info = $this->cmdArray('cat /proc/loadavg');
 
         $this->cores = $this->cmdInt('nproc');
         $this->average = array_slice($info, 0, 3);
-        $this->load = $info[0];
+        $this->load = floatval($info[0]);
         $this->free = $this->cores - $this->load;
         $this->percent = intval(round($this->load / $this->cores * 100));
     }

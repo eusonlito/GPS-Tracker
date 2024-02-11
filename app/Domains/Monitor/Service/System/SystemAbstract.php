@@ -5,6 +5,14 @@ namespace App\Domains\Monitor\Service\System;
 abstract class SystemAbstract
 {
     /**
+     * @return self
+     */
+    public static function new(): self
+    {
+        return new static(...func_get_args());
+    }
+
+    /**
      * @param string $command
      *
      * @return string

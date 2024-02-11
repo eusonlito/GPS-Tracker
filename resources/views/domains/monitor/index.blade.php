@@ -2,7 +2,21 @@
 
 @section ('body')
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 p-2">
+<div class="box lg:flex items-stretch mb-6">
+    <div class="border-b lg:border-r border-slate-200/60 flex items-center">
+        <h2 class="text-base font-medium p-5">
+            {{ __('monitor-index.summary') }}
+        </h2>
+    </div>
+
+    <div class="p-5">
+        @foreach ($summary as $line)
+        <code class="block">{{ $line }}</code>
+        @endforeach
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <div class="box">
         <div class="border-b border-slate-200/60">
             <h2 class="text-base font-medium p-5">
