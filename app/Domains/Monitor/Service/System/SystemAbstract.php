@@ -90,4 +90,14 @@ abstract class SystemAbstract
             default => intval($size),
         };
     }
+
+    /**
+     * @return array
+     */
+    protected function top(): array
+    {
+        static $cache;
+
+        return $cache ??= $this->cmdLines('top -b -w 512 -E g -e k -n 1');
+    }
 }

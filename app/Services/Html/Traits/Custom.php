@@ -66,11 +66,13 @@ trait Custom
             $color = '#1E3A8A';
         }
 
-        return strtr('
+        $html = trim('
             <div class="w-full bg-slate-200 rounded overflow-hidden :class">
-                <div role="progressbar" aria-valuenow=":percent}" aria-valuemin="0" aria-valuemax="100" class="h-full rounded flex justify-center items-center" style="background-color: :color; width: :percent%"></div>
+                <div role="progressbar" aria-valuenow=":percent" aria-valuemin="0" aria-valuemax="100" class="h-full rounded flex justify-center items-center" style="background-color: :color; width: :percent%"></div>
             </div>
-        ', [
+        ');
+
+        return strtr($html, [
             ':class' => $class,
             ':percent' => $percent,
             ':color' => $color,

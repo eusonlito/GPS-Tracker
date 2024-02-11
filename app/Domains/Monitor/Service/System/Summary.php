@@ -56,9 +56,9 @@ class Summary extends SystemAbstract
      */
     protected function load(): void
     {
-        $info = $this->cmdLines('top -b -E g -n 1 | head -5');
+        $info = array_slice($this->top(), 0, 5);
 
-        $this->uptime = implode(' ', $info[0]);
+        $this->uptime = implode(' ', array_slice($info[0], 2));
         $this->tasks = implode(' ', $info[1]);
         $this->cpus = implode(' ', $info[2]);
         $this->memory = implode(' ', $info[3]);

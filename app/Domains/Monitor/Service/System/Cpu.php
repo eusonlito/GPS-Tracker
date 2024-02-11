@@ -77,15 +77,15 @@ class Cpu extends SystemAbstract
      */
     protected function apps(): void
     {
-        $this->apps = $this->limit($this->sort($this->summary($this->acum($this->top()))));
-    }
-
-    /**
-     * @return array
-     */
-    protected function top(): array
-    {
-        return $this->cmdLines('top -b -w 512 -e k -n 1 | sed -e "1,7d"');
+        $this->apps = $this->limit(
+            $this->sort(
+                $this->summary(
+                    $this->acum(
+                        array_slice($this->top(), 7)
+                    )
+                )
+            )
+        );
     }
 
     /**
