@@ -9,9 +9,9 @@
         </h2>
     </div>
 
-    <div class="p-5">
+    <div class="flex-1 p-5">
         @foreach ($summary as $line)
-        <code class="block">{{ $line }}</code>
+        <code class="block border-b border-slate-200/60 py-2">{{ $line }}</code>
         @endforeach
     </div>
 </div>

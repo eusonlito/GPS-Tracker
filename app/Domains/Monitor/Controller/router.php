@@ -8,5 +8,5 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
     Route::get('/monitor', Index::class)->name('monitor.index');
     Route::get('/monitor/database', Database::class)->name('monitor.database');
     Route::get('/monitor/installation', Installation::class)->name('monitor.installation');
-    Route::any('/monitor/log', Log::class)->name('monitor.log');
+    Route::get('/monitor/log', Log::class)->name('monitor.log');
 });
