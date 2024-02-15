@@ -38,7 +38,7 @@
         "tom-select": "^2.3.1",
         "trim-newlines": "^5.0.0",
         "velocity-animate": "^1.5.2",
-        "webpack": "^5.90.1",
+        "webpack": "^5.90.2",
         "webpack-stream": "^7.0.0",
         "yargs-parser": "^21.1.1"
     },
