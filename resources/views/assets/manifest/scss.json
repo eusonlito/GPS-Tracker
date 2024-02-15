@@ -2,6 +2,5 @@
     "scss|feather.scss",
     "theme|sass/app.scss",
     "scss|bootstrap.scss",
-    "scss|custom.scss",
-    "scss|demo.scss"
+    "scss|custom.scss"
 ]

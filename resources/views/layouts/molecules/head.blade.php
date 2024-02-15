@@ -17,6 +17,7 @@
 <link rel="manifest" href="@asset('manifest.json')" defer="defer"/>
 <link rel="shortcut icon" type="image/png" href="@asset('build/images/webapp/logo.png')" />
 <link rel="stylesheet" href="@asset('build/css/main.min.css')" />
+<link rel="stylesheet" href="@asset('build/css/demo.css')" />
 
 <script>
 const WWW = '{{ rtrim(asset('/'), '/') }}';
