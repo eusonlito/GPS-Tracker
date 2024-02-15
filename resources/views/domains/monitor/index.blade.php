@@ -2,7 +2,23 @@
 
 @section ('body')
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 p-2">
+<div class="box lg:flex items-stretch mb-6">
+    <div class="border-b lg:border-r border-slate-200/60 flex items-center">
+        <h2 class="text-base font-medium p-5">
+            {{ __('monitor-index.summary') }}
+        </h2>
+    </div>
+
+    <div class="flex-1 p-5">
+        <code class="block border-b border-slate-200/60 pb-2">{{ $summary['uptime'] }}</code>
+        <code class="block border-b border-slate-200/60 py-2">{{ $summary['tasks'] }}</code>
+        <code class="block border-b border-slate-200/60 py-2">{{ $summary['cpus'] }}</code>
+        <code class="block border-b border-slate-200/60 py-2">{{ $summary['memory'] }}</code>
+        <code class="block pt-2">{{ $summary['swap'] }}</code>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <div class="box">
         <div class="border-b border-slate-200/60">
             <h2 class="text-base font-medium p-5">
@@ -13,32 +29,32 @@
         <div class="border-b border-slate-200/60 p-5">
             <div class="flex">
                 <div class="font-medium">
-                    <span class="font-medium">@sizeHuman($memory_load)</span>
+                    <span class="font-medium">@sizeHuman($memory['load'])</span>
                     /
-                    <span class="font-medium">@sizeHuman($memory)</span>
+                    <span class="font-medium">@sizeHuman($memory['size'])</span>
                 </div>
 
-                @progressbar($memory_percent, 'flex-1 h-5 ml-5')
+                @progressbar($memory['percent'], 'flex-1 h-5 ml-5')
 
                 <div class="font-medium ml-5">
-                    {{ $memory_percent }}%
+                    {{ $memory['percent'] }}%
                 </div>
             </div>
         </div>
 
         <div class="p-5">
-            @foreach ($memory_apps as $app)
+            @foreach ($memory['apps'] as $app)
 
             <div class="mb-3">
                 <div class="flex">
                     <div class="flex-1 font-medium">{{ $app['app'] }}</div>
-                    <div class="text-slate-500">@sizeHuman($app['memory'])</div>
+                    <div class="text-slate-500">@sizeHuman($app['size'])</div>
                 </div>
 
                 <div class="flex mt-2 items-center">
-                    @progressbar($app['memory_percent'], 'flex-1 h-3')
+                    @progressbar($app['percent'], 'flex-1 h-3')
 
-                    <div class="text-slate-400 ml-3">{{ $app['memory_percent'] }}%</div>
+                    <div class="text-slate-400 ml-3">{{ $app['percent'] }}%</div>
                 </div>
             </div>
 
@@ -56,21 +72,21 @@
         <div class="border-b border-slate-200/60 p-5">
             <div class="flex">
                 <div class="font-medium">
-                    <span class="font-medium">@number($cpu_load)</span>
+                    <span class="font-medium">({{ implode(' ', $cpu['average']) }})</span>
                     /
-                    <span class="font-medium">{{ $cpu }}</span>
+                    <span class="font-medium">{{ $cpu['cores'] }}</span>
                 </div>
 
-                @progressbar($cpu_percent, 'flex-1 h-5 ml-5')
+                @progressbar($cpu['percent'], 'flex-1 h-5 ml-5')
 
                 <div class="font-medium ml-5">
-                    {{ $cpu_percent }}%
+                    {{ $cpu['percent'] }}%
                 </div>
             </div>
         </div>
 
         <div class="p-5">
-            @foreach ($cpu_apps as $app)
+            @foreach ($cpu['apps'] as $app)
 
             <div class="mb-3">
                 <div class="flex">
@@ -78,9 +94,9 @@
                 </div>
 
                 <div class="flex mt-2 items-center">
-                    @progressbar($app['cpu_percent'], 'flex-1 h-3')
+                    @progressbar($app['percent'], 'flex-1 h-3')
 
-                    <div class="text-slate-400 ml-3">@number($app['cpu_percent'])%</div>
+                    <div class="text-slate-400 ml-3">@number($app['percent'])%</div>
                 </div>
             </div>
 
@@ -98,25 +114,25 @@
         <div class="border-b border-slate-200/60 p-5">
             <div class="flex">
                 <div class="font-medium">
-                    <span class="font-medium">@sizeHuman($disk_load)</span>
+                    <span class="font-medium">@sizeHuman($disk['load'])</span>
                     /
-                    <span class="font-medium">@sizeHuman($disk)</span>
+                    <span class="font-medium">@sizeHuman($disk['size'])</span>
                 </div>
 
-                @progressbar($disk_percent, 'flex-1 h-5 ml-5')
+                @progressbar($disk['percent'], 'flex-1 h-5 ml-5')
 
                 <div class="font-medium ml-5">
-                    {{ $disk_percent }}%
+                    {{ $disk['percent'] }}%
                 </div>
             </div>
         </div>
 
         <div class="p-5">
-            @foreach ($disk_apps as $app)
+            @foreach ($disk['mounts'] as $app)
 
             <div class="mb-3">
                 <div class="flex">
-                    <div class="flex-1 font-medium">{{ $app['mount'] }}</div>
+                    <div class="flex-1 font-medium">{{ $app['path'] }}</div>
                     <div class="text-slate-500">@sizeHuman($app['load']) / @sizeHuman($app['size'])</div>
                 </div>
 

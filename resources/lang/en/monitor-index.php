@@ -3,4 +3,5 @@
     'disk' => 'Disk',
     'memory' => 'Memory',
     'meta-title' => 'Monitor > System',
+    'summary' => 'Summary',
 ];

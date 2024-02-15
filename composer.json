@@ -15,7 +15,7 @@
         "sibyx/phpgpx": "^1.2.1"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "dev-master",
+        "barryvdh/laravel-debugbar": "^3.9",
         "brianium/paratest": "7.x-dev",
         "friendsofphp/php-cs-fixer": "^3.48",
         "larastan/larastan": "2.x-dev",

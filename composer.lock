@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9412e2bd5dc5adc886deaa683b5c2f93",
+    "content-hash": "3520f8fff6f5f1da7ce640a2c04f0588",
     "packages": [
         {
             "name": "brick/math",
@@ -6454,23 +6454,23 @@
         },
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "dev-master",
+            "version": "v3.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "82112eec3a8744f7e06584c62e315f43f7d05054"
+                "reference": "bfd0131c146973cab164e50f5cdd8a67cc60cab1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/82112eec3a8744f7e06584c62e315f43f7d05054",
-                "reference": "82112eec3a8744f7e06584c62e315f43f7d05054",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/bfd0131c146973cab164e50f5cdd8a67cc60cab1",
+                "reference": "bfd0131c146973cab164e50f5cdd8a67cc60cab1",
                 "shasum": ""
             },
             "require": {
                 "illuminate/routing": "^9|^10",
                 "illuminate/session": "^9|^10",
                 "illuminate/support": "^9|^10",
-                "maximebf/debugbar": "^1.19",
+                "maximebf/debugbar": "^1.18.2",
                 "php": "^8.0",
                 "symfony/finder": "^6"
             },
@@ -6480,11 +6480,10 @@
                 "phpunit/phpunit": "^8.5.30|^9.0",
                 "squizlabs/php_codesniffer": "^3.5"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.9-dev"
+                    "dev-master": "3.8-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -6523,7 +6522,7 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
-                "source": "https://github.com/barryvdh/laravel-debugbar/tree/master"
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.9.2"
             },
             "funding": [
                 {
@@ -6535,7 +6534,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-08T20:09:35+00:00"
+            "time": "2023-08-25T18:43:57+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -7763,12 +7762,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/larastan/larastan.git",
-                "reference": "aa3452277ae7474322723ca648347fedd3e082d9"
+                "reference": "6fb6803c039cdd163a657fad6758257b45f187de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/larastan/larastan/zipball/aa3452277ae7474322723ca648347fedd3e082d9",
-                "reference": "aa3452277ae7474322723ca648347fedd3e082d9",
+                "url": "https://api.github.com/repos/larastan/larastan/zipball/6fb6803c039cdd163a657fad6758257b45f187de",
+                "reference": "6fb6803c039cdd163a657fad6758257b45f187de",
                 "shasum": ""
             },
             "require": {
@@ -7857,7 +7856,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-01-26T10:21:24+00:00"
+            "time": "2024-02-10T23:48:55+00:00"
         },
         {
             "name": "laravel/pint",
@@ -11497,12 +11496,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "0fe3b0ab46b98c8b3aba09da9348e55b68915d7c"
+                "reference": "6ad3d229c342d881e803b08b8540fb8d1c980b39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/0fe3b0ab46b98c8b3aba09da9348e55b68915d7c",
-                "reference": "0fe3b0ab46b98c8b3aba09da9348e55b68915d7c",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/6ad3d229c342d881e803b08b8540fb8d1c980b39",
+                "reference": "6ad3d229c342d881e803b08b8540fb8d1c980b39",
                 "shasum": ""
             },
             "require": {
@@ -11582,7 +11581,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-01-22T09:39:16+00:00"
+            "time": "2024-02-09T16:10:04+00:00"
         },
         {
             "name": "spatie/laravel-ray",
@@ -13021,7 +13020,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "barryvdh/laravel-debugbar": 20,
         "brianium/paratest": 20,
         "larastan/larastan": 20,
         "laravel/pint": 20,
