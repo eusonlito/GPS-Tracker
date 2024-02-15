@@ -39,10 +39,14 @@ class Memory extends SystemAbstract
     }
 
     /**
-     * @return array
+     * @return ?array
      */
-    public function get(): array
+    public function get(): ?array
     {
+        if ($this->isAvailable() === false) {
+            return null;
+        }
+
         return [
             'size' => $this->size,
             'load' => $this->load,
@@ -53,11 +57,29 @@ class Memory extends SystemAbstract
     }
 
     /**
+     * @return bool
+     */
+    protected function isAvailable(): bool
+    {
+        return isset(
+            $this->size,
+            $this->load,
+            $this->free,
+            $this->percent,
+            $this->apps,
+        );
+    }
+
+    /**
      * @return void
      */
     protected function load(): void
     {
         $info = array_map('intval', $this->cmdArray('free -b | grep "Mem:"'));
+
+        if (isset($info[1], $info[2], $info[6]) === false) {
+            return;
+        }
 
         $this->size = $info[1];
         $this->load = $info[2];

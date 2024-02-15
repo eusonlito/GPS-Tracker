@@ -19,7 +19,7 @@ abstract class SystemAbstract
      */
     protected function cmd(string $command): string
     {
-        return trim(shell_exec($command));
+        return trim(strval(shell_exec($command)));
     }
 
     /**
