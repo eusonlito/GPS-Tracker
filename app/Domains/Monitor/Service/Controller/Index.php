@@ -35,33 +35,33 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return array
+     * @return ?array
      */
-    protected function summary(): array
+    protected function summary(): ?array
     {
         return Summary::new()->get();
     }
 
     /**
-     * @return array
+     * @return ?array
      */
-    protected function cpu(): array
+    protected function cpu(): ?array
     {
         return Cpu::new()->get();
     }
 
     /**
-     * @return array
+     * @return ?array
      */
-    protected function memory(): array
+    protected function memory(): ?array
     {
         return Memory::new()->get();
     }
 
     /**
-     * @return array
+     * @return ?array
      */
-    protected function disk(): array
+    protected function disk(): ?array
     {
         return Disk::new()->get();
     }

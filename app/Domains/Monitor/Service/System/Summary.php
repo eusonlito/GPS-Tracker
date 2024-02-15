@@ -38,10 +38,14 @@ class Summary extends SystemAbstract
     }
 
     /**
-     * @return array
+     * @return ?array
      */
-    public function get(): array
+    public function get(): ?array
     {
+        if ($this->isAvailable() === false) {
+            return null;
+        }
+
         return [
             'uptime' => $this->uptime,
             'tasks' => $this->tasks,
@@ -52,11 +56,29 @@ class Summary extends SystemAbstract
     }
 
     /**
+     * @return bool
+     */
+    protected function isAvailable(): bool
+    {
+        return isset(
+            $this->uptime,
+            $this->tasks,
+            $this->cpus,
+            $this->memory,
+            $this->swap,
+        );
+    }
+
+    /**
      * @return void
      */
     protected function load(): void
     {
         $info = array_slice($this->top(), 0, 5);
+
+        if (isset($info[0], $info[1], $info[2], $info[3], $info[4]) === false) {
+            return;
+        }
 
         $this->uptime = implode(' ', array_slice($info[0], 2));
         $this->tasks = implode(' ', $info[1]);

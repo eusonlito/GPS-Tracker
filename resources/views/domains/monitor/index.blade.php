@@ -3,18 +3,26 @@
 @section ('body')
 
 <div class="box lg:flex items-stretch mb-6">
-    <div class="border-b lg:border-r border-slate-200/60 flex items-center">
+    <div class="border-b lg:border-b-0 lg:border-r border-slate-200/60 flex items-center">
         <h2 class="text-base font-medium p-5">
             {{ __('monitor-index.summary') }}
         </h2>
     </div>
 
     <div class="flex-1 p-5">
+        @if ($summary)
+
         <code class="block border-b border-slate-200/60 pb-2">{{ $summary['uptime'] }}</code>
         <code class="block border-b border-slate-200/60 py-2">{{ $summary['tasks'] }}</code>
         <code class="block border-b border-slate-200/60 py-2">{{ $summary['cpus'] }}</code>
         <code class="block border-b border-slate-200/60 py-2">{{ $summary['memory'] }}</code>
         <code class="block pt-2">{{ $summary['swap'] }}</code>
+
+        @else
+
+        <div class="text-lg font-medium leading-none text-danger">{{ __('monitor-index.summary-not-available') }}</div>
+
+        @endif
     </div>
 </div>
 
@@ -25,6 +33,8 @@
                 {{ __('monitor-index.memory') }}
             </h2>
         </div>
+
+        @if ($memory)
 
         <div class="border-b border-slate-200/60 p-5">
             <div class="flex">
@@ -60,6 +70,12 @@
 
             @endforeach
         </div>
+
+        @else
+
+        <div class="p-5 text-lg font-medium leading-none text-danger">{{ __('monitor-index.memory-not-available') }}</div>
+
+        @endif
     </div>
 
     <div class="box">
@@ -68,6 +84,8 @@
                 {{ __('monitor-index.cpu') }}
             </h2>
         </div>
+
+        @if ($cpu)
 
         <div class="border-b border-slate-200/60 p-5">
             <div class="flex">
@@ -102,6 +120,12 @@
 
             @endforeach
         </div>
+
+        @else
+
+        <div class="p-5 text-lg font-medium leading-none text-danger">{{ __('monitor-index.cpu-not-available') }}</div>
+
+        @endif
     </div>
 
     <div class="box">
@@ -110,6 +134,8 @@
                 {{ __('monitor-index.disk') }}
             </h2>
         </div>
+
+        @if ($disk)
 
         <div class="border-b border-slate-200/60 p-5">
             <div class="flex">
@@ -145,6 +171,12 @@
 
             @endforeach
         </div>
+
+        @else
+
+        <div class="p-5 text-lg font-medium leading-none text-danger">{{ __('monitor-index.disk-not-available') }}</div>
+
+        @endif
     </div>
 </div>
 @stop

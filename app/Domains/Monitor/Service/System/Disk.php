@@ -39,10 +39,14 @@ class Disk extends SystemAbstract
     }
 
     /**
-     * @return array
+     * @return ?array
      */
-    public function get(): array
+    public function get(): ?array
     {
+        if ($this->isAvailable() === false) {
+            return null;
+        }
+
         return [
             'size' => $this->size,
             'load' => $this->load,
@@ -53,11 +57,28 @@ class Disk extends SystemAbstract
     }
 
     /**
+     * @return bool
+     */
+    protected function isAvailable(): bool
+    {
+        return isset(
+            $this->size,
+            $this->load,
+            $this->free,
+            $this->percent,
+        );
+    }
+
+    /**
      * @return void
      */
     protected function load(): void
     {
         $info = $this->cmdArray('df . | sed 1d');
+
+        if (isset($info[1], $info[2], $info[3], $info[4]) === false) {
+            return;
+        }
 
         $this->size = intval($info[1]) * 1024;
         $this->load = intval($info[2]) * 1024;
@@ -78,7 +99,7 @@ class Disk extends SystemAbstract
      */
     protected function df(): string
     {
-        return shell_exec('df | grep -v tmpfs');
+        return strval(shell_exec('df | grep -v tmpfs'));
     }
 
     /**

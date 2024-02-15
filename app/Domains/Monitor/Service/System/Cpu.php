@@ -44,10 +44,14 @@ class Cpu extends SystemAbstract
     }
 
     /**
-     * @return array
+     * @return ?array
      */
-    public function get(): array
+    public function get(): ?array
     {
+        if ($this->isAvailable() === false) {
+            return null;
+        }
+
         return [
             'cores' => $this->cores,
             'average' => $this->average,
@@ -59,13 +63,37 @@ class Cpu extends SystemAbstract
     }
 
     /**
+     * @return bool
+     */
+    protected function isAvailable(): bool
+    {
+        return isset(
+            $this->cores,
+            $this->average,
+            $this->load,
+            $this->free,
+            $this->percent,
+            $this->apps,
+        );
+    }
+
+    /**
      * @return void
      */
     protected function load(): void
     {
+        $this->cores = $this->cmdInt('nproc --all');
+
+        if (empty($this->cores)) {
+            return;
+        }
+
         $info = $this->cmdArray('cat /proc/loadavg');
 
-        $this->cores = $this->cmdInt('nproc');
+        if (isset($info[0], $info[1], $info[2]) === false) {
+            return;
+        }
+
         $this->average = array_slice($info, 0, 3);
         $this->load = floatval($info[0]);
         $this->free = $this->cores - $this->load;
