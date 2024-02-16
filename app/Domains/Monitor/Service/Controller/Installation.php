@@ -75,7 +75,7 @@ class Installation extends ControllerAbstract
             return null;
         }
 
-        return $this->log()[0];
+        return $this->log()[0] ?? null;
     }
 
     /**
