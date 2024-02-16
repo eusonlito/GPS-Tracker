@@ -27,7 +27,7 @@ class Installation extends ControllerAbstract
             return;
         }
 
-        shell_exec($this->git().' fetch origin '.$this->branch());
+        $this->cmd($this->git().' fetch origin '.$this->branch());
     }
 
     /**
@@ -132,7 +132,7 @@ class Installation extends ControllerAbstract
     protected function git(): ?string
     {
         return $this->cache(function () {
-            return str_contains($git = trim(shell_exec('which git')), 'not found') ? null : $git;
+            return str_contains($git = $this->cmd('which git'), 'not found') ? null : $git;
         });
     }
 
@@ -141,7 +141,7 @@ class Installation extends ControllerAbstract
      */
     protected function branch(): string
     {
-        return $this->cache(fn () => trim(shell_exec($this->git().' branch --show-current')));
+        return $this->cache(fn () => $this->cmd($this->git().' branch --show-current'));
     }
 
     /**
@@ -152,7 +152,7 @@ class Installation extends ControllerAbstract
         return $this->cache(function () {
             exec($this->git().' log -10 --date=iso-strict --format="%cd: %s"', $output);
 
-            return array_map($this->logLine(...), $output);
+            return $output ? array_map($this->logLine(...), $output) : [];
         });
     }
 
@@ -164,7 +164,7 @@ class Installation extends ControllerAbstract
         return $this->cache(function () {
             exec($this->git().' log -10 --date=iso-strict --format="%cd: %s" HEAD..origin/'.$this->branch(), $output);
 
-            return array_map($this->logLine(...), $output);
+            return $output ? array_map($this->logLine(...), $output) : [];
         });
     }
 
@@ -181,5 +181,15 @@ class Installation extends ControllerAbstract
             'date' => helper()->dateFormattedToTimezone($line[0], $this->auth->timezone->zone),
             'message' => $line[1],
         ];
+    }
+
+    /**
+     * @param string $command
+     *
+     * @return string
+     */
+    protected function cmd(string $command): string
+    {
+        return trim(strval(shell_exec($command)));
     }
 }
