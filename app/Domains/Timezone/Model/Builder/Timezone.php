@@ -16,7 +16,10 @@ class Timezone extends BuilderAbstract
      */
     public function byLatitudeLongitude(float $latitude, float $longitude): self
     {
-        return $this->whereRaw('ST_CONTAINS(`geojson`, POINT(?, ?))', [$longitude, $latitude]);
+        return $this->whereRaw(
+            'ST_CONTAINS(`geojson`, POINT(?, ?))',
+            [helper()->longitude($longitude), helper()->latitude($latitude)]
+        );
     }
 
     /**

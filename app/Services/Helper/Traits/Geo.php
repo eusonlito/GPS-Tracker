@@ -9,6 +9,26 @@ use stdClass;
 trait Geo
 {
     /**
+     * @param float $latitude
+     *
+     * @return float
+     */
+    public function latitude(float $latitude): float
+    {
+        return max(-89.99999, min(89.99999, $latitude));
+    }
+
+    /**
+     * @param float $longitude
+     *
+     * @return float
+     */
+    public function longitude(float $longitude): float
+    {
+        return max(-179.99999, min(179.99999, $longitude));
+    }
+
+    /**
      * @param float $lat1
      * @param float $lng1
      * @param float $lat2

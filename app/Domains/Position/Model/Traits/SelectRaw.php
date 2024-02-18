@@ -62,10 +62,10 @@ trait SelectRaw
         }
 
         $bounding_box = [
-            'latitude_min' => round(floatval($bounding_box['latitude_min'] ?? 0), 5),
-            'longitude_min' => round(floatval($bounding_box['longitude_min'] ?? 0), 5),
-            'latitude_max' => round(floatval($bounding_box['latitude_max'] ?? 0), 5),
-            'longitude_max' => round(floatval($bounding_box['longitude_max'] ?? 0), 5),
+            'latitude_min' => static::heatmapBoundingBoxValue($bounding_box, 'latitude_min'),
+            'longitude_min' => static::heatmapBoundingBoxValue($bounding_box, 'longitude_min'),
+            'latitude_max' => static::heatmapBoundingBoxValue($bounding_box, 'latitude_max'),
+            'longitude_max' => static::heatmapBoundingBoxValue($bounding_box, 'longitude_max'),
         ];
 
         if (count($bounding_box) !== count(array_filter($bounding_box))) {
@@ -73,5 +73,25 @@ trait SelectRaw
         }
 
         return $bounding_box;
+    }
+
+    /**
+     * @param array $bounding_box
+     *
+     * @return float
+     */
+    public static function heatmapBoundingBoxValue(array $bounding_box, string $key): float
+    {
+        $value = round(floatval($bounding_box[$key] ?? 0), 5);
+
+        if (str_starts_with($key, 'latitude')) {
+            $value = helper()->latitude($value);
+        }
+
+        if (str_starts_with($key, 'longitude')) {
+            $value = helper()->longitude($value);
+        }
+
+        return $value;
     }
 }
