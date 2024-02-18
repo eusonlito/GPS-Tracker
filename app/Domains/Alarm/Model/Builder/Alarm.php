@@ -37,7 +37,11 @@ class Alarm extends BuilderAbstract
     public function checkFenceIn(float $latitude, float $longitude): self
     {
         return $this->byType('fence-in')
-            ->whereRaw(sprintf($this->checkFenceInSql(), $longitude, $latitude));
+            ->whereRaw(sprintf(
+                $this->checkFenceInSql(),
+                helper()->longitude($longitude),
+                helper()->latitude($latitude)
+            ));
     }
 
     /**
@@ -65,7 +69,11 @@ class Alarm extends BuilderAbstract
     public function checkFenceOut(float $latitude, float $longitude): self
     {
         return $this->byType('fence-out')
-            ->whereRaw(sprintf($this->checkFenceOutSql(), $longitude, $latitude));
+            ->whereRaw(sprintf(
+                $this->checkFenceOutSql(),
+                helper()->longitude($longitude),
+                helper()->latitude($latitude)
+            ));
     }
 
     /**
@@ -115,7 +123,11 @@ class Alarm extends BuilderAbstract
     public function checkPolygonIn(float $latitude, float $longitude): self
     {
         return $this->byType('polygon-in')
-            ->whereRaw(sprintf($this->checkPolygonInSql(), $longitude, $latitude));
+            ->whereRaw(sprintf(
+                $this->checkPolygonInSql(),
+                helper()->longitude($longitude),
+                helper()->latitude($latitude)
+            ));
     }
 
     /**
@@ -140,7 +152,11 @@ class Alarm extends BuilderAbstract
     public function checkPolygonOut(float $latitude, float $longitude): self
     {
         return $this->byType('polygon-out')
-            ->whereRaw(sprintf($this->checkPolygonOutSql(), $longitude, $latitude));
+            ->whereRaw(sprintf(
+                $this->checkPolygonOutSql(),
+                helper()->longitude($longitude),
+                helper()->latitude($latitude)
+            ));
     }
 
     /**

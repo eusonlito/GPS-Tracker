@@ -27,8 +27,8 @@ trait Gis
     {
         return sprintf(
             'ST_Intersects(ST_Buffer(ST_SRID(POINT(%f, %f), 4326), %d), ST_SRID(`point`, 4326))',
-            $longitude,
-            $latitude,
+            helper()->longitude($longitude),
+            helper()->latitude($latitude),
             $meters,
         );
     }

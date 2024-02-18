@@ -23,7 +23,11 @@ trait Gis
      */
     public static function pointFromLatitudeLongitude(float $latitude, float $longitude): Expression
     {
-        return static::db()->raw(sprintf('ST_PointFromText("POINT(%f %f)", 4326, "axis-order=long-lat")', $longitude, $latitude));
+        return static::db()->raw(sprintf(
+            'ST_PointFromText("POINT(%f %f)", 4326, "axis-order=long-lat")',
+            helper()->longitude($longitude),
+            helper()->latitude($latitude)
+        ));
     }
 
     /**
