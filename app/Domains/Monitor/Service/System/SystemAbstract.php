@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 namespace App\Domains\Monitor\Service\System;
+
 use App\Services\Command\Exec;
 
 abstract class SystemAbstract
