@@ -5,6 +5,7 @@ namespace App\Services\Server;
 use stdClass;
 use Throwable;
 use Illuminate\Support\Collection;
+use App\Exceptions\UnexpectedValueException;
 
 class Process
 {
@@ -89,6 +90,8 @@ class Process
      */
     public function kill(int $port): bool
     {
+        $this->fuserCheck();
+
         foreach (['SIGINT', 'SIGTERM', 'SIGKILL'] as $signal) {
             if ($this->killSignal($port, $signal)) {
                 return true;
@@ -96,6 +99,18 @@ class Process
         }
 
         return false;
+    }
+
+    /**
+     * @return void
+     */
+    public function fuserCheck(): void
+    {
+        $fuser = explode(' ', trim(shell_exec('type fuser')));
+
+        if (empty($fuser)) {
+            throw new UnexpectedValueException(__('common.error.fuser-not-found'));
+        }
     }
 
     /**

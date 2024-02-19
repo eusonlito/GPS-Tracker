@@ -98,6 +98,6 @@ abstract class SystemAbstract
     {
         static $cache;
 
-        return $cache ??= $this->cmdLines('top -b -w 512 -E g -e k -n 1');
+        return $cache ??= $this->cmdLines('top -b -w 512 -n 1');
     }
 }
