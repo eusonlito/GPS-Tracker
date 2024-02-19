@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 namespace App\Domains\Monitor\Service\System;
+use App\Services\Command\Exec;
 
 class Memory extends SystemAbstract
 {
@@ -75,7 +76,7 @@ class Memory extends SystemAbstract
      */
     protected function load(): void
     {
-        $info = array_map('intval', $this->cmdArray('free -b | grep "Mem:"'));
+        $info = Exec::cmdArrayInt('free -b | grep "Mem:"');
 
         if (isset($info[1], $info[2], $info[6]) === false) {
             return;

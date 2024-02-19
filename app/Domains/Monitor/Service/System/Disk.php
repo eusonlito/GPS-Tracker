@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 namespace App\Domains\Monitor\Service\System;
+use App\Services\Command\Exec;
 
 class Disk extends SystemAbstract
 {
@@ -74,16 +75,16 @@ class Disk extends SystemAbstract
      */
     protected function load(): void
     {
-        $info = $this->cmdArray('df . | sed 1d');
+        $info = Exec::cmdArrayInt('df . | sed 1d');
 
         if (isset($info[1], $info[2], $info[3], $info[4]) === false) {
             return;
         }
 
-        $this->size = intval($info[1]) * 1024;
-        $this->load = intval($info[2]) * 1024;
-        $this->free = intval($info[3]) * 1024;
-        $this->percent = intval($info[4]);
+        $this->size = $info[1] * 1024;
+        $this->load = $info[2] * 1024;
+        $this->free = $info[3] * 1024;
+        $this->percent = $info[4];
     }
 
     /**
@@ -99,7 +100,7 @@ class Disk extends SystemAbstract
      */
     protected function df(): string
     {
-        return strval(shell_exec('df | grep -v tmpfs'));
+        return Exec::cmd('df | grep -v tmpfs');
     }
 
     /**

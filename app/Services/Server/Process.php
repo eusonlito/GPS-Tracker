@@ -6,6 +6,7 @@ use stdClass;
 use Throwable;
 use Illuminate\Support\Collection;
 use App\Exceptions\UnexpectedValueException;
+use App\Services\Command\Exec;
 
 class Process
 {
@@ -36,15 +37,7 @@ class Process
      */
     protected function listProcesses(): array
     {
-        return array_filter(explode("\n", $this->listExec()));
-    }
-
-    /**
-     * @return string
-     */
-    protected function listExec(): string
-    {
-        return trim((string)shell_exec($this->listExecCmd()));
+        return Exec::cmdLinesArray($this->listExecCmd());
     }
 
     /**
@@ -62,15 +55,15 @@ class Process
     }
 
     /**
-     * @param string $process
+     * @param array $process
      *
      * @return \stdClass
      */
-    protected function listProcess(string $process): stdClass
+    protected function listProcess(array $process): stdClass
     {
-        $process = preg_split('/\s+/', trim($process), 10);
+        $command = implode(' ', array_slice($process, 9));
 
-        preg_match('/\-\-port=([0-9]+)/', $process[9], $port);
+        preg_match('/\-\-port=([0-9]+)/', $command, $port);
 
         return (object)[
             'pid' => intval($process[0]),
@@ -78,7 +71,7 @@ class Process
             'start' => date('Y-m-d H:i:s', strtotime($process[3].' '.$process[4].' '.$process[6].' '.$process[5])),
             'memory' => round(floatval($process[7]) / 1024, 2),
             'cpu' => round(floatval($process[8]), 2),
-            'command' => $process[9],
+            'command' => $command,
             'port' => intval($port[1]),
         ];
     }
@@ -106,9 +99,7 @@ class Process
      */
     public function fuserCheck(): void
     {
-        $fuser = explode(' ', trim(shell_exec('type fuser')));
-
-        if (empty($fuser)) {
+        if (empty(Exec::cmd('type fuser 2>/dev/null'))) {
             throw new UnexpectedValueException(__('common.error.fuser-not-found'));
         }
     }
@@ -125,7 +116,7 @@ class Process
             return true;
         }
 
-        shell_exec(sprintf('fuser -k -%s %s/tcp > /dev/null 2>&1', $signal, $port));
+        exec(sprintf('fuser -k -%s %s/tcp > /dev/null 2>&1', $signal, $port));
 
         sleep(1);
 

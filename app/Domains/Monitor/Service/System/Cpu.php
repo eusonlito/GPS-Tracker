@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 namespace App\Domains\Monitor\Service\System;
+use App\Services\Command\Exec;
 
 class Cpu extends SystemAbstract
 {
@@ -82,13 +83,13 @@ class Cpu extends SystemAbstract
      */
     protected function load(): void
     {
-        $this->cores = $this->cmdInt('nproc --all');
+        $this->cores = Exec::cmdInt('nproc --all');
 
         if (empty($this->cores)) {
             return;
         }
 
-        $info = $this->cmdArray('cat /proc/loadavg');
+        $info = Exec::cmdArray('cat /proc/loadavg');
 
         if (isset($info[0], $info[1], $info[2]) === false) {
             return;
