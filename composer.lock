@@ -1347,16 +1347,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.44.0",
+            "version": "v10.45.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1199dbe361787bbe9648131a79f53921b4148cf6"
+                "reference": "dcf5d1d722b84ad38a5e053289130b6962f830bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1199dbe361787bbe9648131a79f53921b4148cf6",
-                "reference": "1199dbe361787bbe9648131a79f53921b4148cf6",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/dcf5d1d722b84ad38a5e053289130b6962f830bd",
+                "reference": "dcf5d1d722b84ad38a5e053289130b6962f830bd",
                 "shasum": ""
             },
             "require": {
@@ -1549,7 +1549,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-13T16:01:16+00:00"
+            "time": "2024-02-21T14:07:36+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -6689,12 +6689,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/paratestphp/paratest.git",
-                "reference": "8b3e4a47d03d4f4b44e8f17d2b02a8870bcdb420"
+                "reference": "b5b3bce447f7d77b5b09a9da529a1ed20c173164"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/8b3e4a47d03d4f4b44e8f17d2b02a8870bcdb420",
-                "reference": "8b3e4a47d03d4f4b44e8f17d2b02a8870bcdb420",
+                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/b5b3bce447f7d77b5b09a9da529a1ed20c173164",
+                "reference": "b5b3bce447f7d77b5b09a9da529a1ed20c173164",
                 "shasum": ""
             },
             "require": {
@@ -6708,7 +6708,7 @@
                 "phpunit/php-code-coverage": "^10.1.11 || ^11.0.0",
                 "phpunit/php-file-iterator": "^4.1.0 || ^5.0.0",
                 "phpunit/php-timer": "^6.0.0 || ^7.0.0",
-                "phpunit/phpunit": "^10.5.9 || ^11.0.2",
+                "phpunit/phpunit": "^10.5.9 || ^11.0.3",
                 "sebastian/environment": "^6.0.1 || ^7.0.0",
                 "symfony/console": "^6.4.3 || ^7.0.3",
                 "symfony/process": "^6.4.3 || ^7.0.3"
@@ -6717,7 +6717,7 @@
                 "doctrine/coding-standard": "^12.0.0",
                 "ext-pcov": "*",
                 "ext-posix": "*",
-                "phpstan/phpstan": "^1.10.58",
+                "phpstan/phpstan": "^1.10.59",
                 "phpstan/phpstan-deprecation-rules": "^1.1.4",
                 "phpstan/phpstan-phpunit": "^1.3.15",
                 "phpstan/phpstan-strict-rules": "^1.5.2",
@@ -6776,7 +6776,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2024-02-16T15:47:32+00:00"
+            "time": "2024-02-20T16:10:57+00:00"
         },
         {
             "name": "cmgmyr/phploc",
@@ -7763,12 +7763,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/larastan/larastan.git",
-                "reference": "b1f56104c278aece8a176bc9d228f3382b4e5253"
+                "reference": "7ed5ac0927c46d5fe9698e0c05884257a04a41be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/larastan/larastan/zipball/b1f56104c278aece8a176bc9d228f3382b4e5253",
-                "reference": "b1f56104c278aece8a176bc9d228f3382b4e5253",
+                "url": "https://api.github.com/repos/larastan/larastan/zipball/7ed5ac0927c46d5fe9698e0c05884257a04a41be",
+                "reference": "7ed5ac0927c46d5fe9698e0c05884257a04a41be",
                 "shasum": ""
             },
             "require": {
@@ -7857,7 +7857,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-02-16T11:44:34+00:00"
+            "time": "2024-02-20T21:38:55+00:00"
         },
         {
             "name": "laravel/pint",
@@ -7865,12 +7865,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "3ca38316a6c418de35ed7b06201f04bd69b2ffec"
+                "reference": "3e47cb8238726b39028623502bbb1cf5dee307bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/3ca38316a6c418de35ed7b06201f04bd69b2ffec",
-                "reference": "3ca38316a6c418de35ed7b06201f04bd69b2ffec",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/3e47cb8238726b39028623502bbb1cf5dee307bf",
+                "reference": "3e47cb8238726b39028623502bbb1cf5dee307bf",
                 "shasum": ""
             },
             "require": {
@@ -7924,7 +7924,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2024-02-16T16:06:07+00:00"
+            "time": "2024-02-20T17:39:12+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -8796,16 +8796,16 @@
         },
         {
             "name": "orchestra/testbench-core",
-            "version": "v8.21.1",
+            "version": "v8.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "c6bf49a1b7ef4afe58e5bda676158c4de41f9a81"
+                "reference": "b0006c092694828f4b0fa409a369b798e5e26f8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/c6bf49a1b7ef4afe58e5bda676158c4de41f9a81",
-                "reference": "c6bf49a1b7ef4afe58e5bda676158c4de41f9a81",
+                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/b0006c092694828f4b0fa409a369b798e5e26f8d",
+                "reference": "b0006c092694828f4b0fa409a369b798e5e26f8d",
                 "shasum": ""
             },
             "require": {
@@ -8884,7 +8884,7 @@
                 "issues": "https://github.com/orchestral/testbench/issues",
                 "source": "https://github.com/orchestral/testbench-core"
             },
-            "time": "2024-01-22T01:45:47+00:00"
+            "time": "2024-02-21T23:33:22+00:00"
         },
         {
             "name": "orchestra/workbench",
@@ -9298,16 +9298,16 @@
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.8.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "fad452781b3d774e3337b0c0b245dd8e5a4455fc"
+                "reference": "bc3dc91a5e9b14aa06d1d9e90647c5c5a2cc5353"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/fad452781b3d774e3337b0c0b245dd8e5a4455fc",
-                "reference": "fad452781b3d774e3337b0c0b245dd8e5a4455fc",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/bc3dc91a5e9b14aa06d1d9e90647c5c5a2cc5353",
+                "reference": "bc3dc91a5e9b14aa06d1d9e90647c5c5a2cc5353",
                 "shasum": ""
             },
             "require": {
@@ -9350,9 +9350,9 @@
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "support": {
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
-                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.8.0"
+                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.8.1"
             },
-            "time": "2024-01-11T11:49:22+00:00"
+            "time": "2024-01-18T19:15:27+00:00"
         },
         {
             "name": "phpmyadmin/sql-parser",
@@ -9491,16 +9491,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.58",
+            "version": "1.10.59",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "a23518379ec4defd9e47cbf81019526861623ec2"
+                "reference": "e607609388d3a6d418a50a49f7940e8086798281"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a23518379ec4defd9e47cbf81019526861623ec2",
-                "reference": "a23518379ec4defd9e47cbf81019526861623ec2",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e607609388d3a6d418a50a49f7940e8086798281",
+                "reference": "e607609388d3a6d418a50a49f7940e8086798281",
                 "shasum": ""
             },
             "require": {
@@ -9549,7 +9549,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-12T20:02:57+00:00"
+            "time": "2024-02-20T13:59:13+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
