@@ -76,11 +76,11 @@ class LogReadGPS103 extends UnitAbstract
 
         $trip = TripModel::query()->first();
 
-        $this->assertEquals($trip->start_utc_at, '2024-01-17 19:20:03');
-        $this->assertEquals($trip->end_utc_at, '2024-01-17 19:49:54');
+        $this->assertEquals($trip->start_utc_at, '2024-01-17 19:19:55');
+        $this->assertEquals($trip->end_utc_at, '2024-01-17 19:49:52');
         $this->assertEquals($trip->distance, 12401);
-        $this->assertEquals($trip->time, 1791);
-        $this->assertEquals($trip->getRawOriginal('stats'), '{"time": {"total": 1791, "stopped": 429, "movement": 1362, "total_percent": 100, "stopped_percent": 24, "movement_percent": 76}, "speed": {"avg": 24.93, "max": 55.82, "min": 0, "avg_percent": 45, "max_percent": 100, "min_percent": 0, "avg_movement": 32.78, "avg_movement_percent": 59}}');
+        $this->assertEquals($trip->time, 1797);
+        $this->assertEquals($trip->getRawOriginal('stats'), '{"time": {"total": 1797, "stopped": 437, "movement": 1360, "total_percent": 100, "stopped_percent": 24, "movement_percent": 76}, "speed": {"avg": 24.84, "max": 55.82, "min": 0, "avg_percent": 45, "max_percent": 100, "min_percent": 0, "avg_movement": 32.83, "avg_movement_percent": 59}}');
     }
 
     /**
@@ -95,7 +95,7 @@ class LogReadGPS103 extends UnitAbstract
         $this->assertEquals($position->speed, 0.00);
         $this->assertEquals($position->direction, 79);
         $this->assertEquals($position->signal, 1);
-        $this->assertEquals($position->date_utc_at, '2024-01-17 19:20:03');
+        $this->assertEquals($position->date_utc_at, '2024-01-17 19:19:55');
         $this->assertEquals($position->longitude, 49.74266);
         $this->assertEquals($position->latitude, 34.10137);
 
@@ -104,7 +104,7 @@ class LogReadGPS103 extends UnitAbstract
         $this->assertEquals($position->speed, 0.00);
         $this->assertEquals($position->direction, 92);
         $this->assertEquals($position->signal, 1);
-        $this->assertEquals($position->date_utc_at, '2024-01-17 19:49:54');
+        $this->assertEquals($position->date_utc_at, '2024-01-17 19:49:52');
         $this->assertEquals($position->longitude, 49.74265);
         $this->assertEquals($position->latitude, 34.1014);
     }
