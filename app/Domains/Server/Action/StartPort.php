@@ -152,11 +152,11 @@ class StartPort extends ActionAbstract
 
     /**
      * @param string $body
-     * @param array $data
+     * @param array $data = []
      *
      * @return array
      */
-    protected function store(string $body, array $data): array
+    protected function store(string $body, array $data = []): array
     {
         $this->logDebug($body);
 

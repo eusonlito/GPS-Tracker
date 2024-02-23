@@ -4,6 +4,7 @@ namespace App\Domains\Monitor\Service\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use App\Services\Command\Exec;
 
 class Installation extends ControllerAbstract
 {
@@ -27,7 +28,7 @@ class Installation extends ControllerAbstract
             return;
         }
 
-        $this->cmd($this->git().' fetch origin '.$this->branch());
+        exec($this->git().' fetch origin '.$this->branch());
     }
 
     /**
@@ -132,7 +133,9 @@ class Installation extends ControllerAbstract
     protected function git(): ?string
     {
         return $this->cache(function () {
-            return str_contains($git = $this->cmd('which git'), 'not found') ? null : $git;
+            $git = Exec::cmdArray('type git 2>/dev/null');
+
+            return $git ? end($git) : null;
         });
     }
 
@@ -141,7 +144,9 @@ class Installation extends ControllerAbstract
      */
     protected function branch(): string
     {
-        return $this->cache(fn () => $this->cmd($this->git().' branch --show-current'));
+        return $this->cache(function () {
+            return str_replace('refs/heads/', '', Exec::cmd($this->git().' rev-parse --symbolic-full-name --verify --quiet HEAD'));
+        });
     }
 
     /**
@@ -150,9 +155,9 @@ class Installation extends ControllerAbstract
     protected function log(): array
     {
         return $this->cache(function () {
-            exec($this->git().' log -10 --date=iso-strict --format="%cd: %s"', $output);
+            $log = Exec::cmdLines($this->git().' log -10 --date=iso --format="%cd: %s" 2>&1');
 
-            return $output ? array_map($this->logLine(...), $output) : [];
+            return $log ? array_map($this->logLine(...), $log) : [];
         });
     }
 
@@ -162,9 +167,9 @@ class Installation extends ControllerAbstract
     protected function logDiff(): array
     {
         return $this->cache(function () {
-            exec($this->git().' log -10 --date=iso-strict --format="%cd: %s" HEAD..origin/'.$this->branch(), $output);
+            $log = Exec::cmdLines($this->git().' log -10 --date=iso --format="%cd: %s" HEAD..origin/'.$this->branch().' 2>&1');
 
-            return $output ? array_map($this->logLine(...), $output) : [];
+            return $log ? array_map($this->logLine(...), $log) : [];
         });
     }
 
@@ -181,15 +186,5 @@ class Installation extends ControllerAbstract
             'date' => helper()->dateFormattedToTimezone($line[0], $this->auth->timezone->zone),
             'message' => $line[1],
         ];
-    }
-
-    /**
-     * @param string $command
-     *
-     * @return string
-     */
-    protected function cmd(string $command): string
-    {
-        return trim(strval(shell_exec($command)));
     }
 }

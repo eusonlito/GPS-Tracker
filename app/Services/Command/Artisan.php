@@ -152,7 +152,10 @@ class Artisan
 
         $version = PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;
 
-        return trim(exec('which php'.$version.' || which php'));
+        $cmd = 'type php'.$version.' 2>/dev/null || type php 2>/dev/null';
+        $php = Exec::cmdArray($cmd);
+
+        return end($php);
     }
 
     /**
