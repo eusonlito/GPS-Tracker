@@ -7763,12 +7763,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/larastan/larastan.git",
-                "reference": "7ed5ac0927c46d5fe9698e0c05884257a04a41be"
+                "reference": "a420e73b2c40ebef27637a3b482e0ebd187e5178"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/larastan/larastan/zipball/7ed5ac0927c46d5fe9698e0c05884257a04a41be",
-                "reference": "7ed5ac0927c46d5fe9698e0c05884257a04a41be",
+                "url": "https://api.github.com/repos/larastan/larastan/zipball/a420e73b2c40ebef27637a3b482e0ebd187e5178",
+                "reference": "a420e73b2c40ebef27637a3b482e0ebd187e5178",
                 "shasum": ""
             },
             "require": {
@@ -7857,7 +7857,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-02-20T21:38:55+00:00"
+            "time": "2024-02-22T23:43:03+00:00"
         },
         {
             "name": "laravel/pint",
@@ -12702,16 +12702,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "5.22.1",
+            "version": "5.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "e9dad66e11274315dac27e08349c628c7d6a1a43"
+                "reference": "d768d914152dbbf3486c36398802f74e80cfde48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/e9dad66e11274315dac27e08349c628c7d6a1a43",
-                "reference": "e9dad66e11274315dac27e08349c628c7d6a1a43",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/d768d914152dbbf3486c36398802f74e80cfde48",
+                "reference": "d768d914152dbbf3486c36398802f74e80cfde48",
                 "shasum": ""
             },
             "require": {
@@ -12808,7 +12808,7 @@
                 "issues": "https://github.com/vimeo/psalm/issues",
                 "source": "https://github.com/vimeo/psalm"
             },
-            "time": "2024-02-15T22:52:31+00:00"
+            "time": "2024-02-22T23:39:07+00:00"
         },
         {
             "name": "zbateson/mail-mime-parser",
