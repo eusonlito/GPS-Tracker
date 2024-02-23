@@ -74,7 +74,7 @@ class LogRead extends ActionAbstract
     protected function iterate(): void
     {
         foreach (file($this->file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
-            if (count($line = explode(' ', $line)) > 1) {
+            if (count($line = explode(' ', trim($line), 2)) === 2) {
                 $this->store($line[1]);
             }
         }

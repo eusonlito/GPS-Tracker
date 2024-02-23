@@ -35,7 +35,7 @@ class Location extends ParserAbstract
             && ($this->values['lat'] ?? false)
             && ($this->values['lon'] ?? false)
             && ($this->values['timestamp'] ?? false)
-            && ($this->values['speed'] ?? false);
+            && isset($this->values['speed']);
     }
 
     /**

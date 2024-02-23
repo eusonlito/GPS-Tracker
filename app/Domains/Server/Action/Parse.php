@@ -71,7 +71,7 @@ class Parse extends ActionAbstract
      */
     protected function line(string $line): void
     {
-        [$line, $date_at] = array_reverse(explode(' ', trim($line), 2)) + ['', ''];
+        [$date_at, $line] = explode(' ', trim($line), 2) + ['', ''];
 
         $resources = $this->protocol->resources($line, $this->parsed[0]['data'] ?? []);
 
