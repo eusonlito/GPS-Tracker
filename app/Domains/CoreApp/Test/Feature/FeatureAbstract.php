@@ -32,7 +32,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             'user_id' => $user->id,
         ]));
 
-        $this->assertEquals($row->user_id, $user->id, '$row->user_id, $user->id');
+        $this->assertEquals($user->id, $row->user_id, '$user->id, $row->user_id');
 
         return [$user, $row];
     }
@@ -75,12 +75,12 @@ abstract class FeatureAbstract extends FeatureAbstractCore
         $device = $device ? $this->createDevice($vehicle) : null;
 
         if ($vehicle) {
-            $this->assertEquals($vehicle->user_id, $user->id, '$vehicle->user_id, $user->id');
+            $this->assertEquals($user->id, $vehicle->user_id, '$user->id, $vehicle->user_id');
         }
 
         if ($device) {
-            $this->assertEquals($device->user_id, $user->id, '$device->user_id, $user->id');
-            $this->assertEquals($device->vehicle_id, $vehicle->id, '$device->vehicle_id, $vehicle->id');
+            $this->assertEquals($user->id, $device->user_id, '$user->id, $device->user_id');
+            $this->assertEquals($vehicle->id, $device->vehicle_id, '$vehicle->id, $device->vehicle_id');
         }
 
         return [$user, $vehicle, $device];
@@ -148,14 +148,14 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             'device_id' => $device?->id,
         ]));
 
-        $this->assertEquals($row->user_id, $user->id, '$row->user_id, $user->id');
+        $this->assertEquals($user->id, $row->user_id, '$user->id, $row->user_id');
 
         if ($vehicle) {
-            $this->assertEquals($row->vehicle_id, $vehicle->id, '$row->vehicle_id, $vehicle->id');
+            $this->assertEquals($vehicle->id, $row->vehicle_id, '$vehicle->id, $row->vehicle_id');
         }
 
         if ($device) {
-            $this->assertEquals($row->device_id, $device->id, '$row->device_id, $device->id');
+            $this->assertEquals($device->id, $row->device_id, '$device->id, $row->device_id');
         }
 
         return $row;
@@ -600,7 +600,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertStatus(302)
             ->assertRedirect(route($this->routeCreateToUpdate($redirect), $this->rowLast()->id));
 
-        $this->assertEquals($this->rowLast()->user_id, $user1->id);
+        $this->assertEquals($user1->id, $this->rowLast()->user_id);
 
         return $response;
     }
@@ -716,14 +716,14 @@ abstract class FeatureAbstract extends FeatureAbstractCore
 
         $this->dataVsRow($data, $row1, $exclude, $only);
 
-        $this->assertEquals($row1->user_id, $user2->id, '$row1->user_id, $user2->id');
+        $this->assertEquals($user2->id, $row1->user_id, '$user2->id, $row1->user_id');
 
         if ($vehicle) {
-            $this->assertEquals($row1->vehicle_id, $vehicle2->id, '$row1->vehicle_id, $vehicle2->id');
+            $this->assertEquals($vehicle2->id, $row1->vehicle_id, '$vehicle2->id, $row1->vehicle_id');
         }
 
         if ($device) {
-            $this->assertEquals($row1->device_id, $device2->id, '$row1->device_id, $device2->id');
+            $this->assertEquals($device2->id, $row1->device_id, '$device2->id, $row1->device_id');
         }
 
         return $response;
@@ -767,7 +767,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
             ->assertStatus(302)
             ->assertRedirect(route($this->route, $row->id));
 
-        $this->assertEquals($this->rowLast()->user_id, $user->id);
+        $this->assertEquals($user->id, $this->rowLast()->user_id);
 
         return $response;
     }
@@ -940,14 +940,14 @@ abstract class FeatureAbstract extends FeatureAbstractCore
 
         $row2 = $this->rowFresh($row2);
 
-        $this->assertEquals($row2->user_id, $user2->id, '$row2->user_id, $user2->id');
+        $this->assertEquals($user2->id, $row2->user_id, '$user2->id, $row2->user_id');
 
         if ($vehicle) {
-            $this->assertEquals($row2->vehicle_id, $vehicle2->id, '$row2->vehicle_id, $vehicle2->id');
+            $this->assertEquals($vehicle2->id, $row2->vehicle_id, '$vehicle2->id, $row2->vehicle_id');
         }
 
         if ($device) {
-            $this->assertEquals($row2->device_id, $device2->id, '$row2->device_id, $device2->id');
+            $this->assertEquals($device2->id, $row2->device_id, '$device2->id, $row2->device_id');
         }
 
         $this->dataVsRow(['user_id' => $row2->user_id] + $data, $row2, $exclude, $only);
@@ -976,7 +976,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
 
         $row1 = $this->rowFresh($row1);
 
-        $this->assertEquals($row1->user_id, $user1->id, '$row1->user_id, $user1->id');
+        $this->assertEquals($user1->id, $row1->user_id, '$user1->id, $row1->user_id');
 
         $this->dataVsRow(['user_id' => $row1->user_id] + $data, $row1, $exclude, $only);
 
@@ -988,7 +988,7 @@ abstract class FeatureAbstract extends FeatureAbstractCore
 
         $row2 = $this->rowFresh($row2);
 
-        $this->assertEquals($row2->user_id, $user2->id, '$row2->user_id, $user2->id');
+        $this->assertEquals($user2->id, $row2->user_id, '$user2->id, $row2->user_id');
 
         $this->dataVsRow(['user_id' => $row2->user_id] + $data, $row2, $exclude, $only);
 
