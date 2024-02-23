@@ -161,15 +161,15 @@ trait Date
     }
 
     /**
-     * @param int $tiemstamp
+     * @param int $timestamp
      * @param string $timezone
      * @param string $format = 'Y-m-d H:i:s'
      *
      * @return string
      */
-    public function timestampToTimezone(int $tiemstamp, string $timezone, string $format = 'Y-m-d H:i:s'): string
+    public function timestampToTimezone(int $timestamp, string $timezone, string $format = 'Y-m-d H:i:s'): string
     {
-        return date_create('@'.$tiemstamp)->setTimezone($this->dateTimeZone($timezone))->format($format);
+        return date_create('@'.$timestamp)->setTimezone($this->dateTimeZone($timezone))->format($format);
     }
 
     /**

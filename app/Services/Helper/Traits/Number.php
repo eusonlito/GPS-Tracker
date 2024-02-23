@@ -41,7 +41,13 @@ trait Number
     public function sizeHuman(int $bytes, int $decimals = 2): string
     {
         $e = floor(log($bytes, 1024));
-        $size = round($bytes / pow(1024, $e), $decimals);
+        $pow = pow(1024, $e);
+
+        if ($pow === 0.0) {
+            return '0 B';
+        }
+
+        $size = round($bytes / $pow, $decimals);
         $unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'][$e];
 
         return $this->number($size, $decimals).' '.$unit;
