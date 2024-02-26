@@ -37,14 +37,6 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return void
-     */
-    public function manifestGenerate(): void
-    {
-        $this->actionHandle(ManifestGenerate::class);
-    }
-
-    /**
      * @return array
      */
     public function parse(): array

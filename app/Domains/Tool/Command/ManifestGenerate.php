@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Server\Command;
+namespace App\Domains\Tool\Command;
 
 class ManifestGenerate extends CommandAbstract
 {
     /**
      * @var string
      */
-    protected $signature = 'server:manifest:generate';
+    protected $signature = 'tool:manifest:generate';
 
     /**
      * @var string
