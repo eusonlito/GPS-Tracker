@@ -6,13 +6,15 @@ use App\Services\Buffer\Bit as BufferBit;
 use App\Services\Buffer\Byte as BufferByte;
 use App\Services\Protocol\ParserAbstract;
 
-class Location extends ParserAbstract
+class LocationGpsModular extends ParserAbstract
 {
     /**
      * @return array
      */
     public function resources(): array
     {
+        $this->values = [];
+
         if ($this->bodyIsValid() === false) {
             return [];
         }
@@ -30,7 +32,7 @@ class Location extends ParserAbstract
     public function bodyIsValid(): bool
     {
         return ($this->data['serial'] ?? false)
-            && (bool)preg_match($this->bodyIsValidRegExp(), $this->body);
+            && (bool)preg_match($this->bodyIsValidRegExp(), $this->body, $this->values);
     }
 
     /**
@@ -203,6 +205,6 @@ class Location extends ParserAbstract
      */
     protected function response(): string
     {
-        return '';
+        return hex2bin($this->values[1].'0005'.$this->values[3].'0001D9DC0D0A');
     }
 }

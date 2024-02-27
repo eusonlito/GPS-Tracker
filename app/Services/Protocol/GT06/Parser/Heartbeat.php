@@ -39,11 +39,8 @@ class Heartbeat extends ParserAbstract
         return '/^'
             .'(7878)'         //  1 - start
             .'([0-9a-f]{2})'  //  2 - length
-            .'(23)'           //  3 - protocol
-            .'([0-9a-f]{12})' //  4 - information
-            .'([0-9a-f]{4})'  //  5 - serial number
-            .'([0-9a-f]{4})'  //  6 - error check
-            .'$/';
+            .'(13|23)'        //  3 - protocol
+            .'/';
     }
 
     /**
@@ -59,6 +56,6 @@ class Heartbeat extends ParserAbstract
      */
     protected function response(): string
     {
-        return "\x78\x78\x05\x23\x01\x00\x67\x0E\x0D\x0A";
+        return hex2bin($this->values[1].'05'.$this->values[3].'0001D9DC0D0A');
     }
 }

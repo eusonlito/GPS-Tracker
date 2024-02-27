@@ -4,7 +4,8 @@ namespace App\Services\Protocol\GT06;
 
 use App\Services\Protocol\GT06\Parser\Auth as AuthParser;
 use App\Services\Protocol\GT06\Parser\Heartbeat as HeartbeatParser;
-use App\Services\Protocol\GT06\Parser\Location as LocationParser;
+use App\Services\Protocol\GT06\Parser\LocationGpsModular as LocationGpsModularParser;
+use App\Services\Protocol\GT06\Parser\LocationLbs as LocationLbsParser;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Server\Socket\Server;
 
@@ -46,7 +47,8 @@ class Manager extends ProtocolAbstract
         return [
             AuthParser::class,
             HeartbeatParser::class,
-            LocationParser::class,
+            LocationGpsModularParser::class,
+            LocationLbsParser::class,
         ];
     }
 
