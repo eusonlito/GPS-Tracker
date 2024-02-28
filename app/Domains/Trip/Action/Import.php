@@ -275,7 +275,7 @@ class Import extends ActionAbstract
             'direction' => $point['direction'],
             'signal' => 1,
             'date_utc_at' => date('Y-m-d H:i:s', $point['timestamp']),
-            'date_at' => helper()->timestampToTimezone($point['timestamp'], $this->timezone->zone),
+            'date_at' => helper()->dateFormattedToTimezone('@'.$point['timestamp'], $this->timezone->zone),
             'device_id' => $this->data['device_id'],
             'timezone_id' => $this->data['timezone_id'],
             'trip_id' => $this->row->id,
