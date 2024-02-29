@@ -118,7 +118,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function byIdsNot(array $ids): self
     {
-        return $this->orWhereIntegerNotInRaw($this->addTable('id'), $ids);
+        return $this->whereIntegerNotInRaw($this->addTable('id'), $ids);
     }
 
     /**
