@@ -44,7 +44,7 @@ class Location extends ParserAbstract
      */
     protected function bodyIsValidRegExp(): string
     {
-        return '/(GET|POST) \/\?(.*) HTTP\/1/';
+        return '/(GET|POST) \/[^\?]*\?(.*) HTTP\/1/';
     }
 
     /**
