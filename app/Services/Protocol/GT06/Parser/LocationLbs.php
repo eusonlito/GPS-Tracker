@@ -11,6 +11,8 @@ class LocationLbs extends ParserAbstract
      */
     public function resources(): array
     {
+        $this->values = [];
+
         if ($this->bodyIsValid() === false) {
             return [];
         }

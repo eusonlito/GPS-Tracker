@@ -29,13 +29,14 @@ class Location extends ParserAbstract
             return false;
         }
 
-        parse_str($matches[1], $this->values);
+        parse_str($matches[2], $this->values);
 
-        return ($this->values['id'] ?? false)
-            && ($this->values['lat'] ?? false)
-            && ($this->values['lon'] ?? false)
-            && ($this->values['timestamp'] ?? false)
-            && isset($this->values['speed']);
+        $this->valuesMap();
+
+        return $this->values['id']
+            && $this->values['lat']
+            && $this->values['lon']
+            && $this->values['timestamp'];
     }
 
     /**
@@ -43,7 +44,23 @@ class Location extends ParserAbstract
      */
     protected function bodyIsValidRegExp(): string
     {
-        return '/GET \/\?(.*) HTTP\/1/';
+        return '/(GET|POST) \/\?(.*) HTTP\/1/';
+    }
+
+    /**
+     * @return void
+     */
+    protected function valuesMap(): void
+    {
+        $this->values = [
+            'id' => $this->values['deviceid'] ?? $this->values['id'] ?? null,
+            'lat' => floatval($this->values['lat'] ?? 0),
+            'lon' => floatval($this->values['lon'] ?? 0),
+            'timestamp' => intval($this->values['timestamp'] ?? 0),
+            'speed' => floatval($this->values['speed'] ?? 0),
+            'direction' => intval($this->values['direction'] ?? $this->values['bearing'] ?? 0),
+            'valid' => boolval($this->values['valid'] ?? true),
+        ];
     }
 
     /**
@@ -67,7 +84,7 @@ class Location extends ParserAbstract
      */
     protected function latitude(): float
     {
-        return floatval($this->values['lat']);
+        return $this->values['lat'];
     }
 
     /**
@@ -75,7 +92,7 @@ class Location extends ParserAbstract
      */
     protected function longitude(): float
     {
-        return floatval($this->values['lon']);
+        return $this->values['lon'];
     }
 
     /**
@@ -83,7 +100,7 @@ class Location extends ParserAbstract
      */
     protected function speed(): float
     {
-        return round(floatval($this->values['speed']), 2);
+        return round($this->values['speed'], 2);
     }
 
     /**
@@ -91,7 +108,7 @@ class Location extends ParserAbstract
      */
     protected function signal(): int
     {
-        return intval($this->values['hdop'] ?? 1);
+        return intval($this->values['valid']);
     }
 
     /**
@@ -99,7 +116,7 @@ class Location extends ParserAbstract
      */
     protected function direction(): int
     {
-        return intval($this->values['direction'] ?? 0);
+        return $this->values['direction'];
     }
 
     /**
@@ -107,7 +124,7 @@ class Location extends ParserAbstract
      */
     protected function datetime(): ?string
     {
-        return date('Y-m-d H:i:s', (int)$this->values['timestamp']);
+        return date('Y-m-d H:i:s', $this->values['timestamp']);
     }
 
     /**
