@@ -1,8 +1,8 @@
 <?php
 
-use App\Services\Logger\DeprecationsDaily;
-use App\Services\Logger\LaravelDaily;
-use App\Services\Logger\Mail;
+use App\Services\Logger\DeprecationsDaily as DeprecationsLogger;
+use App\Services\Logger\LaravelDaily as LaravelLogger;
+use App\Services\Logger\Mail as MailLogger;
 
 return [
 
@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default' => env('LOG_CHANNEL', 'stack'),
+    'default' => 'stack',
 
     /*
     |--------------------------------------------------------------------------
@@ -30,7 +30,10 @@ return [
     |
     */
 
-    'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'deprecations'),
+    'deprecations' => [
+        'channel' => 'deprecations',
+        'trace' => true,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -72,12 +75,12 @@ return [
 
         'daily' => [
             'driver' => 'custom',
-            'via' => LaravelDaily::class,
+            'via' => LaravelLogger::class,
         ],
 
         'deprecations' => [
             'driver' => 'custom',
-            'via' => DeprecationsDaily::class,
+            'via' => DeprecationsLogger::class,
         ],
 
         'request' => [
@@ -90,7 +93,7 @@ return [
 
         'mail' => [
             'driver' => 'custom',
-            'via' => Mail::class,
+            'via' => MailLogger::class,
             'enabled' => env('LOG_MAIL', true),
         ],
 
