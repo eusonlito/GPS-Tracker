@@ -22,7 +22,7 @@
                 <td data-table-sort-value="{{ $each->total_size }}" >@number($each->total_size) MB</td>
                 <td data-table-sort-value="{{ $each->table_size }}" >@number($each->table_size) MB</td>
                 <td data-table-sort-value="{{ $each->index_size }}" >@number($each->index_size) MB</td>
-                <td data-table-sort-value="{{ $each->table_rows }}" >@number($each->table_rows, 0)</td>
+                <td data-table-sort-value="{{ $counts[$each->table_name] }}" >@number($counts[$each->table_name], 0)</td>
             </tr>
 
             @endforeach

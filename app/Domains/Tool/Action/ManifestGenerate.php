@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Server\Action;
+namespace App\Domains\Tool\Action;
 
 class ManifestGenerate extends ActionAbstract
 {

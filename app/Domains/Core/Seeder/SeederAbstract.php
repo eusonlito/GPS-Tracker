@@ -88,11 +88,11 @@ class SeederAbstract extends Seeder
      */
     protected function insertWithoutDuplicates(string $model, array $rows, string $key): void
     {
-        $keys = $model::pluck($key)->toArray();
+        $keys = $model::query()->withoutGlobalScopes()->pluck($key)->toArray();
 
         foreach ($rows as $row) {
             if (in_array($row[$key], $keys) === false) {
-                $model::insert($this->insertWithoutDuplicatesData($row));
+                $model::query()->insert($this->insertWithoutDuplicatesData($row));
             }
         }
     }

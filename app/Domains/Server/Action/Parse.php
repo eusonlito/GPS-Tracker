@@ -20,6 +20,11 @@ class Parse extends ActionAbstract
     protected array $parsed = [];
 
     /**
+     * @var array
+     */
+    protected array $resourceData = [];
+
+    /**
      * @var \App\Services\Protocol\ProtocolAbstract
      */
     protected ProtocolAbstract $protocol;
@@ -73,14 +78,14 @@ class Parse extends ActionAbstract
     {
         [$date_at, $line] = explode(' ', trim($line), 2) + ['', ''];
 
-        $resources = $this->protocol->resources($line, $this->parsed[0]['data'] ?? []);
+        $resources = $this->protocol->resources($line, $this->resourceData);
 
         $this->parsed[] = [
             'line' => $line,
             'date_at' => str_replace(['[', ']'], '', $date_at),
             'resources' => $resources,
             'device' => $this->lineDevice($resources),
-            'data' => $this->lineData($resources),
+            'data' => ($this->resourceData += $this->lineData($resources)),
         ];
     }
 

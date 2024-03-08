@@ -86,7 +86,7 @@
                     </button>
                 </div>
 
-                <div class="accordion-collapse collapse {{ $REQUEST->input('fence') ? 'show' : '' }}" aria-labelledby="trip-accordion-map">
+                <div class="accordion-collapse {{ $REQUEST->input('fence') ? 'show' : 'collapse' }}" aria-labelledby="trip-accordion-map">
                     <div class="accordion-body text-slate-600 dark:text-slate-500 leading-relaxed">
                         <input type="hidden" name="fence" value="{{ $REQUEST->input('fence') ? '1' : '0' }}" />
 

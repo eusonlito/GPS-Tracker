@@ -7,5 +7,5 @@ $this->post($this->routeToController(), $data + $this->action())
 $row = $this->rowLast();
 
 foreach ($data as $key => $value) {
-    $this->assertEquals($row->$key, $value);
+    $this->assertEquals($value, $row->$key);
 }

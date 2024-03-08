@@ -40,11 +40,7 @@ class Auth extends ParserAbstract
             .'([0-9a-f]{2})' // 2 - length
             .'(01)'          // 3 - protocol
             .'([0-9]{16})'   // 4 - serial
-            .'([0-9]{4})'    // 5 - type
-            .'([0-9]{4})'    // 6 - timezone
-            .'([0-9a-f]{4})' // 7 - serial information
-            .'([0-9a-f]{4})' // 8 - error check
-            .'$/';
+            .'/';
     }
 
     /**
@@ -68,6 +64,6 @@ class Auth extends ParserAbstract
      */
     protected function response(): string
     {
-        return "\x78\x78\x05\x01\x00\x01\xD9\xDC\x0D\x0A";
+        return hex2bin($this->values[1].'05'.$this->values[3].'0001D9DC0D0A');
     }
 }

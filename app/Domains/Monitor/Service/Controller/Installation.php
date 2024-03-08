@@ -180,7 +180,7 @@ class Installation extends ControllerAbstract
      */
     protected function logLine(string $line): array
     {
-        $line = explode(': ', $line, 2);
+        $line = explode(': ', $line, 2) + ['now', ''];
 
         return [
             'date' => helper()->dateFormattedToTimezone($line[0], $this->auth->timezone->zone),

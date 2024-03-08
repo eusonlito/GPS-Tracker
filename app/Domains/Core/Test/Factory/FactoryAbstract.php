@@ -28,7 +28,8 @@ abstract class FactoryAbstract extends Factory
      */
     protected function firstOrFactory(string $class): Closure
     {
-        return static fn () => $class::orderBy('id', 'ASC')->first() ?: $class::factory();
+        return static fn () => $class::query()->orderBy('id', 'ASC')->first()
+            ?: $class::factory();
     }
 
     /**
@@ -38,7 +39,8 @@ abstract class FactoryAbstract extends Factory
      */
     protected function lastOrFactory(string $class): Closure
     {
-        return static fn () => $class::orderBy('id', 'DESC')->first() ?: $class::factory();
+        return static fn () => $class::query()->orderBy('id', 'DESC')->first()
+            ?: $class::factory();
     }
 
     /**

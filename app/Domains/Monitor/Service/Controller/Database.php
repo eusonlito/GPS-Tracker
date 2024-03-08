@@ -24,7 +24,7 @@ class Database extends ControllerAbstract
      */
     protected function analyze(): void
     {
-        DB::statement('ANALYZE TABLE `'.implode('`, `', array_column($this->tables(), 'table_name')).'`;');
+        DB::statement('ANALYZE LOCAL TABLE `'.implode('`, `', $this->tables()).'`;');
     }
 
     /**
@@ -32,11 +32,24 @@ class Database extends ControllerAbstract
      */
     protected function tables(): array
     {
-        return DB::select('
-            SELECT `table_name` AS `table_name`
-            FROM `information_schema`.`tables`
-            WHERE `table_schema` = :table_schema;
-        ', ['table_schema' => $this->dbname()]);
+        static $cache;
+
+        return $cache ??= array_column(
+            DB::select($this->tablesSql(), ['table_schema' => $this->dbname()]),
+            'table_name'
+        );
+    }
+
+    /**
+     * @return string
+     */
+    protected function tablesSql(): string
+    {
+        return '
+            SELECT `TABLE_NAME` AS `table_name`
+            FROM `information_schema`.`TABLES`
+            WHERE `TABLE_SCHEMA` = :table_schema;
+        ';
     }
 
     /**
@@ -46,6 +59,7 @@ class Database extends ControllerAbstract
     {
         return [
             'sizes' => $this->sizes(),
+            'counts' => $this->counts(),
         ];
     }
 
@@ -56,18 +70,39 @@ class Database extends ControllerAbstract
     {
         return DB::select('
             SELECT
-                `table_name` AS `table_name`,
-                ROUND((`data_length` + `index_length`) / 1024 / 1024, 2) AS `total_size`,
-                ROUND(`data_length` / 1024 / 1024, 2) AS `table_size`,
-                ROUND(`index_length` / 1024 / 1024, 2) AS `index_size`,
-                `table_rows` AS `table_rows`
+                `TABLE_NAME` AS `table_name`,
+                ROUND((`DATA_LENGTH` + `INDEX_LENGTH`) / 1024 / 1024, 2) AS `total_size`,
+                ROUND(`DATA_LENGTH` / 1024 / 1024, 2) AS `table_size`,
+                ROUND(`INDEX_LENGTH` / 1024 / 1024, 2) AS `index_size`
             FROM
                 `information_schema`.`TABLES`
             WHERE
-                `table_schema` = :table_schema
+                `TABLE_SCHEMA` = :table_schema
             ORDER BY
-                (`data_length` + `index_length`) DESC;
+                (`DATA_LENGTH` + `INDEX_LENGTH`) DESC;
         ', ['table_schema' => $this->dbname()]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function counts(): array
+    {
+        return (array)DB::select($this->countsSql())[0];
+    }
+
+    /**
+     * @return string
+     */
+    protected function countsSql(): string
+    {
+        $sql = [];
+
+        foreach ($this->tables() as $table) {
+            $sql[] = '(SELECT COUNT(*) FROM `'.$table.'`) AS `'.$table.'`';
+        }
+
+        return 'SELECT '.implode(', ', $sql).';';
     }
 
     /**

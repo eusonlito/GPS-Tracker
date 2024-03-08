@@ -72,15 +72,15 @@ class LogReadOsmAnd extends UnitAbstract
      */
     protected function checkTrip(): void
     {
-        $this->assertEquals(TripModel::query()->count(), 1);
+        $this->assertEquals(1, TripModel::query()->count());
 
         $trip = TripModel::query()->first();
 
-        $this->assertEquals($trip->start_utc_at, '2023-05-25 16:24:25');
-        $this->assertEquals($trip->end_utc_at, '2023-05-25 16:34:41');
-        $this->assertEquals($trip->distance, 1940);
-        $this->assertEquals($trip->time, 616);
-        $this->assertEquals($trip->getRawOriginal('stats'), '{"time": {"total": 616, "stopped": 308, "movement": 308, "total_percent": 100, "stopped_percent": 50, "movement_percent": 50}, "speed": {"avg": 11.34, "max": 46.04, "min": 0, "avg_percent": 25, "max_percent": 100, "min_percent": 0, "avg_movement": 22.68, "avg_movement_percent": 49}}');
+        $this->assertEquals('2023-05-25 16:24:25', $trip->start_utc_at);
+        $this->assertEquals('2023-05-25 16:34:41', $trip->end_utc_at);
+        $this->assertEquals(1940, $trip->distance);
+        $this->assertEquals(616, $trip->time);
+        $this->assertEquals('{"time": {"total": 616, "stopped": 308, "movement": 308, "total_percent": 100, "stopped_percent": 50, "movement_percent": 50}, "speed": {"avg": 11.34, "max": 46.04, "min": 0, "avg_percent": 25, "max_percent": 100, "min_percent": 0, "avg_movement": 22.68, "avg_movement_percent": 49}}', $trip->getRawOriginal('stats'));
     }
 
     /**
@@ -88,24 +88,24 @@ class LogReadOsmAnd extends UnitAbstract
      */
     protected function checkPosition(): void
     {
-        $this->assertEquals(PositionModel::query()->count(), 37);
+        $this->assertEquals(37, PositionModel::query()->count());
 
         $position = PositionModel::query()->orderByFirst()->first();
 
-        $this->assertEquals($position->speed, 2.41);
-        $this->assertEquals($position->direction, 0);
-        $this->assertEquals($position->signal, 1);
-        $this->assertEquals($position->date_utc_at, '2023-05-25 16:24:25');
-        $this->assertEquals($position->longitude, -7.87789);
-        $this->assertEquals($position->latitude, 42.35242);
+        $this->assertEquals(2.41, $position->speed);
+        $this->assertEquals(0, $position->direction);
+        $this->assertEquals(1, $position->signal);
+        $this->assertEquals('2023-05-25 16:24:25', $position->date_utc_at);
+        $this->assertEquals(-7.87789, $position->longitude);
+        $this->assertEquals(42.35242, $position->latitude);
 
         $position = PositionModel::query()->orderByLast()->first();
 
-        $this->assertEquals($position->speed, 0.00);
-        $this->assertEquals($position->direction, 215);
-        $this->assertEquals($position->signal, 1);
-        $this->assertEquals($position->date_utc_at, '2023-05-25 16:34:41');
-        $this->assertEquals($position->longitude, -7.86748);
-        $this->assertEquals($position->latitude, 42.35894);
+        $this->assertEquals(0.00, $position->speed);
+        $this->assertEquals(215, $position->direction);
+        $this->assertEquals(1, $position->signal);
+        $this->assertEquals('2023-05-25 16:34:41', $position->date_utc_at);
+        $this->assertEquals(-7.86748, $position->longitude);
+        $this->assertEquals(42.35894, $position->latitude);
     }
 }

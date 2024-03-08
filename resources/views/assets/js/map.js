@@ -38,6 +38,8 @@ export default class {
         this.layerRefuels = null;
         this.layerTrips = null;
 
+        this.resizeObserver = null;
+
         this.point = [];
         this.pointLatLng = [];
 
@@ -1178,6 +1180,8 @@ export default class {
     fitBounds(options) {
         this.getMap().fitBounds(this.getLayer().getBounds(), this.getFitBoundsOptions(options));
         this.invalidateSize();
+
+        return this;
     }
 
     getFitBoundsOptions(options) {
@@ -1190,7 +1194,20 @@ export default class {
     }
 
     invalidateSize() {
-        this.getMap().invalidateSize();
+        this.getMap().invalidateSize(true);
+
+        return this;
+    }
+
+    setResizeObserver() {
+        if (this.resizeObserver) {
+            return this;
+        }
+
+        this.resizeObserver = new ResizeObserver(() => this.invalidateSize());
+        this.resizeObserver.observe(this.element);
+
+        return this;
     }
 
     merge(first, second) {

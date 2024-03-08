@@ -4,8 +4,8 @@ namespace App\Services\Helper\Traits;
 
 use DateTime;
 use DateTimeZone;
-use Exception;
 use IntlDateFormatter;
+use Throwable;
 
 trait Date
 {
@@ -187,11 +187,28 @@ trait Date
 
         try {
             $datetime = $datetime ?: new DateTime($date, $timezone);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             $datetime = new DateTime('now', $timezone);
         }
 
         return $datetime->setTimezone($this->dateTimeZone($timezone_to))->format($format_to);
+    }
+
+    /**
+     * @param ?string $date = null
+     * @param ?string $timezone = null
+     *
+     * @return \Datetime
+     */
+    public function dateTimeWithTimezone(?string $date = null, ?string $timezone = null): Datetime
+    {
+        $timezone = $this->dateTimeZone($timezone);
+
+        try {
+            return new DateTime($date ?: 'now', $timezone);
+        } catch (Throwable $e) {
+            return new DateTime('now', $timezone);
+        }
     }
 
     /**
@@ -203,19 +220,7 @@ trait Date
      */
     public function dateFormattedToTimezone(string $date, string $timezone, string $format = 'Y-m-d H:i:s'): string
     {
-        return date_create($date)->setTimezone($this->dateTimeZone($timezone))->format($format);
-    }
-
-    /**
-     * @param int $tiemstamp
-     * @param string $timezone
-     * @param string $format = 'Y-m-d H:i:s'
-     *
-     * @return string
-     */
-    public function timestampToTimezone(int $tiemstamp, string $timezone, string $format = 'Y-m-d H:i:s'): string
-    {
-        return date_create('@'.$tiemstamp)->setTimezone($this->dateTimeZone($timezone))->format($format);
+        return $this->dateTimeWithTimezone($date, $timezone)->format($format);
     }
 
     /**
