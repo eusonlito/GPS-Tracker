@@ -2,8 +2,8 @@
 
 namespace App\Domains\User\Test\Factory;
 
-use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use Illuminate\Support\Facades\Hash;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\User\Model\User as Model;
 
 class User extends FactoryAbstract
