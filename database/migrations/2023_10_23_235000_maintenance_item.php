@@ -45,12 +45,12 @@ return new class extends MigrationAbstract {
         Schema::create('maintenance_maintenance_item', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedDecimal('quantity', 10, 2)->default(0);
-            $table->unsignedDecimal('amount', 10, 2)->default(0);
-            $table->unsignedDecimal('tax_percent', 10, 2)->default(0);
-            $table->unsignedDecimal('tax_amount', 10, 2)->default(0);
-            $table->unsignedDecimal('subtotal', 10, 2)->default(0);
-            $table->unsignedDecimal('total', 10, 2)->default(0);
+            $table->decimal('quantity', 10, 2)->default(0);
+            $table->decimal('amount', 10, 2)->default(0);
+            $table->decimal('tax_percent', 10, 2)->default(0);
+            $table->decimal('tax_amount', 10, 2)->default(0);
+            $table->decimal('subtotal', 10, 2)->default(0);
+            $table->decimal('total', 10, 2)->default(0);
 
             $this->timestamps($table);
 

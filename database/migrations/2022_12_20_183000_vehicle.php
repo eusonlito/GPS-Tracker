@@ -14,8 +14,6 @@ return new class extends MigrationAbstract {
             return;
         }
 
-        $this->defineTypePoint();
-
         $this->tables();
         $this->migrate();
         $this->tablesFinish();

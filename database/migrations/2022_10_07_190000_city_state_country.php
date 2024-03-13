@@ -38,7 +38,7 @@ return new class extends MigrationAbstract {
             $table->string('name')->index();
             $table->jsonb('alias')->nullable();
 
-            $table->point('point');
+            $table->geometry('point', 'point', 4326);
 
             $this->timestamps($table);
 

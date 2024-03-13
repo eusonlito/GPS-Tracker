@@ -14,7 +14,6 @@ return new class extends MigrationAbstract {
             return;
         }
 
-        $this->defineTypePoint();
         $this->tables();
         $this->keys();
         $this->upFinish();
@@ -34,7 +33,7 @@ return new class extends MigrationAbstract {
     protected function tables(): void
     {
         Schema::table('refuel', function (Blueprint $table) {
-            $table->point('point', 4326)->nullable();
+            $table->geometry('point', 'point', 4326)->nullable();
 
             $table->unsignedBigInteger('city_id')->nullable();
             $table->unsignedBigInteger('country_id')->nullable();
@@ -69,7 +68,7 @@ return new class extends MigrationAbstract {
         ');
 
         Schema::table('refuel', function (Blueprint $table) {
-            $table->point('point', 4326)->nullable(false)->index()->change();
+            $table->geometry('point', 'point', 4326)->nullable(false)->index()->change();
         });
     }
 

@@ -32,7 +32,7 @@ return new class extends MigrationAbstract {
     protected function tables(): void
     {
         Schema::table('refuel', function (Blueprint $table) {
-            $table->unsignedDecimal('quantity_before', 6, 2);
+            $table->decimal('quantity_before', 6, 2);
         });
     }
 

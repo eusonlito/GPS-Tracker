@@ -34,7 +34,7 @@ return new class extends MigrationAbstract {
     protected function tables(): void
     {
         Schema::table('timezone', function (Blueprint $table) {
-            $table->multiPolygon('geojson')->nullable();
+            $table->geometry('geojson', 'multipolygon')->nullable();
         });
 
         $this->db()->unprepared('UPDATE `timezone` SET `geojson` = '.TimezoneModel::emptyGeoJSON().';');

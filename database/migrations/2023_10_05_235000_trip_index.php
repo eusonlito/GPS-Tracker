@@ -29,8 +29,6 @@ return new class extends MigrationAbstract {
      */
     public function down(): void
     {
-        $this->defineTypePoint();
-
         Schema::table('trip', function (Blueprint $table) {
             $this->tableDropIndex($table, ['shared_public', 'shared', 'device_id', 'end_utc_at']);
         });

@@ -19,7 +19,7 @@ return new class extends MigrationAbstract {
     protected function tables(): void
     {
         Schema::table('refuel', function (Blueprint $table) {
-            $table->unsignedDecimal('price', 7, 3)->change();
+            $table->decimal('price', 7, 3)->change();
         });
     }
 
@@ -29,7 +29,7 @@ return new class extends MigrationAbstract {
     public function down(): void
     {
         Schema::table('refuel', function (Blueprint $table) {
-            $table->unsignedDecimal('price', 6, 2)->change();
+            $table->decimal('price', 6, 2)->change();
         });
     }
 };

@@ -10,7 +10,6 @@ return new class extends MigrationAbstract {
      */
     public function up(): void
     {
-        $this->defineTypePoint();
         $this->functions();
         $this->tables();
         $this->unprepared();
@@ -58,7 +57,7 @@ return new class extends MigrationAbstract {
 
             $table->jsonb('config')->nullable();
 
-            $table->point('point', 4326);
+            $table->geometry('point', 'point', 4326);
 
             $table->boolean('telegram')->default(0);
 
@@ -90,7 +89,7 @@ return new class extends MigrationAbstract {
             $table->string('name')->index();
             $table->jsonb('alias')->nullable();
 
-            $table->point('point', 4326);
+            $table->geometry('point', 'point', 4326);
 
             $this->timestamps($table);
 
@@ -203,10 +202,10 @@ return new class extends MigrationAbstract {
 
             $table->date('date_at');
 
-            $table->unsignedDecimal('amount', 10, 2)->default(0);
+            $table->decimal('amount', 10, 2)->default(0);
 
-            $table->unsignedDecimal('distance', 10, 2)->default(0);
-            $table->unsignedDecimal('distance_next', 10, 2)->default(0);
+            $table->decimal('distance', 10, 2)->default(0);
+            $table->decimal('distance_next', 10, 2)->default(0);
 
             $this->timestamps($table);
 
@@ -227,13 +226,13 @@ return new class extends MigrationAbstract {
         Schema::create('maintenance_maintenance_item', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedDecimal('quantity', 10, 2)->default(0);
-            $table->unsignedDecimal('amount_gross', 10, 2)->default(0);
-            $table->unsignedDecimal('amount_net', 10, 2)->default(0);
-            $table->unsignedDecimal('tax_percent', 10, 2)->default(0);
-            $table->unsignedDecimal('tax_amount', 10, 2)->default(0);
-            $table->unsignedDecimal('subtotal', 10, 2)->default(0);
-            $table->unsignedDecimal('total', 10, 2)->default(0);
+            $table->decimal('quantity', 10, 2)->default(0);
+            $table->decimal('amount_gross', 10, 2)->default(0);
+            $table->decimal('amount_net', 10, 2)->default(0);
+            $table->decimal('tax_percent', 10, 2)->default(0);
+            $table->decimal('tax_amount', 10, 2)->default(0);
+            $table->decimal('subtotal', 10, 2)->default(0);
+            $table->decimal('total', 10, 2)->default(0);
 
             $this->timestamps($table);
 
@@ -244,9 +243,9 @@ return new class extends MigrationAbstract {
         Schema::create('position', function (Blueprint $table) {
             $table->id();
 
-            $table->point('point', 4326);
+            $table->geometry('point', 'point', 4326);
 
-            $table->unsignedDecimal('speed', 6, 2);
+            $table->decimal('speed', 6, 2);
 
             $table->unsignedInteger('direction');
             $table->unsignedInteger('signal');
@@ -281,14 +280,14 @@ return new class extends MigrationAbstract {
         Schema::create('refuel', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedDecimal('distance_total', 10, 2);
-            $table->unsignedDecimal('distance', 6, 2);
-            $table->unsignedDecimal('quantity', 6, 2);
-            $table->unsignedDecimal('quantity_before', 6, 2);
-            $table->unsignedDecimal('price', 7, 3);
-            $table->unsignedDecimal('total', 6, 2);
+            $table->decimal('distance_total', 10, 2);
+            $table->decimal('distance', 6, 2);
+            $table->decimal('quantity', 6, 2);
+            $table->decimal('quantity_before', 6, 2);
+            $table->decimal('price', 7, 3);
+            $table->decimal('total', 6, 2);
 
-            $table->point('point', 4326);
+            $table->geometry('point', 'point', 4326);
 
             $table->dateTime('date_at');
 
@@ -327,7 +326,7 @@ return new class extends MigrationAbstract {
             $table->id();
 
             $table->string('zone')->index();
-            $table->multiPolygon('geojson');
+            $table->geometry('geojson', 'multipolygon');
 
             $table->boolean('default')->default(0);
 

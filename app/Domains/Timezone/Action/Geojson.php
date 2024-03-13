@@ -201,6 +201,7 @@ class Geojson extends ActionAbstract
         try {
             $this->zoneUpdateOrInsert($zone, 0.005);
         } catch (Throwable $e) {
+            $this->printError('Error %s', $zone->properties->tzid.': '.$e->getMessage());
             $this->zoneUpdateOrInsert($zone, 0);
         }
     }
@@ -238,5 +239,16 @@ class Geojson extends ActionAbstract
     protected function print(string $message, mixed ...$parameters): void
     {
         $this->info(sprintf('[%s] '.$message, date('Y-m-d H:i:s'), ...$parameters));
+    }
+
+    /**
+     * @param string $message
+     * @param mixed ...$parameters
+     *
+     * @return void
+     */
+    protected function printError(string $message, mixed ...$parameters): void
+    {
+        $this->error(sprintf('[%s] '.$message, date('Y-m-d H:i:s'), ...$parameters));
     }
 }

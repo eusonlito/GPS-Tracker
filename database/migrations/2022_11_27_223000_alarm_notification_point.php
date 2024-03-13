@@ -14,7 +14,6 @@ return new class extends MigrationAbstract {
             return;
         }
 
-        $this->defineTypePoint();
         $this->tables();
         $this->upFinish();
     }
@@ -33,7 +32,7 @@ return new class extends MigrationAbstract {
     protected function tables(): void
     {
         Schema::table('alarm_notification', function (Blueprint $table) {
-            $table->point('point', 4326)->nullable();
+            $table->geometry('point', 'point', 4326)->nullable();
         });
 
         $this->db()->unprepared('
@@ -43,7 +42,7 @@ return new class extends MigrationAbstract {
         ');
 
         Schema::table('alarm_notification', function (Blueprint $table) {
-            $table->point('point', 4326)->nullable(false)->change();
+            $table->geometry('point', 'point', 4326)->nullable(false)->change();
         });
     }
 

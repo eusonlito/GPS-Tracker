@@ -224,9 +224,10 @@ abstract class MigrationAbstract extends Migration
      */
     protected function getTables(): array
     {
-        $tables = $this->db()->getDoctrineSchemaManager()->listTableNames();
-
-        return array_filter($tables, static fn ($table) => $table !== 'migrations');
+        return array_filter(
+            Schema::getTables(),
+            static fn ($table) => $table['name'] !== 'migrations'
+        );
     }
 
     /**
@@ -238,7 +239,7 @@ abstract class MigrationAbstract extends Migration
      */
     protected function tableHasIndex(string $table, string|array $name, ?string $suffix = null): bool
     {
-        return $this->db()->getDoctrineSchemaManager()->listTableDetails($table)->hasIndex($this->indexName($table, $name, $suffix));
+        return Schema::hasIndex($table, $this->indexName($table, $name, $suffix));
     }
 
     /**
@@ -253,8 +254,8 @@ abstract class MigrationAbstract extends Migration
         $index = $this->indexName($table, $name, $suffix);
 
         return boolval(array_filter(
-            $this->db()->getDoctrineSchemaManager()->listTableForeignKeys($table),
-            static fn ($foreign) => $foreign->getName() === $index
+            Schema::getForeignKeys($table),
+            static fn ($foreign) => $foreign['name'] === $index
         ));
     }
 
