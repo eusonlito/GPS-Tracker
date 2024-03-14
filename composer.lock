@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76a6c8df59b9da2e708d09972dc0c403",
+    "content-hash": "b2c3ad8b70155e80f432c0e12fd43cb2",
     "packages": [
         {
             "name": "brick/math",
@@ -1212,16 +1212,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.0.3",
+            "version": "v11.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "efead50a4470068abe47f56e3488a08158039dc3"
+                "reference": "9d9d74b1b690c944b8a3d0ebaf28f79101da1589"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/efead50a4470068abe47f56e3488a08158039dc3",
-                "reference": "efead50a4470068abe47f56e3488a08158039dc3",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/9d9d74b1b690c944b8a3d0ebaf28f79101da1589",
+                "reference": "9d9d74b1b690c944b8a3d0ebaf28f79101da1589",
                 "shasum": ""
             },
             "require": {
@@ -1413,7 +1413,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-03-12T19:22:44+00:00"
+            "time": "2024-03-13T16:21:22+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -2086,16 +2086,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.0.2",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "cf30cfceac9693bdb339ffb51f091e6039bdf10d"
+                "reference": "34ccf6f6b49c915421c7886c88c0cb77f3ebbfd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/cf30cfceac9693bdb339ffb51f091e6039bdf10d",
-                "reference": "cf30cfceac9693bdb339ffb51f091e6039bdf10d",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/34ccf6f6b49c915421c7886c88c0cb77f3ebbfd2",
+                "reference": "34ccf6f6b49c915421c7886c88c0cb77f3ebbfd2",
                 "shasum": ""
             },
             "require": {
@@ -2188,7 +2188,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-06T09:28:31+00:00"
+            "time": "2024-03-13T12:42:37+00:00"
         },
         {
             "name": "nette/schema",
@@ -6389,7 +6389,7 @@
         },
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v3.12.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
@@ -6415,6 +6415,7 @@
                 "phpunit/phpunit": "^9.6|^10.5",
                 "squizlabs/php_codesniffer": "^3.5"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -6623,12 +6624,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/paratestphp/paratest.git",
-                "reference": "7a0125545e4a249413c9c2a89d93eedaa042b3a6"
+                "reference": "5d201de50747e8cb3c6ba952c065521120aacebc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/7a0125545e4a249413c9c2a89d93eedaa042b3a6",
-                "reference": "7a0125545e4a249413c9c2a89d93eedaa042b3a6",
+                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/5d201de50747e8cb3c6ba952c065521120aacebc",
+                "reference": "5d201de50747e8cb3c6ba952c065521120aacebc",
                 "shasum": ""
             },
             "require": {
@@ -6651,7 +6652,7 @@
                 "doctrine/coding-standard": "^12.0.0",
                 "ext-pcov": "*",
                 "ext-posix": "*",
-                "phpstan/phpstan": "^1.10.60",
+                "phpstan/phpstan": "^1.10.62",
                 "phpstan/phpstan-deprecation-rules": "^1.1.4",
                 "phpstan/phpstan-phpunit": "^1.3.16",
                 "phpstan/phpstan-strict-rules": "^1.5.2",
@@ -6710,7 +6711,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2024-03-08T12:38:24+00:00"
+            "time": "2024-03-13T13:09:06+00:00"
         },
         {
             "name": "cmgmyr/phploc",
@@ -7741,16 +7742,16 @@
         },
         {
             "name": "larastan/larastan",
-            "version": "2.x-dev",
+            "version": "v2.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/larastan/larastan.git",
-                "reference": "4b7fd694b9d73731baebe0299024232213f15333"
+                "reference": "a79b46b96060504b400890674b83f66aa7f5db6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/larastan/larastan/zipball/4b7fd694b9d73731baebe0299024232213f15333",
-                "reference": "4b7fd694b9d73731baebe0299024232213f15333",
+                "url": "https://api.github.com/repos/larastan/larastan/zipball/a79b46b96060504b400890674b83f66aa7f5db6d",
+                "reference": "a79b46b96060504b400890674b83f66aa7f5db6d",
                 "shasum": ""
             },
             "require": {
@@ -7764,7 +7765,7 @@
                 "illuminate/support": "^9.52.16 || ^10.28.0 || ^11.0",
                 "php": "^8.0.2",
                 "phpmyadmin/sql-parser": "^5.8.2",
-                "phpstan/phpstan": "^1.10.60"
+                "phpstan/phpstan": "^1.10.50"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^12.0",
@@ -7776,7 +7777,6 @@
             "suggest": {
                 "orchestra/testbench": "Using Larastan for analysing a package needs Testbench"
             },
-            "default-branch": true,
             "type": "phpstan-extension",
             "extra": {
                 "branch-alias": {
@@ -7820,7 +7820,7 @@
             ],
             "support": {
                 "issues": "https://github.com/larastan/larastan/issues",
-                "source": "https://github.com/larastan/larastan/tree/2.x"
+                "source": "https://github.com/larastan/larastan/tree/v2.9.2"
             },
             "funding": [
                 {
@@ -7840,7 +7840,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-03-13T08:46:23+00:00"
+            "time": "2024-02-27T03:16:03+00:00"
         },
         {
             "name": "laravel/pint",
@@ -7911,16 +7911,16 @@
         },
         {
             "name": "league/container",
-            "version": "4.2.1",
+            "version": "4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/container.git",
-                "reference": "56f6f3fb9073129dd0342a8ecc197342efdf91a0"
+                "reference": "ff346319ca1ff0e78277dc2311a42107cc1aab88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/container/zipball/56f6f3fb9073129dd0342a8ecc197342efdf91a0",
-                "reference": "56f6f3fb9073129dd0342a8ecc197342efdf91a0",
+                "url": "https://api.github.com/repos/thephpleague/container/zipball/ff346319ca1ff0e78277dc2311a42107cc1aab88",
+                "reference": "ff346319ca1ff0e78277dc2311a42107cc1aab88",
                 "shasum": ""
             },
             "require": {
@@ -7981,7 +7981,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/container/issues",
-                "source": "https://github.com/thephpleague/container/tree/4.2.1"
+                "source": "https://github.com/thephpleague/container/tree/4.2.2"
             },
             "funding": [
                 {
@@ -7989,7 +7989,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-13T11:04:59+00:00"
+            "time": "2024-03-13T13:12:53+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -8512,16 +8512,16 @@
         },
         {
             "name": "orchestra/testbench-core",
-            "version": "v9.0.1",
+            "version": "v9.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "ad08292492f2952e358e2c23bf5dbd53df53e5b7"
+                "reference": "8101d503d023b9e19d9373121130377cc8fbf2c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/ad08292492f2952e358e2c23bf5dbd53df53e5b7",
-                "reference": "ad08292492f2952e358e2c23bf5dbd53df53e5b7",
+                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/8101d503d023b9e19d9373121130377cc8fbf2c0",
+                "reference": "8101d503d023b9e19d9373121130377cc8fbf2c0",
                 "shasum": ""
             },
             "require": {
@@ -8597,7 +8597,7 @@
                 "issues": "https://github.com/orchestral/testbench/issues",
                 "source": "https://github.com/orchestral/testbench-core"
             },
-            "time": "2024-03-13T05:02:43+00:00"
+            "time": "2024-03-13T22:51:27+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -8776,33 +8776,45 @@
         },
         {
             "name": "phpcompatibility/php-compatibility",
-            "version": "9.3.5",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCompatibility/PHPCompatibility.git",
-                "reference": "9fb324479acf6f39452e0655d2429cc0d3914243"
+                "reference": "177933bc1e482723bb44dd84b2c5735da01fc054"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibility/zipball/9fb324479acf6f39452e0655d2429cc0d3914243",
-                "reference": "9fb324479acf6f39452e0655d2429cc0d3914243",
+                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibility/zipball/177933bc1e482723bb44dd84b2c5735da01fc054",
+                "reference": "177933bc1e482723bb44dd84b2c5735da01fc054",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3",
-                "squizlabs/php_codesniffer": "^2.3 || ^3.0.2"
+                "php": ">=5.4",
+                "phpcsstandards/phpcsutils": "^1.0.9",
+                "squizlabs/php_codesniffer": "^3.8.0"
             },
-            "conflict": {
-                "squizlabs/php_codesniffer": "2.6.2"
+            "replace": {
+                "wimg/php-compatibility": "*"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.5 || ^5.0 || ^6.0 || ^7.0"
+                "php-parallel-lint/php-console-highlighter": "^1.0.0",
+                "php-parallel-lint/php-parallel-lint": "^1.3.2",
+                "phpcsstandards/phpcsdevcs": "^1.1.3",
+                "phpcsstandards/phpcsdevtools": "^1.2.0",
+                "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.3.4 || ^10.1.0",
+                "yoast/phpunit-polyfills": "^1.0.5 || ^2.0.0"
             },
             "suggest": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.5 || This Composer plugin will sort out the PHPCS 'installed_paths' automatically.",
                 "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
             },
+            "default-branch": true,
             "type": "phpcodesniffer-standard",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "9.x-dev",
+                    "dev-develop": "10.x-dev"
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "LGPL-3.0-or-later"
@@ -8828,13 +8840,117 @@
             "keywords": [
                 "compatibility",
                 "phpcs",
-                "standards"
+                "standards",
+                "static analysis"
             ],
             "support": {
                 "issues": "https://github.com/PHPCompatibility/PHPCompatibility/issues",
+                "security": "https://github.com/PHPCompatibility/PHPCompatibility/security/policy",
                 "source": "https://github.com/PHPCompatibility/PHPCompatibility"
             },
-            "time": "2019-12-27T09:44:58+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/PHPCompatibility",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/jrfnl",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/php_codesniffer",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2024-03-04T04:23:13+00:00"
+        },
+        {
+            "name": "phpcsstandards/phpcsutils",
+            "version": "1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPCSStandards/PHPCSUtils.git",
+                "reference": "908247bc65010c7b7541a9551e002db12e9dae70"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHPCSUtils/zipball/908247bc65010c7b7541a9551e002db12e9dae70",
+                "reference": "908247bc65010c7b7541a9551e002db12e9dae70",
+                "shasum": ""
+            },
+            "require": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.1 || ^0.5 || ^0.6.2 || ^0.7 || ^1.0",
+                "php": ">=5.4",
+                "squizlabs/php_codesniffer": "^3.8.0 || 4.0.x-dev@dev"
+            },
+            "require-dev": {
+                "ext-filter": "*",
+                "php-parallel-lint/php-console-highlighter": "^1.0",
+                "php-parallel-lint/php-parallel-lint": "^1.3.2",
+                "phpcsstandards/phpcsdevcs": "^1.1.6",
+                "yoast/phpunit-polyfills": "^1.1.0 || ^2.0.0"
+            },
+            "type": "phpcodesniffer-standard",
+            "extra": {
+                "branch-alias": {
+                    "dev-stable": "1.x-dev",
+                    "dev-develop": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "PHPCSUtils/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Juliette Reinders Folmer",
+                    "homepage": "https://github.com/jrfnl",
+                    "role": "lead"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/PHPCSStandards/PHPCSUtils/graphs/contributors"
+                }
+            ],
+            "description": "A suite of utility functions for use with PHP_CodeSniffer",
+            "homepage": "https://phpcsutils.com/",
+            "keywords": [
+                "PHP_CodeSniffer",
+                "phpcbf",
+                "phpcodesniffer-standard",
+                "phpcs",
+                "phpcs3",
+                "standards",
+                "static analysis",
+                "tokens",
+                "utility"
+            ],
+            "support": {
+                "docs": "https://phpcsutils.com/",
+                "issues": "https://github.com/PHPCSStandards/PHPCSUtils/issues",
+                "security": "https://github.com/PHPCSStandards/PHPCSUtils/security/policy",
+                "source": "https://github.com/PHPCSStandards/PHPCSUtils"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/PHPCSStandards",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/jrfnl",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/php_codesniffer",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2023-12-08T14:50:00+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -9625,16 +9741,16 @@
         },
         {
             "name": "psalm/plugin-laravel",
-            "version": "v2.10.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/psalm-plugin-laravel.git",
-                "reference": "cde78002024019b03f3186da67b46991292d301c"
+                "reference": "a87f401437c0555af5f6570566bf6e689916a316"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/psalm-plugin-laravel/zipball/cde78002024019b03f3186da67b46991292d301c",
-                "reference": "cde78002024019b03f3186da67b46991292d301c",
+                "url": "https://api.github.com/repos/psalm/psalm-plugin-laravel/zipball/a87f401437c0555af5f6570566bf6e689916a316",
+                "reference": "a87f401437c0555af5f6570566bf6e689916a316",
                 "shasum": ""
             },
             "require": {
@@ -9668,6 +9784,7 @@
                 "squizlabs/php_codesniffer": "*",
                 "symfony/http-foundation": "^6.0 || ^7.0"
             },
+            "default-branch": true,
             "type": "psalm-plugin",
             "extra": {
                 "psalm": {
@@ -9689,13 +9806,13 @@
                     "email": "github@muglug.com"
                 }
             ],
-            "description": "A Laravel plugin for Psalm",
+            "description": "Psalm plugin for Laravel",
             "homepage": "https://github.com/psalm/psalm-plugin-laravel",
             "support": {
                 "issues": "https://github.com/psalm/psalm-plugin-laravel/issues",
-                "source": "https://github.com/psalm/psalm-plugin-laravel/tree/v2.10.0"
+                "source": "https://github.com/psalm/psalm-plugin-laravel/tree/v2.10.1"
             },
-            "time": "2024-03-12T23:21:13+00:00"
+            "time": "2024-03-13T11:16:29+00:00"
         },
         {
             "name": "psr/cache",
@@ -11010,12 +11127,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "6ad3d229c342d881e803b08b8540fb8d1c980b39"
+                "reference": "5f4eba2ac5831af0645158d4ae4eb492ae0898d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/6ad3d229c342d881e803b08b8540fb8d1c980b39",
-                "reference": "6ad3d229c342d881e803b08b8540fb8d1c980b39",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/5f4eba2ac5831af0645158d4ae4eb492ae0898d4",
+                "reference": "5f4eba2ac5831af0645158d4ae4eb492ae0898d4",
                 "shasum": ""
             },
             "require": {
@@ -11095,7 +11212,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-09T16:10:04+00:00"
+            "time": "2024-03-13T17:59:35+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -11958,10 +12075,12 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "barryvdh/laravel-debugbar": 20,
         "brianium/paratest": 20,
-        "larastan/larastan": 20,
         "laravel/pint": 20,
         "nunomaduro/phpinsights": 20,
+        "phpcompatibility/php-compatibility": 20,
+        "psalm/plugin-laravel": 20,
         "spatie/laravel-ignition": 20
     },
     "prefer-stable": true,

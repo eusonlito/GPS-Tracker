@@ -135,7 +135,7 @@ abstract class MigrationAbstract extends Migration
      */
     protected function foreign(Blueprint $table, string $remote, ?string $alias = null): ForeignKeyDefinition
     {
-        $name = ($alias ?: $remote.'_id');
+        $name = ($alias ?: ($remote.'_id'));
         $column = $alias ?: $remote;
 
         if ($this->driver() === 'pgsql') {
@@ -225,8 +225,8 @@ abstract class MigrationAbstract extends Migration
     protected function getTables(): array
     {
         return array_filter(
-            Schema::getTables(),
-            static fn ($table) => $table['name'] !== 'migrations'
+            array_column(Schema::getTables(), 'name'),
+            static fn ($table) => $table !== 'migrations'
         );
     }
 
