@@ -36,6 +36,14 @@ abstract class ProtocolAbstract
     abstract protected function parsers(): array;
 
     /**
+     * @return bool
+     */
+    public function isBinary(): bool
+    {
+        return false;
+    }
+
+    /**
      * @param string $body
      * @param array $data = []
      *
