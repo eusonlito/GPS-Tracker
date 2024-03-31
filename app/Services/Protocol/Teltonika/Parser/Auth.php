@@ -7,10 +7,18 @@ use App\Services\Protocol\ParserAbstract;
 class Auth extends ParserAbstract
 {
     /**
+     * @var int $length
+     */
+    protected int $length;
+
+    /**
      * @return array
      */
     public function resources(): array
     {
+        $this->decode();
+        $this->length();
+
         if ($this->bodyIsValid() === false) {
             return [];
         }
@@ -21,12 +29,27 @@ class Auth extends ParserAbstract
     }
 
     /**
+     * @return void
+     */
+    protected function decode(): void
+    {
+        $this->body = hex2bin($this->body);
+    }
+
+    /**
+     * @return void
+     */
+    protected function length(): void
+    {
+        $this->length = unpack("n", substr($this->body, 0, 2))[1];
+    }
+
+    /**
      * @return bool
      */
     public function bodyIsValid(): bool
     {
         return $this->bodyIsValidLength()
-            && $this->bodyIsValidStart()
             && $this->bodyIsValidSerial();
     }
 
@@ -35,15 +58,7 @@ class Auth extends ParserAbstract
      */
     public function bodyIsValidLength(): bool
     {
-        return strlen($this->body) === 34;
-    }
-
-    /**
-     * @return bool
-     */
-    public function bodyIsValidStart(): bool
-    {
-        return hexdec(substr($this->body, 0, 8)) !== 0;
+        return $this->length === (strlen($this->body) - 2);
     }
 
     /**
@@ -51,9 +66,9 @@ class Auth extends ParserAbstract
      */
     protected function bodyIsValidSerial(): bool
     {
-        $imei = strval(hex2bin(substr($this->body, 4)));
+        $imei = substr($this->body, 2, $this->length);
 
-        if (strlen($imei) !== 15) {
+        if (strlen($imei) !== $this->length) {
             return false;
         }
 

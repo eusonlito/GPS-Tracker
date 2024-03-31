@@ -78,10 +78,7 @@ class Parse extends ActionAbstract
     {
         [$date_at, $line] = explode(' ', trim($line), 2) + ['', ''];
 
-        $resources = $this->protocol->resources(
-            $this->resourcesLine($line),
-            $this->resourceData
-        );
+        $resources = $this->protocol->resources($line, $this->resourceData);
 
         $this->parsed[] = [
             'line' => $line,
@@ -90,18 +87,6 @@ class Parse extends ActionAbstract
             'device' => $this->lineDevice($resources),
             'data' => ($this->resourceData += $this->lineData($resources)),
         ];
-    }
-
-    /**
-     * @param string $line
-     *
-     * @return string
-     */
-    protected function resourcesLine(string $line): string
-    {
-        return $this->protocol->isBinary()
-            ? hex2bin($line)
-            : $line;
     }
 
     /**

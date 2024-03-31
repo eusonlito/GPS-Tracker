@@ -57,12 +57,4 @@ class Manager extends ProtocolAbstract
             LocationsParser::class,
         ];
     }
-
-    /**
-     * @return bool
-     */
-    public function isBinary(): bool
-    {
-        return true;
-    }
 }
