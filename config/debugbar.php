@@ -15,11 +15,7 @@ return [
      */
 
     'enabled' => env('DEBUGBAR_ENABLED', false),
-
-    'except' => [
-        'telescope*',
-        'horizon*',
-    ],
+    'except' => [],
 
     /*
      |--------------------------------------------------------------------------
@@ -61,7 +57,7 @@ return [
     |
     */
 
-    'editor' => env('DEBUGBAR_EDITOR') ?: env('IGNITION_EDITOR', 'phpstorm'),
+    'editor' => env('DEBUGBAR_EDITOR') ?: env('IGNITION_EDITOR', 'sublime'),
 
     /*
     |--------------------------------------------------------------------------
@@ -86,8 +82,8 @@ return [
     |
     */
 
-    'remote_sites_path' => strval(env('DEBUGBAR_REMOTE_SITES_PATH')),
-    'local_sites_path' => strval(env('DEBUGBAR_LOCAL_SITES_PATH', env('IGNITION_LOCAL_SITES_PATH'))),
+    'remote_sites_path' => env('DEBUGBAR_REMOTE_SITES_PATH'),
+    'local_sites_path' => env('DEBUGBAR_LOCAL_SITES_PATH', env('IGNITION_LOCAL_SITES_PATH')),
 
     /*
      |--------------------------------------------------------------------------
@@ -125,6 +121,7 @@ return [
     'capture_ajax' => true,
     'add_ajax_timing' => false,
     'ajax_handler_auto_show' => true,
+    'ajax_handler_enable_tab' => true,
 
     /*
      |--------------------------------------------------------------------------
@@ -162,16 +159,16 @@ return [
         'messages' => true,  // Messages
         'time' => true,  // Time Datalogger
         'memory' => true,  // Memory usage
-        'exceptions' => false, // Exception displayer
+        'exceptions' => false,  // Exception displayer
         'log' => true,  // Logs from Monolog (merged in messages if enabled)
         'db' => true,  // Show database (PDO) queries and bindings
         'views' => true,  // Views with their data
-        'route' => true,  // Current route information
+        'route' => false,  // Current route information
         'auth' => false, // Display Laravel authentication status
-        'gate' => false, // Display Laravel Gate checks
-        'session' => true,  // Display session data
-        'symfony_request' => true,  // Only one can be enabled..
-        'mail' => false, // Catch mail messages
+        'gate' => false,  // Display Laravel Gate checks
+        'session' => false,  // Display session data
+        'symfony_request' => false,  // Only one can be enabled..
+        'mail' => false,  // Catch mail messages
         'laravel' => false, // Laravel version and environment
         'events' => false, // All events fired
         'default_request' => false, // Regular or special Symfony request logger
@@ -180,7 +177,7 @@ return [
         'config' => false, // Display config settings
         'cache' => false, // Display cache events
         'models' => true,  // Display models
-        'livewire' => false, // Display Livewire (when available)
+        'livewire' => false,  // Display Livewire (when available)
         'jobs' => false, // Display dispatched jobs
     ],
 
@@ -195,14 +192,14 @@ return [
 
     'options' => [
         'time' => [
-            'memory_usage' => true,  // Calculated by subtracting memory start and end, it may be inaccurate
+            'memory_usage' => false,  // Calculated by subtracting memory start and end, it may be inaccurate
         ],
         'messages' => [
             'trace' => true,   // Trace the origin of the debug message
         ],
         'memory' => [
-            'reset_peak' => true,     // run memory_reset_peak_usage before collecting
-            'with_baseline' => true,  // Set boot memory usage as memory peak baseline
+            'reset_peak' => false,     // run memory_reset_peak_usage before collecting
+            'with_baseline' => false,  // Set boot memory usage as memory peak baseline
             'precision' => 0,          // Memory rounding precision
         ],
         'auth' => [
@@ -227,7 +224,7 @@ return [
         ],
         'mail' => [
             'timeline' => false,  // Add mails to the timeline
-            'full_log' => false,
+            'show_body' => true,
         ],
         'views' => [
             'timeline' => false,    // Add the views to the timeline (Experimental)
@@ -309,7 +306,7 @@ return [
      | Switches between light and dark theme. If set to auto it will respect system preferences
      | Possible values: auto, light, dark
      */
-    'theme' => env('DEBUGBAR_THEME', 'light'),
+    'theme' => env('DEBUGBAR_THEME', 'auto'),
 
     /*
      |--------------------------------------------------------------------------
