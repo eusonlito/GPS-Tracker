@@ -104,7 +104,7 @@ class Location extends ParserAbstract
 
         $this->cache['direction'] = $this->buffer->int(2);
         $this->cache['signal'] = $this->buffer->int(1);
-        $this->cache['speed'] = round($this->buffer->int(2) * 1.852, 2);
+        $this->cache['speed'] = round($this->buffer->int(2), 2);
     }
 
     /**
