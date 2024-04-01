@@ -7,7 +7,7 @@ use App\Services\Protocol\ParserAbstract;
 class Auth extends ParserAbstract
 {
     /**
-     * @var int $length
+     * @var int
      */
     protected int $length;
 
@@ -41,7 +41,7 @@ class Auth extends ParserAbstract
      */
     protected function length(): void
     {
-        $this->length = unpack("n", substr($this->body, 0, 2))[1];
+        $this->length = unpack('n', substr($this->body, 0, 2))[1];
     }
 
     /**

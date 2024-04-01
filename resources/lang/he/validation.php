@@ -57,7 +57,7 @@ return [
         'numeric' => 'ה-:attribute חייב להיות גדול מ-:value.',
         'string' => 'ה-:attribute חייב להיות גדול מ-:value תווים.',
     ],
-        'gte' => [
+    'gte' => [
         'array' => 'שדה :attribute חייב לכלול :value פריטים או יותר.',
         'file' => 'שדה :attribute חייב להיות גדול מאו שווה ל-:value קילובייטים.',
         'numeric' => 'שדה :attribute חייב להיות גדול מאו שווה ל-:value.',
@@ -109,7 +109,7 @@ return [
         'mixed' => 'שדה :attribute חייב להכיל לפחות אות גדולה אחת ואות קטנה אחת.',
         'numbers' => 'שדה :attribute חייב להכיל לפחות מספר אחד.',
         'symbols' => 'שדה :attribute חייב להכיל לפחות סמל אחד.',
-        'uncompromised' => 'הערך שהוזן בשדה :attribute הופיע בחשיפת מידע. אנא בחר ערך אחר'
+        'uncompromised' => 'הערך שהוזן בשדה :attribute הופיע בחשיפת מידע. אנא בחר ערך אחר',
     ],
     'present' => 'שדה :attribute חייב להיות נוכח.',
     'prohibited' => 'שדה :attribute אסור.',

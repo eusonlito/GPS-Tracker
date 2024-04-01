@@ -79,13 +79,14 @@ class Parse extends ActionAbstract
         [$date_at, $line] = explode(' ', trim($line), 2) + ['', ''];
 
         $resources = $this->protocol->resources($line, $this->resourceData);
+        $data = array_merge($this->resourceData, $this->lineData($resources));
 
         $this->parsed[] = [
             'line' => $line,
             'date_at' => str_replace(['[', ']'], '', $date_at),
             'resources' => $resources,
             'device' => $this->lineDevice($resources),
-            'data' => ($this->resourceData += $this->lineData($resources)),
+            'data' => $data,
         ];
     }
 

@@ -6392,19 +6392,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "a02449ad8112fe3256151f17627963fbc89f0c37"
+                "reference": "aa9f65b91e8037d72601ebe5b342a425c7040961"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/a02449ad8112fe3256151f17627963fbc89f0c37",
-                "reference": "a02449ad8112fe3256151f17627963fbc89f0c37",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/aa9f65b91e8037d72601ebe5b342a425c7040961",
+                "reference": "aa9f65b91e8037d72601ebe5b342a425c7040961",
                 "shasum": ""
             },
             "require": {
                 "illuminate/routing": "^9|^10|^11",
                 "illuminate/session": "^9|^10|^11",
                 "illuminate/support": "^9|^10|^11",
-                "maximebf/debugbar": "~1.21.0",
+                "maximebf/debugbar": "~1.22.0",
                 "php": "^8.0",
                 "symfony/finder": "^6|^7"
             },
@@ -6469,7 +6469,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-31T18:34:40+00:00"
+            "time": "2024-04-01T09:27:30+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -6623,12 +6623,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/paratestphp/paratest.git",
-                "reference": "000fd7357065034cc2514b2dc9d6a0f7a3f1e72c"
+                "reference": "1d5e987b42f67d4e183f5512e3391ec80613b18d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/000fd7357065034cc2514b2dc9d6a0f7a3f1e72c",
-                "reference": "000fd7357065034cc2514b2dc9d6a0f7a3f1e72c",
+                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/1d5e987b42f67d4e183f5512e3391ec80613b18d",
+                "reference": "1d5e987b42f67d4e183f5512e3391ec80613b18d",
                 "shasum": ""
             },
             "require": {
@@ -6655,7 +6655,7 @@
                 "phpstan/phpstan-deprecation-rules": "^1.1.4",
                 "phpstan/phpstan-phpunit": "^1.3.16",
                 "phpstan/phpstan-strict-rules": "^1.5.2",
-                "squizlabs/php_codesniffer": "^3.9.0",
+                "squizlabs/php_codesniffer": "^3.9.1",
                 "symfony/filesystem": "^6.4.3 || ^7.0.3"
             },
             "default-branch": true,
@@ -6710,7 +6710,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2024-03-28T17:10:54+00:00"
+            "time": "2024-03-31T22:07:13+00:00"
         },
         {
             "name": "cmgmyr/phploc",
@@ -7847,12 +7847,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "967feb63b98fc84cf091e13bfab468bce93d0795"
+                "reference": "e744530faa255fdffb450330de585d925f494ede"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/967feb63b98fc84cf091e13bfab468bce93d0795",
-                "reference": "967feb63b98fc84cf091e13bfab468bce93d0795",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/e744530faa255fdffb450330de585d925f494ede",
+                "reference": "e744530faa255fdffb450330de585d925f494ede",
                 "shasum": ""
             },
             "require": {
@@ -7906,7 +7906,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2024-03-29T14:44:47+00:00"
+            "time": "2024-04-01T00:41:23+00:00"
         },
         {
             "name": "league/container",
@@ -7992,25 +7992,27 @@
         },
         {
             "name": "maximebf/debugbar",
-            "version": "v1.21.3",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maximebf/php-debugbar.git",
-                "reference": "0b407703b08ea0cf6ebc61e267cc96ff7000911b"
+                "reference": "2a722cccf56aa3f4c6c26e319fdeec1b0859c736"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/0b407703b08ea0cf6ebc61e267cc96ff7000911b",
-                "reference": "0b407703b08ea0cf6ebc61e267cc96ff7000911b",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/2a722cccf56aa3f4c6c26e319fdeec1b0859c736",
+                "reference": "2a722cccf56aa3f4c6c26e319fdeec1b0859c736",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1|^8",
+                "php": "^7.2|^8",
                 "psr/log": "^1|^2|^3",
                 "symfony/var-dumper": "^4|^5|^6|^7"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=7.5.20 <10.0",
+                "dbrekelmans/bdi": "^1",
+                "phpunit/phpunit": "^8|^9",
+                "symfony/panther": "^1|^2.1",
                 "twig/twig": "^1.38|^2.7|^3.0"
             },
             "suggest": {
@@ -8021,7 +8023,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.21-dev"
+                    "dev-master": "1.22-dev"
                 }
             },
             "autoload": {
@@ -8052,9 +8054,9 @@
             ],
             "support": {
                 "issues": "https://github.com/maximebf/php-debugbar/issues",
-                "source": "https://github.com/maximebf/php-debugbar/tree/v1.21.3"
+                "source": "https://github.com/maximebf/php-debugbar/tree/v1.22.0"
             },
-            "time": "2024-03-12T14:23:07+00:00"
+            "time": "2024-04-01T09:12:18+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -8783,18 +8785,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCompatibility/PHPCompatibility.git",
-                "reference": "4a01c7de34641ebe02419117ca7b33c44b2eee38"
+                "reference": "cc959ab55bd8cc3194b2fb0746aeca1bf006c22c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibility/zipball/4a01c7de34641ebe02419117ca7b33c44b2eee38",
-                "reference": "4a01c7de34641ebe02419117ca7b33c44b2eee38",
+                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibility/zipball/cc959ab55bd8cc3194b2fb0746aeca1bf006c22c",
+                "reference": "cc959ab55bd8cc3194b2fb0746aeca1bf006c22c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4",
                 "phpcsstandards/phpcsutils": "^1.0.9",
-                "squizlabs/php_codesniffer": "^3.8.0"
+                "squizlabs/php_codesniffer": "^3.9.0"
             },
             "replace": {
                 "wimg/php-compatibility": "*"
@@ -8865,7 +8867,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-03-25T15:36:40+00:00"
+            "time": "2024-03-31T23:58:24+00:00"
         },
         {
             "name": "phpcsstandards/phpcsutils",
@@ -11128,12 +11130,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "e1d4a2589e83402dc6ce041b4c805e4074f70e17"
+                "reference": "7de9e7ea7dcee3381edfa2a97140260655dc1a32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/e1d4a2589e83402dc6ce041b4c805e4074f70e17",
-                "reference": "e1d4a2589e83402dc6ce041b4c805e4074f70e17",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/7de9e7ea7dcee3381edfa2a97140260655dc1a32",
+                "reference": "7de9e7ea7dcee3381edfa2a97140260655dc1a32",
                 "shasum": ""
             },
             "require": {
@@ -11213,7 +11215,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-29T14:16:17+00:00"
+            "time": "2024-04-01T07:36:36+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
