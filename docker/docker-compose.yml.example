@@ -36,7 +36,7 @@ services:
         container_name: gpstracker-app
         restart: unless-stopped
         volumes:
-            - ./../storage/logs:./storage/logs
+            - ./../storage/logs:/app/storage/logs
         depends_on:
             gpstracker-mysql:
                 condition: service_healthy
