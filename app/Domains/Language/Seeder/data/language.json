@@ -3,13 +3,31 @@
         "code": "es",
         "name": "Castellano",
         "locale": "es_ES",
-        "enabled": true
+        "enabled": true,
+        "rtl": false
     },
 
     {
         "code": "en",
         "name": "English",
         "locale": "en_US",
-        "enabled": true
+        "enabled": true,
+        "rtl": false
+    },
+
+    {
+        "code": "fr",
+        "name": "Français",
+        "locale": "fr_FR",
+        "enabled": true,
+        "rtl": false
+    },
+
+    {
+        "code": "he",
+        "name": "עִברִית",
+        "locale": "he_IL",
+        "enabled": true,
+        "rtl": true
     }
 ]

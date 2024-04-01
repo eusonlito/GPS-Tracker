@@ -1,0 +1,16 @@
+<?php return [
+    'amount' => 'סכום',
+    'create' => 'צור',
+    'date_at' => 'תאריך',
+    'distance' => 'מרחק',
+    'distance_next' => 'המרחק הבא',
+    'end-at' => 'סיום',
+    'meta-title' => 'תחזוקה',
+    'name' => 'שם',
+    'search' => 'חיפוש',
+    'send' => 'שלח',
+    'start-at' => 'התחלה',
+    'user' => 'משתמש',
+    'vehicle' => 'רכב',
+    'workshop' => 'סדנה',
+];

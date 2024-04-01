@@ -72,6 +72,7 @@ abstract class CreateUpdateAbstract extends ControllerAbstract
         return [
             'euro' => __('user-create.preferences-units-money-euro'),
             'dollar' => __('user-create.preferences-units-money-dollar'),
+            '' => __('user-create.preferences-units-money-other'),
         ];
     }
 

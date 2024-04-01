@@ -1,0 +1,18 @@
+<?php return [
+    'date_at' => 'תאריך',
+    'date_utc_at' => 'תאריך באזור זמן אוניברסלי (UTC)',
+    'device' => 'התקן',
+    'direction' => 'כתובת',
+    'format' => 'תבנית',
+    'latitude' => 'רוחב גאוגרפי',
+    'line' => 'שורה',
+    'log' => 'יומן פרוטוקול :name',
+    'longitude' => 'אורך גאוגרפי',
+    'meta-title' => 'שרתים > :title > מפענח',
+    'response' => 'תשובה',
+    'send' => 'שלח',
+    'serial' => 'מזהה סידורי',
+    'signal' => 'אות',
+    'speed' => 'מהירות',
+    'timezone' => 'אזור זמן',
+];

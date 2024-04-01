@@ -264,6 +264,7 @@ CREATE TABLE `language` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rtl` tinyint(1) NOT NULL DEFAULT '0',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -677,3 +678,4 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (70,'2023_12_08_133
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (71,'2023_12_27_203000_point_latitude_longitude',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (72,'2024_01_04_193000_refuel_point',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (73,'2024_01_04_203000_city_only',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (74,'2024_04_01_183000_language_rtl',1);

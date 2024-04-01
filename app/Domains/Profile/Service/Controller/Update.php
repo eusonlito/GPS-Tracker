@@ -78,6 +78,7 @@ class Update extends ControllerAbstract
         return [
             'euro' => __('profile-update.preferences-units-money-euro'),
             'dollar' => __('profile-update.preferences-units-money-dollar'),
+            '' => __('profile-update.preferences-units-money-other'),
         ];
     }
 

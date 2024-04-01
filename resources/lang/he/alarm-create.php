@@ -1,0 +1,20 @@
+<?php return [
+    'enabled' => 'פעיל',
+    'error' => [
+        'schedule_end' => 'בעת מילוי שעת ההתחלה, עליך גם למלא את שעת הסיום',
+        'schedule_start' => 'בעת מילוי שעת הסיום, עליך גם למלא את שעת ההתחלה',
+        'schedule_start_gt_schedule_end' => 'שעת ההתחלה לא יכולה להיות שווה או גבוהה משעת הסיום',
+    ],
+    'meta-title' => 'התראות > חדש',
+    'name' => 'שם',
+    'save' => 'שמירה',
+    'schedule_end' => 'שעת סיום',
+    'schedule_end-placeholder' => 'שעה:דקה',
+    'schedule_start' => 'שעת התחלה',
+    'schedule_start-placeholder' => 'שעה:דקה',
+    'success' => 'ההתראה נוצרה בהצלחה',
+    'telegram' => 'הודעה באמצעות טלגרם',
+    'type' => 'סוג',
+    'type-select' => 'בחר סוג',
+    'user' => 'משתמש',
+];
