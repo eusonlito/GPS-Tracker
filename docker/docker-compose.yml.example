@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
     gpstracker-mysql:
         image: mysql:8.0
@@ -37,6 +35,8 @@ services:
         image: gpstracker-app:latest
         container_name: gpstracker-app
         restart: unless-stopped
+        volumes:
+            - ./../storage/logs:./storage/logs
         depends_on:
             gpstracker-mysql:
                 condition: service_healthy

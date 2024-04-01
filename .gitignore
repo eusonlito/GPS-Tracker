@@ -8,6 +8,8 @@
 /vendor
 
 .env
+.env.*
+!.env.example
 .phpunit.result.cache
 .php_cs.cache
 .php-cs-fixer.cache
