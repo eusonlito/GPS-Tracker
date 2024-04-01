@@ -35,7 +35,6 @@ services:
         image: gpstracker-app:latest
         container_name: gpstracker-app
         restart: unless-stopped
-        user: www-data
         depends_on:
             gpstracker-mysql:
                 condition: service_healthy
