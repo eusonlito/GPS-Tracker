@@ -1,6 +1,6 @@
 #!/bin/bash
 
-su -s /bin/bash -c './composer deploy-docker' www-data
+su -s /bin/bash -c './composer deploy-docker > storage/logs/composer-deploy-docker.log 2>&1' www-data
 
 cron
 
