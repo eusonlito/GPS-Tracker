@@ -3,6 +3,7 @@
 namespace App\Services\Translator\Provider\DeepL;
 
 use stdClass;
+use Throwable;
 use App\Exceptions\UnexpectedValueException;
 use App\Services\Translator\Provider\ProviderAbstract;
 
@@ -48,7 +49,23 @@ class Manager extends ProviderAbstract
      */
     protected function request(string $from, string $to, array $strings): array
     {
-        return $this->requestResponse($this->requestCurl($from, $to, $strings));
+        try {
+            return $this->requestResponse($this->requestCurl($from, $to, $strings));
+        } catch (Throwable $e) {
+            return $this->requestError($e);
+        }
+    }
+
+    /**
+     * @param \Throwable $e
+     *
+     * @return array
+     */
+    protected function requestError(Throwable $e): array
+    {
+        report($e);
+
+        return [];
     }
 
     /**

@@ -118,6 +118,6 @@ class Translate extends ServiceAbstract
      */
     protected function request(string $to, array $strings): array
     {
-        return TranslatorFactory::get()->array($this->from, $to, $strings);
+        return TranslatorFactory::get()->array($this->from, $to, $strings) ?: $strings;
     }
 }

@@ -19,6 +19,7 @@
     'preferences-units-money' => 'מטבע',
     'preferences-units-money-dollar' => 'דולר',
     'preferences-units-money-euro' => 'יורו',
+    'preferences-units-money-other' => 'אַחֵר',
     'preferences-units-thousand' => 'אלפים',
     'preferences-units-thousand-comma' => 'פסיק',
     'preferences-units-thousand-dot' => 'נקודה',
