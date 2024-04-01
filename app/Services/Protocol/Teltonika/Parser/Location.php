@@ -19,6 +19,11 @@ class Location extends ParserAbstract
     protected string $codec;
 
     /**
+     * @var int
+     */
+    protected int $total;
+
+    /**
      * @param \App\Services\Buffer\Byte $buffer
      *
      * @return self
@@ -38,6 +43,18 @@ class Location extends ParserAbstract
     public function codec(string $codec): self
     {
         $this->codec = $codec;
+
+        return $this;
+    }
+
+    /**
+     * @param int $total
+     *
+     * @return self
+     */
+    public function total(int $total): self
+    {
+        $this->total = $total;
 
         return $this;
     }
@@ -241,6 +258,6 @@ class Location extends ParserAbstract
      */
     protected function response(): string
     {
-        return "\x00\x00\x00\x01";
+        return pack('N', $this->total);
     }
 }
