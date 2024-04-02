@@ -1,5 +1,6 @@
 <?php return [
     'close' => 'Cerrar',
+    'copy' => 'Copiar',
     'error' => [
         'fuser-not-found' => 'El comando "fuser" no está disponible',
         'method-not-allowed' => 'Método no Permitido',
@@ -9,5 +10,6 @@
         'system' => 'Error del Sistema',
     ],
     'generate' => 'Generar',
+    'reset' => 'Resetear',
     'show' => 'Mostrar',
 ];

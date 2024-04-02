@@ -1,5 +1,7 @@
 <?php return [
     'admin' => 'Administrador',
+    'api_key' => 'Clave API',
+    'api_key_enabled' => 'Clave API Activa',
     'email' => 'Email',
     'enabled' => 'Activo',
     'error' => [

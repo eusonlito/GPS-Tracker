@@ -19,8 +19,6 @@ class Update extends ControllerAbstract
             return $response;
         }
 
-        $this->requestMergeWithRow();
-
         $this->meta('title', __('profile-update.meta-title'));
 
         return $this->page('profile.update', $this->data());
@@ -31,7 +29,7 @@ class Update extends ControllerAbstract
      */
     protected function data(): array
     {
-        return ControllerService::new($this->request, $this->auth)->data();
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
     }
 
     /**

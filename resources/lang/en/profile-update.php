@@ -1,4 +1,6 @@
 <?php return [
+    'api_key' => 'API Key',
+    'api_key_enabled' => 'Active API Key',
     'email' => 'Email',
     'error' => [
         'email-exists' => 'Another user with the same email already exists',

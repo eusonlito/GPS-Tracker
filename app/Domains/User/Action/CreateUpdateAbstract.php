@@ -34,6 +34,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         $this->dataName();
         $this->dataEmail();
         $this->dataPassword();
+        $this->dataApiKey();
         $this->dataPreferences();
         $this->dataLanguageId();
         $this->dataTimezoneId();
@@ -64,6 +65,48 @@ abstract class CreateUpdateAbstract extends ActionAbstract
             $this->data['password'] = Hash::make($this->data['password']);
         } else {
             $this->data['password'] = $this->row->password;
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataApiKey(): void
+    {
+        if (helper()->uuidIsValid($this->data['api_key'])) {
+            $this->dataApiKeyValid();
+        } else {
+            $this->dataApiKeyInvalid();
+        }
+
+        $this->dataApiKeyEnabled();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataApiKeyValid(): void
+    {
+        $this->data['api_key_prefix'] = explode('-', $this->data['api_key'], 2)[0];
+        $this->data['api_key'] = hash('sha256', $this->data['api_key']);
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataApiKeyInvalid(): void
+    {
+        $this->data['api_key'] = $this->row?->api_key;
+        $this->data['api_key_prefix'] = $this->row?->api_key_prefix;
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataApiKeyEnabled(): void
+    {
+        if (empty($this->data['api_key'])) {
+            $this->data['api_key_enabled'] = false;
         }
     }
 
@@ -129,6 +172,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     {
         $this->checkEmail();
         $this->checkStatus();
+        $this->checkApiKey();
         $this->checkLanguageId();
         $this->checkTimezoneId();
     }
@@ -170,6 +214,27 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         if (empty($this->data['enabled'])) {
             $this->exceptionValidator(__('user-create.error.enabled-own'));
         }
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkApiKey(): void
+    {
+        if ($this->data['api_key'] && $this->checkApiKeyExists()) {
+            $this->exceptionValidator('user-create.error.api_key-exists');
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkApiKeyExists(): bool
+    {
+        return Model::query()
+            ->byIdNot($this->row->id ?? 0)
+            ->byApiKey($this->data['api_key'])
+            ->exists();
     }
 
     /**
