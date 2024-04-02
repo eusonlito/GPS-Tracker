@@ -12,6 +12,29 @@ class FractalFactory extends FractalAbstract
      *
      * @return array
      */
+    protected function json(Model $row): array
+    {
+        return [
+            'name' => $row->name,
+            'email' => $row->email,
+            'admin' => $row->admin,
+            'manager' => $row->manager,
+            'enabled' => $row->enabled,
+
+            'api_key_enabled' => $row->api_key_enabled,
+
+            'preferences' => ['units' => $row->preferences['units']],
+
+            'language' => $this->from('Language', 'related', $row->language),
+            'timezone' => $this->from('Timezone', 'related', $row->timezone),
+        ];
+    }
+
+    /**
+     * @param \App\Domains\User\Model\User $row
+     *
+     * @return array
+     */
     protected function related(Model $row): array
     {
         return [

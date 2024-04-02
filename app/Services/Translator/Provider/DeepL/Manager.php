@@ -151,7 +151,7 @@ class Manager extends ProviderAbstract
 
         foreach ($keys as $index => $key) {
             if (empty($strings[$index])) {
-                die(var_export([$text, $keys, $strings], true));
+                exit(var_export([$text, $keys, $strings], true));
             }
 
             $translations[$key] = $strings[$index];

@@ -14,7 +14,17 @@ class FractalFactory extends FractalAbstract
      */
     protected function json(Model $row): array
     {
-        return $row->only('id', 'zone', 'default');
+        return $this->simple($row);
+    }
+
+    /**
+     * @param \App\Domains\Timezone\Model\Timezone $row
+     *
+     * @return array
+     */
+    protected function related(Model $row): array
+    {
+        return $this->simple($row);
     }
 
     /**
