@@ -1,5 +1,6 @@
 <?php return [
     'close' => 'Close',
+    'copy' => 'Copy',
     'error' => [
         'fuser-not-found' => 'The "fuser" command is not available',
         'method-not-allowed' => 'Method Not Allowed',
@@ -9,5 +10,6 @@
         'system' => 'System Error',
     ],
     'generate' => 'Generate',
+    'reset' => 'Reset',
     'show' => 'Show',
 ];

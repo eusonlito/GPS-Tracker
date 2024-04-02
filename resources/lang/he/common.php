@@ -1,5 +1,6 @@
 <?php return [
     'close' => 'סגור',
+    'copy' => 'Copiar',
     'error' => [
         'fuser-not-found' => 'הפקודה "fuser" אינה זמינה',
         'method-not-allowed' => 'פעולה לא מורשת',
@@ -9,5 +10,6 @@
         'system' => 'שגיאת מערכת',
     ],
     'generate' => 'צור',
+    'reset' => 'Resetear',
     'show' => 'הצג',
 ];

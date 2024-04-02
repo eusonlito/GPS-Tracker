@@ -18,6 +18,19 @@
         </div>
     </div>
 
+    <div class="p-2">
+        <label for="user-api_key" class="form-label">{{ __('user-create.api_key') }}</label>
+
+        <div class="input-group">
+            <input type="password" name="api_key" class="form-control form-control-lg" id="user-api_key" value="{{ $REQUEST->input('api_key') }}" autocomplete="off" />
+
+            <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.show') }}" data-password-show="#user-api_key" tabindex="-1">@icon('eye', 'w-5 h-5')</button>
+            <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.copy') }}" data-copy="#user-api_key" tabindex="-1">@icon('clipboard', 'w-5 h-5')</button>
+            <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.generate') }}" data-password-generate="#user-api_key" data-password-generate-format="uuid" tabindex="-1">@icon('refresh-cw', 'w-5 h-5')</button>
+            <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.reset') }}" data-input-default="#user-api_key" data-tabindex="-1">@icon('skip-back', 'w-5 h-5')</button>
+        </div>
+    </div>
+
     <div class="lg:flex">
         <div class="flex-1 p-2">
             <x-select name="language_id" :options="$languages" value="id" text="name" :label="__('user-create.language')" required></x-select>
@@ -63,6 +76,13 @@
         <div class="form-check">
             <input type="checkbox" name="manager" value="1" class="form-check-switch" id="user-manager" {{ $REQUEST->input('manager') ? 'checked' : '' }}>
             <label for="user-manager" class="form-check-label">{{ __('user-create.manager') }}</label>
+        </div>
+    </div>
+
+    <div class="p-2">
+        <div class="form-check">
+            <input type="checkbox" name="api_key_enabled" value="1" class="form-check-switch" id="user-api_key_enabled" {{ $REQUEST->input('api_key_enabled') ? 'checked' : '' }}>
+            <label for="user-api_key_enabled" class="form-check-label">{{ __('user-create.api_key_enabled') }}</label>
         </div>
     </div>
 
