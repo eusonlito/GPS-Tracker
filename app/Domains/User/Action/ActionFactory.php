@@ -15,6 +15,14 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return \App\Domains\User\Model\User
      */
+    public function authApi(): Model
+    {
+        return $this->actionHandle(AuthApi::class);
+    }
+
+    /**
+     * @return \App\Domains\User\Model\User
+     */
     public function authCredentials(): Model
     {
         return $this->actionHandle(AuthCredentials::class, $this->validate()->authCredentials());
