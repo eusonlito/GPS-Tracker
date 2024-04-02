@@ -142,14 +142,43 @@ class Manager extends ProviderAbstract
      */
     protected function requestResponse(stdClass $response): array
     {
+        $text = $response->translations[0]->text;
+
+        $keys = $this->requestResponseKeys($text);
+        $strings = $this->requestResponseString($text);
+
         $translations = [];
 
-        foreach (explode("\n", $response->translations[0]->text) as $line) {
-            preg_match('/^<key>([^<]+)<\/key> (.*)$/', $line, $matches);
+        foreach ($keys as $index => $key) {
+            if (empty($strings[$index])) {
+                dd($text, $keys, $strings);
+            }
 
-            $translations[$matches[1]] = $matches[2];
+            $translations[$key] = $strings[$index];
         }
 
         return $translations;
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return array
+     */
+    protected function requestResponseKeys(string $text): array
+    {
+        preg_match_all('/<key>([^<]+)<\/key>/', $text, $matches);
+
+        return $matches[1];
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return array
+     */
+    protected function requestResponseString(string $text): array
+    {
+        return array_map('trim', explode("\n", preg_replace('/<key>([^<]*)<\/key>/', '', $text)));
     }
 }
