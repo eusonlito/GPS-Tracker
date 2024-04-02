@@ -14,6 +14,28 @@ class FractalFactory extends FractalAbstract
      *
      * @return array
      */
+    protected function json(Model $row): array
+    {
+        return [
+            'code' => $row->code,
+            'name' => $row->name,
+            'model' => $row->model,
+            'serial' => $row->serial,
+            'phone_number' => $row->phone_number,
+            'password' => $row->password,
+            'enabled' => $row->enabled,
+            'shared' => $row->shared,
+            'shared_public' => $row->shared_public,
+            'user' => $this->from('User', 'related', $row->user),
+            'vehicle' => $this->from('Vehicle', 'related', $row->vehicle),
+        ];
+    }
+
+    /**
+     * @param \App\Domains\Device\Model\Device $row
+     *
+     * @return array
+     */
     protected function simple(Model $row): array
     {
         return $row->only('id', 'name', 'shared', 'shared_public');
