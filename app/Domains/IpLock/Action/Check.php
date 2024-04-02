@@ -12,7 +12,24 @@ class Check extends ActionAbstract
      */
     public function handle(): void
     {
+        $this->data();
         $this->check();
+    }
+
+    /**
+     * @return void
+     */
+    protected function data(): void
+    {
+        $this->dataIp();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataIp(): void
+    {
+        $this->data['ip'] ??= $this->request->ip();
     }
 
     /**
@@ -20,9 +37,17 @@ class Check extends ActionAbstract
      */
     protected function check(): void
     {
-        if ($this->exists()) {
+        if (($this->isWhiteList() === false) && $this->exists()) {
             throw new IpLockedException(__('ip-lock.error.locked'));
         }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isWhiteList(): bool
+    {
+        return in_array($this->data['ip'], config('auth.lock.whitelist'));
     }
 
     /**

@@ -27,13 +27,41 @@ class Route extends RouteServiceProvider
     }
 
     /**
-     * Define the routes for the application.
-     *
      * @return void
      */
     public function map(): void
     {
-        foreach (glob(app_path('Domains/*/Controller*/router.php')) as $file) {
+        $this->mapWeb();
+        $this->mapApi();
+    }
+
+    /**
+     * @return void
+     */
+    protected function mapWeb(): void
+    {
+        $this->mapLoadRouter('Controller');
+    }
+
+    /**
+     * @return void
+     */
+    protected function mapApi(): void
+    {
+        Route::middleware('user-auth-api')
+            ->name('api.')
+            ->prefix('api')
+            ->group(fn () => $this->mapLoadRouter('ControllerApi'));
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return void
+     */
+    protected function mapLoadRouter(string $path): void
+    {
+        foreach (glob(app_path('Domains/*/'.$path.'/router.php')) as $file) {
             require $file;
         }
     }
