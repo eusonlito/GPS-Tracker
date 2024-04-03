@@ -36,29 +36,6 @@ class FractalFactory extends FractalAbstract
      *
      * @return array
      */
-    protected function simple(Model $row): array
-    {
-        return $row->only('id', 'name', 'shared', 'shared_public');
-    }
-
-    /**
-     * @param \App\Domains\Device\Model\Device $row
-     *
-     * @return array
-     */
-    protected function related(Model $row): array
-    {
-        return [
-            'id' => $row->id,
-            'name' => $row->name,
-        ];
-    }
-
-    /**
-     * @param \App\Domains\Device\Model\Device $row
-     *
-     * @return array
-     */
     protected function map(Model $row): array
     {
         return [
@@ -109,5 +86,28 @@ class FractalFactory extends FractalAbstract
             'id' => $vehicle->id,
             'name' => $vehicle->name,
         ];
+    }
+
+    /**
+     * @param \App\Domains\Device\Model\Device $row
+     *
+     * @return array
+     */
+    protected function related(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'name' => $row->name,
+        ];
+    }
+
+    /**
+     * @param \App\Domains\Device\Model\Device $row
+     *
+     * @return array
+     */
+    protected function simple(Model $row): array
+    {
+        return $row->only('id', 'name', 'shared', 'shared_public');
     }
 }

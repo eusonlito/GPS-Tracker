@@ -20,11 +20,11 @@ class Device extends FactoryAbstract
     {
         return [
             'code' => $this->faker->uuid(),
-            'name' => 'Device: '.$this->faker->name(),
-            'model' => $this->faker->name(),
+            'name' => 'Device: '.preg_replace('/[^A-Za-z]/', '', $this->faker->name()),
+            'model' => preg_replace('/[^A-Za-z]/', '', $this->faker->name()),
             'serial' => strval($this->faker->numberBetween()),
             'phone_number' => $this->faker->phoneNumber(),
-            'password' => $this->faker->name(),
+            'password' => preg_replace('/[^A-Za-z]/', '', $this->faker->name()),
 
             'enabled' => true,
             'shared' => false,

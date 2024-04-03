@@ -41,6 +41,22 @@ abstract class TestsAbstract extends TestCase
     }
 
     /**
+     * @param bool $admin = true
+     * @param bool $manager = true
+     *
+     * @return \Illuminate\Contracts\Auth\Authenticatable
+     */
+    protected function authUserAdminManager(bool $admin = true, bool $manager = true): Authenticatable
+    {
+        return $this->authUser([
+            'admin' => $admin,
+            'admin_mode' => $admin,
+            'manager' => $manager,
+            'manager_mode' => $manager,
+        ]);
+    }
+
+    /**
      * @param array $data = []
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable

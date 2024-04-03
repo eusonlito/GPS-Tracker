@@ -13,26 +13,17 @@ class FractalFactory extends FractalAbstract
      *
      * @return array
      */
-    protected function simple(Model $row): array
+    protected function json(Model $row): array
     {
         return [
             'id' => $row->id,
             'name' => $row->name,
             'plate' => $row->plate,
-        ];
-    }
-
-    /**
-     * @param \App\Domains\Vehicle\Model\Vehicle $row
-     *
-     * @return array
-     */
-    protected function related(Model $row): array
-    {
-        return [
-            'id' => $row->id,
-            'name' => $row->name,
-            'plate' => $row->plate,
+            'timezone_auto' => $row->timezone_auto,
+            'enabled' => $row->enabled,
+            'devices' => $this->from('Device', 'related', $row->devices),
+            'timezone' => $this->from('Timezone', 'related', $row->timezone),
+            'user' => $this->from('User', 'related', $row->user),
         ];
     }
 
@@ -73,6 +64,34 @@ class FractalFactory extends FractalAbstract
             'speed_human' => helper()->unitHuman('speed', $position->speed),
             'city' => $position->city?->name,
             'state' => $position->city?->state->name,
+        ];
+    }
+
+    /**
+     * @param \App\Domains\Vehicle\Model\Vehicle $row
+     *
+     * @return array
+     */
+    protected function related(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'name' => $row->name,
+            'plate' => $row->plate,
+        ];
+    }
+
+    /**
+     * @param \App\Domains\Vehicle\Model\Vehicle $row
+     *
+     * @return array
+     */
+    protected function simple(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'name' => $row->name,
+            'plate' => $row->plate,
         ];
     }
 }

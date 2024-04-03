@@ -22,7 +22,7 @@ class Trip extends FactoryAbstract
     {
         return [
             'code' => $this->faker->uuid(),
-            'name' => 'Trip: '.$this->faker->name(),
+            'name' => 'Trip: '.preg_replace('/[^A-Za-z]/', '', $this->faker->name()),
 
             'distance' => rand(0, 1000),
             'time' => rand(0, 1000),

@@ -19,7 +19,7 @@ class Vehicle extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => 'Vehicle: '.$this->faker->name(),
+            'name' => 'Vehicle: '.preg_replace('/[^A-Za-z]/', '', $this->faker->name()),
             'plate' => $this->faker->md5(),
 
             'timezone_auto' => true,

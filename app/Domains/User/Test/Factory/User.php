@@ -19,7 +19,7 @@ class User extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => 'User: '.$this->faker->name(),
+            'name' => 'User: '.preg_replace('/[^A-Za-z]/', '', $this->faker->name()),
             'email' => ($email = $this->faker->companyEmail()),
             'password' => Hash::make($email),
             'preferences' => $this->definitionPreferences(),

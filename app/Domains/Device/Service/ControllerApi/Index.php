@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use App\Domains\Device\Model\Device as Model;
 
-class Index extends ControllerAbstract
+class Index extends ControllerApiAbstract
 {
     /**
      * @var bool
@@ -34,10 +34,11 @@ class Index extends ControllerAbstract
     public function data(): array
     {
         return Model::query()
-            ->whenUserId($this->user()?->id)
-            ->whenVehicleId($this->vehicle()?->id)
-            ->withUser()
-            ->withVehicle()
+            ->byUserOrManager($this->auth)
+            ->whenUserId($this->requestInteger('user_id'))
+            ->whenVehicleId($this->requestInteger('vehicle_id'))
+            ->withSimple('user')
+            ->withSimple('vehicle')
             ->list()
             ->get()
             ->all();

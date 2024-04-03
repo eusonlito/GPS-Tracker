@@ -440,6 +440,14 @@ class Position extends BuilderAbstract
     /**
      * @return self
      */
+    public function withCityCountryState(): self
+    {
+        return $this->with(['city' => fn ($q) => $q->withCountry()->withState()]);
+    }
+
+    /**
+     * @return self
+     */
     public function withCityState(): self
     {
         return $this->with(['city' => fn ($q) => $q->withState()]);

@@ -12,6 +12,22 @@ class FractalFactory extends FractalAbstract
      *
      * @return array
      */
+    protected function json(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'name' => $row->name,
+            'code' => $row->code,
+            'locale' => $row->locale,
+            'rtl' => $row->rtl,
+        ];
+    }
+
+    /**
+     * @param \App\Domains\Language\Model\Language $row
+     *
+     * @return array
+     */
     protected function related(Model $row): array
     {
         return [
