@@ -2,7 +2,6 @@
 
 namespace App\Domains\CoreApp\Test\Feature;
 
-use Illuminate\Testing\TestResponse;
 use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\Core\Test\Feature\FeatureAbstract as FeatureAbstractCore;
 use App\Domains\Device\Model\Device as DeviceModel;

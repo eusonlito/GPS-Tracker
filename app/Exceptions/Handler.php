@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response as HttpResponse;
 use Sentry;
 use App\Domains\Error\Controller\Index as ErrorController;
-use App\Services\Request\Logger as RequestLogger;
 
 class Handler extends HandlerVendor
 {
