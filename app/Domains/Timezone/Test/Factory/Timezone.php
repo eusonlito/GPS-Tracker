@@ -18,7 +18,7 @@ class Timezone extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'zone' => $this->faker->name(),
+            'zone' => preg_replace('/[^A-Za-z]/', '', $this->faker->name()),
             'default' => true,
 
             'geojson' => Model::db()->raw(Model::emptyGeoJSON()),

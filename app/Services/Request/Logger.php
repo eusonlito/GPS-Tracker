@@ -2,7 +2,6 @@
 
 namespace App\Services\Request;
 
-use Throwable;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Services\Logger\RotatingFileAbstract;
@@ -43,20 +42,6 @@ class Logger extends RotatingFileAbstract
 
     /**
      * @param \Illuminate\Http\Request $request
-     *
-     * @return void
-     */
-    public static function fromRequest(Request $request): void
-    {
-        if (config('logging.channels.request.enabled') !== true) {
-            return;
-        }
-
-        static::info($request->url(), static::data($request));
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
      * @param \Symfony\Component\HttpFoundation\Response $response
      *
      * @return void
@@ -67,24 +52,11 @@ class Logger extends RotatingFileAbstract
             return;
         }
 
-        static::info($request->url(), static::data($request, [
-            'response' => static::response($response),
-        ]));
-    }
+        $type = static::responseType($response);
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Throwable $e
-     *
-     * @return void
-     */
-    public static function fromException(Request $request, Throwable $e): void
-    {
-        static::error($request->url(), static::data($request, [
-            'class' => $e::class,
-            'code' => static::exceptionCode($e),
-            'status' => static::exceptionStatus($e),
-            'message' => $e->getMessage(),
+        static::$type($request->url(), static::data($request, [
+            'response' => static::response($response),
+            'status' => $response->getStatusCode(),
         ]));
     }
 
@@ -129,23 +101,16 @@ class Logger extends RotatingFileAbstract
     }
 
     /**
-     * @param \Throwable $e
+     * @param \Symfony\Component\HttpFoundation\Response $response
      *
-     * @return int
+     * @return string
      */
-    protected static function exceptionCode(Throwable $e): int
+    protected static function responseType(Response $response): string
     {
-        return intval(method_exists($e, 'getStatusCode') ? $e->getStatusCode() : $e->getCode());
-    }
-
-    /**
-     * @param \Throwable $e
-     *
-     * @return ?string
-     */
-    protected static function exceptionStatus(Throwable $e): ?string
-    {
-        return method_exists($e, 'getStatus') ? $e->getStatus() : null;
+        return match (substr(strval($response->getStatusCode()), 0, 1)) {
+            '1', '2', '3' => 'info',
+            default => 'error',
+        };
     }
 
     /**
@@ -153,9 +118,11 @@ class Logger extends RotatingFileAbstract
      *
      * @return mixed
      */
-    protected static function response(Response $response)
+    protected static function response(Response $response): mixed
     {
-        return method_exists($response, 'getData') ? $response->getData() : null;
+        return method_exists($response, 'getData')
+            ? $response->getData()
+            : $response->getContent();
     }
 
     /**

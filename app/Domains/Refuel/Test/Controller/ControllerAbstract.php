@@ -3,10 +3,10 @@
 namespace App\Domains\Refuel\Test\Controller;
 
 use App\Domains\Core\Model\ModelAbstract;
-use App\Domains\CoreApp\Test\Feature\FeatureAbstract;
+use App\Domains\CoreApp\Test\Controller\ControllerAbstract as CoreAppControllerAbstract;
 use App\Domains\Refuel\Model\Refuel as Model;
 
-abstract class ControllerAbstract extends FeatureAbstract
+abstract class ControllerAbstract extends CoreAppControllerAbstract
 {
     /**
      * @return string

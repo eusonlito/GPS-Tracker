@@ -12,6 +12,27 @@ class FractalFactory extends FractalAbstract
      *
      * @return array
      */
+    protected function json(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'date_at' => $row->date_at,
+            'date_utc_at' => $row->date_utc_at,
+            'latitude' => $row->latitude,
+            'longitude' => $row->longitude,
+            'direction' => $row->direction,
+            'speed' => helper()->unit('speed', $row->speed),
+            'city' => $this->from('City', 'related', $row->city),
+            'state' => $this->from('State', 'related', $row->city?->state),
+            'country' => $this->from('Country', 'related', $row->city?->country),
+        ];
+    }
+
+    /**
+     * @param \App\Domains\Position\Model\Position $row
+     *
+     * @return array
+     */
     protected function map(Model $row): array
     {
         return [
@@ -36,9 +57,12 @@ class FractalFactory extends FractalAbstract
     {
         return [
             'id' => $row->id,
+            'date_at' => $row->date_at,
             'date_utc_at' => $row->date_utc_at,
             'latitude' => $row->latitude,
             'longitude' => $row->longitude,
+            'speed' => $row->speed,
+            'direction' => $row->direction,
         ];
     }
 }
