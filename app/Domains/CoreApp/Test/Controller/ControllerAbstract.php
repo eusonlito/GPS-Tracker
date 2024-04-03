@@ -3,11 +3,7 @@
 namespace App\Domains\CoreApp\Test\Controller;
 
 use Illuminate\Testing\TestResponse;
-use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\CoreApp\Test\Feature\FeatureAbstract;
-use App\Domains\Device\Model\Device as DeviceModel;
-use App\Domains\User\Model\User as UserModel;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 abstract class ControllerAbstract extends FeatureAbstract
 {
