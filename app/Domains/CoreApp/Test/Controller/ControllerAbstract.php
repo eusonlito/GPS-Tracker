@@ -922,6 +922,20 @@ abstract class ControllerAbstract extends FeatureAbstract
      *
      * @return void
      */
+    public function postAuthAdminDeleteSuccess(?string $redirect = null): void
+    {
+        $this->authUserAdmin();
+
+        $this->post($this->routeToController(), $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route($this->routeUpdateToIndex($redirect)));
+    }
+
+    /**
+     * @param ?string $redirect = null
+     *
+     * @return void
+     */
     public function getAuthManagerDeleteSuccess(?string $redirect = null): void
     {
         $this->authUserManager();

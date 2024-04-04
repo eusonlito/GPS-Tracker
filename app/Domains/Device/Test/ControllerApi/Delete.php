@@ -36,9 +36,9 @@ class Delete extends ControllerApiAbstract
     /**
      * @return void
      */
-    public function testDeleteAuthFail(): void
+    public function testDeleteAuthOtherFail(): void
     {
-        $this->deleteAuthFail();
+        $this->deleteAuthOtherFail();
     }
 
     /**

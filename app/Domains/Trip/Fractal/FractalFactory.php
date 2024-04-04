@@ -25,8 +25,8 @@ class FractalFactory extends FractalAbstract
             'distance' => helper()->unit('distance', $row->distance),
             'time' => $row->time,
             'device' => $this->from('Device', 'related', $row->device),
+            'timezone' => $this->from('Timezone', 'related', $row->timezone),
             'user' => $this->from('User', 'related', $row->user),
-            'timezone' => $this->from('User', 'related', $row->timezone),
             'vehicle' => $this->from('Vehicle', 'related', $row->vehicle),
         ];
     }

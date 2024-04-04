@@ -62,6 +62,14 @@ class Timezone extends BuilderAbstract
     }
 
     /**
+     * @return self
+     */
+    public function selectRelated(): self
+    {
+        return $this->selectOnly('id', 'zone', 'default');
+    }
+
+    /**
      * @param ?int $id
      *
      * @return self
