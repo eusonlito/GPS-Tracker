@@ -38,32 +38,32 @@ trait Factory
     }
 
     /**
-     * @param ?string $domain
+     * @param ?string $domain = null
      *
      * @return string
      */
-    final protected function factoryNamespace(?string $domain): string
+    final protected function factoryNamespace(?string $domain = null): string
     {
         return 'App\\Domains\\'.$this->factoryDomain($domain);
     }
 
     /**
-     * @param ?string $domain
+     * @param ?string $domain = null
      *
      * @return string
      */
-    final protected function factoryDomain(?string $domain): string
+    final protected function factoryDomain(?string $domain = null): string
     {
         return $domain ?: explode('\\', get_called_class())[2];
     }
 
     /**
-     * @param ?string $domain
+     * @param ?string $domain = null
      * @param ?\App\Domains\Core\Model\ModelAbstract $row = null
      *
      * @return ?\App\Domains\Core\Model\ModelAbstract
      */
-    final protected function factoryRow(?string $domain, ?ModelAbstract $row = null): ?ModelAbstract
+    final protected function factoryRow(?string $domain = null, ?ModelAbstract $row = null): ?ModelAbstract
     {
         return ($row || ($domain !== null)) ? $row : ($this->row ?? null);
     }

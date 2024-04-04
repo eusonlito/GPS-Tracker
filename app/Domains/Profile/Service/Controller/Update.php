@@ -8,17 +8,38 @@ use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\Language\Model\Collection\Language as LanguageCollection;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
+use App\Domains\User\Model\User as Model;
 
 class Update extends ControllerAbstract
 {
     /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\User\Model\User $row
      *
      * @return self
      */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
     {
+        $this->request();
+    }
+
+    /**
+     * @return void
+     */
+    public function request(): void
+    {
+        $this->requestMergeWithRow(['api_key' => $this->requestApiKey()]);
+    }
+
+    /**
+     * @return string
+     */
+    public function requestApiKey(): string
+    {
+        return $this->row->api_key_prefix
+            ? ($this->row->api_key_prefix.'-*****-****-****-************')
+            : '';
     }
 
     /**
@@ -27,8 +48,8 @@ class Update extends ControllerAbstract
     public function data(): array
     {
         return [
-            'admin' => $this->auth->admin,
-            'manager' => $this->auth->manager,
+            'admin' => $this->row->admin,
+            'manager' => $this->row->manager,
             'languages' => $this->languages(),
             'timezones' => $this->timezones(),
             'preferences_units_distance' => $this->preferencesUnitsDistance(),
@@ -78,6 +99,7 @@ class Update extends ControllerAbstract
         return [
             'euro' => __('profile-update.preferences-units-money-euro'),
             'dollar' => __('profile-update.preferences-units-money-dollar'),
+            '' => __('profile-update.preferences-units-money-other'),
         ];
     }
 

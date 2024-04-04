@@ -35,6 +35,7 @@ import './alarm-notification.js';
 import './mobile-menu.js';
 import './side-menu.js';
 import './data-input-file-custom.js';
+import './data-input-default.js';
 import './modal.js';
 import './alert.js';
 import './data-maintenance-update-item.js';

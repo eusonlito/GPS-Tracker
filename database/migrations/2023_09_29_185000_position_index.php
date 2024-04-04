@@ -10,7 +10,6 @@ return new class extends MigrationAbstract {
      */
     public function up(): void
     {
-        $this->defineTypePoint();
         $this->tables();
         $this->upFinish();
     }

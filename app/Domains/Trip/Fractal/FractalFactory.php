@@ -12,7 +12,7 @@ class FractalFactory extends FractalAbstract
      *
      * @return array
      */
-    protected function map(Model $row): array
+    protected function json(Model $row): array
     {
         return [
             'id' => $row->id,
@@ -23,13 +23,11 @@ class FractalFactory extends FractalAbstract
             'end_at' => $row->end_at,
             'end_utc_at' => $row->end_utc_at,
             'distance' => helper()->unit('distance', $row->distance),
-            'distance_human' => helper()->unitHuman('distance', $row->distance),
             'time' => $row->time,
-            'time_human' => helper()->timeHuman($row->time),
-            'device' => $this->fromIfLoaded('Device', 'related', $row, 'device'),
-            'vehicle' => $this->fromIfLoaded('Vehicle', 'related', $row, 'vehicle'),
-            'user' => $this->fromIfLoaded('User', 'related', $row, 'user'),
-            'positions' => $this->from('Position', 'related', $row->positions),
+            'device' => $this->from('Device', 'related', $row->device),
+            'timezone' => $this->from('Timezone', 'related', $row->timezone),
+            'user' => $this->from('User', 'related', $row->user),
+            'vehicle' => $this->from('Vehicle', 'related', $row->vehicle),
         ];
     }
 
@@ -51,6 +49,32 @@ class FractalFactory extends FractalAbstract
             'distance_human' => helper()->unitHuman('distance', $row->distance),
             'time' => $row->time,
             'positions' => $this->from('Position', 'map', $row->positions),
+        ];
+    }
+
+    /**
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return array
+     */
+    protected function map(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'code' => $row->code,
+            'name' => $row->name,
+            'start_at' => $row->start_at,
+            'start_utc_at' => $row->start_utc_at,
+            'end_at' => $row->end_at,
+            'end_utc_at' => $row->end_utc_at,
+            'distance' => helper()->unit('distance', $row->distance),
+            'distance_human' => helper()->unitHuman('distance', $row->distance),
+            'time' => $row->time,
+            'time_human' => helper()->timeHuman($row->time),
+            'device' => $this->fromIfLoaded('Device', 'related', $row, 'device'),
+            'vehicle' => $this->fromIfLoaded('Vehicle', 'related', $row, 'vehicle'),
+            'user' => $this->fromIfLoaded('User', 'related', $row, 'user'),
+            'positions' => $this->from('Position', 'related', $row->positions),
         ];
     }
 

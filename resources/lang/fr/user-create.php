@@ -1,5 +1,7 @@
 <?php return [
     'admin' => 'Administrateur',
+    'api_key' => 'Clé API',
+    'api_key_enabled' => 'Clé API active',
     'email' => 'Courriel',
     'enabled' => 'Actif',
     'error' => [
@@ -23,6 +25,7 @@
     'preferences-units-money' => 'Monnaie',
     'preferences-units-money-dollar' => 'Dollar',
     'preferences-units-money-euro' => 'Euro',
+    'preferences-units-money-other' => 'Autre',
     'preferences-units-thousand' => 'Milliers',
     'preferences-units-thousand-comma' => 'Virgule',
     'preferences-units-thousand-dot' => 'Point',

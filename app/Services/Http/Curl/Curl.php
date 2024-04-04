@@ -1020,10 +1020,10 @@ class Curl
      */
     protected function error(): void
     {
-        $this->logSet('error', $e = $this->exception());
+        $this->logSet('error', true, $e = $this->exception());
 
-        if ($this->errorReport && app()->bound('sentry')) {
-            app('sentry')->captureException($e);
+        if ($this->errorReport) {
+            report($e);
         }
 
         $this->retry($e);
@@ -1152,13 +1152,14 @@ class Curl
 
     /**
      * @param string $status = 'success'
+     * @param bool $force = false
      * @param ?\Throwable $e = null
      *
      * @return void
      */
-    protected function logSet(string $status = 'success', ?Throwable $e = null): void
+    protected function logSet(string $status = 'success', bool $force = false, ?Throwable $e = null): void
     {
-        $this->logFile($status);
+        $this->logFile($status, $force);
 
         if ($e) {
             report($e);
@@ -1167,12 +1168,13 @@ class Curl
 
     /**
      * @param string $status
+     * @param bool $force = false
      *
      * @return void
      */
-    protected function logFile(string $status): void
+    protected function logFile(string $status, bool $force = false): void
     {
-        if ($this->log !== true) {
+        if (($this->log === false) && ($force === false)) {
             return;
         }
 

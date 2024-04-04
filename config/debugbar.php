@@ -15,11 +15,7 @@ return [
      */
 
     'enabled' => env('DEBUGBAR_ENABLED', false),
-
-    'except' => [
-        'telescope*',
-        'horizon*',
-    ],
+    'except' => [],
 
     /*
      |--------------------------------------------------------------------------
@@ -37,14 +33,14 @@ return [
      | Specify a callback if you want to limit based on IP or authentication.
      */
     'storage' => [
-        'enabled'    => true,
-        'open'       => env('DEBUGBAR_OPEN_STORAGE', false), // bool/callback.
-        'driver'     => 'file', // redis, file, pdo, socket, custom
-        'path'       => storage_path('debugbar'), // For file driver
+        'enabled' => true,
+        'open' => env('DEBUGBAR_OPEN_STORAGE', false), // bool/callback.
+        'driver' => 'file', // redis, file, pdo, socket, custom
+        'path' => storage_path('debugbar'), // For file driver
         'connection' => null,   // Leave null for default connection (Redis/PDO)
-        'provider'   => '', // Instance of StorageInterface for custom driver
-        'hostname'   => '127.0.0.1', // Hostname to use with the "socket" driver
-        'port'       => 2304, // Port to use with the "socket" driver
+        'provider' => '', // Instance of StorageInterface for custom driver
+        'hostname' => '127.0.0.1', // Hostname to use with the "socket" driver
+        'port' => 2304, // Port to use with the "socket" driver
     ],
 
     /*
@@ -61,7 +57,7 @@ return [
     |
     */
 
-    'editor' => env('DEBUGBAR_EDITOR') ?: env('IGNITION_EDITOR', 'phpstorm'),
+    'editor' => env('DEBUGBAR_EDITOR') ?: env('IGNITION_EDITOR', 'sublime'),
 
     /*
     |--------------------------------------------------------------------------
@@ -86,8 +82,8 @@ return [
     |
     */
 
-    'remote_sites_path' => strval(env('DEBUGBAR_REMOTE_SITES_PATH')),
-    'local_sites_path' => strval(env('DEBUGBAR_LOCAL_SITES_PATH', env('IGNITION_LOCAL_SITES_PATH'))),
+    'remote_sites_path' => env('DEBUGBAR_REMOTE_SITES_PATH'),
+    'local_sites_path' => env('DEBUGBAR_LOCAL_SITES_PATH', env('IGNITION_LOCAL_SITES_PATH')),
 
     /*
      |--------------------------------------------------------------------------
@@ -125,6 +121,7 @@ return [
     'capture_ajax' => true,
     'add_ajax_timing' => false,
     'ajax_handler_auto_show' => true,
+    'ajax_handler_enable_tab' => true,
 
     /*
      |--------------------------------------------------------------------------
@@ -158,30 +155,30 @@ return [
      */
 
     'collectors' => [
-        'phpinfo'         => true,  // Php version
-        'messages'        => true,  // Messages
-        'time'            => true,  // Time Datalogger
-        'memory'          => true,  // Memory usage
-        'exceptions'      => false, // Exception displayer
-        'log'             => true,  // Logs from Monolog (merged in messages if enabled)
-        'db'              => true,  // Show database (PDO) queries and bindings
-        'views'           => true,  // Views with their data
-        'route'           => true,  // Current route information
-        'auth'            => false, // Display Laravel authentication status
-        'gate'            => false, // Display Laravel Gate checks
-        'session'         => true,  // Display session data
-        'symfony_request' => true,  // Only one can be enabled..
-        'mail'            => false, // Catch mail messages
-        'laravel'         => false, // Laravel version and environment
-        'events'          => false, // All events fired
+        'phpinfo' => true,  // Php version
+        'messages' => true,  // Messages
+        'time' => true,  // Time Datalogger
+        'memory' => true,  // Memory usage
+        'exceptions' => false,  // Exception displayer
+        'log' => true,  // Logs from Monolog (merged in messages if enabled)
+        'db' => true,  // Show database (PDO) queries and bindings
+        'views' => true,  // Views with their data
+        'route' => false,  // Current route information
+        'auth' => false, // Display Laravel authentication status
+        'gate' => false,  // Display Laravel Gate checks
+        'session' => false,  // Display session data
+        'symfony_request' => false,  // Only one can be enabled..
+        'mail' => false,  // Catch mail messages
+        'laravel' => false, // Laravel version and environment
+        'events' => false, // All events fired
         'default_request' => false, // Regular or special Symfony request logger
-        'logs'            => false, // Add the latest log messages
-        'files'           => false, // Show the included files
-        'config'          => false, // Display config settings
-        'cache'           => false, // Display cache events
-        'models'          => true,  // Display models
-        'livewire'        => false, // Display Livewire (when available)
-        'jobs'            => false, // Display dispatched jobs
+        'logs' => false, // Add the latest log messages
+        'files' => false, // Show the included files
+        'config' => false, // Display config settings
+        'cache' => false, // Display cache events
+        'models' => true,  // Display models
+        'livewire' => false,  // Display Livewire (when available)
+        'jobs' => false, // Display dispatched jobs
     ],
 
     /*
@@ -195,46 +192,46 @@ return [
 
     'options' => [
         'time' => [
-            'memory_usage' => true,  // Calculated by subtracting memory start and end, it may be inaccurate
+            'memory_usage' => false,  // Calculated by subtracting memory start and end, it may be inaccurate
         ],
         'messages' => [
             'trace' => true,   // Trace the origin of the debug message
         ],
         'memory' => [
-            'reset_peak' => true,     // run memory_reset_peak_usage before collecting
-            'with_baseline' => true,  // Set boot memory usage as memory peak baseline
+            'reset_peak' => false,     // run memory_reset_peak_usage before collecting
+            'with_baseline' => false,  // Set boot memory usage as memory peak baseline
             'precision' => 0,          // Memory rounding precision
         ],
         'auth' => [
             'show_name' => true,   // Also show the users name/email in the debugbar
         ],
         'db' => [
-            'with_params'       => true,   // Render SQL with the parameters substituted
-            'backtrace'         => true,   // Use a backtrace to find the origin of the query in your files.
+            'with_params' => true,   // Render SQL with the parameters substituted
+            'backtrace' => true,   // Use a backtrace to find the origin of the query in your files.
             'backtrace_exclude_paths' => [],   // Paths to exclude from backtrace. (in addition to defaults)
-            'timeline'          => false,  // Add the queries to the timeline
-            'duration_background'  => true,   // Show shaded background on each query relative to how long it took to execute.
+            'timeline' => false,  // Add the queries to the timeline
+            'duration_background' => true,   // Show shaded background on each query relative to how long it took to execute.
             'explain' => [                 // Show EXPLAIN output on queries
                 'enabled' => false,
                 'types' => ['SELECT'],     // Deprecated setting, is always only SELECT
             ],
-            'hints'             => false,    // Show hints for common mistakes
-            'show_copy'         => false,    // Show copy button next to the query,
-            'slow_threshold'    => false,   // Only track queries that last longer than this time in ms
-            'memory_usage'      => false,   // Show queries memory usage
-            'soft_limit'       => 100,      // After the soft limit, no parameters/backtrace are captured
-            'hard_limit'       => 500,      // After the hard limit, queries are ignored
+            'hints' => false,    // Show hints for common mistakes
+            'show_copy' => false,    // Show copy button next to the query,
+            'slow_threshold' => false,   // Only track queries that last longer than this time in ms
+            'memory_usage' => false,   // Show queries memory usage
+            'soft_limit' => 100,      // After the soft limit, no parameters/backtrace are captured
+            'hard_limit' => 500,      // After the hard limit, queries are ignored
         ],
         'mail' => [
             'timeline' => false,  // Add mails to the timeline
-            'full_log' => false,
+            'show_body' => true,
         ],
         'views' => [
             'timeline' => false,    // Add the views to the timeline (Experimental)
             'data' => false,        //true for all data, 'keys' for only names, false for no parameters.
             'group' => 50,          // Group duplicate views. Pass value to auto-group, or true/false to force
             'exclude_paths' => [    // Add the paths which you don't want to appear in the views
-                'vendor/filament'   // Exclude Filament components by default
+                'vendor/filament',   // Exclude Filament components by default
             ],
         ],
         'route' => [
@@ -309,7 +306,7 @@ return [
      | Switches between light and dark theme. If set to auto it will respect system preferences
      | Possible values: auto, light, dark
      */
-    'theme' => env('DEBUGBAR_THEME', 'light'),
+    'theme' => env('DEBUGBAR_THEME', 'auto'),
 
     /*
      |--------------------------------------------------------------------------

@@ -1,0 +1,18 @@
+<?php return [
+    'command' => 'פקודה',
+    'cpu' => 'מעבד',
+    'debug' => 'Debug',
+    'enabled' => 'פעיל',
+    'log' => 'לוג',
+    'memory' => 'זיכרון',
+    'meta-title' => 'שרתים > מצב',
+    'owner' => 'בעלים',
+    'pid' => 'PID',
+    'port' => 'פורט',
+    'protocol' => 'פרוטוקול',
+    'restart' => 'התחלה/אתחול מחדש',
+    'start-success' => 'השרתים הופעלו בהצלחה',
+    'started' => 'הופעל',
+    'stop' => 'עצור',
+    'stop-success' => 'השרתים נעצרו בהצלחה',
+];

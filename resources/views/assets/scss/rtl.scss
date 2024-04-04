@@ -1,0 +1,47 @@
+html[dir='rtl'] {
+    .side-nav {
+        ul li .side-menu__title {
+            margin-inline-start: .75rem;
+        }
+    }
+
+    .mobile-menu {
+        ul li .menu {
+            .menu__title {
+                margin-inline-start: .75rem;
+            }
+        }
+    }
+
+    .ml-2 {
+        margin-inline-start: .5rem;
+    }
+
+    .ml-3 {
+        margin-inline-start: .75rem;
+    }
+
+    .ml-4 {
+        margin-inline-start: 1rem;
+    }
+
+    .ml-5 {
+        margin-inline-start: 1.25rem;
+    }
+
+    .mr-2 {
+        margin-inline-end: .5rem;
+    }
+
+    .mr-3 {
+        margin-inline-end: .75rem;
+    }
+
+    .mr-4 {
+        margin-inline-end: 1rem;
+    }
+
+    .mr-5 {
+        margin-inline-end: 1.25rem;
+    }
+}

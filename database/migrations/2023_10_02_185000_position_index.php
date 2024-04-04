@@ -10,7 +10,6 @@ return new class extends MigrationAbstract {
      */
     public function up(): void
     {
-        $this->defineTypePoint();
         $this->tables();
         $this->upFinish();
     }
@@ -31,8 +30,6 @@ return new class extends MigrationAbstract {
      */
     public function down(): void
     {
-        $this->defineTypePoint();
-
         Schema::table('position', function (Blueprint $table) {
             $this->tableDropIndex($table, ['trip_id', 'date_utc_at']);
             $this->tableDropIndex($table, ['user_id', 'date_utc_at']);

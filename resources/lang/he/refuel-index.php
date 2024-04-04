@@ -1,0 +1,16 @@
+<?php return [
+    'create' => 'צור',
+    'date_at' => 'תאריך',
+    'distance' => 'מרחק',
+    'distance_total' => 'סה"כ מרחק',
+    'end-at' => 'סיום',
+    'filter' => 'סנן...',
+    'map' => 'מפה',
+    'meta-title' => 'תדלוקים',
+    'price' => 'מחיר',
+    'quantity' => 'כמות',
+    'start-at' => 'התחלה',
+    'total' => 'סכום כולל',
+    'user' => 'משתמש',
+    'vehicle' => 'רכב',
+];

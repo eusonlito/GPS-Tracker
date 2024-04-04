@@ -80,12 +80,17 @@ class Parse extends ActionAbstract
 
         $resources = $this->protocol->resources($line, $this->resourceData);
 
+        $this->resourceData = array_merge(
+            $this->resourceData,
+            $this->lineData($resources)
+        );
+
         $this->parsed[] = [
             'line' => $line,
             'date_at' => str_replace(['[', ']'], '', $date_at),
             'resources' => $resources,
             'device' => $this->lineDevice($resources),
-            'data' => ($this->resourceData += $this->lineData($resources)),
+            'data' => $this->resourceData,
         ];
     }
 

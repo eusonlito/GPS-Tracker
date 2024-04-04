@@ -18,7 +18,7 @@ class Alarm extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => 'Alarm: '.$this->faker->name(),
+            'name' => 'Alarm: '.preg_replace('/[^A-Za-z\s]/', '', $this->faker->name()),
             'type' => 'movement',
             'enabled' => true,
 

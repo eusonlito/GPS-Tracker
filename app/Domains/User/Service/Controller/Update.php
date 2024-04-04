@@ -21,6 +21,24 @@ class Update extends CreateUpdateAbstract
     }
 
     /**
+     * @return void
+     */
+    public function request(): void
+    {
+        $this->requestMergeWithRow(['api_key' => $this->requestApiKey()]);
+    }
+
+    /**
+     * @return string
+     */
+    public function requestApiKey(): string
+    {
+        return $this->row->api_key_prefix
+            ? ($this->row->api_key_prefix.'-*****-****-****-************')
+            : '';
+    }
+
+    /**
      * @return array
      */
     public function data(): array

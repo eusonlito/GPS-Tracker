@@ -26,7 +26,6 @@ class Auth extends ParserAbstract
     public function bodyIsValid(): bool
     {
         return $this->bodyIsValidLength()
-            && $this->bodyIsValidStart()
             && $this->bodyIsValidSerial();
     }
 
@@ -41,19 +40,12 @@ class Auth extends ParserAbstract
     /**
      * @return bool
      */
-    public function bodyIsValidStart(): bool
-    {
-        return hexdec(substr($this->body, 0, 8)) !== 0;
-    }
-
-    /**
-     * @return bool
-     */
     protected function bodyIsValidSerial(): bool
     {
-        $imei = strval(hex2bin(substr($this->body, 4)));
+        $length = hexdec(substr($this->body, 0, 4));
+        $imei = hex2bin(substr($this->body, 4, $length * 2));
 
-        if (strlen($imei) !== 15) {
+        if (strlen($imei) !== $length) {
             return false;
         }
 

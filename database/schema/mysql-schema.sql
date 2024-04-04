@@ -264,6 +264,7 @@ CREATE TABLE `language` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rtl` tinyint(1) NOT NULL DEFAULT '0',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -281,9 +282,9 @@ CREATE TABLE `maintenance` (
   `workshop` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_at` date NOT NULL,
-  `amount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
-  `distance` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
-  `distance_next` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
+  `amount` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `distance` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `distance_next` decimal(10,2) NOT NULL DEFAULT '0.00',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` bigint unsigned NOT NULL,
@@ -317,13 +318,13 @@ DROP TABLE IF EXISTS `maintenance_maintenance_item`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `maintenance_maintenance_item` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `quantity` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
-  `amount_gross` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
-  `amount_net` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
-  `tax_percent` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
-  `tax_amount` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
-  `subtotal` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
-  `total` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
+  `quantity` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `amount_gross` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `amount_net` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `tax_percent` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `tax_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `subtotal` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `total` decimal(10,2) NOT NULL DEFAULT '0.00',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `maintenance_id` bigint unsigned NOT NULL,
@@ -351,7 +352,7 @@ DROP TABLE IF EXISTS `position`;
 CREATE TABLE `position` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `point` point NOT NULL /*!80003 SRID 4326 */,
-  `speed` decimal(6,2) unsigned NOT NULL,
+  `speed` decimal(6,2) NOT NULL,
   `direction` int unsigned NOT NULL,
   `signal` int unsigned NOT NULL,
   `date_at` datetime NOT NULL,
@@ -404,12 +405,12 @@ DROP TABLE IF EXISTS `refuel`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `refuel` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `distance_total` decimal(10,2) unsigned NOT NULL,
-  `distance` decimal(6,2) unsigned NOT NULL,
-  `quantity` decimal(6,2) unsigned NOT NULL,
-  `quantity_before` decimal(6,2) unsigned NOT NULL,
-  `price` decimal(7,3) unsigned NOT NULL,
-  `total` decimal(6,2) unsigned NOT NULL,
+  `distance_total` decimal(10,2) NOT NULL,
+  `distance` decimal(6,2) NOT NULL,
+  `quantity` decimal(6,2) NOT NULL,
+  `quantity_before` decimal(6,2) NOT NULL,
+  `price` decimal(7,3) NOT NULL,
+  `total` decimal(6,2) NOT NULL,
   `point` point NOT NULL /*!80003 SRID 4326 */,
   `date_at` datetime NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -677,3 +678,4 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (70,'2023_12_08_133
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (71,'2023_12_27_203000_point_latitude_longitude',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (72,'2024_01_04_193000_refuel_point',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (73,'2024_01_04_203000_city_only',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (74,'2024_04_01_183000_language_rtl',1);

@@ -12,7 +12,7 @@ trait Gis
      */
     public static function emptyGeoJSON(): string
     {
-        return 'ST_GeomFromText("MULTIPOLYGON(((0 90,0 90,0 90,0 90)))")';
+        return 'ST_GeomFromText("MULTIPOLYGON(((0 90,0 90,0 90,0 90)))", 0)';
     }
 
     /**

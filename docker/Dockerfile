@@ -23,12 +23,15 @@ COPY ./docker/crontab /etc/cron.d/crontab
 
 RUN crontab -u www-data /etc/cron.d/crontab
 
+RUN chown www-data:www-data /var/www
+
 USER www-data
 
 WORKDIR /app
 
 COPY --chown=www-data:www-data ./ /app
 
+RUN git config --global --add safe.directory /app
 RUN ./composer install --no-dev --optimize-autoloader --classmap-authoritative
 
 RUN php artisan key:generate

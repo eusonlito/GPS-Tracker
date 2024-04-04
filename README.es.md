@@ -4,22 +4,23 @@
     <img src="https://github.com/eusonlito/GPS-Tracker/assets/644551/ef440878-fde8-4ec0-95db-c28e968f3249">
 </p>
 
-# GPS Tracker (Laravel 10 + PHP 8.1 + MySQL 8)
+# GPS Tracker (Laravel 11 + PHP 8.2 + MySQL 8)
 
-Plataforma de código abierto para la gestión para dispositivos GPS desarrollada utilizando Laravel 10, PHP 8.1 y MySQL 8. Esta solución integral de rastreo GPS está diseñada para ofrecer un rendimiento robusto y una interfaz de usuario intuitiva, adecuada tanto para usuarios individuales como para empresas que necesitan gestionar múltiples dispositivos de rastreo. Esta plataforma está pensada como una posible alternativa sencilla a [Traccar](https://github.com/traccar/traccar).
+Plataforma de código abierto para la gestión para dispositivos GPS desarrollada utilizando Laravel 11, PHP 8.2 y MySQL 8. Esta solución integral de rastreo GPS está diseñada para ofrecer un rendimiento robusto y una interfaz de usuario intuitiva, adecuada tanto para usuarios individuales como para empresas que necesitan gestionar múltiples dispositivos de rastreo. Esta plataforma está pensada como una posible alternativa sencilla a [Traccar](https://github.com/traccar/traccar).
 
 ### Dispositivos Soportados
 
 * **Sinotrack**: Confirmados los modelos ST-90X mediante el protocolo Sinotrack.
 * **Coban**: Confirmado el modelo TK303G mediante el protocolo GP103.
+* **Teltonika**: Por TCP mediante el protocolo Teltonika.
 * **Concox** y **JimiLab**: Confirmado el modelo JM-LL01 mediante el protocolo GT06.
 * **Queclink**: Confirmado el modelo GV500MA mediante el protocolo Queclink.
 * **OsmAnd**: Mediante el protocolo HTTP OsmAnd.
 
 ### Características Clave
 
-* **Plataforma moderna con interface amigable:** La plataforma utiliza Laravel 10 para proporcionar una experiencia de usuario fluida y una interfaz gráfica atractiva.
-* **Compatibilidad con PHP 8.1:** Aprovecha las últimas características de PHP 8.1, incluyendo mejoras en el rendimiento y seguridad. También es compatible con las versiones superiores de PHP.
+* **Plataforma moderna con interface amigable:** La plataforma utiliza Laravel 11 para proporcionar una experiencia de usuario fluida y una interfaz gráfica atractiva.
+* **Compatibilidad con PHP 8.2:** Aprovecha las últimas características de PHP 8.2, incluyendo mejoras en el rendimiento y seguridad. También es compatible con las versiones superiores de PHP.
 * **Gestión de Datos con MySQL 8:** Utiliza MySQL 8.0.12 o superior para una gestión eficiente y segura de grandes volúmenes de datos de rastreo, así como una amplio soporte de funcionalidades GIS.
 * **Seguimiento en Tiempo Real:** Permite a los usuarios seguir la ubicación y el estado de sus dispositivos Sinotrack ST-90x en tiempo real.
 * **Informes Detallados:** Genera informes completos que ayudan en la toma de decisiones y en el análisis de datos.
@@ -29,7 +30,7 @@ Plataforma de código abierto para la gestión para dispositivos GPS desarrollad
 
 ### Requisitos
 
-- PHP 8.1 o superior (bcmath bz2 intl mbstring opcache pdo_mysql pcntl redis sockets xsl zip)
+- PHP 8.2 o superior (bcmath bz2 intl mbstring opcache pdo_mysql pcntl redis sockets xsl zip)
 - MySQL 8.0.12 o superior
 - Redis
 
@@ -53,7 +54,7 @@ git clone https://github.com/eusonlito/GPS-Tracker.git
 cp .env.example .env
 ```
 
-4. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.1 o superior).
+4. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.2 o superior).
 
 ```bash
 ./composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi

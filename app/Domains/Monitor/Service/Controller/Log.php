@@ -90,7 +90,7 @@ class Log extends ControllerAbstract
 
         $path = base64_decode($path);
 
-        if (preg_match('/^[a-z0-9_\.\/\-]+$/', $path) === 0) {
+        if (preg_match('/^[a-zA-Z0-9_\.\/\-]+$/', $path) === 0) {
             return $this->path = '';
         }
 

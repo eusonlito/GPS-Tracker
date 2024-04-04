@@ -145,6 +145,7 @@ class Create extends ActionAbstract
         $this->dataPoint();
         $this->dataTimezoneId();
         $this->dataDateAt();
+        $this->dataSpeed();
     }
 
     /**
@@ -169,6 +170,16 @@ class Create extends ActionAbstract
     protected function dataDateAt(): void
     {
         $this->data['date_at'] = helper()->dateUtcToTimezone('Y-m-d H:i:s', $this->data['date_utc_at'], $this->timezone->zone);
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataSpeed(): void
+    {
+        if ($this->data['speed'] > 999) {
+            $this->data['speed'] = 0;
+        }
     }
 
     /**

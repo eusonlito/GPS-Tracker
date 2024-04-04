@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
     gpstracker-mysql:
         image: mysql:8.0

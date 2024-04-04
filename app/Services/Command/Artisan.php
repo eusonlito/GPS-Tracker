@@ -171,7 +171,23 @@ class Artisan
      */
     protected function logOpen(): void
     {
-        file_put_contents($this->log, "\n".$this->cmd."\n\n", FILE_APPEND);
+        file_put_contents($this->log, $this->logContents(), FILE_APPEND);
+    }
+
+    /**
+     * @return string
+     */
+    protected function logContents(): string
+    {
+        return "\n".'['.$this->timestamp().'] '.$this->cmd."\n\n";
+    }
+
+    /**
+     * @return string
+     */
+    protected function timestamp(): string
+    {
+        return date_create()->format('Y-m-d H:i:s.v P');
     }
 
     /**

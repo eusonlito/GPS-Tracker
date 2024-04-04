@@ -33,6 +33,7 @@ class Update extends ActionAbstract
         $this->dataName();
         $this->dataEmail();
         $this->dataPassword();
+        $this->dataApiKey();
         $this->dataPreferences();
         $this->dataAdminMode();
         $this->dataManagerMode();
@@ -69,6 +70,48 @@ class Update extends ActionAbstract
     /**
      * @return void
      */
+    protected function dataApiKey(): void
+    {
+        if (helper()->uuidIsValid($this->data['api_key'])) {
+            $this->dataApiKeyValid();
+        } else {
+            $this->dataApiKeyInvalid();
+        }
+
+        $this->dataApiKeyEnabled();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataApiKeyValid(): void
+    {
+        $this->data['api_key_prefix'] = explode('-', $this->data['api_key'], 2)[0];
+        $this->data['api_key'] = hash('sha256', $this->data['api_key']);
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataApiKeyInvalid(): void
+    {
+        $this->data['api_key'] = $this->row->api_key;
+        $this->data['api_key_prefix'] = $this->row->api_key_prefix;
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataApiKeyEnabled(): void
+    {
+        if (empty($this->data['api_key'])) {
+            $this->data['api_key_enabled'] = false;
+        }
+    }
+
+    /**
+     * @return void
+     */
     protected function dataPreferences(): void
     {
         $this->data['preferences'] = array_replace_recursive($this->row->preferences, $this->data['preferences']);
@@ -96,6 +139,7 @@ class Update extends ActionAbstract
     protected function check(): void
     {
         $this->checkEmail();
+        $this->checkApiKey();
         $this->checkLanguageId();
         $this->checkTimezoneId();
     }
@@ -118,6 +162,27 @@ class Update extends ActionAbstract
         return Model::query()
             ->byIdNot($this->row->id)
             ->byEmail($this->data['email'])
+            ->exists();
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkApiKey(): void
+    {
+        if ($this->data['api_key'] && $this->checkApiKeyExists()) {
+            $this->exceptionValidator('profile-update.error.api_key-exists');
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkApiKeyExists(): bool
+    {
+        return Model::query()
+            ->byIdNot($this->row->id)
+            ->byApiKey($this->data['api_key'])
             ->exists();
     }
 
@@ -169,9 +234,16 @@ class Update extends ActionAbstract
         $this->row->name = $this->data['name'];
         $this->row->email = $this->data['email'];
         $this->row->password = $this->data['password'];
+
+        $this->row->api_key = $this->data['api_key'];
+        $this->row->api_key_prefix = $this->data['api_key_prefix'];
+        $this->row->api_key_enabled = $this->data['api_key_enabled'];
+
         $this->row->preferences = $this->data['preferences'];
+
         $this->row->admin_mode = $this->data['admin_mode'];
         $this->row->manager_mode = $this->data['manager_mode'];
+
         $this->row->language_id = $this->data['language_id'];
         $this->row->timezone_id = $this->data['timezone_id'];
 

@@ -19,9 +19,9 @@ class Location extends ParserAbstract
     protected string $codec;
 
     /**
-     * @var array
+     * @var int
      */
-    protected array $attributes = [];
+    protected int $total;
 
     /**
      * @param \App\Services\Buffer\Byte $buffer
@@ -43,6 +43,18 @@ class Location extends ParserAbstract
     public function codec(string $codec): self
     {
         $this->codec = $codec;
+
+        return $this;
+    }
+
+    /**
+     * @param int $total
+     *
+     * @return self
+     */
+    public function total(int $total): self
+    {
+        $this->total = $total;
 
         return $this;
     }
@@ -92,7 +104,7 @@ class Location extends ParserAbstract
 
         $this->cache['direction'] = $this->buffer->int(2);
         $this->cache['signal'] = $this->buffer->int(1);
-        $this->cache['speed'] = round($this->buffer->int(2) * 1.852, 2);
+        $this->cache['speed'] = round($this->buffer->int(2), 2);
     }
 
     /**
@@ -115,6 +127,10 @@ class Location extends ParserAbstract
         if (in_array($this->codec, [Codec::CODEC_8, Codec::CODEC_8_EXT, Codec::CODEC_16])) {
             $this->attributesBytes(8);
         }
+
+        if ($this->codec === Codec::CODEC_8_EXT) {
+            $this->attributesCodec8Ext();
+        }
     }
 
     /**
@@ -127,8 +143,21 @@ class Location extends ParserAbstract
         $count = $this->buffer->intIf($this->codec, [Codec::CODEC_8_EXT]);
 
         for ($i = 0; $i < $count; $i++) {
-            $id = $this->buffer->intIf($this->codec, [Codec::CODEC_8_EXT, Codec::CODEC_16]);
-            $this->attributes[$id] = $this->buffer->int($bytes);
+            $this->buffer->intIf($this->codec, [Codec::CODEC_8_EXT, Codec::CODEC_16]);
+            $this->buffer->int($bytes);
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function attributesCodec8Ext(): void
+    {
+        $count = $this->buffer->int(2);
+
+        for ($i = 0; $i < $count; $i++) {
+            $this->buffer->int(2);
+            $this->buffer->string($this->buffer->int(2));
         }
     }
 
@@ -229,6 +258,6 @@ class Location extends ParserAbstract
      */
     protected function response(): string
     {
-        return "\x00\x00\x00\x01";
+        return pack('N', $this->total);
     }
 }

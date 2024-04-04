@@ -5,6 +5,8 @@ namespace App\Domains\Core\Service\Controller;
 use Closure;
 use ReflectionFunction;
 use App\Domains\Core\Model\ModelAbstract;
+use App\Exceptions\NotFoundException;
+use App\Exceptions\ValidatorException;
 
 abstract class ControllerAbstract
 {
@@ -82,6 +84,28 @@ abstract class ControllerAbstract
 
     /**
      * @param string $key
+     * @param ?string $default = null
+     *
+     * @return ?string
+     */
+    protected function requestDateToIso(string $key, ?string $default = null): ?string
+    {
+        return helper()->dateToDate($this->request->input($key), $default);
+    }
+
+    /**
+     * @param string $key
+     * @param ?float $default = 0
+     *
+     * @return ?float
+     */
+    protected function requestFloat(string $key, ?float $default = 0): ?float
+    {
+        return floatval($this->request->input($key)) ?: $default;
+    }
+
+    /**
+     * @param string $key
      * @param ?int $default = 0
      *
      * @return ?int
@@ -140,5 +164,25 @@ abstract class ControllerAbstract
         }
 
         return [];
+    }
+
+    /**
+     * @param string $message = ''
+     *
+     * @return void
+     */
+    final protected function exceptionNotFound(string $message = ''): void
+    {
+        throw new NotFoundException($message ?: __('common.error.not-found'));
+    }
+
+    /**
+     * @param string $message
+     *
+     * @return void
+     */
+    final protected function exceptionValidator(string $message): void
+    {
+        throw new ValidatorException($message);
     }
 }

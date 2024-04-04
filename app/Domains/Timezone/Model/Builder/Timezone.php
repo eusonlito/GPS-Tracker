@@ -16,10 +16,11 @@ class Timezone extends BuilderAbstract
      */
     public function byLatitudeLongitude(float $latitude, float $longitude): self
     {
-        return $this->whereRaw(
-            'ST_CONTAINS(`geojson`, POINT(?, ?))',
-            [helper()->longitude($longitude), helper()->latitude($latitude)]
-        );
+        return $this->whereRaw(sprintf(
+            'ST_CONTAINS(`geojson`, POINT(%f, %f))',
+            helper()->longitude($longitude),
+            helper()->latitude($latitude),
+        ));
     }
 
     /**
@@ -58,6 +59,14 @@ class Timezone extends BuilderAbstract
     public function selectOnly(string ...$columns): self
     {
         return $this->withoutGlobalScope('selectIdZone')->select($columns);
+    }
+
+    /**
+     * @return self
+     */
+    public function selectRelated(): self
+    {
+        return $this->selectOnly('id', 'zone', 'default');
     }
 
     /**

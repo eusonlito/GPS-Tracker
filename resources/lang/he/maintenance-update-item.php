@@ -1,0 +1,15 @@
+<?php return [
+    'add' => 'הוסף',
+    'amount_gross' => 'סכום גולמי',
+    'amount_net' => 'סכום נטו',
+    'item' => 'בחר פריט',
+    'meta-title' => 'תחזוקות > :title > פריטים',
+    'name' => 'שם',
+    'quantity' => 'כמות',
+    'save' => 'שמור',
+    'subtotal' => 'סכום ביניים',
+    'success' => 'נשמר',
+    'tax_amount' => 'מע"מ',
+    'tax_percent' => 'אחוז מע"מ',
+    'total' => 'סך הכל',
+];

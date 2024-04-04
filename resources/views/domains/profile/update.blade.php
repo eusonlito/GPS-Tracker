@@ -25,6 +25,19 @@
             </div>
         </div>
 
+        <div class="p-2">
+            <label for="profile-update-api_key" class="form-label">{{ __('profile-update.api_key') }}</label>
+
+            <div class="input-group">
+                <input type="password" name="api_key" class="form-control form-control-lg" id="profile-update-api_key" value="{{ $REQUEST->input('api_key') }}" autocomplete="off" />
+
+                <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.show') }}" data-password-show="#profile-update-api_key" tabindex="-1">@icon('eye', 'w-5 h-5')</button>
+                <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.copy') }}" data-copy="#profile-update-api_key" tabindex="-1">@icon('clipboard', 'w-5 h-5')</button>
+                <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.generate') }}" data-password-generate="#profile-update-api_key" data-password-generate-format="uuid" tabindex="-1">@icon('refresh-cw', 'w-5 h-5')</button>
+                <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.reset') }}" data-input-default="#profile-update-api_key" data-tabindex="-1">@icon('skip-back', 'w-5 h-5')</button>
+            </div>
+        </div>
+
         <div class="lg:flex">
             <div class="flex-1 p-2">
                 <x-select name="language_id" :options="$languages" value="id" text="name" :label="__('profile-update.language')" required></x-select>
@@ -82,6 +95,13 @@
         </div>
 
         @endif
+
+        <div class="p-2">
+            <div class="form-check">
+                <input type="checkbox" name="api_key_enabled" value="1" class="form-check-switch" id="profile-update-api_key_enabled" {{ $REQUEST->input('api_key_enabled') ? 'checked' : '' }}>
+                <label for="profile-update-api_key_enabled" class="form-check-label">{{ __('profile-update.api_key_enabled') }}</label>
+            </div>
+        </div>
     </div>
 
     @endif

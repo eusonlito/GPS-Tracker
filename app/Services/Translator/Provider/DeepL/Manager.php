@@ -3,6 +3,7 @@
 namespace App\Services\Translator\Provider\DeepL;
 
 use stdClass;
+use Throwable;
 use App\Exceptions\UnexpectedValueException;
 use App\Services\Translator\Provider\ProviderAbstract;
 
@@ -48,7 +49,23 @@ class Manager extends ProviderAbstract
      */
     protected function request(string $from, string $to, array $strings): array
     {
-        return $this->requestResponse($this->requestCurl($from, $to, $strings));
+        try {
+            return $this->requestResponse($this->requestCurl($from, $to, $strings));
+        } catch (Throwable $e) {
+            return $this->requestError($e);
+        }
+    }
+
+    /**
+     * @param \Throwable $e
+     *
+     * @return array
+     */
+    protected function requestError(Throwable $e): array
+    {
+        report($e);
+
+        return [];
     }
 
     /**
@@ -125,14 +142,43 @@ class Manager extends ProviderAbstract
      */
     protected function requestResponse(stdClass $response): array
     {
+        $text = $response->translations[0]->text;
+
+        $keys = $this->requestResponseKeys($text);
+        $strings = $this->requestResponseString($text);
+
         $translations = [];
 
-        foreach (explode("\n", $response->translations[0]->text) as $line) {
-            preg_match('/^<key>([^<]+)<\/key> (.*)$/', $line, $matches);
+        foreach ($keys as $index => $key) {
+            if (empty($strings[$index])) {
+                exit(var_export([$text, $keys, $strings], true));
+            }
 
-            $translations[$matches[1]] = $matches[2];
+            $translations[$key] = $strings[$index];
         }
 
         return $translations;
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return array
+     */
+    protected function requestResponseKeys(string $text): array
+    {
+        preg_match_all('/<key>([^<]+)<\/key>/', $text, $matches);
+
+        return $matches[1];
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return array
+     */
+    protected function requestResponseString(string $text): array
+    {
+        return array_map('trim', explode("\n", preg_replace('/<key>([^<]*)<\/key>/', '', $text)));
     }
 }

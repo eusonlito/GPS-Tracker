@@ -202,7 +202,7 @@ abstract class TestAbstract extends TestsAbstract
      */
     protected function action(?string $action = null): array
     {
-        return ['_action' => $action ?: $this->action];
+        return ['_action' => $action ?: $this->action ?? ''];
     }
 
     /**

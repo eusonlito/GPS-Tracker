@@ -1,4 +1,6 @@
 <?php return [
+    'api_key' => 'Clave API',
+    'api_key_enabled' => 'Clave API Activa',
     'email' => 'Email',
     'error' => [
         'email-exists' => 'Ya existe otro usuario con ese mismo email',
@@ -19,6 +21,7 @@
     'preferences-units-money' => 'Moneda',
     'preferences-units-money-dollar' => 'Dólar',
     'preferences-units-money-euro' => 'Euro',
+    'preferences-units-money-other' => 'Otra',
     'preferences-units-thousand' => 'Millares',
     'preferences-units-thousand-comma' => 'Coma',
     'preferences-units-thousand-dot' => 'Punto',

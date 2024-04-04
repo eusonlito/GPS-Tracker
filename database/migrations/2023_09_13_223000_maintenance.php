@@ -42,10 +42,10 @@ return new class extends MigrationAbstract {
 
             $table->dateTime('date_at');
 
-            $table->unsignedDecimal('amount', 10, 2)->default(0);
+            $table->decimal('amount', 10, 2)->default(0);
 
-            $table->unsignedDecimal('distance', 10, 2)->default(0);
-            $table->unsignedDecimal('distance_next', 10, 2)->default(0);
+            $table->decimal('distance', 10, 2)->default(0);
+            $table->decimal('distance_next', 10, 2)->default(0);
 
             $this->timestamps($table);
 

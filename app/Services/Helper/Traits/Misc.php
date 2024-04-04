@@ -18,6 +18,16 @@ trait Misc
     }
 
     /**
+     * @param mixed $uuid
+     *
+     * @return bool
+     */
+    public function uuidIsValid(mixed $uuid): bool
+    {
+        return is_string($uuid) && preg_match('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $uuid);
+    }
+
+    /**
      * @param int $length
      * @param bool $safe = false
      * @param ?string $case = null

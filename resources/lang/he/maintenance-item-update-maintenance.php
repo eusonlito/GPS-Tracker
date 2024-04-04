@@ -1,0 +1,15 @@
+<?php return [
+    'amount_gross' => 'סכום גולמי',
+    'amount_net' => 'סכום נטו',
+    'date_at' => 'תאריך',
+    'filter' => 'סנן...',
+    'mainteance' => 'תחזוקה',
+    'meta-title' => 'תחזוקה > פריט > :title > תחזוקה',
+    'quantity' => 'כמות',
+    'subtotal' => 'סכום ביניים',
+    'tax_amount' => 'מע"מ',
+    'tax_percent' => 'אחוז מע"מ',
+    'total' => 'סך הכל',
+    'vehicle' => 'רכב',
+    'workshop' => 'סדנה',
+];

@@ -50,6 +50,24 @@
       <exclude>./app/Domains/User/Test/Controller/ControllerAbstract.php</exclude>
       <exclude>./app/Domains/UserSession/Test/Controller/ControllerAbstract.php</exclude>
       <exclude>./app/Domains/Vehicle/Test/Controller/ControllerAbstract.php</exclude>
+
+      <directory suffix=".php">./app/Domains/Device/Test/ControllerApi</directory>
+      <directory suffix=".php">./app/Domains/Language/Test/ControllerApi</directory>
+      <directory suffix=".php">./app/Domains/Profile/Test/ControllerApi</directory>
+      <directory suffix=".php">./app/Domains/Refuel/Test/ControllerApi</directory>
+      <directory suffix=".php">./app/Domains/Timezone/Test/ControllerApi</directory>
+      <directory suffix=".php">./app/Domains/Trip/Test/ControllerApi</directory>
+      <directory suffix=".php">./app/Domains/User/Test/ControllerApi</directory>
+      <directory suffix=".php">./app/Domains/Vehicle/Test/ControllerApi</directory>
+
+      <exclude>./app/Domains/Device/Test/ControllerApi/ControllerApiAbstract.php</exclude>
+      <exclude>./app/Domains/Language/Test/ControllerApi/ControllerApiAbstract.php</exclude>
+      <exclude>./app/Domains/Profile/Test/ControllerApi/ControllerApiAbstract.php</exclude>
+      <exclude>./app/Domains/Refuel/Test/ControllerApi/ControllerApiAbstract.php</exclude>
+      <exclude>./app/Domains/Timezone/Test/ControllerApi/ControllerApiAbstract.php</exclude>
+      <exclude>./app/Domains/Trip/Test/ControllerApi/ControllerApiAbstract.php</exclude>
+      <exclude>./app/Domains/User/Test/ControllerApi/ControllerApiAbstract.php</exclude>
+      <exclude>./app/Domains/Vehicle/Test/ControllerApi/ControllerApiAbstract.php</exclude>
     </testsuite>
 
     <testsuite name="Unit">

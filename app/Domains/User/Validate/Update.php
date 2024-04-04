@@ -19,13 +19,18 @@ class Update extends ValidateAbstract
             'admin' => ['bail', 'boolean'],
             'manager' => ['bail', 'boolean'],
             'enabled' => ['bail', 'boolean'],
+
+            'api_key' => ['bail', 'nullable'],
+            'api_key_enabled' => ['bail', 'boolean'],
+
             'preferences' => ['bail', 'array'],
             'preferences.units' => ['bail', 'array'],
             'preferences.units.decimal' => ['bail', Rule::in([',', '.'])],
-            'preferences.units.distance' => ['bail', 'in:kilometer,mile'],
-            'preferences.units.money' => ['bail', 'in:euro,dollar'],
+            'preferences.units.distance' => ['bail', 'string', 'in:kilometer,mile'],
+            'preferences.units.money' => ['bail', 'string', 'in:euro,dollar'],
             'preferences.units.thousand' => ['bail', Rule::in([',', '.'])],
             'preferences.units.volume' => ['bail', 'in:liter,gallon'],
+
             'language_id' => ['bail', 'nullable', 'integer'],
             'timezone_id' => ['bail', 'nullable', 'integer'],
         ];

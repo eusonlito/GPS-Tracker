@@ -34,7 +34,7 @@ return new class extends MigrationAbstract {
     {
         Schema::table('maintenance_maintenance_item', function (Blueprint $table) {
             $table->renameColumn('amount', 'amount_gross');
-            $table->unsignedDecimal('amount_net', 10, 2)->default(0);
+            $table->decimal('amount_net', 10, 2)->default(0);
         });
     }
 

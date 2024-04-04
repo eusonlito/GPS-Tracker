@@ -63,7 +63,7 @@ class Locations extends ParserAbstract
         $count = $buffer->int(1);
 
         for ($i = 0; $i < $count; $i++) {
-            $this->readResource($buffer, $codec);
+            $this->readResource($buffer, $codec, $count);
         }
     }
 
@@ -78,11 +78,18 @@ class Locations extends ParserAbstract
     /**
      * @param \App\Services\Buffer\Byte $buffer
      * @param string $codec
+     * @param int $count
      *
      * @return void
      */
-    protected function readResource(BufferByte $buffer, string $codec): void
+    protected function readResource(BufferByte $buffer, string $codec, int $count): void
     {
-        $this->addIfValid(Location::new('', $this->data)->buffer($buffer)->codec($codec)->resource());
+        $this->addIfValid(
+            Location::new('', $this->data)
+                ->buffer($buffer)
+                ->codec($codec)
+                ->total($count)
+                ->resource()
+        );
     }
 }

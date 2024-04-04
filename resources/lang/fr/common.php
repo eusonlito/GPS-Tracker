@@ -3,6 +3,7 @@
     'close' => 'Fermer',
     'day' => 'jour',
     'days' => 'jour',
+    'copy' => 'Copier',
     'error' => [
         'fuser-not-found' => 'La commande "fuser" n\'est pas disponible',
         'method-not-allowed' => 'Méthode non autorisée',
@@ -17,5 +18,6 @@
     'minute' => 'minute',
     'minutes' => 'minutes',
     'now' => 'aujourd\'hui',
+    'reset' => 'Réinitialiser',
     'show' => 'Afficher',
 ];

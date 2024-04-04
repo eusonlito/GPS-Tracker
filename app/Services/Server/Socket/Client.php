@@ -92,7 +92,7 @@ class Client
         }
 
         if ($this->readBufferIsBinary($buffer)) {
-            $buffer = bin2hex($buffer);
+            return bin2hex($buffer);
         }
 
         return trim($buffer);
@@ -105,7 +105,15 @@ class Client
      */
     protected function readBufferIsBinary(string $buffer): bool
     {
-        return mb_check_encoding($buffer, 'UTF-8') === false;
+        $len = strlen($buffer);
+
+        for ($i = 0; $i < $len; $i++) {
+            if ((ord($buffer[$i]) < 32) || (ord($buffer[$i]) > 126)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

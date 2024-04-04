@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response as HttpResponse;
 use Sentry;
 use App\Domains\Error\Controller\Index as ErrorController;
-use App\Services\Request\Logger as RequestLogger;
 
 class Handler extends HandlerVendor
 {
@@ -16,11 +15,6 @@ class Handler extends HandlerVendor
      * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
-        \Illuminate\Auth\Access\AuthorizationException::class,
-        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
-        \Illuminate\Validation\ValidationException::class,
-        \Symfony\Component\HttpKernel\Exception\HttpException::class,
-        \App\Exceptions\GenericException::class,
     ];
 
     /**
@@ -34,17 +28,6 @@ class Handler extends HandlerVendor
     }
 
     /**
-     * @param \Throwable $e
-     *
-     * @return void
-     */
-    public function report(Throwable $e): void
-    {
-        $this->reportParent($e);
-        $this->reportRequest($e);
-    }
-
-    /**
      * @return array
      */
     protected function context(): array
@@ -53,28 +36,6 @@ class Handler extends HandlerVendor
             'url' => request()->fullUrl(),
             'method' => request()->getMethod(),
         ];
-    }
-
-    /**
-     * @param \Throwable $e
-     *
-     * @return void
-     */
-    protected function reportParent(Throwable $e): void
-    {
-        parent::report($e);
-    }
-
-    /**
-     * @param \Throwable $e
-     *
-     * @return void
-     */
-    protected function reportRequest(Throwable $e): void
-    {
-        if (config('logging.channels.request.enabled')) {
-            RequestLogger::fromException(request(), $e);
-        }
     }
 
     /**
