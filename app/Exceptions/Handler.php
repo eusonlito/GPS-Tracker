@@ -15,6 +15,8 @@ class Handler extends HandlerVendor
      * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
+        AuthenticationException::class,
+        ValidatorException::class,
     ];
 
     /**
