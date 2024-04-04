@@ -12,6 +12,7 @@ Plataforma de código abierto para la gestión para dispositivos GPS desarrollad
 
 * **Sinotrack**: Confirmados los modelos ST-90X mediante el protocolo Sinotrack.
 * **Coban**: Confirmado el modelo TK303G mediante el protocolo GP103.
+* **Teltonika**: Por TCP mediante el protocolo Teltonika.
 * **Concox** y **JimiLab**: Confirmado el modelo JM-LL01 mediante el protocolo GT06.
 * **Queclink**: Confirmado el modelo GV500MA mediante el protocolo Queclink.
 * **OsmAnd**: Mediante el protocolo HTTP OsmAnd.
