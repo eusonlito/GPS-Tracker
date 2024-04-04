@@ -136,7 +136,7 @@
             "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
             "@php artisan db:seed --force --ansi --class=\"Database\\Seeders\\Database\"",
-            "@php artisan server:manifest:generate"
+            "@php artisan tool:manifest:generate"
         ],
 
         "fix": [
