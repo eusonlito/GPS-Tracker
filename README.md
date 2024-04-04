@@ -12,6 +12,7 @@ Open source GPS device management platform developed using Laravel 11, PHP 8.2 a
 
 * **Sinotrack**: Confirmed ST-90X models using the Sinotrack protocol.
 * **Coban**: TK303G model confirmed using GP103 protocol.
+* **Teltonika**: By TCP using Teltonika protocol.
 * **Concox** and **JimiLab**: JM-LL01 model confirmed via GT06 protocol.
 * **Queclink**: Confirmed model GV500MA using Queclink protocol.
 * **OsmAnd**: Using HTTP OsmAnd protocol.
