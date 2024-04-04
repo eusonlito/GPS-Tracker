@@ -40,12 +40,12 @@ You can test the demo version at https://tracker-demo.lito.com.es/
 
 ### Documentation
 
-* [Local Installation]([EN]-Local-Installation)
-* [Docker Installation]([EN]-Docker-Installation)
-* [Initial Configuration]([EN]-Initial-Configuration)
-* [Console Commands]([EN]-Console-Commands)
-* [API]([EN]-API)
-* [SMS Configuration to Sinotrack Devices]([EN]-SMS-Configuration-to-Sinotrack-Devices)
+* [Local Installation](https://github.com/eusonlito/GPS-Tracker/wiki/%5BEN%5D-Local-Installation)
+* [Docker Installation](https://github.com/eusonlito/GPS-Tracker/wiki/%5BEN%5D-Docker-Installation)
+* [Initial Configuration](https://github.com/eusonlito/GPS-Tracker/wiki/%5BEN%5D-Initial-Configuration)
+* [Console Commands](https://github.com/eusonlito/GPS-Tracker/wiki/%5BEN%5D-Console-Commands)
+* [API](https://github.com/eusonlito/GPS-Tracker/wiki/%5BEN%5D-API)
+* [SMS Configuration to Sinotrack Devices](https://github.com/eusonlito/GPS-Tracker/wiki/%5BEN%5D-SMS-Configuration-to-Sinotrack-Devices)
 
 ### Screenshots
 
