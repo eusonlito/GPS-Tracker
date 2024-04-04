@@ -17,6 +17,7 @@ class FractalFactory extends FractalAbstract
     protected function json(Model $row): array
     {
         return [
+            'id' => $row->id,
             'code' => $row->code,
             'name' => $row->name,
             'model' => $row->model,

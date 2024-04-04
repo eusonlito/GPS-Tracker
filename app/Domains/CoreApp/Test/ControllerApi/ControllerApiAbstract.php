@@ -199,6 +199,30 @@ abstract class ControllerApiAbstract extends FeatureAbstract
     /**
      * @return \Illuminate\Testing\TestResponse
      */
+    public function getAuthManagerFail(): TestResponse
+    {
+        $this->authUserManager();
+
+        return $this->get($this->routeToController())
+            ->assertStatus(404)
+            ->assertJsonStructure(['code', 'status', 'message', 'details']);
+    }
+
+    /**
+     * @return \Illuminate\Testing\TestResponse
+     */
+    public function postAuthManagerFail(): TestResponse
+    {
+        $this->authUserManager();
+
+        return $this->post($this->routeToController())
+            ->assertStatus(404)
+            ->assertJsonStructure(['code', 'status', 'message', 'details']);
+    }
+
+    /**
+     * @return \Illuminate\Testing\TestResponse
+     */
     public function getAuthSuccess(): TestResponse
     {
         $this->authUser();
@@ -312,6 +336,34 @@ abstract class ControllerApiAbstract extends FeatureAbstract
         $this->factoryCreate();
 
         return $this->get($this->routeToController())
+            ->assertStatus(200)
+            ->assertJson([]);
+    }
+
+    /**
+     * @return \Illuminate\Testing\TestResponse
+     */
+    public function getAuthAdminFail(): TestResponse
+    {
+        $this->authUser();
+
+        [$user2, $row2] = $this->createUserRow();
+
+        return $this->get(route($this->route, $row2->id))
+            ->assertStatus(404)
+            ->assertJsonStructure(['code', 'status', 'message', 'details']);
+    }
+
+    /**
+     * @return \Illuminate\Testing\TestResponse
+     */
+    public function getAuthManagerSuccess(): TestResponse
+    {
+        $this->authUserManager();
+
+        [$user2, $row2] = $this->createUserRow();
+
+        return $this->get(route($this->route, $row2->id))
             ->assertStatus(200)
             ->assertJson([]);
     }
@@ -523,7 +575,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         $data = $this->factoryMake()->toArray();
 
-        $response = $this->post($this->routeToController(), $data + $this->action())
+        $response = $this->post($this->routeToController(), $data)
             ->assertStatus(200)
             ->assertJson([]);
 
@@ -546,7 +598,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         $data = $this->dataWithUserVehicleDeviceMake($user2);
 
-        $response = $this->post($this->routeToController(), $data + $this->action())
+        $response = $this->post($this->routeToController(), $data)
             ->assertStatus(200)
             ->assertJson([]);
 
@@ -567,7 +619,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         $data = $this->factoryMake()->toArray();
 
-        $response = $this->post($this->routeToController(), $data + $this->action())
+        $response = $this->post($this->routeToController(), $data)
             ->assertStatus(200)
             ->assertJson([]);
 
@@ -590,7 +642,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         $data = $this->dataWithUserVehicleDeviceMake($this->createUser(), $vehicle1, $device1);
 
-        return $this->post($this->routeToController(), $data + $this->action())
+        return $this->post($this->routeToController(), $data)
             ->assertStatus(422);
     }
 
@@ -612,7 +664,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         $data = $this->dataWithUserVehicleDeviceMake($user2, $vehicle2, $device2);
 
-        $response = $this->post($this->routeToController(), $data + $this->action())
+        $response = $this->post($this->routeToController(), $data)
             ->assertStatus(200)
             ->assertJson([]);
 
@@ -646,7 +698,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
         $row = $this->factoryCreate();
         $data = $this->factoryMake()->toArray();
 
-        $response = $this->patch(route($this->route, $row->id), $data + $this->action())
+        $response = $this->patch(route($this->route, $row->id), $data)
             ->assertStatus(200)
             ->assertJson([]);
 
@@ -669,7 +721,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         $data = $this->dataWithUserVehicleDeviceMake($this->createUser());
 
-        $response = $this->patch(route($this->route, $row->id), $data + $this->action())
+        $response = $this->patch(route($this->route, $row->id), $data)
             ->assertStatus(200)
             ->assertJson([]);
 
@@ -691,7 +743,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
         $row = $this->factoryCreate();
         $data = $this->factoryMake()->toArray();
 
-        $response = $this->patch(route($this->route, $row->id), $data + $this->action())
+        $response = $this->patch(route($this->route, $row->id), $data)
             ->assertStatus(200)
             ->assertJson([]);
 
@@ -715,7 +767,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         $data = $this->dataWithUserVehicleDeviceMake($user2, $vehicle2, $device2);
 
-        return $this->patch(route($this->route, $row1->id), $data + $this->action())
+        return $this->patch(route($this->route, $row1->id), $data)
             ->assertStatus(422);
     }
 
@@ -744,7 +796,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         $data = $this->dataWithUserVehicleDeviceMake($user2, $vehicle2, $device2);
 
-        $response = $this->patch(route($this->route, $row2->id), $data + $this->action())
+        $response = $this->patch(route($this->route, $row2->id), $data)
             ->assertStatus(200)
             ->assertJson([]);
 
@@ -780,7 +832,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         $data = $this->factoryMake()->toArray();
 
-        $response = $this->patch(route($this->route, $row1->id), $data + $this->action())
+        $response = $this->patch(route($this->route, $row1->id), $data)
             ->assertStatus(200)
             ->assertJson([]);
 
@@ -792,7 +844,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         $data = $this->factoryMake()->toArray();
 
-        $response = $this->patch(route($this->route, $row2->id), $data + $this->action())
+        $response = $this->patch(route($this->route, $row2->id), $data)
             ->assertStatus(200)
             ->assertJson([]);
 
@@ -817,7 +869,7 @@ abstract class ControllerApiAbstract extends FeatureAbstract
     /**
      * @return \Illuminate\Testing\TestResponse
      */
-    public function deleteAuthFail(): TestResponse
+    public function deleteAuthOtherFail(): TestResponse
     {
         $this->authUser();
 
@@ -837,6 +889,18 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         return $this->delete($this->routeToController())
             ->assertNoContent(200);
+    }
+
+    /**
+     * @return \Illuminate\Testing\TestResponse
+     */
+    public function deleteAuthFail(): TestResponse
+    {
+        $this->authUser();
+
+        return $this->delete($this->routeToController())
+            ->assertStatus(404)
+            ->assertJsonStructure(['code', 'status', 'message', 'details']);
     }
 
     /**
@@ -881,6 +945,18 @@ abstract class ControllerApiAbstract extends FeatureAbstract
 
         return $this->delete(route($this->route, $row2->id))
             ->assertNoContent(200);
+    }
+
+    /**
+     * @return \Illuminate\Testing\TestResponse
+     */
+    public function deleteAuthManagerFail(): TestResponse
+    {
+        $this->authUserManager();
+
+        return $this->delete($this->routeToController())
+            ->assertStatus(404)
+            ->assertJsonStructure(['code', 'status', 'message', 'details']);
     }
 
     /**

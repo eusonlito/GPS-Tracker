@@ -18,7 +18,7 @@ class {{ domain }} extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => preg_replace('/[^A-Za-z]/', '', $this->faker->name()),
+            'name' => preg_replace('/[^A-Za-z\s]/', '', $this->faker->name()),
             'enabled' => true,
         ];
     }

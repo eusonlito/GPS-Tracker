@@ -19,8 +19,8 @@ class State extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => 'State: '.preg_replace('/[^A-Za-z]/', '', $this->faker->name()),
-            'alias' => [preg_replace('/[^A-Za-z]/', '', $this->faker->name())],
+            'name' => 'State: '.preg_replace('/[^A-Za-z\s]/', '', $this->faker->name()),
+            'alias' => [preg_replace('/[^A-Za-z\s]/', '', $this->faker->name())],
             'country_id' => $this->firstOrFactory(CountryModel::class),
         ];
     }

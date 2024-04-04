@@ -22,7 +22,7 @@ class AlarmNotification extends FactoryAbstract
     public function definition(): array
     {
         return [
-            'name' => 'Alarm Notification: '.preg_replace('/[^A-Za-z]/', '', $this->faker->name()),
+            'name' => 'Alarm Notification: '.preg_replace('/[^A-Za-z\s]/', '', $this->faker->name()),
             'type' => 'movement',
 
             'point' => Model::pointFromLatitudeLongitude(42.34818, -7.9126),

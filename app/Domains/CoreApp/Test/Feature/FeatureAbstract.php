@@ -27,9 +27,11 @@ abstract class FeatureAbstract extends FeatureAbstractCore
     {
         $user ??= $this->createUser();
 
-        $row = $this->factoryCreate(data: array_filter([
-            'user_id' => $user->id,
-        ]));
+        if ($this->getModelClass() === UserModel::class) {
+            return [$user, $user];
+        }
+
+        $row = $this->factoryCreate(data: array_filter(['user_id' => $user->id]));
 
         $this->assertEquals($user->id, $row->user_id, '$user->id, $row->user_id');
 
