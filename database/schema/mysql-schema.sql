@@ -534,8 +534,12 @@ CREATE TABLE `user` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `language_id` bigint unsigned NOT NULL,
   `timezone_id` bigint unsigned NOT NULL,
+  `api_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `api_key_prefix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `api_key_enabled` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_email_unique` (`email`),
+  UNIQUE KEY `user_api_key_unique` (`api_key`),
   KEY `user_language_fk` (`language_id`),
   KEY `user_timezone_fk` (`timezone_id`),
   CONSTRAINT `user_language_fk` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE CASCADE,
@@ -679,3 +683,4 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (71,'2023_12_27_203
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (72,'2024_01_04_193000_refuel_point',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (73,'2024_01_04_203000_city_only',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (74,'2024_04_01_183000_language_rtl',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (75,'2024_04_01_190000_user_api_key',1);
