@@ -16,6 +16,6 @@ class Server extends SeederAbstract
             return;
         }
 
-        $this->insertWithoutDuplicates(Model::class, $this->json('server'), 'port');
+        $this->insertWithoutDuplicates(Model::class, 'port', $this->json('server'));
     }
 }

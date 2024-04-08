@@ -12,6 +12,6 @@ class {{ domain }} extends SeederAbstract
      */
     public function run(): void
     {
-        $this->insertWithoutDuplicates(Model::class, $this->json('{{ name }}'), 'id');
+        $this->insertWithoutDuplicates(Model::class, 'id', $this->json('{{ name }}'));
     }
 }

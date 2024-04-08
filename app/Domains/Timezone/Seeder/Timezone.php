@@ -13,7 +13,7 @@ class Timezone extends SeederAbstract
      */
     public function run(): void
     {
-        $this->insertWithoutDuplicates(Model::class, $this->map($this->json('timezone')), 'zone');
+        $this->insertWithoutDuplicates(Model::class, 'zone', $this->map($this->json('timezone')));
     }
 
     /**

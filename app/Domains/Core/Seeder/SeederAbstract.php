@@ -81,12 +81,12 @@ class SeederAbstract extends Seeder
 
     /**
      * @param string $model
-     * @param array $rows
      * @param string $key
+     * @param array $rows
      *
      * @return void
      */
-    protected function insertWithoutDuplicates(string $model, array $rows, string $key): void
+    protected function insertWithoutDuplicates(string $model, string $key, array $rows): void
     {
         $keys = $model::query()->withoutGlobalScopes()->pluck($key)->toArray();
 
@@ -105,5 +105,21 @@ class SeederAbstract extends Seeder
     protected function insertWithoutDuplicatesData(array $row): array
     {
         return array_map(static fn ($value) => is_array($value) ? json_encode($value) : $value, $row);
+    }
+
+    /**
+     * @param string $model
+     * @param string $key
+     * @param array $rows
+     *
+     * @return void
+     */
+    protected function updateBy(string $model, string $key, array $rows): void
+    {
+        foreach ($rows as $row) {
+            $model::query()
+                ->where($key, $row[$key])
+                ->update($this->insertUpdateData($row));
+        }
     }
 }

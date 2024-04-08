@@ -1,6 +1,6 @@
 <?php return [
-    'api_key' => 'Clave API',
-    'api_key_enabled' => 'Clave API Activa',
+    'api_key' => 'API Key',
+    'api_key_enabled' => 'API Key Enabled',
     'email' => 'אימייל',
     'error' => [
         'email-exists' => 'משתמש אחר עם אותו כתובת אימייל כבר קיים',

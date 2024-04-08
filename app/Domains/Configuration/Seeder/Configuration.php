@@ -12,6 +12,6 @@ class Configuration extends SeederAbstract
      */
     public function run(): void
     {
-        $this->insertWithoutDuplicates(Model::class, $this->json('configuration'), 'key');
+        $this->insertWithoutDuplicates(Model::class, 'key', $this->json('configuration'));
     }
 }

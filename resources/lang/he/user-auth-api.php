@@ -1,5 +1,5 @@
 <?php return [
     'error' => [
-        'auth-fail' => 'Autenticación Incorrecta',
+        'auth-fail' => 'Incorrect Authentication',
     ],
 ];
