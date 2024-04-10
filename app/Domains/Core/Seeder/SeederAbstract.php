@@ -92,19 +92,9 @@ class SeederAbstract extends Seeder
 
         foreach ($rows as $row) {
             if (in_array($row[$key], $keys) === false) {
-                $model::query()->insert($this->insertWithoutDuplicatesData($row));
+                $model::query()->insert($this->insertUpdateData($row));
             }
         }
-    }
-
-    /**
-     * @param array $row
-     *
-     * @return array
-     */
-    protected function insertWithoutDuplicatesData(array $row): array
-    {
-        return array_map(static fn ($value) => is_array($value) ? json_encode($value) : $value, $row);
     }
 
     /**
@@ -121,5 +111,15 @@ class SeederAbstract extends Seeder
                 ->where($key, $row[$key])
                 ->update($this->insertUpdateData($row));
         }
+    }
+
+    /**
+     * @param array $row
+     *
+     * @return array
+     */
+    protected function insertUpdateData(array $row): array
+    {
+        return array_map(static fn ($value) => is_array($value) ? json_encode($value) : $value, $row);
     }
 }

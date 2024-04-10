@@ -132,7 +132,33 @@ class Manager extends ProviderAbstract
      */
     protected function requestBodyText(array $strings): string
     {
-        return implode("\n", array_map(static fn ($value, $key) => '<key>'.$key.'</key> '.$value, $strings, array_keys($strings)));
+        return $this->requestBodyTextTags(implode("\n", $this->requestBodyTextKeys($strings)));
+    }
+
+    /**
+     * @param array $strings
+     *
+     * @return array
+     */
+    protected function requestBodyTextKeys(array $strings): array
+    {
+        return array_map(
+            static fn ($value, $key) => '<key>'.$key.'</key> '.$value,
+            $strings,
+            array_keys($strings)
+        );
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
+    protected function requestBodyTextTags(string $text): string
+    {
+        return preg_replace_callback('/:[a-z_]+/', static function (array $tag) {
+            return '[BASE64:'.base64_encode($tag[0]).']';
+        }, $text);
     }
 
     /**
@@ -144,6 +170,7 @@ class Manager extends ProviderAbstract
     {
         $text = $response->translations[0]->text;
 
+        $text = $this->requestResponseTags($text);
         $keys = $this->requestResponseKeys($text);
         $strings = $this->requestResponseString($text);
 
@@ -158,6 +185,18 @@ class Manager extends ProviderAbstract
         }
 
         return $translations;
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
+    protected function requestResponseTags(string $text): string
+    {
+        return preg_replace_callback('/\[BASE64:([^\]]+)\]/', static function (array $tag) {
+            return base64_decode($tag[1]);
+        }, $text);
     }
 
     /**

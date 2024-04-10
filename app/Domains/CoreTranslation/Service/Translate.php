@@ -111,7 +111,7 @@ class Translate extends ServiceAbstract
      *
      * @return array
      */
-    protected function translateUndot(array $current, array $strings): array
+    protected function translateUndot(array $current, array $strings, array $translated): array
     {
         return $this->undot(array_merge($current, array_combine(array_keys($strings), $translated)));
     }
