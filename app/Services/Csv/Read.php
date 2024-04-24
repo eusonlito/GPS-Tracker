@@ -27,6 +27,11 @@ class Read
     protected int $columns;
 
     /**
+     * @var array
+     */
+    protected array $fill;
+
+    /**
      * @param string $csv
      * @param string $delimiter = ';'
      *
@@ -91,6 +96,7 @@ class Read
         $this->fclose();
         $this->header();
         $this->columns();
+        $this->fill();
 
         return array_map($this->line(...), $this->lines);
     }
@@ -159,17 +165,21 @@ class Read
     }
 
     /**
+     * @return void
+     */
+    protected function fill(): void
+    {
+        $this->fill = array_fill(0, count($this->header), '');
+    }
+
+    /**
      * @param array $line
      *
      * @return array
      */
     protected function line(array $line): array
     {
-        if (count($line) !== $this->columns) {
-            $this->lineError($line);
-        }
-
-        return array_combine($this->header, array_map($this->value(...), $line));
+        return array_combine($this->header, array_map($this->value(...), $line + $this->fill));
     }
 
     /**
@@ -180,20 +190,6 @@ class Read
     protected function value(?string $value): string
     {
         return trim($this->utf8(strval($value)));
-    }
-
-    /**
-     * @param array $line
-     *
-     * @return void
-     */
-    protected function lineError(array $line): void
-    {
-        throw new UnexpectedValueException(sprintf(
-            'File <strong>%s</strong> has different columns than header <string>%s</string>',
-            implode(',', $line),
-            implode(',', $this->header)
-        ));
     }
 
     /**
