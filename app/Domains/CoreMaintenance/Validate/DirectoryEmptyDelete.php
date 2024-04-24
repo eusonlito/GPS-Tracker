@@ -12,7 +12,7 @@ class DirectoryEmptyDelete extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'folder' => ['bail', 'required', 'string'],
+            'folder' => ['bail', 'string', 'required'],
         ];
     }
 }

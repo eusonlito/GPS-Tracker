@@ -20,6 +20,14 @@ abstract class ScheduleAbstract
     abstract public function handle(): void;
 
     /**
+     * @return self
+     */
+    public static function new(): self
+    {
+        return new static(...func_get_args());
+    }
+
+    /**
      * @param \Illuminate\Console\Scheduling\Schedule $schedule
      *
      * @return void

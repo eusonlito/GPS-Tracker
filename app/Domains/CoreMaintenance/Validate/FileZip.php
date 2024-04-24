@@ -12,9 +12,9 @@ class FileZip extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'days' => ['bail', 'required', 'integer', 'gt:0'],
-            'folder' => ['bail', 'required', 'string'],
-            'extensions' => ['bail', 'required', 'array'],
+            'days' => ['bail', 'integer', 'gt:0', 'required'],
+            'folder' => ['bail', 'string', 'required'],
+            'extensions' => ['bail', 'array', 'required'],
         ];
     }
 }
