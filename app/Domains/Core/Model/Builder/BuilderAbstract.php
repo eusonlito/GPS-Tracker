@@ -58,7 +58,7 @@ abstract class BuilderAbstract extends Builder
      */
     public function byCreatedAtAfter(string $created_at): self
     {
-        return $this->where($this->addTable('created_at'), '>=', $created_at);
+        return $this->where($this->addTable('created_at'), '>', $created_at);
     }
 
     /**
@@ -119,6 +119,16 @@ abstract class BuilderAbstract extends Builder
     public function byIdsNot(array $ids): self
     {
         return $this->whereIntegerNotInRaw($this->addTable('id'), $ids);
+    }
+
+    /**
+     * @param string $updated_at
+     *
+     * @return self
+     */
+    public function byUpdatedAtAfter(string $updated_at): self
+    {
+        return $this->where($this->addTable('updated_at'), '>', $updated_at);
     }
 
     /**
