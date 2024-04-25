@@ -11,6 +11,5 @@ abstract class CommandAbstract extends CommandAbstractCore
      */
     protected function middlewares(): void
     {
-        $this->factory('Configuration')->action()->request();
     }
 }
