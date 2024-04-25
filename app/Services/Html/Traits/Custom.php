@@ -2,6 +2,8 @@
 
 namespace App\Services\Html\Traits;
 
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+
 trait Custom
 {
     /**
@@ -115,5 +117,38 @@ trait Custom
         }
 
         return strval($value);
+    }
+
+    /**
+     * @param ?string $date
+     * @param ?string $timezone = null
+     * @param string $format = 'd/m/Y H:i'
+     *
+     * @return string
+     */
+    public static function dateWithTimezone(?string $date, ?string $timezone = null, string $format = 'd/m/Y H:i'): string
+    {
+        static $timezone_default;
+
+        if (empty($date)) {
+            return '';
+        }
+
+        if (empty($timezone)) {
+            $timezone_default ??= TimezoneModel::query()->whereDefault()->value('zone');
+        }
+
+        return helper()->dateUtcToTimezone('Y-m-d H:i:s', $date, $timezone ?: $timezone_default, $format);
+    }
+
+    /**
+     * @param ?string $date
+     * @param string $format = 'd/m/Y H:i'
+     *
+     * @return string
+     */
+    public static function dateWithUserTimezone(?string $date, string $format = 'd/m/Y H:i'): string
+    {
+        return static::dateWithTimezone($date, app('user')->timezone->zone, $format);
     }
 }
