@@ -12,7 +12,6 @@ class Update extends ActionAbstract
     public function handle(): Model
     {
         $this->save();
-        $this->server();
 
         return $this->row;
     }
@@ -27,13 +26,5 @@ class Update extends ActionAbstract
         $this->row->updated_at = date('Y-m-d H:i:s');
 
         $this->row->save();
-    }
-
-    /**
-     * @return void
-     */
-    protected function server(): void
-    {
-        $this->factory('Server')->action(['reset' => true])->startAll();
     }
 }

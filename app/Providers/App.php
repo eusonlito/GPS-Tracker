@@ -3,15 +3,18 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Domains\Core\Traits\Factory;
 
 class App extends ServiceProvider
 {
+    use Factory;
+
     /**
      * @return void
      */
     public function boot(): void
     {
-        $this->locale();
+        $this->configuration();
     }
 
     /**
@@ -29,5 +32,13 @@ class App extends ServiceProvider
         if (defined('LC_MESSAGES')) {
             setlocale(LC_MESSAGES, $locale);
         }
+    }
+
+    /**
+     * @return void
+     */
+    protected function configuration(): void
+    {
+        $this->factory('Configuration')->action()->appBind();
     }
 }

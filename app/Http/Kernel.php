@@ -3,7 +3,6 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as KernelVendor;
-use App\Domains\Configuration\Middleware\Request as ConfigurationRequest;
 use App\Domains\IpLock\Middleware\Check as IpLockCheck;
 use App\Domains\Language\Middleware\Request as LanguageRequest;
 use App\Domains\User\Middleware\Admin as UserAdmin;
@@ -36,7 +35,6 @@ class Kernel extends KernelVendor
         RequestLogger::class,
         Reset::class,
         MessagesShareFromSession::class,
-        ConfigurationRequest::class,
         LanguageRequest::class,
     ];
 

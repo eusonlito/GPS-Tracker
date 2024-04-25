@@ -4,7 +4,7 @@ namespace App\Domains\Configuration\Validate;
 
 use App\Domains\Core\Validate\ValidateAbstract;
 
-class Update extends ValidateAbstract
+class Dump extends ValidateAbstract
 {
     /**
      * @return array
@@ -12,8 +12,9 @@ class Update extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'value' => ['bail', 'required'],
-            'description' => ['bail', 'required'],
+            'config' => ['bail', 'boolean'],
+            'server' => ['bail', 'boolean'],
+            'only' => ['bail', 'string', 'nullable'],
         ];
     }
 }

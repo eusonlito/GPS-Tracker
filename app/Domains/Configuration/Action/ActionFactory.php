@@ -15,9 +15,17 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return void
      */
-    public function request(): void
+    public function appBind(): void
     {
-        $this->actionHandle(Request::class);
+        $this->actionHandle(AppBind::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function dump(): mixed
+    {
+        return $this->actionHandle(Dump::class, $this->validate()->dump());
     }
 
     /**
