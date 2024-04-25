@@ -34,21 +34,45 @@ abstract class BuilderAbstract extends Builder
     }
 
     /**
+     * @param string $column
+     *
+     * @return string
+     */
+    public function wrap(string $column): string
+    {
+        return $this->getGrammar()->wrap($column);
+    }
+
+    /**
      * @param string|array $column
-     * @param bool $raw = false
      *
      * @return string|array
      */
-    public function addTable(string|array $column, bool $raw = false): string|array
+    public function addTable(string|array $column): string|array
     {
         $table = $this->getTable();
-        $quote = $raw ? '`' : '';
 
         if (is_string($column)) {
-            return $quote.$table.$quote.'.'.$quote.$column.$quote;
+            return $table.'.'.$column;
         }
 
-        return array_map(fn ($column) => $quote.$table.$quote.'.'.$quote.$column.$quote, $column);
+        return array_map(fn ($column) => $table.'.'.$column, $column);
+    }
+
+    /**
+     * @param string|array $column
+     *
+     * @return string|array
+     */
+    public function addTableRaw(string|array $column): string|array
+    {
+        $table = $this->wrap($this->getTable());
+
+        if (is_string($column)) {
+            return $table.'.'.$this->wrap($column);
+        }
+
+        return array_map(fn ($column) => $table.'.'.$this->wrap($column), $column);
     }
 
     /**
@@ -306,5 +330,49 @@ abstract class BuilderAbstract extends Builder
     public function whenIdNext(int $id): self
     {
         return $this->when($id, fn ($q) => $q->byIdNext($id));
+    }
+
+    /**
+     * @param string $column
+     * @param array $strings
+     *
+     * @return self
+     */
+    public function whereStringInRaw(string $column, array $strings): self
+    {
+        return $this->whereRaw($this->wrap($column).' '.$this->stringsIn($strings));
+    }
+
+    /**
+     * @param string $column
+     * @param array $strings
+     *
+     * @return self
+     */
+    public function orWhereStringInRaw(string $column, array $strings): self
+    {
+        return $this->orWhereRaw($this->wrap($column).' '.$this->stringsIn($strings));
+    }
+
+    /**
+     * @param array $strings
+     *
+     * @return string
+     */
+    protected function stringsIn(array $strings): string
+    {
+        return "IN ('".implode("', '", $this->strings($strings))."')";
+    }
+
+    /**
+     * @param array $strings
+     *
+     * @return array
+     */
+    protected function strings(array $strings): array
+    {
+        return array_unique(array_filter(array_map(static function (mixed $string) {
+            return trim(str_replace(['"', "'", '\\'], '', strval($string)));
+        }, $strings)));
     }
 }

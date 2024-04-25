@@ -23,10 +23,11 @@ trait Date
      * @param ?string $date
      * @param bool $time = true
      * @param ?string $default = '-'
+     * @param bool $hour = true
      *
      * @return ?string
      */
-    public function dateLocal(?string $date, bool $time = true, ?string $default = '-'): ?string
+    public function dateLocal(?string $date, bool $time = true, ?string $default = '-', bool $hour = true): ?string
     {
         if (empty($date)) {
             return $default;
@@ -38,16 +39,16 @@ trait Date
             return $default;
         }
 
-        return date(($time && str_contains($date, ' ')) ? 'd/m/Y H:i' : 'd/m/Y', $time);
+        return date(($time && str_contains($date, ' ') && $hour) ? 'd/m/Y H:i' : 'd/m/Y', $time);
     }
 
     /**
-     * @param string $date
+     * @param ?string $date
      * @param ?string $default = null
      *
      * @return ?string
      */
-    public function dateToDate(string $date, ?string $default = null): ?string
+    public function dateToDate(?string $date, ?string $default = null): ?string
     {
         if (empty($date)) {
             return $default;
@@ -205,24 +206,26 @@ trait Date
     }
 
     /**
+     * @param string $locale = 'es_ES'
+     *
      * @return array
      */
-    public function months(): array
+    public function months(string $locale = 'es_ES'): array
     {
-        static $cache;
+        static $cache = [];
 
-        if (isset($cache)) {
-            return $cache;
+        if (isset($cache[$locale])) {
+            return $cache[$locale];
         }
 
-        $format = function ($index) {
-            $formatter = new IntlDateFormatter('es_ES');
+        $format = function ($index) use ($locale) {
+            $formatter = new IntlDateFormatter($locale);
             $formatter->setPattern('MMMM');
 
             return ucfirst($formatter->format(mktime(0, 0, 0, $index)));
         };
 
-        return $cache = array_combine(
+        return $cache[$locale] = array_combine(
             range(1, 12),
             array_map(static fn ($index) => $format($index), range(1, 12))
         );
