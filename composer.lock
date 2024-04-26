@@ -11043,16 +11043,16 @@
         },
         {
             "name": "spatie/ignition",
-            "version": "1.13.2",
+            "version": "1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ignition.git",
-                "reference": "952798e239d9969e4e694b124c2cc222798dbb28"
+                "reference": "80385994caed328f6f9c9952926932e65b9b774c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ignition/zipball/952798e239d9969e4e694b124c2cc222798dbb28",
-                "reference": "952798e239d9969e4e694b124c2cc222798dbb28",
+                "url": "https://api.github.com/repos/spatie/ignition/zipball/80385994caed328f6f9c9952926932e65b9b774c",
+                "reference": "80385994caed328f6f9c9952926932e65b9b774c",
                 "shasum": ""
             },
             "require": {
@@ -11122,7 +11122,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-16T08:49:17+00:00"
+            "time": "2024-04-26T08:45:51+00:00"
         },
         {
             "name": "spatie/laravel-ignition",
@@ -11130,12 +11130,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "dd0851b59759799e40831cf1bc5d9f8641a5510c"
+                "reference": "3400ed6f48a8300c9c770cd994432a582fce7d84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/dd0851b59759799e40831cf1bc5d9f8641a5510c",
-                "reference": "dd0851b59759799e40831cf1bc5d9f8641a5510c",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/3400ed6f48a8300c9c770cd994432a582fce7d84",
+                "reference": "3400ed6f48a8300c9c770cd994432a582fce7d84",
                 "shasum": ""
             },
             "require": {
@@ -11215,7 +11215,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-16T08:58:44+00:00"
+            "time": "2024-04-26T08:52:31+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",

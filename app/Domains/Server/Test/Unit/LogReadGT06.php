@@ -16,7 +16,6 @@ class LogReadGT06 extends UnitAbstract
         $this->authUser();
 
         $this->setCurl();
-        $this->setConfiguration();
         $this->setDevice();
         $this->setAction();
 
@@ -30,14 +29,6 @@ class LogReadGT06 extends UnitAbstract
     protected function setCurl(): void
     {
         $this->curlFake('resources/app/test/server/curl-nominatim.openstreetmap.org.log');
-    }
-
-    /**
-     * @return void
-     */
-    protected function setConfiguration(): void
-    {
-        $this->factory('Configuration')->action()->request();
     }
 
     /**

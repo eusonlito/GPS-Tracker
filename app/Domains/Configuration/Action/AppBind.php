@@ -34,11 +34,9 @@ class AppBind extends ActionAbstract
      */
     protected function list(): array
     {
-        if ($this->listAvailable()) {
-            return Model::query()->pluck('value', 'key')->all();
-        }
-
-        return [];
+        return $this->listAvailable()
+            ? Model::query()->pluck('value', 'key')->all()
+            : [];
     }
 
     /**

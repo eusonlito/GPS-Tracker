@@ -157,7 +157,7 @@ class Manager extends ProviderAbstract
     protected function requestBodyTextTags(string $text): string
     {
         return preg_replace_callback('/:[a-z_]+/', static function (array $tag) {
-            return '[BASE64:'.base64_encode($tag[0]).']';
+            return 'BS64T'.str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($tag[0]));
         }, $text);
     }
 
@@ -194,8 +194,8 @@ class Manager extends ProviderAbstract
      */
     protected function requestResponseTags(string $text): string
     {
-        return preg_replace_callback('/\[BASE64:([^\]]+)\]/', static function (array $tag) {
-            return base64_decode($tag[1]);
+        return preg_replace_callback('/BS64T([a-zA-Z0-9_-]+)/', static function (array $tag) {
+            return base64_decode(str_replace(['-', '_'], ['+', '/'], $tag[1]));
         }, $text);
     }
 
