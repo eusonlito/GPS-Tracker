@@ -19,23 +19,47 @@ class OpcachePreload extends ActionAbstract
      */
     protected function preload(): array
     {
-        return (new Preloader(base_path('')))
-            ->paths(
-                base_path('app'),
-                base_path('vendor/laravel'),
-            )
-            ->ignore(
-                'Illuminate\Http\Testing',
-                'Illuminate\Filesystem\Cache',
-                'Illuminate\Foundation\Testing',
-                'Illuminate\Testing',
-                'Laravel\Octane',
-                'PHPUnit',
-                'Swoole',
-                'Tests',
-                '/App\\\Domains\\\[^\\\]+\\\Test/',
-            )
+        return (new Preloader($this->base()))
+            ->paths(...$this->paths())
+            ->ignore(...$this->ignore())
             ->load()
             ->log();
+    }
+
+    /**
+     * @return string
+     */
+    protected function base(): string
+    {
+        return base_path('');
+    }
+
+    /**
+     * @return array
+     */
+    protected function paths(): array
+    {
+        return [
+            base_path('app'),
+            base_path('vendor/laravel'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function ignore(): array
+    {
+        return [
+            'Illuminate\Http\Testing',
+            'Illuminate\Filesystem\Cache',
+            'Illuminate\Foundation\Testing',
+            'Illuminate\Testing',
+            'Laravel\Octane',
+            'PHPUnit',
+            'Swoole',
+            'Tests',
+            '/App\\\Domains\\\[^\\\]+\\\Test/',
+        ];
     }
 }

@@ -2,17 +2,17 @@
 
 namespace App\Domains\CoreMaintenance\Command;
 
-class FileZip extends CommandAbstract
+class FileDeleteOld extends CommandAbstract
 {
     /**
      * @var string
      */
-    protected $signature = 'core:maintenance:file:zip';
+    protected $signature = 'core:maintenance:file:delete:old';
 
     /**
      * @var string
      */
-    protected $description = 'Compress old files on folder storage/logs';
+    protected $description = 'Delete old logs files files';
 
     /**
      * @return void
@@ -21,7 +21,7 @@ class FileZip extends CommandAbstract
     {
         $this->info('START');
 
-        $this->factory()->action()->fileZip();
+        $this->factory()->action()->fileDeleteOld();
 
         $this->info('END');
     }

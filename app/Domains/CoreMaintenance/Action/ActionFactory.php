@@ -27,15 +27,15 @@ class ActionFactory extends ActionFactoryAbstract
      */
     public function directoryEmptyDelete(): void
     {
-        $this->actionHandle(DirectoryEmptyDelete::class, $this->validate()->directoryEmptyDelete());
+        $this->actionHandle(DirectoryEmptyDelete::class);
     }
 
     /**
      * @return void
      */
-    public function fileDeleteOlder(): void
+    public function fileDeleteOld(): void
     {
-        $this->actionHandle(FileDeleteOlder::class, $this->validate()->fileDeleteOlder());
+        $this->actionHandle(FileDeleteOld::class);
     }
 
     /**
@@ -43,7 +43,7 @@ class ActionFactory extends ActionFactoryAbstract
      */
     public function fileZip(): void
     {
-        $this->actionHandle(FileZip::class, $this->validate()->fileZip());
+        $this->actionHandle(FileZip::class);
     }
 
     /**

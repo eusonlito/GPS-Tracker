@@ -2,17 +2,17 @@
 
 namespace App\Domains\CoreMaintenance\Command;
 
-class FileZip extends CommandAbstract
+class OpcachePreload extends CommandAbstract
 {
     /**
      * @var string
      */
-    protected $signature = 'core:maintenance:file:zip';
+    protected $signature = 'core:maintenance:opcache:preload';
 
     /**
      * @var string
      */
-    protected $description = 'Compress old files on folder storage/logs';
+    protected $description = 'Preload Opcache';
 
     /**
      * @return void
@@ -21,7 +21,7 @@ class FileZip extends CommandAbstract
     {
         $this->info('START');
 
-        $this->factory()->action()->fileZip();
+        $this->factory()->action()->opcachePreload();
 
         $this->info('END');
     }
