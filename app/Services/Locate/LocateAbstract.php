@@ -44,7 +44,6 @@ abstract class LocateAbstract
         return Curl::new()
             ->setUrl($this->requestUrl())
             ->setException(false)
-            ->setLog()
             ->setCache(604800)
             ->setJson()
             ->setJsonResponse();
