@@ -55,7 +55,7 @@ class Logger extends RotatingFileAbstract
         $type = static::responseType($response);
 
         static::$type($request->url(), static::data($request, [
-            'response' => static::response($response),
+            'response' => static::response($request, $response),
             'status' => $response->getStatusCode(),
         ]));
     }
@@ -114,12 +114,17 @@ class Logger extends RotatingFileAbstract
     }
 
     /**
+     * @param \Illuminate\Http\Request $request
      * @param \Symfony\Component\HttpFoundation\Response $response
      *
      * @return mixed
      */
-    protected static function response(Response $response): mixed
+    protected static function response(Request $request, Response $response): mixed
     {
+        if (($request->wantsJson() === false) && ($request->isJson() === false)) {
+            return null;
+        }
+
         return method_exists($response, 'getData')
             ? $response->getData()
             : $response->getContent();

@@ -33,23 +33,22 @@ trait Number
     }
 
     /**
-     * @param int $bytes
+     * @param float $bytes
      * @param int $decimals = 2
      *
      * @return string
      */
-    public function sizeHuman(int $bytes, int $decimals = 2): string
+    public function sizeHuman(float $bytes, int $decimals = 2): string
     {
-        $e = floor(log($bytes, 1024));
-        $pow = pow(1024, $e);
-
-        if ($pow === 0.0) {
+        if ($bytes === 0.0) {
             return '0 B';
         }
 
+        $e = floor(log($bytes, 1024));
+        $pow = pow(1024, $e) ?: 1;
         $size = round($bytes / $pow, $decimals);
-        $unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'][$e];
+        $unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'][$e];
 
-        return $this->number($size, $decimals).' '.$unit;
+        return number_format($size, $decimals, ',', '.').' '.$unit;
     }
 }
