@@ -2,7 +2,7 @@
 
 namespace App\Services\Locate;
 
-use App\Services\Http\Curl\Curl;
+use App\Services\Curl\Curl;
 
 abstract class LocateAbstract
 {
@@ -37,7 +37,7 @@ abstract class LocateAbstract
     }
 
     /**
-     * @return \App\Services\Http\Curl\Curl
+     * @return \App\Services\Curl\Curl
      */
     protected function curl(): Curl
     {
