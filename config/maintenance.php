@@ -12,12 +12,12 @@ return [
     'file-delete-old' => [
         'path' => 'storage/logs',
         'extensions' => ['json', 'log', 'zip'],
-        'days' => 360,
+        'days' => intval(env('MAINTENANCE_FILE_DELETE_OLD_DAYS', 360)),
     ],
 
     'file-zip' => [
         'path' => 'storage/logs',
         'extensions' => ['json', 'log'],
-        'days' => 30,
+        'days' => intval(env('MAINTENANCE_FILE_ZIP_DAYS', 30)),
     ],
 ];
