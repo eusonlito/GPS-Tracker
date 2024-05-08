@@ -21,13 +21,13 @@ trait Date
 
     /**
      * @param ?string $date
-     * @param bool $time = true
-     * @param ?string $default = '-'
      * @param bool $hour = true
+     * @param bool $second = false
+     * @param ?string $default = '-'
      *
      * @return ?string
      */
-    public function dateLocal(?string $date, bool $time = true, ?string $default = '-', bool $hour = true): ?string
+    public function dateLocal(?string $date, bool $hour = true, bool $second = false, ?string $default = '-'): ?string
     {
         if (empty($date)) {
             return $default;
@@ -39,7 +39,14 @@ trait Date
             return $default;
         }
 
-        return date(($time && str_contains($date, ' ') && $hour) ? 'd/m/Y H:i' : 'd/m/Y', $time);
+        $format = 'd/m/Y';
+
+        if (str_contains($date, ' ')) {
+            $format .= $hour ? ' H:i' : '';
+            $format .= ($hour && $second) ? ':s' : '';
+        }
+
+        return date($format, $time);
     }
 
     /**

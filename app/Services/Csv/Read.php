@@ -22,16 +22,6 @@ class Read
     protected array $header;
 
     /**
-     * @var int
-     */
-    protected int $columns;
-
-    /**
-     * @var array
-     */
-    protected array $fill;
-
-    /**
      * @param string $csv
      * @param string $delimiter = ';'
      *
@@ -95,8 +85,6 @@ class Read
         $this->lines();
         $this->fclose();
         $this->header();
-        $this->columns();
-        $this->fill();
 
         return array_map($this->line(...), $this->lines);
     }
@@ -157,29 +145,20 @@ class Read
     }
 
     /**
-     * @return void
-     */
-    protected function columns(): void
-    {
-        $this->columns = count($this->header);
-    }
-
-    /**
-     * @return void
-     */
-    protected function fill(): void
-    {
-        $this->fill = array_fill(0, count($this->header), '');
-    }
-
-    /**
      * @param array $line
      *
      * @return array
      */
     protected function line(array $line): array
     {
-        return array_combine($this->header, array_map($this->value(...), $line + $this->fill));
+        $line = array_map($this->value(...), $line);
+        $combined = [];
+
+        foreach ($this->header as $index => $name) {
+            $combined[$name] = $line[$index] ?? '';
+        }
+
+        return $combined;
     }
 
     /**
