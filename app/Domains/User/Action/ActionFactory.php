@@ -61,11 +61,11 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return void
+     * @return \App\Domains\User\Model\User
      */
-    public function request(): void
+    public function request(): Model
     {
-        $this->actionHandle(Request::class);
+        return $this->actionHandle(Request::class);
     }
 
     /**

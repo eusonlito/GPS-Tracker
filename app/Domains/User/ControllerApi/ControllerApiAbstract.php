@@ -15,11 +15,11 @@ abstract class ControllerApiAbstract extends CoreControllerApiAbstract
     /**
      * @param int $id
      *
-     * @return void
+     * @return \App\Domains\User\Model\User
      */
-    protected function row(int $id): void
+    protected function row(int $id): Model
     {
-        $this->row = Model::query()
+        return $this->row = Model::query()
             ->byId($id)
             ->firstOr(fn () => $this->exceptionNotFound(__('user.error.not-found')));
     }

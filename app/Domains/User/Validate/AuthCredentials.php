@@ -12,7 +12,7 @@ class AuthCredentials extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'email' => ['bail', 'required', 'email:filter'],
+            'email' => ['bail', 'email:filter', 'required'],
             'password' => ['bail', 'required'],
         ];
     }
