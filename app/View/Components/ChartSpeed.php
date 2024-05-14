@@ -4,11 +4,8 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
-use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Trip\Model\Trip as TripModel;
 
 class ChartSpeed extends Component
 {
@@ -17,7 +14,8 @@ class ChartSpeed extends Component
      *
      * @return self
      */
-    public function __construct(readonly public PositionCollection $positions) {
+    public function __construct(readonly public PositionCollection $positions)
+    {
     }
 
     /**
