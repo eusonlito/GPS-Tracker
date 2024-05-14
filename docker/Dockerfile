@@ -32,9 +32,7 @@ WORKDIR /app
 COPY --chown=www-data:www-data ./ /app
 
 RUN git config --global --add safe.directory /app
-RUN ./composer install --no-dev --optimize-autoloader --classmap-authoritative
-
-RUN php artisan key:generate
+RUN ./composer install --no-dev --optimize-autoloader --classmap-authoritative --no-scripts
 
 USER root
 
