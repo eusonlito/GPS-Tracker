@@ -16,9 +16,9 @@ abstract class ControllerAbstract
     protected array $cache = [];
 
     /**
-     * @return array
+     * @return mixed
      */
-    abstract public function data(): array;
+    abstract public function data(): mixed;
 
     /**
      * @return self

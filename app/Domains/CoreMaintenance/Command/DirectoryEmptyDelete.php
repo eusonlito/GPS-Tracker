@@ -7,12 +7,12 @@ class DirectoryEmptyDelete extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'core:maintenance:directory:empty:delete {--folder=storage/logs}';
+    protected $signature = 'core:maintenance:directory:empty:delete';
 
     /**
      * @var string
      */
-    protected $description = 'Delete empty directories on {--folder=storage/logs}';
+    protected $description = 'Delete empty storage/logs directories';
 
     /**
      * @return void
@@ -20,9 +20,6 @@ class DirectoryEmptyDelete extends CommandAbstract
     public function handle(): void
     {
         $this->info('START');
-
-        $this->checkOption('folder');
-        $this->requestWithOptions();
 
         $this->factory()->action()->directoryEmptyDelete();
 

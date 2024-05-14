@@ -74,4 +74,24 @@ trait Misc
     {
         return http_build_query($query + request()->query());
     }
+
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
+    public function simpleName(string $string): string
+    {
+        return ucwords($this->simpleString($string), ' ');
+    }
+
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
+    public function simpleString(string $string): string
+    {
+        return str_slug($string, ' ');
+    }
 }

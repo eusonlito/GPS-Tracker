@@ -88,6 +88,8 @@ class Index extends ControllerAbstract
         ConfigurationModel::query()
             ->byKey('shared_slug')
             ->update(['value' => $slug]);
+
+        $this->factory('Configuration')->action()->appBind();
     }
 
     /**

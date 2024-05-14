@@ -1,7 +1,7 @@
 <?php return [
     'admin' => 'מנהל',
-    'api_key' => 'Clave API',
-    'api_key_enabled' => 'Clave API Activa',
+    'api_key' => 'API Key',
+    'api_key_enabled' => 'API Key Enabled',
     'email' => 'אימייל',
     'enabled' => 'מאופשר',
     'error' => [

@@ -12,8 +12,8 @@ class Create extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'ip' => ['bail', 'required', 'ip'],
-            'end_at' => ['bail', 'nullable', 'date_format:Y-m-d H:i:s'],
+            'ip' => ['bail', 'ip', 'required'],
+            'end_at' => ['bail', 'date_format:Y-m-d H:i:s', 'nullable'],
         ];
     }
 }

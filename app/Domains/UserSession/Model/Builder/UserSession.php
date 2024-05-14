@@ -37,7 +37,8 @@ class UserSession extends BuilderAbstract
     public function byUser(UserModel $user): self
     {
         return $this->orWhere(static function ($q) use ($user) {
-            return $q->where('auth', $user->email)->orWhere('user_id', $user->id);
+            return $q->where('auth', $user->email)
+                ->orWhere('user_id', $user->id);
         });
     }
 
@@ -88,5 +89,13 @@ class UserSession extends BuilderAbstract
         return UserFailModel::query()
             ->selectRaw('`text` AS `auth`, `ip`, FALSE AS `success`, `created_at`, `user_id`')
             ->byUser($user);
+    }
+
+    /**
+     * @return self
+     */
+    public function withUser(): self
+    {
+        return $this->with('user');
     }
 }

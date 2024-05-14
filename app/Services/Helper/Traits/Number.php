@@ -33,42 +33,22 @@ trait Number
     }
 
     /**
-     * @param int $bytes
+     * @param float $bytes
      * @param int $decimals = 2
      *
      * @return string
      */
-    public function sizeHuman(int $bytes, int $decimals = 2): string
+    public function sizeHuman(float $bytes, int $decimals = 2): string
     {
-        $e = floor(log($bytes, 1024));
-        $pow = pow(1024, $e);
-
-        if ($pow === 0.0) {
+        if ($bytes === 0.0) {
             return '0 B';
         }
 
+        $e = floor(log($bytes, 1024));
+        $pow = pow(1024, $e) ?: 1;
         $size = round($bytes / $pow, $decimals);
-        $unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'][$e];
+        $unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'][$e];
 
-        return $this->number($size, $decimals).' '.$unit;
-    }
-
-    /**
-     * @param int $meters
-     * @param int $decimals = 2
-     *
-     * @return string
-     */
-    public function distanceHuman(int $meters, int $decimals = 2): string
-    {
-        if ($meters >= 1000) {
-            $meters /= 1000;
-            $units = 'km';
-        } else {
-            $decimals = 0;
-            $units = 'm';
-        }
-
-        return $this->number($meters, $decimals).' '.$units;
+        return number_format($size, $decimals, ',', '.').' '.$unit;
     }
 }

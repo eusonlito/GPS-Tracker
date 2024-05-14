@@ -32,10 +32,10 @@ class Kernel extends KernelVendor
             return;
         }
 
-        (new ServerScheduleManager($schedule))->handle();
-        (new PositionScheduleManager($schedule))->handle();
-        (new RefuelScheduleManager($schedule))->handle();
-        (new CoreMaintenanceScheduleManager($schedule))->handle();
+        ServerScheduleManager::new($schedule)->handle();
+        PositionScheduleManager::new($schedule)->handle();
+        RefuelScheduleManager::new($schedule)->handle();
+        CoreMaintenanceScheduleManager::new($schedule)->handle();
 
         $this->scheduleQueue($schedule);
     }

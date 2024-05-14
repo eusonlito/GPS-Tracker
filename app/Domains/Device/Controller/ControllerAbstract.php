@@ -33,11 +33,11 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     /**
      * @param int $id
      *
-     * @return void
+     * @return \App\Domains\Device\Model\Device
      */
-    protected function row(int $id): void
+    protected function row(int $id): Model
     {
-        $this->row = Model::query()
+        return $this->row = Model::query()
             ->byId($id)
             ->byUserOrManager($this->auth)
             ->firstOr(fn () => $this->exceptionNotFound(__('device.error.not-found')));
@@ -46,11 +46,11 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     /**
      * @param int $alarm_id
      *
-     * @return void
+     * @return \App\Domains\Alarm\Model\Alarm
      */
-    protected function alarm(int $alarm_id): void
+    protected function alarm(int $alarm_id): AlarmModel
     {
-        $this->alarm = AlarmModel::query()
+        return $this->alarm = AlarmModel::query()
             ->byId($alarm_id)
             ->byDeviceId($this->row->id)
             ->firstOr(fn () => $this->exceptionNotFound(__('device.error.not-found')));
@@ -59,11 +59,11 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     /**
      * @param int $alarm_notification_id
      *
-     * @return void
+     * @return \App\Domains\AlarmNotification\Model\AlarmNotification
      */
-    protected function alarmNotification(int $alarm_notification_id): void
+    protected function alarmNotification(int $alarm_notification_id): AlarmNotificationModel
     {
-        $this->alarmNotification = AlarmNotificationModel::query()
+        return $this->alarmNotification = AlarmNotificationModel::query()
             ->byId($alarm_notification_id)
             ->byDeviceId($this->row->id)
             ->firstOr(fn () => $this->exceptionNotFound(__('device.error.not-found')));
@@ -72,11 +72,11 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     /**
      * @param int $device_message_id
      *
-     * @return void
+     * @return \App\Domains\DeviceMessage\Model\DeviceMessage
      */
-    protected function message(int $device_message_id): void
+    protected function message(int $device_message_id): DeviceMessageModel
     {
-        $this->message = DeviceMessageModel::query()
+        return $this->message = DeviceMessageModel::query()
             ->byId($device_message_id)
             ->byDeviceId($this->row->id)
             ->firstOr(fn () => $this->exceptionNotFound(__('device.error.not-found')));

@@ -3,17 +3,20 @@
 namespace App\Domains\User\Action;
 
 use App\Domains\User\Exception\AuthFailed;
+use App\Domains\User\Model\User as Model;
 
 class Request extends ActionAbstract
 {
     /**
-     * @return void
+     * @return \App\Domains\User\Model\User
      */
-    public function handle(): void
+    public function handle(): Model
     {
         $this->row();
         $this->check();
         $this->set();
+
+        return $this->row;
     }
 
     /**

@@ -212,7 +212,7 @@ class Log extends ControllerAbstract
             return true;
         }
 
-        return in_array($fileInfo->getExtension(), ['json', 'log', 'zip']);
+        return in_array($fileInfo->getExtension(), ['csv', 'json', 'log', 'zip']);
     }
 
     /**

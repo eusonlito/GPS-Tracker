@@ -105,9 +105,9 @@ abstract class FractalAbstract
 
     /**
      * @param string $domain
+     * @param string $view = 'simple'
      * @param \App\Domains\Core\Model\ModelAbstract $row
      * @param string $relation
-     * @param string $view = 'simple'
      * @param mixed ...$args
      *
      * @return ?array
@@ -119,5 +119,31 @@ abstract class FractalAbstract
         }
 
         return $this->from($domain, $view, $row->$relation, ...$args);
+    }
+
+    /**
+     * @param string $domain
+     * @param string $view = 'simple'
+     * @param \App\Domains\Core\Model\ModelAbstract $row
+     * @param string $relation
+     * @param mixed ...$args
+     *
+     * @return ?array
+     */
+    final protected function fromIfLoadedOrId(string $domain, string $view, ModelAbstract $row, string $relation, ...$args): ?array
+    {
+        $return = $this->fromIfLoaded($domain, $view, $row, $relation, ...$args);
+
+        if ($return) {
+            return $return;
+        }
+
+        $id = $row->{$relation.'_id'};
+
+        if ($id) {
+            return ['id' => $id];
+        }
+
+        return null;
     }
 }

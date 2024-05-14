@@ -7,12 +7,12 @@ class FileZip extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'core:maintenance:file:zip {--days=10} {--folder=storage/logs} {--extensions=log}';
+    protected $signature = 'core:maintenance:file:zip';
 
     /**
      * @var string
      */
-    protected $description = 'Compress files with {--extensions=log} on {--folder=storage/logs} older than {--days=10}';
+    protected $description = 'Compress old files on folder storage/logs';
 
     /**
      * @return void
@@ -21,11 +21,7 @@ class FileZip extends CommandAbstract
     {
         $this->info('START');
 
-        $this->factory()->action([
-            'days' => $this->checkOption('days'),
-            'folder' => $this->checkOption('folder'),
-            'extensions' => explode(',', $this->checkOption('extensions')),
-        ])->fileZip();
+        $this->factory()->action()->fileZip();
 
         $this->info('END');
     }

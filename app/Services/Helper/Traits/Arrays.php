@@ -9,6 +9,27 @@ use Stringable;
 trait Arrays
 {
     /**
+     * @param array $array
+     * @param string $key
+     *
+     * @return array
+     */
+    public function arrayColumnUniqueFilter(array $array, string $key): array
+    {
+        return $this->arrayUniqueFilter(array_column($array, $key));
+    }
+
+    /**
+     * @param array $array
+     *
+     * @return array
+     */
+    public function arrayUniqueFilter(array $array): array
+    {
+        return array_values(array_filter(array_unique($array)));
+    }
+
+    /**
      * @param string $key
      *
      * @return string

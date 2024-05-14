@@ -26,17 +26,7 @@ class AuthCredentials extends ActionAbstract
      */
     protected function checkIp(): void
     {
-        $this->factory('IpLock')->action($this->checkIpData())->check();
-    }
-
-    /**
-     * @return array
-     */
-    protected function checkIpData(): array
-    {
-        return [
-            'ip' => $this->request->ip(),
-        ];
+        $this->factory('IpLock')->action()->check();
     }
 
     /**

@@ -17,45 +17,6 @@ class Update extends ControllerAbstract
      */
     public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
     {
-        $this->request();
-    }
-
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow(data: ['value_default' => $this->requestDefault()]);
-    }
-
-    /**
-     * @return ?string
-     */
-    protected function requestDefault(): ?string
-    {
-        foreach ($this->requestDefaultContents() as $row) {
-            if ($row->key === $this->row->key) {
-                return strval($row->value);
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @return array
-     */
-    protected function requestDefaultContents(): array
-    {
-        return json_decode(file_get_contents($this->requestDefaultContentsFile()));
-    }
-
-    /**
-     * @return string
-     */
-    protected function requestDefaultContentsFile(): string
-    {
-        return dirname(__DIR__, 2).'/Seeder/data/configuration.json';
     }
 
     /**

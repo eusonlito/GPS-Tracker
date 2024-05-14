@@ -12,7 +12,7 @@ class DomainCreate extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'name' => ['bail', 'required', 'string'],
+            'name' => ['bail', 'string', 'required'],
             'action' => ['bail', 'boolean'],
             'command' => ['bail', 'boolean'],
             'controller' => ['bail', 'boolean'],

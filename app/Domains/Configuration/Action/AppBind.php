@@ -5,7 +5,7 @@ namespace App\Domains\Configuration\Action;
 use App\Domains\Configuration\Model\Configuration as Model;
 use App\Domains\Configuration\Service\Getter\Getter as GetterService;
 
-class Request extends ActionAbstract
+class AppBind extends ActionAbstract
 {
     /**
      * @var \App\Domains\Configuration\Service\Getter\Getter
@@ -24,9 +24,27 @@ class Request extends ActionAbstract
     /**
      * @return void
      */
-    public function getter(): void
+    protected function getter(): void
     {
-        $this->getter = new GetterService(Model::query()->pluck('value', 'key')->all());
+        $this->getter = new GetterService($this->list());
+    }
+
+    /**
+     * @return array
+     */
+    protected function list(): array
+    {
+        return $this->listAvailable()
+            ? Model::query()->pluck('value', 'key')->all()
+            : [];
+    }
+
+    /**
+     * @return bool
+     */
+    protected function listAvailable(): bool
+    {
+        return Model::schema()->hasTable(Model::TABLE);
     }
 
     /**

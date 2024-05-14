@@ -146,6 +146,10 @@ class Artisan
      */
     protected function php(): string
     {
+        if ($php = env('PHP_BINARY')) {
+            return $php;
+        }
+
         if ($this->phpIsCli()) {
             return PHP_BINARY;
         }

@@ -15,11 +15,11 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     /**
      * @param int $id
      *
-     * @return void
+     * @return \App\Domains\Configuration\Model\Configuration
      */
-    protected function row(int $id): void
+    protected function row(int $id): Model
     {
-        $this->row = Model::query()
+        return $this->row = Model::query()
             ->byId($id)
             ->firstOr(fn () => $this->exceptionNotFound(__('configuration.error.not-found')));
     }

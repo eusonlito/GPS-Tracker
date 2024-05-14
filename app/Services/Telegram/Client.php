@@ -3,7 +3,7 @@
 namespace App\Services\Telegram;
 
 use stdClass;
-use App\Services\Http\Curl\Curl;
+use App\Services\Curl\Curl;
 
 class Client
 {

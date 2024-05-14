@@ -15,11 +15,11 @@ abstract class ControllerAbstract extends ControllerWebAbstract
     /**
      * @param int $id
      *
-     * @return void
+     * @return \App\Domains\AlarmNotification\Model\AlarmNotification
      */
-    protected function row(int $id): void
+    protected function row(int $id): Model
     {
-        $this->row = Model::query()
+        return $this->row = Model::query()
             ->byId($id)
             ->byUserOrManager($this->auth)
             ->firstOr(fn () => $this->exceptionNotFound(__('alarm-notification.error.not-found')));

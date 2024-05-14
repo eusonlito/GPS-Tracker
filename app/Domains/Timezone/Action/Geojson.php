@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use App\Domains\Timezone\Model\Timezone as Model;
 use App\Exceptions\UnexpectedValueException;
 use App\Services\Compress\Zip\Extract as ZipExtract;
-use App\Services\Http\Curl\Curl;
+use App\Services\Curl\Curl;
 
 class Geojson extends ActionAbstract
 {

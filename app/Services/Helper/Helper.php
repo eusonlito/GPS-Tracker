@@ -3,6 +3,7 @@
 namespace App\Services\Helper;
 
 use App\Services\Helper\Traits\Arrays as ArraysTrait;
+use App\Services\Helper\Traits\Custom as CustomTrait;
 use App\Services\Helper\Traits\Date as DateTrait;
 use App\Services\Helper\Traits\Demo as DemoTrait;
 use App\Services\Helper\Traits\Exception as ExceptionTrait;
@@ -15,6 +16,7 @@ use App\Services\Helper\Traits\Unit as UnitTrait;
 class Helper
 {
     use ArraysTrait;
+    use CustomTrait;
     use DateTrait;
     use DemoTrait;
     use ExceptionTrait;

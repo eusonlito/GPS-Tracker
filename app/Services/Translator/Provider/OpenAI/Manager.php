@@ -3,7 +3,7 @@
 namespace App\Services\Translator\Provider\OpenAI;
 
 use App\Exceptions\UnexpectedValueException;
-use App\Services\Http\Curl\Curl;
+use App\Services\Curl\Curl;
 use App\Services\Translator\Provider\ProviderAbstract;
 
 class Manager extends ProviderAbstract

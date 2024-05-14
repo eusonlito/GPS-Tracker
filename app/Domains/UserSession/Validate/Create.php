@@ -14,7 +14,7 @@ class Create extends ValidateAbstract
         return [
             'auth' => ['bail', 'required'],
             'ip' => ['bail', 'nullable'],
-            'user_id' => ['bail', 'required', 'integer'],
+            'user_id' => ['bail', 'integer', 'required'],
         ];
     }
 }

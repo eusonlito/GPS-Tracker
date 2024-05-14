@@ -12,7 +12,7 @@ use Tests\CreatesApplication;
 use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\Core\Traits\Factory;
 use App\Domains\User\Model\User as UserModel;
-use App\Services\Http\Curl\Curl;
+use App\Services\Curl\Curl;
 use Database\Seeders\Database as DatabaseSeed;
 
 abstract class TestAbstract extends TestsAbstract

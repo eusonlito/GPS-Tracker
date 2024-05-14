@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Services\Http\Curl;
+namespace App\Services\Curl;
 
 use Closure;
 use CurlFile;
@@ -55,7 +55,7 @@ class Curl
     protected bool $cachePost = false;
 
     /**
-     * @var \App\Services\Http\Curl\Cache
+     * @var \App\Services\Curl\Cache
      */
     protected Cache $cache;
 
@@ -1030,7 +1030,7 @@ class Curl
     }
 
     /**
-     * @param \App\Services\Http\Curl\CurlException $e
+     * @param \App\Services\Curl\CurlException $e
      *
      * @return void
      */
@@ -1086,7 +1086,7 @@ class Curl
     }
 
     /**
-     * @return \App\Services\Http\Curl\CurlException
+     * @return \App\Services\Curl\CurlException
      */
     protected function exception(): CurlException
     {

@@ -2,7 +2,7 @@
 
 namespace App\Services\Translator\Provider;
 
-use App\Services\Http\Curl\Curl;
+use App\Services\Curl\Curl;
 
 abstract class ProviderAbstract
 {
@@ -34,7 +34,7 @@ abstract class ProviderAbstract
     /**
      * @param string $url
      *
-     * @return \App\Services\Http\Curl\Curl
+     * @return \App\Services\Curl\Curl
      */
     protected function curl(string $url): Curl
     {

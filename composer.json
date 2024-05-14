@@ -140,17 +140,20 @@
         ],
 
         "fix": [
+            "Composer\\Config::disableProcessTimeout",
             "@php ./vendor/bin/php-cs-fixer fix -v --ansi",
             "@php ./vendor/bin/pint -v"
         ],
 
         "quality": [
+            "Composer\\Config::disableProcessTimeout",
             "@php artisan insights -v --ansi || true",
             "@php ./vendor/bin/phpstan analyse --ansi || true",
             "@php ./vendor/bin/psalm --no-cache || true"
         ],
 
         "translation": [
+            "Composer\\Config::disableProcessTimeout",
             "@php artisan core:translation:fix --ansi",
             "@php artisan core:translation:fill --ansi",
             "@php artisan core:translation:clean --ansi",

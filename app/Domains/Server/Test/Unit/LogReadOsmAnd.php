@@ -16,7 +16,6 @@ class LogReadOsmAnd extends UnitAbstract
         $this->authUser();
 
         $this->setCurl();
-        $this->setConfiguration();
         $this->setDevice();
         $this->setAction();
 
@@ -30,14 +29,6 @@ class LogReadOsmAnd extends UnitAbstract
     protected function setCurl(): void
     {
         $this->curlFake('resources/app/test/server/curl-nominatim.openstreetmap.org.log');
-    }
-
-    /**
-     * @return void
-     */
-    protected function setConfiguration(): void
-    {
-        $this->factory('Configuration')->action()->request();
     }
 
     /**

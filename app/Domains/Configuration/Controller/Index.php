@@ -3,7 +3,7 @@
 namespace App\Domains\Configuration\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Configuration\Model\Configuration as Model;
+use App\Domains\Configuration\Service\Controller\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -14,8 +14,14 @@ class Index extends ControllerAbstract
     {
         $this->meta('title', __('configuration-index.meta-title'));
 
-        return $this->page('configuration.index', [
-            'list' => Model::query()->list()->get(),
-        ]);
+        return $this->page('configuration.index', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth)->data();
     }
 }

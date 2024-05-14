@@ -9,8 +9,20 @@ class DirectoryEmptyDelete extends ActionAbstract
      */
     public function handle(): void
     {
+        if ($this->enabled() === false) {
+            return;
+        }
+
         $this->data();
-        $this->iterate($this->data['path']);
+        $this->iterate();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function enabled(): bool
+    {
+        return boolval($this->config('path'));
     }
 
     /**
@@ -18,55 +30,71 @@ class DirectoryEmptyDelete extends ActionAbstract
      */
     protected function data(): void
     {
-        $this->data['path'] = base_path($this->data['folder']);
+        $this->dataPath();
     }
 
     /**
-     * @param string $directory
+     * @return void
+     */
+    protected function dataPath(): void
+    {
+        $this->data['path'] = base_path($this->config('path'));
+    }
+
+    /**
+     * @return void
+     */
+    protected function iterate(): void
+    {
+        $this->iterateRecursive($this->data['path']);
+    }
+
+    /**
+     * @param string $path
      *
      * @return void
      */
-    protected function iterate(string $directory): void
+    protected function iterateRecursive(string $path): void
     {
-        foreach ($this->scan($directory) as $path) {
-            if (is_dir($directory.'/'.$path)) {
-                $this->iterate($directory.'/'.$path);
+        foreach ($this->scan($path) as $directory) {
+            if (is_dir($path.'/'.$directory)) {
+                $this->iterateRecursive($path.'/'.$directory);
             }
         }
 
-        if ($this->directoryIsEmpty($directory)) {
-            $this->delete($directory);
+        if ($this->pathIsEmpty($path)) {
+            $this->delete($path);
         }
     }
 
     /**
-     * @param string $directory
+     * @param string $path
      *
      * @return array
      */
-    protected function scan(string $directory): array
+    protected function scan(string $path): array
     {
-        return array_diff(scandir($directory), ['.', '..']);
+        return array_diff(scandir($path), ['.', '..']);
     }
 
     /**
-     * @param string $directory
+     * @param string $path
      *
      * @return bool
      */
-    protected function directoryIsEmpty(string $directory): bool
+    protected function pathIsEmpty(string $path): bool
     {
-        return ($directory !== $this->data['path'])
-            && empty(array_diff(scandir($directory), ['.', '..']));
+        return ($path !== $this->data['path'])
+            && empty(array_diff(scandir($path), ['.', '..']));
     }
 
     /**
-     * @param string $directory
+     * @param string $path
      *
      * @return void
      */
-    protected function delete(string $directory): void
+    protected function delete(string $path): void
     {
-        rmdir($directory);
+        rmdir($path);
     }
 }

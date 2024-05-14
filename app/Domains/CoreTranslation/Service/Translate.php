@@ -95,29 +95,35 @@ class Translate extends ServiceAbstract
             return;
         }
 
-        $this->writeFile($file, $this->translateUndot($to, $current, $strings));
+        $translated = $this->request($to, $strings);
+
+        if (empty($translated)) {
+            return;
+        }
+
+        $this->writeFile($file, $this->translateUndot($current, $strings, $translated));
     }
 
     /**
-     * @param string $to
      * @param array $current
      * @param array $strings
+     * @param array $translated
      *
      * @return array
      */
-    protected function translateUndot(string $to, array $current, array $strings): array
+    protected function translateUndot(array $current, array $strings, array $translated): array
     {
-        return $this->undot(array_merge($current, array_combine(array_keys($strings), $this->request($to, $strings))));
+        return $this->undot(array_merge($current, array_combine(array_keys($strings), $translated)));
     }
 
     /**
      * @param string $to
      * @param array $strings
      *
-     * @return array
+     * @return ?array
      */
-    protected function request(string $to, array $strings): array
+    protected function request(string $to, array $strings): ?array
     {
-        return TranslatorFactory::get()->array($this->from, $to, $strings) ?: $strings;
+        return TranslatorFactory::get()->array($this->from, $to, $strings);
     }
 }

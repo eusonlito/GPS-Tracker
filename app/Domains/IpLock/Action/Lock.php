@@ -46,7 +46,8 @@ class Lock extends ActionAbstract
      */
     protected function isWhiteList(): bool
     {
-        return in_array($this->data['ip'], config('auth.lock.whitelist'));
+        return ($whitelist = config('auth.lock.whitelist'))
+            && in_array($this->data['ip'], $whitelist);
     }
 
     /**

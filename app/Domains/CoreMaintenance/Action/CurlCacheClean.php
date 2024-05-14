@@ -12,8 +12,20 @@ class CurlCacheClean extends ActionAbstract
      */
     public function handle(): void
     {
+        if ($this->enabled() === false) {
+            return;
+        }
+
         $this->data();
         $this->iterate();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function enabled(): bool
+    {
+        return boolval($this->config('path'));
     }
 
     /**
@@ -21,7 +33,23 @@ class CurlCacheClean extends ActionAbstract
      */
     protected function data(): void
     {
-        $this->data['path'] = base_path('storage/cache/curl');
+        $this->dataPath();
+        $this->dataTime();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataPath(): void
+    {
+        $this->data['path'] = base_path($this->config('path'));
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataTime(): void
+    {
         $this->data['time'] = time();
     }
 

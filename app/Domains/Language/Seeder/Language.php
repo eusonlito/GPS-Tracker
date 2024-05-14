@@ -12,6 +12,6 @@ class Language extends SeederAbstract
      */
     public function run(): void
     {
-        $this->insertWithoutDuplicates(Model::class, $this->json('language'), 'code');
+        $this->insertWithoutDuplicates(Model::class, 'code', $this->json('language'));
     }
 }

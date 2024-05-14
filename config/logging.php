@@ -37,22 +37,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Maintenance Log Settings
-    |--------------------------------------------------------------------------
-    |
-    | 'zip' is responsible for generating zip files of logs after X days, and
-    | 'clean' handles the deletion of log files after X days, leveraging
-    | respective environment variables for configuration.
-    |
-    */
-
-    'maintenance' => [
-        'zip' => intval(env('LOG_ZIP', 15)),
-        'clean' => intval(env('LOG_CLEAN', 360)),
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Log Channels
     |--------------------------------------------------------------------------
     |
