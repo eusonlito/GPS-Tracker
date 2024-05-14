@@ -32,7 +32,6 @@ services:
             retries: 15
 
     gpstracker-app:
-        image: gpstracker-app:latest
         container_name: gpstracker-app
         restart: unless-stopped
         depends_on:
