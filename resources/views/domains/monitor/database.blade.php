@@ -15,14 +15,14 @@
         </thead>
 
         <tbody>
-            @foreach ($sizes as $each)
+            @foreach ($size as $each)
 
             <tr>
                 <td class="text-left">{{ $each->table_name }}</td>
                 <td data-table-sort-value="{{ $each->total_size }}">@number($each->total_size) MB</td>
                 <td data-table-sort-value="{{ $each->table_size }}">@number($each->table_size) MB</td>
                 <td data-table-sort-value="{{ $each->index_size }}">@number($each->index_size) MB</td>
-                <td data-table-sort-value="{{ $counts[$each->table_name] }}">@number($counts[$each->table_name], 0)</td>
+                <td data-table-sort-value="{{ $count[$each->table_name] }}">@number($count[$each->table_name], 0)</td>
             </tr>
 
             @endforeach

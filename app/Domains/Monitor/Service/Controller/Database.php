@@ -4,10 +4,15 @@ namespace App\Domains\Monitor\Service\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\DB;
+use App\Domains\Monitor\Service\Database\Database as DatabaseDriver;
 
 class Database extends ControllerAbstract
 {
+    /**
+     * @var \App\Domains\Monitor\Service\Database\Database
+     */
+    protected DatabaseDriver $driver;
+
     /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
@@ -16,40 +21,6 @@ class Database extends ControllerAbstract
      */
     public function __construct(protected Request $request, protected Authenticatable $auth)
     {
-        $this->analyze();
-    }
-
-    /**
-     * @return void
-     */
-    protected function analyze(): void
-    {
-        DB::statement('ANALYZE LOCAL TABLE `'.implode('`, `', $this->tables()).'`;');
-    }
-
-    /**
-     * @return array
-     */
-    protected function tables(): array
-    {
-        static $cache;
-
-        return $cache ??= array_column(
-            DB::select($this->tablesSql(), ['table_schema' => $this->dbname()]),
-            'table_name'
-        );
-    }
-
-    /**
-     * @return string
-     */
-    protected function tablesSql(): string
-    {
-        return '
-            SELECT `TABLE_NAME` AS `table_name`
-            FROM `information_schema`.`TABLES`
-            WHERE `TABLE_SCHEMA` = :table_schema;
-        ';
     }
 
     /**
@@ -58,58 +29,32 @@ class Database extends ControllerAbstract
     public function data(): array
     {
         return [
-            'sizes' => $this->sizes(),
-            'counts' => $this->counts(),
+            'size' => $this->size(),
+            'count' => $this->count(),
         ];
     }
 
     /**
-     * @return array
+     * @return \App\Domains\Monitor\Service\Database\Database
      */
-    protected function sizes(): array
+    protected function driver(): DatabaseDriver
     {
-        return DB::select('
-            SELECT
-                `TABLE_NAME` AS `table_name`,
-                ROUND((`DATA_LENGTH` + `INDEX_LENGTH`) / 1024 / 1024, 2) AS `total_size`,
-                ROUND(`DATA_LENGTH` / 1024 / 1024, 2) AS `table_size`,
-                ROUND(`INDEX_LENGTH` / 1024 / 1024, 2) AS `index_size`
-            FROM
-                `information_schema`.`TABLES`
-            WHERE
-                `TABLE_SCHEMA` = :table_schema
-            ORDER BY
-                (`DATA_LENGTH` + `INDEX_LENGTH`) DESC;
-        ', ['table_schema' => $this->dbname()]);
+        return $this->driver ??= new DatabaseDriver();
     }
 
     /**
      * @return array
      */
-    protected function counts(): array
+    protected function size(): array
     {
-        return (array)DB::select($this->countsSql())[0];
+        return $this->driver()->size();
     }
 
     /**
-     * @return string
+     * @return array
      */
-    protected function countsSql(): string
+    protected function count(): array
     {
-        $sql = [];
-
-        foreach ($this->tables() as $table) {
-            $sql[] = '(SELECT COUNT(*) FROM `'.$table.'`) AS `'.$table.'`';
-        }
-
-        return 'SELECT '.implode(', ', $sql).';';
-    }
-
-    /**
-     * @return string
-     */
-    protected function dbname(): string
-    {
-        return config('database.connections.mysql.database');
+        return $this->driver()->count();
     }
 }
