@@ -1,12 +1,11 @@
 FROM php:8.3
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
+RUN apt get update && apt get upgrade -y
 
 RUN apt install -yqq --no-install-recommends \
     cron default-mysql-client git \
     libbz2-dev libicu-dev libldb-dev libonig-dev \
-    libxslt-dev libzip-dev procps unzip
+    libxslt-dev libzip-dev procps psmisc unzip vim
 
 RUN rm -rf /var/lib/apt/lists/*
 
