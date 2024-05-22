@@ -1,6 +1,6 @@
 FROM php:8.3
 
-RUN apt get update && apt get upgrade -y
+RUN apt-get update && apt-get upgrade -y
 
 RUN apt install -yqq --no-install-recommends \
     cron default-mysql-client git \
