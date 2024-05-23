@@ -5,7 +5,7 @@
 @endonce
 
 <div class="box mt-5 p-5">
-    <canvas id="{{ $id }}" height="60"></canvas>
+    <canvas id="{{ $id }}" height="300"></canvas>
 </div>
 
 <script>
@@ -13,8 +13,10 @@ const positions = {!! $positionsJson !!};
 
 new Chart(document.getElementById('{{ $id }}'), {
     type: 'line',
+
     data: {
         labels: positions.map(position => position.date_at),
+
         datasets: [
             {
                 label: '{{ __('map.speed') }}',
@@ -30,12 +32,17 @@ new Chart(document.getElementById('{{ $id }}'), {
             }
         ]
     },
+
     options: {
+        responsive:true,
+        maintainAspectRatio: false,
+
         plugins: {
             legend: {
                 display: false
             }
         },
+
         scales: {
             x: {
                 ticks: {
@@ -55,6 +62,7 @@ new Chart(document.getElementById('{{ $id }}'), {
                 }
             },
         },
+
         onClick: function (e, item) {
             const index = item[0].index;
 

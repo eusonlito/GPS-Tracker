@@ -32,7 +32,7 @@ class ChartSpeed extends Component
     public function render(): View
     {
         return view('components.chart-speed', [
-            'id' => 'chart_speed_'.uniqid(),
+            'id' => 'chart-speed-'.uniqid(),
             'positionsJson' => $this->positionsJson(),
         ]);
     }
