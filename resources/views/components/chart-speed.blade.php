@@ -4,9 +4,7 @@
 
 @endonce
 
-<div class="box mt-5 p-5">
-    <canvas id="{{ $id }}" height="300"></canvas>
-</div>
+<canvas id="{{ $id }}" height="300"></canvas>
 
 <script>
 const positions = {!! $positionsJson !!};
