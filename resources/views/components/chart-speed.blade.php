@@ -32,7 +32,7 @@ new Chart(document.getElementById('{{ $id }}'), {
     },
 
     options: {
-        responsive:true,
+        responsive: true,
         maintainAspectRatio: false,
 
         plugins: {
