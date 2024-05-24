@@ -2,8 +2,8 @@
 
 sudo rm -rf bootstrap/cache/*.php
 
-cp -n docker/.env.example .env
-cp -n docker/docker-compose.yml.example docker/docker-compose.yml
+cp --update=none docker/.env.example .env
+cp --update=none docker/docker-compose.yml.example docker/docker-compose.yml
 
 sudo docker compose -f docker/docker-compose.yml stop
 

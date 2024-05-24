@@ -39,6 +39,8 @@ services:
                 condition: service_healthy
             gpstracker-redis:
                 condition: service_healthy
+        volumes:
+            - ./../storage:/app/storage
         build:
             context: ..
             dockerfile: ./docker/Dockerfile

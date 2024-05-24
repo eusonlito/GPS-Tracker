@@ -17,22 +17,18 @@ RUN docker-php-ext-install bcmath bz2 intl mbstring opcache pdo_mysql pcntl sock
 RUN docker-php-ext-enable redis
 
 COPY ./docker/php.ini /usr/local/etc/php/
-
 COPY ./docker/crontab /etc/cron.d/crontab
 
-RUN crontab -u www-data /etc/cron.d/crontab
-
-RUN chown www-data:www-data /var/www
-
-USER www-data
+RUN chmod 0600 /etc/cron.d/crontab
 
 WORKDIR /app
 
-COPY --chown=www-data:www-data ./ /app
+COPY  ./ /app
+
+RUN echo ":set noshowmode" >> $HOME/.vimrc
 
 RUN git config --global --add safe.directory /app
-RUN ./composer install --no-dev --optimize-autoloader --classmap-authoritative --no-scripts
 
-USER root
+RUN COMPOSER_ALLOW_SUPERUSER=1 ./composer install --no-dev --optimize-autoloader --classmap-authoritative --no-scripts
 
 CMD ["./docker/init.sh"]
