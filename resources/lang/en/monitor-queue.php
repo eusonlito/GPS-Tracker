@@ -10,7 +10,7 @@
     ],
     'id' => 'ID',
     'max_tries' => 'Max Attempts',
-    'meta-title' => 'Monitor &gt; Queues',
+    'meta-title' => 'Monitor > Queues',
     'name' => 'Name',
     'retry' => 'Retry',
     'timeout' => 'Timeout',

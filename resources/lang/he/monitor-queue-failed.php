@@ -1,3 +1,3 @@
 <?php return [
-    'retry-success' => '',
+    'retry-success' => 'המשימה נוספה בחזרה לתור',
 ];

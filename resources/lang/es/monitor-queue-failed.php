@@ -1,3 +1,3 @@
 <?php return [
-    'retry-success' => 'המשימה נוספה בחזרה לתור',
+    'retry-success' => 'La tarea ha sido enviada de nuevo a la cola',
 ];

@@ -10,7 +10,7 @@
     ],
     'id' => 'ID',
     'max_tries' => 'Tentatives maximales',
-    'meta-title' => 'Moniteur &gt; Files d\'attente',
+    'meta-title' => 'Moniteur > Files d\'attente',
     'name' => 'Nom',
     'retry' => 'Retenter',
     'timeout' => 'Délai d\'attente',

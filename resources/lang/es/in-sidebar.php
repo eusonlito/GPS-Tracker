@@ -23,6 +23,7 @@
     'monitor-index' => 'Sistema',
     'monitor-installation' => 'Instalación',
     'monitor-log' => 'Logs',
+    'monitor-queue' => 'Colas',
     'profile' => 'Perfil',
     'refuel' => 'Repostajes',
     'refuel-create' => 'Crear',

@@ -1,4 +1,4 @@
-<li>
+li>
     <a href="{{ route('dashboard.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'dashboard.') ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('home')</div>
         <div class="side-menu__title">{{ __('in-sidebar.dashboard') }}</div>
@@ -363,6 +363,13 @@
             <a href="{{ route('monitor.log') }}" class="side-menu {{ ($ROUTE === 'monitor.log') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('file-text')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.monitor-log') }}</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('monitor.queue') }}" class="side-menu {{ ($ROUTE === 'monitor.queue') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('git-branch')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.monitor-queue') }}</div>
             </a>
         </li>
     </ul>
