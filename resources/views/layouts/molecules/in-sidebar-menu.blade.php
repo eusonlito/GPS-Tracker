@@ -1,4 +1,4 @@
-li>
+<li>
     <a href="{{ route('dashboard.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'dashboard.') ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('home')</div>
         <div class="side-menu__title">{{ __('in-sidebar.dashboard') }}</div>
