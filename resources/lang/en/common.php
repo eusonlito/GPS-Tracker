@@ -9,6 +9,7 @@
         'query' => 'System Error',
         'system' => 'System Error',
     ],
+    'filter' => 'Filter',
     'generate' => 'Generate',
     'reset' => 'Reset',
     'show' => 'Show',

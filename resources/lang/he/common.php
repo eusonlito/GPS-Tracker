@@ -9,7 +9,8 @@
         'query' => 'שגיאת מערכת',
         'system' => 'שגיאת מערכת',
     ],
+    'filter' => 'לְסַנֵן',
     'generate' => 'צור',
-    'reset' => 'Resetear',
+    'reset' => 'אִתחוּל',
     'show' => 'הצג',
 ];
