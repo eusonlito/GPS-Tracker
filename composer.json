@@ -15,7 +15,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "dev-master",
-        "brianium/paratest": "7.x-dev",
+        "brianium/paratest": "7.x",
         "fakerphp/faker": "^1.23",
         "friendsofphp/php-cs-fixer": "^3.51",
         "larastan/larastan": "^2.9",
