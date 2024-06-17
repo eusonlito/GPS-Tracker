@@ -43,6 +43,8 @@ abstract class LocateAbstract
     {
         return Curl::new()
             ->setUrl($this->requestUrl())
+            ->setHeader('User-Agent', 'eusonlito/GPS-Tracker (https://github.com/eusonlito/GPS-Tracker)')
+            ->setHeader('Referer', config('app.url'))
             ->setException(false)
             ->setCache(604800)
             ->setJson()
