@@ -23,6 +23,7 @@
     'monitor-index' => 'Système',
     'monitor-installation' => 'Installation',
     'monitor-log' => 'Journal de bord',
+    'monitor-queue' => '',
     'profile' => 'Profil',
     'refuel' => 'Rénovations',
     'refuel-create' => 'Créer',

@@ -23,6 +23,7 @@
     'monitor-index' => 'System',
     'monitor-installation' => 'Installation',
     'monitor-log' => 'Logs',
+    'monitor-queue' => '',
     'profile' => 'Profile',
     'refuel' => 'Refuelings',
     'refuel-create' => 'Create',

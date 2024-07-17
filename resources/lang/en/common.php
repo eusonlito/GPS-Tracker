@@ -12,6 +12,7 @@
         'query' => 'System Error',
         'system' => 'System Error',
     ],
+    'filter' => 'Filter',
     'generate' => 'Generate',
     'hour' => 'hour',
     'hours' => 'hours',

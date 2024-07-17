@@ -23,6 +23,7 @@
     'monitor-index' => 'מערכת',
     'monitor-installation' => 'התקנה',
     'monitor-log' => 'לוגים',
+    'monitor-queue' => 'תורים',
     'profile' => 'פרופיל',
     'refuel' => 'תדלוקים',
     'refuel-create' => 'תדלוק חדש',

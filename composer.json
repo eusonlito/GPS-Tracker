@@ -15,7 +15,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "dev-master",
-        "brianium/paratest": "7.x-dev",
+        "brianium/paratest": "7.x",
         "fakerphp/faker": "^1.23",
         "friendsofphp/php-cs-fixer": "^3.51",
         "larastan/larastan": "^2.9",
@@ -86,16 +86,11 @@
             "@php artisan server:start:all --reset || true"
         ],
 
-        "env-version": [
-            "sed -i 's/CACHE_VERSION=.*/CACHE_VERSION='$(head -c 16 /dev/urandom | md5sum | head -c 32)'/' .env"
-        ],
-
         "deploy": [
             "Composer\\Config::disableProcessTimeout",
             "rm -f bootstrap/cache/*.php",
             "git checkout .",
             "git pull",
-            "@composer env-version --ansi",
             "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
             "@php artisan db:seed --force --ansi --class=\"Database\\Seeders\\Database\"",
@@ -150,6 +145,13 @@
             "@php artisan insights -v --ansi || true",
             "@php ./vendor/bin/phpstan analyse --ansi || true",
             "@php ./vendor/bin/psalm --no-cache || true"
+        ],
+
+        "setup": [
+            "Composer\\Config::disableProcessTimeout",
+            "echo n | cp -vip .env.example .env",
+            "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
+            "@php artisan key:generate"
         ],
 
         "translation": [

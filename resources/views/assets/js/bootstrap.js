@@ -20,7 +20,6 @@ import './data-accordion.js';
 import './alarm-notification.js';
 import './mobile-menu.js';
 import './side-menu.js';
-import './chart.js';
 import './data-checkall.js';
 import './data-input-insert.js';
 import './data-link-to-post.js';

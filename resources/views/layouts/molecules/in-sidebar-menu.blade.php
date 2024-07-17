@@ -365,6 +365,13 @@
                 <div class="side-menu__title">{{ __('in-sidebar.monitor-log') }}</div>
             </a>
         </li>
+
+        <li>
+            <a href="{{ route('monitor.queue') }}" class="side-menu {{ ($ROUTE === 'monitor.queue') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('git-branch')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.monitor-queue') }}</div>
+            </a>
+        </li>
     </ul>
 </li>
 
