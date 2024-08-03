@@ -30,6 +30,7 @@ Open source GPS device management platform developed using Laravel 11, PHP 8.2 a
 
 ### Requirements
 
+- Linux SO
 - PHP 8.2 or higher (bcmath bz2 intl mbstring opcache pdo_mysql pcntl redis sockets xsl zip)
 - MySQL 8.0.12 or higher
 - Redis

@@ -17,7 +17,7 @@ Plataforma de código abierto para la gestión para dispositivos GPS desarrollad
 * **Queclink**: Confirmado el modelo GV500MA mediante el protocolo Queclink.
 * **OsmAnd**: Mediante el protocolo HTTP OsmAnd.
 
-### Características Clave
+### Características Principales
 
 * **Plataforma moderna con interface amigable:** La plataforma utiliza Laravel 11 para proporcionar una experiencia de usuario fluida y una interfaz gráfica atractiva.
 * **Compatibilidad con PHP 8.2:** Aprovecha las últimas características de PHP 8.2, incluyendo mejoras en el rendimiento y seguridad. También es compatible con las versiones superiores de PHP.
@@ -30,6 +30,7 @@ Plataforma de código abierto para la gestión para dispositivos GPS desarrollad
 
 ### Requisitos
 
+- Sistema Operativo Linux
 - PHP 8.2 o superior (bcmath bz2 intl mbstring opcache pdo_mysql pcntl redis sockets xsl zip)
 - MySQL 8.0.12 o superior
 - Redis
