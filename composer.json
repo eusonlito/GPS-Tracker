@@ -127,7 +127,6 @@
             "rm -f bootstrap/cache/*.php",
             "git checkout .",
             "git pull",
-            "@composer env-version --ansi",
             "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
             "@php artisan db:seed --force --ansi --class=\"Database\\Seeders\\Database\"",
