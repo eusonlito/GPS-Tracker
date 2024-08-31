@@ -2,7 +2,6 @@
 
 namespace App\Domains\Monitor\Action;
 
-use App\Domains\Monitor\Model\Monitor as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
 
 class ActionFactory extends ActionFactoryAbstract

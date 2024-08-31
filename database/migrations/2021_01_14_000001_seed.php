@@ -6,7 +6,7 @@ use App\Domains\Server\Seeder\Server as ServerSeeder;
 use App\Domains\CoreApp\Migration\MigrationAbstract;
 use App\Domains\Timezone\Seeder\Timezone as TimezoneSeeder;
 
-return new class extends MigrationAbstract {
+return new class() extends MigrationAbstract {
     /**
      * @return void
      */

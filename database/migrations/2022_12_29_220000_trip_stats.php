@@ -3,7 +3,7 @@
 use App\Domains\Core\Traits\Factory;
 use App\Domains\CoreApp\Migration\MigrationAbstract;
 
-return new class extends MigrationAbstract {
+return new class() extends MigrationAbstract {
     use Factory;
 
     /**

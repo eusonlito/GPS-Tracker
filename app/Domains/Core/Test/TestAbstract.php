@@ -166,7 +166,7 @@ abstract class TestAbstract extends TestsAbstract
      */
     protected function mail(): MailFake
     {
-        return (new Mail)->fake();
+        return (new Mail())->fake();
     }
 
     /**
