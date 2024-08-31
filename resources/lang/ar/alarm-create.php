@@ -1,0 +1,20 @@
+<?php return [
+    'enabled' => 'تفعيل',
+    'error' => [
+        'schedule_end' => 'عند ملء وقت البدء، يجب أيضاً ملء وقت الانتهاء',
+        'schedule_start' => 'عند ملء وقت الانتهاء، يجب أيضًا ملء وقت البدء',
+        'schedule_start_gt_schedule_end' => 'لا يمكن أن يكون وقت البدء مساوياً لوقت الانتهاء أو أكبر منه',
+    ],
+    'meta-title' => 'الإنذارات > إنشاء',
+    'name' => 'الاسم',
+    'save' => 'إنشاء',
+    'schedule_end' => 'وقت الانتهاء',
+    'schedule_end-placeholder' => 'HH:MM',
+    'schedule_start' => 'وقت البدء',
+    'schedule_start-placeholder' => 'HH:MM',
+    'success' => 'تم إنشاء الإنذار بنجاح',
+    'telegram' => 'إعلام عن طريق البرقية',
+    'type' => 'النوع',
+    'type-select' => 'حدد النوع',
+    'user' => 'المستخدم',
+];

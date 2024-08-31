@@ -29,5 +29,13 @@
         "locale": "he_IL",
         "enabled": true,
         "rtl": true
+    },
+
+    {
+        "code": "ar",
+        "name": "العربية",
+        "locale": "ar_AE",
+        "enabled": true,
+        "rtl": true
     }
 ]
