@@ -81,13 +81,14 @@ return [
     */
 
     'locale' => env('APP_LOCALE', 'en'),
-    'locales' => ['en', 'es', 'fr', 'he', 'ar'],
+    'locales' => ['en', 'es', 'fr', 'he', 'ar', 'pt_BR'],
     'locale_system' => [
         'en' => 'en_US.UTF-8',
         'es' => 'es_ES.UTF-8',
         'fr' => 'fr_FR.UTF-8',
         'he' => 'he_IL.UTF-8',
         'ar' => 'ar_AE.UTF-8',
+        'pt_BR' => 'pt_BR.UTF-8',
     ],
 
     /*
