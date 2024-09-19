@@ -1,0 +1,20 @@
+<?php return [
+    'enabled' => 'Habilitado',
+    'error' => [
+        'schedule_end' => 'Quando a hora início estiver preenchida, a hora final também deve estar preenchida',
+        'schedule_start' => 'Quando a hora final estiver preenchida, a hora início também deve estar preenchida',
+        'schedule_start_gt_schedule_end' => 'A hora de início não pode ser igual ou maior que a hora final',
+    ],
+    'meta-title' => 'Alarmes > Criar',
+    'name' => 'Nome',
+    'save' => 'Criar',
+    'schedule_end' => 'Hora Final',
+    'schedule_end-placeholder' => 'HH:MM',
+    'schedule_start' => 'Hora Início',
+    'schedule_start-placeholder' => 'HH:MM',
+    'success' => 'O alarme foi criado com sucesso',
+    'telegram' => 'Notificar pelo Telegram',
+    'type' => 'Tipo',
+    'type-select' => 'Selecione um tipo',
+    'user' => 'Usuário',
+];
