@@ -37,5 +37,13 @@
         "locale": "ar_AE",
         "enabled": true,
         "rtl": true
+    },
+
+    {
+        "code": "pt_BR",
+        "name": "Português brasileiro",
+        "locale": "pt_BR",
+        "enabled": true,
+        "rtl": false
     }
 ]
