@@ -155,7 +155,7 @@ class Search extends Index
                 ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
                 ->whenShared($this->requestBool('shared', null))
                 ->whenSharedPublic($this->requestBool('shared_public', null))
-                ->whenFence($this->request->boolean('fence'), $this->request->float('fence_latitude'), $this->request->float('fence_longitude'), $this->request->float('fence_radius'))
+                ->whenFence($this->request->float('fence_latitude'), $this->request->float('fence_longitude'), $this->request->float('fence_radius'))
                 ->withDevice()
                 ->withUser()
                 ->withVehicle()

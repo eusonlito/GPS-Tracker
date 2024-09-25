@@ -86,10 +86,8 @@
                     </button>
                 </div>
 
-                <div class="accordion-collapse {{ $REQUEST->input('fence') ? 'show' : 'collapse' }}" aria-labelledby="trip-accordion-map">
+                <div class="accordion-collapse {{ $REQUEST->input('fence_radius') ? 'show' : 'collapse' }}" aria-labelledby="trip-accordion-map">
                     <div class="accordion-body text-slate-600 dark:text-slate-500 leading-relaxed">
-                        <input type="hidden" name="fence" value="{{ $REQUEST->input('fence') ? '1' : '0' }}" />
-
                         <div class="md:flex">
                             <div class="flex-1 p-2">
                                 <label for="trip-index-latitude" class="form-label">{{ __('trip-index.latitude') }}</label>
@@ -103,7 +101,7 @@
 
                             <div class="flex-1 p-2">
                                 <label for="trip-index-radius" class="form-label">{{ __('trip-index.radius') }}</label>
-                                <input type="number" name="fence_radius" class="form-control form-control-lg" id="trip-index-radius" value="{{ $REQUEST->input('fence_radius') ?: 5 }}" step="any">
+                                <input type="number" name="fence_radius" class="form-control form-control-lg" id="trip-index-radius" value="{{ $REQUEST->input('fence_radius') ?: '0' }}" step="any">
                             </div>
                         </div>
 
