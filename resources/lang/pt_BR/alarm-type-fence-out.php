@@ -6,7 +6,7 @@
     ],
     'latitude' => 'Latitude',
     'longitude' => 'Longitude',
-    'message' => 'O veículo entrou na cerca',
+    'message' => 'O veículo saiu da cerca',
     'radius' => 'Raio em KM',
-    'title' => 'Cerca (Entry)',
+    'title' => 'Cerca (Exit)',
 ];
