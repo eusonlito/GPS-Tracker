@@ -10,7 +10,7 @@
     ],
     'title' => 'Bem Vindo!',
     'trip' => [
-        'text' => 'The server is waiting to receive the first connections from a device',
+        'text' => 'O servidor está aguardando para receber a primeira conexão de um dispositivo',
         'title' => 'Aguardando viagens',
     ],
     'vehicle' => [
