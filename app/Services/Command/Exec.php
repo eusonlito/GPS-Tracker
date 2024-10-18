@@ -78,6 +78,35 @@ class Exec
     }
 
     /**
+     * @return string
+     */
+    public static function php(): string
+    {
+        if ($php = env('PHP_BINARY')) {
+            return $php;
+        }
+
+        if (static::phpIsCli()) {
+            return PHP_BINARY;
+        }
+
+        $version = PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;
+
+        $cmd = 'type php'.$version.' 2>/dev/null || type php 2>/dev/null';
+        $php = static::cmdArray($cmd);
+
+        return end($php);
+    }
+
+    /**
+     * @return bool
+     */
+    protected static function phpIsCli(): bool
+    {
+        return (PHP_SAPI === 'cli') || defined('STDIN');
+    }
+
+    /**
      * @param string $output
      *
      * @return array
