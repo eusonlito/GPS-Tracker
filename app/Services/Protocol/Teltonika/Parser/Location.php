@@ -97,8 +97,8 @@ class Location extends ParserAbstract
 
         $this->buffer->int(1); // priority
 
-        $this->cache['longitude'] = $this->buffer->int(4) / 10000000;
-        $this->cache['latitude'] = $this->buffer->int(4) / 10000000;
+        $this->cache['longitude'] = $this->buffer->intSigned(4) / 10000000;
+        $this->cache['latitude'] = $this->buffer->intSigned(4) / 10000000;
 
         $this->buffer->int(2); // altitude
 
