@@ -1,6 +1,14 @@
 (function () {
     'use strict';
 
+    const isSupported = () => 'Notification' in window &&
+        'serviceWorker' in navigator &&
+        'PushManager' in window
+
+    if (!isSupported()) {
+        return;
+    }
+
     const permission = Notification.permission;
 
     document.querySelectorAll('[data-notification-request]').forEach(element => {
