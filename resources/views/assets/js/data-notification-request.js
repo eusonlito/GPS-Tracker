@@ -1,9 +1,7 @@
 (function () {
     'use strict';
 
-    const available = ('Notification' in window) && ('serviceWorker' in navigator) && ('PushManager' in window);
-
-    if (!available) {
+    if (!('Notification' in window)) {
         return;
     }
 
