@@ -1,6 +1,10 @@
 (function () {
     'use strict';
 
+    if (!('Notification' in window)) {
+        return;
+    }
+
     const permission = Notification.permission;
 
     document.querySelectorAll('[data-notification-request]').forEach(element => {
