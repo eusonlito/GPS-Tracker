@@ -27,6 +27,7 @@
         "phpunit/phpunit": "^10.0",
         "psalm/plugin-laravel": "dev-master",
         "spatie/laravel-ignition": "dev-main",
+        "squizlabs/php_codesniffer": "^3.0",
         "vimeo/psalm": "^5.23"
     },
     "config": {

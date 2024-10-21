@@ -20,6 +20,7 @@ return (new Config())
         'phpdoc_order' => true,
         'phpdoc_separation' => true,
         'single_line_comment_style' => false,
+        'single_line_empty_body' => false,
 
         'braces_position' => [
             'allow_single_line_empty_anonymous_classes' => true,

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Domains\CoreApp\Migration\MigrationAbstract;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 
-return new class extends MigrationAbstract {
+return new class() extends MigrationAbstract {
     /**
      * @return void
      */

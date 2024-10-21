@@ -106,11 +106,21 @@ class Byte
     }
 
     /**
+     * @param ?int $length = null
+     * @param ?int $index = null
+     *
      * @return int
      */
-    public function length(): int
+    public function intSigned(?int $length = null, ?int $index = null): int
     {
-        return strlen(substr($this->buffer, $this->index)) / 2;
+        $value = $this->int($length, $index);
+        $bits = $length * 8;
+
+        if ($value >= (1 << ($bits - 1))) {
+            $value -= (1 << $bits);
+        }
+
+        return $value;
     }
 
     /**
@@ -128,5 +138,13 @@ class Byte
         }
 
         return $this->int(1);
+    }
+
+    /**
+     * @return int
+     */
+    public function length(): int
+    {
+        return strlen(substr($this->buffer, $this->index)) / 2;
     }
 }

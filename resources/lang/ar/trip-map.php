@@ -1,0 +1,17 @@
+<?php return [
+    'city' => 'المدينة',
+    'country' => 'البلد',
+    'device' => 'الجهاز',
+    'end-at' => 'النهاية',
+    'filter' => 'تصفية...',
+    'filter-finished-all' => 'جميع الرحلات',
+    'filter-finished-no' => 'الرحلات الجارية',
+    'filter-finished-yes' => 'الرحلات المكتملة',
+    'meta-title' => 'الرحلات',
+    'send' => 'إرسال',
+    'start-at' => 'الصفحة الرئيسية',
+    'start_end' => 'المسار',
+    'state' => 'المقاطعة',
+    'user' => 'المستخدم',
+    'vehicle' => 'المركبة',
+];

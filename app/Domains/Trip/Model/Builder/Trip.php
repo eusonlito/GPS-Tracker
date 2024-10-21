@@ -314,17 +314,16 @@ class Trip extends BuilderAbstract
     }
 
     /**
-     * @param bool $fence
      * @param float $latitude
      * @param float $longitude
      * @param float $radius
      *
      * @return self
      */
-    public function whenFence(bool $fence, float $latitude, float $longitude, float $radius): self
+    public function whenFence(float $latitude, float $longitude, float $radius): self
     {
         return $this->when(
-            $fence && $latitude && $longitude && $radius,
+            $latitude && $longitude && $radius,
             fn ($q) => $q->byFence($latitude, $longitude, $radius)
         );
     }

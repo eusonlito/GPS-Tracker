@@ -137,37 +137,13 @@ class Artisan
      */
     protected function cmd(): void
     {
-        $this->cmd = 'nohup '.$this->php().' '.base_path('artisan').' '.$this->command
-            .' >> '.$this->log.' 2>&1 &';
-    }
-
-    /**
-     * @return string
-     */
-    protected function php(): string
-    {
-        if ($php = env('PHP_BINARY')) {
-            return $php;
-        }
-
-        if ($this->phpIsCli()) {
-            return PHP_BINARY;
-        }
-
-        $version = PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;
-
-        $cmd = 'type php'.$version.' 2>/dev/null || type php 2>/dev/null';
-        $php = Exec::cmdArray($cmd);
-
-        return end($php);
-    }
-
-    /**
-     * @return bool
-     */
-    protected function phpIsCli(): bool
-    {
-        return (PHP_SAPI === 'cli') || defined('STDIN');
+        $this->cmd = sprintf(
+            'nohup %s %s %s >> %s 2>&1 &',
+            Exec::php(),
+            escapeshellcmd(base_path('artisan')),
+            escapeshellcmd($this->command),
+            escapeshellcmd($this->log)
+        );
     }
 
     /**
