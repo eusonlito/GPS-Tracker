@@ -1,11 +1,9 @@
 (function () {
     'use strict';
 
-    const isSupported = () => 'Notification' in window &&
-        'serviceWorker' in navigator &&
-        'PushManager' in window
+    const available = ('Notification' in window) && ('serviceWorker' in navigator) && ('PushManager' in window);
 
-    if (!isSupported()) {
+    if (!available) {
         return;
     }
 
