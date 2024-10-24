@@ -52,6 +52,6 @@
     </div>
 </div>
 
-<iframe src="data:text/html;charset=utf-8;base64,{{ $phpinfo }}" style="border: 0; width: 100%; height: 800px"></iframe>
+<iframe src="data:text/html;charset=utf-8;base64,{{ $phpinfo }}" class="border-0 mt-5 w-full" style="height: 800px"></iframe>
 
 @stop
