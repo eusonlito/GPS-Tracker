@@ -5,4 +5,5 @@
     'meta-title' => 'Monitor > Requirements',
     'name' => 'Name',
     'path' => 'Location',
+    'status' => 'Availability',
 ];

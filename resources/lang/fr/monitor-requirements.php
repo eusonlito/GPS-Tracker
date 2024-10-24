@@ -5,4 +5,5 @@
     'meta-title' => 'Surveillance > Exigences',
     'name' => 'Nom',
     'path' => 'Localisation',
+    'status' => 'Disponibilité',
 ];

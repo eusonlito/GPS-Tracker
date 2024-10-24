@@ -33,7 +33,7 @@
                 <thead>
                     <tr>
                         <th class="text-left">{{ __('monitor-requirements.name') }}</th>
-                        <th>{{ __('monitor-requirements.path') }}</th>
+                        <th>{{ __('monitor-requirements.status') }}</th>
                     </tr>
                 </thead>
 
