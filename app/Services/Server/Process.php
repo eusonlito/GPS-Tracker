@@ -83,8 +83,6 @@ class Process
      */
     public function kill(int $port): bool
     {
-        $this->fuserCheck();
-
         foreach (['SIGINT', 'SIGTERM', 'SIGKILL'] as $signal) {
             if ($this->killSignal($port, $signal)) {
                 return true;
@@ -92,16 +90,6 @@ class Process
         }
 
         return false;
-    }
-
-    /**
-     * @return void
-     */
-    public function fuserCheck(): void
-    {
-        if (empty(Exec::cmd('type fuser 2>/dev/null'))) {
-            throw new UnexpectedValueException(__('common.error.fuser-not-found'));
-        }
     }
 
     /**
@@ -116,7 +104,13 @@ class Process
             return true;
         }
 
-        exec(sprintf('fuser -k -%s %s/tcp > /dev/null 2>&1', $signal, $port));
+        $fuser = Exec::available('fuser');
+
+        if (empty($fuser)) {
+            throw new UnexpectedValueException(__('common.error.fuser-not-found'));
+        }
+
+        exec(sprintf($fuser.' -k -%s %s/tcp > /dev/null 2>&1', $signal, $port));
 
         sleep(1);
 

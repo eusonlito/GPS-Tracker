@@ -7,6 +7,16 @@ class Exec
     /**
      * @param string $command
      *
+     * @return ?string
+     */
+    public static function available(string $command): ?string
+    {
+        return static::cmd('/bin/sh -c "command -v '.escapeshellarg($command).'" 2>/dev/null') ?: null;
+    }
+
+    /**
+     * @param string $command
+     *
      * @return string
      */
     public static function cmd(string $command): string
@@ -92,10 +102,7 @@ class Exec
 
         $version = PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;
 
-        $cmd = 'type php'.$version.' 2>/dev/null || type php 2>/dev/null';
-        $php = static::cmdArray($cmd);
-
-        return end($php);
+        return static::available('php'.$version) ?: static::available('php');
     }
 
     /**

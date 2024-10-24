@@ -10,4 +10,5 @@ Route::group(['middleware' => ['user-auth-admin']], static function () {
     Route::get('/monitor/database', Database::class)->name('monitor.database');
     Route::get('/monitor/log', Log::class)->name('monitor.log');
     Route::any('/monitor/queue/{name?}', Queue::class)->name('monitor.queue');
+    Route::get('/monitor/requirements', Requirements::class)->name('monitor.requirements');
 });

@@ -24,6 +24,7 @@
     'monitor-installation' => 'התקנה',
     'monitor-log' => 'לוגים',
     'monitor-queue' => 'תורים',
+    'monitor-requirements' => 'דרישות',
     'profile' => 'פרופיל',
     'refuel' => 'תדלוקים',
     'refuel-create' => 'תדלוק חדש',

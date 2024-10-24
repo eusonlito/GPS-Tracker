@@ -24,6 +24,7 @@
     'monitor-installation' => 'التثبيت',
     'monitor-log' => 'السجلات',
     'monitor-queue' => 'قوائم الانتظار',
+    'monitor-requirements' => 'المتطلبات',
     'profile' => 'الملف الشخصي',
     'refuel' => 'التجديدات',
     'refuel-create' => 'إنشاء',
