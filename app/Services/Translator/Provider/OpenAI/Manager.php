@@ -51,7 +51,6 @@ class Manager extends ProviderAbstract
         return Curl::new()
             ->setMethod('POST')
             ->setUrl(static::ENDPOINT)
-            ->setLog(true)
             ->setJson()
             ->setAuthorization($this->config['key'])
             ->setBody($this->requestBody($from, $to, $strings))
@@ -109,11 +108,44 @@ class Manager extends ProviderAbstract
      */
     protected function requestBodyMessagesSystemContent(string $from, string $to): string
     {
-        return <<<END
+        return trim(
+            $this->requestBodyMessagesSystemContentDefault($from, $to)
+            ."\n".$this->requestBodyMessagesSystemContentPrompt()
+        );
+    }
+
+    /**
+     * @param string $from
+     * @param string $to
+     *
+     * @return string
+     */
+    protected function requestBodyMessagesSystemContentDefault(string $from, string $to): string
+    {
+        return trim(<<<END
             You are a professional JSON translation engine.
             You must translate the JSON values from "$from" language into "$to" language without explanation.
             You must not translate any word starting with ":" because is a binding key.
-            END;
+            You can only include a valid JSON in the response, you cannot include anything else. You also must not include json formatting tags, such as "```json".
+        END);
+    }
+
+    /**
+     * @return string
+     */
+    protected function requestBodyMessagesSystemContentPrompt(): string
+    {
+        if (empty($this->config['prompt'])) {
+            return '';
+        }
+
+        $file = base_path($this->config['prompt']);
+
+        if (is_file($file) === false) {
+            return '';
+        }
+
+        return file_get_contents($file);
     }
 
     /**
@@ -138,6 +170,12 @@ class Manager extends ProviderAbstract
      */
     protected function response(array $response): array
     {
-        return json_decode($response['choices'][0]['message']['content'], true);
+        $output = json_decode($response['choices'][0]['message']['content'], true);
+
+        if ($output === null) {
+            throw new UnexpectedValueException(sprintf('Invalid Translation Response: %s', $response['choices'][0]['message']['content']));
+        }
+
+        return $output;
     }
 }

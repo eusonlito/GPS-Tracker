@@ -81,7 +81,6 @@ class Manager extends ProviderAbstract
             ->setMethod('post')
             ->setHeaders($this->requestHeaders())
             ->setBody($this->requestBody($from, $to, $strings))
-            ->setLog(true)
             ->send()
             ->getBody('object');
     }
@@ -121,7 +120,7 @@ class Manager extends ProviderAbstract
             'preserve_formatting' => 1,
             'formality' => 'prefer_less',
             'tag_handling' => 'xml',
-            'ignore_tags' => 'key,placeholder',
+            'ignore_tags' => 'key',
         ];
     }
 
@@ -157,7 +156,7 @@ class Manager extends ProviderAbstract
     protected function requestBodyTextTags(string $text): string
     {
         return preg_replace_callback('/:[a-z_]+/', static function (array $tag) {
-            return '<placeholder>'.str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($tag[0])).'</placeholder>';
+            return 'BS64T'.str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($tag[0]));
         }, $text);
     }
 
@@ -194,7 +193,7 @@ class Manager extends ProviderAbstract
      */
     protected function requestResponseTags(string $text): string
     {
-        return preg_replace_callback('/<placeholder>([^<]+)<\/placeholder>/', static function (array $tag) {
+        return preg_replace_callback('/BS64T([a-zA-Z0-9_-]+)/', static function (array $tag) {
             return base64_decode(str_replace(['-', '_'], ['+', '/'], $tag[1]));
         }, $text);
     }

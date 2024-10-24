@@ -14,8 +14,9 @@ return [
 
         'OpenAI' => [
             'key' => env('OPENAI_KEY'),
-            'model' => env('OPENAI_MODEL', 'gpt-4-1106-preview'),
-            'temperature' => env('OPENAI_TEMPERATURE', 0),
+            'model' => 'gpt-4o',
+            'prompt' => env('OPENAI_TRANSLATOR_PROMPT'),
+            'temperature' => 0.9,
         ],
     ],
 ];
