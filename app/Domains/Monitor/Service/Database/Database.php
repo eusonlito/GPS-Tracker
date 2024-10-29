@@ -2,6 +2,7 @@
 
 namespace App\Domains\Monitor\Service\Database;
 
+use InvalidArgumentException;
 use App\Domains\Monitor\Service\Database\Driver\DriverAbstract;
 use App\Domains\Monitor\Service\Database\Driver\MySQL;
 use App\Domains\Monitor\Service\Database\Driver\PgSQL;
@@ -9,7 +10,7 @@ use App\Domains\Monitor\Service\Database\Driver\PgSQL;
 class Database
 {
     /**
-     * @param \App\Domains\Monitor\Service\Database\Driver\DriverAbstract
+     * @var \App\Domains\Monitor\Service\Database\Driver\DriverAbstract
      */
     protected DriverAbstract $driver;
 
@@ -27,7 +28,7 @@ class Database
         return $this->driver = match ($driver) {
             'pgsql' => new PgSQL(),
             'mysql' => new MySQL(),
-            default => throw new InvalidArgumentException(sprtinf('Database %s is not supported', $driver)),
+            default => throw new InvalidArgumentException(sprintf('Database %s is not supported', $driver)),
         };
     }
 
