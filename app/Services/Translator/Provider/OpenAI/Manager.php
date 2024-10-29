@@ -123,11 +123,11 @@ class Manager extends ProviderAbstract
     protected function requestBodyMessagesSystemContentDefault(string $from, string $to): string
     {
         return trim(<<<END
-            You are a professional JSON translation engine.
-            You must translate the JSON values from "$from" language into "$to" language without explanation.
-            You must not translate any word starting with ":" because is a binding key.
-            You can only include a valid JSON in the response, you cannot include anything else. You also must not include json formatting tags, such as "```json".
-        END);
+                You are a professional JSON translation engine.
+                You must translate the JSON values from "$from" language into "$to" language without explanation.
+                You must not translate any word starting with ":" because is a binding key.
+                You can only include a valid JSON in the response, you cannot include anything else. You also must not include json formatting tags, such as "```json".
+            END);
     }
 
     /**
