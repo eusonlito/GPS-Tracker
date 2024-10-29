@@ -6,59 +6,21 @@ use DirectoryIterator;
 use stdClass;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
-use App\Services\Compress\Zip\Contents as ZipContents;
 
-class Log extends ControllerAbstract
+class Log extends LogAbstract
 {
-    /**
-     * @var string
-     */
-    protected string $path;
-
-    /**
-     * @var string
-     */
-    protected string $basepath;
-
-    /**
-     * @var string
-     */
-    protected string $fullpath;
-
-    /**
-     * @var bool
-     */
-    protected bool $isFile;
-
-    /**
-     * @const string
-     */
-    protected const BASE = 'storage/logs';
-
     /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
      *
      * @return self
      */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function handle(): array
-    {
-        return [$this->view(), $this->data()];
-    }
-
-    /**
-     * @return string
-     */
-    public function view(): string
-    {
-        return $this->isFile() ? 'monitor.log-detail' : 'monitor.log';
+    public function __construct(
+        protected Request $request,
+        protected Authenticatable $auth,
+        protected string $path
+    ) {
+        $this->path();
     }
 
     /**
@@ -67,60 +29,10 @@ class Log extends ControllerAbstract
     public function data(): array
     {
         return [
-            'is_file' => $this->isFile(),
-            'path' => $this->path(),
+            'path' => $this->path,
             'breadcrumb' => $this->breadcrumb(),
             'list' => $this->list(),
-            'contents' => $this->contents(),
         ];
-    }
-
-    /**
-     * @return string
-     */
-    protected function path(): string
-    {
-        if (isset($this->path)) {
-            return $this->path;
-        }
-
-        if (empty($path = $this->request->input('path'))) {
-            return $this->path = '';
-        }
-
-        $path = base64_decode($path);
-
-        if (preg_match('/^[a-zA-Z0-9_\.\/\-]+$/', $path) === 0) {
-            return $this->path = '';
-        }
-
-        if (str_contains($path, '..')) {
-            return $this->path = '';
-        }
-
-        $path = preg_replace('/\/+/', '/', trim($path, '/'));
-
-        if (file_exists($this->basepath().'/'.$path) === false) {
-            return $this->path = '';
-        }
-
-        return $this->path = $path;
-    }
-
-    /**
-     * @return string
-     */
-    protected function basepath(): string
-    {
-        return $this->basepath ??= base_path(static::BASE);
-    }
-
-    /**
-     * @return string
-     */
-    protected function fullpath(): string
-    {
-        return $this->fullpath ??= $this->basepath().'/'.$this->path();
     }
 
     /**
@@ -128,25 +40,7 @@ class Log extends ControllerAbstract
      */
     protected function isFile(): bool
     {
-        return $this->isFile ??= is_file($this->fullpath());
-    }
-
-    /**
-     * @return array
-     */
-    protected function breadcrumb(): array
-    {
-        $breadcrumb = [];
-        $acum = [];
-
-        foreach (explode('/', $this->path()) as $path) {
-            $breadcrumb[] = (object)[
-                'name' => $path,
-                'hash' => base64_encode(implode('/', ($acum[] = $path) ? $acum : [])),
-            ];
-        }
-
-        return $breadcrumb;
+        return false;
     }
 
     /**
@@ -154,10 +48,6 @@ class Log extends ControllerAbstract
      */
     protected function list(): array
     {
-        if ($this->isFile()) {
-            return [];
-        }
-
         $list = [];
 
         foreach (new DirectoryIterator($this->fullpath()) as $fileInfo) {
@@ -223,39 +113,64 @@ class Log extends ControllerAbstract
     protected function listContent(DirectoryIterator $fileInfo): stdClass
     {
         return (object)[
-            'path' => ($path = $fileInfo->getPathname()),
-            'location' => ($location = str_replace($this->basepath(), '', $path)),
-            'hash' => base64_encode($location),
             'name' => $fileInfo->getBasename(),
             'size' => $fileInfo->getSize(),
             'type' => $fileInfo->isDir() ? 'dir' : 'file',
             'updated_at' => date('Y-m-d H:i:s', $fileInfo->getMTime()),
+            'route' => $this->listContentRoute($fileInfo),
+            'route_download' => $this->listContentRouteDownload($fileInfo),
         ];
     }
 
     /**
-     * @return callable
+     * @param \DirectoryIterator $fileInfo
+     *
+     * @return string
      */
-    protected function contents(): callable
+    protected function listContentRoute(DirectoryIterator $fileInfo): string
     {
-        return fn () => $this->contentsRead();
+        return $fileInfo->isDir()
+            ? $this->listContentRouteDir($fileInfo)
+            : $this->listContentRouteFile($fileInfo);
     }
 
     /**
-     * @return void
+     * @param \DirectoryIterator $fileInfo
+     *
+     * @return string
      */
-    protected function contentsRead(): void
+    protected function listContentRouteDir(DirectoryIterator $fileInfo): string
     {
-        $file = $this->fullpath();
+        return route('monitor.log', base64_encode(str_replace($this->basepath(), '', $fileInfo->getPathname())));
+    }
 
-        if (is_file($file) === false) {
-            return;
+    /**
+     * @param \DirectoryIterator $fileInfo
+     *
+     * @return string
+     */
+    protected function listContentRouteFile(DirectoryIterator $fileInfo): string
+    {
+        $path = base64_encode(str_replace($this->basepath(), '', $fileInfo->getPath()));
+        $file = base64_encode($fileInfo->getFilename());
+
+        return route('monitor.log.file', [$path, $file]);
+    }
+
+    /**
+     * @param \DirectoryIterator $fileInfo
+     *
+     * @return ?string
+     */
+    protected function listContentRouteDownload(DirectoryIterator $fileInfo): ?string
+    {
+        if ($fileInfo->isDir()) {
+            return null;
         }
 
-        if (preg_match('/\.zip$/', $file)) {
-            echo ZipContents::new($file)->contents();
-        } else {
-            readfile($file);
-        }
+        $path = base64_encode(str_replace($this->basepath(), '', $fileInfo->getPath()));
+        $file = base64_encode($fileInfo->getFilename());
+
+        return route('monitor.log.file.download', [$path, $file]);
     }
 }

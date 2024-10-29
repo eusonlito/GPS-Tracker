@@ -8,12 +8,24 @@ use App\Domains\Monitor\Service\Controller\Log as ControllerService;
 class Log extends ControllerAbstract
 {
     /**
+     * @param string $path
+     *
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(): Response
+    public function __invoke(string $path = ''): Response
     {
         $this->meta('title', __('monitor-log.meta-title'));
 
-        return $this->page(...ControllerService::new($this->request, $this->auth)->handle());
+        return $this->page('monitor.log.index', $this->data($path));
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return array
+     */
+    protected function data(string $path): array
+    {
+        return ControllerService::new($this->request, $this->auth, $path)->data();
     }
 }
