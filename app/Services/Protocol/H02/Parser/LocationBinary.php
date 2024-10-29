@@ -110,7 +110,7 @@ class LocationBinary extends ParserAbstract
     {
         preg_match('/(.{2})(.{2})(.{4})/', $this->buffer->string(4), $matches);
 
-        $this->cache['latitude'] = $matches[1] + (($matches[2].'.'.$matches[3]) / 60);
+        $this->cache['latitude'] = intval($matches[1]) + (floatval($matches[2].'.'.$matches[3]) / 60);
     }
 
     /**
@@ -128,7 +128,7 @@ class LocationBinary extends ParserAbstract
     {
         preg_match('/(.{3})(.{2})(.{4})/', $this->buffer->string(5), $matches);
 
-        $this->cache['longitude'] = $matches[1] + (($matches[2].'.'.$matches[3]) / 60);
+        $this->cache['longitude'] = intval($matches[1]) + (floatval($matches[2].'.'.$matches[3]) / 60);
     }
 
     /**
