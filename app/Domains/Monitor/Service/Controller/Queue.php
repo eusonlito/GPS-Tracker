@@ -118,8 +118,6 @@ class Queue extends ControllerAbstract
      */
     protected function queue(string $suffix = ''): string
     {
-        $queue ??= config('queue.connections.redis.queue');
-
-        return $queue.$suffix;
+        return config('queue.connections.redis.queue').$suffix;
     }
 }
