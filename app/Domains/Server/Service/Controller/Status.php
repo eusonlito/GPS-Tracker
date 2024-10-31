@@ -46,7 +46,7 @@ class Status extends ControllerAbstract
      */
     protected function processMap(stdClass $process): stdClass
     {
-        $process->log = $this->processMapLog($process);
+        $process->route = $this->processMapRoute($process);
 
         return $process;
     }
@@ -56,24 +56,31 @@ class Status extends ControllerAbstract
      *
      * @return ?string
      */
-    protected function processMapLog(stdClass $process): ?string
+    protected function processMapRoute(stdClass $process): ?string
     {
-        $prefix = 'server/'.date('Y/m/d');
-        $base = storage_path('logs/'.$prefix);
+        $path = 'server/'.date('Y/m/d');
+        $base = storage_path('logs/'.$path);
+        $route = base64_encode($path);
         $port = $process->port;
 
         if (is_file($base.'/'.$port.'.log')) {
-            $path = $prefix.'/'.$port.'.log';
+            $file = $port.'.log';
         } elseif (is_file($base.'/'.$port.'-debug.log')) {
-            $path = $prefix.'/'.$port.'-debug.log';
+            $file = $port.'-debug.log';
         } elseif (is_file($base.'/'.$port.'-connection.log')) {
-            $path = $prefix.'/'.$port.'-connection.log';
-        } elseif (is_dir($base)) {
-            $path = $prefix;
+            $file = $port.'-connection.log';
         } else {
-            return null;
+            $file = null;
         }
 
-        return base64_encode($path);
+        if ($file) {
+            return $route.'/'.base64_encode($file);
+        }
+
+        if (is_dir($base)) {
+            return $route;
+        }
+
+        return null;
     }
 }
