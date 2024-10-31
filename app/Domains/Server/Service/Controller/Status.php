@@ -60,7 +60,6 @@ class Status extends ControllerAbstract
     {
         $path = 'server/'.date('Y/m/d');
         $base = storage_path('logs/'.$path);
-        $route = base64_encode($path);
         $port = $process->port;
 
         if (is_file($base.'/'.$port.'.log')) {
@@ -74,11 +73,11 @@ class Status extends ControllerAbstract
         }
 
         if ($file) {
-            return route('monitor.log.file', [$route, base64_encode($file)]);
+            return route('monitor.log.file', [base64_encode($path), base64_encode($file)]);
         }
 
         if (is_dir($base)) {
-            return route('monitor.log', $route);
+            return route('monitor.log', base64_encode($path));
         }
 
         return null;
