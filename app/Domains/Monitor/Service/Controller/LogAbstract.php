@@ -50,7 +50,7 @@ abstract class LogAbstract extends ControllerAbstract
 
         $path = preg_replace('/\/+/', '/', trim($path, '/'));
 
-        if (file_exists($this->basepath().'/'.$path) === false) {
+        if (is_dir($this->basepath().'/'.$path) === false) {
             return '';
         }
 
