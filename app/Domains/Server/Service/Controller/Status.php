@@ -74,11 +74,11 @@ class Status extends ControllerAbstract
         }
 
         if ($file) {
-            return $route.'/'.base64_encode($file);
+            return route('monitor.log.file', [$route, base64_encode($file)]);
         }
 
         if (is_dir($base)) {
-            return $route;
+            return route('monitor.log', $route);
         }
 
         return null;
