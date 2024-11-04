@@ -35,9 +35,9 @@
                         <td class="text-left">{{ $each->command }}</td>
 
                         <td class="w-1">
-                            @if ($each->log)
+                            @if ($each->route)
 
-                            <a href="{{ route('monitor.log', ['path' => $each->log]) }}">@icon('file-text', 'w-4 h-4')</a>
+                            <a href="{{ $each->route }}">@icon('file-text', 'w-4 h-4')</a>
 
                             @endif
                         </td>

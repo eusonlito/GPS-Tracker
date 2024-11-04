@@ -4,6 +4,7 @@ namespace App\Services\Protocol\H02;
 
 use App\Services\Protocol\H02\Parser\Command as CommandParser;
 use App\Services\Protocol\H02\Parser\Location as LocationParser;
+use App\Services\Protocol\H02\Parser\LocationBinary as LocationBinaryParser;
 use App\Services\Protocol\H02\Parser\Sms as SmsParser;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Server\Socket\Server;
@@ -45,9 +46,7 @@ class Manager extends ProtocolAbstract
      */
     protected function bodies(string $body): array
     {
-        preg_match_all('/\*[^#]+#/', $body, $matches);
-
-        return $matches[0];
+        return array_filter(array_map('trim', explode("\n", $body)));
     }
 
     /**
@@ -57,6 +56,7 @@ class Manager extends ProtocolAbstract
     {
         return [
             LocationParser::class,
+            LocationBinaryParser::class,
             SmsParser::class,
             CommandParser::class,
         ];

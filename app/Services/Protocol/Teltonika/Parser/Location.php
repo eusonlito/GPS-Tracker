@@ -234,7 +234,10 @@ class Location extends ParserAbstract
             return null;
         }
 
-        return $this->cache[__FUNCTION__] ??= helper()->mcc($this->cache['mcc'], $this->cache['mnc'])?->iso;
+        return $this->cache[__FUNCTION__] ??= helper()->mcc(
+            $this->cache['mcc'],
+            $this->cache['mnc']
+        )?->iso;
     }
 
     /**

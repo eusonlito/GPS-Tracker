@@ -14,7 +14,7 @@ abstract class ProviderAbstract
     /**
      * @param array $config
      *
-     * @return self
+     * @return void
      */
     public function __construct(array $config)
     {

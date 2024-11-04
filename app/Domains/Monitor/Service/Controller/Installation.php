@@ -9,6 +9,11 @@ use App\Services\Command\Exec;
 class Installation extends ControllerAbstract
 {
     /**
+     * @var ?string
+     */
+    protected ?string $git;
+
+    /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
      *
@@ -132,11 +137,7 @@ class Installation extends ControllerAbstract
      */
     protected function git(): ?string
     {
-        return $this->cache(function () {
-            $git = Exec::cmdArray('type git 2>/dev/null');
-
-            return $git ? end($git) : null;
-        });
+        return $this->git ??= Exec::available('git');
     }
 
     /**

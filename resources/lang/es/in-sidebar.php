@@ -24,6 +24,7 @@
     'monitor-installation' => 'Instalación',
     'monitor-log' => 'Logs',
     'monitor-queue' => 'Colas',
+    'monitor-requirements' => 'Requisitos',
     'profile' => 'Perfil',
     'refuel' => 'Repostajes',
     'refuel-create' => 'Crear',

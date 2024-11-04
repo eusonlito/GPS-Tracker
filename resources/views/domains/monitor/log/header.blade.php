@@ -5,7 +5,7 @@
         @foreach ($breadcrumb as $each)
 
         <h2 class="inline-block text-lg font-medium">/</h2>
-        <h2 class="inline-block text-lg font-medium"><a href="{{ route('monitor.log', ['path' => $each->hash]) }}" title="{{ $each->name }}">{{ $each->name }}</a></h2>
+        <h2 class="inline-block text-lg font-medium"><a href="{{ $each->route }}" title="{{ $each->name }}">{{ $each->name }}</a></h2>
 
         @endforeach
     </div>

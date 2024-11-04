@@ -347,7 +347,7 @@
 
         <li>
             <a href="{{ route('monitor.installation') }}" class="side-menu {{ ($ROUTE === 'monitor.installation') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('check-circle')</div>
+                <div class="side-menu__icon">@icon('git-merge')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.monitor-installation') }}</div>
             </a>
         </li>
@@ -368,8 +368,15 @@
 
         <li>
             <a href="{{ route('monitor.queue') }}" class="side-menu {{ ($ROUTE === 'monitor.queue') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('git-branch')</div>
+                <div class="side-menu__icon">@icon('layers')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.monitor-queue') }}</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('monitor.requirements') }}" class="side-menu {{ ($ROUTE === 'monitor.requirements') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('check-square')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.monitor-requirements') }}</div>
             </a>
         </li>
     </ul>

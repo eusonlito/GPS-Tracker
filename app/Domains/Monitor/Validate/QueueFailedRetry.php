@@ -2,7 +2,7 @@
 
 namespace App\Domains\Monitor\Validate;
 
-use App\Domains\CoreApp\Validate\ValidateAbstract;
+use App\Domains\Core\Validate\ValidateAbstract;
 
 class QueueFailedRetry extends ValidateAbstract
 {

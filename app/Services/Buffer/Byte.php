@@ -147,4 +147,14 @@ class Byte
     {
         return strlen(substr($this->buffer, $this->index)) / 2;
     }
+
+    /**
+     * @param int $offset
+     *
+     * @return int
+     */
+    public function peek(int $offset = 0): int
+    {
+        return hexdec(substr($this->buffer, $this->index + ($offset * 2), 2));
+    }
 }
