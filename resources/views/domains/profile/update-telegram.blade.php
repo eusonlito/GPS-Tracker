@@ -12,21 +12,23 @@
 
     @if ($telegram_username)
 
-    <div class="box p-5 mt-5">
-        @if ($telegram_chat_id)
+    @if ($telegram_chat_id)
 
-        <div class="p-2 text-center text-success">
+    <div class="box p-5 mt-5 text-center text-success">
             {{ __('profile-update-telegram.connected-message') }} <strong><a href="{{ $telegram_bot_link }}" target="_blank">{{ $telegram_bot }}</a></strong>
-        </div>
-
-        @else
-
-        <div class="p-2 text-center text-danger">
-            {{ __('profile-update-telegram.pending-message') }} <strong><a href="{{ $telegram_bot_link }}" target="_blank">{{ $telegram_bot }}</a></strong>
-        </div>
-
-        @endif
     </div>
+
+    <div class="box p-5 mt-5 text-center text-success">
+        <button type="submit" name="_action" value="updateTelegramTest" class="btn btn-primary">{{ __('profile-update-telegram.send-test-message') }}</button>
+    </div>
+
+    @else
+
+    <div class="box p-5 mt-5 text-center text-danger">
+        {{ __('profile-update-telegram.pending-message') }} <strong><a href="{{ $telegram_bot_link }}" target="_blank">{{ $telegram_bot }}</a></strong>
+    </div>
+
+    @endif
 
     @endif
 
@@ -40,7 +42,9 @@
     <div class="box p-5 mt-5">
         <div class="text-right">
             @if ($telegram_username && empty($telegram_chat_id))
+
             <button type="submit" name="_action" value="updateTelegramChatId" class="btn btn-primary">{{ __('profile-update-telegram.connect') }}</button>
+
             @endif
 
             <button type="submit" name="_action" value="updateTelegram" class="btn btn-primary">{{ __('profile-update-telegram.save') }}</button>
