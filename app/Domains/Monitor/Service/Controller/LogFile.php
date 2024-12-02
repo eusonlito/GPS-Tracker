@@ -61,7 +61,37 @@ class LogFile extends LogAbstract
         if (preg_match('/\.zip$/', $file)) {
             echo ZipContents::new($file)->contents();
         } else {
-            readfile($file);
+            $this->contentsReadFile($file);
         }
+    }
+
+    /**
+     * @param string $file
+     *
+     * @return void
+     */
+    protected function contentsReadFile(string $file): void
+    {
+        $max = 10 * 1024 * 1024;
+        $size = filesize($file);
+        $start = max($size - $max, 0);
+
+        $handle = fopen($file, 'rb');
+
+        fseek($handle, $start);
+
+        while (feof($handle) === false) {
+            $buffer = fread($handle, 8192);
+
+            if ($buffer === false) {
+                break;
+            }
+
+            echo $buffer;
+
+            flush();
+        }
+
+        fclose($handle);
     }
 }
