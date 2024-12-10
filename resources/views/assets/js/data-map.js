@@ -21,7 +21,9 @@ import Map from './map';
     let positions = [];
 
     try {
-        positions = JSON.parse(element.dataset.mapPositions).sort((a, b) => b.date_at > a.date_at ? -1 : 1);
+        positions = JSON.parse(element.dataset.mapPositions).sort(
+            (a, b) => b.date_utc_at > a.date_utc_at ? -1 : 1
+        );
     } catch (e) {
         return;
     }
