@@ -2,6 +2,18 @@
 
 @section ('content')
 
+@if ($files)
+
+<form method="get">
+    <div class="box p-5 mt-5">
+        <div class="p-2">
+            <x-select name="file" id="server-update-parser-file" :options="$files" :placeholder="__('server-update-parser.files')" data-change-submit></x-select>
+        </div>
+    </div>
+</form>
+
+@endif
+
 <form method="post">
     <input type="hidden" name="_action" value="parse" />
 

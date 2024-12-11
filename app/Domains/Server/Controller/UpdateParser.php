@@ -4,7 +4,7 @@ namespace App\Domains\Server\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Services\Protocol\ProtocolFactory;
+use App\Domains\Server\Service\Controller\UpdateParser as ControllerService;
 
 class UpdateParser extends ControllerAbstract
 {
@@ -19,11 +19,16 @@ class UpdateParser extends ControllerAbstract
 
         $this->meta('title', __('server-update-parser.meta-title', ['title' => $this->row->port.' - '.$this->row->protocol]));
 
-        return $this->page('server.update-parser', [
-            'row' => $this->row,
-            'protocol' => ProtocolFactory::get($this->row->protocol),
-            'parsed' => $this->actionPost('parse'),
-        ]);
+        return $this->page('server.update-parser', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth, $this->row)->data()
+            + ['parsed' => $this->actionPost('parse')];
     }
 
     /**

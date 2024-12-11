@@ -3,6 +3,7 @@
     'date_utc_at' => 'Location Date (UTC)',
     'device' => 'Device',
     'direction' => 'Address',
+    'files' => 'Log Files',
     'format' => 'Format',
     'latitude' => 'Latitude',
     'line' => 'Line',
