@@ -42,7 +42,8 @@ class UpdateTelegram extends ControllerAbstract
     protected function actions(): RedirectResponse|false|null
     {
         return $this->actionPost('updateTelegramChatId')
-            ?: $this->actionPost('updateTelegram');
+            ?: $this->actionPost('updateTelegram')
+            ?: $this->actionPost('updateTelegramTest');
     }
 
     /**
@@ -65,6 +66,18 @@ class UpdateTelegram extends ControllerAbstract
         $this->action()->updateTelegram();
 
         $this->sessionMessage('success', __('profile-update-telegram.success'));
+
+        return redirect()->back();
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function updateTelegramTest(): RedirectResponse
+    {
+        $this->action()->updateTelegramTest();
+
+        $this->sessionMessage('success', __('profile-update-telegram-test.success'));
 
         return redirect()->back();
     }

@@ -35,4 +35,12 @@ class ActionFactory extends ActionFactoryAbstract
     {
         return $this->actionHandleTransaction(UpdateTelegramChatId::class);
     }
+
+    /**
+     * @return \App\Domains\User\Model\User
+     */
+    public function updateTelegramTest(): Model
+    {
+        return $this->actionHandle(UpdateTelegramTest::class);
+    }
 }

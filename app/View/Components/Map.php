@@ -58,7 +58,7 @@ class Map extends Component
         return $this->positions
             ->toBase()
             ->map($this->positionsJsonMap(...))
-            ->sortByDesc('date_at')
+            ->sortByDesc('date_utc_at')
             ->values()
             ->toJson();
     }
@@ -73,6 +73,7 @@ class Map extends Component
         return [
             'id' => $position->id,
             'date_at' => $position->date_at,
+            'date_utc_at' => $position->date_utc_at,
             'latitude' => $position->latitude,
             'longitude' => $position->longitude,
             'direction' => $position->direction,
@@ -96,6 +97,6 @@ class Map extends Component
      */
     protected function notificationsJson(): ?string
     {
-        return $this->notifications->map->only('id', 'type', 'date_at', 'latitude', 'longitude', 'config', 'alarm')->toJson();
+        return $this->notifications->map->only('id', 'type', 'date_at', 'date_utc_at', 'latitude', 'longitude', 'config', 'alarm')->toJson();
     }
 }

@@ -3,6 +3,7 @@
     'date_utc_at' => 'Enregistrement de la date (UTC)',
     'device' => 'Appareil',
     'direction' => 'Adresse',
+    'files' => 'Fichier journal',
     'format' => 'Format',
     'latitude' => 'Latitude',
     'line' => 'Ligne',

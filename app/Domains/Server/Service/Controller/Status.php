@@ -3,6 +3,8 @@
 namespace App\Domains\Server\Service\Controller;
 
 use stdClass;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection as CollectionGeneric;
 use App\Domains\Server\Model\Server as Model;
 use App\Domains\Server\Model\Collection\Server as Collection;
@@ -10,6 +12,16 @@ use App\Services\Server\Process as ServerProcess;
 
 class Status extends ControllerAbstract
 {
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
     /**
      * @return array
      */

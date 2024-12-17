@@ -3,6 +3,7 @@
     'date_utc_at' => 'Fecha Registro (UTC)',
     'device' => 'Dispositivo',
     'direction' => 'Dirección',
+    'files' => 'Ficheros de Log',
     'format' => 'Formato',
     'latitude' => 'Latitud',
     'line' => 'Línea',

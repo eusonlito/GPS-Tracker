@@ -2,8 +2,6 @@
 
 namespace App\Domains\Server\Service\Controller;
 
-use Illuminate\Http\Request;
-
 abstract class ControllerAbstract
 {
     /**
@@ -12,14 +10,5 @@ abstract class ControllerAbstract
     public static function new(): self
     {
         return new static(...func_get_args());
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request)
-    {
     }
 }
