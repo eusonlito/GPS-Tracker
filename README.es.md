@@ -16,6 +16,7 @@ Plataforma de código abierto para la gestión para dispositivos GPS desarrollad
 * **Concox** y **JimiLab**: Confirmado el modelo JM-LL01 mediante el protocolo GT06.
 * **Queclink**: Confirmado el modelo GV500MA mediante el protocolo Queclink.
 * **OsmAnd**: Mediante el protocolo HTTP OsmAnd.
+* **iTriangle / Aquila**: Mediante el protocolo Aquila.
 
 ### Características Principales
 
