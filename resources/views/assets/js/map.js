@@ -931,7 +931,6 @@ export default class {
         }
 
         trip.line = new L.Polyline(positions.map(this.getLatLng), this.setTripPositionsOptions(trip))
-            .on('click', (e) => this.setTripPositionsClick(trip))
             .addTo(trip.layer);
 
         return this;
@@ -972,30 +971,11 @@ export default class {
         return this;
     }
 
-    setTripPositionsClick(trip) {
-        const layers = this.getLayerTrips().getLayers();
-        let current;
-
-        if ((layers.length === 1) && (this.trips[trip.id]?.layer === layers[0])) {
-            current = this.trips[trip.id];
-        }
-
-        if (current && (current.id === trip.id)) {
-            this.setTripPositionsClickClose(trip);
-        } else {
-            this.setTripPositionsClickOpen(trip);
-        }
-
-        this.fitBounds();
-
-        return this;
-    }
-
-    setTripPositionsClickOpen(trip) {
+    setTripsIds(ids) {
         const layer = this.getLayerTrips();
 
         Object.values(this.trips).map(current => {
-            if (current.id === trip.id) {
+            if (ids.includes(current.id)) {
                 if (!layer.hasLayer(current.layer)) {
                     layer.addLayer(current.layer);
                 }
@@ -1004,11 +984,9 @@ export default class {
             }
         });
 
-        return this;
-    }
-
-    setTripPositionsClickClose(trip) {
-        this.setTrips(Object.values(this.trips));
+        if (ids.length) {
+            this.fitBounds();
+        }
 
         return this;
     }
