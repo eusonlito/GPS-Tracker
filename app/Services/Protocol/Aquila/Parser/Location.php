@@ -11,11 +11,11 @@ class Location extends ParserAbstract
      */
     public function resources(): array
     {
-        if ($this->bodyIsValid() === false) {
+        if ($this->messageIsValid() === false) {
             return [];
         }
 
-        $this->values = explode(',', substr($this->body, 2, -3));
+        $this->values = explode(',', substr($this->message, 2, -3));
 
         $this->addIfValid($this->resourceLocation());
 
@@ -25,15 +25,15 @@ class Location extends ParserAbstract
     /**
      * @return bool
      */
-    public function bodyIsValid(): bool
+    public function messageIsValid(): bool
     {
-        return (bool)preg_match($this->bodyIsValidRegExp(), $this->body);
+        return (bool)preg_match($this->messageIsValidRegExp(), $this->message);
     }
 
     /**
      * @return string
      */
-    protected function bodyIsValidRegExp(): string
+    protected function messageIsValidRegExp(): string
     {
         return '/^'
             .'\$\$[^,]*,'            //  0 - client

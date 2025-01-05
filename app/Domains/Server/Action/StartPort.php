@@ -147,16 +147,16 @@ class StartPort extends ActionAbstract
     }
 
     /**
-     * @param string $body
+     * @param string $message
      * @param array $data = []
      *
      * @return array
      */
-    protected function store(string $body, array $data = []): array
+    protected function store(string $message, array $data = []): array
     {
-        $this->logDebug($body);
+        $this->logDebug($message);
 
-        $resources = $this->protocol->resources($body, $data);
+        $resources = $this->protocol->resources($message, $data);
 
         if (empty($resources)) {
             return [];
@@ -170,13 +170,13 @@ class StartPort extends ActionAbstract
     }
 
     /**
-     * @param string $body
+     * @param string $message
      *
      * @return string
      */
-    protected function logContent(string $body): string
+    protected function logContent(string $message): string
     {
-        return '['.date('c').'] '.$body."\n";
+        return '['.date('c').'] '.$message."\n";
     }
 
     /**
@@ -186,7 +186,7 @@ class StartPort extends ActionAbstract
      */
     protected function save(ResourceAbstract $resource): void
     {
-        $this->log($resource->body());
+        $this->log($resource->message());
 
         if ($resource->format() === 'location') {
             $this->factory('Position')->action($this->saveData($resource))->create();
@@ -213,30 +213,30 @@ class StartPort extends ActionAbstract
     }
 
     /**
-     * @param string $body
+     * @param string $message
      *
      * @return void
      */
-    protected function logDebug(string $body): void
+    protected function logDebug(string $message): void
     {
         if ($this->data['debug']) {
-            $this->log($body, '-debug');
+            $this->log($message, '-debug');
         }
     }
 
     /**
-     * @param string $body
+     * @param string $message
      * @param string $suffix = ''
      *
      * @return void
      */
-    protected function log(string $body, string $suffix = ''): void
+    protected function log(string $message, string $suffix = ''): void
     {
         $file = $this->logFile($suffix);
 
         Directory::create($file, true);
 
-        file_put_contents($file, $this->logContent($body), LOCK_EX | FILE_APPEND);
+        file_put_contents($file, $this->logContent($message), LOCK_EX | FILE_APPEND);
     }
 
     /**

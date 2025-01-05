@@ -9,6 +9,7 @@
     'line' => 'שורה',
     'log' => 'יומן פרוטוקול :name',
     'longitude' => 'אורך גאוגרפי',
+    'messages' => 'הודעות',
     'meta-title' => 'שרתים > :title > מפענח',
     'response' => 'תשובה',
     'send' => 'שלח',

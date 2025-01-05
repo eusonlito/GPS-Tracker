@@ -85,7 +85,7 @@ class Location extends ParserAbstract
      */
     protected function trackEnd(): void
     {
-        $this->cache['body'] = $this->buffer->trackEnd();
+        $this->cache['message'] = $this->buffer->trackEnd();
     }
 
     /**
@@ -164,7 +164,7 @@ class Location extends ParserAbstract
     /**
      * @return string
      */
-    protected function body(): string
+    protected function message(): string
     {
         return $this->cache[__FUNCTION__];
     }

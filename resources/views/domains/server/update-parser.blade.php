@@ -49,6 +49,7 @@
                 <th class="w-1">{{ __('server-update-parser.date_utc_at') }}</th>
                 <th class="w-1">{{ __('server-update-parser.timezone') }}</th>
                 <th class="w-1">{{ __('server-update-parser.response') }}</th>
+                <th>{{ __('server-update-parser.messages') }}</th>
                 <th>{{ __('server-update-parser.line') }}</th>
             </tr>
         </thead>
@@ -84,7 +85,8 @@
 
                 <td>{{ $resource->response() }}</td>
 
-                <td class="text-left">{{ $resource->body() }}</td>
+                <td class="text-left">{{ $resource->message() }}</td>
+                <td class="text-left">{{ $each['line'] }}</td>
             </tr>
 
             @empty
@@ -107,6 +109,7 @@
 
                 <td></td>
 
+                <td class="text-left">{{ implode('<br />', $each['messages']) }}</td>
                 <td class="text-left">{{ $each['line'] }}</td>
             </tr>
 

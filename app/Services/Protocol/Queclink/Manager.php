@@ -37,13 +37,13 @@ class Manager extends ProtocolAbstract
     }
 
     /**
-     * @param string $body
+     * @param string $message
      *
      * @return array
      */
-    protected function bodies(string $body): array
+    public function messages(string $message): array
     {
-        preg_match_all('/\+[^\$]+\$/', $body, $matches);
+        preg_match_all('/\+[^\$]+\$/', hex2bin($message), $matches);
 
         return $matches[0];
     }

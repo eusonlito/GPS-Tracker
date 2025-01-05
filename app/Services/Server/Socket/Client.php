@@ -91,29 +91,7 @@ class Client
             return null;
         }
 
-        if ($this->readBufferIsBinary($buffer)) {
-            return bin2hex($buffer);
-        }
-
-        return trim($buffer);
-    }
-
-    /**
-     * @param string $buffer
-     *
-     * @return bool
-     */
-    protected function readBufferIsBinary(string $buffer): bool
-    {
-        $len = strlen($buffer);
-
-        for ($i = 0; $i < $len; $i++) {
-            if ((ord($buffer[$i]) < 32) || (ord($buffer[$i]) > 126)) {
-                return true;
-            }
-        }
-
-        return false;
+        return bin2hex($buffer);
     }
 
     /**
@@ -192,7 +170,7 @@ class Client
      */
     protected function readResourceMessageRead(ResourceAbstract $resource, DeviceMessageModel $message): void
     {
-        $message->response = $resource->body();
+        $message->response = $resource->message();
         $message->response_at = date('Y-m-d H:i:s');
 
         $message->save();

@@ -9,7 +9,7 @@ class Heartbeat extends ResourceAbstract
      */
     protected function attributesAvailable(): array
     {
-        return ['body', 'serial', 'data', 'response'];
+        return ['message', 'serial', 'data', 'response'];
     }
 
     /**
@@ -31,7 +31,7 @@ class Heartbeat extends ResourceAbstract
     /**
      * @return string
      */
-    public function body(): string
+    public function message(): string
     {
         return $this->attribute(__FUNCTION__);
     }

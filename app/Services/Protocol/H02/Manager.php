@@ -40,13 +40,13 @@ class Manager extends ProtocolAbstract
     }
 
     /**
-     * @param string $body
+     * @param string $message
      *
      * @return array
      */
-    protected function bodies(string $body): array
+    public function messages(string $message): array
     {
-        return array_filter(array_map('trim', explode("\n", $body)));
+        return array_filter(array_map('trim', explode("\n", hex2bin($message))));
     }
 
     /**

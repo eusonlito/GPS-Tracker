@@ -15,7 +15,7 @@ class LocationGpsModular extends ParserAbstract
     {
         $this->values = [];
 
-        if ($this->bodyIsValid() === false) {
+        if ($this->messageIsValid() === false) {
             return [];
         }
 
@@ -29,16 +29,16 @@ class LocationGpsModular extends ParserAbstract
     /**
      * @return bool
      */
-    public function bodyIsValid(): bool
+    public function messageIsValid(): bool
     {
         return ($this->data['serial'] ?? false)
-            && (bool)preg_match($this->bodyIsValidRegExp(), $this->body, $this->values);
+            && (bool)preg_match($this->messageIsValidRegExp(), $this->message, $this->values);
     }
 
     /**
      * @return string
      */
-    protected function bodyIsValidRegExp(): string
+    protected function messageIsValidRegExp(): string
     {
         return '/^'
             .'(7979)'        //  1 - start
@@ -60,7 +60,7 @@ class LocationGpsModular extends ParserAbstract
      */
     protected function modules(): void
     {
-        $buffer = new BufferByte(substr($this->body, 10, -8));
+        $buffer = new BufferByte(substr($this->message, 10, -8));
 
         while ($buffer->length() > 6) {
             $type = $buffer->string(2);

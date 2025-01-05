@@ -9,7 +9,7 @@ class Command extends ResourceAbstract
      */
     protected function attributesAvailable(): array
     {
-        return ['body', 'serial', 'type', 'payload', 'data', 'response'];
+        return ['message', 'serial', 'type', 'payload', 'data', 'response'];
     }
 
     /**
@@ -32,7 +32,7 @@ class Command extends ResourceAbstract
     /**
      * @return string
      */
-    public function body(): string
+    public function message(): string
     {
         return $this->attribute(__FUNCTION__);
     }

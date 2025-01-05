@@ -24,11 +24,11 @@ abstract class ProtocolAbstract
     abstract public function server(int $port): ServerAbstract;
 
     /**
-     * @param string $body
+     * @param string $message
      *
      * @return array
      */
-    abstract protected function bodies(string $body): array;
+    abstract public function messages(string $message): array;
 
     /**
      * @return array
@@ -36,18 +36,18 @@ abstract class ProtocolAbstract
     abstract protected function parsers(): array;
 
     /**
-     * @param string $body
+     * @param string $message
      * @param array $data = []
      *
      * @return array
      */
-    public function resources(string $body, array $data = []): array
+    public function resources(string $message, array $data = []): array
     {
         $resources = [];
 
-        foreach ($this->bodies($body) as $body) {
+        foreach ($this->messages($message) as $message) {
             foreach ($this->parsers() as $parser) {
-                $valid = $parser::new($body, $data)->resources();
+                $valid = $parser::new($message, $data)->resources();
 
                 if (empty($valid)) {
                     continue;

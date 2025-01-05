@@ -44,12 +44,12 @@ class Manager extends ProtocolAbstract
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      *
-     * @param string $body
+     * @param string $message
      * @param array $data = []
      *
      * @return array
      */
-    public function resources(string $body, array $data = []): array
+    public function resources(string $message, array $data = []): array
     {
         return [];
     }
@@ -57,11 +57,11 @@ class Manager extends ProtocolAbstract
     /**
      * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
      *
-     * @param string $body
+     * @param string $message
      *
      * @return array
      */
-    protected function bodies(string $body): array
+    public function messages(string $message): array
     {
         return [];
     }
