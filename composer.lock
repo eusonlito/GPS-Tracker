@@ -6500,12 +6500,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "9d43c6a6d82c8ba892b1b79c2bc7ad5527f50e52"
+                "reference": "11d53730940603ceffdf7b28568bb3efab869070"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/9d43c6a6d82c8ba892b1b79c2bc7ad5527f50e52",
-                "reference": "9d43c6a6d82c8ba892b1b79c2bc7ad5527f50e52",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/11d53730940603ceffdf7b28568bb3efab869070",
+                "reference": "11d53730940603ceffdf7b28568bb3efab869070",
                 "shasum": ""
             },
             "require": {
@@ -6559,6 +6559,7 @@
             "keywords": [
                 "debug",
                 "debugbar",
+                "dev",
                 "laravel",
                 "profiler",
                 "webprofiler"
@@ -6577,7 +6578,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-30T09:17:16+00:00"
+            "time": "2025-01-03T14:22:34+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
