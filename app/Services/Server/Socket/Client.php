@@ -91,7 +91,7 @@ class Client
             return null;
         }
 
-        return bin2hex($buffer);
+        return bin2hex(trim($buffer));
     }
 
     /**

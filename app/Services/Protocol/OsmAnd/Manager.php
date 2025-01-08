@@ -41,7 +41,7 @@ class Manager extends ProtocolAbstract
      */
     public function messages(string $message): array
     {
-        if ($message = trim(explode("\n", $message)[0] ?? '')) {
+        if ($message = trim(explode("\n", hex2bin($message))[0] ?? '')) {
             return [$message];
         }
 
