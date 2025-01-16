@@ -21,6 +21,7 @@
     'preferences-units-decimal-dot' => 'Point',
     'preferences-units-distance' => 'Distance',
     'preferences-units-distance-kilometer' => 'Kilometers',
+    'preferences-units-distance-knot' => 'Knots',
     'preferences-units-distance-mile' => 'Miles',
     'preferences-units-money' => 'Currency',
     'preferences-units-money-dollar' => 'Dollar',

@@ -17,6 +17,7 @@
     'preferences-units-decimal-dot' => 'נקודה',
     'preferences-units-distance' => 'מרחק',
     'preferences-units-distance-kilometer' => 'קילומטרים',
+    'preferences-units-distance-knot' => 'קשרים',
     'preferences-units-distance-mile' => 'מיילים',
     'preferences-units-money' => 'מטבע',
     'preferences-units-money-dollar' => 'דולר',

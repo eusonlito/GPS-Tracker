@@ -87,6 +87,7 @@ class Update extends ControllerAbstract
     {
         return [
             'kilometer' => __('profile-update.preferences-units-distance-kilometer'),
+            'knot' => __('profile-update.preferences-units-distance-knot'),
             'mile' => __('profile-update.preferences-units-distance-mile'),
         ];
     }

@@ -60,6 +60,7 @@ abstract class CreateUpdateAbstract extends ControllerAbstract
     {
         return [
             'kilometer' => __('user-create.preferences-units-distance-kilometer'),
+            'knot' => __('user-create.preferences-units-distance-knot'),
             'mile' => __('user-create.preferences-units-distance-mile'),
         ];
     }

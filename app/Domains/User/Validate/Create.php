@@ -26,7 +26,7 @@ class Create extends ValidateAbstract
             'preferences' => ['bail', 'array'],
             'preferences.units' => ['bail', 'array'],
             'preferences.units.decimal' => ['bail', Rule::in([',', '.'])],
-            'preferences.units.distance' => ['bail', 'string', 'in:kilometer,mile'],
+            'preferences.units.distance' => ['bail', 'string', 'in:kilometer,knot,mile'],
             'preferences.units.money' => ['bail', 'string', 'in:euro,dollar'],
             'preferences.units.thousand' => ['bail', Rule::in([',', '.'])],
             'preferences.units.volume' => ['bail', 'in:liter,gallon'],
