@@ -180,7 +180,7 @@ trait Unit
 
         return match ($this->unitPreferences()['distance']) {
             'kilometer' => $value.' km',
-            'knot' => $value.' kn',
+            'knot' => $value.' nm',
             'mile' => $value.' mi',
             default => strval($value),
         };
@@ -198,7 +198,7 @@ trait Unit
 
         return match ($this->unitPreferences()['distance']) {
             'kilometer' => $value.' km',
-            'knot' => $value.' kn',
+            'knot' => $value.' nm',
             'mile' => $value.' mi',
             default => strval($value),
         };

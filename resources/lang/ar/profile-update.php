@@ -17,7 +17,7 @@
     'preferences-units-decimal-dot' => 'نقطة',
     'preferences-units-distance' => 'المسافة',
     'preferences-units-distance-kilometer' => 'كيلومترات',
-    'preferences-units-distance-knot' => 'عقدة',
+    'preferences-units-distance-knot' => 'ميل بحري',
     'preferences-units-distance-mile' => 'ميل',
     'preferences-units-money' => 'العملة',
     'preferences-units-money-dollar' => 'الدولار',

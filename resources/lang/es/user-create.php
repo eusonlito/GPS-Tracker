@@ -21,7 +21,7 @@
     'preferences-units-decimal-dot' => 'Punto',
     'preferences-units-distance' => 'Distancia',
     'preferences-units-distance-kilometer' => 'Kilómetros',
-    'preferences-units-distance-knot' => 'Nudos',
+    'preferences-units-distance-knot' => 'Millas Náuticas',
     'preferences-units-distance-mile' => 'Millas',
     'preferences-units-money' => 'Moneda',
     'preferences-units-money-dollar' => 'Dólar',
