@@ -1,0 +1,15 @@
+<?php return [
+    'amount_gross' => 'Valor Bruto',
+    'amount_net' => 'Valor Líquido',
+    'date_at' => 'Data',
+    'filter' => 'Filtrar...',
+    'mainteance' => 'Manutenção',
+    'meta-title' => 'Manutenções > Item > :title > Manutenções',
+    'quantity' => 'Quantidade',
+    'subtotal' => 'Subtotal',
+    'tax_amount' => 'ICMS',
+    'tax_percent' => 'ICMS %',
+    'total' => 'Total',
+    'vehicle' => 'Veículo',
+    'workshop' => 'Oficina',
+];

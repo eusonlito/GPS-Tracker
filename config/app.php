@@ -81,7 +81,7 @@ return [
     */
 
     'locale' => env('APP_LOCALE', 'en_US'),
-    'locales' => ['en_US', 'es_ES', 'fr_FR', 'he_IL', 'ar_AE'],
+    'locales' => ['en_US', 'es_ES', 'fr_FR', 'pt_BR', 'he_IL', 'ar_AE'],
 
     /*
     |--------------------------------------------------------------------------
