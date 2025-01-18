@@ -41,7 +41,7 @@ class Set extends ActionAbstract
      */
     protected function setLocale(): void
     {
-        app()->setLocale($this->row->code);
+        app()->setLocale($this->row->locale);
     }
 
     /**

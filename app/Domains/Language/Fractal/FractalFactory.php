@@ -16,9 +16,8 @@ class FractalFactory extends FractalAbstract
     {
         return [
             'id' => $row->id,
-            'name' => $row->name,
-            'code' => $row->code,
             'locale' => $row->locale,
+            'name' => $row->name,
             'rtl' => $row->rtl,
         ];
     }
@@ -32,9 +31,8 @@ class FractalFactory extends FractalAbstract
     {
         return [
             'id' => $row->id,
-            'name' => $row->name,
-            'code' => $row->code,
             'locale' => $row->locale,
+            'name' => $row->name,
             'rtl' => $row->rtl,
         ];
     }

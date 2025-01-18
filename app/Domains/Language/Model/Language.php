@@ -32,6 +32,7 @@ class Language extends ModelAbstract
      */
     protected $casts = [
         'enabled' => 'boolean',
+        'rtl' => 'boolean',
     ];
 
     /**

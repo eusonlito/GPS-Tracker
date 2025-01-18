@@ -7,12 +7,26 @@ use App\Domains\Language\Model\Language as Model;
 class Request extends ActionAbstract
 {
     /**
+     * @var string
+     */
+    protected string $acceptLanguage;
+
+    /**
      * @return void
      */
     public function handle(): void
     {
+        $this->acceptLanguage();
         $this->row();
         $this->set();
+    }
+
+    /**
+     * @return void
+     */
+    protected function acceptLanguage(): void
+    {
+        $this->acceptLanguage = strval($this->request->header('Accept-Language'));
     }
 
     /**
@@ -21,6 +35,7 @@ class Request extends ActionAbstract
     protected function row(): void
     {
         $this->row = $this->rowSession()
+            ?: $this->rowLocale()
             ?: $this->rowCode()
             ?: $this->rowDefault();
     }
@@ -44,11 +59,34 @@ class Request extends ActionAbstract
     /**
      * @return ?\App\Domains\Language\Model\Language
      */
+    protected function rowLocale(): ?Model
+    {
+        return Model::query()
+            ->selectSession()
+            ->byLocale($this->rowLocaleFromHeader())
+            ->first();
+    }
+
+    /**
+     * @return string
+     */
+    protected function rowLocaleFromHeader(): string
+    {
+        if (preg_match('/^[a-z]+\-[A-Z]+/', $this->acceptLanguage, $matches)) {
+            return str_replace('-', '_', $matches[0]);
+        }
+
+        return config('app.locale');
+    }
+
+    /**
+     * @return ?\App\Domains\Language\Model\Language
+     */
     protected function rowCode(): ?Model
     {
         return Model::query()
             ->selectSession()
-            ->byCode($this->rowCodeFromHeader())
+            ->byLocaleCode($this->rowCodeFromHeader())
             ->first();
     }
 
@@ -57,11 +95,11 @@ class Request extends ActionAbstract
      */
     protected function rowCodeFromHeader(): string
     {
-        if (preg_match('/^[a-zA-Z]+/', (string)$this->request->header('Accept-Language'), $matches)) {
+        if (preg_match('/^[a-zA-Z]+/', $this->acceptLanguage, $matches)) {
             return $matches[0];
         }
 
-        return config('app.locale');
+        return explode('_', config('app.locale'))[0];
     }
 
     /**

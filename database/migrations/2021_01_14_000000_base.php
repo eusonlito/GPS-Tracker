@@ -184,7 +184,6 @@ return new class() extends MigrationAbstract {
             $table->id();
 
             $table->string('name');
-            $table->string('code')->unique();
             $table->string('locale')->unique();
 
             $table->boolean('rtl')->default(0);

@@ -19,10 +19,9 @@ class Language extends FactoryAbstract
     {
         return [
             'name' => 'Language: '.($name = $this->faker->name),
-            'code' => str_slug($name),
             'locale' => preg_replace('/[^A-Za-z\s]/', '', $this->faker->name()),
-
             'enabled' => true,
+            'rtl' => false,
         ];
     }
 }
