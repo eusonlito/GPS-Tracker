@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domains\Device\Validate;
 
@@ -16,6 +18,8 @@ class Create extends ValidateAbstract
             'name' => ['bail', 'required', 'string'],
             'model' => ['bail', 'required', 'string'],
             'serial' => ['bail', 'required', 'string'],
+            'type' => ['bail', 'nullable', 'string'],
+            'information' => ['bail', 'nullable', 'json'],
             'phone_number' => ['bail', 'string'],
             'password' => ['bail', 'string'],
             'user_id' => ['bail', 'integer'],

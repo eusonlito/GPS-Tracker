@@ -16,6 +16,8 @@ class Create extends CreateUpdateAbstract
             'name' => $this->data['name'],
             'model' => $this->data['model'],
             'serial' => $this->data['serial'],
+            'type' => $this->data['type'],
+            'information' => $this->data['information'],
             'phone_number' => $this->data['phone_number'],
             'password' => $this->data['password'],
             'enabled' => $this->data['enabled'],
