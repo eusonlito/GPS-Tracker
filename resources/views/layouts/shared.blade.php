@@ -8,13 +8,13 @@
         @if ($device?->shared)
 
         <a href="{{ route('shared.device', $device->code) }}" class="logo">
-            @svg('build/images/logo.svg')
+            <img src="/build/images/logo.png" alt="Logo">
         </a>
 
         @else
 
         <div class="logo">
-            @svg('build/images/logo.svg')
+        <img src="/build/images/logo.png" alt="Logo">
         </div>
 
         @endif

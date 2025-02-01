@@ -2,7 +2,7 @@
     <ul>
         <li>
             <a href="{{ route('dashboard.index') }}" class="logo {{ str_starts_with($ROUTE, 'dashboard.') ? 'active' : '' }}">
-                @svg('/build/images/logo.svg')
+                <img src="/build/images/logo.png" alt="Logo">
             </a>
         </li>
 

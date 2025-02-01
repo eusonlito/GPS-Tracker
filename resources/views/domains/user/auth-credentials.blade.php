@@ -4,7 +4,7 @@
 
 <div class="flex flex-col h-screen justify-center items-center">
     <div class="logo">
-        @svg('build/images/logo.svg')
+        <img src="/build/images/logo.png" alt="Logo">
     </div>
 
     <div class="w-11/12 md:w-8/12 xl:w-2/5 bg-white bg-grey-lightest px-10 py-10 rounded shadow">
