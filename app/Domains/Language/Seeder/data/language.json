@@ -1,14 +1,14 @@
 [
     {
-        "locale": "es_ES",
-        "name": "Castellano",
+        "locale": "en_US",
+        "name": "English",
         "enabled": true,
         "rtl": false
     },
 
     {
-        "locale": "en_US",
-        "name": "English",
+        "locale": "es_ES",
+        "name": "Castellano",
         "enabled": true,
         "rtl": false
     },
