@@ -10,7 +10,7 @@ class Location extends ResourceAbstract
     protected function attributesAvailable(): array
     {
         return [
-            'body', 'serial', 'type', 'latitude', 'longitude', 'speed',
+            'message', 'serial', 'type', 'latitude', 'longitude', 'speed',
             'signal', 'direction', 'datetime', 'timezone', 'country', 'data', 'response',
         ];
     }
@@ -37,7 +37,7 @@ class Location extends ResourceAbstract
     /**
      * @return string
      */
-    public function body(): string
+    public function message(): string
     {
         return $this->attribute(__FUNCTION__);
     }

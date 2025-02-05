@@ -3,6 +3,7 @@
 namespace App\Services\Protocol;
 
 use App\Exceptions\UnexpectedValueException;
+use App\Services\Protocol\Aquila\Manager as AquilaManager;
 use App\Services\Protocol\DebugHttp\Manager as DebugHttpManager;
 use App\Services\Protocol\DebugSocket\Manager as DebugSocketManager;
 use App\Services\Protocol\GPS103\Manager as GPS103Manager;
@@ -20,6 +21,7 @@ class ProtocolFactory
     public static function list(): array
     {
         return [
+            'aquila' => AquilaManager::class,
             'debug-http' => DebugHttpManager::class,
             'debug-socket' => DebugSocketManager::class,
             'gps103' => GPS103Manager::class,

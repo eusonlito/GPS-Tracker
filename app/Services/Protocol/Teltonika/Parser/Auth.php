@@ -11,7 +11,7 @@ class Auth extends ParserAbstract
      */
     public function resources(): array
     {
-        if ($this->bodyIsValid() === false) {
+        if ($this->messageIsValid() === false) {
             return [];
         }
 
@@ -23,27 +23,27 @@ class Auth extends ParserAbstract
     /**
      * @return bool
      */
-    public function bodyIsValid(): bool
+    public function messageIsValid(): bool
     {
-        return $this->bodyIsValidLength()
-            && $this->bodyIsValidSerial();
+        return $this->messageIsValidLength()
+            && $this->messageIsValidSerial();
     }
 
     /**
      * @return bool
      */
-    public function bodyIsValidLength(): bool
+    public function messageIsValidLength(): bool
     {
-        return strlen($this->body) === 34;
+        return strlen($this->message) === 34;
     }
 
     /**
      * @return bool
      */
-    protected function bodyIsValidSerial(): bool
+    protected function messageIsValidSerial(): bool
     {
-        $length = hexdec(substr($this->body, 0, 4));
-        $imei = hex2bin(substr($this->body, 4, $length * 2));
+        $length = hexdec(substr($this->message, 0, 4));
+        $imei = hex2bin(substr($this->message, 4, $length * 2));
 
         if (strlen($imei) !== $length) {
             return false;

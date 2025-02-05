@@ -22,7 +22,7 @@ abstract class ResourceAbstract
     /**
      * @return string
      */
-    abstract public function body(): string;
+    abstract public function message(): string;
 
     /**
      * @return string

@@ -35,14 +35,14 @@ class Manager extends ProtocolAbstract
     }
 
     /**
-     * @param string $body
+     * @param string $message
      *
      * @return array
      */
-    protected function bodies(string $body): array
+    public function messages(string $message): array
     {
-        if ($body = trim(explode("\n", $body)[0] ?? '')) {
-            return [$body];
+        if ($message = trim(explode("\n", hex2bin($message))[0] ?? '')) {
+            return [$message];
         }
 
         return [];

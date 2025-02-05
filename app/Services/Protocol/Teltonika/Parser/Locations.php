@@ -12,7 +12,7 @@ class Locations extends ParserAbstract
      */
     public function resources(): array
     {
-        if ($this->bodyIsValid() === false) {
+        if ($this->messageIsValid() === false) {
             return [];
         }
 
@@ -24,24 +24,24 @@ class Locations extends ParserAbstract
     /**
      * @return bool
      */
-    public function bodyIsValid(): bool
+    public function messageIsValid(): bool
     {
-        return $this->bodyIsValidStart()
-            && $this->bodyIsValidSerial();
+        return $this->messageIsValidStart()
+            && $this->messageIsValidSerial();
     }
 
     /**
      * @return bool
      */
-    public function bodyIsValidStart(): bool
+    public function messageIsValidStart(): bool
     {
-        return hexdec(substr($this->body, 0, 8)) === 0;
+        return hexdec(substr($this->message, 0, 8)) === 0;
     }
 
     /**
      * @return bool
      */
-    protected function bodyIsValidSerial(): bool
+    protected function messageIsValidSerial(): bool
     {
         return empty($this->data['serial']) === false;
     }
@@ -51,8 +51,8 @@ class Locations extends ParserAbstract
      */
     protected function read(): void
     {
-        $length = hexdec(substr($this->body, 8, 8));
-        $buffer = new BufferByte(substr($this->body, 16, $length * 2));
+        $length = hexdec(substr($this->message, 8, 8));
+        $buffer = new BufferByte(substr($this->message, 16, $length * 2));
 
         $codec = $buffer->string(1);
 

@@ -38,13 +38,13 @@ class Manager extends ProtocolAbstract
     }
 
     /**
-     * @param string $body
+     * @param string $message
      *
      * @return array
      */
-    protected function bodies(string $body): array
+    public function messages(string $message): array
     {
-        return [$body];
+        return [$message];
     }
 
     /**

@@ -22,7 +22,7 @@ class App extends ServiceProvider
      */
     protected function locale(): void
     {
-        $locale = config('app.locale_system')[config('app.locale')];
+        $locale = config('app.locale');
 
         setlocale(LC_COLLATE, $locale);
         setlocale(LC_CTYPE, $locale);

@@ -13,7 +13,7 @@ class Auth extends ParserAbstract
     {
         $this->values = [];
 
-        if ($this->bodyIsValid() === false) {
+        if ($this->messageIsValid() === false) {
             return [];
         }
 
@@ -25,15 +25,15 @@ class Auth extends ParserAbstract
     /**
      * @return bool
      */
-    public function bodyIsValid(): bool
+    public function messageIsValid(): bool
     {
-        return (bool)preg_match($this->bodyIsValidRegExp(), $this->body, $this->values);
+        return (bool)preg_match($this->messageIsValidRegExp(), $this->message, $this->values);
     }
 
     /**
      * @return string
      */
-    protected function bodyIsValidRegExp(): string
+    protected function messageIsValidRegExp(): string
     {
         return '/^'
             .'(7878)'        // 1 - start

@@ -11,7 +11,7 @@ class Location extends ParserAbstract
      */
     public function resources(): array
     {
-        if ($this->bodyIsValid() === false) {
+        if ($this->messageIsValid() === false) {
             return [];
         }
 
@@ -23,9 +23,9 @@ class Location extends ParserAbstract
     /**
      * @return bool
      */
-    public function bodyIsValid(): bool
+    public function messageIsValid(): bool
     {
-        if (preg_match($this->bodyIsValidRegExp(), $this->body, $matches) === 0) {
+        if (preg_match($this->messageIsValidRegExp(), $this->message, $matches) === 0) {
             return false;
         }
 
@@ -42,7 +42,7 @@ class Location extends ParserAbstract
     /**
      * @return string
      */
-    protected function bodyIsValidRegExp(): string
+    protected function messageIsValidRegExp(): string
     {
         return '/(GET|POST) \/[^\?]*\?(.*) HTTP\/1/';
     }

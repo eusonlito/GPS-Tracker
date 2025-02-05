@@ -21,6 +21,7 @@
         <table id="map-trip-list-table-{{ $id }}" class="table table-report font-medium text-center whitespace-nowrap text-xs" data-map-list-table data-table-sort>
             <thead>
                 <tr>
+                    <th class="w-1"><input type="checkbox" data-checkall="#map-trip-list-table-{{ $id }} > tbody" checked /></th>
                     <th class="w-1">{{ __('map-trip.start_at') }}</th>
                     <th class="w-1">{{ __('map-trip.distance') }}</th>
                     <th class="w-1">{{ __('map-trip.time') }}</th>
@@ -34,7 +35,8 @@
 
             <tbody>
                 <tr class="hidden">
-                    <td class="w-1 cursor-pointer"></td>
+                    <td class="w-1"><input type="checkbox" name="selected[]" value="" checked /></td>
+                    <td class="w-1"></td>
                     <td class="w-1"></td>
                     <td class="w-1"></td>
                     <td class="w-1 {{ $deviceShow ? '' : 'hidden' }}"></td>

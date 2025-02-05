@@ -17,7 +17,7 @@ class LocationBinary extends ParserAbstract
      */
     public function resources(): array
     {
-        if ($this->bodyIsValid() === false) {
+        if ($this->messageIsValid() === false) {
             return [];
         }
 
@@ -40,27 +40,27 @@ class LocationBinary extends ParserAbstract
     /**
      * @return bool
      */
-    public function bodyIsValid(): bool
+    public function messageIsValid(): bool
     {
-        return $this->bodyIsValidLength()
-            && $this->bodyIsValidStart();
+        return $this->messageIsValidLength()
+            && $this->messageIsValidStart();
     }
 
     /**
      * @return bool
      */
-    protected function bodyIsValidLength(): bool
+    protected function messageIsValidLength(): bool
     {
-        return (strlen($this->body) === 84)
-            || (strlen($this->body) === 90);
+        return (strlen($this->message) === 84)
+            || (strlen($this->message) === 90);
     }
 
     /**
      * @return bool
      */
-    protected function bodyIsValidStart(): bool
+    protected function messageIsValidStart(): bool
     {
-        return str_starts_with($this->body, '24');
+        return str_starts_with($this->message, '24');
     }
 
     /**
@@ -68,7 +68,7 @@ class LocationBinary extends ParserAbstract
      */
     protected function setBuffer(): void
     {
-        $this->buffer = new BufferByte($this->body);
+        $this->buffer = new BufferByte($this->message);
     }
 
     /**
@@ -185,9 +185,9 @@ class LocationBinary extends ParserAbstract
     /**
      * @return string
      */
-    protected function body(): string
+    protected function message(): string
     {
-        return $this->body;
+        return $this->message;
     }
 
     /**

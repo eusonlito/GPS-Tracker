@@ -28,7 +28,7 @@ class Update extends ValidateAbstract
             'preferences' => ['bail', 'required', 'array'],
             'preferences.units' => ['bail', 'required', 'array'],
             'preferences.units.decimal' => ['bail', 'required', Rule::in([',', '.'])],
-            'preferences.units.distance' => ['bail', 'required', 'in:kilometer,mile'],
+            'preferences.units.distance' => ['bail', 'required', 'in:kilometer,knot,mile'],
             'preferences.units.money' => ['bail', 'string', 'in:euro,dollar'],
             'preferences.units.thousand' => ['bail', 'required', Rule::in([',', '.'])],
             'preferences.units.volume' => ['bail', 'required', 'in:liter,gallon'],

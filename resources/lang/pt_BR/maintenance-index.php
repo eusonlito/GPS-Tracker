@@ -1,0 +1,16 @@
+<?php return [
+    'amount' => 'Valor',
+    'create' => 'Criar',
+    'date_at' => 'Data',
+    'distance' => 'Distância',
+    'distance_next' => 'Próxima Distância',
+    'end-at' => 'Fim',
+    'meta-title' => 'Manutenções',
+    'name' => 'Tarefa',
+    'search' => 'Buscar',
+    'send' => 'Enviar',
+    'start-at' => 'Início',
+    'user' => 'Usuário',
+    'vehicle' => 'Veículo',
+    'workshop' => 'Oficina',
+];

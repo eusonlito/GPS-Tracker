@@ -162,6 +162,7 @@ trait Unit
     public function unitDistance(float $value, int $round = 2): float
     {
         return round(match ($this->unitPreferences()['distance']) {
+            'knot' => $value * 0.539957,
             'mile' => $value * 0.621371,
             default => $value,
         } / 1000, $round);
@@ -179,6 +180,7 @@ trait Unit
 
         return match ($this->unitPreferences()['distance']) {
             'kilometer' => $value.' km',
+            'knot' => $value.' nm',
             'mile' => $value.' mi',
             default => strval($value),
         };
@@ -196,6 +198,7 @@ trait Unit
 
         return match ($this->unitPreferences()['distance']) {
             'kilometer' => $value.' km',
+            'knot' => $value.' nm',
             'mile' => $value.' mi',
             default => strval($value),
         };
@@ -210,6 +213,7 @@ trait Unit
     public function unitSpeed(float $value, int $round = 2): float
     {
         return round(match ($this->unitPreferences()['distance']) {
+            'knot' => $value * 0.539957,
             'mile' => $value * 0.621371,
             default => $value,
         }, $round);
@@ -227,6 +231,7 @@ trait Unit
 
         return match ($this->unitPreferences()['distance']) {
             'kilometer' => $value.' km/h',
+            'knot' => $value.' kn',
             'mile' => $value.' mi/h',
             default => strval($value),
         };
@@ -244,6 +249,7 @@ trait Unit
 
         return match ($this->unitPreferences()['distance']) {
             'kilometer' => $value.' km/h',
+            'knot' => $value.' kn',
             'mile' => $value.' mi/h',
             default => strval($value),
         };

@@ -11,11 +11,11 @@ class Auth extends ParserAbstract
      */
     public function resources(): array
     {
-        if ($this->bodyIsValid() === false) {
+        if ($this->messageIsValid() === false) {
             return [];
         }
 
-        $this->values = explode(',', $this->body);
+        $this->values = explode(',', $this->message);
 
         $this->addIfValid($this->resourceAuth());
 
@@ -25,15 +25,15 @@ class Auth extends ParserAbstract
     /**
      * @return bool
      */
-    public function bodyIsValid(): bool
+    public function messageIsValid(): bool
     {
-        return (bool)preg_match($this->bodyIsValidRegExp(), $this->body);
+        return (bool)preg_match($this->messageIsValidRegExp(), $this->message);
     }
 
     /**
      * @return string
      */
-    protected function bodyIsValidRegExp(): string
+    protected function messageIsValidRegExp(): string
     {
         return '/^\#\#,'
             .'imei:[0-9]+,' // 1 - serial

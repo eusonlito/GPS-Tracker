@@ -80,15 +80,8 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
-    'locales' => ['en', 'es', 'fr', 'he', 'ar'],
-    'locale_system' => [
-        'en' => 'en_US.UTF-8',
-        'es' => 'es_ES.UTF-8',
-        'fr' => 'fr_FR.UTF-8',
-        'he' => 'he_IL.UTF-8',
-        'ar' => 'ar_AE.UTF-8',
-    ],
+    'locale' => env('APP_LOCALE', 'en_US'),
+    'locales' => ['en_US', 'es_ES', 'fr_FR', 'pt_BR', 'he_IL', 'ar_AE'],
 
     /*
     |--------------------------------------------------------------------------
@@ -101,7 +94,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'en_US',
 
     /*
     |--------------------------------------------------------------------------

@@ -87,6 +87,7 @@ class Parse extends ActionAbstract
 
         $this->parsed[] = [
             'line' => $line,
+            'messages' => $this->protocol->messages($line),
             'date_at' => str_replace(['[', ']'], '', $date_at),
             'resources' => $resources,
             'device' => $this->lineDevice($resources),

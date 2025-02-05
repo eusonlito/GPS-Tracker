@@ -81,13 +81,13 @@ class LogRead extends ActionAbstract
     }
 
     /**
-     * @param string $body
+     * @param string $message
      *
      * @return void
      */
-    protected function store(string $body): void
+    protected function store(string $message): void
     {
-        foreach ($this->protocol->resources($body, $this->resourceData) as $resource) {
+        foreach ($this->protocol->resources($message, $this->resourceData) as $resource) {
             $this->save($resource);
         }
     }

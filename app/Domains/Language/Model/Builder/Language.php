@@ -7,13 +7,23 @@ use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 class Language extends BuilderAbstract
 {
     /**
+     * @param string $locale
+     *
+     * @return self
+     */
+    public function byLocale(string $locale): self
+    {
+        return $this->where('locale', $locale);
+    }
+
+    /**
      * @param string $code
      *
      * @return self
      */
-    public function byCode(string $code): self
+    public function byLocaleCode(string $code): self
     {
-        return $this->where('code', $code);
+        return $this->whereLike('locale', $code.'%');
     }
 
     /**
@@ -21,7 +31,7 @@ class Language extends BuilderAbstract
      */
     public function list(): self
     {
-        return $this->orderByRaw('IF (`code` = ?, TRUE, FALSE) DESC', config('app.locale'))
+        return $this->orderByRaw('IF (`locale` = ?, TRUE, FALSE) DESC', config('app.locale'))
             ->orderBy('name', 'ASC');
     }
 
@@ -30,7 +40,7 @@ class Language extends BuilderAbstract
      */
     public function selectSession(): self
     {
-        return $this->select('id', 'code', 'name', 'locale');
+        return $this->select('id', 'name', 'locale');
     }
 
     /**
@@ -48,6 +58,6 @@ class Language extends BuilderAbstract
      */
     public function whereDefault(): self
     {
-        return $this->where($this->addTable('code'), config('app.locale'));
+        return $this->where($this->addTable('locale'), config('app.locale'));
     }
 }

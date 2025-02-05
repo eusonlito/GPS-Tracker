@@ -1,0 +1,18 @@
+<?php return [
+    'command' => 'Comando',
+    'cpu' => 'CPU',
+    'debug' => 'Debug',
+    'enabled' => 'Ativo',
+    'log' => 'Log',
+    'memory' => 'Memória',
+    'meta-title' => 'Servidores > Estado',
+    'owner' => 'Proprietário',
+    'pid' => 'PID',
+    'port' => 'Porta',
+    'protocol' => 'Protocolo',
+    'restart' => 'Iniciar/Reiniciar',
+    'start-success' => 'Os servidores foram iniciados corretamente',
+    'started' => 'Início',
+    'stop' => 'Parar',
+    'stop-success' => 'Os servidores foram parados corretamente',
+];

@@ -60,11 +60,11 @@ class Client
             return null;
         }
 
-        if (($buffer = fread($this->client->socket, 1024)) === false) {
+        if (($buffer = fread($this->client->socket, 2048)) === false) {
             return null;
         }
 
-        return trim($buffer);
+        return bin2hex($buffer);
     }
 
     /**

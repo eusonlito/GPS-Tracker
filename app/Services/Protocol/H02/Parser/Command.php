@@ -11,11 +11,11 @@ class Command extends ParserAbstract
      */
     public function resources(): array
     {
-        if ($this->bodyIsValid() === false) {
+        if ($this->messageIsValid() === false) {
             return [];
         }
 
-        $this->values = explode(',', substr($this->body, 1, -1));
+        $this->values = explode(',', substr($this->message, 1, -1));
 
         $this->addIfValid($this->resourceCommand());
 
@@ -25,15 +25,15 @@ class Command extends ParserAbstract
     /**
      * @return bool
      */
-    public function bodyIsValid(): bool
+    public function messageIsValid(): bool
     {
-        return (bool)preg_match($this->bodyIsValidRegExp(), $this->body);
+        return (bool)preg_match($this->messageIsValidRegExp(), $this->message);
     }
 
     /**
      * @return string
      */
-    protected function bodyIsValidRegExp(): string
+    protected function messageIsValidRegExp(): string
     {
         return '/^'
             .'\*[A-Z]{2},' // 0 - maker

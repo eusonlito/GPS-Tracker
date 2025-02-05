@@ -35,12 +35,12 @@ abstract class ParserAbstract
     }
 
     /**
-     * @param string $body
+     * @param string $message
      * @param array $data = []
      *
      * @return self
      */
-    public function __construct(protected string $body, protected array $data = [])
+    public function __construct(protected string $message, protected array $data = [])
     {
     }
 
@@ -76,7 +76,7 @@ abstract class ParserAbstract
     protected function resourceAuth(): ResourceAuth
     {
         return new ResourceAuth([
-            'body' => $this->body(),
+            'message' => $this->message(),
             'serial' => $this->serial(),
             'response' => $this->response(),
             'data' => $this->data(),
@@ -89,7 +89,7 @@ abstract class ParserAbstract
     protected function resourceCommand(): ResourceCommand
     {
         return new ResourceCommand([
-            'body' => $this->body(),
+            'message' => $this->message(),
             'serial' => $this->serial(),
             'type' => $this->type(),
             'payload' => $this->payload(),
@@ -104,7 +104,7 @@ abstract class ParserAbstract
     protected function resourceHeartbeat(): ResourceHeartbeat
     {
         return new ResourceHeartbeat([
-            'body' => $this->body(),
+            'message' => $this->message(),
             'serial' => $this->serial(),
             'data' => $this->data(),
             'response' => $this->response(),
@@ -117,7 +117,7 @@ abstract class ParserAbstract
     protected function resourceLocation(): ResourceLocation
     {
         return new ResourceLocation([
-            'body' => $this->body(),
+            'message' => $this->message(),
             'serial' => $this->serial(),
             'latitude' => $this->latitude(),
             'longitude' => $this->longitude(),
@@ -137,7 +137,7 @@ abstract class ParserAbstract
     protected function resourceSms(): ResourceSms
     {
         return new ResourceSms([
-            'body' => $this->body(),
+            'message' => $this->message(),
             'serial' => $this->serial(),
             'type' => $this->type(),
             'payload' => $this->payload(),
@@ -148,9 +148,9 @@ abstract class ParserAbstract
     /**
      * @return string
      */
-    protected function body(): string
+    protected function message(): string
     {
-        return $this->body;
+        return $this->message;
     }
 
     /**
