@@ -14,6 +14,8 @@ class App extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->locale();
+        $this->language();
         $this->configuration();
     }
 
@@ -24,14 +26,29 @@ class App extends ServiceProvider
     {
         $locale = config('app.locale');
 
-        setlocale(LC_COLLATE, $locale);
-        setlocale(LC_CTYPE, $locale);
-        setlocale(LC_MONETARY, $locale);
-        setlocale(LC_TIME, $locale);
-
-        if (defined('LC_MESSAGES')) {
-            setlocale(LC_MESSAGES, $locale);
+        if (str_contains($locale, '_')) {
+            return;
         }
+
+        $new = match ($locale) {
+            'en' => 'en_US',
+            'pt' => 'pt_BR',
+            'he' => 'he_IL',
+            'ar' => 'ar_AE',
+            default => $locale.'_'.strtoupper($locale),
+        };
+
+        trigger_error(sprintf('Configure APP_LOCALE as "%s", currently is "%s"', $new, $locale), E_USER_DEPRECATED);
+
+        config(['app.locale' => $new]);
+    }
+
+    /**
+     * @return void
+     */
+    protected function language(): void
+    {
+        $this->factory('Language')->action()->set();
     }
 
     /**
