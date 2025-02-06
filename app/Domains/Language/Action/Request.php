@@ -37,7 +37,8 @@ class Request extends ActionAbstract
         $this->row = $this->rowSession()
             ?: $this->rowLocale()
             ?: $this->rowCode()
-            ?: $this->rowDefault();
+            ?: $this->rowDefault()
+            ?: $this->rowFirst();
     }
 
     /**
@@ -110,6 +111,17 @@ class Request extends ActionAbstract
         return Model::query()
             ->selectSession()
             ->whereDefault()
+            ->first();
+    }
+
+    /**
+     * @return ?\App\Domains\Language\Model\Language
+     */
+    protected function rowFirst(): ?Model
+    {
+        return Model::query()
+            ->selectSession()
+            ->orderByFirst()
             ->first();
     }
 
