@@ -21,4 +21,17 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
     Route::any('/user/create', Create::class)->name('user.create');
     Route::any('/user/{id}', Update::class)->name('user.update');
     Route::get('/user/{id}/user-session', UpdateUserSession::class)->name('user.update.user-session');
+
+    // // Routes for managing user permissions
+    // Route::get('/user/{id}/permissions', [PermissionController::class, 'edit'])->name('permissions.edit');
+    // Route::post('/user/{id}/permissions', [PermissionController::class, 'update'])->name('permissions.update');
+
+     // Routes for managing user permissions with middleware
+    Route::get('/user/{id}/permissions', [PermissionController::class, 'edit'])
+        ->middleware('check.permission:view_users')
+        ->name('permissions.edit');
+
+    Route::post('/user/{id}/permissions', [PermissionController::class, 'update'])
+        ->middleware('check.permission:edit_users')
+        ->name('permissions.update');
 });

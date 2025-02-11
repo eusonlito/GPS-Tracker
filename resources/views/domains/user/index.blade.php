@@ -44,7 +44,14 @@
                 <td data-table-sort-value="{{ intval($row->enabled) }}">@status($row->enabled)</td>
                 <td class="w-1">
                     <a href="{{ route('user.update.user-session', $row->id) }}">@icon('key', 'w-4 h-4')</a>
+                    <a href="{{ route('permissions.edit', $row->id) }}" class="ml-2">@icon('settings', 'w-4 h-4')</a>
                 </td>
+                <td>
+                    @foreach ($row->permissions as $permission)
+                    <span class="badge badge-info">{{ $permission->name }}</span>
+                   @endforeach
+                </td>
+
             </tr>
 
             @endforeach

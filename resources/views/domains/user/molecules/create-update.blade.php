@@ -93,3 +93,18 @@
         </div>
     </div>
 </div>
+
+<div class="box p-5 mt-5">
+    <h2 class="text-lg font-semibold mb-3">{{ __('user-create.permissions') }}</h2>
+
+    @foreach ($permissions as $permission)
+        <div class="p-2">
+            <div class="form-check">
+                <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" class="form-check-switch" id="permission-{{ $permission->id }}" 
+                    {{ in_array($permission->id, $userPermissions ?? []) ? 'checked' : '' }}>
+                <label for="permission-{{ $permission->id }}" class="form-check-label">{{ __($permission->name) }}</label>
+            </div>
+        </div>
+    @endforeach
+</div>
+
