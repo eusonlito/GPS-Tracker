@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Domains\User\Controller;
+namespace App\Domains\User\ControllerApi;
 
 use App\Domains\User\Model\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 
-class RoleController extends ControllerAbstract
+class RoleController extends ControllerApiAbstract
 {
     public function index(Request $request)
     {
