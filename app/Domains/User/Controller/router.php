@@ -22,3 +22,6 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
     Route::any('/user/{id}', Update::class)->name('user.update');
     Route::get('/user/{id}/user-session', UpdateUserSession::class)->name('user.update.user-session');
 });
+Route::prefix('api')->group(function () {
+    Route::apiResource('roles', \App\Domains\User\Controller\RoleController::class);
+});
