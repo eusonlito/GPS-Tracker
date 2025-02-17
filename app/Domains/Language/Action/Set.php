@@ -59,7 +59,7 @@ class Set extends ActionAbstract
      */
     protected function available(): bool
     {
-        return app()->bound('configuration');
+        return app('configuration')->available();
     }
 
     /**
