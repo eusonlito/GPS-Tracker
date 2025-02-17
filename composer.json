@@ -139,8 +139,7 @@
         "setup": [
             "Composer\\Config::disableProcessTimeout",
             "echo n | cp -vip .env.example .env",
-            "@composer install --no-scripts --no-dev --optimize-autoloader --classmap-authoritative --ansi",
-            "@php artisan key:generate"
+            "@composer install --no-scripts --no-dev --optimize-autoloader --classmap-authoritative --ansi"
         ],
 
         "translation": [
