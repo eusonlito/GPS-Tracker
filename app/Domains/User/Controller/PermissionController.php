@@ -1,37 +1,68 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Domains\User\Controller;
 
+use Illuminate\Routing\Controller; 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Spatie\Permission\Models\Permission;
+use App\Domains\User\Model\Permission;
 
 class PermissionController extends Controller
 {
-    /**
-     * Hiển thị danh sách quyền của một người dùng.
-     */
-    public function edit($userId)
-{
-    $this->authorize('view_users'); // Kiểm tra quyền trước khi truy cập
+    public function index()
+    {
+        $permissions = Permission::all();
+        return view('permissions.index', compact('permissions'));
+    }
 
-    $user = User::findOrFail($userId);
-    $permissions = Permission::all();
-    $userPermissions = $user->permissions->pluck('id')->toArray();
+    public function create()
+    {
+        return view('permissions.create');
+    }
 
-    return view('user.molecules.create-update', compact('user', 'permissions', 'userPermissions'));
-}
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:permissions,name',
+        ]);
 
-public function update(Request $request, $userId)
-{
-    $this->authorize('edit_users'); // Kiểm tra quyền trước khi cập nhật
+        Permission::create([
+            'name' => $request->name,
+            'description' => $request->description ?? null, 
+        ]);
 
-    $user = User::findOrFail($userId);
-    $permissionIds = $request->input('permissions', []);
-    $permissions = Permission::whereIn('id', $permissionIds)->pluck('name')->toArray();
-    $user->syncPermissions($permissions);
+        return redirect()->route('permissions.index')->with('success', 'Permission created successfully.');
+    }
 
-    return redirect()->route('user.index')->with('success', 'Permissions updated successfully.');
-}
+
+    public function edit(Permission $permission)
+    {
+        return view('permissions.edit', compact('permission'));
+    }
+
+    public function update(Request $request, Permission $permission)
+    {
+        $request->validate([
+            'name' => 'required|unique:permissions,name,' . $permission->id,
+        ]);
+
+        $permission->update(['name' => $request->name,'description' => $request->description ?? null, ]);
+
+        return redirect()->route('permissions.index')->with('success', 'Permission updated successfully.');
+    }
+
+    public function destroy(Permission $permission)
+    {
+        try {
+            // Kiểm tra nếu có ràng buộc khóa ngoại (nếu có liên kết với role)
+            if ($permission->roles()->count() > 0) {
+                return redirect()->route('permissions.index')->with('error', 'Cannot delete permission assigned to roles.');
+            }
+
+            $permission->delete();
+            return redirect()->route('permissions.index')->with('success', 'Permission deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('permissions.index')->with('error', 'Error deleting permission: ' . $e->getMessage());
+        }
+    }
 
 }

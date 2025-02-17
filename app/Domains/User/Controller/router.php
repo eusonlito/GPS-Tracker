@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 namespace App\Domains\User\Controller;
+use App\Domains\User\Controller\PermissionController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -21,17 +22,14 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
     Route::any('/user/create', Create::class)->name('user.create');
     Route::any('/user/{id}', Update::class)->name('user.update');
     Route::get('/user/{id}/user-session', UpdateUserSession::class)->name('user.update.user-session');
-
-    // // Routes for managing user permissions
-    // Route::get('/user/{id}/permissions', [PermissionController::class, 'edit'])->name('permissions.edit');
-    // Route::post('/user/{id}/permissions', [PermissionController::class, 'update'])->name('permissions.update');
-
-     // Routes for managing user permissions with middleware
-    Route::get('/user/{id}/permissions', [PermissionController::class, 'edit'])
-        ->middleware('check.permission:view_users')
-        ->name('permissions.edit');
-
-    Route::post('/user/{id}/permissions', [PermissionController::class, 'update'])
-        ->middleware('check.permission:edit_users')
-        ->name('permissions.update');
 });
+
+Route::prefix('permissions')->group(function () {
+    Route::get('/', [PermissionController::class, 'index'])->name('permissions.index'); 
+    Route::get('/create', [PermissionController::class, 'create'])->name('permissions.create');
+    Route::post('/', [PermissionController::class, 'store'])->name('permissions.store');
+    Route::get('/{permission}/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
+    Route::put('/{permission}', [PermissionController::class, 'update'])->name('permissions.update');
+    Route::delete('/{permission}', [PermissionController::class, 'destroy'])->name('permissions.destroy');
+});
+

@@ -94,7 +94,7 @@
     </div>
 </div>
 
-<div class="box p-5 mt-5">
+<!-- <div class="box p-5 mt-5">
     <h2 class="text-lg font-semibold mb-3">{{ __('user-create.permissions') }}</h2>
 
     @foreach ($permissions as $permission)
@@ -106,5 +106,5 @@
             </div>
         </div>
     @endforeach
-</div>
+</div> -->
 

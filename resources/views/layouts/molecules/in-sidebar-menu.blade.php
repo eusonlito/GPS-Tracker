@@ -259,6 +259,34 @@
     </ul>
 </li>
 
+@php ($active = str_starts_with($ROUTE, 'permissions.'))
+
+<li>
+    <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
+        <div class="side-menu__icon">@icon('shield')</div>
+        <div class="side-menu__title">
+            {{ __('in-sidebar.permission') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+        </div>
+    </a>
+
+    <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
+        <li>
+            <a href="{{ route('permission.index') }}" class="side-menu {{ ($ROUTE === 'permissions.index') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('list')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.permission-index') }}</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('permission.create') }}" class="side-menu {{ ($ROUTE === 'permissions.create') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('plus-circle')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.permission-create') }}</div>
+            </a>
+        </li>
+    </ul>
+</li>
+
+
 @php ($active = str_starts_with($ROUTE, 'server.'))
 
 <li>

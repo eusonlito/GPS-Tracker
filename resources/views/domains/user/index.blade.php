@@ -24,8 +24,9 @@
                 <th>{{ __('user-index.updated_at') }}</th>
                 <th>{{ __('user-index.manager') }}</th>
                 <th>{{ __('user-index.admin') }}</th>
+                <!-- <th>{{ __('user-index.permissions') }}</th> -->
                 <th>{{ __('user-index.enabled') }}</th>
-                <th>{{ __('user-index.actions') }}</th>
+                <th>{{ __('user-index.actions') }}</th>                
             </tr>
         </thead>
 
@@ -39,18 +40,16 @@
                 <td class="text-left"><a href="{{ $link }}" class="block">{{ $row->email }}</a></td>
                 <td data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->created_at)</a></td>
                 <td data-table-sort-value="{{ $row->updated_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->updated_at)</a></td>
-                <td data-table-sort-value="{{ intval($row->admin) }}">@status($row->manager)</td>
-                <td data-table-sort-value="{{ intval($row->admin) }}">@status($row->admin)</td>
-                <td data-table-sort-value="{{ intval($row->enabled) }}">@status($row->enabled)</td>
-                <td class="w-1">
-                    <a href="{{ route('user.update.user-session', $row->id) }}">@icon('key', 'w-4 h-4')</a>
-                    <a href="{{ route('permissions.edit', $row->id) }}" class="ml-2">@icon('settings', 'w-4 h-4')</a>
-                </td>
+                <td data-table-sort-value="{{ intval($row->admin) }}">@status($row->manager)</td>   
                 <td>
-                    @foreach ($row->permissions as $permission)
-                    <span class="badge badge-info">{{ $permission->name }}</span>
-                   @endforeach
-                </td>
+                    @if ($row->permissions->isNotEmpty())
+                        {{ $row->permissions->pluck('name')->join(', ') }}
+                    @else
+                        <span class="text-muted">No permissions</span>
+                    @endif
+                </td>            
+                <td data-table-sort-value="{{ intval($row->enabled) }}">@status($row->enabled)</td>
+                <td>
 
             </tr>
 

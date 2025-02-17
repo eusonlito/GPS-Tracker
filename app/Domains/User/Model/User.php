@@ -15,13 +15,17 @@ use App\Domains\User\Model\Collection\User as Collection;
 use App\Domains\User\Model\Traits\Preferences as PreferencesTrait;
 use App\Domains\User\Test\Factory\User as TestFactory;
 use App\Domains\UserSession\Model\UserSession as UserSessionModel;
+use Spatie\Permission\Traits\HasRoles;
+// use App\Models\Permission;
+use Spatie\Permission\Models\Permission;
+
 
 class User extends ModelAbstract implements Authenticatable
 {
     use AuthenticatableTrait;
     use HasFactory;
     use PreferencesTrait;
-
+    use HasRoles;
     /**
      * @var string
      */
@@ -118,4 +122,17 @@ class User extends ModelAbstract implements Authenticatable
     {
         return $this->manager && $this->manager_mode;
     }
+
+    //  public function permissions()
+    // {
+    //     return $this->getAllPermissions(); // Lấy tất cả quyền của user
+    // }
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
 }
+
+
+
+
