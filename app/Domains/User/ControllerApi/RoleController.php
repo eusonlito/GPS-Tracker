@@ -18,7 +18,7 @@ class RoleController extends ControllerApiAbstract
                 ->orWhere('description', 'like', "%{$search}%");
         }
 
-        return response()->json($query->paginate(10));
+        return response()->json($query->get());
     }
 
     public function store(Request $request)
