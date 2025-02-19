@@ -11,7 +11,8 @@
     <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('map')</div>
         <div class="side-menu__title">
-            {{ __('in-sidebar.trip') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+            {{ __('in-sidebar.trip') }}
+            <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
         </div>
     </a>
 
@@ -52,7 +53,8 @@
     <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('battery-charging')</div>
         <div class="side-menu__title">
-            {{ __('in-sidebar.refuel') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+            {{ __('in-sidebar.refuel') }}
+            <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
         </div>
     </a>
 
@@ -86,7 +88,8 @@
     <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('tool')</div>
         <div class="side-menu__title">
-            {{ __('in-sidebar.maintenance') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+            {{ __('in-sidebar.maintenance') }}
+            <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
         </div>
     </a>
 
@@ -120,7 +123,8 @@
     <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('truck')</div>
         <div class="side-menu__title">
-            {{ __('in-sidebar.vehicle') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+            {{ __('in-sidebar.vehicle') }}
+            <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
         </div>
     </a>
 
@@ -154,7 +158,8 @@
     <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('cpu')</div>
         <div class="side-menu__title">
-            {{ __('in-sidebar.device') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+            {{ __('in-sidebar.device') }}
+            <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
         </div>
     </a>
 
@@ -188,7 +193,8 @@
     <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('bell')</div>
         <div class="side-menu__title">
-            {{ __('in-sidebar.alarm') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+            {{ __('in-sidebar.alarm') }}
+            <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
         </div>
     </a>
 
@@ -216,6 +222,51 @@
     </ul>
 </li>
 
+@php ($active = str_starts_with($ROUTE, 'role') || str_starts_with($ROUTE, 'feature'))
+
+<li>
+    <!-- Role Dropdown -->
+    <a href="javascript:;" class="side-menu {{ request()->routeIs('role.*') ? 'side-menu--active' : '' }}">
+        <div class="side-menu__icon">@icon('user-shield')</div>
+        <div class="side-menu__title">
+            {{ __('in-sidebar.role') }}
+            <div class="side-menu__sub-icon {{ request()->routeIs('role.*') ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+        </div>
+    </a>
+
+    <ul class="{{ request()->routeIs('role.index') || request()->routeIs('role.feature.*') ? 'side-menu__sub-open' : '' }}">
+        <!-- Role Index -->
+        <li>
+            <a href="{{ route('role.index') }}" class="side-menu {{ request()->routeIs('role.index') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('users')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.role-index') }}</div>
+            </a>
+        </li>
+
+        <!-- Feature Management -->
+        <li>
+            <a href="javascript:;" class="side-menu {{ request()->routeIs('role.feature.*') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('settings')</div>
+                <div class="side-menu__title">
+                    {{ __('in-sidebar.role-feature') }}
+                    <div class="side-menu__sub-icon {{ request()->routeIs('role.feature.*') ? 'transform rotate-180' : '' }}">
+                        @icon('chevron-down')
+                    </div>
+                </div>
+            </a>
+
+            <ul class="{{ request()->routeIs('role.feature.*') ? 'side-menu__sub-open' : '' }}">
+                <li>
+                    <a href="{{ route('role.feature.index') }}" class="side-menu {{ request()->routeIs('role.feature.index') ? 'side-menu--active' : '' }}">
+                        <div class="side-menu__icon">@icon('list')</div>
+                        <div class="side-menu__title">{{ __('in-sidebar.role-feature-index') }}</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</li>
+
 @if ($AUTH->adminMode())
 
 @php ($active = str_starts_with($ROUTE, 'user') || str_starts_with($ROUTE, 'ip-lock.'))
@@ -224,7 +275,8 @@
     <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('users')</div>
         <div class="side-menu__title">
-            {{ __('in-sidebar.user') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+            {{ __('in-sidebar.user') }}
+            <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
         </div>
     </a>
 
@@ -265,7 +317,8 @@
     <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('radio')</div>
         <div class="side-menu__title">
-            {{ __('in-sidebar.server') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+            {{ __('in-sidebar.server') }}
+            <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
         </div>
     </a>
 
@@ -299,7 +352,8 @@
     <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('map-pin')</div>
         <div class="side-menu__title">
-            {{ __('in-sidebar.location') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+            {{ __('in-sidebar.location') }}
+            <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
         </div>
     </a>
 
@@ -333,7 +387,8 @@
     <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
         <div class="side-menu__icon">@icon('activity')</div>
         <div class="side-menu__title">
-            {{ __('in-sidebar.monitor') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+            {{ __('in-sidebar.monitor') }}
+            <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
         </div>
     </a>
 
