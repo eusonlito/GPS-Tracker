@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Alarm\Service\Controller;
+namespace App\Domains\Role\Service\Controller;
 
 use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
 

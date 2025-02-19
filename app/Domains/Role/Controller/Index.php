@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Domains\Role\Controller;
 
@@ -21,9 +19,9 @@ class Index extends ControllerAbstract
             return $this->responseJson();
         }
 
-        $this->meta('title', __('Role-index.meta-title'));
+        $this->meta('title', __('role-index.meta-title'));
 
-        return $this->page('Role.index', $this->data());
+        return $this->page('role.index', $this->data());
     }
 
     /**
@@ -32,6 +30,7 @@ class Index extends ControllerAbstract
     protected function data(): array
     {
         return ControllerService::new($this->request, $this->auth)->data();
+        
     }
 
     /**

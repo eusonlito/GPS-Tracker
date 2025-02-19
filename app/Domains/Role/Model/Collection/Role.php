@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Alarm\Model\Collection;
+namespace App\Domains\Role\Model\Collection;
 
 use App\Domains\CoreApp\Model\Collection\CollectionAbstract;
 
-class Alarm extends CollectionAbstract
+class Role extends CollectionAbstract
 {
 }

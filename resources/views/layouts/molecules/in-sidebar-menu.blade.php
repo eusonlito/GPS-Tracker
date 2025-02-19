@@ -239,13 +239,6 @@
                 <div class="side-menu__title">{{ __('in-sidebar.role-index') }}</div>
             </a>
         </li>
-
-        <li>
-            <a href="{{ route('role.create') }}" class="side-menu {{ ($ROUTE === 'role.create') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('user-plus')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.role-create') }}</div>
-            </a>
-        </li>
     </ul>
 </li>
 
