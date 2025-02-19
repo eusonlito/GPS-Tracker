@@ -49,4 +49,10 @@
     'vehicle-create' => 'Create',
     'vehicle-index' => 'List',
     'vehicle-map' => 'Map',
+    'role' => 'Roles',
+    'role-index' => 'List',
+    'role-feature' => 'Features',
+    'role-feature-index' => 'List',
+    'role-feature-create' => 'Create',
+    'role-feature-update' => 'Update'
 ];
