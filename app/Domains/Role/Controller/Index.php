@@ -29,7 +29,7 @@ class Index extends ControllerAbstract
                 'description',
                 'created_at',
                 'highest_privilege_role'
-            ]);
+            ])->where('enterprise_id', auth()->user()->enterprise_id);
 
         if ($this->request->filled('search')) {
             $search = $this->request->get('search');
@@ -60,6 +60,7 @@ class Index extends ControllerAbstract
     {
         return Model::query()
             ->enabled()
+            ->where('enterprise_id', auth()->user()->enterprise_id)
             ->orderBy('id', 'DESC')
             ->get();
     }
