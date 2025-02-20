@@ -236,7 +236,7 @@
 
     <ul class="{{ request()->routeIs('role.index') || request()->routeIs('role.feature.*') ? 'side-menu__sub-open' : '' }}">
         <!-- Role Index -->
-        <li>
+        <li class="mt-2">
             <a href="{{ route('role.index') }}" class="side-menu {{ request()->routeIs('role.index') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('users')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.role-index') }}</div>
@@ -244,7 +244,7 @@
         </li>
 
         <!-- Feature Management -->
-        <li>
+        <li  class="mt-2 pl-4">
             <a href="javascript:;" class="side-menu {{ request()->routeIs('role.feature.*') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('settings')</div>
                 <div class="side-menu__title">
@@ -256,7 +256,7 @@
             </a>
 
             <ul class="{{ request()->routeIs('role.feature.*') ? 'side-menu__sub-open' : '' }}">
-                <li>
+                <li  class="mt-2 pl-4">
                     <a href="{{ route('role.feature.index') }}" class="side-menu {{ request()->routeIs('role.feature.index') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon">@icon('list')</div>
                         <div class="side-menu__title">{{ __('in-sidebar.role-feature-index') }}</div>

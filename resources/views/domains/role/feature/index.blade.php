@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th class="w-1">{{ __('role-feature-index.name') }}</th>
-                <th class="text-left w-1">{{ __('role-feature-index.description') }}</th>
+                <th class="w-1">{{ __('role-feature-index.description') }}</th>
                 <th class="w-1">{{ __('role-feature-index.created') }}</th>
             </tr>
         </thead>
