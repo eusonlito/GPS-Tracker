@@ -19,6 +19,7 @@ use App\Http\Middleware\RequestLogger;
 use App\Http\Middleware\Reset;
 use App\Http\Middleware\TrustProxies;
 use App\Domains\User\Middleware\CheckRoleFeatureAccess as UserCheckRoleFeatureAccess;
+use App\Domains\Enterprise\Middleware\CheckEnterpriseAccess as CheckEnterpriseAccess;
 
 class Kernel extends KernelVendor
 {
@@ -88,5 +89,6 @@ class Kernel extends KernelVendor
         'user.enabled' => UserEnabled::class,
         'user.manager-mode' => UserManagerMode::class,
         'user.request' => UserRequest::class,
+        'enterprise.access' => CheckEnterpriseAccess::class,
     ];
 }
