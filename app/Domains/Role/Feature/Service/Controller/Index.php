@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Role\Service\Controller;
+namespace App\Domains\Role\Feature\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Role\Model\Collection\Role as Collection;
-use App\Domains\Role\Model\Role as Model;
+use App\Domains\Role\Feature\Model\Collection\Feature as Collection;
+use App\Domains\Role\Feature\Model\Feature as Model;
 
 class Index extends ControllerAbstract
 {
@@ -41,12 +41,11 @@ class Index extends ControllerAbstract
     }
 
     /**
-     * @return \App\Domains\Role\Model\Collection\Role
+     * @return \App\Domains\Role\Feature\Model\Collection\Feature
      */
 
     public function list(): Collection
     {
-        return new Collection(Model::query()->byEnterprise()->get()->all());
+        return new Collection(Model::query()->get()->all());
     }
-    
 }
