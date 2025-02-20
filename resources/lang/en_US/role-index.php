@@ -1,16 +1,12 @@
-<?php return [
-    'create' => 'Create',
-    'created_at' => 'Created',
-    'enabled' => 'Enabled',
-    'filter' => 'Filter...',
+<?php
+
+return [
     'meta-title' => 'Roles',
-    'name' => 'Name',
-    'notifications' => 'Notifications',
-    'notifications-denied' => 'Notifications Disabled',
-    'notifications-enable' => 'Enable Notifications',
-    'notifications-granted' => 'Notifications Enabled',
-    'telegram' => 'Telegram',
-    'type' => 'Type',
-    'user' => 'User',
-    'vehicles' => 'Vehicles',
+    'Search' => 'Search',
+    'Search...' => 'Search...',
+    'ID' => 'ID',
+    'Name' => 'Name',
+    'Description' => 'Description',
+    'Created At' => 'Created At',
+    'No data available' => 'No data available',
 ];

@@ -1,18 +1,13 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace App\Domains\Role\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use App\Domains\Role\Model\Role as Model;
-use App\Domains\Role\Model\Collection\Role as Collection;
-use App\Domains\Role\Service\Controller\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
-    /**
-     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
-     */
     public function __invoke(): Response|JsonResponse
     {
         if ($this->request->wantsJson()) {
@@ -24,31 +19,48 @@ class Index extends ControllerAbstract
         return $this->page('role.index', $this->data());
     }
 
-    /**
-     * @return array
-     */
     protected function data(): array
     {
-        return ControllerService::new($this->request, $this->auth)->data();
-        
+        $query = Model::query()
+            ->select([
+                'id',
+                'name',
+                'enterprise_id',
+                'description',
+                'created_at',
+                'highest_privilege_role'
+            ]);
+
+        if ($this->request->filled('search')) {
+            $search = $this->request->get('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%");
+            });
+        }
+
+        if ($this->request->filled('enterprise_id')) {
+            $query->byEnterpriseId($this->request->get('enterprise_id'));
+        }
+
+        $query->orderBy('id', 'DESC');
+
+        return [
+            'roles' => $query->paginate($this->request->get('per_page', 10)),
+            'search' => $this->request->get('search')
+        ];
     }
 
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
     protected function responseJson(): JsonResponse
     {
         return $this->json($this->factory()->fractal('simple', $this->responseJsonList()));
     }
 
-    /**
-     * @return \App\Domains\Role\Model\Collection\Role
-     */
-    protected function responseJsonList(): Collection
+    protected function responseJsonList()
     {
         return Model::query()
-            ->byUserId($this->auth->id)
             ->enabled()
+            ->orderBy('id', 'DESC')
             ->get();
     }
 }

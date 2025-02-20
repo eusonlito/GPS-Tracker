@@ -50,6 +50,7 @@
     'vehicle-index' => 'List',
     'vehicle-map' => 'Map',
     'role' => 'Roles',
+    'role-create' => 'Create',
     'role-index' => 'List',
     'role-feature' => 'Features',
     'role-feature-index' => 'List',
