@@ -26,12 +26,6 @@
             </div>
         @endif
 
-        <!-- Chọn vehicle -->
-        <div class="flex-grow mt-2 lg:mt-0">
-            <x-select name="vehicle_id" :options="$vehicles" value="id" text="name"
-                placeholder="{{ __('permissions-index.vehicle') }}" data-change-submit>
-            </x-select>
-        </div>
 
         <!-- Bật thông báo -->
         <button type="button" class="sm:ml-4 mt-2 sm:mt-0 bg-white btn form-control-lg" data-notification-request
@@ -61,11 +55,11 @@
                 @endif
 
                 <th class="w-1">{{ __('ID') }}</th>
-                <!-- <th class="w-1">{{ __('Action') }}</th>
+                <th class="w-1">{{ __('Action') }}</th>
                 <th class="w-1">{{ __('Entity') }}</th>
                 <th class="w-1">{{ __('Scope') }}</th>
                 <th class="w-1">{{ __('Created At') }}</th>
-                <th class="w-1">{{ __('Actions') }}</th> -->
+                <th class="w-1">{{ __('Actions') }}</th>
             </tr>
         </thead>
 
@@ -78,31 +72,13 @@
                     @endif
 
                     <td class="w-1">{{ $permission->id }}</td>
-                    <!-- <td class="w-1">{{ $permission->action->name ?? '-' }}</td>
-                                    <td class="w-1">{{ $permission->entity->name ?? '-' }}</td>
-                                    <td class="w-1">{{ $permission->scope->name ?? '-' }}</td>
-                                    <td class="w-1" data-table-sort-value="{{ $permission->created_at }}">
-                                        @dateWithUserTimezone($permission->created_at)
-                                    </td>
-                                    <td class="w-1">
-                                        @can('edit', $permission)
-                                            <a href="{{ route('permissions.edit', $permission->id) }}" class="text-blue-500 hover:underline">
-                                                {{ __('Edit') }}
-                                            </a> |
-                                        @endcan
+                    <td class="w-1">{{ $permission->action->name ?? '-' }}</td>
+                    <td class="w-1">{{ $permission->entity->name ?? '-' }}</td>
+                    <td class="w-1">{{ $permission->scope->name ?? '-' }}</td>
+                    <td class="w-1" data-table-sort-value="{{ $permission->created_at }}">
+                        @dateWithUserTimezone($permission->created_at)
+                    </td>
 
-                                        @can('delete', $permission)
-                                            <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST"
-                                                class="inline-block">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" id="delete-btn-{{ $permission->id }}" class="text-red-500 hover:underline"
-                                                    onclick="return confirm('{{ __('Are you sure?') }}')">
-                                                    {{ __('Delete') }}
-                                                </button>
-                                            </form>
-                                        @endcan
-                                    </td> -->
                 </tr>
             @endforeach
         </tbody>

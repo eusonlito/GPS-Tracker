@@ -18,9 +18,7 @@ class Index extends ControllerAbstract
 
         $this->meta('title', __('permissions-index.meta-title'));
 
-        dd($this->data()); // Kiểm tra dữ liệu trước khi trả về view
-
-        return $this->page('domains.permissions.index', $this->data());
+        return $this->page('permissions.index', $this->data());
     }
 
     protected function data(): array
@@ -35,6 +33,13 @@ class Index extends ControllerAbstract
         }
 
         return $data;
+        // $data['users_multiple'] = true; // or your logic to determine this
+        // $data['user_empty'] = true; // or your logic to determine this
+        // $data['permissions'] = Model::query()
+        //     ->with(['role', 'action', 'entity', 'scope', 'user']) // Add user relationship
+        //     ->get();
+
+        // return $data;
     }
 
     protected function responseJson(): JsonResponse

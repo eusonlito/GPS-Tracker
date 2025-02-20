@@ -28,6 +28,10 @@ class Permission extends Model
         'created_at' => 'datetime',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(\App\Domains\User\Model\User::class, 'user_id');
+    }
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');
@@ -47,26 +51,9 @@ class Permission extends Model
     {
         return $this->belongsTo(Scope::class, 'scope_id');
     }
+    public function rolePermissions()
+    {
+        return $this->hasMany(RolePermission::class);
+    }
 }
 
-// namespace App\Domains\Permissions\Model;
-
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
-// use App\Domains\Permissions\Model\Traits\TypeFormat as TypeFormatTrait;
-// use App\Domains\CoreApp\Model\ModelAbstract;
-
-// class Permission extends ModelAbstract
-// {
-//     use HasFactory;
-//     use TypeFormatTrait;
-
-//     /**
-//      * @var string
-//      */
-//     protected $table = 'permissions';
-
-//     /**
-//      * @const string
-//      */
-//     public const TABLE = 'permissions';
-// }
