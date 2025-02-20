@@ -21,7 +21,7 @@ class Index extends ControllerAbstract
 
         $this->meta('title', __('role-index.meta-title'));
 
-        return $this->page('role.index', $this->data());
+        return $this->page('role.feature.index', $this->data());
     }
 
     /**
