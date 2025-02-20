@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'meta-title' => 'Roles',
     'Search' => 'Search',
     'Search...' => 'Search...',
     'ID' => 'ID',
