@@ -1,7 +1,6 @@
 @extends('layouts.in')
 
 @section('body')
-
 <!-- Form tìm kiếm -->
 <form method="GET" action="{{ route('role.index') }}" class="sm:flex sm:space-x-4">
     <div class="flex-grow mt-2 sm:mt-0">
@@ -18,12 +17,6 @@
             {{ __('Tìm kiếm') }}
         </button>
     </div>
-
-    <div class="sm:ml-4 mt-2 sm:mt-0 bg-white">
-        <a href="{{ route('role.create') }}" class="btn form-control-lg whitespace-nowrap">
-            {{ __('Thêm vai trò') }}
-        </a>
-    </div>
 </form>
 
 <!-- Bảng dữ liệu -->
@@ -35,7 +28,6 @@
                 <th class="text-left w-1">{{ __('Tên') }}</th>
                 <th class="text-left w-1">{{ __('Mô tả') }}</th>
                 <th class="w-1">{{ __('Ngày tạo') }}</th>
-                <th class="w-1">{{ __('Thao tác') }}</th>
             </tr>
         </thead>
 
@@ -48,15 +40,10 @@
                 <td data-table-sort-value="{{ $role->created_at }}">
                     {{ \Carbon\Carbon::parse($role->created_at)->format('d/m/Y H:i') }}
                 </td>
-                <td>
-                    <a href="{{ route('role.edit', $role->id) }}" class="btn btn-sm btn-primary">
-                        {{ __('Sửa') }}
-                    </a>
-                </td>
             </tr>
             @empty
             <tr>
-                <td colspan="5" class="text-center">
+                <td colspan="4" class="text-center">
                     {{ __('Không có dữ liệu') }}
                 </td>
             </tr>
@@ -67,7 +54,7 @@
 
 <!-- Phân trang -->
 <div class="mt-4">
-    {{ $roles->links() }}
+    {{ $roles->links('pagination::bootstrap-4') }}
 </div>
 
 @endsection
