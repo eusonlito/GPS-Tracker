@@ -13,4 +13,5 @@
     'generate' => 'Generate',
     'reset' => 'Reset',
     'show' => 'Show',
+    'Cancel' => 'Cancel',
 ];
