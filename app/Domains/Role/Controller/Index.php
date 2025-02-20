@@ -53,7 +53,9 @@ class Index extends ControllerAbstract
 
     protected function responseJson(): JsonResponse
     {
-        return $this->json($this->factory()->fractal('simple', $this->responseJsonList()));
+        return $this->json([
+            'data' => $this->responseJsonList()->map(fn($role) => $this->formatRole($role))->all()
+        ]);
     }
 
     protected function responseJsonList()
@@ -62,5 +64,20 @@ class Index extends ControllerAbstract
             ->enabled()
             ->orderBy('id', 'DESC')
             ->get();
+    }
+
+    /**
+     * Format role data manually
+     */
+    protected function formatRole(Model $role): array
+    {
+        return [
+            'id' => $role->id,
+            'name' => $role->name,
+            'enterprise_id' => $role->enterprise_id,
+            'description' => $role->description,
+            'highest_privilege_role' => $role->highest_privilege_role,
+            'created_at' => $role->created_at->toDateTimeString(),
+        ];
     }
 }
