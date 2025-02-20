@@ -24,8 +24,8 @@
             <tr>
                 <th class="text-left">{{ __('user-index.name') }}</th>
                 <th class="text-left">{{ __('user-index.email') }}</th>
-                <th>{{ __('user-index.created_at') }}</th>
-                <th>{{ __('user-index.updated_at') }}</th>
+                <!-- <th>{{ __('user-index.created_at') }}</th>
+                <th>{{ __('user-index.updated_at') }}</th> -->
                 <th>{{ __('user-index.manager') }}</th>
                 <th>{{ __('user-index.admin') }}</th>
                 <th>{{ __('user-index.enabled') }}</th>
@@ -41,10 +41,8 @@
             <tr>
                 <td class="text-left"><a href="{{ $link }}" class="block">{{ $row->name }}</a></td>
                 <td class="text-left"><a href="{{ $link }}" class="block">{{ $row->email }}</a></td>
-                <td data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}"
-                        class="block">@dateWithUserTimezone($row->created_at)</a></td>
-                <td data-table-sort-value="{{ $row->updated_at }}"><a href="{{ $link }}"
-                        class="block">@dateWithUserTimezone($row->updated_at)</a></td>
+                <!-- <td data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->created_at)</a></td>
+                <td data-table-sort-value="{{ $row->updated_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->updated_at)</a></td> -->
                 <td data-table-sort-value="{{ intval($row->admin) }}">@status($row->manager)</td>
                 <td data-table-sort-value="{{ intval($row->enabled) }}">@status($row->enabled)</td>
             </tr>

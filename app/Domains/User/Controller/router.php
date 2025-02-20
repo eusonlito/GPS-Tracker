@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domains\User\Controller;
 // use App\Domains\User\Controller\PermissionController;

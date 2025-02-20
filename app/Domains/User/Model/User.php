@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domains\User\Model;
 
@@ -15,10 +17,9 @@ use App\Domains\User\Model\Collection\User as Collection;
 use App\Domains\User\Model\Traits\Preferences as PreferencesTrait;
 use App\Domains\User\Test\Factory\User as TestFactory;
 use App\Domains\UserSession\Model\UserSession as UserSessionModel;
-use Spatie\Permission\Traits\HasRoles;
-// use App\Models\Permission;
-// use App\Domains\User\Model\Permission;
-
+use App\Domains\Role\Model\Role as RoleModel;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Domains\Enterprise\Model\Enterprise as EnterpriseModel;
 
 class User extends ModelAbstract implements Authenticatable
 {
@@ -123,17 +124,39 @@ class User extends ModelAbstract implements Authenticatable
         return $this->manager && $this->manager_mode;
     }
 
-    //  public function permissions()
-    // {
-    //     return $this->getAllPermissions(); // Lấy tất cả quyền của user
-    // }
+    // Thêm quan hệ đến Role
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(RoleModel::class, 'user_roles', 'user_id', 'role_id');
+    }
 
-    // public function permissions()
-    // {
-    //     return $this->belongsToMany(Permission::class);
-    // }
+    // Kiểm tra nếu user có vai trò cụ thể
+    public function hasRole(string $roleName): bool
+    {
+        return $this->roles->contains('name', $roleName);
+    }
+
+    public function hasRoleFeatureAccess(string $featureName): bool
+    {
+        return $this->roles()->whereHas('roleFeature.feature', function ($query) use ($featureName) {
+            $query->where('alias', $featureName);
+        })->exists();
+    }
+
+
+    /**
+     * Quan hệ: Một User chỉ thuộc một doanh nghiệp (One-to-Many)
+     */
+    public function enterprise(): BelongsTo
+    {
+        return $this->belongsTo(EnterpriseModel::class, 'enterprise_id');
+    }
+
+    /**
+     * Kiểm tra nếu User thuộc một Enterprise cụ thể
+     */
+    public function hasEnterprise(int $enterpriseId): bool
+    {
+        return $this->enterprise_id === $enterpriseId;
+    }
 }
-
-
-
-
