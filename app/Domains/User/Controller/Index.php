@@ -17,9 +17,5 @@ class Index extends ControllerAbstract
         return $this->page('user.index', [
             'list' => Model::query()->list()->get(),
         ]);
-        // return $this->page('user.index', [
-        // 'list' => Model::with('roles', 'permissions')->get(),
-// ]);
-
     }
 }

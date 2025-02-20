@@ -17,7 +17,7 @@ use App\Domains\User\Test\Factory\User as TestFactory;
 use App\Domains\UserSession\Model\UserSession as UserSessionModel;
 use Spatie\Permission\Traits\HasRoles;
 // use App\Models\Permission;
-use Spatie\Permission\Models\Permission;
+// use App\Domains\User\Model\Permission;
 
 
 class User extends ModelAbstract implements Authenticatable
@@ -127,10 +127,11 @@ class User extends ModelAbstract implements Authenticatable
     // {
     //     return $this->getAllPermissions(); // Lấy tất cả quyền của user
     // }
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
-    }
+
+    // public function permissions()
+    // {
+    //     return $this->belongsToMany(Permission::class);
+    // }
 }
 
 

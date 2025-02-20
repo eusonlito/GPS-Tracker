@@ -49,4 +49,7 @@
     'vehicle-create' => 'Create',
     'vehicle-index' => 'List',
     'vehicle-map' => 'Map',
+    'permissions' => 'Permissions',
+    'permissions-index' => 'Permission List',
+    'permissions-create' => 'Create Permission',
 ];

@@ -1,28 +1,89 @@
-<!-- @extends('layouts.app')
-
-@section('content')
-    <h2>Create Permission</h2>
-    <form action="{{ route('permissions.store') }}" method="POST">
-        @csrf
-        <input type="text" name="name" placeholder="Permission Name">
-        <button type="submit">Create</button>
-    </form>
-@endsection -->
-@extends('layouts.in')
+<!-- @extends('layouts.in')
 
 @section('title', 'Create Permission')
 
 @section('body')
-    <h2>Create New Permission</h2>
 
-    <form action="{{ route('permissions.store') }}" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="name" class="form-label">Permission Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+    <div class="tab-content">
+        <div class="tab-pane active" role="tabpanel">
+            <form action="{{ route('permissions.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="_action" value="create" />
+
+                @include ('domains.permissions.molecules.create-update')
+
+                <div class="box p-5 mt-5 text-right">
+                    <button type="submit" class="btn btn-success">Create</button>
+                    <a href="{{ route('permissions.index') }}" class="btn btn-secondary">Back</a>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <button type="submit" class="btn btn-success">Create</button>
-        <a href="{{ route('permissions.index') }}" class="btn btn-secondary">Back</a>
-    </form>
+@endsection -->
+
+
+<!-- 
+@extends('layouts.in')
+
+@section('content')
+    <div class="container">
+        <h2>Create Permission</h2>
+
+        <form action="{{ route('permissions.store') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label>Role</label>
+                <input type="number" name="role_id" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Action</label>
+                <input type="number" name="action_id" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Entity</label>
+                <input type="number" name="entity_id" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Enterprise (Optional)</label>
+                <input type="number" name="enterprise_id" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label>Scope</label>
+                <input type="number" name="scope_id" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Entity Record ID (Optional)</label>
+                <input type="number" name="entity_record_id" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+@endsection -->
+
+
+@extends('layouts.in')
+
+@section('content')
+    <div class="container">
+        <h2>Create Permission</h2>
+        <form action="{{ route('permissions.store') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label>Role ID</label>
+                <input type="number" name="role_id" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Action ID</label>
+                <input type="number" name="action_id" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
 @endsection
