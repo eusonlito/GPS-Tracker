@@ -23,8 +23,8 @@ class Create
     public function validate(): self
     {
         $validator = Validator::make($this->data, [
-            'name' => 'required|string|max:100',
-            'enterprise_id' => 'required|integer|exists:enterprises,id',
+            'name' => 'required|string|max:100|unique:roles,name',
+            'enterprise_id' => 'required|integer|min:1',
             'description' => 'nullable|string|max:255',
             'highest_privilege_role' => 'required|integer|min:0|max:3'
         ]);

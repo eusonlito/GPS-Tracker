@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class Create extends ControllerAbstract
 {
     /**
-     * Show the form for creating a new role
+     * Hiển thị form tạo role mới
      */
     public function __invoke(): Response|JsonResponse
     {
@@ -25,36 +25,58 @@ class Create extends ControllerAbstract
     }
 
     /**
-     * Process the role creation
+     * Xử lý lưu role mới vào database
      */
     public function store(): JsonResponse
     {
         try {
             DB::beginTransaction();
 
+            // Sử dụng service để tạo role
             $role = CreateService::make($this->request->all())
                 ->validate()
                 ->create();
 
             DB::commit();
 
-            return $this->json([
+            $response = [
                 'status' => true,
                 'message' => __('role-create.success'),
                 'role' => $this->factory()->fractal('simple', $role)
-            ]);
+            ];
+
+            // Nếu là request JSON, trả về JSON response trực tiếp
+            if ($this->request->wantsJson()) {
+                return $this->json($response);
+            }
+
+            // Nếu là web form, trả về JSON với thông tin redirect
+            return $this->json(array_merge($response, [
+                'redirect' => route('role.index')
+            ]));
         } catch (\Exception $e) {
             DB::rollBack();
 
-            return $this->json([
+            $errorResponse = [
                 'status' => false,
                 'message' => $e->getMessage()
-            ], 422);
+            ];
+
+            // Nếu là request JSON, trả về JSON response với status 422
+            if ($this->request->wantsJson()) {
+                return $this->json($errorResponse, 422);
+            }
+
+            // Nếu là web form, trả về JSON với thông tin lỗi và giữ form data
+            return $this->json(array_merge($errorResponse, [
+                'errors' => $e->getMessage(),
+                'old_input' => $this->request->all()
+            ]), 422);
         }
     }
 
     /**
-     * Get data for the create form
+     * Lấy dữ liệu cho form tạo role
      */
     protected function data(): array
     {
@@ -66,17 +88,21 @@ class Create extends ControllerAbstract
     }
 
     /**
-     * Get list of enterprises for the form
+     * Lấy danh sách enterprises (bây giờ là input thủ công)
+     * Vì không có model Enterprise, ta sẽ tạo một danh sách giả lập để người dùng chọn
      */
     protected function getEnterprises(): array
     {
-        // Implement enterprise fetching logic here
-        // This should return enterprises the user has access to
-        return [];
+        // Danh sách giả lập enterprise_id (bạn có thể thay đổi theo dữ liệu thực tế)
+        return [
+            ['id' => 1, 'name' => 'Enterprise 1'],
+            ['id' => 2, 'name' => 'Enterprise 2'],
+            ['id' => 3, 'name' => 'Enterprise 3'],
+        ];
     }
 
     /**
-     * Get available privileges for role assignment
+     * Lấy các mức privilege
      */
     protected function getPrivileges(): array
     {
@@ -87,7 +113,7 @@ class Create extends ControllerAbstract
     }
 
     /**
-     * Handle JSON response
+     * Xử lý response JSON
      */
     protected function responseJson(): JsonResponse
     {

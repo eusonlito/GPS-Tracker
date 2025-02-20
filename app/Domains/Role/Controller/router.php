@@ -11,4 +11,5 @@ Route::group(['middleware' => ['user-auth']], function () {
     Route::get('/role', Index::class)->name('role.index');
     // Route::get('/role/{id}/edit', Edit::class)->name('role.edit');
     Route::get('/role/create', Create::class)->name('role.create');
+    Route::post('/role/store', [Create::class, 'store'])->name('role.store');
 });

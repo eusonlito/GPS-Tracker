@@ -1,9 +1,8 @@
-{{-- resources/views/domains/role/create.blade.php --}}
 @extends('layouts.in')
 
 @section('body')
 <div class="intro-y box p-5">
-    <form method="POST">
+    <form method="POST" action="{{ route('role.store') }}">
         @csrf
         <input type="hidden" name="_action" value="create" />
 
@@ -20,7 +19,7 @@
             @endif
         </div>
 
-        <!-- Enterprise -->
+        <!-- Enterprise ID -->
         <div class="form-group mb-4">
             <label class="form-label required">{{ __('role-create.Enterprise') }}</label>
             <select name="enterprise_id"
@@ -28,8 +27,8 @@
                 required>
                 <option value="">{{ __('role-create.Select Enterprise') }}</option>
                 @foreach($enterprises as $enterprise)
-                <option value="{{ $enterprise->id }}" {{ old('enterprise_id') == $enterprise->id ? 'selected' : '' }}>
-                    {{ $enterprise->name }}
+                <option value="{{ $enterprise['id'] }}" {{ old('enterprise_id') == $enterprise['id'] ? 'selected' : '' }}>
+                    {{ $enterprise['name'] }}
                 </option>
                 @endforeach
             </select>
