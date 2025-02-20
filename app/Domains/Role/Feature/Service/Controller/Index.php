@@ -48,5 +48,4 @@ class Index extends ControllerAbstract
     {
         return new Collection(Model::query()->get()->all());
     }
-    
 }

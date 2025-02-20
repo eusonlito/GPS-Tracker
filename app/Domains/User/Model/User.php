@@ -19,6 +19,7 @@ use App\Domains\User\Test\Factory\User as TestFactory;
 use App\Domains\UserSession\Model\UserSession as UserSessionModel;
 use App\Domains\Role\Model\Role as RoleModel;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Domains\Enterprise\Model\Enterprise as EnterpriseModel;
 
 class User extends ModelAbstract implements Authenticatable
 {
@@ -140,5 +141,22 @@ class User extends ModelAbstract implements Authenticatable
         return $this->roles()->whereHas('roleFeature.feature', function ($query) use ($featureName) {
             $query->where('alias', $featureName);
         })->exists();
+    }
+
+
+    /**
+     * Quan hệ: Một User chỉ thuộc một doanh nghiệp (One-to-Many)
+     */
+    public function enterprise(): BelongsTo
+    {
+        return $this->belongsTo(EnterpriseModel::class, 'enterprise_id');
+    }
+
+    /**
+     * Kiểm tra nếu User thuộc một Enterprise cụ thể
+     */
+    public function hasEnterprise(int $enterpriseId): bool
+    {
+        return $this->enterprise_id === $enterpriseId;
     }
 }

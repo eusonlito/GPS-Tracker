@@ -8,6 +8,7 @@ use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Role\Model\Role;
 use App\Domains\Role\Feature\Model\Feature;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Domains\Enterprise\Model\Enterprise as EnterpriseModel;
 
 class RoleFeature extends ModelAbstract
 {
@@ -33,5 +34,16 @@ class RoleFeature extends ModelAbstract
     public function feature(): BelongsTo
     {
         return $this->belongsTo(Feature::class);
+    }
+
+
+    /**
+     * Quan hệ: Một RoleFeature thuộc về một Enterprise
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function enterprise(): BelongsTo
+    {
+        return $this->belongsTo(EnterpriseModel::class, 'enterprise_id');
     }
 }

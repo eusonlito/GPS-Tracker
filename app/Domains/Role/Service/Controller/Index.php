@@ -46,7 +46,7 @@ class Index extends ControllerAbstract
 
     public function list(): Collection
     {
-        return new Collection(Model::query()->get()->all());
+        return new Collection(Model::query()->byEnterprise()->get()->all());
     }
     
 }
