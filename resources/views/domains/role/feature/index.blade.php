@@ -7,13 +7,28 @@
         <div class="flex-grow mt-2 sm:mt-0">
             <input type="search" class="form-control form-control-lg" placeholder="{{ __('role-index.filter') }}" data-table-search="#role-list-table" />
         </div>
-
-        <button type="button" class="sm:ml-4 mt-2 sm:mt-0 bg-white btn form-control-lg" data-notification-request data-notification-request-granted="{{ __('role-index.notifications-granted') }}" data-notification-request-denied="{{ __('role-index.notifications-denied') }}">{{ __('role-index.notifications-enable') }}</button>
     </div>
 </form>
 
 <div class="overflow-auto scroll-visible header-sticky">
-    <table id="role-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
+    <table id="alarm-list-table" class="table table-report sm:mt-2 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
+        <thead>
+            <tr>
+                <th class="w-1">{{ __('role-feature-index.name') }}</th>
+                <th class="text-left w-1">{{ __('role-feature-index.description') }}</th>
+                <th class="w-1">{{ __('role-feature-index.created') }}</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            @foreach ($list as $row)
+            <tr>
+                <td class="w-1" data-table-sort-value="{{ $row->name }}"><a href="#" class="block">{{ $row->name }}</a></td>
+                <td class="w-1" data-table-sort-value="{{ $row->description }}"><a href="#" class="block">{{ $row->description }}</a></td>
+                <td class="w-1" data-table-sort-value="{{ $row->created_at }}"><a href="#" class="block"> @dateWithUserTimezone($row->created_at)</a></td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
 </div>
 

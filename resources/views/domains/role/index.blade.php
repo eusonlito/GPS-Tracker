@@ -15,8 +15,6 @@
         </div>
 
         @endif
-
-        <button type="button" class="sm:ml-4 mt-2 sm:mt-0 bg-white btn form-control-lg" data-notification-request data-notification-request-granted="{{ __('role-index.notifications-granted') }}" data-notification-request-denied="{{ __('role-index.notifications-denied') }}">{{ __('role-index.notifications-enable') }}</button>
     </div>
 </form>
 
