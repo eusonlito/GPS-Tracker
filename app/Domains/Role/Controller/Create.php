@@ -81,10 +81,8 @@ class Create extends ControllerAbstract
     protected function getPrivileges(): array
     {
         return [
-            0 => __('role-create.privilege-none'),
-            1 => __('role-create.privilege-low'),
-            2 => __('role-create.privilege-medium'),
-            3 => __('role-create.privilege-high'),
+            0 => __('role-create.privilege-false'),
+            1 => __('role-create.privilege-true'),
         ];
     }
 
