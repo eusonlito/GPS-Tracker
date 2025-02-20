@@ -134,4 +134,11 @@ class User extends ModelAbstract implements Authenticatable
     {
         return $this->roles->contains('name', $roleName);
     }
+
+    public function hasRoleFeatureAccess(string $featureName): bool
+    {
+        return $this->roles()->whereHas('roleFeature.feature', function ($query) use ($featureName) {
+            $query->where('alias', $featureName);
+        })->exists();
+    }
 }

@@ -18,6 +18,7 @@ use App\Http\Middleware\MessagesShareFromSession;
 use App\Http\Middleware\RequestLogger;
 use App\Http\Middleware\Reset;
 use App\Http\Middleware\TrustProxies;
+use App\Domains\User\Middleware\CheckRoleFeatureAccess as UserCheckRoleFeatureAccess;
 
 class Kernel extends KernelVendor
 {
@@ -80,6 +81,7 @@ class Kernel extends KernelVendor
     protected $middlewareAliases = [
         'vehicle.available' => VehicleAvailable::class,
         'user.admin' => UserAdmin::class,
+        'user.role.feature.access' => UserCheckRoleFeatureAccess::class,
         'user.admin-mode' => UserAdminMode::class,
         'user.auth.api' => UserAuthApi::class,
         'user.auth.redirect' => UserAuthRedirect::class,
