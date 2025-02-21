@@ -4,7 +4,7 @@ namespace App\Domains\Permissions\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Domains\Permissions\Model\Role;  // Thêm dòng này
+use App\Domains\Role\Model\Role;  // Thêm dòng này
 use App\Domains\Permissions\Model\Action;
 use App\Domains\Permissions\Model\Entity;
 use App\Domains\Permissions\Model\Scope;
@@ -54,6 +54,12 @@ class Permission extends Model
     public function rolePermissions()
     {
         return $this->hasMany(RolePermission::class);
+    }
+
+    // Thêm accessor để lấy name từ role
+    public function getNameAttribute(): ?string
+    {
+        return $this->role ? $this->role->name : null;
     }
 }
 

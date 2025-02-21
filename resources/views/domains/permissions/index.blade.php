@@ -54,12 +54,13 @@
                     <th>{{ __('permissions-index.user') }}</th>
                 @endif
 
-                <th class="w-1">{{ __('ID') }}</th>
+                <th class="w-1">{{ __(key: 'ID') }}</th>
+                <th class="w-1">{{ __('Role Name') }}</th>
                 <th class="w-1">{{ __('Action') }}</th>
                 <th class="w-1">{{ __('Entity') }}</th>
                 <th class="w-1">{{ __('Scope') }}</th>
                 <th class="w-1">{{ __('Created At') }}</th>
-                <th class="w-1">{{ __('Actions') }}</th>
+
             </tr>
         </thead>
 
@@ -72,6 +73,7 @@
                     @endif
 
                     <td class="w-1">{{ $permission->id }}</td>
+                    <td class="w-1">{{ $permission->role->name ?? '-' }}</td>
                     <td class="w-1">{{ $permission->action->name ?? '-' }}</td>
                     <td class="w-1">{{ $permission->entity->name ?? '-' }}</td>
                     <td class="w-1">{{ $permission->scope->name ?? '-' }}</td>

@@ -28,18 +28,11 @@ class Index extends ControllerAbstract
         // Nếu chưa có 'permissions', thêm vào
         if (!array_key_exists('permissions', $data)) {
             $data['permissions'] = Model::query()
-                ->with(['action', 'entity', 'scope']) // Load quan hệ nếu cần
+                ->with(['role', 'action', 'entity', 'scope']) // Load quan hệ nếu cần
                 ->get();
         }
 
         return $data;
-        // $data['users_multiple'] = true; // or your logic to determine this
-        // $data['user_empty'] = true; // or your logic to determine this
-        // $data['permissions'] = Model::query()
-        //     ->with(['role', 'action', 'entity', 'scope', 'user']) // Add user relationship
-        //     ->get();
-
-        // return $data;
     }
 
     protected function responseJson(): JsonResponse
@@ -50,7 +43,7 @@ class Index extends ControllerAbstract
     {
         return new Collection(
             Model::query()
-                ->with(['action', 'entity', 'scope'])
+                ->with(['role', 'action', 'entity', 'scope'])
                 ->get()
         );
     }

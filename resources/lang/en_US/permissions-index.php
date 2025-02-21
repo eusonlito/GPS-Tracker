@@ -12,4 +12,5 @@
     'scope' => 'Scope',
     'created_at' => 'Created At',
     'actions' => 'Actions',
+
 ];
