@@ -55,5 +55,8 @@
     'role-feature' => 'Features',
     'role-feature-index' => 'List',
     'role-feature-create' => 'Create',
-    'role-feature-update' => 'Update'
+    'role-feature-update' => 'Update',
+    'permissions' => 'Permissions',
+    'permissions-index' => 'List',
+    'permissions-create' => 'Create',
 ];

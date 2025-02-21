@@ -26,7 +26,7 @@ class User extends ModelAbstract implements Authenticatable
     use AuthenticatableTrait;
     use HasFactory;
     use PreferencesTrait;
-
+    use HasRoles;
     /**
      * @var string
      */
