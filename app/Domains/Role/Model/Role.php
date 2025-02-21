@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domains\Role\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Domains\Role\Model\Traits\TypeFormat as TypeFormatTrait;
+use App\Domains\Role\Model\Traits\TypeFormat;
 use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\User\Model\User as UserModel;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -17,12 +17,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Role extends ModelAbstract
 {
     use HasFactory;
-    use TypeFormatTrait;
+    use TypeFormat;
 
     /**
      * @var string
      */
     protected $table = 'roles';
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     /**
      * Quan hệ: Mỗi Role thuộc về một Enterprise
