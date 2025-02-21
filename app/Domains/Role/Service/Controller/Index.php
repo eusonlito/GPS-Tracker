@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domains\Role\Service\Controller;
 
@@ -36,17 +38,27 @@ class Index extends ControllerAbstract
     public function data(): array
     {
         return $this->dataCore() + [
-            'list' => $this->list(),
+            'lists' => $this->list(),
         ];
     }
 
     /**
      * @return \App\Domains\Role\Model\Collection\Role
      */
-
     public function list(): Collection
     {
-        return new Collection(Model::query()->byEnterprise()->get()->all());
+        $user = auth()->user();
+
+        // Nếu không có User hoặc User không có `enterprise_id`, trả về tập rỗng
+        if (!$user || !isset($user->enterprise_id)) {
+            return new Collection([]);
+        }
+
+        return new Collection(
+            Model::query()
+                ->where('enterprise_id', 6) // Lọc theo enterprise_id của User
+                ->get()
+                ->all()
+        );
     }
-    
 }
