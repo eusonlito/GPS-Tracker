@@ -49,4 +49,8 @@
     'vehicle-create' => 'רכב חדש',
     'vehicle-index' => 'רשימה',
     'vehicle-map' => 'מפה',
+    'enterprise' => 'ארגונים',
+    'enterprise-index' => 'רשימה',
+    'enterprise-create' => 'ארגון חדש',
+    'enterprise-users' => 'משתמשים לפי ארגון',
 ];

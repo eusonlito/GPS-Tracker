@@ -49,4 +49,8 @@
     'vehicle-create' => 'إنشاء',
     'vehicle-index' => 'قائمة',
     'vehicle-map' => 'الخريطة',
+    'enterprise' => 'الشركات',
+    'enterprise-index' => 'قائمة',
+    'enterprise-create' => 'إنشاء',
+    'enterprise-users' => 'المستخدمون حسب الشركة',
 ];

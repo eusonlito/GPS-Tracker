@@ -49,4 +49,8 @@
     'vehicle-create' => 'Crear',
     'vehicle-index' => 'Lista',
     'vehicle-map' => 'Mapa',
+    'enterprise' => 'Empresas',
+    'enterprise-index' => 'Lista',
+    'enterprise-create' => 'Crear',
+    'enterprise-users' => 'Usuarios por Empresa',
 ];
