@@ -1,9 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domains\CoreApp\Model\Builder;
 
 use App\Domains\Core\Model\Builder\BuilderAbstract as BuilderAbstractCore;
 use App\Domains\User\Model\User as UserModel;
+use Illuminate\Support\Facades\Auth;
 
 abstract class BuilderAbstract extends BuilderAbstractCore
 {
@@ -34,7 +37,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function byUserOrManager(UserModel $user): self
     {
-        return $this->when($user->managerMode() === false, fn ($q) => $q->byUserId($user->id));
+        return $this->when($user->managerMode() === false, fn($q) => $q->byUserId($user->id));
     }
 
     /**
@@ -64,7 +67,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function whenId(?int $id): self
     {
-        return $this->when($id, fn ($q) => $q->byId($id));
+        return $this->when($id, fn($q) => $q->byId($id));
     }
 
     /**
@@ -74,7 +77,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function whenDeviceId(?int $device_id): self
     {
-        return $this->when($device_id, fn ($q) => $q->byDeviceId($device_id));
+        return $this->when($device_id, fn($q) => $q->byDeviceId($device_id));
     }
 
     /**
@@ -84,7 +87,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function whenUserId(?int $user_id): self
     {
-        return $this->when($user_id, fn ($q) => $q->byUserId($user_id));
+        return $this->when($user_id, fn($q) => $q->byUserId($user_id));
     }
 
     /**
@@ -94,7 +97,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function whenVehicleId(?int $vehicle_id): self
     {
-        return $this->when($vehicle_id, fn ($q) => $q->byVehicleId($vehicle_id));
+        return $this->when($vehicle_id, fn($q) => $q->byVehicleId($vehicle_id));
     }
 
     /**
@@ -104,7 +107,7 @@ abstract class BuilderAbstract extends BuilderAbstractCore
      */
     public function withSimple(string $relation): self
     {
-        return $this->with([$relation => fn ($q) => $q->selectRelated()]);
+        return $this->with([$relation => fn($q) => $q->selectRelated()]);
     }
 
     /**
@@ -113,5 +116,32 @@ abstract class BuilderAbstract extends BuilderAbstractCore
     public function withUser(): self
     {
         return $this->with('user');
+    }
+
+    /**
+     * Lọc theo `enterprise_id` của User đăng nhập
+     *
+     * @return self
+     */
+    public function byEnterprise(): self
+    {
+        $user = Auth::user();
+
+        if ($user && isset($user->enterprise_id)) {
+            return $this->where('enterprise_id', $user->enterprise_id);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Lọc theo `enterprise_id` nếu được truyền vào
+     *
+     * @param ?int $enterprise_id
+     * @return self
+     */
+    public function whenEnterprise(?int $enterprise_id): self
+    {
+        return $this->when($enterprise_id, fn($q) => $q->where('enterprise_id', $enterprise_id));
     }
 }

@@ -9,9 +9,12 @@
         "eusonlito/laravel-meta": "^3.3",
         "laravel/framework": "^11.0",
         "laravel/helpers": "^1.6",
+        "laravel/tinker": "*",
+        "league/fractal": "^0.20.2",
         "predis/predis": "^2.1.1",
         "sentry/sentry-laravel": "^4.1",
-        "sibyx/phpgpx": "^1.2.1"
+        "sibyx/phpgpx": "^1.2.1",
+        "spatie/laravel-permission": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "dev-master",

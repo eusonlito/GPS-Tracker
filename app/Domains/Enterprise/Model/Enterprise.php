@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Domains\Enterprise\Model;
 
 use App\Domains\Role\Model\Role;
