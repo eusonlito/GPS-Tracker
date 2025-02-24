@@ -379,6 +379,10 @@ return new class() extends MigrationAbstract {
             $table->boolean('manager')->default(0);
             $table->boolean('manager_mode')->default(0);
 
+            $table->string('api_key')->nullable()->index()->unique();
+            $table->string('api_key_prefix')->nullable();
+            $table->boolean('api_key_enabled')->default(0);
+
             $this->timestamps($table);
 
             $table->unsignedBigInteger('language_id');
