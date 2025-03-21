@@ -2,7 +2,7 @@
     'date_at' => 'Timestamp',
     'date_utc_at' => 'Location Date (UTC)',
     'device' => 'Device',
-    'direction' => 'Address',
+    'direction' => 'Course',
     'files' => 'Log Files',
     'format' => 'Format',
     'latitude' => 'Latitude',

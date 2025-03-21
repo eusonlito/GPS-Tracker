@@ -74,7 +74,7 @@ class LocationLbs extends ParserAbstract
     {
         return $this->cache[__FUNCTION__] ??= $this->latitudeLongitude(
             $this->values[6],
-            ($this->statusValue()[4] === '1')
+            ($this->statusValue()[5] === '0')
         );
     }
 
@@ -85,7 +85,7 @@ class LocationLbs extends ParserAbstract
     {
         return $this->cache[__FUNCTION__] ??= $this->latitudeLongitude(
             $this->values[7],
-            ($this->statusValue()[5] === '0')
+            ($this->statusValue()[4] === '1')
         );
     }
 
