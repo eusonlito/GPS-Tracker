@@ -127,7 +127,7 @@ class LocationLbs extends ParserAbstract
      */
     protected function direction(): int
     {
-        return $this->cache[__FUNCTION__] ??= bindec(substr($this->statusValue(), 6));
+        return $this->cache[__FUNCTION__] ??= bindec(substr($this->statusValue(), 6, 10));
     }
 
     /**
