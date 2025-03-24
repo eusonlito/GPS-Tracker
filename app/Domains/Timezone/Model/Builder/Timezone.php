@@ -52,21 +52,11 @@ class Timezone extends BuilderAbstract
     }
 
     /**
-     * @param string ...$columns
-     *
-     * @return self
-     */
-    public function selectOnly(string ...$columns): self
-    {
-        return $this->withoutGlobalScope('selectIdZone')->select($columns);
-    }
-
-    /**
      * @return self
      */
     public function selectRelated(): self
     {
-        return $this->selectOnly('id', 'zone', 'default');
+        return $this->select('id', 'zone', 'default');
     }
 
     /**

@@ -37,14 +37,6 @@ class Timezone extends ModelAbstract
     ];
 
     /**
-     * @return void
-     */
-    protected static function booted(): void
-    {
-        static::addGlobalScope('selectIdZone', static fn (Builder $q) => $q->selectOnly('id', 'zone', 'default'));
-    }
-
-    /**
      * @param array $models
      *
      * @return \App\Domains\Timezone\Model\Collection\Timezone

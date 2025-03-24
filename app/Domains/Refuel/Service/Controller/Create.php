@@ -51,7 +51,7 @@ class Create extends CreateUpdateAbstract
     protected function requestMergeWithRowLocation(): array
     {
         return PositionModel::query()
-            ->selectOnly('latitude', 'longitude')
+            ->select('latitude', 'longitude')
             ->byUserId($this->user()->id)
             ->orderByLast()
             ->firstOrNew()
@@ -64,7 +64,7 @@ class Create extends CreateUpdateAbstract
     protected function previous(): Model
     {
         return Model::query()
-            ->selectOnly('distance_total', 'price')
+            ->select('distance_total', 'price')
             ->byUserId($this->user()->id)
             ->orderByLast()
             ->firstOrNew();

@@ -89,7 +89,7 @@ class Map extends Component
      */
     protected function alarmsJson(): ?string
     {
-        return $this->alarms->toJson();
+        return $this->alarms?->toJson();
     }
 
     /**
@@ -97,6 +97,6 @@ class Map extends Component
      */
     protected function notificationsJson(): ?string
     {
-        return $this->notifications->map->only('id', 'type', 'date_at', 'date_utc_at', 'latitude', 'longitude', 'config', 'alarm')->toJson();
+        return $this->notifications?->map->only('id', 'type', 'date_at', 'date_utc_at', 'latitude', 'longitude', 'config', 'alarm')->toJson();
     }
 }

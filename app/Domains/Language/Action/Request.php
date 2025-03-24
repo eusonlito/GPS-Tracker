@@ -62,22 +62,24 @@ class Request extends ActionAbstract
      */
     protected function rowLocale(): ?Model
     {
+        if (empty($locale = $this->rowLocaleValue())) {
+            return null;
+        }
+
         return Model::query()
             ->selectSession()
-            ->byLocale($this->rowLocaleFromHeader())
+            ->byLocale($locale)
             ->first();
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    protected function rowLocaleFromHeader(): string
+    protected function rowLocaleValue(): ?string
     {
-        if (preg_match('/^[a-z]+\-[A-Z]+/', $this->acceptLanguage, $matches)) {
-            return str_replace('-', '_', $matches[0]);
-        }
-
-        return config('app.locale');
+        return preg_match('/^[a-z]+\-[A-Z]+/', $this->acceptLanguage, $matches)
+            ? str_replace('-', '_', $matches[0])
+            : null;
     }
 
     /**
@@ -87,20 +89,18 @@ class Request extends ActionAbstract
     {
         return Model::query()
             ->selectSession()
-            ->byLocaleCode($this->rowCodeFromHeader())
+            ->byLocaleCode($this->rowCodeValue())
             ->first();
     }
 
     /**
      * @return string
      */
-    protected function rowCodeFromHeader(): string
+    protected function rowCodeValue(): string
     {
-        if (preg_match('/^[a-zA-Z]+/', $this->acceptLanguage, $matches)) {
-            return $matches[0];
-        }
-
-        return explode('_', config('app.locale'))[0];
+        return preg_match('/^[a-zA-Z]+/', $this->acceptLanguage, $matches)
+            ? $matches[0]
+            : explode('_', config('app.locale'))[0];
     }
 
     /**
@@ -115,9 +115,9 @@ class Request extends ActionAbstract
     }
 
     /**
-     * @return ?\App\Domains\Language\Model\Language
+     * @return \App\Domains\Language\Model\Language
      */
-    protected function rowFirst(): ?Model
+    protected function rowFirst(): Model
     {
         return Model::query()
             ->selectSession()
@@ -130,8 +130,6 @@ class Request extends ActionAbstract
      */
     protected function set(): void
     {
-        if ($this->row) {
-            $this->factory()->action()->set();
-        }
+        $this->factory()->action()->set();
     }
 }

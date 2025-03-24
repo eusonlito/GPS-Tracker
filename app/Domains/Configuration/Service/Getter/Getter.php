@@ -14,6 +14,14 @@ class Getter
     }
 
     /**
+     * @return bool
+     */
+    public function available(): bool
+    {
+        return empty($this->list) === false;
+    }
+
+    /**
      * @param string $key
      *
      * @return bool

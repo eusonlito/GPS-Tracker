@@ -20,6 +20,8 @@ class Create extends ValidateAbstract
             'signal' => ['bail', 'required', 'integer'],
             'date_utc_at' => ['bail', 'required', 'date_format:Y-m-d H:i:s'],
             'timezone' => ['bail', 'nullable'],
+
+            'debug' => ['bail', 'boolean'],
         ];
     }
 }

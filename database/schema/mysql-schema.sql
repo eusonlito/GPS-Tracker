@@ -32,7 +32,7 @@ CREATE TABLE `alarm_notification` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `config` json DEFAULT NULL,
-  `point` point NOT NULL /*!80003 SRID 4326 */,
+  `point` point NOT NULL /*!80003 SRID 4326 */ /*!80023 INVISIBLE */,
   `telegram` tinyint(1) NOT NULL DEFAULT '0',
   `date_at` datetime NOT NULL,
   `date_utc_at` datetime NOT NULL,
@@ -47,13 +47,13 @@ CREATE TABLE `alarm_notification` (
   `latitude` double GENERATED ALWAYS AS (round(st_latitude(`point`),5)) STORED,
   `longitude` double GENERATED ALWAYS AS (round(st_longitude(`point`),5)) STORED,
   PRIMARY KEY (`id`),
-  SPATIAL KEY `alarm_notification_point_spatialindex` (`point`),
   KEY `alarm_notification_latitude_index` (`latitude`),
   KEY `alarm_notification_longitude_index` (`longitude`),
   KEY `alarm_notification_alarm_fk` (`alarm_id`),
   KEY `alarm_notification_position_fk` (`position_id`),
   KEY `alarm_notification_trip_fk` (`trip_id`),
   KEY `alarm_notification_vehicle_fk` (`vehicle_id`),
+  SPATIAL KEY `alarm_notification_point_spatialindex` (`point`),
   CONSTRAINT `alarm_notification_alarm_fk` FOREIGN KEY (`alarm_id`) REFERENCES `alarm` (`id`) ON DELETE SET NULL,
   CONSTRAINT `alarm_notification_position_fk` FOREIGN KEY (`position_id`) REFERENCES `position` (`id`) ON DELETE SET NULL,
   CONSTRAINT `alarm_notification_trip_fk` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE SET NULL,
@@ -83,7 +83,7 @@ CREATE TABLE `city` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alias` json DEFAULT NULL,
-  `point` point NOT NULL /*!80003 SRID 4326 */,
+  `point` point NOT NULL /*!80003 SRID 4326 */ /*!80023 INVISIBLE */,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `country_id` bigint unsigned NOT NULL,
@@ -92,11 +92,11 @@ CREATE TABLE `city` (
   `longitude` double GENERATED ALWAYS AS (round(st_longitude(`point`),5)) STORED,
   PRIMARY KEY (`id`),
   KEY `city_name_index` (`name`),
-  SPATIAL KEY `city_point_spatialindex` (`point`),
   KEY `city_latitude_index` (`latitude`),
   KEY `city_longitude_index` (`longitude`),
   KEY `city_country_fk` (`country_id`),
   KEY `city_state_fk` (`state_id`),
+  SPATIAL KEY `city_point_spatialindex` (`point`),
   CONSTRAINT `city_country_fk` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE CASCADE,
   CONSTRAINT `city_state_fk` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -262,14 +262,12 @@ DROP TABLE IF EXISTS `language`;
 CREATE TABLE `language` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `rtl` tinyint(1) NOT NULL DEFAULT '0',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `language_code_unique` (`code`),
   UNIQUE KEY `language_locale_unique` (`locale`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -351,7 +349,7 @@ DROP TABLE IF EXISTS `position`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `position` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `point` point NOT NULL /*!80003 SRID 4326 */,
+  `point` point NOT NULL /*!80003 SRID 4326 */ /*!80023 INVISIBLE */,
   `speed` decimal(6,2) NOT NULL,
   `direction` int unsigned NOT NULL,
   `signal` int unsigned NOT NULL,
@@ -368,7 +366,6 @@ CREATE TABLE `position` (
   `latitude` double GENERATED ALWAYS AS (round(st_latitude(`point`),5)) STORED,
   `longitude` double GENERATED ALWAYS AS (round(st_longitude(`point`),5)) STORED,
   PRIMARY KEY (`id`),
-  SPATIAL KEY `position_point_spatialindex` (`point`),
   KEY `position_latitude_index` (`latitude`),
   KEY `position_longitude_index` (`longitude`),
   KEY `position_city_fk` (`city_id`),
@@ -377,6 +374,7 @@ CREATE TABLE `position` (
   KEY `position_device_id_date_utc_at_index` (`device_id`,`date_utc_at`),
   KEY `position_trip_id_date_utc_at_index` (`trip_id`,`date_utc_at`),
   KEY `position_user_id_date_utc_at_index` (`user_id`,`date_utc_at`),
+  SPATIAL KEY `position_point_spatialindex` (`point`),
   CONSTRAINT `position_city_fk` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE SET NULL,
   CONSTRAINT `position_device_fk` FOREIGN KEY (`device_id`) REFERENCES `device` (`id`) ON DELETE SET NULL,
   CONSTRAINT `position_timezone_fk` FOREIGN KEY (`timezone_id`) REFERENCES `timezone` (`id`) ON DELETE CASCADE,
@@ -411,7 +409,7 @@ CREATE TABLE `refuel` (
   `quantity_before` decimal(6,2) NOT NULL,
   `price` decimal(7,3) NOT NULL,
   `total` decimal(6,2) NOT NULL,
-  `point` point NOT NULL /*!80003 SRID 4326 */,
+  `point` point NOT NULL /*!80003 SRID 4326 */ /*!80023 INVISIBLE */,
   `date_at` datetime NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -422,11 +420,11 @@ CREATE TABLE `refuel` (
   `latitude` double GENERATED ALWAYS AS (round(st_latitude(`point`),5)) STORED,
   `longitude` double GENERATED ALWAYS AS (round(st_longitude(`point`),5)) STORED,
   PRIMARY KEY (`id`),
-  SPATIAL KEY `refuel_point_spatialindex` (`point`),
   KEY `refuel_city_fk` (`city_id`),
   KEY `refuel_position_fk` (`position_id`),
   KEY `refuel_user_fk` (`user_id`),
   KEY `refuel_vehicle_fk` (`vehicle_id`),
+  SPATIAL KEY `refuel_point_spatialindex` (`point`),
   CONSTRAINT `refuel_city_fk` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE SET NULL,
   CONSTRAINT `refuel_position_fk` FOREIGN KEY (`position_id`) REFERENCES `position` (`id`) ON DELETE SET NULL,
   CONSTRAINT `refuel_user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
@@ -469,7 +467,7 @@ DROP TABLE IF EXISTS `timezone`;
 CREATE TABLE `timezone` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `zone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `geojson` multipolygon NOT NULL,
+  `geojson` multipolygon NOT NULL /*!80023 INVISIBLE */,
   `default` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -530,13 +528,13 @@ CREATE TABLE `user` (
   `admin_mode` tinyint(1) NOT NULL DEFAULT '0',
   `manager` tinyint(1) NOT NULL DEFAULT '0',
   `manager_mode` tinyint(1) NOT NULL DEFAULT '0',
+  `api_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `api_key_prefix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `api_key_enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `language_id` bigint unsigned NOT NULL,
   `timezone_id` bigint unsigned NOT NULL,
-  `api_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `api_key_prefix` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `api_key_enabled` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_email_unique` (`email`),
   UNIQUE KEY `user_api_key_unique` (`api_key`),
@@ -684,3 +682,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (72,'2024_01_04_193
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (73,'2024_01_04_203000_city_only',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (74,'2024_04_01_183000_language_rtl',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (75,'2024_04_01_190000_user_api_key',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (76,'2025_01_18_190000_language_code',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (77,'2025_03_24_110000_position_point_invisible',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (78,'2025_03_24_230000_alarm_notification_point_invisible',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (79,'2025_03_24_230000_city_point_invisible',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (80,'2025_03_24_230000_refuel_point_invisible',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (81,'2025_03_24_230000_timezone_geojson_invisible',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (82,'2025_03_24_233000_spatial_index',1);

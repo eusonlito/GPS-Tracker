@@ -124,6 +124,8 @@ class LogRead extends ActionAbstract
             'signal' => $resource->signal(),
             'date_utc_at' => $resource->datetime(),
             'timezone' => $resource->timezone(),
+
+            'debug' => $this->data['debug'],
         ];
     }
 }

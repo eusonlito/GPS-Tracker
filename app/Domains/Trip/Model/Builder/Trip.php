@@ -15,7 +15,7 @@ class Trip extends BuilderAbstract
      */
     public function byCityId(int $city_id, ?string $start_end = null): self
     {
-        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byCityId($city_id)->whenTripStartEnd($start_end));
+        return $this->whereIn('id', PositionModel::query()->select('trip_id')->byCityId($city_id)->whenTripStartEnd($start_end));
     }
 
     /**
@@ -36,7 +36,7 @@ class Trip extends BuilderAbstract
      */
     public function byCountryId(int $country_id, ?string $start_end = null): self
     {
-        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byCountryId($country_id)->whenTripStartEnd($start_end));
+        return $this->whereIn('id', PositionModel::query()->select('trip_id')->byCountryId($country_id)->whenTripStartEnd($start_end));
     }
 
     /**
@@ -70,7 +70,7 @@ class Trip extends BuilderAbstract
      */
     public function byFence(float $latitude, float $longitude, float $radius): self
     {
-        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byFence($latitude, $longitude, $radius));
+        return $this->whereIn('id', PositionModel::query()->select('trip_id')->byFence($latitude, $longitude, $radius));
     }
 
     /**
@@ -200,7 +200,7 @@ class Trip extends BuilderAbstract
      */
     public function byPositionIdFrom(int $position_id): self
     {
-        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byIdNext($position_id));
+        return $this->whereIn('id', PositionModel::query()->select('trip_id')->byIdNext($position_id));
     }
 
     /**
@@ -211,7 +211,7 @@ class Trip extends BuilderAbstract
      */
     public function byStateId(int $state_id, ?string $start_end = null): self
     {
-        return $this->whereIn('id', PositionModel::query()->selectOnly('trip_id')->byStateId($state_id)->whenTripStartEnd($start_end));
+        return $this->whereIn('id', PositionModel::query()->select('trip_id')->byStateId($state_id)->whenTripStartEnd($start_end));
     }
 
     /**
@@ -269,7 +269,7 @@ class Trip extends BuilderAbstract
      */
     public function selectSimple(): self
     {
-        return $this->selectOnly(
+        return $this->select(
             'id',
             'name',
             'code',

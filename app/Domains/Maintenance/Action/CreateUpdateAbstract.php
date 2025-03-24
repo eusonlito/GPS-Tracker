@@ -57,7 +57,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     protected function checkVehicleExists(): bool
     {
         return VehicleModel::query()
-            ->selectOnly('id')
+            ->select('id')
             ->byId($this->data['vehicle_id'])
             ->byUserId($this->data['user_id'])
             ->exists();

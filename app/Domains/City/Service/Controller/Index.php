@@ -37,7 +37,6 @@ class Index extends ControllerAbstract
         return $this->cache(
             fn () => Model::query()
                 ->list()
-                ->selectPointAsLatitudeLongitude()
                 ->withState()
                 ->withCountry()
                 ->get()

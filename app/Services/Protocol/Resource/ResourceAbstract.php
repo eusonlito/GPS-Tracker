@@ -7,7 +7,7 @@ abstract class ResourceAbstract
     /**
      * @var array
      */
-    protected array $attributes;
+    protected array $attributes = [];
 
     /**
      * @return string
@@ -84,5 +84,21 @@ abstract class ResourceAbstract
     public function data(): array
     {
         return $this->attribute(__FUNCTION__, []);
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * @return string
+     */
+    public function toJson(): string
+    {
+        return json_encode($this->attributes, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
 }

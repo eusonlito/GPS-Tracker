@@ -40,7 +40,7 @@ class Position extends BuilderAbstract
      */
     public function byCountryId(int $country_id): self
     {
-        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byCountryId($country_id));
+        return $this->whereIn('city_id', CityModel::query()->select('id')->byCountryId($country_id));
     }
 
     /**
@@ -50,7 +50,7 @@ class Position extends BuilderAbstract
      */
     public function byCountryIds(array $country_ids): self
     {
-        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byCountryIds($country_ids));
+        return $this->whereIn('city_id', CityModel::query()->select('id')->byCountryIds($country_ids));
     }
 
     /**
@@ -142,7 +142,7 @@ class Position extends BuilderAbstract
      */
     public function byStateId(int $state_id): self
     {
-        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byStateId($state_id));
+        return $this->whereIn('city_id', CityModel::query()->select('id')->byStateId($state_id));
     }
 
     /**
@@ -152,7 +152,7 @@ class Position extends BuilderAbstract
      */
     public function byStateIds(array $state_ids): self
     {
-        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byStateIds($state_ids));
+        return $this->whereIn('city_id', CityModel::query()->select('id')->byStateIds($state_ids));
     }
 
     /**
@@ -182,7 +182,7 @@ class Position extends BuilderAbstract
      */
     public function byTripQuery(TripBuilder $query): self
     {
-        return $this->whereIn('trip_id', $query->selectOnly('id'));
+        return $this->whereIn('trip_id', $query->select('id'));
     }
 
     /**
@@ -193,7 +193,7 @@ class Position extends BuilderAbstract
      */
     public function byTripStartAtDateBetween(?string $before_start_at, ?string $after_start_at): self
     {
-        return $this->whereIn('trip_id', TripModel::query()->selectOnly('id')->whenStartAtDateBetween($before_start_at, $after_start_at));
+        return $this->whereIn('trip_id', TripModel::query()->select('id')->whenStartAtDateBetween($before_start_at, $after_start_at));
     }
 
     /**
@@ -204,7 +204,7 @@ class Position extends BuilderAbstract
      */
     public function byTripStartUtcAtDateBetween(?string $before_start_utc_at, ?string $after_start_utc_at): self
     {
-        return $this->whereIn('trip_id', TripModel::query()->selectOnly('id')->whenStartUtcAtDateBetween($before_start_utc_at, $after_start_utc_at));
+        return $this->whereIn('trip_id', TripModel::query()->select('id')->whenStartUtcAtDateBetween($before_start_utc_at, $after_start_utc_at));
     }
 
     /**
@@ -280,29 +280,11 @@ class Position extends BuilderAbstract
     }
 
     /**
-     * @param string ...$columns
-     *
      * @return self
      */
-    public function selectOnly(string ...$columns): self
+    public function selectBoundingBox(): self
     {
-        return $this->withoutGlobalScope('selectPointAsLatitudeLongitude')->select($columns);
-    }
-
-    /**
-     * @return self
-     */
-    public function selectOnlyLatitudeLongitude(): self
-    {
-        return $this->withoutGlobalScope('selectPointAsLatitudeLongitude')->selectLatitudeLongitude();
-    }
-
-    /**
-     * @return self
-     */
-    public function selectOnlyBoundingBox(): self
-    {
-        return $this->withoutGlobalScope('selectPointAsLatitudeLongitude')->selectRaw('
+        return $this->selectRaw('
             MIN(`position`.`latitude`) AS `latitude_min`,
             MIN(`position`.`longitude`) AS `longitude_min`,
             MAX(`position`.`latitude`) AS `latitude_max`,
@@ -315,19 +297,7 @@ class Position extends BuilderAbstract
      */
     public function selectLatitudeLongitude(): self
     {
-        return $this->selectRaw('`position`.`longitude`, `position`.`latitude`, NULL AS `point`');
-    }
-
-    /**
-     * @return self
-     */
-    public function selectPointAsLatitudeLongitude(): self
-    {
-        return $this->selectRaw('
-            `id`, `speed`, `direction`, `signal`, `date_at`, `date_utc_at`, `created_at`, `updated_at`,
-            `longitude`, `latitude`, `city_id`, `device_id`, `timezone_id`, `trip_id`, `user_id`,
-            `vehicle_id`
-        ');
+        return $this->select('position.longitude', 'position.latitude');
     }
 
     /**
@@ -340,7 +310,7 @@ class Position extends BuilderAbstract
      */
     public function whenRefuelUserIdVehicleIdDateAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_date_at, ?string $after_date_at): self
     {
-        return $this->whereIn('id', RefuelModel::query()->selectOnly('position_id')->whenUserIdVehicleIdDateAtBetween($user_id, $vehicle_id, $before_date_at, $after_date_at));
+        return $this->whereIn('id', RefuelModel::query()->select('position_id')->whenUserIdVehicleIdDateAtBetween($user_id, $vehicle_id, $before_date_at, $after_date_at));
     }
 
     /**
@@ -348,7 +318,7 @@ class Position extends BuilderAbstract
      */
     public function selectRelated(): self
     {
-        return $this->selectOnly('id', 'date_utc_at', 'longitude', 'latitude', 'trip_id')->orderByDateUtcAtAsc();
+        return $this->select('id', 'date_utc_at', 'longitude', 'latitude', 'trip_id')->orderByDateUtcAtAsc();
     }
 
     /**
@@ -397,7 +367,7 @@ class Position extends BuilderAbstract
      */
     public function whenTripUserIdVehicleIdStartAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_start_at, ?string $after_start_at): self
     {
-        return $this->whereIn('trip_id', TripModel::query()->selectOnly('id')->whenUserIdVehicleIdStartAtBetween($user_id, $vehicle_id, $before_start_at, $after_start_at));
+        return $this->whereIn('trip_id', TripModel::query()->select('id')->whenUserIdVehicleIdStartAtBetween($user_id, $vehicle_id, $before_start_at, $after_start_at));
     }
 
     /**
@@ -410,7 +380,7 @@ class Position extends BuilderAbstract
      */
     public function whenTripUserIdVehicleIdStartUtcAtBetween(?int $user_id, ?int $vehicle_id, ?string $before_start_utc_at, ?string $after_start_utc_at): self
     {
-        return $this->whereIn('trip_id', TripModel::query()->selectOnly('id')->whenUserIdVehicleIdStartUtcAtBetween($user_id, $vehicle_id, $before_start_utc_at, $after_start_utc_at));
+        return $this->whereIn('trip_id', TripModel::query()->select('id')->whenUserIdVehicleIdStartUtcAtBetween($user_id, $vehicle_id, $before_start_utc_at, $after_start_utc_at));
     }
 
     /**
