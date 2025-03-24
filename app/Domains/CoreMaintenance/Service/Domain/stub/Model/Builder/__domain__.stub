@@ -26,7 +26,7 @@ class {{ domain }} extends BuilderAbstract
     {
         return $this->whereIn(
             $this->addTable('id'),
-            TeamUserModel::query()->selectOnly($this->addTable('user_id'))->byTeamId($team_id)
+            TeamUserModel::query()->select($this->addTable('user_id'))->byTeamId($team_id)
         );
     }
 

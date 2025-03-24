@@ -15,7 +15,7 @@ trait Query
     public static function tripQueryBoundingBox(TripBuilder $tripBuilder): array
     {
         return (array)Model::query()
-            ->selectOnlyBoundingBox()
+            ->selectBoundingBox()
             ->byTripQuery($tripBuilder)
             ->toBase()
             ->first();

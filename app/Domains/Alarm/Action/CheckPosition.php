@@ -134,7 +134,7 @@ class CheckPosition extends ActionAbstract
     protected function checkLast(Model $row): bool
     {
         $notification = AlarmNotificationModel::query()
-            ->selectOnly('closed_at')
+            ->select('closed_at')
             ->byAlarmId($row->id)
             ->orderByLast()
             ->first();

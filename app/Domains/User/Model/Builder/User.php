@@ -41,7 +41,7 @@ class User extends BuilderAbstract
      */
     public function selectRelated(): self
     {
-        return $this->selectOnly('id', 'name');
+        return $this->select('id', 'name');
     }
 
     /**

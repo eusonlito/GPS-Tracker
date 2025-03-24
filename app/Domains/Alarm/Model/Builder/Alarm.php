@@ -230,7 +230,7 @@ class Alarm extends BuilderAbstract
      */
     public function byVehicleId(int $vehicle_id): self
     {
-        return $this->whereIn('id', AlarmVehicleModel::query()->selectOnly('alarm_id')->byVehicleId($vehicle_id));
+        return $this->whereIn('id', AlarmVehicleModel::query()->select('alarm_id')->byVehicleId($vehicle_id));
     }
 
     /**
@@ -240,7 +240,7 @@ class Alarm extends BuilderAbstract
      */
     public function byVehicleIdEnabled(int $vehicle_id): self
     {
-        return $this->whereIn('id', AlarmVehicleModel::query()->selectOnly('alarm_id')->byVehicleIdEnabled($vehicle_id));
+        return $this->whereIn('id', AlarmVehicleModel::query()->select('alarm_id')->byVehicleIdEnabled($vehicle_id));
     }
 
     /**
@@ -251,16 +251,6 @@ class Alarm extends BuilderAbstract
     public function withVehiclePivot(int $vehicle_id): self
     {
         return $this->with(['vehiclePivot' => fn ($q) => $q->byVehicleId($vehicle_id)]);
-    }
-
-    /**
-     * @param string $serial
-     *
-     * @return self
-     */
-    public function byVehicleSerial(string $serial): self
-    {
-        return $this->whereIn('id', AlarmVehicleModel::query()->selectOnly('alarm_id')->byVehicleSerial($serial));
     }
 
     /**

@@ -59,7 +59,7 @@ class MaintenanceMaintenanceItem extends BuilderAbstract
      */
     public function selectMaintenanceItemStats(): self
     {
-        return $this->selectOnly('maintenance_item_id')
+        return $this->select('maintenance_item_id')
             ->selectRaw('MIN(`amount_net`) `amount_net_min`')
             ->selectRaw('MAX(`amount_net`) `amount_net_max`')
             ->selectRaw('AVG(`amount_net`) `amount_net_avg`')

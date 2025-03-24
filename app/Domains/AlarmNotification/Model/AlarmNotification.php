@@ -47,14 +47,6 @@ class AlarmNotification extends ModelAbstract
     ];
 
     /**
-     * @return void
-     */
-    protected static function booted(): void
-    {
-        static::addGlobalScope('selectPointAsLatitudeLongitude', static fn (Builder $q) => $q->selectPointAsLatitudeLongitude());
-    }
-
-    /**
      * @param array $models
      *
      * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification

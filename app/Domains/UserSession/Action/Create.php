@@ -41,7 +41,7 @@ class Create extends ActionAbstract
     protected function dataUserId(): void
     {
         $this->data['user_id'] = UserModel::query()
-            ->selectOnly('id')
+            ->select('id')
             ->byId($this->data['user_id'])
             ->valueOrFail('id');
     }

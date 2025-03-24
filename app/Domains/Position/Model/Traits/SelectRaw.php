@@ -41,7 +41,7 @@ trait SelectRaw
                 COUNT(*) AS `value`
             FROM `position`
             WHERE (
-                `position`.`trip_id` IN ('.$tripBuilder->selectOnly('id')->toRawSql().')
+                `position`.`trip_id` IN ('.$tripBuilder->select('id')->toRawSql().')
                 AND ST_Within(`position`.`point`, @boundingBox)
             )
             GROUP BY `cell_y`, `cell_x`

@@ -53,7 +53,7 @@ class Import extends ActionAbstract
     protected function timezoneById(): void
     {
         $this->timezone = TimezoneModel::query()
-            ->selectOnly('id', 'zone')
+            ->select('id', 'zone')
             ->byId($this->data['timezone_id'])
             ->firstOr(fn () => $this->exceptionValidator(__('trip-import.error.timezone_id-exists')));
     }
@@ -64,7 +64,7 @@ class Import extends ActionAbstract
     protected function timezoneByVehicle(): void
     {
         $this->timezone = TimezoneModel::query()
-            ->selectOnly('id', 'zone')
+            ->select('id', 'zone')
             ->byVehicleId($this->data['vehicle_id'])
             ->firstOr(fn () => $this->exceptionValidator(__('trip-import.error.timezone_id-exists')));
     }
@@ -194,7 +194,7 @@ class Import extends ActionAbstract
     protected function checkDeviceIdExists(): bool
     {
         return DeviceModel::query()
-            ->selectOnly('id')
+            ->select('id')
             ->byId($this->data['device_id'])
             ->byUserId($this->data['user_id'])
             ->exists();
@@ -216,7 +216,7 @@ class Import extends ActionAbstract
     protected function checkVehicleIdExists(): bool
     {
         return VehicleModel::query()
-            ->selectOnly('id')
+            ->select('id')
             ->byId($this->data['vehicle_id'])
             ->byUserId($this->data['user_id'])
             ->exists();

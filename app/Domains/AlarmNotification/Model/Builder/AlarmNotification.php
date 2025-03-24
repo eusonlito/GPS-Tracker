@@ -34,19 +34,7 @@ class AlarmNotification extends BuilderAbstract
      */
     public function byUserId(int $user_id): self
     {
-        return $this->whereIn('vehicle_id', VehicleModel::query()->selectOnly('id')->byUserId($user_id));
-    }
-
-    /**
-     * @return self
-     */
-    public function selectPointAsLatitudeLongitude(): self
-    {
-        return $this->selectRaw('
-            `id`, `name`, `type`, `config`, `closed_at`, `sent_at`, `created_at`, `updated_at`,
-            `latitude`, `longitude`, `telegram`, `date_at`, `date_utc_at`,
-            `alarm_id`, `position_id`, `trip_id`, `vehicle_id`
-        ');
+        return $this->whereIn('vehicle_id', VehicleModel::query()->select('id')->byUserId($user_id));
     }
 
     /**

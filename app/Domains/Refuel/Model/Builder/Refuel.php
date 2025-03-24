@@ -34,7 +34,7 @@ class Refuel extends BuilderAbstract
      */
     public function byCountryId(int $country_id): self
     {
-        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byCountryId($country_id));
+        return $this->whereIn('city_id', CityModel::query()->select('id')->byCountryId($country_id));
     }
 
     /**
@@ -44,7 +44,7 @@ class Refuel extends BuilderAbstract
      */
     public function byCountryIds(array $country_ids): self
     {
-        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byCountryIds($country_ids));
+        return $this->whereIn('city_id', CityModel::query()->select('id')->byCountryIds($country_ids));
     }
 
     /**
@@ -74,7 +74,7 @@ class Refuel extends BuilderAbstract
      */
     public function byStateId(int $state_id): self
     {
-        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byStateId($state_id));
+        return $this->whereIn('city_id', CityModel::query()->select('id')->byStateId($state_id));
     }
 
     /**
@@ -84,7 +84,7 @@ class Refuel extends BuilderAbstract
      */
     public function byStateIds(array $state_ids): self
     {
-        return $this->whereIn('city_id', CityModel::query()->selectOnly('id')->byStateIds($state_ids));
+        return $this->whereIn('city_id', CityModel::query()->select('id')->byStateIds($state_ids));
     }
 
     /**

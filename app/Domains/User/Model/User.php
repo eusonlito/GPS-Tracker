@@ -47,7 +47,7 @@ class User extends ModelAbstract implements Authenticatable
     ];
 
     /**
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $hidden = ['password'];
 

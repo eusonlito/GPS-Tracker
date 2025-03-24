@@ -113,8 +113,8 @@ class Vehicle extends ModelAbstract
     public function positionLast(): HasOne
     {
         return $this->hasOne(PositionModel::class, static::FOREIGN)
-            ->ofMany(['date_utc_at' => 'MAX'], fn ($q) => $q->withoutGlobalScope('selectPointAsLatitudeLongitude'))
-            ->selectOnlyLatitudeLongitude();
+            ->ofMany(['date_utc_at' => 'MAX'])
+            ->selectLatitudeLongitude();
     }
 
     /**

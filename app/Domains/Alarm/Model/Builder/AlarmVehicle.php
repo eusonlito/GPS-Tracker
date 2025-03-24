@@ -34,17 +34,7 @@ class AlarmVehicle extends BuilderAbstract
      */
     public function byVehicleIdEnabled(int $vehicle_id): self
     {
-        return $this->whereIn('vehicle_id', VehicleModel::query()->selectOnly('id')->byId($vehicle_id)->enabled());
-    }
-
-    /**
-     * @param string $serial
-     *
-     * @return self
-     */
-    public function byVehicleSerial(string $serial): self
-    {
-        return $this->whereIn('vehicle_id', VehicleModel::query()->selectOnly('id')->bySerial($serial));
+        return $this->whereIn('vehicle_id', VehicleModel::query()->select('id')->byId($vehicle_id)->enabled());
     }
 
     /**
@@ -54,6 +44,6 @@ class AlarmVehicle extends BuilderAbstract
      */
     public function byUserId(int $user_id): self
     {
-        return $this->whereIn('vehicle_id', VehicleModel::query()->selectOnly('id')->byUserId($user_id));
+        return $this->whereIn('vehicle_id', VehicleModel::query()->select('id')->byUserId($user_id));
     }
 }
