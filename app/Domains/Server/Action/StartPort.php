@@ -170,16 +170,6 @@ class StartPort extends ActionAbstract
     }
 
     /**
-     * @param string $message
-     *
-     * @return string
-     */
-    protected function logContent(string $message): string
-    {
-        return '['.date('c').'] '.$message."\n";
-    }
-
-    /**
      * @param \App\Services\Protocol\Resource\ResourceAbstract $resource
      *
      * @return void
@@ -187,6 +177,7 @@ class StartPort extends ActionAbstract
     protected function save(ResourceAbstract $resource): void
     {
         $this->log($resource->message());
+        $this->logDebug($resource->toJson());
 
         if ($resource->format() === 'location') {
             $this->factory('Position')->action($this->saveData($resource))->create();
@@ -209,6 +200,8 @@ class StartPort extends ActionAbstract
             'signal' => $resource->signal(),
             'date_utc_at' => $resource->datetime(),
             'timezone' => $resource->timezone(),
+
+            'debug' => $this->data['debug'],
         ];
     }
 
@@ -247,5 +240,15 @@ class StartPort extends ActionAbstract
     protected function logFile(string $suffix = ''): string
     {
         return base_path('storage/logs/server/'.date('Y/m/d').'/'.$this->row->port.$suffix.'.log');
+    }
+
+    /**
+     * @param string $message
+     *
+     * @return string
+     */
+    protected function logContent(string $message): string
+    {
+        return '['.date('c').'] '.$message."\n";
     }
 }

@@ -14,6 +14,8 @@ class LogRead extends ValidateAbstract
         return [
             'protocol' => ['bail', 'required'],
             'file' => ['bail', 'required'],
+
+            'debug' => ['bail', 'boolean'],
         ];
     }
 }

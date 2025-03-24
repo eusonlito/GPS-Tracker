@@ -9,9 +9,15 @@ use App\Domains\Position\Model\Position as Model;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+use App\Services\Filesystem\Directory;
 
 class Create extends ActionAbstract
 {
+    /**
+     * @var string
+     */
+    protected string $uuid;
+
     /**
      * @var ?\App\Domains\Device\Model\Device
      */
@@ -42,6 +48,7 @@ class Create extends ActionAbstract
      */
     public function handle(): void
     {
+        $this->uuid();
         $this->device();
 
         if ($this->isValidDevice() === false) {
@@ -61,6 +68,14 @@ class Create extends ActionAbstract
         $this->trip();
         $this->save();
         $this->job();
+    }
+
+    /**
+     * @return void
+     */
+    protected function uuid(): void
+    {
+        $this->uuid = uniqid();
     }
 
     /**
@@ -146,6 +161,7 @@ class Create extends ActionAbstract
         $this->dataTimezoneId();
         $this->dataDateAt();
         $this->dataSpeed();
+        $this->dataDebug();
     }
 
     /**
@@ -185,6 +201,14 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
+    protected function dataDebug(): void
+    {
+        $this->logDebug('DATA', $this->data);
+    }
+
+    /**
+     * @return void
+     */
     protected function previous(): void
     {
         $this->previous = Model::query()
@@ -198,10 +222,23 @@ class Create extends ActionAbstract
      */
     protected function isValid(): bool
     {
-        return $this->isValidSignal()
-            && $this->isValidNotExists()
-            && $this->isValidPreviousDifferent()
-            && $this->isValidPreviousNotNear();
+        if ($this->isValidSignal() === false) {
+            return $this->logDebug('isValidSignal', 'false', false);
+        }
+
+        if ($this->isValidNotExists() === false) {
+            return $this->logDebug('isValidNotExists', 'false', false);
+        }
+
+        if ($this->isValidPreviousDifferent() === false) {
+            return $this->logDebug('isValidPreviousDifferent', 'false', false);
+        }
+
+        if ($this->isValidPreviousNotNear() === false) {
+            return $this->logDebug('isValidPreviousNotNear', 'false', false);
+        }
+
+        return true;
     }
 
     /**
@@ -232,6 +269,8 @@ class Create extends ActionAbstract
         if (empty($this->previous)) {
             return true;
         }
+
+        $this->logDebug('PREVIOUS', $this->previous->toArray());
 
         return ((string)$this->previous->speed !== (string)$this->data['speed'])
             || ((string)$this->previous->latitude !== (string)$this->data['latitude'])
@@ -305,6 +344,7 @@ class Create extends ActionAbstract
     {
         $this->saveRow();
         $this->saveTrip();
+        $this->saveDebug();
     }
 
     /**
@@ -339,6 +379,16 @@ class Create extends ActionAbstract
     /**
      * @return void
      */
+    protected function saveDebug(): void
+    {
+        if ($this->data['debug']) {
+            $this->logDebug('ROW', $this->row->fresh()->toArray());
+        }
+    }
+
+    /**
+     * @return void
+     */
     protected function job(): void
     {
         $this->jobAlarm();
@@ -359,5 +409,58 @@ class Create extends ActionAbstract
     protected function jobCity(): void
     {
         UpdateCityJob::dispatch($this->row->id);
+    }
+
+    /**
+     * @param string $title
+     * @param mixed $message
+     * @param mixed $return = null
+     *
+     * @return mixed
+     */
+    protected function logDebug(string $title, mixed $message, mixed $return = null): mixed
+    {
+        if (empty($this->data['debug'])) {
+            return $return;
+        }
+
+        $file = $this->logDebugFile();
+
+        Directory::create($file, true);
+
+        file_put_contents($file, $this->logDebugContent($title, $message), LOCK_EX | FILE_APPEND);
+
+        return $return;
+    }
+
+    /**
+     * @return string
+     */
+    protected function logDebugFile(): string
+    {
+        return base_path('storage/logs/position/'.date('Y/m/Y-m-d').'.log');
+    }
+
+    /**
+     * @param string $title
+     * @param mixed $message
+     *
+     * @return string
+     */
+    protected function logDebugContent(string $title, mixed $message): string
+    {
+        if ($message && (is_scalar($message) === false)) {
+            $message = json_encode($message, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        }
+
+        return '['.$this->logDebugContentTimestamp().'] ['.$this->uuid.'] ['.$title.'] '.$message."\n";
+    }
+
+    /**
+     * @return string
+     */
+    protected function logDebugContentTimestamp(): string
+    {
+        return date_create()->format('Y-m-d H:i:s.v P');
     }
 }

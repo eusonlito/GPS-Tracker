@@ -7,7 +7,7 @@ class LogRead extends CommandAbstract
     /**
      * @var string
      */
-    protected $signature = 'server:log:read {--file=} {--protocol=}';
+    protected $signature = 'server:log:read {--file=} {--protocol=} {--debug}';
 
     /**
      * @var string
