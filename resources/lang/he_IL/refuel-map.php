@@ -1,6 +1,6 @@
 <?php return [
-    'end-at' => 'סיום',
+    'end_at' => 'סיום',
     'filter' => 'סנן...',
     'meta-title' => 'תדלוק > מפה',
-    'start-at' => 'התחלה',
+    'start_at' => 'התחלה',
 ];

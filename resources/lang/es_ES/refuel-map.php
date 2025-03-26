@@ -1,6 +1,6 @@
 <?php return [
-    'end-at' => 'Fin',
+    'end_at' => 'Fin',
     'filter' => 'Filtrar...',
     'meta-title' => 'Repostajes > Mapa',
-    'start-at' => 'Inicio',
+    'start_at' => 'Inicio',
 ];
