@@ -46,6 +46,14 @@
     </div>
 </form>
 
+@if ($list->isEmpty())
+
+@include ('molecules.empty')
+
+@else
+
 <x-map-refuel :refuels="$list"></x-map-refuel>
+
+@endif
 
 @stop
