@@ -1,5 +1,6 @@
 <?php return [
     'close' => 'إغلاق',
+    'content-empty' => 'لا يوجد محتوى متاح لهذا القسم',
     'copy' => 'نسخ',
     'error' => [
         'fuser-not-found' => 'أمر "المصهر" غير متوفر',

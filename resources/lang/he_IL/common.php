@@ -1,5 +1,6 @@
 <?php return [
     'close' => 'סגור',
+    'content-empty' => 'אין תוכן זמין עבור חלק זה',
     'copy' => 'Copiar',
     'error' => [
         'fuser-not-found' => 'הפקודה "fuser" אינה זמינה',

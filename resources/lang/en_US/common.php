@@ -1,5 +1,6 @@
 <?php return [
     'close' => 'Close',
+    'content-empty' => 'No content available for this section',
     'copy' => 'Copy',
     'error' => [
         'fuser-not-found' => 'The "fuser" command is not available',
