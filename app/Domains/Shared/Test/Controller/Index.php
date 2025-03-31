@@ -54,12 +54,12 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
-    public function testGetGuestSlugEmptyFail(): void
+    public function testGetGuestSlugEmptySuccess(): void
     {
         $this->setConfiguration(1, '');
 
         $this->get($this->routeToController(''))
-            ->assertStatus(404);
+            ->assertStatus(200);
     }
 
     /**
