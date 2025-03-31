@@ -1,5 +1,7 @@
 'use strict';
 
+const isWatch = process.argv.includes('watch');
+
 const { gulp, src, dest, series, parallel, watch } = require('gulp');
 
 const
@@ -11,7 +13,7 @@ const
     imagemin = require('gulp-imagemin'),
     jshint = require('gulp-jshint'),
     merge = require('merge2'),
-    mode = require('gulp-mode')({ default: 'production' }),
+    mode = require('gulp-mode')({ default: isWatch ? 'development' : 'production' }),
     postcss = require('gulp-postcss'),
     purgecss = require('gulp-purgecss'),
     purifycss = require('gulp-purifycss'),
