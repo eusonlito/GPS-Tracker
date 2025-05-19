@@ -13,6 +13,11 @@ use App\Services\Server\Process as ServerProcess;
 class Status extends ControllerAbstract
 {
     /**
+     * @var \App\Domains\Server\Model\Collection\Server
+     */
+    protected Collection $list;
+
+    /**
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Contracts\Auth\Authenticatable $auth
      *
@@ -20,17 +25,7 @@ class Status extends ControllerAbstract
      */
     public function __construct(protected Request $request, protected Authenticatable $auth)
     {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'list' => $this->list(),
-            'process' => $this->process(),
-        ];
+        $this->list = $this->list();
     }
 
     /**
@@ -39,6 +34,17 @@ class Status extends ControllerAbstract
     protected function list(): Collection
     {
         return Model::query()->list()->get();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'list' => $this->list,
+            'process' => $this->process(),
+        ];
     }
 
     /**
@@ -59,6 +65,7 @@ class Status extends ControllerAbstract
     protected function processMap(stdClass $process): stdClass
     {
         $process->route = $this->processMapRoute($process);
+        $process->protocol = $this->processMapProtocol($process);
 
         return $process;
     }
@@ -93,5 +100,15 @@ class Status extends ControllerAbstract
         }
 
         return null;
+    }
+
+    /**
+     * @param \stdClass $process
+     *
+     * @return ?string
+     */
+    protected function processMapProtocol(stdClass $process): ?string
+    {
+        return $this->list->firstWhere('port', $process->port)?->protocol;
     }
 }

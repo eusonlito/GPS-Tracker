@@ -11,6 +11,7 @@
                 <thead>
                     <tr>
                         <th>{{ __('server-status.port') }}</th>
+                        <th>{{ __('server-status.protocol') }}</th>
                         <th>{{ __('server-status.started') }}</th>
                         <th>{{ __('server-status.cpu') }}</th>
                         <th>{{ __('server-status.memory') }}</th>
@@ -27,6 +28,7 @@
 
                     <tr>
                         <td>{{ $each->port }}</td>
+                        <td>{{ $each->protocol }}</td>
                         <td>{{ $each->start }}</td>
                         <td>{{ $each->cpu }}</td>
                         <td>{{ $each->memory }}</td>
