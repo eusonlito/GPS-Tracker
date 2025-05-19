@@ -26,8 +26,8 @@ class Locations extends ParserAbstract
      */
     public function messageIsValid(): bool
     {
-        return $this->messageIsValidStart()
-            && $this->messageIsValidSerial();
+        return $this->messageIsValidSerial()
+            && $this->messageIsValidStart();
     }
 
     /**
