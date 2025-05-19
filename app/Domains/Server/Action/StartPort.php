@@ -162,6 +162,8 @@ class StartPort extends ActionAbstract
             return [];
         }
 
+        $this->log($message);
+
         foreach ($resources as $resource) {
             $this->save($resource);
         }
@@ -176,7 +178,6 @@ class StartPort extends ActionAbstract
      */
     protected function save(ResourceAbstract $resource): void
     {
-        $this->log($resource->message());
         $this->logDebug($resource->toJson());
 
         if ($resource->format() === 'location') {
