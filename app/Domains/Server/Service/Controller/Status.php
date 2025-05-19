@@ -64,10 +64,21 @@ class Status extends ControllerAbstract
      */
     protected function processMap(stdClass $process): stdClass
     {
+        $process->command = $this->processMapCommand($process);
         $process->route = $this->processMapRoute($process);
         $process->protocol = $this->processMapProtocol($process);
 
         return $process;
+    }
+
+    /**
+     * @param \stdClass $process
+     *
+     * @return string
+     */
+    protected function processMapCommand(stdClass $process): string
+    {
+        return str_replace(base_path('/'), '', strval($process->command));
     }
 
     /**
