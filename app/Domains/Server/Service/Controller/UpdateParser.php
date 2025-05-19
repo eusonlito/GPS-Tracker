@@ -95,7 +95,7 @@ class UpdateParser extends ControllerAbstract
             $files[strtr(base64_encode($file), '+/=', '-_.')] = $file;
         }
 
-        krsort($files);
+        arsort($files);
 
         return $cache = $files;
     }
