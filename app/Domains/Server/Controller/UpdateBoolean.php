@@ -3,29 +3,39 @@
 namespace App\Domains\Server\Controller;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Server\Model\Server as Model;
+use Illuminate\Http\RedirectResponse;
 
 class UpdateBoolean extends ControllerAbstract
 {
     /**
      * @param int $id
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function __invoke(int $id): JsonResponse
+    public function __invoke(int $id): JsonResponse|RedirectResponse
     {
         $this->row($id);
 
-        return $this->json($this->fractal($this->action()->updateBoolean()));
+        return $this->request->wantsJson()
+            ? $this->responseJson()
+            : $this->responseRedirect();
     }
 
     /**
-     * @param \App\Domains\Server\Model\Server $row
-     *
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      */
-    protected function fractal(Model $row): array
+    protected function responseJson(): JsonResponse
     {
-        return $this->factory()->fractal('simple', $row);
+        return $this->json($this->factory()->fractal('simple', $this->action()->updateBoolean()));
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function responseRedirect(): RedirectResponse
+    {
+        $this->actionCallClosure($this->action()->updateBoolean(...));
+
+        return redirect()->back();
     }
 }

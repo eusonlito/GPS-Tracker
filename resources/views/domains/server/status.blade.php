@@ -83,7 +83,7 @@
                         <td><a href="{{ $link }}" class="block">{{ $row->port }}</a></td>
                         <td><a href="{{ $link }}" class="block">{{ $row->protocol }}</a></td>
                         <td class="w-1" data-table-sort-value="{{ (int)$row->debug }}"><a href="{{ route('server.update.boolean', [$row->id, 'debug']) }}" class="block" data-update-boolean="debug">@status($row->debug)</a></td>
-                        <td data-table-sort-value="{{ (int)$row->enabled }}"><span class="block">@status($row->enabled)</span></td>
+                        <td class="w-1" data-table-sort-value="{{ (int)$row->enabled }}"><a href="{{ route('server.update.boolean', [$row->id, 'enabled']) }}" class="block">@status($row->enabled)</a></td>
                         <td class="w-1">@if ($row->enabled) <input type="checkbox" name="ports[]" value="{{ $row->port }}" /> @endif</td>
                     </tr>
 
