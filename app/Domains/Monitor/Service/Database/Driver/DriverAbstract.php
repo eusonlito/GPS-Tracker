@@ -61,6 +61,14 @@ abstract class DriverAbstract
      */
     protected function getTables(): array
     {
-        return $this->cache[__FUNCTION__] ??= Schema::getTables(schema: $this->config('database'));
+        return $this->cache[__FUNCTION__] ??= Schema::getTables(schema: $this->getTablesSchema());
+    }
+
+    /**
+     * @return string
+     */
+    protected function getTablesSchema(): string
+    {
+        return $this->config($this->config('driver') === 'pgsql' ? 'search_path': 'database');
     }
 }

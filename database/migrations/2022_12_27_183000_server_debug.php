@@ -16,7 +16,6 @@ return new class() extends MigrationAbstract {
 
         $this->tables();
         $this->delete();
-        $this->upFinish();
     }
 
     /**

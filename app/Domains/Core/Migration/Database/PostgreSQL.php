@@ -20,57 +20,58 @@ class PostgreSQL extends DatabaseAbstract
     /**
      * @return void
      */
-    public function functionUpdatedAtNow(): void
+    public function updatedAtNow(): void
     {
-        $this->db->unprepared('
-            CREATE OR REPLACE FUNCTION updated_at_now()
-            RETURNS TRIGGER AS $$
-            BEGIN
-                NEW."updated_at" = now();
-                RETURN NEW;
-            END;
-            $$ language \'plpgsql\';
-        ');
+        $this->updatedAtNowFunction();
+        $this->updatedAtNowTrigger();
     }
 
     /**
-     * @param string $table
-     * @param bool $execute = false
-     *
-     * @return string
+     * @return void
      */
-    public function dropTriggerUpdatedAt(string $table, bool $execute = false): string
+    protected function updatedAtNowFunction(): void
     {
-        $sql = '
-            DROP TRIGGER IF EXISTS "update_'.$table.'_updated_at"
-            ON "'.$table.'";
-        ';
+        $this->db->unprepared(trim(<<<'EOF'
 
-        if ($execute) {
-            $this->db->unprepared($sql);
-        }
+        CREATE OR REPLACE FUNCTION "updated_at_now"()
+        RETURNS TRIGGER AS $$
+        BEGIN
+            NEW."updated_at" = NOW();
+            RETURN NEW;
+        END;
+        $$ LANGUAGE plpgsql;
 
-        return $sql;
+        EOF));
     }
 
     /**
-     * @param string $table
-     * @param bool $execute = false
-     *
-     * @return string
+     * @return void
      */
-    public function createTriggerUpdatedAt(string $table, bool $execute = false): string
+    protected function updatedAtNowTrigger(): void
     {
-        $sql = '
-            CREATE TRIGGER "update_'.$table.'_updated_at"
-            BEFORE UPDATE ON "'.$table.'"
-            FOR EACH ROW EXECUTE PROCEDURE updated_at_now();
-        ';
+        $this->db->unprepared(trim(<<<'EOF'
 
-        if ($execute) {
-            $this->db->unprepared($sql);
-        }
+        DO $$
+        DECLARE
+            "tbl" RECORD;
+        BEGIN
+            FOR "tbl" IN
+                SELECT "table_schema", "table_name"
+                FROM "information_schema"."columns"
+                WHERE (
+                    "column_name" = 'updated_at'
+                    AND "table_schema" = 'public'
+                )
+            LOOP
+                EXECUTE format(
+                    'CREATE OR REPLACE TRIGGER "updated_at_now_trigger" BEFORE UPDATE ON %I.%I FOR EACH ROW EXECUTE FUNCTION "updated_at_now"();',
+                    "tbl"."table_schema",
+                    "tbl"."table_name"
+                );
+            END LOOP;
+        END;
+        $$;
 
-        return $sql;
+        EOF));
     }
 }

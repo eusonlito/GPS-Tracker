@@ -16,37 +16,4 @@ class SQLite extends DatabaseAbstract
     {
         return $table->uuid('uuid')->unique();
     }
-
-    /**
-     * @return void
-     */
-    public function functionUpdatedAtNow(): void
-    {
-    }
-
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-     *
-     * @param string $table
-     * @param bool $execute = false
-     *
-     * @return string
-     */
-    public function dropTriggerUpdatedAt(string $table, bool $execute = false): string
-    {
-        return '';
-    }
-
-    /**
-     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
-     *
-     * @param string $table
-     * @param bool $execute = false
-     *
-     * @return string
-     */
-    public function createTriggerUpdatedAt(string $table, bool $execute = false): string
-    {
-        return '';
-    }
 }

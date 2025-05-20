@@ -9,7 +9,6 @@ return new class() extends MigrationAbstract {
     public function up(): void
     {
         $this->update();
-        $this->upFinish();
     }
 
     /**

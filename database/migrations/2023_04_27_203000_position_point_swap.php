@@ -13,7 +13,6 @@ return new class() extends MigrationAbstract {
         }
 
         $this->update();
-        $this->upFinish();
     }
 
     /**
