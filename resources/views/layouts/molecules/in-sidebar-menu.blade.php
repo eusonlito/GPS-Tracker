@@ -360,7 +360,7 @@
         </li>
 
         <li>
-            <a href="{{ route('monitor.log') }}" class="side-menu {{ ($ROUTE === 'monitor.log') ? 'side-menu--active' : '' }}">
+            <a href="{{ route('monitor.log') }}" class="side-menu {{ str_starts_with($ROUTE, 'monitor.log') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('file-text')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.monitor-log') }}</div>
             </a>

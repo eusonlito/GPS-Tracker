@@ -225,7 +225,7 @@ abstract class MigrationAbstract extends Migration
     protected function getTables(): array
     {
         return array_filter(
-            array_column(Schema::getTables(), 'name'),
+            array_column(Schema::getTables(schema: $this->db()->getDatabaseName()), 'name'),
             static fn ($table) => $table !== 'migrations'
         );
     }
