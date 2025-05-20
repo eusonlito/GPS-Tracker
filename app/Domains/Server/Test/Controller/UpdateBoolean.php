@@ -46,7 +46,7 @@ class UpdateBoolean extends ControllerAbstract
      */
     public function testGetAuthAdminInvalidFail(): void
     {
-        $this->getAuthAdminInvalidFail();
+        $this->getJsonAuthAdminInvalidFail();
     }
 
     /**
@@ -54,7 +54,7 @@ class UpdateBoolean extends ControllerAbstract
      */
     public function testPostAuthAdminInvalidFail(): void
     {
-        $this->postAuthAdminInvalidFail();
+        $this->postJsonAuthAdminInvalidFail();
     }
 
     /**
@@ -62,7 +62,7 @@ class UpdateBoolean extends ControllerAbstract
      */
     public function testGetAuthAdminSuccess(): void
     {
-        $this->getAuthAdminSuccess();
+        $this->getJsonAuthAdminSuccess();
     }
 
     /**
@@ -70,7 +70,7 @@ class UpdateBoolean extends ControllerAbstract
      */
     public function testPostAuthAdminSuccess(): void
     {
-        $this->postAuthAdminSuccess();
+        $this->postJsonAuthAdminSuccess();
     }
 
     /**
