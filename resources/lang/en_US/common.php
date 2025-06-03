@@ -1,6 +1,7 @@
 <?php return [
     'and' => 'and',
     'close' => 'Close',
+    'content-empty' => 'No content available for this section',
     'copy' => 'Copy',
     'day' => 'day',
     'days' => 'day',

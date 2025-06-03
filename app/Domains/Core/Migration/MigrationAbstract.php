@@ -25,14 +25,21 @@ abstract class MigrationAbstract extends Migration
     protected DatabaseAbstract $database;
 
     /**
-     * @var string
-     */
-    protected string $driver;
-
-    /**
      * @var array
      */
-    protected array $queue = [];
+    protected array $config;
+
+    /**
+     * @param string $key
+     *
+     * @return string|int
+     */
+    protected function config(string $key): string|int
+    {
+        $this->config ??= config('database.connections.'.config('database.default'));
+
+        return $this->config[$key];
+    }
 
     /**
      * @return \Illuminate\Database\ConnectionInterface
@@ -40,14 +47,6 @@ abstract class MigrationAbstract extends Migration
     protected function db(): ConnectionInterface
     {
         return $this->db ??= DB::connection();
-    }
-
-    /**
-     * @return string
-     */
-    protected function driver(): string
-    {
-        return $this->driver ??= $this->db()->getDriverName();
     }
 
     /**
@@ -82,11 +81,22 @@ abstract class MigrationAbstract extends Migration
     /**
      * @param \Illuminate\Database\Schema\Blueprint $table
      *
+     * @return void
+     */
+    protected function timestampsWithDelete(Blueprint $table): void
+    {
+        $this->timestamps($table);
+        $this->dateTimeDeletedAt($table);
+    }
+
+    /**
+     * @param \Illuminate\Database\Schema\Blueprint $table
+     *
      * @return \Illuminate\Database\Schema\ColumnDefinition
      */
     protected function dateTimeCreatedAt(Blueprint $table): ColumnDefinition
     {
-        return $table->dateTimeTz('created_at')->useCurrent();
+        return $table->dateTime('created_at')->useCurrent();
     }
 
     /**
@@ -96,13 +106,7 @@ abstract class MigrationAbstract extends Migration
      */
     protected function dateTimeUpdatedAt(Blueprint $table): ColumnDefinition
     {
-        $definition = $table->dateTimeTz('updated_at')->useCurrent()->useCurrentOnUpdate();
-
-        if ($this->driver() === 'pgsql') {
-            $this->dateTimeUpdatedAtTrigger($table->getTable());
-        }
-
-        return $definition;
+        return $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
     }
 
     /**
@@ -112,38 +116,28 @@ abstract class MigrationAbstract extends Migration
      */
     protected function dateTimeDeletedAt(Blueprint $table): ColumnDefinition
     {
-        return $table->dateTimeTz('deleted_at')->nullable();
-    }
-
-    /**
-     * @param string $table
-     *
-     * @return void
-     */
-    protected function dateTimeUpdatedAtTrigger(string $table): void
-    {
-        $this->queueAdd($this->database()->dropTriggerUpdatedAt($table, false));
-        $this->queueAdd($this->database()->createTriggerUpdatedAt($table, false));
+        return $table->dateTime('deleted_at')->nullable();
     }
 
     /**
      * @param \Illuminate\Database\Schema\Blueprint $table
      * @param string $remote
      * @param ?string $alias = null
+     * @param ?string $reference = null
      *
      * @return \Illuminate\Database\Schema\ForeignKeyDefinition
      */
-    protected function foreign(Blueprint $table, string $remote, ?string $alias = null): ForeignKeyDefinition
+    protected function foreign(Blueprint $table, string $remote, ?string $alias = null, ?string $reference = null): ForeignKeyDefinition
     {
         $name = ($alias ?: ($remote.'_id'));
         $column = $alias ?: $remote;
 
-        if ($this->driver() === 'pgsql') {
-            $table->index($name, $this->indexName($table, $column, 'id_index'));
+        if ($this->config('driver') === 'pgsql') {
+            $table->index($name, $this->indexName($table, preg_replace('/_id$/', '', $column), 'id_index'));
         }
 
         return $table->foreign($name, $this->indexName($table, $column, 'fk'))
-            ->references('id')
+            ->references($reference ?: 'id')
             ->on($remote);
     }
 
@@ -151,24 +145,26 @@ abstract class MigrationAbstract extends Migration
      * @param \Illuminate\Database\Schema\Blueprint $table
      * @param string $remote
      * @param ?string $alias = null
+     * @param ?string $reference = null
      *
      * @return \Illuminate\Database\Schema\ForeignKeyDefinition
      */
-    protected function foreignOnDeleteSetNull(Blueprint $table, string $remote, ?string $alias = null): ForeignKeyDefinition
+    protected function foreignOnDeleteSetNull(Blueprint $table, string $remote, ?string $alias = null, ?string $reference = null): ForeignKeyDefinition
     {
-        return $this->foreign($table, $remote, $alias)->onDelete('SET NULL');
+        return $this->foreign($table, $remote, $alias, $reference)->onDelete('SET NULL');
     }
 
     /**
      * @param \Illuminate\Database\Schema\Blueprint $table
      * @param string $remote
      * @param ?string $alias = null
+     * @param ?string $reference = null
      *
      * @return \Illuminate\Database\Schema\ForeignKeyDefinition
      */
-    protected function foreignOnDeleteCascade(Blueprint $table, string $remote, ?string $alias = null): ForeignKeyDefinition
+    protected function foreignOnDeleteCascade(Blueprint $table, string $remote, ?string $alias = null, ?string $reference = null): ForeignKeyDefinition
     {
-        return $this->foreign($table, $remote, $alias)->onDelete('CASCADE');
+        return $this->foreign($table, $remote, $alias, $reference)->onDelete('CASCADE');
     }
 
     /**
@@ -220,14 +216,35 @@ abstract class MigrationAbstract extends Migration
     }
 
     /**
+     * @param string $table
+     * @param string $column
+     *
+     * @return void
+     */
+    protected function dropColumnIfExists(string $table, string $column): void
+    {
+        if (Schema::hasColumn($table, $column)) {
+            Schema::table($table, static fn (Blueprint $table) => $table->dropColumn($column));
+        }
+    }
+
+    /**
      * @return array
      */
     protected function getTables(): array
     {
         return array_filter(
-            array_column(Schema::getTables(), 'name'),
+            array_column(Schema::getTables(schema: $this->getTablesSchema()), 'name'),
             static fn ($table) => $table !== 'migrations'
         );
+    }
+
+    /**
+     * @return string
+     */
+    protected function getTablesSchema(): string
+    {
+        return $this->config($this->config('driver') === 'pgsql' ? 'search_path': 'database');
     }
 
     /**
@@ -313,37 +330,5 @@ abstract class MigrationAbstract extends Migration
         if ($this->tableHasIndex($table->getTable(), $name, $suffix)) {
             $table->dropForeign($this->indexName($table, $name, $suffix));
         }
-    }
-
-    /**
-     * @param string $sql
-     *
-     * @return void
-     */
-    protected function queueAdd(string $sql): void
-    {
-        $this->queue[] = $sql;
-    }
-
-    /**
-     * @return void
-     */
-    protected function queue(): void
-    {
-        $db = $this->db();
-
-        foreach ($this->queue as $sql) {
-            $db->statement($sql);
-        }
-
-        $this->queue = [];
-    }
-
-    /**
-     * @return void
-     */
-    public function upFinish(): void
-    {
-        $this->queue();
     }
 }

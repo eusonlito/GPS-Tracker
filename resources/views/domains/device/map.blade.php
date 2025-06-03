@@ -18,6 +18,14 @@
     </div>
 </form>
 
+@if ($list->isEmpty())
+
+@include ('molecules.empty')
+
+@else
+
 <x-map-device :devices="$list"></x-map-device>
+
+@endif
 
 @stop

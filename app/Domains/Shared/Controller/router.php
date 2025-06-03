@@ -6,4 +6,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/shared/device/{uuid}', Device::class)->name('shared.device');
 Route::get('/shared/trip/{uuid}', Trip::class)->name('shared.trip');
-Route::get('/shared/{slug}', Index::class)->name('shared.index');
+Route::get('/shared/{slug?}', Index::class)->name('shared.index');

@@ -9,11 +9,11 @@ use App\Domains\Shared\Service\Controller\Index as ControllerService;
 class Index extends ControllerAbstract
 {
     /**
-     * @param string $slug
+     * @param string $slug = ''
      *
      * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
-    public function __invoke(string $slug): Response|JsonResponse
+    public function __invoke(string $slug = ''): Response|JsonResponse
     {
         $this->publicIsAvailable($slug);
 

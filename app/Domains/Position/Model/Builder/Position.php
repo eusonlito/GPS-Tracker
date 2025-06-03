@@ -293,14 +293,6 @@ class Position extends BuilderAbstract
     }
 
     /**
-     * @return self
-     */
-    public function selectLatitudeLongitude(): self
-    {
-        return $this->select('position.longitude', 'position.latitude');
-    }
-
-    /**
      * @param ?int $user_id
      * @param ?int $vehicle_id
      * @param ?string $before_date_at

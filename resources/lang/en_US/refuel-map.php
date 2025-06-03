@@ -1,6 +1,6 @@
 <?php return [
-    'end-at' => 'End',
+    'end_at' => 'End',
     'filter' => 'Filter...',
     'meta-title' => 'Refueling > Map',
-    'start-at' => 'Start',
+    'start_at' => 'Start',
 ];

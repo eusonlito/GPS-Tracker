@@ -67,8 +67,15 @@ class Set extends ActionAbstract
      */
     protected function defined(): bool
     {
-        return app()->bound('language')
-            && ($this->locale === app('language')->locale);
+        if (app()->bound('language') === false) {
+            return false;
+        }
+
+        if ($this->row && ($this->row->locale !== app('language')->locale)) {
+            return false;
+        }
+
+        return $this->locale === app('language')->locale;
     }
 
     /**

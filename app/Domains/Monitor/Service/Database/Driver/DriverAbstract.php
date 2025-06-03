@@ -24,11 +24,6 @@ abstract class DriverAbstract
     protected ConnectionInterface $db;
 
     /**
-     * @var string
-     */
-    protected string $driver;
-
-    /**
      * @var array
      */
     protected array $cache = [];
@@ -39,14 +34,6 @@ abstract class DriverAbstract
     protected function db(): ConnectionInterface
     {
         return $this->db ??= DB::connection();
-    }
-
-    /**
-     * @return string
-     */
-    protected function driver(): string
-    {
-        return $this->driver ??= $this->db()->getDriverName();
     }
 
     /**
@@ -66,6 +53,22 @@ abstract class DriverAbstract
      */
     protected function tables(): array
     {
-        return $this->cache[__FUNCTION__] ??= array_column(Schema::getTables(), 'name');
+        return $this->cache[__FUNCTION__] ??= array_column($this->getTables(), 'name');
+    }
+
+    /**
+     * @return array
+     */
+    protected function getTables(): array
+    {
+        return $this->cache[__FUNCTION__] ??= Schema::getTables(schema: $this->getTablesSchema());
+    }
+
+    /**
+     * @return string
+     */
+    protected function getTablesSchema(): string
+    {
+        return $this->config($this->config('driver') === 'pgsql' ? 'search_path': 'database');
     }
 }

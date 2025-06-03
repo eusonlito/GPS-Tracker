@@ -157,11 +157,33 @@ abstract class ControllerAbstract extends FeatureAbstract
     /**
      * @return void
      */
+    public function getJsonAuthAdminInvalidFail(): void
+    {
+        $this->authUserAdmin();
+
+        $this->getJson($this->routeFactoryCreateModel(null, 'invalid'))
+            ->assertStatus(422);
+    }
+
+    /**
+     * @return void
+     */
     public function postAuthAdminInvalidFail(): void
     {
         $this->authUserAdmin();
 
         $this->post($this->routeFactoryCreateModel(null, 'invalid'))
+            ->assertStatus(422);
+    }
+
+    /**
+     * @return void
+     */
+    public function postJsonAuthAdminInvalidFail(): void
+    {
+        $this->authUserAdmin();
+
+        $this->postJson($this->routeFactoryCreateModel(null, 'invalid'))
             ->assertStatus(422);
     }
 
@@ -206,6 +228,22 @@ abstract class ControllerAbstract extends FeatureAbstract
     /**
      * @return void
      */
+    public function getJsonAuthAdminSuccess(): void
+    {
+        $this->authUserAdmin();
+
+        $this->getJson($this->routeToController())
+            ->assertStatus(200);
+
+        $this->factoryCreate();
+
+        $this->getJson($this->routeToController())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
     public function postAuthAdminSuccess(): void
     {
         $this->authUserAdmin();
@@ -216,6 +254,22 @@ abstract class ControllerAbstract extends FeatureAbstract
         $this->factoryCreate();
 
         $this->post($this->routeToController())
+            ->assertStatus(200);
+    }
+
+    /**
+     * @return void
+     */
+    public function postJsonAuthAdminSuccess(): void
+    {
+        $this->authUserAdmin();
+
+        $this->postJson($this->routeToController())
+            ->assertStatus(200);
+
+        $this->factoryCreate();
+
+        $this->postJson($this->routeToController())
             ->assertStatus(200);
     }
 

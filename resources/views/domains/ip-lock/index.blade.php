@@ -38,7 +38,7 @@
                 <td><a href="{{ $link }}" class="block">{{ $row->time() }}</a></td>
                 <td class="w-1">
                     @if ($row->finished() === false)
-                    <a href="{{ route('ip-lock.update.end-at', $row->id) }}" title="{{ __('ip-lock-index.unlock') }}" class="block">@icon('unlock', 'w-4 h-4')</a>
+                    <a href="{{ route('ip-lock.update.end_at', $row->id) }}" title="{{ __('ip-lock-index.unlock') }}" class="block">@icon('unlock', 'w-4 h-4')</a>
                     @endif
                 </td>
             </tr>

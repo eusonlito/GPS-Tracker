@@ -14,6 +14,14 @@
     </div>
 </form>
 
+@if ($list->isEmpty())
+
+@include ('molecules.empty')
+
+@else
+
 <x-map-vehicle :vehicles="$list"></x-map-vehicle>
+
+@endif
 
 @stop

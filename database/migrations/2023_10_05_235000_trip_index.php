@@ -11,7 +11,6 @@ return new class() extends MigrationAbstract {
     public function up(): void
     {
         $this->keys();
-        $this->upFinish();
     }
 
     /**

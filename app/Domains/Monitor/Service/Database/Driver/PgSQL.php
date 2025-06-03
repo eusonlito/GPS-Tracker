@@ -48,8 +48,8 @@ class PgSQL extends DriverAbstract
     {
         $sql = [];
 
-        foreach ($this->tables() as $table) {
-            $sql[] = '(SELECT COUNT(*) FROM "'.$table.'") AS "'.$table.'"';
+        foreach ($this->getTables() as $table) {
+            $sql[] = '(SELECT COUNT(*) FROM "'.$table['schema'].'"."'.$table['name'].'") AS "'.$table['name'].'"';
         }
 
         return 'SELECT '.implode(', ', $sql).';';

@@ -1,6 +1,7 @@
 <?php return [
     'and' => 'ו',
     'close' => 'סגור',
+    'content-empty' => 'אין תוכן זמין עבור חלק זה',
     'copy' => 'Copiar',
     'day' => 'יום',
     'days' => 'ימים',

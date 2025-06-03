@@ -1,6 +1,6 @@
 <?php return [
-    'end-at' => 'Fin',
+    'end_at' => 'Fin',
     'filter' => 'Filtre...',
     'meta-title' => 'Ravitaillement > Carte',
-    'start-at' => 'Début',
+    'start_at' => 'Début',
 ];

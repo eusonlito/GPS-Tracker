@@ -1,6 +1,7 @@
 <?php return [
     'and' => 'et',
     'close' => 'Fermer',
+    'content-empty' => 'Aucun contenu disponible pour cette section',
     'copy' => 'Copier',
     'day' => 'jour',
     'days' => 'jour',

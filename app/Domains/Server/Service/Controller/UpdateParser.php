@@ -83,10 +83,19 @@ class UpdateParser extends ControllerAbstract
 
         $files = [];
 
-        foreach (array_reverse(glob($path)) as $file) {
+        foreach (glob($path) as $file) {
             $file = str_replace($base, '', $file);
             $files[strtr(base64_encode($file), '+/=', '-_.')] = $file;
         }
+
+        $path = sprintf('%s/server/*/*/*/%s.log', $base, $this->row->port);
+
+        foreach (glob($path) as $file) {
+            $file = str_replace($base, '', $file);
+            $files[strtr(base64_encode($file), '+/=', '-_.')] = $file;
+        }
+
+        arsort($files);
 
         return $cache = $files;
     }

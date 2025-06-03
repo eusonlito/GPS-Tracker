@@ -12,7 +12,7 @@
     'protocol' => 'Protocol',
     'restart' => 'Start/Restart',
     'start-success' => 'The servers have been successfully started',
-    'started' => 'Home',
+    'started' => 'Start',
     'stop' => 'Stop',
     'stop-success' => 'The servers have been stopped successfully',
 ];

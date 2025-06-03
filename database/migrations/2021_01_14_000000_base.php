@@ -10,19 +10,9 @@ return new class() extends MigrationAbstract {
      */
     public function up(): void
     {
-        $this->functions();
         $this->tables();
         $this->unprepared();
         $this->keys();
-        $this->upFinish();
-    }
-
-    /**
-     * @return void
-     */
-    protected function functions(): void
-    {
-        $this->database()->functionUpdatedAtNow();
     }
 
     /**
