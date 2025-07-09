@@ -16,10 +16,10 @@ class MapTrip extends Component
      * @return self
      */
     public function __construct(
-        readonly public bool $sidebarHidden = false,
-        readonly public bool $userShow = false,
-        readonly public bool $vehicleShow = false,
-        readonly public bool $deviceShow = false,
+        public readonly bool $sidebarHidden = false,
+        public readonly bool $userShow = false,
+        public readonly bool $vehicleShow = false,
+        public readonly bool $deviceShow = false,
     ) {
     }
 

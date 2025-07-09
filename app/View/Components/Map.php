@@ -22,11 +22,11 @@ class Map extends Component
      * @return self
      */
     public function __construct(
-        readonly public TripModel $trip,
-        readonly public PositionCollection $positions,
-        readonly public ?AlarmCollection $alarms = null,
-        readonly public ?AlarmNotificationCollection $notifications = null,
-        readonly public bool $sidebarHidden = false,
+        public readonly TripModel $trip,
+        public readonly PositionCollection $positions,
+        public readonly ?AlarmCollection $alarms = null,
+        public readonly ?AlarmNotificationCollection $notifications = null,
+        public readonly bool $sidebarHidden = false,
     ) {
     }
 

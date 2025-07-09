@@ -17,8 +17,8 @@ class MapVehicle extends Component
      * @return self
      */
     public function __construct(
-        readonly public VehicleCollection $vehicles,
-        readonly public bool $sidebarHidden = false,
+        public readonly VehicleCollection $vehicles,
+        public readonly bool $sidebarHidden = false,
     ) {
     }
 

@@ -69,6 +69,6 @@ abstract class DriverAbstract
      */
     protected function getTablesSchema(): string
     {
-        return $this->config($this->config('driver') === 'pgsql' ? 'search_path': 'database');
+        return $this->config($this->config('driver') === 'pgsql' ? 'search_path' : 'database');
     }
 }

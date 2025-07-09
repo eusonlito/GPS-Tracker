@@ -14,7 +14,7 @@ class ChartSpeed extends Component
      *
      * @return self
      */
-    public function __construct(readonly public PositionCollection $positions)
+    public function __construct(public readonly PositionCollection $positions)
     {
     }
 

@@ -5,6 +5,7 @@ use PhpCsFixer\Config;
 
 return (new Config())
     ->setRiskyAllowed(true)
+    ->setUnsupportedPhpVersionAllowed(true)
     ->setRules([
         '@PHP82Migration' => true,
         '@PSR2' => true,

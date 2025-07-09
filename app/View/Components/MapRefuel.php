@@ -17,8 +17,8 @@ class MapRefuel extends Component
      * @return self
      */
     public function __construct(
-        readonly public RefuelCollection $refuels,
-        readonly public bool $sidebarHidden = false,
+        public readonly RefuelCollection $refuels,
+        public readonly bool $sidebarHidden = false,
     ) {
     }
 

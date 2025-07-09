@@ -18,8 +18,8 @@ class MapDevice extends Component
      * @return self
      */
     public function __construct(
-        readonly public DeviceCollection $devices,
-        readonly public bool $sidebarHidden = false,
+        public readonly DeviceCollection $devices,
+        public readonly bool $sidebarHidden = false,
     ) {
     }
 
