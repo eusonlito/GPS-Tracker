@@ -8788,12 +8788,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/larastan/larastan.git",
-                "reference": "f1aed9b2e99fe88e1ae9f2f509ed58061523b502"
+                "reference": "fd16758f1097b66c81a91db5cd04078880c976d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/larastan/larastan/zipball/f1aed9b2e99fe88e1ae9f2f509ed58061523b502",
-                "reference": "f1aed9b2e99fe88e1ae9f2f509ed58061523b502",
+                "url": "https://api.github.com/repos/larastan/larastan/zipball/fd16758f1097b66c81a91db5cd04078880c976d0",
+                "reference": "fd16758f1097b66c81a91db5cd04078880c976d0",
                 "shasum": ""
             },
             "require": {
@@ -8870,7 +8870,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-09T19:50:10+00:00"
+            "time": "2025-07-10T14:14:02+00:00"
         },
         {
             "name": "laravel/pint",
