@@ -65,7 +65,7 @@ DROP TABLE IF EXISTS `alarm_vehicle`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `alarm_vehicle` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `state` tinyint(1) DEFAULT NULL,
+  `state` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `alarm_id` bigint unsigned NOT NULL,

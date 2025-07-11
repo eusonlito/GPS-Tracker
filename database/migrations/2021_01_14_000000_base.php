@@ -67,7 +67,7 @@ return new class() extends MigrationAbstract {
         Schema::create('alarm_vehicle', function (Blueprint $table) {
             $table->id();
 
-            $table->boolean('state')->nullable();
+            $table->boolean('state')->default(0);
 
             $this->timestamps($table);
 
