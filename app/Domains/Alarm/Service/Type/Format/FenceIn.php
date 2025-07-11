@@ -2,7 +2,7 @@
 
 namespace App\Domains\Alarm\Service\Type\Format;
 
-class FenceIn extends FormatAbstract
+class FenceIn extends FenceAbstract
 {
     /**
      * @return string
@@ -29,34 +29,13 @@ class FenceIn extends FormatAbstract
     }
 
     /**
-     * @return void
+     * @param float $radius
+     * @param float $distance
+     *
+     * @return bool
      */
-    public function validate(): void
+    protected function stateValue(float $radius, float $distance): bool
     {
-        $config = $this->config();
-
-        if (empty($config['latitude'])) {
-            $this->exceptionValidator(__('alarm-type-fence-in.error.latitude'));
-        }
-
-        if (empty($config['longitude'])) {
-            $this->exceptionValidator(__('alarm-type-fence-in.error.longitude'));
-        }
-
-        if (empty($config['radius'])) {
-            $this->exceptionValidator(__('alarm-type-fence-in.error.radius'));
-        }
-    }
-
-    /**
-     * @return array
-     */
-    public function config(): array
-    {
-        return [
-            'latitude' => floatval($this->config['latitude'] ?? 0),
-            'longitude' => floatval($this->config['longitude'] ?? 0),
-            'radius' => floatval($this->config['radius'] ?? 0),
-        ];
+        return $distance <= $radius;
     }
 }

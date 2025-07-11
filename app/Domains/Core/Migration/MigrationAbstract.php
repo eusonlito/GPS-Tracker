@@ -133,7 +133,7 @@ abstract class MigrationAbstract extends Migration
         $column = $alias ?: $remote;
 
         if ($this->config('driver') === 'pgsql') {
-            $table->index($name, $this->indexName($table, preg_replace('/_id$/', '', $column), 'id_index'));
+            $this->tableAddIndex($table, $name);
         }
 
         return $table->foreign($name, $this->indexName($table, $column, 'fk'))
@@ -268,7 +268,7 @@ abstract class MigrationAbstract extends Migration
      */
     protected function tableHasForeign(string $table, string|array $name, ?string $suffix = null): bool
     {
-        $index = $this->indexName($table, $name, $suffix);
+        $index = $this->indexName($table, $name, $suffix ?: 'fk');
 
         return boolval(array_filter(
             Schema::getForeignKeys($table),
@@ -327,7 +327,9 @@ abstract class MigrationAbstract extends Migration
      */
     protected function tableDropForeign(Blueprint $table, string|array $name, ?string $suffix = null): void
     {
-        if ($this->tableHasIndex($table->getTable(), $name, $suffix)) {
+        $suffix = $suffix ?: 'fk';
+
+        if ($this->tableHasForeign($table->getTable(), $name, $suffix)) {
             $table->dropForeign($this->indexName($table, $name, $suffix));
         }
     }

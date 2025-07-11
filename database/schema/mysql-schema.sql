@@ -65,12 +65,13 @@ DROP TABLE IF EXISTS `alarm_vehicle`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `alarm_vehicle` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `state` tinyint(1) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `alarm_id` bigint unsigned NOT NULL,
   `vehicle_id` bigint unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `alarm_vehicle_alarm_fk` (`alarm_id`),
+  UNIQUE KEY `alarm_vehicle_alarm_id_vehicle_id_unique` (`alarm_id`,`vehicle_id`),
   KEY `alarm_vehicle_vehicle_fk` (`vehicle_id`),
   CONSTRAINT `alarm_vehicle_alarm_fk` FOREIGN KEY (`alarm_id`) REFERENCES `alarm` (`id`) ON DELETE CASCADE,
   CONSTRAINT `alarm_vehicle_vehicle_fk` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicle` (`id`) ON DELETE CASCADE
@@ -689,3 +690,4 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (79,'2025_03_24_230
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (80,'2025_03_24_230000_refuel_point_invisible',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (81,'2025_03_24_230000_timezone_geojson_invisible',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (82,'2025_03_24_233000_spatial_index',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (83,'2025_07_09_200000_alarm_vehicle_state',1);

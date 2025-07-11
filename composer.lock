@@ -8878,12 +8878,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "4f607c8f1190c6fcd652d0afb3ea57f7c54a93d1"
+                "reference": "4efb0b292253c0d10d4ff6798459a8f744a27434"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/4f607c8f1190c6fcd652d0afb3ea57f7c54a93d1",
-                "reference": "4f607c8f1190c6fcd652d0afb3ea57f7c54a93d1",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/4efb0b292253c0d10d4ff6798459a8f744a27434",
+                "reference": "4efb0b292253c0d10d4ff6798459a8f744a27434",
                 "shasum": ""
             },
             "require": {
@@ -8894,7 +8894,7 @@
                 "php": "^8.2.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.80.0",
+                "friendsofphp/php-cs-fixer": "^3.82.2",
                 "illuminate/view": "^11.45.1",
                 "larastan/larastan": "^3.5.0",
                 "laravel-zero/framework": "^11.45.0",
@@ -8940,7 +8940,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2025-07-07T14:02:41+00:00"
+            "time": "2025-07-10T18:12:47+00:00"
         },
         {
             "name": "league/container",

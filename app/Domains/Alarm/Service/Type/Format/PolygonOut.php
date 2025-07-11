@@ -2,7 +2,7 @@
 
 namespace App\Domains\Alarm\Service\Type\Format;
 
-class PolygonOut extends Polygon
+class PolygonOut extends PolygonAbstract
 {
     /**
      * @return string
@@ -26,5 +26,15 @@ class PolygonOut extends Polygon
     public function message(): string
     {
         return __('alarm-type-polygon-out.message');
+    }
+
+    /**
+     * @param bool $inside
+     *
+     * @return bool
+     */
+    protected function stateValue(bool $inside): bool
+    {
+        return $inside === false;
     }
 }

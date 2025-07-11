@@ -82,6 +82,14 @@ class Alarm extends ModelAbstract
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function notificationLast(): HasOne
+    {
+        return $this->hasOne(AlarmNotificationModel::class, static::FOREIGN)->latestOfMany();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(): BelongsTo

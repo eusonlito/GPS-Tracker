@@ -67,6 +67,8 @@ return new class() extends MigrationAbstract {
         Schema::create('alarm_vehicle', function (Blueprint $table) {
             $table->id();
 
+            $table->boolean('state')->nullable();
+
             $this->timestamps($table);
 
             $table->unsignedBigInteger('alarm_id');
@@ -470,6 +472,8 @@ return new class() extends MigrationAbstract {
         });
 
         Schema::table('alarm_vehicle', function (Blueprint $table) {
+            $this->tableAddUnique($table, ['alarm_id', 'vehicle_id']);
+
             $this->foreignOnDeleteCascade($table, 'alarm');
             $this->foreignOnDeleteCascade($table, 'vehicle');
         });

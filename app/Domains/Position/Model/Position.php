@@ -16,6 +16,7 @@ use App\Domains\Position\Test\Factory\Position as TestFactory;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+use App\Domains\User\Model\User as UserModel;
 
 class Position extends ModelAbstract
 {
@@ -113,6 +114,14 @@ class Position extends ModelAbstract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(UserModel::class, UserModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function vehicle(): BelongsTo
     {
         return $this->belongsTo(VehicleModel::class, VehicleModel::FOREIGN)->withTimezone();
@@ -137,5 +146,17 @@ class Position extends ModelAbstract
             $this->latitude,
             $this->longitude,
         );
+    }
+
+    /**
+     * @return float
+     */
+    public function userSpeed(): float
+    {
+        return match ($this->user->preferences['units']['distance'] ?? null) {
+            'knot' => $this->speed * 0.539957,
+            'mile' => $this->speed * 0.621371,
+            default => $this->speed,
+        };
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Domains\Alarm\Service\Type\Format;
 
+use App\Domains\Position\Model\Position as PositionModel;
+
 class Movement extends FormatAbstract
 {
     /**
@@ -29,6 +31,14 @@ class Movement extends FormatAbstract
     }
 
     /**
+     * @return array
+     */
+    public function config(): array
+    {
+        return [];
+    }
+
+    /**
      * @return void
      */
     public function validate(): void
@@ -36,10 +46,12 @@ class Movement extends FormatAbstract
     }
 
     /**
-     * @return array
+     * @param \App\Domains\Position\Model\Position $position
+     *
+     * @return ?bool
      */
-    public function config(): array
+    public function state(PositionModel $position): ?bool
     {
-        return [];
+        return $position->speed > 0;
     }
 }
