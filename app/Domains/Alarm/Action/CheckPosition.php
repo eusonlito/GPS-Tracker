@@ -34,11 +34,6 @@ class CheckPosition extends ActionAbstract
     protected array $states = [];
 
     /**
-     * @var array
-     */
-    protected array $lastNotifications = [];
-
-    /**
      * @return void
      */
     public function handle(): void
