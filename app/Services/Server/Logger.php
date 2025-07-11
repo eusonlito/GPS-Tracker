@@ -19,7 +19,7 @@ class Logger
     /**
      * @param int $port
      *
-     * @return self
+     * @return void
      */
     private function __construct(protected int $port)
     {

@@ -63,7 +63,7 @@ class Heatmap extends ControllerAbstract
         $this->createVehicle();
         $this->authUser();
 
-        $row = $this->factoryCreate();
+        $this->factoryCreate();
 
         $this->get($this->routeToController())
             ->assertStatus(200);
