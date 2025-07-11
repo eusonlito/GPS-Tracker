@@ -34,15 +34,15 @@ abstract class FenceAbstract extends FormatAbstract
         $config = $this->config();
 
         if (empty($config['latitude'])) {
-            $this->exceptionValidator(__('alarm-type-fence-in.error.latitude'));
+            $this->exceptionValidator(__('alarm-type-fence.error.latitude'));
         }
 
         if (empty($config['longitude'])) {
-            $this->exceptionValidator(__('alarm-type-fence-in.error.longitude'));
+            $this->exceptionValidator(__('alarm-type-fence.error.longitude'));
         }
 
         if (empty($config['radius'])) {
-            $this->exceptionValidator(__('alarm-type-fence-in.error.radius'));
+            $this->exceptionValidator(__('alarm-type-fence.error.radius'));
         }
     }
 
