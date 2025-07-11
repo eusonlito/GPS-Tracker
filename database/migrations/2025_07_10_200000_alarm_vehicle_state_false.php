@@ -10,7 +10,16 @@ return new class() extends MigrationAbstract {
      */
     public function up(): void
     {
+        $this->upUpdate();
         $this->upTables();
+    }
+
+    /**
+     * @return void
+     */
+    protected function upUpdate(): void
+    {
+        $this->db()->unprepared('UPDATE `alarm_vehicle` SET `state` = FALSE;');
     }
 
     /**
