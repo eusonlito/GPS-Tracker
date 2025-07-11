@@ -32,7 +32,7 @@ return new class() extends MigrationAbstract {
     protected function upTables(): void
     {
         Schema::table('alarm_vehicle', function (Blueprint $table) {
-            $table->boolean('state')->nullable();
+            $table->boolean('state')->default(0);
         });
     }
 
