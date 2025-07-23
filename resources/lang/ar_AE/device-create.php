@@ -1,4 +1,5 @@
 <?php return [
+    'config-position_filter_distance' => 'الفصل الأدنى بالمتر بين المواقع',
     'enabled' => 'نشط',
     'error' => [
         'code-exists' => 'الرمز المحدد موجود مسبقاً',

@@ -123,6 +123,6 @@ class LastOrNew extends ActionAbstract
      */
     protected function waitMinutes(): int
     {
-        return app('configuration')->int('trip_wait_minutes');
+        return $this->vehicle->config('trip_wait_minutes');
     }
 }

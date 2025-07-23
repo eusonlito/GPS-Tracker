@@ -1,4 +1,5 @@
 <?php return [
+    'config-position_filter_distance' => 'מרחק מינימלי במטרים בין מיקומים',
     'enabled' => 'פעיל',
     'error' => [
         'code-exists' => 'הקוד שצוין כבר קיים',

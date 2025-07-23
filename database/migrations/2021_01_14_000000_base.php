@@ -122,6 +122,8 @@ return new class() extends MigrationAbstract {
             $table->string('phone_number')->nullable();
             $table->string('password')->default('');
 
+            $table->jsonb('config')->nullable();
+
             $table->boolean('enabled')->default(0);
             $table->boolean('shared')->default(0);
             $table->boolean('shared_public')->default(0);
@@ -411,6 +413,8 @@ return new class() extends MigrationAbstract {
 
             $table->string('name')->index();
             $table->string('plate');
+
+            $table->jsonb('config')->nullable();
 
             $table->boolean('timezone_auto')->default(0);
             $table->boolean('enabled')->default(0);

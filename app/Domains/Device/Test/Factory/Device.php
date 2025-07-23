@@ -26,6 +26,10 @@ class Device extends FactoryAbstract
             'phone_number' => $this->faker->phoneNumber(),
             'password' => preg_replace('/[^A-Za-z\s]/', '', $this->faker->name()),
 
+            'config' => [
+                'position_filter_distance' => 0,
+            ],
+
             'enabled' => true,
             'shared' => false,
             'shared_public' => false,

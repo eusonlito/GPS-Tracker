@@ -287,7 +287,7 @@ class Create extends ActionAbstract
             return true;
         }
 
-        $distance = app('configuration')->int('position_filter_distance');
+        $distance = $this->device->config('position_filter_distance');
 
         if ($distance === 0) {
             return true;

@@ -10,6 +10,11 @@
     </div>
 
     <div class="p-2">
+        <label for="vehicle-config-trip_wait_minutes" class="form-label">{{ __('vehicle-create.config-trip_wait_minutes') }}</label>
+        <input type="number" name="config[trip_wait_minutes]" class="form-control form-control-lg" id="vehicle-config-trip_wait_minutes" value="{{ $REQUEST->input('config.trip_wait_minutes') }}" min="0" step="1">
+    </div>
+
+    <div class="p-2">
         <x-select name="timezone_id" :options="$timezones" value="id" text="zone" id="vehicle-create-timezone" :label="__('vehicle-create.timezone')" required></x-select>
     </div>
 

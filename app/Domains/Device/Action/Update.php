@@ -15,6 +15,7 @@ class Update extends CreateUpdateAbstract
         $this->row->serial = $this->data['serial'];
         $this->row->phone_number = $this->data['phone_number'];
         $this->row->password = $this->data['password'];
+        $this->row->config = $this->data['config'];
         $this->row->enabled = $this->data['enabled'];
         $this->row->shared = $this->data['shared'];
         $this->row->shared_public = $this->data['shared_public'];

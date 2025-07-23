@@ -1,4 +1,5 @@
 <?php return [
+    'config-trip_wait_minutes' => 'الدقائق المنتظرة لإنشاء رحلة جديدة',
     'enabled' => 'نشط',
     'error' => [
         'timezone-exists' => 'لم تعد المنطقة الزمنية المحددة متوفرة',

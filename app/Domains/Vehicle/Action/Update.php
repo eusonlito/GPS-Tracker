@@ -11,6 +11,7 @@ class Update extends CreateUpdateAbstract
     {
         $this->row->name = $this->data['name'];
         $this->row->plate = $this->data['plate'];
+        $this->row->config = $this->data['config'];
         $this->row->timezone_auto = $this->data['timezone_auto'];
         $this->row->enabled = $this->data['enabled'];
         $this->row->timezone_id = $this->data['timezone_id'];
