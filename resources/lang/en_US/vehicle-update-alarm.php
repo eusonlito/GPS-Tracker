@@ -1,5 +1,6 @@
 <?php return [
     'created_at' => 'Created',
+    'dashboard' => 'Dashboard',
     'enabled' => 'Enabled',
     'filter' => 'Filter...',
     'meta-title' => 'Vehicles > :title > Alarms',

@@ -27,6 +27,7 @@ class AlarmNotification extends FactoryAbstract
 
             'point' => Model::pointFromLatitudeLongitude(42.34818, -7.9126),
 
+            'dashboard' => false,
             'telegram' => false,
 
             'date_at' => date('Y-m-d H:i:s'),

@@ -1,5 +1,6 @@
 <?php return [
     'created_at' => 'נוצר בתאריך',
+    'dashboard' => 'לוח בקרה',
     'enabled' => 'פעיל',
     'filter' => 'סנן...',
     'meta-title' => 'רכבים > :title > התראות',

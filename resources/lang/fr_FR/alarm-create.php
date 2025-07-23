@@ -1,4 +1,5 @@
 <?php return [
+    'dashboard' => 'Tableau de bord',
     'enabled' => 'Activer',
     'error' => [
         'schedule_end' => 'Lorsque tu remplis l\'heure de début, l\'heure de fin doit également être remplie',

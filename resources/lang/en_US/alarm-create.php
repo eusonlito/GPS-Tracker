@@ -1,4 +1,5 @@
 <?php return [
+    'dashboard' => 'Dashboard',
     'enabled' => 'Enable',
     'error' => [
         'schedule_end' => 'When filling in the start hour, the end hour must also be filled in',

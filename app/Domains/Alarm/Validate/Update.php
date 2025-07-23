@@ -14,6 +14,7 @@ class Update extends ValidateAbstract
         return [
             'name' => ['bail', 'required'],
             'config' => ['bail', 'array'],
+            'dashboard' => ['bail', 'boolean'],
             'telegram' => ['bail', 'boolean'],
             'enabled' => ['bail', 'boolean'],
             'schedule_start' => ['bail', 'nullable', 'date_format:H:i'],

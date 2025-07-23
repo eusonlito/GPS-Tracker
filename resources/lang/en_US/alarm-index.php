@@ -1,6 +1,7 @@
 <?php return [
     'create' => 'Create',
     'created_at' => 'Created',
+    'dashboard' => 'Dashboard',
     'enabled' => 'Enabled',
     'filter' => 'Filter...',
     'meta-title' => 'Alarms',

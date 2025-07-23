@@ -1,4 +1,5 @@
 <?php return [
+    'dashboard' => 'Dashboard',
     'enabled' => 'Ativa',
     'error' => [
         'schedule_end' => 'Ao preencher a hora de início, também deve preencher a de fim',

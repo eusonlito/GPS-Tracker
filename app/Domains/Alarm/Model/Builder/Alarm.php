@@ -79,6 +79,16 @@ class Alarm extends BuilderAbstract
     }
 
     /**
+     * @param bool $dashboard = true
+     *
+     * @return self
+     */
+    public function whereDashboard(bool $dashboard = true): self
+    {
+        return $this->where('dashboard', $dashboard);
+    }
+
+    /**
      * @return self
      */
     public function whereScheduleIsEmpty(): self

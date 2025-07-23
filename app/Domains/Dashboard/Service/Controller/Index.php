@@ -228,6 +228,7 @@ class Index extends ControllerAbstract
         return $this->cache(
             fn () => AlarmNotificationModel::query()
                 ->byVehicleId($this->vehicle()->id)
+                ->whereDashboard()
                 ->whereClosedAt(false)
                 ->withAlarm()
                 ->withVehicle()

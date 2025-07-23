@@ -41,6 +41,7 @@ class Alarm extends ModelAbstract
      */
     protected $casts = [
         'config' => 'array',
+        'dashboard' => 'boolean',
         'telegram' => 'boolean',
         'enabled' => 'boolean',
     ];

@@ -178,6 +178,7 @@ class CheckPosition extends ActionAbstract
             'type' => $row->type,
             'config' => $row->config,
 
+            'dashboard' => $row->dashboard,
             'telegram' => $row->telegram,
 
             'point' => AlarmNotificationModel::pointFromLatitudeLongitude($this->position->latitude, $this->position->longitude),

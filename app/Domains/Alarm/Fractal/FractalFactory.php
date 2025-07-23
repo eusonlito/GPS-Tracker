@@ -18,6 +18,7 @@ class FractalFactory extends FractalAbstract
             'id' => $row->id,
             'name' => $row->name,
             'type' => $row->type,
+            'dashboard' => $row->dashboard,
             'telegram' => $row->telegram,
             'enabled' => $row->enabled,
             'vehicle' => $this->fromIfLoaded('Vehicle', 'simple', $row, 'vehicle'),

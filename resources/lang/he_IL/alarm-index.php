@@ -1,6 +1,7 @@
 <?php return [
     'create' => 'חדש',
     'created_at' => 'נוצר בתאריך',
+    'dashboard' => 'לוּחַ מַחווָנִים',
     'enabled' => 'מופעל',
     'filter' => 'סנן...',
     'meta-title' => 'התראות',

@@ -1,6 +1,7 @@
 <?php return [
     'create' => 'Criar',
     'created_at' => 'Criada',
+    'dashboard' => 'Dashboard',
     'enabled' => 'Ativa',
     'filter' => 'Filtrar...',
     'meta-title' => 'Alarmes',

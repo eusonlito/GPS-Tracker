@@ -31,6 +31,7 @@ return new class() extends MigrationAbstract {
 
             $table->jsonb('config')->nullable();
 
+            $table->boolean('dashboard')->default(0);
             $table->boolean('telegram')->default(0);
             $table->boolean('enabled')->default(0);
 
@@ -49,6 +50,7 @@ return new class() extends MigrationAbstract {
 
             $table->geometry('point', 'point', 4326)->invisible();
 
+            $table->boolean('dashboard')->default(0);
             $table->boolean('telegram')->default(0);
 
             $table->dateTime('date_at');

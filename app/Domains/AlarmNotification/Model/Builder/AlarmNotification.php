@@ -52,6 +52,16 @@ class AlarmNotification extends BuilderAbstract
     }
 
     /**
+     * @param bool $dashboard = true
+     *
+     * @return self
+     */
+    public function whereDashboard(bool $dashboard = true): self
+    {
+        return $this->where('dashboard', $dashboard);
+    }
+
+    /**
      * @param bool $sent_at = false
      *
      * @return self

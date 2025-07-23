@@ -23,6 +23,7 @@
                     <th class="text-left w-1">{{ __('trip-update-alarm-notification.alarm') }}</th>
                     <th class="text-left w-1">{{ __('trip-update-alarm-notification.name') }}</th>
                     <th class="text-left">{{ __('trip-update-alarm-notification.message') }}</th>
+                    <th class="w-1">{{ __('trip-update-alarm-notification.dashboard') }}</th>
                     <th class="w-1">{{ __('trip-update-alarm-notification.telegram') }}</th>
                     <th class="w-1">{{ __('trip-update-alarm-notification.created_at') }}</th>
                     <th class="w-1">{{ __('trip-update-alarm-notification.closed_at') }}</th>
@@ -42,6 +43,7 @@
                     </td>
                     <td class="text-left w-1"><a href="#" data-map-point="{{ $each->position_id }}" class="d-t-m-o max-w-15" title="{{ $each->name }}">{{ $each->name }}</a></td>
                     <td class="text-left"><a href="#" data-map-point="{{ $each->position_id }}" class="d-t-m-o max-w-15" title="{{ $each->typeFormat()->message() }}">{{ $each->typeFormat()->message() }}</a></td>
+                    <td class="w-1" data-table-sort-value="{{ intval($each->dashboard) }}">@status($each->dashboard)</td>
                     <td class="w-1" data-table-sort-value="{{ intval($each->telegram) }}">@status($each->telegram)</td>
                     <td class="w-1" data-table-sort-value="{{ $each->created_at }}"><a href="#" data-map-point="{{ $each->position_id }}" class="d-t-m-o max-w-xs">@dateWithUserTimezone($each->created_at)</a></td>
                     <td class="w-1">
