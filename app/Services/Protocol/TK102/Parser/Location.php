@@ -98,9 +98,9 @@ class Location extends ParserAbstract
             return $this->cache[__FUNCTION__];
         }
 
-        $degree = (int)substr($this->values[5], 0, 2);
-        $minute = (float)substr($this->values[5], 2);
-        $direction = (float)str_replace(['S', 'N'], ['-1', '1'], $this->values[6]);
+        $degree = intval(substr($this->values[5], 0, 2));
+        $minute = floatval(substr($this->values[5], 2));
+        $direction = floatval(str_replace(['S', 'N'], ['-1', '1'], $this->values[6]));
 
         $latitude = round(($degree + ($minute / 60)) * $direction, 5);
 
@@ -120,9 +120,9 @@ class Location extends ParserAbstract
             return $this->cache[__FUNCTION__];
         }
 
-        $degree = (int)substr($this->values[7], 0, 3);
-        $minute = (float)substr($this->values[7], 3);
-        $direction = (float)str_replace(['W', 'E'], ['-1', '1'], $this->values[8]);
+        $degree = intval(substr($this->values[7], 0, 3));
+        $minute = floatval(substr($this->values[7], 3));
+        $direction = floatval(str_replace(['W', 'E'], ['-1', '1'], $this->values[8]));
 
         $longitude = round(($degree + ($minute / 60)) * $direction, 5);
 
@@ -138,7 +138,7 @@ class Location extends ParserAbstract
      */
     protected function speed(): float
     {
-        return round((float)$this->values[9] * 1.852, 2);
+        return round(floatval($this->values[9]) * 1.852, 2);
     }
 
     /**

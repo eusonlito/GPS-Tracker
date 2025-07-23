@@ -17,6 +17,8 @@ class LocationBinary extends ParserAbstract
      */
     public function resources(): array
     {
+        $this->message = bin2hex($this->message);
+
         if ($this->messageIsValid() === false) {
             return [];
         }

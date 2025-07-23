@@ -59,6 +59,10 @@ class Manager extends ProtocolAbstract
      */
     public function messages(string $message): array
     {
+        if ($this->messageIsValidHex($message) === false) {
+            return [];
+        }
+
         return array_filter(array_map('trim', preg_split('/[\n;]/', hex2bin($message))));
     }
 }

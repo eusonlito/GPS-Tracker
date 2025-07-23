@@ -43,6 +43,10 @@ class Manager extends ProtocolAbstract
      */
     public function messages(string $message): array
     {
+        if ($this->messageIsValidHex($message) === false) {
+            return [];
+        }
+
         preg_match_all('/\+[^\$]+\$/', hex2bin($message), $matches);
 
         return $matches[0];

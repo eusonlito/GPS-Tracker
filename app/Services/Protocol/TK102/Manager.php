@@ -55,26 +55,10 @@ class Manager extends ProtocolAbstract
      */
     public function messages(string $message): array
     {
-        $messages = [];
-
-        foreach (array_filter(array_map('trim', preg_split('/[\n\r]/', $message))) as $each) {
-            $messages[] = $this->messageClean($each);
+        if ($this->messageIsValidHex($message) === false) {
+            return [];
         }
 
-        return $messages;
-    }
-
-    /**
-     * @param string $message
-     *
-     * @return string
-     */
-    protected function messageClean(string $message): string
-    {
-        if ((strlen($message) % 2 === 0) && ctype_xdigit($message)) {
-            $message = hex2bin($message);
-        }
-
-        return preg_replace('/[[:^print:]]/', '', $message);
+        return array_filter(array_map('trim', preg_split('/[\n\r]/', hex2bin($message))));
     }
 }

@@ -61,4 +61,14 @@ abstract class ProtocolAbstract
 
         return $resources;
     }
+
+    /**
+     * @param string $message
+     *
+     * @return bool
+     */
+    protected function messageIsValidHex(string $message): bool
+    {
+        return preg_match('/^[0-9a-fA-F]+$/', $message) === 1;
+    }
 }
