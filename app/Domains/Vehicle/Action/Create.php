@@ -14,6 +14,7 @@ class Create extends CreateUpdateAbstract
         $this->row = Model::query()->create([
             'name' => $this->data['name'],
             'plate' => $this->data['plate'],
+            'config' => $this->data['config'],
             'timezone_auto' => $this->data['timezone_auto'],
             'enabled' => $this->data['enabled'],
             'timezone_id' => $this->data['timezone_id'],

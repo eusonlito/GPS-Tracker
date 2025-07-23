@@ -2,8 +2,42 @@
 
 namespace App\Domains\Alarm\Service\Type\Format;
 
-abstract class Polygon extends FormatAbstract
+use App\Domains\Position\Model\Position as PositionModel;
+
+abstract class PolygonAbstract extends FormatAbstract
 {
+    /**
+     * @param bool $inside
+     *
+     * @return bool
+     */
+    abstract protected function stateValue(bool $inside): bool;
+
+    /**
+     * @return array
+     */
+    public function config(): array
+    {
+        return [
+            'geojson' => ($this->config['geojson'] = $this->configGeoJsonFromText()),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function configGeoJsonFromText(): array
+    {
+        if (is_array($this->config['geojson'] ?? null)) {
+            return $this->config['geojson'];
+        }
+
+        $geojson = json_decode($this->config['geojson'] ?? '[]', true) ?: [];
+        $geojson['features'][0]['properties'] = null;
+
+        return $geojson;
+    }
+
     /**
      * @return void
      */
@@ -51,27 +85,24 @@ abstract class Polygon extends FormatAbstract
     }
 
     /**
-     * @return array
+     * @param \App\Domains\Position\Model\Position $position
+     *
+     * @return ?bool
      */
-    public function config(): array
+    public function state(PositionModel $position): ?bool
     {
-        if (is_array($this->config['geojson'] ?? '') === false) {
-            $this->config['geojson'] = $this->configGeoJsonFromText();
+        $geojson = $this->config()['geojson'];
+
+        if (empty($geojson['features'][0]['geometry']['coordinates'])) {
+            return null;
         }
 
-        return [
-            'geojson' => $this->config['geojson'],
-        ];
-    }
+        $inside = helper()->latitudeLongitudeInsideGeoJson(
+            $position->latitude,
+            $position->longitude,
+            $geojson,
+        );
 
-    /**
-     * @return array
-     */
-    public function configGeoJsonFromText(): array
-    {
-        $geojson = json_decode($this->config['geojson'] ?? '[]', true) ?: [];
-        $geojson['features'][0]['properties'] = null;
-
-        return $geojson;
+        return $this->stateValue($inside);
     }
 }

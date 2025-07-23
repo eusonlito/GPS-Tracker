@@ -41,6 +41,7 @@
                 <th class="w-1">{{ __('alarm-index.vehicles') }}</th>
                 <th class="w-1">{{ __('alarm-index.notifications') }}</th>
                 <th class="w-1">{{ __('alarm-index.created_at') }}</th>
+                <th class="w-1">{{ __('alarm-index.dashboard') }}</th>
                 <th class="w-1">{{ __('alarm-index.telegram') }}</th>
                 <th class="w-1">{{ __('alarm-index.enabled') }}</th>
             </tr>
@@ -65,6 +66,7 @@
                     </a>
                 </td>
                 <td class="w-1" data-table-sort-value="{{ $row->created_at }}"><a href="{{ $link }}" class="block">@dateWithUserTimezone($row->created_at)</a></td>
+                <td class="w-1" data-table-sort-value="{{ intval($row->dashboard) }}"><a href="{{ route('alarm.update.boolean', [$row->id, 'dashboard']) }}" class="block" data-update-boolean="dashboard">@status($row->dashboard)</a></td>
                 <td class="w-1" data-table-sort-value="{{ intval($row->telegram) }}"><a href="{{ route('alarm.update.boolean', [$row->id, 'telegram']) }}" class="block" data-update-boolean="telegram">@status($row->telegram)</a></td>
                 <td class="w-1" data-table-sort-value="{{ intval($row->enabled) }}"><a href="{{ route('alarm.update.boolean', [$row->id, 'enabled']) }}" class="block" data-update-boolean="enabled">@status($row->enabled)</a></td>
             </tr>

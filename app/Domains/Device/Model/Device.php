@@ -39,6 +39,7 @@ class Device extends ModelAbstract
      * @var array<string, string>
      */
     protected $casts = [
+        'config' => 'array',
         'enabled' => 'boolean',
         'shared' => 'boolean',
         'shared_public' => 'boolean',
@@ -146,5 +147,15 @@ class Device extends ModelAbstract
     public function vehicle(): BelongsTo
     {
         return $this->belongsTo(VehicleModel::class, VehicleModel::FOREIGN);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return int
+     */
+    public function config(string $key): int
+    {
+        return intval($this->config[$key] ?? 0) ?: app('configuration')->int($key);
     }
 }

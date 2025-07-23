@@ -13,6 +13,7 @@
                 <th class="text-left">{{ __('vehicle-update-alarm-notification.message') }}</th>
                 <th class="text-left">{{ __('vehicle-update-alarm-notification.trip') }}</th>
                 <th class="w-1">{{ __('vehicle-update-alarm-notification.created_at') }}</th>
+                <th class="w-1">{{ __('vehicle-update-alarm-notification.dashboard') }}</th>
                 <th class="w-1">{{ __('vehicle-update-alarm-notification.telegram') }}</th>
                 <th class="w-1">{{ __('vehicle-update-alarm-notification.closed_at') }}</th>
                 <th class="w-1">{{ __('vehicle-update-alarm-notification.actions') }}</th>
@@ -38,6 +39,7 @@
                     @endif
                 </td>
                 <td class="w-1">@dateLocal($each->date_at)</td>
+                <td class="w-1">@status($each->dashboard)</td>
                 <td class="w-1">@status($each->telegram)</td>
                 <td class="w-1">
                     @if ($each->closed_at)

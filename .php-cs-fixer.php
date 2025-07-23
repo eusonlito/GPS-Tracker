@@ -5,12 +5,14 @@ use PhpCsFixer\Config;
 
 return (new Config())
     ->setRiskyAllowed(true)
+    ->setUnsupportedPhpVersionAllowed(true)
     ->setRules([
         '@PHP82Migration' => true,
         '@PSR2' => true,
         'blank_line_after_opening_tag' => false,
         'cast_spaces' => false,
         'class_definition' => false,
+        'heredoc_indentation' => false,
         'linebreak_after_opening_tag' => false,
         'no_superfluous_phpdoc_tags' => false,
         'no_unused_imports' => true,

@@ -1,4 +1,5 @@
 <?php return [
+    'config-position_filter_distance' => 'Separação mínima em metros entre posições',
     'enabled' => 'Ativo',
     'error' => [
         'code-exists' => 'O código indicado já existe',

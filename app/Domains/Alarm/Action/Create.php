@@ -24,6 +24,7 @@ class Create extends CreateUpdateAbstract
             'type' => $this->data['type'],
             'name' => $this->data['name'],
             'config' => $this->data['config'],
+            'dashboard' => $this->data['dashboard'],
             'telegram' => $this->data['telegram'],
             'enabled' => $this->data['enabled'],
             'schedule_start' => $this->data['schedule_start'],

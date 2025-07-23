@@ -2,6 +2,8 @@
 
 namespace App\Domains\Alarm\Service\Type\Format;
 
+use App\Domains\Position\Model\Position as PositionModel;
+
 class Overspeed extends FormatAbstract
 {
     /**
@@ -29,6 +31,16 @@ class Overspeed extends FormatAbstract
     }
 
     /**
+     * @return array
+     */
+    public function config(): array
+    {
+        return [
+            'speed' => intval($this->config['speed'] ?? 0),
+        ];
+    }
+
+    /**
      * @return void
      */
     public function validate(): void
@@ -39,12 +51,18 @@ class Overspeed extends FormatAbstract
     }
 
     /**
-     * @return array
+     * @param \App\Domains\Position\Model\Position $position
+     *
+     * @return ?bool
      */
-    public function config(): array
+    public function state(PositionModel $position): ?bool
     {
-        return [
-            'speed' => intval($this->config['speed'] ?? 0),
-        ];
+        $speed = $this->config()['speed'];
+
+        if ($speed === 0) {
+            return null;
+        }
+
+        return $position->userSpeed() > $speed;
     }
 }

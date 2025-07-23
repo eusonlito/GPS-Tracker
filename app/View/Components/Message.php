@@ -20,8 +20,8 @@ class Message extends Component
      * @return self
      */
     public function __construct(
-        readonly public string $type,
-        readonly public string $bag = '',
+        public readonly string $type,
+        public readonly string $bag = '',
         public string $message = ''
     ) {
         $this->class();

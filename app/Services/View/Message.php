@@ -56,7 +56,7 @@ class Message
     }
 
     /**
-     * @return self
+     * @return void
      */
     private function __construct()
     {

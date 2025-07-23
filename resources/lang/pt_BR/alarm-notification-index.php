@@ -3,6 +3,7 @@
     'alarm' => 'Alarme',
     'closed_at' => 'Fechada',
     'created_at' => 'Criada',
+    'dashboard' => 'Painel',
     'filter' => 'Filtrar...',
     'message' => 'Mensagem',
     'meta-title' => 'Notificações',

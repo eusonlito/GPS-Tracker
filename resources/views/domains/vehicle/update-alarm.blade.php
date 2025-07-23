@@ -12,6 +12,7 @@
                     <th class="w-1">{{ __('vehicle-update-alarm.type') }}</th>
                     <th class="text-left w-1">{{ __('vehicle-update-alarm.name') }}</th>
                     <th class="w-1">{{ __('vehicle-update-alarm.created_at') }}</th>
+                    <th class="w-1">{{ __('vehicle-update-alarm.dashboard') }}</th>
                     <th class="w-1">{{ __('vehicle-update-alarm.telegram') }}</th>
                     <th class="w-1">{{ __('vehicle-update-alarm.enabled') }}</th>
                     <th class="w-1"><input type="checkbox" data-checkall="#alarm-list-table > tbody" /></th>
@@ -27,6 +28,7 @@
                     <td class="w-1"><a href="{{ $link }}" class="block">{{ $each->typeFormat()->title() }}</a></td>
                     <td class="text-left w-1"><a href="{{ $link }}" class="block">{{ $each->name }}</a></td>
                     <td class="w-1" data-table-sort-value="{{ $each->created_at }}">@dateWithUserTimezone($each->created_at)</td>
+                    <td class="w-1">@status($each->dashboard)</td>
                     <td class="w-1">@status($each->telegram)</td>
                     <td class="w-1">@status($each->enabled)</td>
                     <td class="w-1"><input type="checkbox" name="related[]" value="{{ $each->id }}" {{ $each->vehiclePivot ? 'checked' : '' }} /></td>

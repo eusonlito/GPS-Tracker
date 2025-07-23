@@ -18,6 +18,8 @@ class Create extends ValidateAbstract
             'enabled' => ['bail', 'boolean'],
             'timezone_id' => ['bail', 'required', 'integer'],
             'user_id' => ['bail', 'integer'],
+            'config' => ['bail', 'array', 'required'],
+            'config.trip_wait_minutes' => ['bail', 'integer', 'min:0'],
         ];
     }
 }

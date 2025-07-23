@@ -32,6 +32,13 @@ class AlarmVehicle extends PivotAbstract
     public const FOREIGN = 'alarm_vehicle_id';
 
     /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'state' => 'boolean',
+    ];
+
+    /**
      * @param array $models
      *
      * @return \App\Domains\Alarm\Model\Collection\AlarmVehicle

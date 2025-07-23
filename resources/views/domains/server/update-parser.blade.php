@@ -120,6 +120,10 @@
     </table>
 </div>
 
+<div class="box p-5 mt-5">
+    <x-map :trip="$trip" :positions="$positions"></x-map>
+</div>
+
 @endif
 
 @stop

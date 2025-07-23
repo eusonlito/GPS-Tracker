@@ -23,6 +23,8 @@ class Create extends ValidateAbstract
             'enabled' => ['bail', 'boolean'],
             'shared' => ['bail', 'boolean'],
             'shared_public' => ['bail', 'boolean'],
+            'config' => ['bail', 'array', 'required'],
+            'config.position_filter_distance' => ['bail', 'integer', 'min:0'],
         ];
     }
 }

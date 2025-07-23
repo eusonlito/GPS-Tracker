@@ -46,6 +46,10 @@ class Request extends ActionAbstract
      */
     protected function rowSession(): ?Model
     {
+        if (empty($this->request)) {
+            return null;
+        }
+
         if ($this->request->hasSession() === false) {
             return null;
         }

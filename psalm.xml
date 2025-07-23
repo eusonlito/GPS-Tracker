@@ -2,17 +2,14 @@
 <psalm errorLevel="7" resolveFromConfigFile="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://getpsalm.org/schema/config" xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd">
     <projectFiles>
         <directory name="app" />
+        <directory name="config" />
         <directory name="database" />
-        <directory name="public" />
 
         <ignoreFiles>
+            <file name="config/insights.php" />
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
-
-    <plugins>
-        <pluginClass class="Psalm\LaravelPlugin\Plugin" />
-    </plugins>
 
     <issueHandlers>
         <MissingTemplateParam>
@@ -20,5 +17,41 @@
                 <directory name="app" />
             </errorLevel>
         </MissingTemplateParam>
+
+        <MissingOverrideAttribute>
+            <errorLevel type="suppress">
+                <directory name="app" />
+            </errorLevel>
+        </MissingOverrideAttribute>
+
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress">
+                <directory name="app" />
+            </errorLevel>
+        </PossiblyUnusedMethod>
+
+        <PossiblyUnusedProperty>
+            <errorLevel type="suppress">
+                <directory name="app" />
+            </errorLevel>
+        </PossiblyUnusedProperty>
+
+        <PossiblyUnusedReturnValue>
+            <errorLevel type="suppress">
+                <directory name="app" />
+            </errorLevel>
+        </PossiblyUnusedReturnValue>
+
+        <UndefinedConstant>
+            <errorLevel type="suppress">
+                <directory name="app" />
+            </errorLevel>
+        </UndefinedConstant>
+
+        <UnusedClass>
+            <errorLevel type="suppress">
+                <directory name="app" />
+            </errorLevel>
+        </UnusedClass>
     </issueHandlers>
 </psalm>

@@ -58,12 +58,11 @@ class Html
 
     /**
      * @param ?string $path
-     * @param bool $cache = true
      * @param bool $image = false
      *
      * @return string
      */
-    public static function inline(?string $path, bool $cache = true, bool $image = false): string
+    public static function inline(?string $path, bool $image = false): string
     {
         static $cache = [];
 
@@ -71,18 +70,20 @@ class Html
             return '';
         }
 
-        if ($cache && isset($cache[$path])) {
-            return $cache[$path];
+        $key = serialize(func_get_args());
+
+        if (isset($cache[$key])) {
+            return $cache[$key];
         }
 
         $file = public_path($path);
         $contents = is_file($file) ? file_get_contents($file) : '';
 
         if ($image) {
-            $contents = 'data:image/'.pathinfo($file, PATHINFO_EXTENSION).';base64,'.base64_encode($contents);
+            return 'data:image/'.pathinfo($file, PATHINFO_EXTENSION).';base64,'.base64_encode($contents);
         }
 
-        return $cache ? ($cache[$path] = $contents) : $contents;
+        return $cache[$key] = $contents;
     }
 
     /**

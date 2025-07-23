@@ -22,6 +22,10 @@ class Vehicle extends FactoryAbstract
             'name' => 'Vehicle: '.preg_replace('/[^A-Za-z\s]/', '', $this->faker->name()),
             'plate' => $this->faker->md5(),
 
+            'config' => [
+                'trip_wait_minutes' => 0,
+            ],
+
             'timezone_auto' => true,
             'enabled' => true,
 

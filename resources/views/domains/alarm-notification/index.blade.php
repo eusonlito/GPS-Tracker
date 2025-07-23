@@ -39,6 +39,7 @@
                 <th class="text-left">{{ __('alarm-notification-index.message') }}</th>
                 <th class="text-left">{{ __('alarm-notification-index.trip') }}</th>
                 <th class="w-1">{{ __('alarm-notification-index.created_at') }}</th>
+                <th class="w-1">{{ __('alarm-notification-index.dashboard') }}</th>
                 <th class="w-1">{{ __('alarm-notification-index.telegram') }}</th>
                 <th class="w-1">{{ __('alarm-notification-index.closed_at') }}</th>
                 <th class="w-1">{{ __('alarm-notification-index.actions') }}</th>
@@ -72,6 +73,7 @@
                     @endif
                 </td>
                 <td class="w-1">@dateLocal($row->date_at)</td>
+                <td class="w-1">@status($row->dashboard)</td>
                 <td class="w-1">@status($row->telegram)</td>
                 <td class="w-1">
                     @if ($row->closed_at)

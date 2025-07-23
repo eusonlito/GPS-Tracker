@@ -1,6 +1,7 @@
 <?php return [
     'create' => 'إنشاء',
     'created_at' => 'تم الإنشاء',
+    'dashboard' => 'لوحة التحكم',
     'enabled' => 'تنشيط',
     'filter' => 'تصفية...',
     'meta-title' => 'الإنذارات',

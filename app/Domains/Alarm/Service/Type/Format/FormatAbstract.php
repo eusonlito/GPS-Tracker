@@ -2,6 +2,7 @@
 
 namespace App\Domains\Alarm\Service\Type\Format;
 
+use App\Domains\Position\Model\Position as PositionModel;
 use App\Exceptions\ValidatorException;
 
 abstract class FormatAbstract
@@ -30,6 +31,13 @@ abstract class FormatAbstract
      * @return array
      */
     abstract public function config(): array;
+
+    /**
+     * @param \App\Domains\Position\Model\Position $position
+     *
+     * @return ?bool
+     */
+    abstract public function state(PositionModel $position): ?bool;
 
     /**
      * @return self

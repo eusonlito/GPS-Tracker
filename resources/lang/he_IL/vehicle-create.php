@@ -1,4 +1,5 @@
 <?php return [
+    'config-trip_wait_minutes' => 'דקות המתנה ליצירת נסיעה חדשה',
     'enabled' => 'מאופשר',
     'error' => [
         'timezone-exists' => 'אזור הזמן שנבחר אינו זמין עוד',

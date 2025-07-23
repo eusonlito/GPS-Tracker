@@ -27,8 +27,7 @@ class UpdateParser extends ControllerAbstract
      */
     protected function data(): array
     {
-        return ControllerService::new($this->request, $this->auth, $this->row)->data()
-            + ['parsed' => $this->actionPost('parse')];
+        return ControllerService::new($this->request, $this->auth, $this->row, $this->actionPost('parse'))->data();
     }
 
     /**

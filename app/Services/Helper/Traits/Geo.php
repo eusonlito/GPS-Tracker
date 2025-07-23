@@ -3,7 +3,6 @@
 namespace App\Services\Helper\Traits;
 
 use DateTimeZone;
-use Exception;
 use stdClass;
 
 trait Geo
@@ -140,107 +139,35 @@ trait Geo
      * @param float $longitude
      * @param array $geojson
      *
-     * @return bool
+     * @return ?bool
      */
-    public function latitudeLongitudeInsideGeoJson(float $latitude, float $longitude, array $geojson): bool
+    public function latitudeLongitudeInsideGeoJson(float $latitude, float $longitude, array $geojson): ?bool
     {
-        $polygon = $geojson['features'][0]['geometry']['coordinates'] ?? null;
+        $coordinates = $geojson['features'][0]['geometry']['coordinates'][0] ?? null;
 
-        if (empty($polygon)) {
-            return false;
+        if (empty($coordinates)) {
+            return null;
         }
 
         if ($this->latitudeLongitudeInGeoJsonBoundingBox($latitude, $longitude, $geojson) === false) {
             return false;
         }
 
-        $i = 0;
-        $ii = 0;
-        $k = 0;
-        $f = 0;
-        $u1 = 0;
-        $v1 = 0;
-        $u2 = 0;
-        $v2 = 0;
-        $currentP = null;
-        $nextP = null;
+        $inside = false;
+        $n = count($coordinates);
 
-        $numContours = count($polygon);
+        for ($i = 0, $j = $n - 1; $i < $n; $j = $i++) {
+            $xi = $coordinates[$i][0];
+            $yi = $coordinates[$i][1];
+            $xj = $coordinates[$j][0];
+            $yj = $coordinates[$j][1];
 
-        for ($i = 0; $i < $numContours; $i++) {
-            $ii = 0;
-            $contourLen = count($polygon[$i]) - 1;
-            $contour = $polygon[$i];
-
-            $currentP = $contour[0];
-
-            if (($currentP[0] !== $contour[$contourLen][0]) && ($currentP[1] !== $contour[$contourLen][1])) {
-                throw new Exception('First and last coordinates in a ring must be the same');
-            }
-
-            $u1 = $currentP[0] - $longitude;
-            $v1 = $currentP[1] - $latitude;
-
-            for ($ii = 0; $ii < $contourLen; $ii++) {
-                $nextP = $contour[$ii + 1];
-
-                $v2 = $nextP[1] - $latitude;
-
-                if ((($v1 < 0) && ($v2 < 0)) || (($v1 > 0) && ($v2 > 0))) {
-                    $currentP = $nextP;
-                    $v1 = $v2;
-                    $u1 = $currentP[0] - $longitude;
-
-                    continue;
-                }
-
-                $u2 = $nextP[0] - $longitude;
-
-                if (($v2 > 0) && ($v1 <= 0)) {
-                    $f = ($u1 * $v2) - ($u2 * $v1);
-
-                    if ($f > 0) {
-                        $k += 1;
-                    } elseif (intval($f) === 0) {
-                        return false;
-                    }
-                } elseif (($v1 > 0) && ($v2 <= 0)) {
-                    $f = ($u1 * $v2) - ($u2 * $v1);
-
-                    if ($f < 0) {
-                        $k += 1;
-                    } elseif (intval($f) === 0) {
-                        return false;
-                    }
-                } elseif ((intval($v2) === 0) && ($v1 < 0)) {
-                    $f = ($u1 * $v2) - ($u2 * $v1);
-
-                    if (intval($f) === 0) {
-                        return false;
-                    }
-                } elseif ((intval($v1) === 0) && ($v2 < 0)) {
-                    $f = $u1 * $v2 - $u2 * $v1;
-
-                    if (intval($f) === 0) {
-                        return false;
-                    }
-                } elseif ((intval($v1) === 0) && (intval($v2) === 0)) {
-                    if ($u2 <= 0 && $u1 >= 0) {
-                        return false;
-                    }
-
-                    if (($u1 <= 0) && ($u2 >= 0)) {
-                        return false;
-                    }
-                }
-
-                $currentP = $nextP;
-                $v1 = $v2;
-                $u1 = $u2;
+            if ((($yi > $latitude) !== ($yj > $latitude)) && ($longitude < ($xj - $xi) * ($latitude - $yi) / ($yj - $yi) + $xi)) {
+                $inside = $inside === false;
             }
         }
 
-        return ($k % 2) !== 0;
+        return $inside;
     }
 
     /**

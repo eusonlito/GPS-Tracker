@@ -31,6 +31,7 @@ return new class() extends MigrationAbstract {
 
             $table->jsonb('config')->nullable();
 
+            $table->boolean('dashboard')->default(0);
             $table->boolean('telegram')->default(0);
             $table->boolean('enabled')->default(0);
 
@@ -49,6 +50,7 @@ return new class() extends MigrationAbstract {
 
             $table->geometry('point', 'point', 4326)->invisible();
 
+            $table->boolean('dashboard')->default(0);
             $table->boolean('telegram')->default(0);
 
             $table->dateTime('date_at');
@@ -66,6 +68,8 @@ return new class() extends MigrationAbstract {
 
         Schema::create('alarm_vehicle', function (Blueprint $table) {
             $table->id();
+
+            $table->boolean('state')->default(0);
 
             $this->timestamps($table);
 
@@ -117,6 +121,8 @@ return new class() extends MigrationAbstract {
             $table->string('serial')->unique();
             $table->string('phone_number')->nullable();
             $table->string('password')->default('');
+
+            $table->jsonb('config')->nullable();
 
             $table->boolean('enabled')->default(0);
             $table->boolean('shared')->default(0);
@@ -408,6 +414,8 @@ return new class() extends MigrationAbstract {
             $table->string('name')->index();
             $table->string('plate');
 
+            $table->jsonb('config')->nullable();
+
             $table->boolean('timezone_auto')->default(0);
             $table->boolean('enabled')->default(0);
 
@@ -470,6 +478,8 @@ return new class() extends MigrationAbstract {
         });
 
         Schema::table('alarm_vehicle', function (Blueprint $table) {
+            $this->tableAddUnique($table, ['alarm_id', 'vehicle_id']);
+
             $this->foreignOnDeleteCascade($table, 'alarm');
             $this->foreignOnDeleteCascade($table, 'vehicle');
         });

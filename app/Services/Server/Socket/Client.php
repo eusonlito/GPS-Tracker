@@ -156,7 +156,7 @@ class Client
             ->whereSentAt(true)
             ->whereResponseAt(false)
             ->withDevice()
-            ->orderByCreatedAtDesc()
+            ->orderByLast()
             ->limit(1)
             ->get()
             ->each(fn ($message) => $this->readResourceMessageRead($resource, $message));

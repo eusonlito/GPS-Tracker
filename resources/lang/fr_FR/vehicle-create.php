@@ -1,4 +1,5 @@
 <?php return [
+    'config-trip_wait_minutes' => 'Minutes d\'attente pour créer un nouveau voyage',
     'enabled' => 'Actifs',
     'error' => [
         'timezone-exists' => 'Le fuseau horaire sélectionné n\'est plus disponible',

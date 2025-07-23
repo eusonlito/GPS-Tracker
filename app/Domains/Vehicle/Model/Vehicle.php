@@ -43,6 +43,7 @@ class Vehicle extends ModelAbstract
      * @var array<string, string>
      */
     protected $casts = [
+        'config' => 'array',
         'timezone_auto' => 'boolean',
         'enabled' => 'boolean',
     ];
@@ -138,5 +139,15 @@ class Vehicle extends ModelAbstract
     public function user(): BelongsTo
     {
         return $this->belongsTo(UserModel::class, UserModel::FOREIGN);
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return int
+     */
+    public function config(string $key): int
+    {
+        return intval($this->config[$key] ?? 0) ?: app('configuration')->int($key);
     }
 }

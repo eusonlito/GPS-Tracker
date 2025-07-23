@@ -3,6 +3,7 @@
     'alarm' => 'Alarm',
     'closed_at' => 'Closed',
     'created_at' => 'Created',
+    'dashboard' => 'Dashboard',
     'filter' => 'Filter...',
     'message' => 'Message',
     'meta-title' => 'Vehicles > :title > Notifications',

@@ -41,6 +41,7 @@ class Alarm extends ModelAbstract
      */
     protected $casts = [
         'config' => 'array',
+        'dashboard' => 'boolean',
         'telegram' => 'boolean',
         'enabled' => 'boolean',
     ];
@@ -79,6 +80,14 @@ class Alarm extends ModelAbstract
     public function notifications(): HasMany
     {
         return $this->hasMany(AlarmNotificationModel::class, static::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function notificationLast(): HasOne
+    {
+        return $this->hasOne(AlarmNotificationModel::class, static::FOREIGN)->latestOfMany();
     }
 
     /**

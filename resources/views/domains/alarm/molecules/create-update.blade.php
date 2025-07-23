@@ -25,6 +25,13 @@
 
     <div class="p-2">
         <div class="form-check">
+            <input type="checkbox" name="dashboard" value="1" class="form-check-switch" id="alarm-create-dashboard" {{ $REQUEST->input('dashboard') ? 'checked' : '' }}>
+            <label for="alarm-create-dashboard" class="form-check-label">{{ __('alarm-create.dashboard') }}</label>
+        </div>
+    </div>
+
+    <div class="p-2">
+        <div class="form-check">
             <input type="checkbox" name="telegram" value="1" class="form-check-switch" id="alarm-create-telegram" {{ $REQUEST->input('telegram') ? 'checked' : '' }}>
             <label for="alarm-create-telegram" class="form-check-label">{{ __('alarm-create.telegram') }}</label>
         </div>

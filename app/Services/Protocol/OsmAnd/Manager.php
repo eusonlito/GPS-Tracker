@@ -41,11 +41,11 @@ class Manager extends ProtocolAbstract
      */
     public function messages(string $message): array
     {
-        if ($message = trim(explode("\n", hex2bin($message))[0] ?? '')) {
-            return [$message];
+        if ($this->messageIsValidHex($message) === false) {
+            return [];
         }
 
-        return [];
+        return array_filter(array_map('trim', preg_split('/[\n\r]/', hex2bin($message))));
     }
 
     /**

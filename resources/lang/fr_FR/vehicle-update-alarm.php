@@ -1,5 +1,6 @@
 <?php return [
     'created_at' => 'Créé',
+    'dashboard' => 'Tableau de bord',
     'enabled' => 'Activer',
     'filter' => 'Filtre...',
     'meta-title' => 'Véhicules > :title > Alarmes',

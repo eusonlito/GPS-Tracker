@@ -1,5 +1,6 @@
 <?php return [
     'created_at' => 'Criada',
+    'dashboard' => 'Painel',
     'enabled' => 'Ativa',
     'filter' => 'Filtrar...',
     'meta-title' => 'Veículos > :title > Alarmes',
