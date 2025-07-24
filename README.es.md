@@ -17,6 +17,7 @@ Plataforma de código abierto para la gestión para dispositivos GPS desarrollad
 * **Queclink**: Confirmado el modelo GV500MA mediante el protocolo Queclink.
 * **OsmAnd**: Mediante el protocolo HTTP OsmAnd.
 * **iTriangle / Aquila**: Mediante el protocolo Aquila.
+* **TKStar**: Mediante el protocolo TK102.
 
 ### Características Principales
 

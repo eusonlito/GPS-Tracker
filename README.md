@@ -17,6 +17,7 @@ Open source GPS device management platform developed using Laravel 11, PHP 8.2 a
 * **Queclink**: Confirmed model GV500MA using Queclink protocol.
 * **OsmAnd**: Using HTTP OsmAnd protocol.
 * **iTriangle / Aquila**: Using the Aquila protocol.
+* **TKStar**: Using the TK102 protocol.
 
 ### Features
 
