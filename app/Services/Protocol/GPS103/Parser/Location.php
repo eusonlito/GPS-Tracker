@@ -167,7 +167,7 @@ class Location extends ParserAbstract
             return null;
         }
 
-        return '20'.$date[0].'-'.$date[1].'-'.$date[2].' '.$date[3].':'.$date[4].':'.($date[5] ?? '00');
+        return '20'.$date[0].'-'.$date[1].'-'.$date[2].' '.$date[3].':'.$date[4].':'.($date[5] ?? date('s'));
     }
 
     /**
