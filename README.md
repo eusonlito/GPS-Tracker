@@ -4,9 +4,9 @@
     <img src="https://github.com/eusonlito/GPS-Tracker/assets/644551/ef440878-fde8-4ec0-95db-c28e968f3249">
 </p>
 
-# GPS Tracker (Laravel 11 + PHP 8.2 + MySQL 8)
+# GPS Tracker (Laravel 12 + PHP 8.2 + MySQL 8)
 
-Open source GPS device management platform developed using Laravel 11, PHP 8.2 and MySQL 8. This comprehensive GPS tracking solution is designed to offer robust performance and an intuitive user interface, suitable for both individual users and companies that need to manage multiple tracking devices. This platform is intended as a possible simple alternative to [Traccar](https://github.com/traccar/traccar).
+Open source GPS device management platform developed using Laravel 12, PHP 8.2 and MySQL 8. This comprehensive GPS tracking solution is designed to offer robust performance and an intuitive user interface, suitable for both individual users and companies that need to manage multiple tracking devices. This platform is intended as a possible simple alternative to [Traccar](https://github.com/traccar/traccar).
 
 ### Supported Devices
 
@@ -21,7 +21,7 @@ Open source GPS device management platform developed using Laravel 11, PHP 8.2 a
 
 ### Features
 
-* **Modern platform with user-friendly interface:** The platform uses Laravel 11 to provide a smooth user experience and an attractive graphical interface.
+* **Modern platform with user-friendly interface:** The platform uses Laravel 12 to provide a smooth user experience and an attractive graphical interface.
 * **PHP 8.2 compatibility:** Leverages the latest features of PHP 8.2, including performance and security enhancements. It is also compatible with higher versions of PHP.
 * **Data Management with MySQL 8:** Uses MySQL 8.0.12 or higher for efficient and secure management of large volumes of tracking data, as well as extensive support for GIS functionality.
 * **Real-Time Tracking:** Allows users to track the location and status of their Sinotrack ST-90x devices in real time.
