@@ -14,6 +14,7 @@ CREATE TABLE `alarm` (
   `schedule_start` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `schedule_end` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `config` json DEFAULT NULL,
+  `dashboard` tinyint(1) NOT NULL DEFAULT '0',
   `telegram` tinyint(1) NOT NULL DEFAULT '0',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -33,6 +34,7 @@ CREATE TABLE `alarm_notification` (
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `config` json DEFAULT NULL,
   `point` point NOT NULL /*!80003 SRID 4326 */ /*!80023 INVISIBLE */,
+  `dashboard` tinyint(1) NOT NULL DEFAULT '0',
   `telegram` tinyint(1) NOT NULL DEFAULT '0',
   `date_at` datetime NOT NULL,
   `date_utc_at` datetime NOT NULL,
@@ -142,6 +144,7 @@ CREATE TABLE `device` (
   `serial` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `config` json DEFAULT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `shared` tinyint(1) NOT NULL DEFAULT '0',
   `shared_public` tinyint(1) NOT NULL DEFAULT '0',
@@ -587,6 +590,7 @@ CREATE TABLE `vehicle` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `plate` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `config` json DEFAULT NULL,
   `timezone_auto` tinyint(1) NOT NULL DEFAULT '0',
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -691,3 +695,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (80,'2025_03_24_230
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (81,'2025_03_24_230000_timezone_geojson_invisible',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (82,'2025_03_24_233000_spatial_index',1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (83,'2025_07_09_200000_alarm_vehicle_state',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (84,'2025_07_23_200000_alarm_dashboard',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (85,'2025_07_24_010000_device_config',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (86,'2025_07_24_010000_vehicle_config',1);
