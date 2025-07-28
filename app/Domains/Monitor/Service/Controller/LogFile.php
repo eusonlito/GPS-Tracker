@@ -88,8 +88,6 @@ class LogFile extends LogAbstract
             }
 
             echo $buffer;
-
-            flush();
         }
 
         fclose($handle);

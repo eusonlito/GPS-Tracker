@@ -141,7 +141,7 @@ class Log extends LogAbstract
      */
     protected function listContentRouteDir(DirectoryIterator $fileInfo): string
     {
-        return route('monitor.log', base64_encode(str_replace($this->basepath(), '', $fileInfo->getPathname())));
+        return route('monitor.log.path', $this->pathUrl($fileInfo->getPathName()));
     }
 
     /**
@@ -151,10 +151,7 @@ class Log extends LogAbstract
      */
     protected function listContentRouteFile(DirectoryIterator $fileInfo): string
     {
-        $path = base64_encode(str_replace($this->basepath(), '', $fileInfo->getPath()));
-        $file = base64_encode($fileInfo->getFilename());
-
-        return route('monitor.log.file', [$path, $file]);
+        return route('monitor.log.file', [$this->pathUrl($fileInfo->getPath()), base64_encode($fileInfo->getFilename())]);
     }
 
     /**
@@ -168,9 +165,16 @@ class Log extends LogAbstract
             return null;
         }
 
-        $path = base64_encode(str_replace($this->basepath(), '', $fileInfo->getPath()));
-        $file = base64_encode($fileInfo->getFilename());
+        return route('monitor.log.file.download', [$this->pathUrl($fileInfo->getPath()), base64_encode($fileInfo->getFilename())]);
+    }
 
-        return route('monitor.log.file.download', [$path, $file]);
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    protected function pathUrl(string $path): string
+    {
+        return base64_encode(str_replace($this->basepath(), '', $path) ?: '/');
     }
 }

@@ -107,7 +107,7 @@ class Status extends ControllerAbstract
         }
 
         if (is_dir($base)) {
-            return route('monitor.log', base64_encode($path));
+            return route('monitor.log.path', base64_encode($path));
         }
 
         return null;

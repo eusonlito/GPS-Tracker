@@ -121,7 +121,7 @@ abstract class LogAbstract extends ControllerAbstract
         $breadcrumb = [];
         $acum = [];
 
-        foreach (explode('/', $this->path) as $path) {
+        foreach (array_filter(explode('/', $this->path)) as $path) {
             $breadcrumb[] = $this->breadcrumbDir($path, $acum);
         }
 
@@ -142,7 +142,7 @@ abstract class LogAbstract extends ControllerAbstract
     {
         return (object)[
             'name' => $path,
-            'route' => route('monitor.log', base64_encode(implode('/', ($acum[] = $path) ? $acum : []))),
+            'route' => route('monitor.log.path', $this->pathUrl(implode('/', ($acum[] = $path) ? $acum : []))),
         ];
     }
 
@@ -155,7 +155,17 @@ abstract class LogAbstract extends ControllerAbstract
     {
         return (object)[
             'name' => $this->file,
-            'route' => route('monitor.log.file', [base64_encode(implode('/', $acum)), base64_encode($this->file)]),
+            'route' => route('monitor.log.file', [$this->pathUrl(implode('/', $acum)), base64_encode($this->file)]),
         ];
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    protected function pathUrl(string $path): string
+    {
+        return base64_encode($path ?: '/');
     }
 }
