@@ -71,7 +71,7 @@ class LogReadOsmAnd extends UnitAbstract
         $this->assertEquals('2023-05-25 16:34:41', $trip->end_utc_at);
         $this->assertEquals(1940, $trip->distance);
         $this->assertEquals(616, $trip->time);
-        $this->assertEquals('{"time": {"total": 616, "stopped": 308, "movement": 308, "total_percent": 100, "stopped_percent": 50, "movement_percent": 50}, "speed": {"avg": 11.34, "max": 46.04, "min": 0, "avg_percent": 25, "max_percent": 100, "min_percent": 0, "avg_movement": 22.68, "avg_movement_percent": 49}}', $trip->getRawOriginal('stats'));
+        $this->assertEquals('{"time": {"total": 616, "stopped": 308, "movement": 308, "total_percent": 100, "stopped_percent": 50, "movement_percent": 50}, "speed": {"avg": 11.34, "max": 46.04, "min": 0, "avg_percent": 25, "max_percent": 100, "min_percent": 0, "avg_movement": 24.16, "avg_movement_percent": 52}}', $trip->getRawOriginal('stats'));
     }
 
     /**

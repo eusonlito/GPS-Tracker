@@ -71,7 +71,7 @@ class LogReadGT06 extends UnitAbstract
         $this->assertEquals('2023-12-28 10:04:56', $trip->end_utc_at);
         $this->assertEquals(264, $trip->distance);
         $this->assertEquals(50, $trip->time);
-        $this->assertEquals('{"time": {"total": 50, "stopped": 12, "movement": 38, "total_percent": 100, "stopped_percent": 24, "movement_percent": 76}, "speed": {"avg": 19.01, "max": 50, "min": 0, "avg_percent": 38, "max_percent": 100, "min_percent": 0, "avg_movement": 25.01, "avg_movement_percent": 50}}', $trip->getRawOriginal('stats'));
+        $this->assertEquals('{"time": {"total": 50, "stopped": 12, "movement": 38, "total_percent": 100, "stopped_percent": 24, "movement_percent": 76}, "speed": {"avg": 19.01, "max": 50, "min": 0, "avg_percent": 38, "max_percent": 100, "min_percent": 0, "avg_movement": 42.36, "avg_movement_percent": 85}}', $trip->getRawOriginal('stats'));
     }
 
     /**

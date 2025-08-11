@@ -167,7 +167,18 @@ class Location extends ParserAbstract
             return null;
         }
 
-        return '20'.$date[0].'-'.$date[1].'-'.$date[2].' '.$date[3].':'.$date[4].':'.($date[5] ?? date('s'));
+        $date = '20'.$date[0].'-'.$date[1].'-'.$date[2].' '.$date[3].':'.$date[4].':'.($date[5] ?? '');
+
+        if (str_ends_with($date, ':') === false) {
+            return $date;
+        }
+
+        if (($this->data['date'] ?? null) !== $date) {
+            $this->data['date'] = $date;
+            $this->data['seconds'] = intval(date('s'));
+        }
+
+        return $date.sprintf('%02d', intval(date('s')) - $this->data['seconds']);
     }
 
     /**
@@ -179,6 +190,17 @@ class Location extends ParserAbstract
             $this->latitude(),
             $this->longitude(),
         );
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return [
+            'date' => $this->data['date'] ?? null,
+            'seconds' => $this->data['seconds'] ?? intval(date('s')),
+        ];
     }
 
     /**
