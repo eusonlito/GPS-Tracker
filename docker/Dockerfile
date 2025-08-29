@@ -1,5 +1,7 @@
 FROM php:8.4
 
+RUN printf "[client]\nssl-mode=DISABLED\n" > /root/.my.cnf
+
 RUN apt-get update && apt-get upgrade -y
 
 RUN apt install -yqq --no-install-recommends \
