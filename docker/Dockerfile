@@ -1,6 +1,6 @@
 FROM php:8.4
 
-RUN printf "[mysql]\nskip-ssl\n\n[client]\nssl-mode=DISABLED\n" > /root/.my.cnf
+RUN printf "[mysql]\nskip-ssl\n" > /root/.my.cnf
 
 RUN apt-get update && apt-get upgrade -y
 
