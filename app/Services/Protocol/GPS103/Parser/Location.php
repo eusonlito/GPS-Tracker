@@ -175,10 +175,12 @@ class Location extends ParserAbstract
 
         if (($this->data['date'] ?? null) !== $date) {
             $this->data['date'] = $date;
-            $this->data['seconds'] = intval(date('s'));
+            $this->data['seconds'] = -5;
         }
 
-        return $date.sprintf('%02d', intval(date('s')) - $this->data['seconds']);
+        $this->data['seconds'] += 5;
+
+        return $date.sprintf('%02d', $this->data['seconds']);
     }
 
     /**
@@ -199,7 +201,7 @@ class Location extends ParserAbstract
     {
         return [
             'date' => $this->data['date'] ?? null,
-            'seconds' => $this->data['seconds'] ?? intval(date('s')),
+            'seconds' => $this->data['seconds'] ?? -5,
         ];
     }
 
