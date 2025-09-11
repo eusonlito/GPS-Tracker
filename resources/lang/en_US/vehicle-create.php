@@ -1,5 +1,6 @@
 <?php return [
     'config-trip_wait_minutes' => 'Waiting minutes to create a new trip',
+    'config-trip_wait_minutes-tooltip' => 'Waiting time between two positions to create a new trip. If not filled, the default value of :value minutes will be used.',
     'enabled' => 'Enabled',
     'error' => [
         'timezone-exists' => 'Selected Time Zone is no longer available',

@@ -42,7 +42,7 @@
     </div>
 
     <div class="p-2">
-        <label for="device-config-position_filter_distance" class="form-label">{{ __('device-create.config-position_filter_distance') }}</label>
+        <label for="device-config-position_filter_distance" class="form-label">{{ __('device-create.config-position_filter_distance') }} <span class="ml-2 btn btn-secondary rounded-full badge-p" data-tippy-content="{{ __('device-create.config-position_filter_distance-tooltip', ['value' => $position_filter_distance_default]) }}">i</span></label>
         <input type="number" name="config[position_filter_distance]" class="form-control form-control-lg" id="device-config-position_filter_distance" value="{{ $REQUEST->input('config.position_filter_distance') }}" min="0" step="1">
     </div>
 

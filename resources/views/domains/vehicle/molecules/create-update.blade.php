@@ -10,7 +10,7 @@
     </div>
 
     <div class="p-2">
-        <label for="vehicle-config-trip_wait_minutes" class="form-label">{{ __('vehicle-create.config-trip_wait_minutes') }}</label>
+        <label for="vehicle-config-trip_wait_minutes" class="form-label">{{ __('vehicle-create.config-trip_wait_minutes') }} <span class="ml-2 btn btn-secondary rounded-full badge-p" data-tippy-content="{{ __('vehicle-create.config-trip_wait_minutes-tooltip', ['value' => $trip_wait_minutes_default]) }}">i</span></label>
         <input type="number" name="config[trip_wait_minutes]" class="form-control form-control-lg" id="vehicle-config-trip_wait_minutes" value="{{ $REQUEST->input('config.trip_wait_minutes') }}" min="0" step="1">
     </div>
 

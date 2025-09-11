@@ -22,6 +22,7 @@ abstract class CreateUpdateAbstract extends ControllerAbstract
     {
         return $this->dataCore() + [
             'vehicles' => $this->vehicles(),
+            'position_filter_distance_default' => app('configuration')->int('position_filter_distance')
         ];
     }
 }

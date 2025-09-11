@@ -1,5 +1,6 @@
 <?php return [
     'config-position_filter_distance' => 'מרחק מינימלי במטרים בין מיקומים',
+    'config-position_filter_distance-tooltip' => 'אם המרחק בין שתי עמדות קטן מערך זה, הוא יידחה. אם לא יוזן ערך, ייעשה שימוש בערך ברירת המחדל של :value מטרים.',
     'enabled' => 'פעיל',
     'error' => [
         'code-exists' => 'הקוד שצוין כבר קיים',
