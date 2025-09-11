@@ -37,7 +37,7 @@
  | xs: 0, sm: 640px, md: 768px, lg: 1024px, xl: 1280px, xxl: 1536px
  |
  */
-@import "node_modules/@left4code/tw-starter/dist/scss/breakpoint";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/breakpoint";
 
 /*
  |--------------------------------------------------------------------------
@@ -47,7 +47,7 @@
  | Import helper mixins.
  |
  */
-@import "node_modules/@left4code/tw-starter/dist/scss/mixins/media";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/mixins/media";
 
 /*
  |--------------------------------------------------------------------------
@@ -57,24 +57,24 @@
  | Import 3rd party library CSS/SASS files.
  |
  */
-@import "node_modules/@left4code/tw-starter/dist/scss/accordion";
-@import "node_modules/@left4code/tw-starter/dist/scss/alert";
-@import "node_modules/@left4code/tw-starter/dist/scss/btn";
-@import "node_modules/@left4code/tw-starter/dist/scss/form-check";
-@import "node_modules/@left4code/tw-starter/dist/scss/form-control";
-@import "node_modules/@left4code/tw-starter/dist/scss/form-help";
-@import "node_modules/@left4code/tw-starter/dist/scss/form-inline";
-@import "node_modules/@left4code/tw-starter/dist/scss/form-label";
-@import "node_modules/@left4code/tw-starter/dist/scss/form-select";
-@import "node_modules/@left4code/tw-starter/dist/scss/image-fit";
-@import "node_modules/@left4code/tw-starter/dist/scss/input-group";
-@import "node_modules/@left4code/tw-starter/dist/scss/modal";
-@import "node_modules/@left4code/tw-starter/dist/scss/pagination";
-@import "node_modules/@left4code/tw-starter/dist/scss/progress";
-@import "node_modules/@left4code/tw-starter/dist/scss/tab";
-@import "node_modules/@left4code/tw-starter/dist/scss/table";
-@import "node_modules/@left4code/tw-starter/dist/scss/box";
-@import "node_modules/tom-select/src/scss/tom-select";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/accordion";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/alert";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/btn";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/form-check";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/form-control";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/form-help";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/form-inline";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/form-label";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/form-select";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/image-fit";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/input-group";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/modal";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/pagination";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/progress";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/tab";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/table";
+@import "../../node_modules/@left4code/tw-starter/dist/scss/box";
+@import "../../node_modules/tom-select/src/scss/tom-select";
 
 /*
  |--------------------------------------------------------------------------
