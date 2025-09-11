@@ -147,41 +147,13 @@ const js = series(jsLint, function() {
 
 const images = async function() {
     const imagemin = (await import('gulp-imagemin')).default;
-    const imageminGifsicle = (await import('imagemin-gifsicle')).default;
     const imageminMozjpeg = (await import('imagemin-mozjpeg')).default;
     const imageminOptipng = (await import('imagemin-optipng')).default;
-    const imageminSvgo = (await import('imagemin-svgo')).default;
 
     return src(paths.from.images + '**/*', { encoding: false })
         .pipe(imagemin([
-            imageminGifsicle({
-                optimizationLevel: 2,
-                interlaced: false
-            }),
-            imageminMozjpeg({
-                progressive: true,
-                quality: 85
-            }),
-            imageminOptipng({
-                optimizationLevel: 3,
-            }),
-            imageminSvgo({
-                plugins: [
-                    {
-                        name: 'preset-default',
-                        params: {
-                            overrides: {
-                                removeViewBox: false,
-                                removeEmptyAttrs: false,
-                                removeUnknownsAndDefaults: false,
-                                removeUselessStrokeAndFill: false,
-                                mergeStyles: false,
-                                mergePaths: false
-                            }
-                        }
-                    }
-                ]
-            })
+            imageminMozjpeg(),
+            imageminOptipng(),
         ]))
         .pipe(dest(paths.to.images));
 };
@@ -210,6 +182,6 @@ const taskWatch = function() {
     watch(paths.from.publish + '**', publish);
 };
 
-exports.build = series(clean, directories, parallel(styles, js, images, publish), version);
-exports.watch = series(clean, directories, parallel(styles, js, images, publish), version, taskWatch);
+exports.build = series(clean, directories, parallel(styles, js), images, publish, version);
+exports.watch = series(clean, directories, parallel(styles, js), images, publish, version, taskWatch);
 exports.default = exports.build;
