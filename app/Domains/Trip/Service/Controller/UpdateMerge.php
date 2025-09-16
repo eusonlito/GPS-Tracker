@@ -4,8 +4,8 @@ namespace App\Domains\Trip\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Trip\Model\Trip as Model;
 use App\Domains\Trip\Model\Collection\Trip as Collection;
+use App\Domains\Trip\Model\Trip as Model;
 
 class UpdateMerge extends ControllerAbstract
 {

@@ -4,8 +4,8 @@ namespace App\Domains\Shared\Service\Controller;
 
 use Illuminate\Http\Request;
 use App\Domains\Device\Model\Device as DeviceModel;
-use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Trip\Model\Collection\Trip as TripCollection;
+use App\Domains\Trip\Model\Trip as TripModel;
 
 class Device extends ControllerAbstract
 {

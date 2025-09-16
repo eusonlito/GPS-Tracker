@@ -3,8 +3,8 @@
 namespace App\Domains\User\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\UserSession\Model\UserSession as UserSessionModel;
 use App\Domains\UserSession\Model\Collection\UserSession as UserSessionCollection;
+use App\Domains\UserSession\Model\UserSession as UserSessionModel;
 
 class UpdateUserSession extends ControllerAbstract
 {

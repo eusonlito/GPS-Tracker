@@ -2,10 +2,10 @@
 
 namespace App\Domains\State\Service\Controller;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
-use App\Domains\State\Model\State as Model;
+use Illuminate\Http\Request;
 use App\Domains\State\Model\Collection\State as Collection;
+use App\Domains\State\Model\State as Model;
 
 class Index extends ControllerAbstract
 {

@@ -4,8 +4,8 @@ namespace App\Domains\Trip\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as Model;

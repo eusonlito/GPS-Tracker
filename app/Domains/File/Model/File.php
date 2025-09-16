@@ -4,9 +4,9 @@ namespace App\Domains\File\Model;
 
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\File\Model\Builder\File as Builder;
 use App\Domains\File\Model\Collection\File as Collection;
-use App\Domains\CoreApp\Model\ModelAbstract;
 
 class File extends ModelAbstract
 {

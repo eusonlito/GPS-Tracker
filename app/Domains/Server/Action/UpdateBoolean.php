@@ -2,8 +2,8 @@
 
 namespace App\Domains\Server\Action;
 
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\CoreApp\Action\UpdateBoolean as UpdateBooleanCoreApp;
+use App\Domains\Server\Model\Server as Model;
 
 class UpdateBoolean extends UpdateBooleanCoreApp
 {

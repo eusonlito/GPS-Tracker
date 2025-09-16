@@ -2,11 +2,11 @@
 
 namespace App\Domains\Monitor\Service\Controller;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
-use App\Domains\QueueFail\Model\QueueFail as QueueFailModel;
 use App\Domains\QueueFail\Model\Collection\QueueFail as QueueFailCollection;
+use App\Domains\QueueFail\Model\QueueFail as QueueFailModel;
 
 class Queue extends ControllerAbstract
 {

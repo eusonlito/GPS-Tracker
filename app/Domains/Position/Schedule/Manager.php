@@ -2,8 +2,8 @@
 
 namespace App\Domains\Position\Schedule;
 
-use App\Domains\Position\Command\UpdateCityEmpty as UpdateCityEmptyCommand;
 use App\Domains\Core\Schedule\ScheduleAbstract;
+use App\Domains\Position\Command\UpdateCityEmpty as UpdateCityEmptyCommand;
 
 class Manager extends ScheduleAbstract
 {

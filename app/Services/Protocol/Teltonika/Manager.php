@@ -2,9 +2,9 @@
 
 namespace App\Services\Protocol\Teltonika;
 
+use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\Teltonika\Parser\Auth as AuthParser;
 use App\Services\Protocol\Teltonika\Parser\Locations as LocationsParser;
-use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Server\Socket\Server;
 
 class Manager extends ProtocolAbstract

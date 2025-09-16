@@ -2,11 +2,11 @@
 
 namespace App\Services\Protocol;
 
-use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Protocol\Resource\Auth as ResourceAuth;
 use App\Services\Protocol\Resource\Command as ResourceCommand;
 use App\Services\Protocol\Resource\Heartbeat as ResourceHeartbeat;
 use App\Services\Protocol\Resource\Location as ResourceLocation;
+use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Protocol\Resource\Sms as ResourceSms;
 
 abstract class ParserAbstract

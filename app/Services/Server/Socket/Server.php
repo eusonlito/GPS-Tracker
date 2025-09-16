@@ -7,8 +7,8 @@ use Exception;
 use Socket;
 use Throwable;
 use App\Services\Server\Connection;
-use App\Services\Server\ServerAbstract;
 use App\Services\Server\Logger;
+use App\Services\Server\ServerAbstract;
 
 class Server extends ServerAbstract
 {

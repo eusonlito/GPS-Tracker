@@ -2,11 +2,11 @@
 
 namespace App\Exceptions;
 
+use Sentry;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as HandlerVendor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response as HttpResponse;
-use Sentry;
 use App\Domains\Error\Controller\Index as ErrorController;
 
 class Handler extends HandlerVendor

@@ -2,9 +2,9 @@
 
 namespace App\Domains\Server\Action;
 
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\Server\Exception\PortBusy as PortBusyException;
 use App\Domains\Server\Exception\PortLocked as PortLockedException;
+use App\Domains\Server\Model\Server as Model;
 use App\Services\Filesystem\Directory;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\ProtocolFactory;

@@ -6,8 +6,8 @@ use stdClass;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection as CollectionGeneric;
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\Server\Model\Collection\Server as Collection;
+use App\Domains\Server\Model\Server as Model;
 use App\Services\Server\Process as ServerProcess;
 
 class Status extends ControllerAbstract

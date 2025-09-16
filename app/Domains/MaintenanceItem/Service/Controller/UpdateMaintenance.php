@@ -4,9 +4,9 @@ namespace App\Domains\MaintenanceItem\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
-use App\Domains\Maintenance\Model\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemModel;
 use App\Domains\Maintenance\Model\Collection\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemCollection;
+use App\Domains\Maintenance\Model\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemModel;
+use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
 
 class UpdateMaintenance extends ControllerAbstract
 {

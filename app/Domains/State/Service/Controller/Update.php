@@ -4,9 +4,9 @@ namespace App\Domains\State\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\State\Model\State as Model;
 use App\Domains\Country\Model\Collection\Country as CountryCollection;
 use App\Domains\Country\Model\Country as CountryModel;
+use App\Domains\State\Model\State as Model;
 
 class Update extends ControllerAbstract
 {

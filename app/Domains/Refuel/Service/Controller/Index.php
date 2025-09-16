@@ -3,8 +3,8 @@
 namespace App\Domains\Refuel\Service\Controller;
 
 use stdClass;
-use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\Refuel\Model\Collection\Refuel as Collection;
+use App\Domains\Refuel\Model\Refuel as Model;
 
 class Index extends IndexMapAbstract
 {

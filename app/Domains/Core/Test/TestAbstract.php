@@ -5,15 +5,15 @@ namespace App\Domains\Core\Test;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Testing\Fakes\MailFake;
+use Database\Seeders\Database as DatabaseSeed;
 use Faker\Factory as FactoryFaker;
 use Faker\Generator as GeneratorFaker;
-use Tests\TestsAbstract;
 use Tests\CreatesApplication;
+use Tests\TestsAbstract;
 use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\Core\Traits\Factory;
 use App\Domains\User\Model\User as UserModel;
 use App\Services\Curl\Curl;
-use Database\Seeders\Database as DatabaseSeed;
 
 abstract class TestAbstract extends TestsAbstract
 {

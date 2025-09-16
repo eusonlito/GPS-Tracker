@@ -4,8 +4,8 @@ namespace App\Domains\State\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\State\Model\State as Model;
 use App\Domains\State\Model\Collection\State as Collection;
+use App\Domains\State\Model\State as Model;
 
 class UpdateMerge extends ControllerAbstract
 {

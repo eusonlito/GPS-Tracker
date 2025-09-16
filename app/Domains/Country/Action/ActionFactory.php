@@ -2,8 +2,8 @@
 
 namespace App\Domains\Country\Action;
 
-use App\Domains\Country\Model\Country as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\Country\Model\Country as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {

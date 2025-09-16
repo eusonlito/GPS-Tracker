@@ -4,8 +4,8 @@ namespace App\Domains\Vehicle\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Vehicle\Model\Vehicle as Model;
 use App\Domains\Vehicle\Model\Collection\Vehicle as Collection;
+use App\Domains\Vehicle\Model\Vehicle as Model;
 
 class Index extends ControllerAbstract
 {

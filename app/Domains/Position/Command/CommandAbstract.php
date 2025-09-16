@@ -2,8 +2,8 @@
 
 namespace App\Domains\Position\Command;
 
-use App\Domains\Position\Model\Position as Model;
 use App\Domains\CoreApp\Command\CommandAbstract as CommandAbstractSahred;
+use App\Domains\Position\Model\Position as Model;
 
 abstract class CommandAbstract extends CommandAbstractSahred
 {

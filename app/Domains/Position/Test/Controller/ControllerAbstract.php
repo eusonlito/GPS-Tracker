@@ -2,8 +2,8 @@
 
 namespace App\Domains\Position\Test\Controller;
 
-use App\Domains\Position\Model\Position as Model;
 use App\Domains\CoreApp\Test\Controller\ControllerAbstract as CoreAppControllerAbstract;
+use App\Domains\Position\Model\Position as Model;
 
 abstract class ControllerAbstract extends CoreAppControllerAbstract
 {

@@ -2,8 +2,8 @@
 
 namespace App\Domains\Refuel\Command;
 
-use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\CoreApp\Command\CommandAbstract as CommandAbstractSahred;
+use App\Domains\Refuel\Model\Refuel as Model;
 
 abstract class CommandAbstract extends CommandAbstractSahred
 {

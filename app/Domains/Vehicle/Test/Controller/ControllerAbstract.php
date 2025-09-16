@@ -2,8 +2,8 @@
 
 namespace App\Domains\Vehicle\Test\Controller;
 
-use App\Domains\Vehicle\Model\Vehicle as Model;
 use App\Domains\CoreApp\Test\Controller\ControllerAbstract as CoreAppControllerAbstract;
+use App\Domains\Vehicle\Model\Vehicle as Model;
 
 abstract class ControllerAbstract extends CoreAppControllerAbstract
 {

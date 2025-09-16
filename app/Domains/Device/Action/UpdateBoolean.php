@@ -2,8 +2,8 @@
 
 namespace App\Domains\Device\Action;
 
-use App\Domains\Device\Model\Device as Model;
 use App\Domains\CoreApp\Action\UpdateBoolean as UpdateBooleanCoreApp;
+use App\Domains\Device\Model\Device as Model;
 
 class UpdateBoolean extends UpdateBooleanCoreApp
 {

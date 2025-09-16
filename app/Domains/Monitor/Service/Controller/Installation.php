@@ -2,8 +2,8 @@
 
 namespace App\Domains\Monitor\Service\Controller;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 use App\Services\Command\Exec;
 
 class Installation extends ControllerAbstract

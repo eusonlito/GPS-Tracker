@@ -4,8 +4,8 @@ namespace App\Domains\Monitor\Service\Controller;
 
 use DirectoryIterator;
 use stdClass;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 
 class Log extends LogAbstract
 {

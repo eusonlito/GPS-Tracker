@@ -2,8 +2,8 @@
 
 namespace App\Domains\State\Controller;
 
-use App\Domains\State\Model\State as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
+use App\Domains\State\Model\State as Model;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {

@@ -4,8 +4,8 @@ namespace App\Domains\Maintenance\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\Maintenance\Model\Collection\Maintenance as Collection;
+use App\Domains\Maintenance\Model\Maintenance as Model;
 
 class Index extends ControllerAbstract
 {

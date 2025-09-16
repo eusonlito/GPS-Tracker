@@ -9,9 +9,9 @@ use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
+use App\Domains\Server\Model\Server as ServerModel;
 use App\Domains\Trip\Model\Collection\Trip as TripCollection;
 use App\Domains\Trip\Model\Trip as TripModel;
-use App\Domains\Server\Model\Server as ServerModel;
 
 class Index extends ControllerAbstract
 {

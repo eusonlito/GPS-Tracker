@@ -5,8 +5,8 @@ namespace App\Domains\Device\Service\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use App\Domains\Device\Model\Device as Model;
-use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 use App\Domains\DeviceMessage\Model\Collection\DeviceMessage as DeviceMessageCollection;
+use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
 
 class UpdateDeviceMessage extends ControllerAbstract
 {

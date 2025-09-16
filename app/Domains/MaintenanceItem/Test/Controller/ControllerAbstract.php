@@ -2,8 +2,8 @@
 
 namespace App\Domains\MaintenanceItem\Test\Controller;
 
-use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
 use App\Domains\CoreApp\Test\Controller\ControllerAbstract as CoreAppControllerAbstract;
+use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
 
 abstract class ControllerAbstract extends CoreAppControllerAbstract
 {

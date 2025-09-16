@@ -2,8 +2,8 @@
 
 namespace App\Domains\User\Test\ControllerApi;
 
-use App\Domains\User\Model\User as Model;
 use App\Domains\CoreApp\Test\ControllerApi\ControllerApiAbstract as CoreAppControllerApiAbstract;
+use App\Domains\User\Model\User as Model;
 
 abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
 {

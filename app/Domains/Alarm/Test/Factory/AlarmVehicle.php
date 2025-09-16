@@ -2,9 +2,9 @@
 
 namespace App\Domains\Alarm\Test\Factory;
 
-use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Alarm\Model\Alarm as Model;
 use App\Domains\Alarm\Model\AlarmVehicle as AlarmVehicleModel;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class AlarmVehicle extends FactoryAbstract

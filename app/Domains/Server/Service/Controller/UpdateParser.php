@@ -4,8 +4,8 @@ namespace App\Domains\Server\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
+use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Server\Model\Server as Model;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Services\Protocol\ProtocolAbstract;

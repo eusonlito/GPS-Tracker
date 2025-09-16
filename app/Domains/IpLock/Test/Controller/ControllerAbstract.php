@@ -2,8 +2,8 @@
 
 namespace App\Domains\IpLock\Test\Controller;
 
-use App\Domains\IpLock\Model\IpLock as Model;
 use App\Domains\CoreApp\Test\Controller\ControllerAbstract as CoreAppControllerAbstract;
+use App\Domains\IpLock\Model\IpLock as Model;
 
 abstract class ControllerAbstract extends CoreAppControllerAbstract
 {

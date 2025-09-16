@@ -2,8 +2,8 @@
 
 namespace App\Domains\Position\Action;
 
-use App\Domains\Position\Model\Position as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\Position\Model\Position as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {

@@ -2,8 +2,8 @@
 
 namespace App\Domains\Vehicle\Service\Controller;
 
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 
 abstract class CreateUpdateAbstract extends ControllerAbstract
 {

@@ -2,8 +2,8 @@
 
 namespace App\Services\Protocol\Queclink;
 
-use App\Services\Protocol\Queclink\Parser\Location as LocationParser;
 use App\Services\Protocol\ProtocolAbstract;
+use App\Services\Protocol\Queclink\Parser\Location as LocationParser;
 use App\Services\Server\Socket\Server;
 
 class Manager extends ProtocolAbstract

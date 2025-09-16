@@ -2,8 +2,8 @@
 
 namespace App\Domains\File\Controller;
 
-use App\Domains\File\Model\File as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
+use App\Domains\File\Model\File as Model;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {

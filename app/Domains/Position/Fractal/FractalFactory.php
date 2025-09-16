@@ -2,8 +2,8 @@
 
 namespace App\Domains\Position\Fractal;
 
-use App\Domains\Position\Model\Position as Model;
 use App\Domains\Core\Fractal\FractalAbstract;
+use App\Domains\Position\Model\Position as Model;
 
 class FractalFactory extends FractalAbstract
 {

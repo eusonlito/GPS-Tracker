@@ -3,8 +3,8 @@
 namespace App\Domains\File\Action;
 
 use Throwable;
-use App\Domains\File\Model\File as Model;
 use App\Domains\File\Model\Collection\File as Collection;
+use App\Domains\File\Model\File as Model;
 
 class Upload extends ActionAbstract
 {

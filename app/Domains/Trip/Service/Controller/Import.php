@@ -4,8 +4,8 @@ namespace App\Domains\Trip\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as Model;
 
 class Import extends ControllerAbstract

@@ -3,8 +3,8 @@
 namespace App\Domains\IpLock\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\IpLock\Model\IpLock as Model;
 use App\Domains\IpLock\Model\Collection\IpLock as Collection;
+use App\Domains\IpLock\Model\IpLock as Model;
 
 class Index extends ControllerAbstract
 {

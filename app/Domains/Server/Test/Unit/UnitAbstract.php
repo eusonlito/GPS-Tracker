@@ -2,8 +2,8 @@
 
 namespace App\Domains\Server\Test\Unit;
 
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\CoreApp\Test\Unit\UnitAbstract as UnitAbstractCore;
+use App\Domains\Server\Model\Server as Model;
 
 abstract class UnitAbstract extends UnitAbstractCore
 {

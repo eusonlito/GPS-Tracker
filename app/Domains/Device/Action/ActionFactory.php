@@ -2,9 +2,9 @@
 
 namespace App\Domains\Device\Action;
 
+use App\Domains\Core\Action\ActionFactoryAbstract;
 use App\Domains\Device\Model\Device as Model;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
-use App\Domains\Core\Action\ActionFactoryAbstract;
 
 class ActionFactory extends ActionFactoryAbstract
 {

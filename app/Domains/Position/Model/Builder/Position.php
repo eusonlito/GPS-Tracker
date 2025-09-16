@@ -6,8 +6,8 @@ use App\Domains\City\Model\City as CityModel;
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\CoreApp\Model\Builder\Traits\Gis as GisTrait;
 use App\Domains\Refuel\Model\Refuel as RefuelModel;
-use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Trip\Model\Builder\Trip as TripBuilder;
+use App\Domains\Trip\Model\Trip as TripModel;
 
 class Position extends BuilderAbstract
 {

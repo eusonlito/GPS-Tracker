@@ -2,8 +2,8 @@
 
 namespace App\Domains\Language\Test\ControllerApi;
 
-use App\Domains\Language\Model\Language as Model;
 use App\Domains\CoreApp\Test\ControllerApi\ControllerApiAbstract as CoreAppControllerApiAbstract;
+use App\Domains\Language\Model\Language as Model;
 
 abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
 {

@@ -4,8 +4,8 @@ namespace App\Domains\AlarmNotification\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as Collection;
 use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as Collection;
 
 class Index extends ControllerAbstract
 {

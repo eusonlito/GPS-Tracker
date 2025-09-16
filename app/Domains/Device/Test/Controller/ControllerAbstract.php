@@ -2,8 +2,8 @@
 
 namespace App\Domains\Device\Test\Controller;
 
-use App\Domains\Device\Model\Device as Model;
 use App\Domains\CoreApp\Test\Controller\ControllerAbstract as CoreAppControllerAbstract;
+use App\Domains\Device\Model\Device as Model;
 
 abstract class ControllerAbstract extends CoreAppControllerAbstract
 {

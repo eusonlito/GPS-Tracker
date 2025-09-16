@@ -3,8 +3,8 @@
 namespace App\Domains\State\Action;
 
 use App\Domains\City\Model\City as CityModel;
-use App\Domains\State\Model\State as Model;
 use App\Domains\State\Model\Collection\State as Collection;
+use App\Domains\State\Model\State as Model;
 
 class UpdateMerge extends ActionAbstract
 {

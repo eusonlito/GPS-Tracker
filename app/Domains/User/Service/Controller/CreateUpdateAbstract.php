@@ -2,10 +2,10 @@
 
 namespace App\Domains\User\Service\Controller;
 
-use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\Language\Model\Collection\Language as LanguageCollection;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 
 abstract class CreateUpdateAbstract extends ControllerAbstract
 {

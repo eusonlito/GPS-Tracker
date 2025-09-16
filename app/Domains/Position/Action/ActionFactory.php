@@ -2,8 +2,8 @@
 
 namespace App\Domains\Position\Action;
 
-use App\Domains\Position\Model\Position as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\Position\Model\Position as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {

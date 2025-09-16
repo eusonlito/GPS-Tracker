@@ -4,8 +4,8 @@ namespace App\Domains\Vehicle\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Device\Model\Collection\Device as DeviceCollection;
+use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Vehicle\Model\Vehicle as Model;
 
 class UpdateDevice extends ControllerAbstract

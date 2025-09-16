@@ -4,8 +4,8 @@ namespace App\Domains\Maintenance\Service\Controller;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\File\Model\File as FileModel;
 use App\Domains\File\Model\Collection\File as FileCollection;
+use App\Domains\File\Model\File as FileModel;
 use App\Domains\Maintenance\Model\Maintenance as Model;
 
 class Update extends CreateUpdateAbstract
