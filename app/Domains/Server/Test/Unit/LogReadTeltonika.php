@@ -71,7 +71,7 @@ class LogReadTeltonika extends UnitAbstract
         $this->assertEquals('2025-01-10 14:48:07', $trip->end_utc_at);
         $this->assertEquals(11680, $trip->distance);
         $this->assertEquals(1495, $trip->time);
-        $this->assertEquals('{"time": {"total": 1495, "stopped": 334, "movement": 1161, "total_percent": 100, "stopped_percent": 22, "movement_percent": 78}, "speed": {"avg": 28.13, "max": 93, "min": 0, "avg_percent": 30, "max_percent": 100, "min_percent": 0, "avg_movement": 36.22, "avg_movement_percent": 39}}', $trip->getRawOriginal('stats'));
+        $this->assertEquals('{"time": {"total": 1495, "stopped": 334, "movement": 1161, "total_percent": 100, "stopped_percent": 22, "movement_percent": 78}, "speed": {"avg": 28.13, "max": 93, "min": 0, "avg_percent": 30, "max_percent": 100, "min_percent": 0, "avg_movement": 35.5, "avg_movement_percent": 38}}', $trip->getRawOriginal('stats'));
     }
 
     /**

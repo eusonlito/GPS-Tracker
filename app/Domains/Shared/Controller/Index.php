@@ -4,7 +4,7 @@ namespace App\Domains\Shared\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Domains\Shared\Service\Controller\Index as ControllerService;
+use App\Domains\Shared\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {

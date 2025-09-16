@@ -2,8 +2,8 @@
 
 namespace App\Domains\Server\Test\Controller;
 
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\CoreApp\Test\Controller\ControllerAbstract as CoreAppControllerAbstract;
+use App\Domains\Server\Model\Server as Model;
 
 abstract class ControllerAbstract extends CoreAppControllerAbstract
 {

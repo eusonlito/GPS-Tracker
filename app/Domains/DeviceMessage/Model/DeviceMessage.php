@@ -4,11 +4,11 @@ namespace App\Domains\DeviceMessage\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\DeviceMessage\Model\Builder\DeviceMessage as Builder;
 use App\Domains\DeviceMessage\Model\Collection\DeviceMessage as Collection;
 use App\Domains\DeviceMessage\Test\Factory\DeviceMessage as TestFactory;
-use App\Domains\CoreApp\Model\ModelAbstract;
 
 class DeviceMessage extends ModelAbstract
 {

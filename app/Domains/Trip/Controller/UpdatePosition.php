@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as Model;
-use App\Domains\Trip\Service\Controller\UpdatePosition as ControllerService;
+use App\Domains\Trip\Controller\Service\UpdatePosition as ControllerService;
 
 class UpdatePosition extends UpdateAbstract
 {

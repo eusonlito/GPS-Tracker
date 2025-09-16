@@ -2,8 +2,8 @@
 
 namespace App\Domains\Help\Command;
 
-use App\Domains\Help\Service\ControllerApi\Index as IndexService;
-use App\Domains\Help\Service\ControllerApi\Detail as DetailService;
+use App\Domains\Help\ControllerApi\Service\Detail as DetailService;
+use App\Domains\Help\ControllerApi\Service\Index as IndexService;
 
 class Show extends CommandAbstract
 {

@@ -2,8 +2,8 @@
 
 namespace App\Domains\Refuel\Controller;
 
-use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
+use App\Domains\Refuel\Model\Refuel as Model;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {

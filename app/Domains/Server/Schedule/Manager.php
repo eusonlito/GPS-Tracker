@@ -2,8 +2,8 @@
 
 namespace App\Domains\Server\Schedule;
 
-use App\Domains\Server\Command\StartAll as StartAllCommand;
 use App\Domains\Core\Schedule\ScheduleAbstract;
+use App\Domains\Server\Command\StartAll as StartAllCommand;
 
 class Manager extends ScheduleAbstract
 {

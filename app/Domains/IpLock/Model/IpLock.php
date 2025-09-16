@@ -3,10 +3,10 @@
 namespace App\Domains\IpLock\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\IpLock\Model\Builder\IpLock as Builder;
 use App\Domains\IpLock\Model\Collection\IpLock as Collection;
 use App\Domains\IpLock\Test\Factory\IpLock as TestFactory;
-use App\Domains\CoreApp\Model\ModelAbstract;
 
 class IpLock extends ModelAbstract
 {

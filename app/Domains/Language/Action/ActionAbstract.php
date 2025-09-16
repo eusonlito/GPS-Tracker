@@ -2,8 +2,8 @@
 
 namespace App\Domains\Language\Action;
 
-use App\Domains\Language\Model\Language as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\Language\Model\Language as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {

@@ -2,8 +2,8 @@
 
 namespace App\Domains\DeviceMessage\Action;
 
-use App\Domains\DeviceMessage\Model\DeviceMessage as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\DeviceMessage\Model\DeviceMessage as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {

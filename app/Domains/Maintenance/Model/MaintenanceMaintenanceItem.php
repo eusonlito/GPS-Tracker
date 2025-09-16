@@ -3,10 +3,10 @@
 namespace App\Domains\Maintenance\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Domains\CoreApp\Model\PivotAbstract;
 use App\Domains\Maintenance\Model\Builder\MaintenanceMaintenanceItem as Builder;
 use App\Domains\Maintenance\Model\Collection\MaintenanceMaintenanceItem as Collection;
 use App\Domains\MaintenanceItem\Model\MaintenanceItem as MaintenanceItemModel;
-use App\Domains\CoreApp\Model\PivotAbstract;
 
 class MaintenanceMaintenanceItem extends PivotAbstract
 {

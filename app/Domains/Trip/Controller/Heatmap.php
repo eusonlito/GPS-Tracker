@@ -4,7 +4,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\Heatmap as ControllerService;
+use App\Domains\Trip\Controller\Service\Heatmap as ControllerService;
 
 class Heatmap extends ControllerAbstract
 {

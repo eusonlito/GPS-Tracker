@@ -4,8 +4,8 @@ namespace App\Domains\UserSession\Model\Builder;
 
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\User\Model\User as UserModel;
-use App\Domains\UserFail\Model\UserFail as UserFailModel;
 use App\Domains\UserFail\Model\Builder\UserFail as UserFailBuilder;
+use App\Domains\UserFail\Model\UserFail as UserFailModel;
 
 class UserSession extends BuilderAbstract
 {

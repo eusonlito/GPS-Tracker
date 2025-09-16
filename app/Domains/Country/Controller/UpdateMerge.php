@@ -4,7 +4,7 @@ namespace App\Domains\Country\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Country\Service\Controller\UpdateMerge as ControllerService;
+use App\Domains\Country\Controller\Service\UpdateMerge as ControllerService;
 
 class UpdateMerge extends ControllerAbstract
 {

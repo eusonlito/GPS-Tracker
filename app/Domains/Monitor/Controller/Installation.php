@@ -3,7 +3,7 @@
 namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Monitor\Service\Controller\Installation as ControllerService;
+use App\Domains\Monitor\Controller\Service\Installation as ControllerService;
 
 class Installation extends ControllerAbstract
 {

@@ -4,7 +4,7 @@ namespace App\Domains\Shared\Controller;
 
 use Illuminate\Http\Response;
 use App\Domains\Device\Model\Device as DeviceModel;
-use App\Domains\Shared\Service\Controller\Device as ControllerService;
+use App\Domains\Shared\Controller\Service\Device as ControllerService;
 
 class Device extends ControllerAbstract
 {

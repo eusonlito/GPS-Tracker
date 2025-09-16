@@ -3,7 +3,7 @@
 namespace App\Domains\Monitor\Controller;
 
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use App\Domains\Monitor\Service\Controller\LogFileDownload as ControllerService;
+use App\Domains\Monitor\Controller\Service\LogFileDownload as ControllerService;
 
 class LogFileDownload extends ControllerAbstract
 {

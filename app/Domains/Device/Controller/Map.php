@@ -4,7 +4,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Domains\Device\Service\Controller\Map as ControllerService;
+use App\Domains\Device\Controller\Service\Map as ControllerService;
 
 class Map extends ControllerAbstract
 {

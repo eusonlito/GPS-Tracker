@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\File\Model\File as FileModel;
 use App\Domains\Maintenance\Model\Builder\Maintenance as Builder;
 use App\Domains\Maintenance\Model\Collection\Maintenance as Collection;
 use App\Domains\Maintenance\Test\Factory\Maintenance as TestFactory;
 use App\Domains\MaintenanceItem\Model\MaintenanceItem as MaintenanceItemModel;
-use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 

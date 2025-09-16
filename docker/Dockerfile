@@ -1,5 +1,7 @@
 FROM php:8.4
 
+RUN printf "[mysql]\nskip-ssl\n" > /root/.my.cnf
+
 RUN apt-get update && apt-get upgrade -y
 
 RUN apt install -yqq --no-install-recommends \

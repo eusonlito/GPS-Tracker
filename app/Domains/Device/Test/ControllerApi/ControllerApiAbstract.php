@@ -2,8 +2,8 @@
 
 namespace App\Domains\Device\Test\ControllerApi;
 
-use App\Domains\Device\Model\Device as Model;
 use App\Domains\CoreApp\Test\ControllerApi\ControllerApiAbstract as CoreAppControllerApiAbstract;
+use App\Domains\Device\Model\Device as Model;
 
 abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
 {

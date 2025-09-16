@@ -2,9 +2,9 @@
 
 namespace App\Domains\Refuel\Test\Factory;
 
+use App\Domains\City\Model\City as CityModel;
 use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Refuel\Model\Refuel as Model;
-use App\Domains\City\Model\City as CityModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Refuel extends FactoryAbstract

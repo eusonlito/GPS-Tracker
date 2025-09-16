@@ -3,8 +3,8 @@
 namespace App\Domains\UserSession\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\UserSession\Model\UserSession as Model;
 use App\Domains\UserSession\Model\Collection\UserSession as Collection;
+use App\Domains\UserSession\Model\UserSession as Model;
 
 class Index extends ControllerAbstract
 {

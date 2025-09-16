@@ -3,7 +3,7 @@
 namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Service\Controller\UpdateAlarmNotification as ControllerService;
+use App\Domains\Vehicle\Controller\Service\UpdateAlarmNotification as ControllerService;
 
 class UpdateAlarmNotification extends ControllerAbstract
 {

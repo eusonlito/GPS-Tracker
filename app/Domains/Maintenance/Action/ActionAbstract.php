@@ -2,8 +2,8 @@
 
 namespace App\Domains\Maintenance\Action;
 
-use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\Maintenance\Model\Maintenance as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {

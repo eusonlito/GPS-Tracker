@@ -2,8 +2,8 @@
 
 namespace App\Domains\Position\Test\Factory;
 
-use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\City\Model\City as CityModel;
+use App\Domains\CoreApp\Test\Factory\FactoryAbstract;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Model\Position as Model;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;

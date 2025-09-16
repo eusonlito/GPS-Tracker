@@ -69,6 +69,6 @@ abstract class ProtocolAbstract
      */
     protected function messageIsValidHex(string $message): bool
     {
-        return preg_match('/^[0-9a-fA-F]+$/', $message) === 1;
+        return $message && (strlen($message) % 2 === 0) && ctype_xdigit($message);
     }
 }

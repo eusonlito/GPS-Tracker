@@ -4,7 +4,7 @@ namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Service\Controller\UpdateAlarm as ControllerService;
+use App\Domains\Vehicle\Controller\Service\UpdateAlarm as ControllerService;
 
 class UpdateAlarm extends ControllerAbstract
 {

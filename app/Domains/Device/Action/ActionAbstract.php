@@ -2,8 +2,8 @@
 
 namespace App\Domains\Device\Action;
 
-use App\Domains\Device\Model\Device as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\Device\Model\Device as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {

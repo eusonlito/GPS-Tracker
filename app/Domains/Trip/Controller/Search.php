@@ -3,7 +3,7 @@
 namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\Search as ControllerService;
+use App\Domains\Trip\Controller\Service\Search as ControllerService;
 
 class Search extends ControllerAbstract
 {

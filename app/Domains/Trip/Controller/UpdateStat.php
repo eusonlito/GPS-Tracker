@@ -4,7 +4,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\UpdateStat as ControllerService;
+use App\Domains\Trip\Controller\Service\UpdateStat as ControllerService;
 
 class UpdateStat extends UpdateAbstract
 {

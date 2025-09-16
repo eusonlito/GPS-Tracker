@@ -2,8 +2,8 @@
 
 namespace App\Domains\Server\Action;
 
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\Server\Model\Server as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {

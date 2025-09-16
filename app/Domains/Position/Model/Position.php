@@ -15,8 +15,8 @@ use App\Domains\Position\Model\Traits\SelectRaw as SelectRawTrait;
 use App\Domains\Position\Test\Factory\Position as TestFactory;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\User\Model\User as UserModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Position extends ModelAbstract
 {

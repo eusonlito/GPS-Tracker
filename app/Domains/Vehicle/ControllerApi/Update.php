@@ -4,7 +4,7 @@ namespace App\Domains\Vehicle\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
 use App\Domains\Vehicle\Model\Vehicle as Model;
-use App\Domains\Vehicle\Service\ControllerApi\Update as ControllerService;
+use App\Domains\Vehicle\ControllerApi\Service\Update as ControllerService;
 
 class Update extends ControllerApiAbstract
 {

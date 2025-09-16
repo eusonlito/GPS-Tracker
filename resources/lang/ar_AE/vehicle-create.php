@@ -1,5 +1,6 @@
 <?php return [
     'config-trip_wait_minutes' => 'الدقائق المنتظرة لإنشاء رحلة جديدة',
+    'config-trip_wait_minutes-tooltip' => 'وقت الانتظار بين موقعين لإنشاء رحلة جديدة. إذا لم يتم ملؤها، سيتم استخدام القيمة الافتراضية :value دقيقة.',
     'enabled' => 'نشط',
     'error' => [
         'timezone-exists' => 'لم تعد المنطقة الزمنية المحددة متوفرة',

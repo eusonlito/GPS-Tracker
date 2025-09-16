@@ -163,11 +163,24 @@ class Location extends ParserAbstract
     {
         $date = str_split($this->values[2], 2);
 
-        if (count($date) !== 6) {
+        if (count($date) < 5) {
             return null;
         }
 
-        return '20'.$date[0].'-'.$date[1].'-'.$date[2].' '.$date[3].':'.$date[4].':'.$date[5];
+        $date = '20'.$date[0].'-'.$date[1].'-'.$date[2].' '.$date[3].':'.$date[4].':'.($date[5] ?? '');
+
+        if (str_ends_with($date, ':') === false) {
+            return $date;
+        }
+
+        if (($this->data['date'] ?? null) !== $date) {
+            $this->data['date'] = $date;
+            $this->data['seconds'] = -5;
+        }
+
+        $this->data['seconds'] += 5;
+
+        return $date.sprintf('%02d', $this->data['seconds']);
     }
 
     /**
@@ -179,6 +192,17 @@ class Location extends ParserAbstract
             $this->latitude(),
             $this->longitude(),
         );
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return [
+            'date' => $this->data['date'] ?? null,
+            'seconds' => $this->data['seconds'] ?? -5,
+        ];
     }
 
     /**

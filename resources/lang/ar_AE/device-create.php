@@ -1,5 +1,6 @@
 <?php return [
     'config-position_filter_distance' => 'الفصل الأدنى بالمتر بين المواقع',
+    'config-position_filter_distance-tooltip' => 'إذا كانت المسافة بين موقعين أقل من هذه القيمة، سيتم تجاهلها. إذا لم يتم ملؤها، سيتم استخدام القيمة الافتراضية :value متر.',
     'enabled' => 'نشط',
     'error' => [
         'code-exists' => 'الرمز المحدد موجود مسبقاً',

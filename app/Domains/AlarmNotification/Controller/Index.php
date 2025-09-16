@@ -6,7 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
 use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as Collection;
-use App\Domains\AlarmNotification\Service\Controller\Index as ControllerService;
+use App\Domains\AlarmNotification\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {

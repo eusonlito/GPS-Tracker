@@ -2,9 +2,9 @@
 
 namespace App\Services\Gpx;
 
-use phpGPX\phpGPX;
 use phpGPX\Models\GpxFile;
 use phpGPX\Models\Point;
+use phpGPX\phpGPX;
 
 class Read
 {

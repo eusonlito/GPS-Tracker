@@ -2,23 +2,21 @@
 
 const isWatch = process.argv.includes('watch');
 
-const { gulp, src, dest, series, parallel, watch } = require('gulp');
+const { src, dest, series, parallel, watch } = require('gulp');
 
 const
     autoprefixer = require('autoprefixer'),
     cleancss = require('gulp-clean-css'),
     concat = require('gulp-concat'),
-    del = require('del'),
+    copy = require('gulp-copy'),
+    { deleteAsync } = require('del'),
     filesExist = require('files-exist'),
-    imagemin = require('gulp-imagemin'),
     jshint = require('gulp-jshint'),
     merge = require('merge2'),
     mode = require('gulp-mode')({ default: isWatch ? 'development' : 'production' }),
     postcss = require('gulp-postcss'),
     purgecss = require('gulp-purgecss'),
-    purifycss = require('gulp-purifycss'),
-    replace = require('gulp-replace'),
-    rev = require('gulp-rev'),
+    rev = require('gulp-rev').default,
     sass = require('gulp-sass')(require('sass')),
     stylish = require('jshint-stylish'),
     tailwindcss = require('tailwindcss'),
@@ -55,12 +53,12 @@ const loadManifest = function(name, key) {
 };
 
 const clean = function() {
-    return del(paths.to.build, { force: true });
+    return deleteAsync(paths.to.build, { force: true });
 };
 
 const directories = function(cb) {
     for (let from in paths.directories) {
-        src([from]).pipe(dest(paths.directories[from]));
+        src(from, { encoding: false }).pipe(dest(paths.directories[from]));
     }
 
     cb();
@@ -79,8 +77,11 @@ const styles = function(cb) {
 };
 
 const stylesScss = function(cb) {
-    return src(loadManifest('scss'))
-        .pipe(sass())
+    return src(loadManifest('scss'), { allowEmpty: true })
+        .pipe(sass({
+            quietDeps: true,
+            silenceDeprecations: ['import', 'global-builtin', 'color-functions']
+        }).on('error', sass.logError))
         .pipe(postcss([ tailwindcss('./tailwind.config.js') ]))
         .pipe(mode.production(purgecss({
             defaultExtractor: content => content.match(/[\w\.\-\/:]+(?<!:)/g) || [],
@@ -89,21 +90,28 @@ const stylesScss = function(cb) {
                 paths.from.app + '/Services/Html/**/*.php',
                 paths.from.app + '/View/**/*.php',
                 paths.from.js + '**/*.js',
-                paths.from.view + 'components/**/*.php',
                 paths.from.view + 'domains/**/*.php',
-                paths.from.view + 'layouts/**/*.php'
+                paths.from.view + 'components/**/*.php',
+                paths.from.view + 'layouts/**/*.php',
+                paths.from.view + 'molecules/**/*.php',
+                paths.from.theme + '**/*.js'
             ]
         })));
 };
 
 const stylesCss = function(cb) {
-    return src(loadManifest('css'))
-        .pipe(sass());
+    return src(loadManifest('css'), { allowEmpty: true })
+        .pipe(sass({
+            quietDeps: true,
+            silenceDeprecations: ['import', 'global-builtin', 'color-functions']
+        }).on('error', sass.logError));
 };
+
 
 const jsLint = function(cb) {
     const files = loadManifest('js').filter(function(file) {
-        return file.indexOf('/node_modules/') === -1;
+        return (file.indexOf('/node_modules/') === -1)
+            && (file.indexOf('/theme/') === -1);
     });
 
     if (files.length === 0) {
@@ -115,9 +123,12 @@ const jsLint = function(cb) {
         .pipe(jshint.reporter(stylish));
 };
 
-const javascript = series(jsLint, function() {
-    return src(loadManifest('js'))
+const js = series(jsLint, function() {
+    return src(loadManifest('js'), { allowEmpty: true })
         .pipe(webpack({
+            watchOptions: {
+                ignored: /node_modules/
+            },
             mode: mode.production() ? 'production' : 'development',
             module: {
                     rules: [{
@@ -134,30 +145,22 @@ const javascript = series(jsLint, function() {
         .pipe(dest(paths.to.js));
 });
 
-const images = function() {
-    return src(paths.from.images + '**/*')
-        .pipe(dest(paths.to.images))
-        .pipe(mode.production(imagemin([
-            imagemin.gifsicle(),
-            imagemin.mozjpeg({ progressive: true }),
-            imagemin.optipng(),
-            imagemin.svgo({
-                plugins: [
-                    { removeViewBox: false },
-                    { removeEmptyAttrs: false },
-                    { removeUnknownsAndDefaults: false },
-                    { removeUselessStrokeAndFill: false },
-                    { mergeStyles: false },
-                    { mergePaths: false }
-                ]
-            })
-        ])))
+const images = async function() {
+    const imagemin = (await import('gulp-imagemin')).default;
+    const imageminMozjpeg = (await import('imagemin-mozjpeg')).default;
+    const imageminOptipng = (await import('imagemin-optipng')).default;
+
+    return src(paths.from.images + '**/*', { encoding: false })
+        .pipe(imagemin([
+            imageminMozjpeg(),
+            imageminOptipng(),
+        ]))
         .pipe(dest(paths.to.images));
 };
 
 const publish = function() {
-    return src(paths.from.publish + '**/*')
-        .pipe(dest(paths.to.public));
+    return src(paths.from.publish + '**/*', { allowEmpty: true })
+        .pipe(copy(paths.to.public, { prefix: 1 }));
 };
 
 const version = function() {
@@ -174,10 +177,11 @@ const version = function() {
 
 const taskWatch = function() {
     watch(paths.from.scss + '**/*.scss', styles);
-    watch(paths.from.js + '**/*.js', javascript);
+    watch(paths.from.js + '**/*.js', js);
     watch(paths.from.images + '**', images);
     watch(paths.from.publish + '**', publish);
 };
 
-exports.build = series(clean, directories, parallel(styles, javascript, images, publish), version);
-exports.watch = series(clean, directories, parallel(styles, javascript, images, publish), version, taskWatch);
+exports.build = series(clean, directories, parallel(styles, js), images, publish, version);
+exports.watch = series(clean, directories, parallel(styles, js), images, publish, version, taskWatch);
+exports.default = exports.build;

@@ -4,7 +4,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\UpdateMap as ControllerService;
+use App\Domains\Trip\Controller\Service\UpdateMap as ControllerService;
 
 class UpdateMap extends UpdateAbstract
 {

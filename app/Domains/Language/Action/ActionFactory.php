@@ -2,8 +2,8 @@
 
 namespace App\Domains\Language\Action;
 
-use App\Domains\Language\Model\Language as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\Language\Model\Language as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {

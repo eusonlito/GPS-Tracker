@@ -2,8 +2,8 @@
 
 namespace App\Domains\Refuel\Action;
 
-use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\Refuel\Model\Refuel as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {

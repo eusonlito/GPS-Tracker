@@ -2,8 +2,8 @@
 
 namespace App\Domains\Server\Fractal;
 
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\Core\Fractal\FractalAbstract;
+use App\Domains\Server\Model\Server as Model;
 
 class FractalFactory extends FractalAbstract
 {

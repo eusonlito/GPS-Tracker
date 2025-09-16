@@ -2,8 +2,8 @@
 
 namespace App\Domains\Server\Action;
 
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Device\Model\Collection\Device as DeviceCollection;
+use App\Domains\Device\Model\Device as DeviceModel;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\ProtocolFactory;
 

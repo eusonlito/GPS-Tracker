@@ -2,8 +2,8 @@
 
 namespace App\Domains\Maintenance\Controller;
 
-use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
+use App\Domains\Maintenance\Model\Maintenance as Model;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {

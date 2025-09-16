@@ -2,8 +2,8 @@
 
 namespace App\Domains\Trip\Action;
 
-use App\Domains\Trip\Model\Trip as Model;
 use App\Domains\CoreApp\Action\UpdateBoolean as UpdateBooleanCoreApp;
+use App\Domains\Trip\Model\Trip as Model;
 
 class UpdateBoolean extends UpdateBooleanCoreApp
 {

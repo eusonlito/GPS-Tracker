@@ -4,9 +4,9 @@
     <img src="https://github.com/eusonlito/GPS-Tracker/assets/644551/ef440878-fde8-4ec0-95db-c28e968f3249">
 </p>
 
-# GPS Tracker (Laravel 11 + PHP 8.2 + MySQL 8)
+# GPS Tracker (Laravel 12 + PHP 8.2 + MySQL 8)
 
-Plataforma de código abierto para la gestión para dispositivos GPS desarrollada utilizando Laravel 11, PHP 8.2 y MySQL 8. Esta solución integral de rastreo GPS está diseñada para ofrecer un rendimiento robusto y una interfaz de usuario intuitiva, adecuada tanto para usuarios individuales como para empresas que necesitan gestionar múltiples dispositivos de rastreo. Esta plataforma está pensada como una posible alternativa sencilla a [Traccar](https://github.com/traccar/traccar).
+Plataforma de código abierto para la gestión para dispositivos GPS desarrollada utilizando Laravel 12, PHP 8.2 y MySQL 8. Esta solución integral de rastreo GPS está diseñada para ofrecer un rendimiento robusto y una interfaz de usuario intuitiva, adecuada tanto para usuarios individuales como para empresas que necesitan gestionar múltiples dispositivos de rastreo. Esta plataforma está pensada como una posible alternativa sencilla a [Traccar](https://github.com/traccar/traccar).
 
 ### Dispositivos Soportados
 
@@ -17,10 +17,11 @@ Plataforma de código abierto para la gestión para dispositivos GPS desarrollad
 * **Queclink**: Confirmado el modelo GV500MA mediante el protocolo Queclink.
 * **OsmAnd**: Mediante el protocolo HTTP OsmAnd.
 * **iTriangle / Aquila**: Mediante el protocolo Aquila.
+* **TKStar**: Mediante el protocolo TK102.
 
 ### Características Principales
 
-* **Plataforma moderna con interface amigable:** La plataforma utiliza Laravel 11 para proporcionar una experiencia de usuario fluida y una interfaz gráfica atractiva.
+* **Plataforma moderna con interface amigable:** La plataforma utiliza Laravel 12 para proporcionar una experiencia de usuario fluida y una interfaz gráfica atractiva.
 * **Compatibilidad con PHP 8.2:** Aprovecha las últimas características de PHP 8.2, incluyendo mejoras en el rendimiento y seguridad. También es compatible con las versiones superiores de PHP.
 * **Gestión de Datos con MySQL 8:** Utiliza MySQL 8.0.12 o superior para una gestión eficiente y segura de grandes volúmenes de datos de rastreo, así como una amplio soporte de funcionalidades GIS.
 * **Seguimiento en Tiempo Real:** Permite a los usuarios seguir la ubicación y el estado de sus dispositivos Sinotrack ST-90x en tiempo real.

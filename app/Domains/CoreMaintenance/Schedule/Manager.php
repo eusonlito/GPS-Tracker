@@ -2,11 +2,11 @@
 
 namespace App\Domains\CoreMaintenance\Schedule;
 
+use App\Domains\Core\Schedule\ScheduleAbstract;
 use App\Domains\CoreMaintenance\Command\CurlCacheClean as CurlCacheCleanCommand;
 use App\Domains\CoreMaintenance\Command\DirectoryEmptyDelete as DirectoryEmptyDeleteCommand;
 use App\Domains\CoreMaintenance\Command\FileDeleteOld as FileDeleteOldCommand;
 use App\Domains\CoreMaintenance\Command\FileZip as FileZipCommand;
-use App\Domains\Core\Schedule\ScheduleAbstract;
 
 class Manager extends ScheduleAbstract
 {

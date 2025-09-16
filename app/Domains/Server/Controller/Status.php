@@ -4,7 +4,7 @@ namespace App\Domains\Server\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Server\Service\Controller\Status as ControllerService;
+use App\Domains\Server\Controller\Service\Status as ControllerService;
 
 class Status extends ControllerAbstract
 {

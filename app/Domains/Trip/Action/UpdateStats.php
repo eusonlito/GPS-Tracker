@@ -133,15 +133,11 @@ class UpdateStats extends ActionAbstract
             $avg = 0;
         }
 
-        if ($this->stats['time']['movement']) {
-            $avg_movement = round($this->row->distance / $this->stats['time']['movement'] * 3.6, 2);
-        } else {
-            $avg_movement = 0;
-        }
-
         $max_percent = 100;
         $min_percent = (int)round($min * 100 / $max, 0);
         $avg_percent = (int)round($avg * 100 / $max, 0);
+
+        $avg_movement = round($this->positions->filter(fn ($position) => $position->speed)->avg('speed'), 2);
         $avg_movement_percent = (int)round($avg_movement * 100 / $max, 0);
 
         $this->stats['speed'] = get_defined_vars();

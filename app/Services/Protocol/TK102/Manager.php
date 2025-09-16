@@ -2,9 +2,9 @@
 
 namespace App\Services\Protocol\TK102;
 
+use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\TK102\Parser\Command as CommandParser;
 use App\Services\Protocol\TK102\Parser\Location as LocationParser;
-use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Server\Socket\Server;
 
 class Manager extends ProtocolAbstract
