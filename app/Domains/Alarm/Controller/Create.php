@@ -4,7 +4,7 @@ namespace App\Domains\Alarm\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Alarm\Service\Controller\Create as ControllerService;
+use App\Domains\Alarm\Controller\Service\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {

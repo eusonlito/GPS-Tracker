@@ -4,7 +4,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Device\Service\Controller\Create as ControllerService;
+use App\Domains\Device\Controller\Service\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {

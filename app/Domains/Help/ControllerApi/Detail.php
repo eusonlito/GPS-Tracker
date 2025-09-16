@@ -3,7 +3,7 @@
 namespace App\Domains\Help\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Help\Service\ControllerApi\Detail as ControllerService;
+use App\Domains\Help\ControllerApi\Service\Detail as ControllerService;
 
 class Detail extends ControllerApiAbstract
 {

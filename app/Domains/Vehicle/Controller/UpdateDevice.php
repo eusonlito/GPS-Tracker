@@ -4,7 +4,7 @@ namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Service\Controller\UpdateDevice as ControllerService;
+use App\Domains\Vehicle\Controller\Service\UpdateDevice as ControllerService;
 
 class UpdateDevice extends ControllerAbstract
 {

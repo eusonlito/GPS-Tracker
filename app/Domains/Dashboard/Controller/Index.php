@@ -3,7 +3,7 @@
 namespace App\Domains\Dashboard\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Dashboard\Service\Controller\Index as ControllerService;
+use App\Domains\Dashboard\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {

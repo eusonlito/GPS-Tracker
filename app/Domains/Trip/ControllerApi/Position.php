@@ -3,7 +3,7 @@
 namespace App\Domains\Trip\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Trip\Service\ControllerApi\Position as ControllerService;
+use App\Domains\Trip\ControllerApi\Service\Position as ControllerService;
 
 class Position extends ControllerApiAbstract
 {

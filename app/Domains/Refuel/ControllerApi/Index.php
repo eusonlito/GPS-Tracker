@@ -3,7 +3,7 @@
 namespace App\Domains\Refuel\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Refuel\Service\ControllerApi\Index as ControllerService;
+use App\Domains\Refuel\ControllerApi\Service\Index as ControllerService;
 
 class Index extends ControllerApiAbstract
 {

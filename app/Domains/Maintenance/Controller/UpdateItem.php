@@ -5,7 +5,7 @@ namespace App\Domains\Maintenance\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Maintenance\Service\Controller\UpdateItem as ControllerService;
+use App\Domains\Maintenance\Controller\Service\UpdateItem as ControllerService;
 
 class UpdateItem extends ControllerAbstract
 {

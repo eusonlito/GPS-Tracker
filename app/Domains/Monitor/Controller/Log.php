@@ -3,7 +3,7 @@
 namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Monitor\Service\Controller\Log as ControllerService;
+use App\Domains\Monitor\Controller\Service\Log as ControllerService;
 
 class Log extends ControllerAbstract
 {

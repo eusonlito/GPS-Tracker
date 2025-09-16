@@ -3,7 +3,7 @@
 namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Device\Service\Controller\UpdateDeviceMessage as ControllerService;
+use App\Domains\Device\Controller\Service\UpdateDeviceMessage as ControllerService;
 
 class UpdateDeviceMessage extends ControllerAbstract
 {

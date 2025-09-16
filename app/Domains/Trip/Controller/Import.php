@@ -4,7 +4,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\Import as ControllerService;
+use App\Domains\Trip\Controller\Service\Import as ControllerService;
 
 class Import extends ControllerAbstract
 {

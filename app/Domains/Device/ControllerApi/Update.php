@@ -4,7 +4,7 @@ namespace App\Domains\Device\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
 use App\Domains\Device\Model\Device as Model;
-use App\Domains\Device\Service\ControllerApi\Update as ControllerService;
+use App\Domains\Device\ControllerApi\Service\Update as ControllerService;
 
 class Update extends ControllerApiAbstract
 {

@@ -4,7 +4,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Device\Service\Controller\UpdateTransfer as ControllerService;
+use App\Domains\Device\Controller\Service\UpdateTransfer as ControllerService;
 
 class UpdateTransfer extends ControllerAbstract
 {

@@ -3,7 +3,7 @@
 namespace App\Domains\MaintenanceItem\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\MaintenanceItem\Service\Controller\UpdateMaintenance as ControllerService;
+use App\Domains\MaintenanceItem\Controller\Service\UpdateMaintenance as ControllerService;
 
 class UpdateMaintenance extends ControllerAbstract
 {

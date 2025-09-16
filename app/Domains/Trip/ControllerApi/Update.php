@@ -4,7 +4,7 @@ namespace App\Domains\Trip\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
 use App\Domains\Trip\Model\Trip as Model;
-use App\Domains\Trip\Service\ControllerApi\Update as ControllerService;
+use App\Domains\Trip\ControllerApi\Service\Update as ControllerService;
 
 class Update extends ControllerApiAbstract
 {

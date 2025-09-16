@@ -4,7 +4,7 @@ namespace App\Domains\Profile\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Profile\Service\Controller\Update as ControllerService;
+use App\Domains\Profile\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {

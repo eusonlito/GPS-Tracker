@@ -5,7 +5,7 @@ namespace App\Domains\MaintenanceItem\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\MaintenanceItem\Service\Controller\Create as ControllerService;
+use App\Domains\MaintenanceItem\Controller\Service\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {

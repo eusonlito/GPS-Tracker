@@ -3,7 +3,7 @@
 namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Monitor\Service\Controller\Database as ControllerService;
+use App\Domains\Monitor\Controller\Service\Database as ControllerService;
 
 class Database extends ControllerAbstract
 {

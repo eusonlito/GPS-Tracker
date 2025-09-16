@@ -4,7 +4,7 @@ namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Monitor\Service\Controller\Queue as ControllerService;
+use App\Domains\Monitor\Controller\Service\Queue as ControllerService;
 
 class Queue extends ControllerAbstract
 {
