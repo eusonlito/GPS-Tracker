@@ -22,7 +22,7 @@ Open source GPS device management platform developed using Laravel 12, PHP 8.2 a
 ### Features
 
 * **Modern platform with user-friendly interface:** The platform uses Laravel 12 to provide a smooth user experience and an attractive graphical interface.
-* **PHP 8.2 compatibility:** Leverages the latest features of PHP 8.2, including performance and security enhancements. It is also compatible with higher versions of PHP.
+* **PHP 8.2 compatibility:** Support from PHP 8.2 to PHP 8.4, including performance and security enhancements.
 * **Data Management with MySQL 8:** Uses MySQL 8.0.12 or higher for efficient and secure management of large volumes of tracking data, as well as extensive support for GIS functionality.
 * **Real-Time Tracking:** Allows users to track the location and status of their Sinotrack ST-90x devices in real time.
 * **Detailed Reporting:** Generates comprehensive reports that aid in decision making and data analysis.

@@ -22,7 +22,7 @@ Plataforma de código abierto para la gestión para dispositivos GPS desarrollad
 ### Características Principales
 
 * **Plataforma moderna con interface amigable:** La plataforma utiliza Laravel 12 para proporcionar una experiencia de usuario fluida y una interfaz gráfica atractiva.
-* **Compatibilidad con PHP 8.2:** Aprovecha las últimas características de PHP 8.2, incluyendo mejoras en el rendimiento y seguridad. También es compatible con las versiones superiores de PHP.
+* **Compatibilidad con PHP 8.4:** Soporta desde PHP 8.2 a PHP 8.4, incluyendo mejoras en el rendimiento y seguridad.
 * **Gestión de Datos con MySQL 8:** Utiliza MySQL 8.0.12 o superior para una gestión eficiente y segura de grandes volúmenes de datos de rastreo, así como una amplio soporte de funcionalidades GIS.
 * **Seguimiento en Tiempo Real:** Permite a los usuarios seguir la ubicación y el estado de sus dispositivos Sinotrack ST-90x en tiempo real.
 * **Informes Detallados:** Genera informes completos que ayudan en la toma de decisiones y en el análisis de datos.
