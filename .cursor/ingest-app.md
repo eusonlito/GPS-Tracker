@@ -23,6 +23,14 @@ app/
 │   │   │   ├── CheckPosition.php
 │   │   │   └── CommandAbstract.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Create.php
+│   │   │   │   ├── CreateUpdateAbstract.php
+│   │   │   │   ├── Index.php
+│   │   │   │   ├── Update.php
+│   │   │   │   ├── UpdateAlarmNotification.php
+│   │   │   │   └── UpdateVehicle.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Create.php
 │   │   │   ├── Index.php
@@ -48,14 +56,6 @@ app/
 │   │   │   ├── Alarm.php
 │   │   │   └── AlarmVehicle.php
 │   │   ├── Service/
-│   │   │   ├── Controller/
-│   │   │   │   ├── ControllerAbstract.php
-│   │   │   │   ├── Create.php
-│   │   │   │   ├── CreateUpdateAbstract.php
-│   │   │   │   ├── Index.php
-│   │   │   │   ├── Update.php
-│   │   │   │   ├── UpdateAlarmNotification.php
-│   │   │   │   └── UpdateVehicle.php
 │   │   │   └── Type/
 │   │   │       ├── Format/
 │   │   │       │   ├── FenceAbstract.php
@@ -86,6 +86,9 @@ app/
 │   │   │   ├── UpdateClosedAt.php
 │   │   │   └── UpdateSentAt.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   └── Index.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Delete.php
 │   │   │   ├── Index.php
@@ -103,10 +106,6 @@ app/
 │   │   │   ├── Collection/
 │   │   │   │   └── AlarmNotification.php
 │   │   │   └── AlarmNotification.php
-│   │   ├── Service/
-│   │   │   └── Controller/
-│   │   │       ├── ControllerAbstract.php
-│   │   │       └── Index.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       ├── Update.php
@@ -120,6 +119,11 @@ app/
 │   │   │   ├── Update.php
 │   │   │   └── UpdateMerge.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Index.php
+│   │   │   │   ├── Update.php
+│   │   │   │   └── UpdateMerge.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Index.php
 │   │   │   ├── Update.php
@@ -133,12 +137,6 @@ app/
 │   │   │   ├── Collection/
 │   │   │   │   └── City.php
 │   │   │   └── City.php
-│   │   ├── Service/
-│   │   │   └── Controller/
-│   │   │       ├── ControllerAbstract.php
-│   │   │       ├── Index.php
-│   │   │       ├── Update.php
-│   │   │       └── UpdateMerge.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       ├── GetOrNew.php
@@ -156,6 +154,10 @@ app/
 │   │   │   ├── CommandAbstract.php
 │   │   │   └── Dump.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Index.php
+│   │   │   │   └── Update.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Index.php
 │   │   │   ├── Update.php
@@ -171,10 +173,6 @@ app/
 │   │   │   │   └── configuration.json
 │   │   │   └── Configuration.php
 │   │   ├── Service/
-│   │   │   ├── Controller/
-│   │   │   │   ├── ControllerAbstract.php
-│   │   │   │   ├── Index.php
-│   │   │   │   └── Update.php
 │   │   │   └── Getter/
 │   │   │       └── Getter.php
 │   │   ├── Test/ ❌
@@ -189,6 +187,8 @@ app/
 │   │   ├── Command/
 │   │   │   └── CommandAbstract.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   └── ControllerAbstract.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   └── ControllerWebAbstract.php
 │   │   ├── Database/
@@ -238,8 +238,6 @@ app/
 │   │   ├── Seeder/
 │   │   │   └── SeederAbstract.php
 │   │   ├── Service/
-│   │   │   ├── Controller/
-│   │   │   │   └── ControllerAbstract.php
 │   │   │   └── Factory/
 │   │   │       └── Factory.php
 │   │   ├── Test/ ❌
@@ -260,8 +258,13 @@ app/
 │   │   ├── Command/
 │   │   │   └── CommandAbstract.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   └── ControllerAbstract.php
 │   │   │   ├── ControllerApiAbstract.php
 │   │   │   └── ControllerWebAbstract.php
+│   │   ├── ControllerApi/
+│   │   │   └── Service/
+│   │   │       └── ControllerApiAbstract.php
 │   │   ├── Migration/
 │   │   │   └── MigrationAbstract.php
 │   │   ├── Model/
@@ -276,11 +279,6 @@ app/
 │   │   │   │   └── Gis.php
 │   │   │   ├── ModelAbstract.php
 │   │   │   └── PivotAbstract.php
-│   │   ├── Service/
-│   │   │   ├── Controller/
-│   │   │   │   └── ControllerAbstract.php
-│   │   │   └── ControllerApi/
-│   │   │       └── ControllerApiAbstract.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       └── UpdateBoolean.php
@@ -419,6 +417,11 @@ app/
 │   │   │   ├── Update.php
 │   │   │   └── UpdateMerge.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Index.php
+│   │   │   │   ├── Update.php
+│   │   │   │   └── UpdateMerge.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Index.php
 │   │   │   ├── Update.php
@@ -432,12 +435,6 @@ app/
 │   │   │   ├── Collection/
 │   │   │   │   └── Country.php
 │   │   │   └── Country.php
-│   │   ├── Service/
-│   │   │   └── Controller/
-│   │   │       ├── ControllerAbstract.php
-│   │   │       ├── Index.php
-│   │   │       ├── Update.php
-│   │   │       └── UpdateMerge.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       ├── GetOrNew.php
@@ -446,13 +443,12 @@ app/
 │   │       └── ValidateFactory.php
 │   ├── Dashboard/
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   └── Index.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Index.php
 │   │   │   └── router.php
-│   │   ├── Service/
-│   │   │   └── Controller/
-│   │   │       ├── ControllerAbstract.php
-│   │   │       └── Index.php
 │   │   └── Test/ ❌
 │   ├── Device/
 │   │   ├── Action/
@@ -466,6 +462,15 @@ app/
 │   │   │   ├── UpdateDeviceMessageCreate.php
 │   │   │   └── UpdateTransfer.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Create.php
+│   │   │   │   ├── CreateUpdateAbstract.php
+│   │   │   │   ├── Index.php
+│   │   │   │   ├── Map.php
+│   │   │   │   ├── Update.php
+│   │   │   │   ├── UpdateDeviceMessage.php
+│   │   │   │   └── UpdateTransfer.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Create.php
 │   │   │   ├── Index.php
@@ -478,6 +483,11 @@ app/
 │   │   │   ├── UpdateTransfer.php
 │   │   │   └── router.php
 │   │   ├── ControllerApi/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerApiAbstract.php
+│   │   │   │   ├── Create.php
+│   │   │   │   ├── Index.php
+│   │   │   │   └── Update.php
 │   │   │   ├── ControllerApiAbstract.php
 │   │   │   ├── Create.php
 │   │   │   ├── Delete.php
@@ -495,21 +505,6 @@ app/
 │   │   │   ├── Collection/
 │   │   │   │   └── Device.php
 │   │   │   └── Device.php
-│   │   ├── Service/
-│   │   │   ├── Controller/
-│   │   │   │   ├── ControllerAbstract.php
-│   │   │   │   ├── Create.php
-│   │   │   │   ├── CreateUpdateAbstract.php
-│   │   │   │   ├── Index.php
-│   │   │   │   ├── Map.php
-│   │   │   │   ├── Update.php
-│   │   │   │   ├── UpdateDeviceMessage.php
-│   │   │   │   └── UpdateTransfer.php
-│   │   │   └── ControllerApi/
-│   │   │       ├── ControllerApiAbstract.php
-│   │   │       ├── Create.php
-│   │   │       ├── Index.php
-│   │   │       └── Update.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       ├── Create.php
@@ -566,16 +561,15 @@ app/
 │   │   ├── Command/
 │   │   │   ├── CommandAbstract.php
 │   │   │   └── Show.php
-│   │   ├── ControllerApi/
-│   │   │   ├── ControllerApiAbstract.php
-│   │   │   ├── Detail.php
-│   │   │   ├── Index.php
-│   │   │   └── router.php
-│   │   └── Service/
-│   │       └── ControllerApi/
-│   │           ├── ControllerApiAbstract.php
-│   │           ├── Detail.php
-│   │           └── Index.php
+│   │   └── ControllerApi/
+│   │       ├── Service/
+│   │       │   ├── ControllerApiAbstract.php
+│   │       │   ├── Detail.php
+│   │       │   └── Index.php
+│   │       ├── ControllerApiAbstract.php
+│   │       ├── Detail.php
+│   │       ├── Index.php
+│   │       └── router.php
 │   ├── IpLock/
 │   │   ├── Action/
 │   │   │   ├── ActionAbstract.php
@@ -648,6 +642,13 @@ app/
 │   │   │   ├── Update.php
 │   │   │   └── UpdateItem.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Create.php
+│   │   │   │   ├── CreateUpdateAbstract.php
+│   │   │   │   ├── Index.php
+│   │   │   │   ├── Update.php
+│   │   │   │   └── UpdateItem.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Create.php
 │   │   │   ├── Index.php
@@ -663,14 +664,6 @@ app/
 │   │   │   │   └── MaintenanceMaintenanceItem.php
 │   │   │   ├── Maintenance.php
 │   │   │   └── MaintenanceMaintenanceItem.php
-│   │   ├── Service/
-│   │   │   └── Controller/
-│   │   │       ├── ControllerAbstract.php
-│   │   │       ├── Create.php
-│   │   │       ├── CreateUpdateAbstract.php
-│   │   │       ├── Index.php
-│   │   │       ├── Update.php
-│   │   │       └── UpdateItem.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       ├── Create.php
@@ -686,6 +679,13 @@ app/
 │   │   │   ├── Delete.php
 │   │   │   └── Update.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Create.php
+│   │   │   │   ├── CreateUpdateAbstract.php
+│   │   │   │   ├── Index.php
+│   │   │   │   ├── Update.php
+│   │   │   │   └── UpdateMaintenance.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Create.php
 │   │   │   ├── Index.php
@@ -700,14 +700,6 @@ app/
 │   │   │   ├── Collection/
 │   │   │   │   └── MaintenanceItem.php
 │   │   │   └── MaintenanceItem.php
-│   │   ├── Service/
-│   │   │   └── Controller/
-│   │   │       ├── ControllerAbstract.php
-│   │   │       ├── Create.php
-│   │   │       ├── CreateUpdateAbstract.php
-│   │   │       ├── Index.php
-│   │   │       ├── Update.php
-│   │   │       └── UpdateMaintenance.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       ├── Create.php
@@ -719,6 +711,17 @@ app/
 │   │   │   ├── ActionFactory.php
 │   │   │   └── QueueFailedRetry.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Database.php
+│   │   │   │   ├── Index.php
+│   │   │   │   ├── Installation.php
+│   │   │   │   ├── Log.php
+│   │   │   │   ├── LogAbstract.php
+│   │   │   │   ├── LogFile.php
+│   │   │   │   ├── LogFileDownload.php
+│   │   │   │   ├── Queue.php
+│   │   │   │   └── Requirements.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Database.php
 │   │   │   ├── Index.php
@@ -730,17 +733,6 @@ app/
 │   │   │   ├── Requirements.php
 │   │   │   └── router.php
 │   │   ├── Service/
-│   │   │   ├── Controller/
-│   │   │   │   ├── ControllerAbstract.php
-│   │   │   │   ├── Database.php
-│   │   │   │   ├── Index.php
-│   │   │   │   ├── Installation.php
-│   │   │   │   ├── Log.php
-│   │   │   │   ├── LogAbstract.php
-│   │   │   │   ├── LogFile.php
-│   │   │   │   ├── LogFileDownload.php
-│   │   │   │   ├── Queue.php
-│   │   │   │   └── Requirements.php
 │   │   │   ├── Database/
 │   │   │   │   ├── Driver/
 │   │   │   │   │   ├── DriverAbstract.php
@@ -797,6 +789,9 @@ app/
 │   │   │   ├── UpdateTelegramChatId.php
 │   │   │   └── UpdateTelegramTest.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   └── Update.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Update.php
 │   │   │   ├── UpdateTelegram.php
@@ -806,10 +801,6 @@ app/
 │   │   │   ├── ControllerApiAbstract.php
 │   │   │   ├── Index.php
 │   │   │   └── router.php
-│   │   ├── Service/
-│   │   │   └── Controller/
-│   │   │       ├── ControllerAbstract.php
-│   │   │       └── Update.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       ├── Update.php
@@ -837,6 +828,14 @@ app/
 │   │   │   ├── UpdateCity.php
 │   │   │   └── UpdateCityEmpty.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Create.php
+│   │   │   │   ├── CreateUpdateAbstract.php
+│   │   │   │   ├── Index.php
+│   │   │   │   ├── IndexMapAbstract.php
+│   │   │   │   ├── Map.php
+│   │   │   │   └── Update.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Create.php
 │   │   │   ├── Index.php
@@ -844,6 +843,11 @@ app/
 │   │   │   ├── Update.php
 │   │   │   └── router.php
 │   │   ├── ControllerApi/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerApiAbstract.php
+│   │   │   │   ├── Create.php
+│   │   │   │   ├── Index.php
+│   │   │   │   └── Update.php
 │   │   │   ├── ControllerApiAbstract.php
 │   │   │   ├── Create.php
 │   │   │   ├── Delete.php
@@ -863,20 +867,6 @@ app/
 │   │   │   └── Refuel.php
 │   │   ├── Schedule/
 │   │   │   └── Manager.php
-│   │   ├── Service/
-│   │   │   ├── Controller/
-│   │   │   │   ├── ControllerAbstract.php
-│   │   │   │   ├── Create.php
-│   │   │   │   ├── CreateUpdateAbstract.php
-│   │   │   │   ├── Index.php
-│   │   │   │   ├── IndexMapAbstract.php
-│   │   │   │   ├── Map.php
-│   │   │   │   └── Update.php
-│   │   │   └── ControllerApi/
-│   │   │       ├── ControllerApiAbstract.php
-│   │   │       ├── Create.php
-│   │   │       ├── Index.php
-│   │   │       └── Update.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       ├── Create.php
@@ -905,6 +895,10 @@ app/
 │   │   │   ├── StartPort.php
 │   │   │   └── StopAll.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Status.php
+│   │   │   │   └── UpdateParser.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Create.php
 │   │   │   ├── Index.php
@@ -934,10 +928,6 @@ app/
 │   │   ├── Service/
 │   │   │   ├── Command/
 │   │   │   │   └── Generator.php
-│   │   │   ├── Controller/
-│   │   │   │   ├── ControllerAbstract.php
-│   │   │   │   ├── Status.php
-│   │   │   │   └── UpdateParser.php
 │   │   │   └── Logger/
 │   │   ├── Test/ ❌
 │   │   └── Validate/
@@ -953,16 +943,15 @@ app/
 │   │       └── ValidateFactory.php
 │   ├── Shared/
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Device.php
+│   │   │   │   └── Index.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Device.php
 │   │   │   ├── Index.php
 │   │   │   ├── Trip.php
 │   │   │   └── router.php
-│   │   ├── Service/
-│   │   │   └── Controller/
-│   │   │       ├── ControllerAbstract.php
-│   │   │       ├── Device.php
-│   │   │       └── Index.php
 │   │   └── Test/ ❌
 │   ├── State/
 │   │   ├── Action/
@@ -972,6 +961,11 @@ app/
 │   │   │   ├── Update.php
 │   │   │   └── UpdateMerge.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Index.php
+│   │   │   │   ├── Update.php
+│   │   │   │   └── UpdateMerge.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Index.php
 │   │   │   ├── Update.php
@@ -985,12 +979,6 @@ app/
 │   │   │   ├── Collection/
 │   │   │   │   └── State.php
 │   │   │   └── State.php
-│   │   ├── Service/
-│   │   │   └── Controller/
-│   │   │       ├── ControllerAbstract.php
-│   │   │       ├── Index.php
-│   │   │       ├── Update.php
-│   │   │       └── UpdateMerge.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       ├── GetOrNew.php
@@ -1062,6 +1050,19 @@ app/
 │   │   │   ├── UpdateStats.php
 │   │   │   └── UpdateStatsAll.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Heatmap.php
+│   │   │   │   ├── Import.php
+│   │   │   │   ├── Index.php
+│   │   │   │   ├── Map.php
+│   │   │   │   ├── Search.php
+│   │   │   │   ├── Update.php
+│   │   │   │   ├── UpdateAlarmNotification.php
+│   │   │   │   ├── UpdateMap.php
+│   │   │   │   ├── UpdateMerge.php
+│   │   │   │   ├── UpdatePosition.php
+│   │   │   │   └── UpdateStat.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Heatmap.php
 │   │   │   ├── Import.php
@@ -1079,6 +1080,11 @@ app/
 │   │   │   ├── UpdateStat.php
 │   │   │   └── router.php
 │   │   ├── ControllerApi/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerApiAbstract.php
+│   │   │   │   ├── Index.php
+│   │   │   │   ├── Position.php
+│   │   │   │   └── Update.php
 │   │   │   ├── ControllerApiAbstract.php
 │   │   │   ├── Delete.php
 │   │   │   ├── Index.php
@@ -1099,25 +1105,6 @@ app/
 │   │   │   │   ├── Query.php
 │   │   │   │   └── Statement.php
 │   │   │   └── Trip.php
-│   │   ├── Service/
-│   │   │   ├── Controller/
-│   │   │   │   ├── ControllerAbstract.php
-│   │   │   │   ├── Heatmap.php
-│   │   │   │   ├── Import.php
-│   │   │   │   ├── Index.php
-│   │   │   │   ├── Map.php
-│   │   │   │   ├── Search.php
-│   │   │   │   ├── Update.php
-│   │   │   │   ├── UpdateAlarmNotification.php
-│   │   │   │   ├── UpdateMap.php
-│   │   │   │   ├── UpdateMerge.php
-│   │   │   │   ├── UpdatePosition.php
-│   │   │   │   └── UpdateStat.php
-│   │   │   └── ControllerApi/
-│   │   │       ├── ControllerApiAbstract.php
-│   │   │       ├── Index.php
-│   │   │       ├── Position.php
-│   │   │       └── Update.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       ├── Create.php
@@ -1149,6 +1136,11 @@ app/
 │   │   │   ├── Create.php
 │   │   │   └── Update.php
 │   │   ├── Controller/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerAbstract.php
+│   │   │   │   ├── Create.php
+│   │   │   │   ├── CreateUpdateAbstract.php
+│   │   │   │   └── Update.php
 │   │   │   ├── AuthCredentials.php
 │   │   │   ├── ControllerAbstract.php
 │   │   │   ├── Create.php
@@ -1191,12 +1183,6 @@ app/
 │   │   │   ├── Traits/
 │   │   │   │   └── Preferences.php
 │   │   │   └── User.php
-│   │   ├── Service/
-│   │   │   └── Controller/
-│   │   │       ├── ControllerAbstract.php
-│   │   │       ├── Create.php
-│   │   │       ├── CreateUpdateAbstract.php
-│   │   │       └── Update.php
 │   │   ├── Test/ ❌
 │   │   └── Validate/
 │   │       ├── AuthCredentials.php
@@ -1248,6 +1234,16 @@ app/
 │       │   ├── UpdateAlarm.php
 │       │   └── UpdateDevice.php
 │       ├── Controller/
+│       │   ├── Service/
+│       │   │   ├── ControllerAbstract.php
+│       │   │   ├── Create.php
+│       │   │   ├── CreateUpdateAbstract.php
+│       │   │   ├── Index.php
+│       │   │   ├── Map.php
+│       │   │   ├── Update.php
+│       │   │   ├── UpdateAlarm.php
+│       │   │   ├── UpdateAlarmNotification.php
+│       │   │   └── UpdateDevice.php
 │       │   ├── ControllerAbstract.php
 │       │   ├── Create.php
 │       │   ├── Index.php
@@ -1258,6 +1254,11 @@ app/
 │       │   ├── UpdateDevice.php
 │       │   └── router.php
 │       ├── ControllerApi/
+│       │   ├── Service/
+│       │   │   ├── ControllerApiAbstract.php
+│       │   │   ├── Create.php
+│       │   │   ├── Index.php
+│       │   │   └── Update.php
 │       │   ├── ControllerApiAbstract.php
 │       │   ├── Create.php
 │       │   ├── Delete.php
@@ -1275,22 +1276,6 @@ app/
 │       │   ├── Collection/
 │       │   │   └── Vehicle.php
 │       │   └── Vehicle.php
-│       ├── Service/
-│       │   ├── Controller/
-│       │   │   ├── ControllerAbstract.php
-│       │   │   ├── Create.php
-│       │   │   ├── CreateUpdateAbstract.php
-│       │   │   ├── Index.php
-│       │   │   ├── Map.php
-│       │   │   ├── Update.php
-│       │   │   ├── UpdateAlarm.php
-│       │   │   ├── UpdateAlarmNotification.php
-│       │   │   └── UpdateDevice.php
-│       │   └── ControllerApi/
-│       │       ├── ControllerApiAbstract.php
-│       │       ├── Create.php
-│       │       ├── Index.php
-│       │       └── Update.php
 │       ├── Test/ ❌
 │       └── Validate/
 │           ├── Create.php
@@ -1492,14 +1477,11 @@ app/
         ├── Message.php
         └── Select.php
 
-
 Excluded Content:
 
 Directories with excluded files:
 
-
 - /app/Domains/Configuration/Seeder/data: 1 files
-
 
 - /app/Domains/CoreMaintenance/Service/Domain/stub/Action: 3 files
 
@@ -1529,25 +1511,19 @@ Directories with excluded files:
 
 - /app/Domains/CoreMaintenance/Service/Domain/stub/Seeder/data: 1 files
 
-
 - /app/Domains/CoreMaintenance/Service/Domain/stub/Validate: 2 files
-
 
 - /app/Domains/Language/Seeder/data: 1 files
 
-
 - /app/Domains/Server/Seeder/data: 1 files
 
-
 - /app/Domains/Timezone/Seeder/data: 1 files
-
 
 File extensions excluded:
 
 - .json: 5 files
 
 - .stub: 29 files
-
 
 `app/Console/Kernel.php:`
 
@@ -1623,7 +1599,6 @@ class Kernel extends KernelVendor
 
 ```
 
-
 `app/Domains/Alarm/Action/ActionAbstract.php:`
 
 ```php
@@ -1643,7 +1618,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/Alarm/Action/ActionFactory.php:`
 
@@ -1712,7 +1686,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Action/CheckPosition.php:`
 
@@ -1945,7 +1918,6 @@ class CheckPosition extends ActionAbstract
 
 ```
 
-
 `app/Domains/Alarm/Action/Create.php:`
 
 ```php
@@ -1986,7 +1958,6 @@ class Create extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Action/CreateUpdateAbstract.php:`
 
@@ -2106,7 +2077,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
 ```
 
-
 `app/Domains/Alarm/Action/Delete.php:`
 
 ```php
@@ -2134,7 +2104,6 @@ class Delete extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Action/Update.php:`
 
@@ -2171,7 +2140,6 @@ class Update extends CreateUpdateAbstract
 
 ```
 
-
 `app/Domains/Alarm/Action/UpdateBoolean.php:`
 
 ```php
@@ -2191,7 +2159,6 @@ class UpdateBoolean extends UpdateBooleanCoreApp
 }
 
 ```
-
 
 `app/Domains/Alarm/Action/UpdateVehicle.php:`
 
@@ -2239,7 +2206,6 @@ class UpdateVehicle extends ActionAbstract
 
 ```
 
-
 `app/Domains/Alarm/Command/CheckPosition.php:`
 
 ```php
@@ -2277,7 +2243,6 @@ class CheckPosition extends CommandAbstract
 
 ```
 
-
 `app/Domains/Alarm/Command/CommandAbstract.php:`
 
 ```php
@@ -2305,7 +2270,6 @@ abstract class CommandAbstract extends CommandAbstractSahred
 }
 
 ```
-
 
 `app/Domains/Alarm/Controller/ControllerAbstract.php:`
 
@@ -2340,7 +2304,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Alarm/Controller/Create.php:`
 
 ```php
@@ -2350,7 +2313,7 @@ namespace App\Domains\Alarm\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Alarm\Service\Controller\Create as ControllerService;
+use App\Domains\Alarm\Controller\Service\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -2391,7 +2354,6 @@ class Create extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Alarm/Controller/Index.php:`
 
 ```php
@@ -2403,7 +2365,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use App\Domains\Alarm\Model\Alarm as Model;
 use App\Domains\Alarm\Model\Collection\Alarm as Collection;
-use App\Domains\Alarm\Service\Controller\Index as ControllerService;
+use App\Domains\Alarm\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -2451,6 +2413,371 @@ class Index extends ControllerAbstract
 
 ```
 
+`app/Domains/Alarm/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Alarm\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/Alarm/Controller/Service/Create.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Alarm\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+
+class Create extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->request();
+        $this->typeManager();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCommon();
+    }
+
+    /**
+     * @return ?string
+     */
+    protected function type(): ?string
+    {
+        return $this->typeManager->selected($this->request->input('type'));
+    }
+}
+
+```
+
+`app/Domains/Alarm/Controller/Service/CreateUpdateAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Alarm\Controller\Service;
+
+use App\Domains\Alarm\Service\Type\Manager as TypeManager;
+use App\Domains\Position\Model\Position as PositionModel;
+
+abstract class CreateUpdateAbstract extends ControllerAbstract
+{
+    /**
+     * @var \App\Domains\Alarm\Service\Type\Manager
+     */
+    protected TypeManager $typeManager;
+
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow([
+            'user_id' => $this->user()->id,
+        ]);
+    }
+
+    /**
+     * @return void
+     */
+    protected function typeManager()
+    {
+        $this->typeManager = TypeManager::new();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataCommon(): array
+    {
+        return $this->dataCore() + [
+            'types' => $this->types(),
+            'type' => $this->type(),
+            'position' => $this->position(),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function types(): array
+    {
+        return $this->typeManager->titles();
+    }
+
+    /**
+     * @return ?\App\Domains\Position\Model\Position
+     */
+    protected function position(): ?PositionModel
+    {
+        if ($this->type() === null) {
+            return null;
+        }
+
+        return $this->cache(
+            fn () => PositionModel::query()
+                ->byUserId($this->user()->id)
+                ->orderByDateUtcAtDesc()
+                ->first()
+        );
+    }
+}
+
+```
+
+`app/Domains/Alarm/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Alarm\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Alarm\Model\Alarm as Model;
+use App\Domains\Alarm\Model\Collection\Alarm as Collection;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @var bool
+     */
+    protected bool $vehicleEmpty = true;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->filtersUserId();
+        $this->filtersVehicleId();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCore() + [
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Alarm\Model\Collection\Alarm
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId($this->vehicle()?->id)
+                ->withUser()
+                ->withVehiclesCount()
+                ->withNotificationsCount()
+                ->withNotificationsPendingCount()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Alarm/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Alarm\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Alarm\Model\Alarm as Model;
+
+class Update extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Alarm\Model\Alarm $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+        $this->request();
+        $this->typeManager();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCommon() + [
+            'row' => $this->row,
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function type(): string
+    {
+        return $this->row->type;
+    }
+}
+
+```
+
+`app/Domains/Alarm/Controller/Service/UpdateAlarmNotification.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Alarm\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Alarm\Model\Alarm as Model;
+use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
+
+class UpdateAlarmNotification extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Alarm\Model\Alarm $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'notifications' => $this->notifications(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
+     */
+    protected function notifications(): AlarmNotificationCollection
+    {
+        return AlarmNotificationModel::query()
+            ->byAlarmId($this->row->id)
+            ->withVehicle()
+            ->withPosition()
+            ->withTrip()
+            ->list()
+            ->get();
+    }
+}
+
+```
+
+`app/Domains/Alarm/Controller/Service/UpdateVehicle.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Alarm\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Alarm\Model\Alarm as Model;
+use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+
+class UpdateVehicle extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Alarm\Model\Alarm $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'vehicles' => $this->vehicles(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
+     */
+    protected function vehicles(): VehicleCollection
+    {
+        return VehicleModel::query()
+            ->byUserId($this->user()->id)
+            ->list()
+            ->withAlarmPivot($this->row->id)
+            ->get()
+            ->sortByDesc('alarmPivot');
+    }
+}
+
+```
 
 `app/Domains/Alarm/Controller/Update.php:`
 
@@ -2461,7 +2788,7 @@ namespace App\Domains\Alarm\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Alarm\Service\Controller\Update as ControllerService;
+use App\Domains\Alarm\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -2527,7 +2854,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Alarm/Controller/UpdateAlarmNotification.php:`
 
 ```php
@@ -2537,7 +2863,7 @@ namespace App\Domains\Alarm\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Alarm\Service\Controller\UpdateAlarmNotification as ControllerService;
+use App\Domains\Alarm\Controller\Service\UpdateAlarmNotification as ControllerService;
 
 class UpdateAlarmNotification extends ControllerAbstract
 {
@@ -2565,7 +2891,6 @@ class UpdateAlarmNotification extends ControllerAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Controller/UpdateBoolean.php:`
 
@@ -2604,7 +2929,6 @@ class UpdateBoolean extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Alarm/Controller/UpdateVehicle.php:`
 
 ```php
@@ -2614,7 +2938,7 @@ namespace App\Domains\Alarm\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Alarm\Service\Controller\UpdateVehicle as ControllerService;
+use App\Domains\Alarm\Controller\Service\UpdateVehicle as ControllerService;
 
 class UpdateVehicle extends ControllerAbstract
 {
@@ -2659,7 +2983,6 @@ class UpdateVehicle extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Alarm/Controller/router.php:`
 
 ```php
@@ -2679,7 +3002,6 @@ Route::group(['middleware' => ['user-auth']], static function () {
 });
 
 ```
-
 
 `app/Domains/Alarm/Fractal/FractalFactory.php:`
 
@@ -2713,7 +3035,6 @@ class FractalFactory extends FractalAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Job/CheckPosition.php:`
 
@@ -2751,7 +3072,6 @@ class CheckPosition extends JobAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Job/JobAbstract.php:`
 
@@ -2797,7 +3117,6 @@ abstract class JobAbstract extends JobAbstractCore
 }
 
 ```
-
 
 `app/Domains/Alarm/Model/Alarm.php:`
 
@@ -2921,7 +3240,6 @@ class Alarm extends ModelAbstract
 
 ```
 
-
 `app/Domains/Alarm/Model/AlarmVehicle.php:`
 
 ```php
@@ -3012,7 +3330,6 @@ class AlarmVehicle extends PivotAbstract
 
 ```
 
-
 `app/Domains/Alarm/Model/Builder/Alarm.php:`
 
 ```php
@@ -3020,8 +3337,8 @@ class AlarmVehicle extends PivotAbstract
 
 namespace App\Domains\Alarm\Model\Builder;
 
-use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\Alarm\Model\AlarmVehicle as AlarmVehicleModel;
+use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 
 class Alarm extends BuilderAbstract
 {
@@ -3187,7 +3504,6 @@ class Alarm extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Alarm/Model/Builder/AlarmVehicle.php:`
 
 ```php
@@ -3243,7 +3559,6 @@ class AlarmVehicle extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Alarm/Model/Collection/Alarm.php:`
 
 ```php
@@ -3259,7 +3574,6 @@ class Alarm extends CollectionAbstract
 
 ```
 
-
 `app/Domains/Alarm/Model/Collection/AlarmVehicle.php:`
 
 ```php
@@ -3274,7 +3588,6 @@ class AlarmVehicle extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Model/Traits/TypeFormat.php:`
 
@@ -3305,380 +3618,6 @@ trait TypeFormat
 }
 
 ```
-
-
-`app/Domains/Alarm/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Alarm\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/Alarm/Service/Controller/Create.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Alarm\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-
-class Create extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->request();
-        $this->typeManager();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCommon();
-    }
-
-    /**
-     * @return ?string
-     */
-    protected function type(): ?string
-    {
-        return $this->typeManager->selected($this->request->input('type'));
-    }
-}
-
-```
-
-
-`app/Domains/Alarm/Service/Controller/CreateUpdateAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Alarm\Service\Controller;
-
-use App\Domains\Alarm\Service\Type\Manager as TypeManager;
-use App\Domains\Position\Model\Position as PositionModel;
-
-abstract class CreateUpdateAbstract extends ControllerAbstract
-{
-    /**
-     * @var \App\Domains\Alarm\Service\Type\Manager
-     */
-    protected TypeManager $typeManager;
-
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow([
-            'user_id' => $this->user()->id,
-        ]);
-    }
-
-    /**
-     * @return void
-     */
-    protected function typeManager()
-    {
-        $this->typeManager = TypeManager::new();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataCommon(): array
-    {
-        return $this->dataCore() + [
-            'types' => $this->types(),
-            'type' => $this->type(),
-            'position' => $this->position(),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function types(): array
-    {
-        return $this->typeManager->titles();
-    }
-
-    /**
-     * @return ?\App\Domains\Position\Model\Position
-     */
-    protected function position(): ?PositionModel
-    {
-        if ($this->type() === null) {
-            return null;
-        }
-
-        return $this->cache(
-            fn () => PositionModel::query()
-                ->byUserId($this->user()->id)
-                ->orderByDateUtcAtDesc()
-                ->first()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Alarm/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Alarm\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Alarm\Model\Collection\Alarm as Collection;
-use App\Domains\Alarm\Model\Alarm as Model;
-
-class Index extends ControllerAbstract
-{
-    /**
-     * @var bool
-     */
-    protected bool $userEmpty = true;
-
-    /**
-     * @var bool
-     */
-    protected bool $vehicleEmpty = true;
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->filters();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filters(): void
-    {
-        $this->filtersUserId();
-        $this->filtersVehicleId();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCore() + [
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'vehicle_empty' => $this->vehicleEmpty(),
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Alarm\Model\Collection\Alarm
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->whenVehicleId($this->vehicle()?->id)
-                ->withUser()
-                ->withVehiclesCount()
-                ->withNotificationsCount()
-                ->withNotificationsPendingCount()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Alarm/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Alarm\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Alarm\Model\Alarm as Model;
-
-class Update extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Alarm\Model\Alarm $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-        $this->request();
-        $this->typeManager();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCommon() + [
-            'row' => $this->row,
-        ];
-    }
-
-    /**
-     * @return string
-     */
-    protected function type(): string
-    {
-        return $this->row->type;
-    }
-}
-
-```
-
-
-`app/Domains/Alarm/Service/Controller/UpdateAlarmNotification.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Alarm\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Alarm\Model\Alarm as Model;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
-
-class UpdateAlarmNotification extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Alarm\Model\Alarm $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'notifications' => $this->notifications(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
-     */
-    protected function notifications(): AlarmNotificationCollection
-    {
-        return AlarmNotificationModel::query()
-            ->byAlarmId($this->row->id)
-            ->withVehicle()
-            ->withPosition()
-            ->withTrip()
-            ->list()
-            ->get();
-    }
-}
-
-```
-
-
-`app/Domains/Alarm/Service/Controller/UpdateVehicle.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Alarm\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Alarm\Model\Alarm as Model;
-use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
-
-class UpdateVehicle extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Alarm\Model\Alarm $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'vehicles' => $this->vehicles(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
-     */
-    protected function vehicles(): VehicleCollection
-    {
-        return VehicleModel::query()
-            ->byUserId($this->user()->id)
-            ->list()
-            ->withAlarmPivot($this->row->id)
-            ->get()
-            ->sortByDesc('alarmPivot');
-    }
-}
-
-```
-
 
 `app/Domains/Alarm/Service/Type/Format/FenceAbstract.php:`
 
@@ -3765,7 +3704,6 @@ abstract class FenceAbstract extends FormatAbstract
 
 ```
 
-
 `app/Domains/Alarm/Service/Type/Format/FenceIn.php:`
 
 ```php
@@ -3813,7 +3751,6 @@ class FenceIn extends FenceAbstract
 
 ```
 
-
 `app/Domains/Alarm/Service/Type/Format/FenceOut.php:`
 
 ```php
@@ -3860,7 +3797,6 @@ class FenceOut extends FenceAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Service/Type/Format/FormatAbstract.php:`
 
@@ -3936,7 +3872,6 @@ abstract class FormatAbstract
 
 ```
 
-
 `app/Domains/Alarm/Service/Type/Format/Movement.php:`
 
 ```php
@@ -3999,7 +3934,6 @@ class Movement extends FormatAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Service/Type/Format/Overspeed.php:`
 
@@ -4074,7 +4008,6 @@ class Overspeed extends FormatAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Service/Type/Format/PolygonAbstract.php:`
 
@@ -4190,7 +4123,6 @@ abstract class PolygonAbstract extends FormatAbstract
 
 ```
 
-
 `app/Domains/Alarm/Service/Type/Format/PolygonIn.php:`
 
 ```php
@@ -4237,7 +4169,6 @@ class PolygonIn extends PolygonAbstract
 
 ```
 
-
 `app/Domains/Alarm/Service/Type/Format/PolygonOut.php:`
 
 ```php
@@ -4283,7 +4214,6 @@ class PolygonOut extends PolygonAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Service/Type/Format/Vibration.php:`
 
@@ -4349,7 +4279,6 @@ class Vibration extends FormatAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Service/Type/Manager.php:`
 
@@ -4458,7 +4387,6 @@ class Manager
 
 ```
 
-
 `app/Domains/Alarm/Validate/CheckPosition.php:`
 
 ```php
@@ -4482,7 +4410,6 @@ class CheckPosition extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/Alarm/Validate/Create.php:`
 
@@ -4516,7 +4443,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Alarm/Validate/Update.php:`
 
 ```php
@@ -4547,7 +4473,6 @@ class Update extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Alarm/Validate/UpdateBoolean.php:`
 
 ```php
@@ -4562,7 +4487,6 @@ class UpdateBoolean extends UpdateBooleanCoreApp
 }
 
 ```
-
 
 `app/Domains/Alarm/Validate/UpdateVehicle.php:`
 
@@ -4589,7 +4513,6 @@ class UpdateVehicle extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Alarm/Validate/ValidateFactory.php:`
 
 ```php
@@ -4604,7 +4527,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/AlarmNotification/Action/ActionAbstract.php:`
 
@@ -4625,7 +4547,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/AlarmNotification/Action/ActionFactory.php:`
 
@@ -4679,7 +4600,6 @@ class ActionFactory extends ActionFactoryAbstract
 
 ```
 
-
 `app/Domains/AlarmNotification/Action/Delete.php:`
 
 ```php
@@ -4707,7 +4627,6 @@ class Delete extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/AlarmNotification/Action/Notify.php:`
 
@@ -4780,7 +4699,6 @@ class Notify extends ActionAbstract
 
 ```
 
-
 `app/Domains/AlarmNotification/Action/UpdateClosedAt.php:`
 
 ```php
@@ -4817,7 +4735,6 @@ class UpdateClosedAt extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/AlarmNotification/Action/UpdateSentAt.php:`
 
@@ -4856,7 +4773,6 @@ class UpdateSentAt extends ActionAbstract
 
 ```
 
-
 `app/Domains/AlarmNotification/Controller/ControllerAbstract.php:`
 
 ```php
@@ -4889,7 +4805,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 }
 
 ```
-
 
 `app/Domains/AlarmNotification/Controller/Delete.php:`
 
@@ -4929,7 +4844,6 @@ class Delete extends ControllerAbstract
 
 ```
 
-
 `app/Domains/AlarmNotification/Controller/Index.php:`
 
 ```php
@@ -4941,7 +4855,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
 use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as Collection;
-use App\Domains\AlarmNotification\Service\Controller\Index as ControllerService;
+use App\Domains\AlarmNotification\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -4992,6 +4906,109 @@ class Index extends ControllerAbstract
 
 ```
 
+`app/Domains/AlarmNotification/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\AlarmNotification\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/AlarmNotification/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\AlarmNotification\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as Collection;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @const string
+     */
+    protected const DATE_REGEXP = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
+
+    /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @var bool
+     */
+    protected bool $vehicleEmpty = true;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->filtersUserId();
+        $this->filtersVehicleId();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'users' => $this->users(),
+            'users_multiple' => $this->usersMultiple(),
+            'user' => $this->user(),
+            'user_empty' => $this->userEmpty(),
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId($this->vehicle()?->id)
+                ->withAlarm()
+                ->withPosition()
+                ->withTrip()
+                ->withUser()
+                ->withVehicle()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
 
 `app/Domains/AlarmNotification/Controller/UpdateClosedAt.php:`
 
@@ -5034,7 +5051,6 @@ class UpdateClosedAt extends ControllerAbstract
 
 ```
 
-
 `app/Domains/AlarmNotification/Controller/UpdateSentAt.php:`
 
 ```php
@@ -5076,7 +5092,6 @@ class UpdateSentAt extends ControllerAbstract
 
 ```
 
-
 `app/Domains/AlarmNotification/Controller/router.php:`
 
 ```php
@@ -5094,7 +5109,6 @@ Route::group(['middleware' => ['user-auth']], static function () {
 });
 
 ```
-
 
 `app/Domains/AlarmNotification/Fractal/FractalFactory.php:`
 
@@ -5130,7 +5144,6 @@ class FractalFactory extends FractalAbstract
 }
 
 ```
-
 
 `app/Domains/AlarmNotification/Job/JobAbstract.php:`
 
@@ -5177,7 +5190,6 @@ abstract class JobAbstract extends JobAbstractCore
 
 ```
 
-
 `app/Domains/AlarmNotification/Job/Notify.php:`
 
 ```php
@@ -5198,7 +5210,6 @@ class Notify extends JobAbstract
 
 ```
 
-
 `app/Domains/AlarmNotification/Model/AlarmNotification.php:`
 
 ```php
@@ -5214,9 +5225,9 @@ use App\Domains\Alarm\Model\Traits\TypeFormat as TypeFormatTrait;
 use App\Domains\AlarmNotification\Model\Builder\AlarmNotification as Builder;
 use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as Collection;
 use App\Domains\AlarmNotification\Test\Factory\AlarmNotification as TestFactory;
-use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\CoreApp\Model\Traits\Gis as GisTrait;
+use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
@@ -5321,7 +5332,6 @@ class AlarmNotification extends ModelAbstract
 }
 
 ```
-
 
 `app/Domains/AlarmNotification/Model/Builder/AlarmNotification.php:`
 
@@ -5438,7 +5448,6 @@ class AlarmNotification extends BuilderAbstract
 
 ```
 
-
 `app/Domains/AlarmNotification/Model/Collection/AlarmNotification.php:`
 
 ```php
@@ -5453,113 +5462,6 @@ class AlarmNotification extends CollectionAbstract
 }
 
 ```
-
-
-`app/Domains/AlarmNotification/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\AlarmNotification\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/AlarmNotification/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\AlarmNotification\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as Collection;
-use App\Domains\AlarmNotification\Model\AlarmNotification as Model;
-
-class Index extends ControllerAbstract
-{
-    /**
-     * @const string
-     */
-    protected const DATE_REGEXP = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
-
-    /**
-     * @var bool
-     */
-    protected bool $userEmpty = true;
-
-    /**
-     * @var bool
-     */
-    protected bool $vehicleEmpty = true;
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->filters();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filters(): void
-    {
-        $this->filtersUserId();
-        $this->filtersVehicleId();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'users' => $this->users(),
-            'users_multiple' => $this->usersMultiple(),
-            'user' => $this->user(),
-            'user_empty' => $this->userEmpty(),
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'vehicle_empty' => $this->vehicleEmpty(),
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->whenVehicleId($this->vehicle()?->id)
-                ->withAlarm()
-                ->withPosition()
-                ->withTrip()
-                ->withUser()
-                ->withVehicle()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
 
 `app/Domains/AlarmNotification/Validate/Update.php:`
 
@@ -5587,7 +5489,6 @@ class Update extends ValidateAbstract
 
 ```
 
-
 `app/Domains/AlarmNotification/Validate/UpdateBoolean.php:`
 
 ```php
@@ -5603,7 +5504,6 @@ class UpdateBoolean extends UpdateBooleanCoreApp
 
 ```
 
-
 `app/Domains/AlarmNotification/Validate/ValidateFactory.php:`
 
 ```php
@@ -5618,7 +5518,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/City/Action/ActionAbstract.php:`
 
@@ -5639,7 +5538,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/City/Action/ActionFactory.php:`
 
@@ -5684,7 +5582,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/City/Action/GetOrNew.php:`
 
@@ -5853,7 +5750,6 @@ class GetOrNew extends ActionAbstract
 
 ```
 
-
 `app/Domains/City/Action/Update.php:`
 
 ```php
@@ -5987,7 +5883,6 @@ class Update extends ActionAbstract
 
 ```
 
-
 `app/Domains/City/Action/UpdateMerge.php:`
 
 ```php
@@ -6091,7 +5986,6 @@ class UpdateMerge extends ActionAbstract
 
 ```
 
-
 `app/Domains/City/Controller/ControllerAbstract.php:`
 
 ```php
@@ -6124,7 +6018,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/City/Controller/Index.php:`
 
 ```php
@@ -6133,7 +6026,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 namespace App\Domains\City\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\City\Service\Controller\Index as ControllerService;
+use App\Domains\City\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -6158,6 +6051,208 @@ class Index extends ControllerAbstract
 
 ```
 
+`app/Domains/City/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\City\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/City/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\City\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\City\Model\City as Model;
+use App\Domains\City\Model\Collection\City as Collection;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\City\Model\Collection\City
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->list()
+                ->withState()
+                ->withCountry()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/City/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\City\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\City\Model\City as Model;
+use App\Domains\Country\Model\Collection\Country as CountryCollection;
+use App\Domains\Country\Model\Country as CountryModel;
+use App\Domains\State\Model\Collection\State as StateCollection;
+use App\Domains\State\Model\State as StateModel;
+
+class Update extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\City\Model\City $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow(data: ['alias' => $this->requestAlias()]);
+    }
+
+    /**
+     * @return string
+     */
+    protected function requestAlias(): string
+    {
+        return $this->request->input('alias')
+            ?: implode(',', $this->row->alias ?? []);
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'states' => $this->states(),
+            'countries' => $this->countries(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\State\Model\Collection\State
+     */
+    protected function states(): StateCollection
+    {
+        return StateModel::query()
+            ->withCountry()
+            ->get()
+            ->each(static fn ($each) => $each->name = $each->country->name.' - '.$each->name)
+            ->sortBy('name');
+    }
+
+    /**
+     * @return \App\Domains\Country\Model\Collection\Country
+     */
+    protected function countries(): CountryCollection
+    {
+        return CountryModel::query()
+            ->list()
+            ->get();
+    }
+}
+
+```
+
+`app/Domains/City/Controller/Service/UpdateMerge.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\City\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\City\Model\City as Model;
+use App\Domains\City\Model\Collection\City as Collection;
+
+class UpdateMerge extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\City\Model\City $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\City\Model\Collection\City
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->byIdNot($this->row->id)
+                ->withState()
+                ->withCountry()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
 
 `app/Domains/City/Controller/Update.php:`
 
@@ -6168,7 +6263,7 @@ namespace App\Domains\City\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\City\Service\Controller\Update as ControllerService;
+use App\Domains\City\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -6213,7 +6308,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/City/Controller/UpdateMerge.php:`
 
 ```php
@@ -6223,7 +6317,7 @@ namespace App\Domains\City\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\City\Service\Controller\UpdateMerge as ControllerService;
+use App\Domains\City\Controller\Service\UpdateMerge as ControllerService;
 
 class UpdateMerge extends ControllerAbstract
 {
@@ -6268,7 +6362,6 @@ class UpdateMerge extends ControllerAbstract
 
 ```
 
-
 `app/Domains/City/Controller/router.php:`
 
 ```php
@@ -6286,7 +6379,6 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
 
 ```
 
-
 `app/Domains/City/Fractal/FractalFactory.php:`
 
 ```php
@@ -6294,8 +6386,8 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
 
 namespace App\Domains\City\Fractal;
 
-use App\Domains\Core\Fractal\FractalAbstract;
 use App\Domains\City\Model\City as Model;
+use App\Domains\Core\Fractal\FractalAbstract;
 
 class FractalFactory extends FractalAbstract
 {
@@ -6315,7 +6407,6 @@ class FractalFactory extends FractalAbstract
 
 ```
 
-
 `app/Domains/City/Model/Builder/City.php:`
 
 ```php
@@ -6323,8 +6414,8 @@ class FractalFactory extends FractalAbstract
 
 namespace App\Domains\City\Model\Builder;
 
-use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
+use App\Domains\Position\Model\Position as PositionModel;
 
 class City extends BuilderAbstract
 {
@@ -6549,7 +6640,6 @@ class City extends BuilderAbstract
 
 ```
 
-
 `app/Domains/City/Model/City.php:`
 
 ```php
@@ -6662,7 +6752,6 @@ class City extends ModelAbstract
 
 ```
 
-
 `app/Domains/City/Model/Collection/City.php:`
 
 ```php
@@ -6677,214 +6766,6 @@ class City extends CollectionAbstract
 }
 
 ```
-
-
-`app/Domains/City/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\City\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/City/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\City\Service\Controller;
-
-use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Authenticatable;
-use App\Domains\City\Model\City as Model;
-use App\Domains\City\Model\Collection\City as Collection;
-
-class Index extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\City\Model\Collection\City
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->list()
-                ->withState()
-                ->withCountry()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/City/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\City\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\City\Model\City as Model;
-use App\Domains\Country\Model\Collection\Country as CountryCollection;
-use App\Domains\Country\Model\Country as CountryModel;
-use App\Domains\State\Model\Collection\State as StateCollection;
-use App\Domains\State\Model\State as StateModel;
-
-class Update extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\City\Model\City $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow(data: ['alias' => $this->requestAlias()]);
-    }
-
-    /**
-     * @return string
-     */
-    protected function requestAlias(): string
-    {
-        return $this->request->input('alias')
-            ?: implode(',', $this->row->alias ?? []);
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'states' => $this->states(),
-            'countries' => $this->countries(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\State\Model\Collection\State
-     */
-    protected function states(): StateCollection
-    {
-        return StateModel::query()
-            ->withCountry()
-            ->get()
-            ->each(static fn ($each) => $each->name = $each->country->name.' - '.$each->name)
-            ->sortBy('name');
-    }
-
-    /**
-     * @return \App\Domains\Country\Model\Collection\Country
-     */
-    protected function countries(): CountryCollection
-    {
-        return CountryModel::query()
-            ->list()
-            ->get();
-    }
-}
-
-```
-
-
-`app/Domains/City/Service/Controller/UpdateMerge.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\City\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\City\Model\City as Model;
-use App\Domains\City\Model\Collection\City as Collection;
-
-class UpdateMerge extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\City\Model\City $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\City\Model\Collection\City
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->byIdNot($this->row->id)
-                ->withState()
-                ->withCountry()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
 
 `app/Domains/City/Validate/GetOrNew.php:`
 
@@ -6910,7 +6791,6 @@ class GetOrNew extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/City/Validate/Update.php:`
 
@@ -6941,7 +6821,6 @@ class Update extends ValidateAbstract
 
 ```
 
-
 `app/Domains/City/Validate/UpdateMerge.php:`
 
 ```php
@@ -6966,7 +6845,6 @@ class UpdateMerge extends ValidateAbstract
 
 ```
 
-
 `app/Domains/City/Validate/ValidateFactory.php:`
 
 ```php
@@ -6981,7 +6859,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Configuration/Action/ActionAbstract.php:`
 
@@ -7002,7 +6879,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/Configuration/Action/ActionFactory.php:`
 
@@ -7047,7 +6923,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Configuration/Action/AppBind.php:`
 
@@ -7111,7 +6986,6 @@ class AppBind extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Configuration/Action/Dump.php:`
 
@@ -7229,7 +7103,6 @@ class Dump extends ActionAbstract
 
 ```
 
-
 `app/Domains/Configuration/Action/Update.php:`
 
 ```php
@@ -7266,7 +7139,6 @@ class Update extends ActionAbstract
 
 ```
 
-
 `app/Domains/Configuration/Command/CommandAbstract.php:`
 
 ```php
@@ -7281,7 +7153,6 @@ abstract class CommandAbstract extends CommandAbstractSahred
 }
 
 ```
-
 
 `app/Domains/Configuration/Command/Dump.php:`
 
@@ -7319,7 +7190,6 @@ class Dump extends CommandAbstract
 
 ```
 
-
 `app/Domains/Configuration/Controller/ControllerAbstract.php:`
 
 ```php
@@ -7352,7 +7222,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Configuration/Controller/Index.php:`
 
 ```php
@@ -7361,7 +7230,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 namespace App\Domains\Configuration\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Configuration\Service\Controller\Index as ControllerService;
+use App\Domains\Configuration\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -7386,6 +7255,104 @@ class Index extends ControllerAbstract
 
 ```
 
+`app/Domains/Configuration/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Configuration\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/Configuration/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Configuration\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Configuration\Model\Collection\Configuration as Collection;
+use App\Domains\Configuration\Model\Configuration as Model;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Configuration\Model\Collection\Configuration
+     */
+    protected function list(): Collection
+    {
+        return Model::query()
+            ->list()
+            ->get();
+    }
+}
+
+```
+
+`app/Domains/Configuration/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Configuration\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Configuration\Model\Configuration as Model;
+
+class Update extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Configuration\Model\Configuration $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+        ];
+    }
+}
+
+```
 
 `app/Domains/Configuration/Controller/Update.php:`
 
@@ -7396,7 +7363,7 @@ namespace App\Domains\Configuration\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Configuration\Service\Controller\Update as ControllerService;
+use App\Domains\Configuration\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -7443,7 +7410,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Configuration/Controller/router.php:`
 
 ```php
@@ -7459,7 +7425,6 @@ Route::group(['middleware' => ['user-auth-admin']], static function () {
 });
 
 ```
-
 
 `app/Domains/Configuration/Model/Builder/Configuration.php:`
 
@@ -7493,7 +7458,6 @@ class Configuration extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Configuration/Model/Collection/Configuration.php:`
 
 ```php
@@ -7508,7 +7472,6 @@ class Configuration extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/Configuration/Model/Configuration.php:`
 
@@ -7573,7 +7536,6 @@ class Configuration extends ModelAbstract
 
 ```
 
-
 `app/Domains/Configuration/Seeder/Configuration.php:`
 
 ```php
@@ -7596,109 +7558,6 @@ class Configuration extends SeederAbstract
 }
 
 ```
-
-
-`app/Domains/Configuration/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Configuration\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/Configuration/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Configuration\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Configuration\Model\Configuration as Model;
-use App\Domains\Configuration\Model\Collection\Configuration as Collection;
-
-class Index extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Configuration\Model\Collection\Configuration
-     */
-    protected function list(): Collection
-    {
-        return Model::query()
-            ->list()
-            ->get();
-    }
-}
-
-```
-
-
-`app/Domains/Configuration/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Configuration\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Configuration\Model\Configuration as Model;
-
-class Update extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Configuration\Model\Configuration $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-        ];
-    }
-}
-
-```
-
 
 `app/Domains/Configuration/Service/Getter/Getter.php:`
 
@@ -7769,7 +7628,6 @@ class Getter
 
 ```
 
-
 `app/Domains/Configuration/Validate/Dump.php:`
 
 ```php
@@ -7796,7 +7654,6 @@ class Dump extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Configuration/Validate/Update.php:`
 
 ```php
@@ -7822,7 +7679,6 @@ class Update extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Configuration/Validate/ValidateFactory.php:`
 
 ```php
@@ -7837,7 +7693,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Core/Action/ActionAbstract.php:`
 
@@ -7968,7 +7823,6 @@ abstract class ActionAbstract
 
 ```
 
-
 `app/Domains/Core/Action/ActionFactoryAbstract.php:`
 
 ```php
@@ -8061,7 +7915,6 @@ abstract class ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Core/Command/CommandAbstract.php:`
 
@@ -8246,7 +8099,6 @@ abstract class CommandAbstract extends Command
 
 ```
 
-
 `app/Domains/Core/Controller/ControllerAbstract.php:`
 
 ```php
@@ -8375,7 +8227,6 @@ abstract class ControllerAbstract extends Controller
 }
 
 ```
-
 
 `app/Domains/Core/Controller/ControllerWebAbstract.php:`
 
@@ -8537,6 +8388,199 @@ abstract class ControllerWebAbstract extends ControllerAbstract
 
 ```
 
+`app/Domains/Core/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Core\Controller\Service;
+
+use Closure;
+use ReflectionFunction;
+use App\Domains\Core\Model\ModelAbstract;
+use App\Exceptions\NotFoundException;
+use App\Exceptions\ValidatorException;
+
+abstract class ControllerAbstract
+{
+    /**
+     * @var array
+     */
+    protected array $cache = [];
+
+    /**
+     * @return mixed
+     */
+    abstract public function data(): mixed;
+
+    /**
+     * @return self
+     */
+    public static function new(): self
+    {
+        return new static(...func_get_args());
+    }
+
+    /**
+     * @param \Closure $callback
+     *
+     * @return mixed
+     */
+    protected function cache(Closure $callback): mixed
+    {
+        $key = $this->cacheKey($callback);
+
+        if (array_key_exists($key, $this->cache) === false) {
+            $this->cache[$key] = $callback();
+        }
+
+        return $this->cache[$key];
+    }
+
+    /**
+     * @param \Closure $callback
+     *
+     * @return string
+     */
+    protected function cacheKey(Closure $callback): string
+    {
+        $r = new ReflectionFunction($callback);
+
+        return md5($r->getFileName().$r->getStartLine().$r->getEndLine());
+    }
+
+    /**
+     * @param string $key
+     * @param ?array $default = []
+     *
+     * @return ?array
+     */
+    protected function requestArray(string $key, ?array $default = []): ?array
+    {
+        return (array)$this->request->input($key) ?: $default;
+    }
+
+    /**
+     * @param string $key
+     * @param ?bool $default = false
+     *
+     * @return ?bool
+     */
+    protected function requestBool(string $key, ?bool $default = false): ?bool
+    {
+        return match ($this->request->input($key)) {
+            'true', '1' => true,
+            'false', '0' => false,
+            default => $default,
+        };
+    }
+
+    /**
+     * @param string $key
+     * @param ?string $default = null
+     *
+     * @return ?string
+     */
+    protected function requestDateToIso(string $key, ?string $default = null): ?string
+    {
+        return helper()->dateToDate($this->request->input($key), $default);
+    }
+
+    /**
+     * @param string $key
+     * @param ?float $default = 0
+     *
+     * @return ?float
+     */
+    protected function requestFloat(string $key, ?float $default = 0): ?float
+    {
+        return floatval($this->request->input($key)) ?: $default;
+    }
+
+    /**
+     * @param string $key
+     * @param ?int $default = 0
+     *
+     * @return ?int
+     */
+    protected function requestInteger(string $key, ?int $default = 0): ?int
+    {
+        return intval($this->request->input($key)) ?: $default;
+    }
+
+    /**
+     * @param string $key
+     * @param ?string $default = ''
+     *
+     * @return ?string
+     */
+    protected function requestString(string $key, ?string $default = ''): ?string
+    {
+        return strval($this->request->input($key)) ?: $default;
+    }
+
+    /**
+     * @param array $after = []
+     * @param array $before = []
+     *
+     * @return void
+     */
+    protected function requestMerge(array $after = [], array $before = []): void
+    {
+        $this->request->merge($before + $this->request->input() + $after);
+    }
+
+    /**
+     * @param array $data = []
+     * @param ?\App\Domains\Core\Model\ModelAbstract $row = null
+     *
+     * @return void
+     */
+    protected function requestMergeWithRow(array $data = [], ?ModelAbstract $row = null): void
+    {
+        $this->request->merge($this->request->input() + $data + $this->requestMergeWithRowAsArray($row));
+    }
+
+    /**
+     * @param ?\App\Domains\Core\Model\ModelAbstract $row
+     *
+     * @return array
+     */
+    protected function requestMergeWithRowAsArray(?ModelAbstract $row): array
+    {
+        if ($row) {
+            return $row->toArray();
+        }
+
+        if (isset($this->row)) {
+            return $this->row->toArray();
+        }
+
+        return [];
+    }
+
+    /**
+     * @param string $message = ''
+     *
+     * @return void
+     */
+    final protected function exceptionNotFound(string $message = ''): void
+    {
+        throw new NotFoundException($message ?: __('common.error.not-found'));
+    }
+
+    /**
+     * @param string $message
+     *
+     * @return void
+     */
+    final protected function exceptionValidator(string $message): void
+    {
+        throw new ValidatorException($message);
+    }
+}
+
+```
 
 `app/Domains/Core/Database/Builder/Cache.php:`
 
@@ -8707,7 +8751,6 @@ class Cache extends Builder
 
 ```
 
-
 `app/Domains/Core/Event/EventAbstract.php:`
 
 ```php
@@ -8723,7 +8766,6 @@ abstract class EventAbstract
 }
 
 ```
-
 
 `app/Domains/Core/Fractal/FractalAbstract.php:`
 
@@ -8880,7 +8922,6 @@ abstract class FractalAbstract
 
 ```
 
-
 `app/Domains/Core/Job/JobAbstract.php:`
 
 ```php
@@ -8893,8 +8934,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\Core\Traits\Factory;
@@ -8950,7 +8991,6 @@ abstract class JobAbstract implements ShouldQueue
 }
 
 ```
-
 
 `app/Domains/Core/Job/Middleware/RateLimit.php:`
 
@@ -9016,7 +9056,6 @@ class RateLimit
 
 ```
 
-
 `app/Domains/Core/Listener/ListenerAbstract.php:`
 
 ```php
@@ -9038,7 +9077,6 @@ abstract class ListenerAbstract implements ShouldQueue
 }
 
 ```
-
 
 `app/Domains/Core/Mail/MailAbstract.php:`
 
@@ -9147,7 +9185,6 @@ abstract class MailAbstract extends Mailable implements ShouldQueue
 
 ```
 
-
 `app/Domains/Core/Mail/MailFactoryAbstract.php:`
 
 ```php
@@ -9219,7 +9256,6 @@ abstract class MailFactoryAbstract
 
 ```
 
-
 `app/Domains/Core/Middleware/MiddlewareAbstract.php:`
 
 ```php
@@ -9246,7 +9282,6 @@ abstract class MiddlewareAbstract
 }
 
 ```
-
 
 `app/Domains/Core/Migration/Database/DatabaseAbstract.php:`
 
@@ -9287,7 +9322,6 @@ abstract class DatabaseAbstract
 
 ```
 
-
 `app/Domains/Core/Migration/Database/DatabaseFactory.php:`
 
 ```php
@@ -9318,7 +9352,6 @@ class DatabaseFactory
 
 ```
 
-
 `app/Domains/Core/Migration/Database/MySQL.php:`
 
 ```php
@@ -9343,7 +9376,6 @@ class MySQL extends DatabaseAbstract
 }
 
 ```
-
 
 `app/Domains/Core/Migration/Database/PostgreSQL.php:`
 
@@ -9428,7 +9460,6 @@ class PostgreSQL extends DatabaseAbstract
 
 ```
 
-
 `app/Domains/Core/Migration/Database/SQLite.php:`
 
 ```php
@@ -9453,7 +9484,6 @@ class SQLite extends DatabaseAbstract
 }
 
 ```
-
 
 `app/Domains/Core/Migration/MigrationAbstract.php:`
 
@@ -9796,7 +9826,6 @@ abstract class MigrationAbstract extends Migration
 }
 
 ```
-
 
 `app/Domains/Core/Model/Builder/BuilderAbstract.php:`
 
@@ -10172,7 +10201,6 @@ abstract class BuilderAbstract extends Builder
 
 ```
 
-
 `app/Domains/Core/Model/Collection/CollectionAbstract.php:`
 
 ```php
@@ -10187,7 +10215,6 @@ abstract class CollectionAbstract extends Collection
 }
 
 ```
-
 
 `app/Domains/Core/Model/ModelAbstract.php:`
 
@@ -10260,7 +10287,6 @@ abstract class ModelAbstract extends Model
 
 ```
 
-
 `app/Domains/Core/Model/PivotAbstract.php:`
 
 ```php
@@ -10322,7 +10348,6 @@ abstract class PivotAbstract extends Pivot
 
 ```
 
-
 `app/Domains/Core/Model/Traits/Column.php:`
 
 ```php
@@ -10344,7 +10369,6 @@ trait Column
 }
 
 ```
-
 
 `app/Domains/Core/Model/Traits/DateDisabled.php:`
 
@@ -10377,7 +10401,6 @@ trait DateDisabled
 }
 
 ```
-
 
 `app/Domains/Core/Model/Traits/JsonColumn.php:`
 
@@ -10445,7 +10468,6 @@ trait JsonColumn
 }
 
 ```
-
 
 `app/Domains/Core/Model/Traits/MutatorDisabled.php:`
 
@@ -10567,7 +10589,6 @@ trait MutatorDisabled
 
 ```
 
-
 `app/Domains/Core/Model/Traits/Transform.php:`
 
 ```php
@@ -10591,7 +10612,6 @@ trait Transform
 }
 
 ```
-
 
 `app/Domains/Core/Model/Traits/Translate.php:`
 
@@ -10663,7 +10683,6 @@ trait Translate
 }
 
 ```
-
 
 `app/Domains/Core/Model/Traits/Translation.php:`
 
@@ -10754,7 +10773,6 @@ trait Translation
 
 ```
 
-
 `app/Domains/Core/Model/Traits/TranslationSimple.php:`
 
 ```php
@@ -10779,7 +10797,6 @@ trait TranslationSimple
 }
 
 ```
-
 
 `app/Domains/Core/Schedule/ScheduleAbstract.php:`
 
@@ -10875,7 +10892,6 @@ abstract class ScheduleAbstract
 }
 
 ```
-
 
 `app/Domains/Core/Seeder/SeederAbstract.php:`
 
@@ -11007,202 +11023,6 @@ class SeederAbstract extends Seeder
 }
 
 ```
-
-
-`app/Domains/Core/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Core\Service\Controller;
-
-use Closure;
-use ReflectionFunction;
-use App\Domains\Core\Model\ModelAbstract;
-use App\Exceptions\NotFoundException;
-use App\Exceptions\ValidatorException;
-
-abstract class ControllerAbstract
-{
-    /**
-     * @var array
-     */
-    protected array $cache = [];
-
-    /**
-     * @return mixed
-     */
-    abstract public function data(): mixed;
-
-    /**
-     * @return self
-     */
-    public static function new(): self
-    {
-        return new static(...func_get_args());
-    }
-
-    /**
-     * @param \Closure $callback
-     *
-     * @return mixed
-     */
-    protected function cache(Closure $callback): mixed
-    {
-        $key = $this->cacheKey($callback);
-
-        if (array_key_exists($key, $this->cache) === false) {
-            $this->cache[$key] = $callback();
-        }
-
-        return $this->cache[$key];
-    }
-
-    /**
-     * @param \Closure $callback
-     *
-     * @return string
-     */
-    protected function cacheKey(Closure $callback): string
-    {
-        $r = new ReflectionFunction($callback);
-
-        return md5($r->getFileName().$r->getStartLine().$r->getEndLine());
-    }
-
-    /**
-     * @param string $key
-     * @param ?array $default = []
-     *
-     * @return ?array
-     */
-    protected function requestArray(string $key, ?array $default = []): ?array
-    {
-        return (array)$this->request->input($key) ?: $default;
-    }
-
-    /**
-     * @param string $key
-     * @param ?bool $default = false
-     *
-     * @return ?bool
-     */
-    protected function requestBool(string $key, ?bool $default = false): ?bool
-    {
-        return match ($this->request->input($key)) {
-            'true', '1' => true,
-            'false', '0' => false,
-            default => $default,
-        };
-    }
-
-    /**
-     * @param string $key
-     * @param ?string $default = null
-     *
-     * @return ?string
-     */
-    protected function requestDateToIso(string $key, ?string $default = null): ?string
-    {
-        return helper()->dateToDate($this->request->input($key), $default);
-    }
-
-    /**
-     * @param string $key
-     * @param ?float $default = 0
-     *
-     * @return ?float
-     */
-    protected function requestFloat(string $key, ?float $default = 0): ?float
-    {
-        return floatval($this->request->input($key)) ?: $default;
-    }
-
-    /**
-     * @param string $key
-     * @param ?int $default = 0
-     *
-     * @return ?int
-     */
-    protected function requestInteger(string $key, ?int $default = 0): ?int
-    {
-        return intval($this->request->input($key)) ?: $default;
-    }
-
-    /**
-     * @param string $key
-     * @param ?string $default = ''
-     *
-     * @return ?string
-     */
-    protected function requestString(string $key, ?string $default = ''): ?string
-    {
-        return strval($this->request->input($key)) ?: $default;
-    }
-
-    /**
-     * @param array $after = []
-     * @param array $before = []
-     *
-     * @return void
-     */
-    protected function requestMerge(array $after = [], array $before = []): void
-    {
-        $this->request->merge($before + $this->request->input() + $after);
-    }
-
-    /**
-     * @param array $data = []
-     * @param ?\App\Domains\Core\Model\ModelAbstract $row = null
-     *
-     * @return void
-     */
-    protected function requestMergeWithRow(array $data = [], ?ModelAbstract $row = null): void
-    {
-        $this->request->merge($this->request->input() + $data + $this->requestMergeWithRowAsArray($row));
-    }
-
-    /**
-     * @param ?\App\Domains\Core\Model\ModelAbstract $row
-     *
-     * @return array
-     */
-    protected function requestMergeWithRowAsArray(?ModelAbstract $row): array
-    {
-        if ($row) {
-            return $row->toArray();
-        }
-
-        if (isset($this->row)) {
-            return $this->row->toArray();
-        }
-
-        return [];
-    }
-
-    /**
-     * @param string $message = ''
-     *
-     * @return void
-     */
-    final protected function exceptionNotFound(string $message = ''): void
-    {
-        throw new NotFoundException($message ?: __('common.error.not-found'));
-    }
-
-    /**
-     * @param string $message
-     *
-     * @return void
-     */
-    final protected function exceptionValidator(string $message): void
-    {
-        throw new ValidatorException($message);
-    }
-}
-
-```
-
 
 `app/Domains/Core/Service/Factory/Factory.php:`
 
@@ -11356,7 +11176,6 @@ class Factory
 
 ```
 
-
 `app/Domains/Core/Traits/Factory.php:`
 
 ```php
@@ -11449,7 +11268,6 @@ trait Factory
 
 ```
 
-
 `app/Domains/Core/Validate/Rule/CSRF.php:`
 
 ```php
@@ -11490,7 +11308,6 @@ class CSRF implements RuleContract
 
 ```
 
-
 `app/Domains/Core/Validate/ValidateAbstract.php:`
 
 ```php
@@ -11529,7 +11346,6 @@ abstract class ValidateAbstract extends ValidatorAbstract
 }
 
 ```
-
 
 `app/Domains/Core/Validate/ValidateFactoryAbstract.php:`
 
@@ -11586,7 +11402,6 @@ abstract class ValidateFactoryAbstract
 
 ```
 
-
 `app/Domains/CoreApp/Action/ActionAbstract.php:`
 
 ```php
@@ -11624,7 +11439,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/CoreApp/Action/Traits/Cache.php:`
 
@@ -11731,7 +11545,6 @@ trait Cache
 
 ```
 
-
 `app/Domains/CoreApp/Action/Traits/LogRow.php:`
 
 ```php
@@ -11827,7 +11640,6 @@ trait LogRow
 
 ```
 
-
 `app/Domains/CoreApp/Action/UpdateBoolean.php:`
 
 ```php
@@ -11922,7 +11734,6 @@ abstract class UpdateBoolean extends ActionAbstract
 
 ```
 
-
 `app/Domains/CoreApp/Command/CommandAbstract.php:`
 
 ```php
@@ -11944,7 +11755,6 @@ abstract class CommandAbstract extends CommandAbstractCore
 
 ```
 
-
 `app/Domains/CoreApp/Controller/ControllerApiAbstract.php:`
 
 ```php
@@ -11959,7 +11769,6 @@ abstract class ControllerApiAbstract extends ControllerAbstract
 }
 
 ```
-
 
 `app/Domains/CoreApp/Controller/ControllerWebAbstract.php:`
 
@@ -11976,334 +11785,14 @@ abstract class ControllerWebAbstract extends CoreControllerWebAbstract
 
 ```
 
-
-`app/Domains/CoreApp/Migration/MigrationAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\CoreApp\Migration;
-
-use App\Domains\Core\Migration\MigrationAbstract as MigrationAbstractCore;
-
-abstract class MigrationAbstract extends MigrationAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/CoreApp/Model/Builder/BuilderAbstract.php:`
+`app/Domains/CoreApp/Controller/Service/ControllerAbstract.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\CoreApp\Model\Builder;
+namespace App\Domains\CoreApp\Controller\Service;
 
-use App\Domains\Core\Model\Builder\BuilderAbstract as BuilderAbstractCore;
-use App\Domains\User\Model\User as UserModel;
-
-abstract class BuilderAbstract extends BuilderAbstractCore
-{
-    /**
-     * @param int $device_id
-     *
-     * @return self
-     */
-    public function byDeviceId(int $device_id): self
-    {
-        return $this->where('device_id', $device_id);
-    }
-
-    /**
-     * @param array $device_ids
-     *
-     * @return self
-     */
-    public function byDeviceIds(array $device_ids): self
-    {
-        return $this->whereIntegerInRaw('device_id', $device_ids);
-    }
-
-    /**
-     * @param \App\Domains\User\Model\User $user
-     *
-     * @return self
-     */
-    public function byUserOrManager(UserModel $user): self
-    {
-        return $this->when($user->managerMode() === false, fn ($q) => $q->byUserId($user->id));
-    }
-
-    /**
-     * @param int $vehicle_id
-     *
-     * @return self
-     */
-    public function byVehicleId(int $vehicle_id): self
-    {
-        return $this->where('vehicle_id', $vehicle_id);
-    }
-
-    /**
-     * @param array $vehicle_ids
-     *
-     * @return self
-     */
-    public function byVehicleIds(array $vehicle_ids): self
-    {
-        return $this->whereIntegerInRaw('vehicle_id', $vehicle_ids);
-    }
-
-    /**
-     * @param ?int $id
-     *
-     * @return self
-     */
-    public function whenId(?int $id): self
-    {
-        return $this->when($id, fn ($q) => $q->byId($id));
-    }
-
-    /**
-     * @param ?int $device_id
-     *
-     * @return self
-     */
-    public function whenDeviceId(?int $device_id): self
-    {
-        return $this->when($device_id, fn ($q) => $q->byDeviceId($device_id));
-    }
-
-    /**
-     * @param ?int $user_id
-     *
-     * @return self
-     */
-    public function whenUserId(?int $user_id): self
-    {
-        return $this->when($user_id, fn ($q) => $q->byUserId($user_id));
-    }
-
-    /**
-     * @param ?int $vehicle_id
-     *
-     * @return self
-     */
-    public function whenVehicleId(?int $vehicle_id): self
-    {
-        return $this->when($vehicle_id, fn ($q) => $q->byVehicleId($vehicle_id));
-    }
-
-    /**
-     * @param string $relation
-     *
-     * @return self
-     */
-    public function withSimple(string $relation): self
-    {
-        return $this->with([$relation => fn ($q) => $q->selectRelated()]);
-    }
-
-    /**
-     * @return self
-     */
-    public function withUser(): self
-    {
-        return $this->with('user');
-    }
-}
-
-```
-
-
-`app/Domains/CoreApp/Model/Builder/Traits/Gis.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\CoreApp\Model\Builder\Traits;
-
-trait Gis
-{
-    /**
-     * @param float $latitude
-     * @param float $longitude
-     * @param int $meters
-     *
-     * @return self
-     */
-    public function inRadius(float $latitude, float $longitude, int $meters): self
-    {
-        return $this->whereRaw($this->inRadiusSql($latitude, $longitude, $meters));
-    }
-
-    /**
-     * @param float $latitude
-     * @param float $longitude
-     * @param int $meters
-     *
-     * @return string
-     */
-    protected function inRadiusSql(float $latitude, float $longitude, int $meters): string
-    {
-        return sprintf(
-            'ST_Intersects(ST_Buffer(ST_SRID(POINT(%f, %f), 4326), %d), ST_SRID(`point`, 4326))',
-            helper()->longitude($longitude),
-            helper()->latitude($latitude),
-            $meters,
-        );
-    }
-}
-
-```
-
-
-`app/Domains/CoreApp/Model/Collection/CollectionAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\CoreApp\Model\Collection;
-
-use App\Domains\Core\Model\Collection\CollectionAbstract as CollectionAbstractCore;
-
-abstract class CollectionAbstract extends CollectionAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/CoreApp/Model/ModelAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\CoreApp\Model;
-
-use App\Domains\Core\Model\ModelAbstract as ModelAbstractCore;
-
-abstract class ModelAbstract extends ModelAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/CoreApp/Model/PivotAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\CoreApp\Model;
-
-use App\Domains\Core\Model\PivotAbstract as PivotAbstractCore;
-
-abstract class PivotAbstract extends PivotAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/CoreApp/Model/Traits/Content.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\CoreApp\Model\Traits;
-
-use App\Domains\Core\Model\Traits\JsonColumn;
-
-trait Content
-{
-    use JsonColumn;
-
-    /**
-     * @param string $key
-     * @param mixed $default = null
-     *
-     * @return mixed
-     */
-    public function content(string $key, mixed $default = null): mixed
-    {
-        return $this->jsonColumn('content', $key, $default);
-    }
-}
-
-```
-
-
-`app/Domains/CoreApp/Model/Traits/Gis.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\CoreApp\Model\Traits;
-
-use stdClass;
-use Illuminate\Contracts\Database\Query\Expression;
-
-trait Gis
-{
-    /**
-     * @return string
-     */
-    public static function emptyGeoJSON(): string
-    {
-        return 'ST_GeomFromText("MULTIPOLYGON(((0 90,0 90,0 90,0 90)))", 0)';
-    }
-
-    /**
-     * @param float $latitude
-     * @param float $longitude
-     *
-     * @return \Illuminate\Contracts\Database\Query\Expression
-     */
-    public static function pointFromLatitudeLongitude(float $latitude, float $longitude): Expression
-    {
-        return static::db()->raw(sprintf(
-            'ST_PointFromText("POINT(%f %f)", 4326, "axis-order=long-lat")',
-            helper()->longitude($longitude),
-            helper()->latitude($latitude)
-        ));
-    }
-
-    /**
-     * @param \stdClass $json
-     * @param float $simplify = 0
-     *
-     * @return \Illuminate\Contracts\Database\Query\Expression
-     */
-    public static function geomFromGeoJSON(stdClass $json, float $simplify = 0): Expression
-    {
-        if ($json->type !== 'MultiPolygon') {
-            $json->type = 'MultiPolygon';
-            $json->coordinates = [$json->coordinates];
-        }
-
-        $sql = sprintf("ST_GeomFromGeoJSON('%s', 2, 0)", json_encode($json));
-
-        if ($simplify) {
-            $sql = 'ST_Simplify('.$sql.', '.$simplify.')';
-        }
-
-        return static::db()->raw($sql);
-    }
-}
-
-```
-
-
-`app/Domains/CoreApp/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\CoreApp\Service\Controller;
-
-use App\Domains\Core\Service\Controller\ControllerAbstract as ControllerAbstractCore;
+use App\Domains\Core\Controller\Service\ControllerAbstract as ControllerAbstractCore;
 use App\Domains\Device\Model\Collection\Device as DeviceCollection;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\User\Model\Collection\User as UserCollection;
@@ -12608,15 +12097,14 @@ abstract class ControllerAbstract extends ControllerAbstractCore
 
 ```
 
-
-`app/Domains/CoreApp/Service/ControllerApi/ControllerApiAbstract.php:`
+`app/Domains/CoreApp/ControllerApi/Service/ControllerApiAbstract.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\CoreApp\Service\ControllerApi;
+namespace App\Domains\CoreApp\ControllerApi\Service;
 
-use App\Domains\Core\Service\Controller\ControllerAbstract as ControllerAbstractCore;
+use App\Domains\Core\Controller\Service\ControllerAbstract as ControllerAbstractCore;
 
 abstract class ControllerApiAbstract extends ControllerAbstractCore
 {
@@ -12624,6 +12112,316 @@ abstract class ControllerApiAbstract extends ControllerAbstractCore
 
 ```
 
+`app/Domains/CoreApp/Migration/MigrationAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\CoreApp\Migration;
+
+use App\Domains\Core\Migration\MigrationAbstract as MigrationAbstractCore;
+
+abstract class MigrationAbstract extends MigrationAbstractCore
+{
+}
+
+```
+
+`app/Domains/CoreApp/Model/Builder/BuilderAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\CoreApp\Model\Builder;
+
+use App\Domains\Core\Model\Builder\BuilderAbstract as BuilderAbstractCore;
+use App\Domains\User\Model\User as UserModel;
+
+abstract class BuilderAbstract extends BuilderAbstractCore
+{
+    /**
+     * @param int $device_id
+     *
+     * @return self
+     */
+    public function byDeviceId(int $device_id): self
+    {
+        return $this->where('device_id', $device_id);
+    }
+
+    /**
+     * @param array $device_ids
+     *
+     * @return self
+     */
+    public function byDeviceIds(array $device_ids): self
+    {
+        return $this->whereIntegerInRaw('device_id', $device_ids);
+    }
+
+    /**
+     * @param \App\Domains\User\Model\User $user
+     *
+     * @return self
+     */
+    public function byUserOrManager(UserModel $user): self
+    {
+        return $this->when($user->managerMode() === false, fn ($q) => $q->byUserId($user->id));
+    }
+
+    /**
+     * @param int $vehicle_id
+     *
+     * @return self
+     */
+    public function byVehicleId(int $vehicle_id): self
+    {
+        return $this->where('vehicle_id', $vehicle_id);
+    }
+
+    /**
+     * @param array $vehicle_ids
+     *
+     * @return self
+     */
+    public function byVehicleIds(array $vehicle_ids): self
+    {
+        return $this->whereIntegerInRaw('vehicle_id', $vehicle_ids);
+    }
+
+    /**
+     * @param ?int $id
+     *
+     * @return self
+     */
+    public function whenId(?int $id): self
+    {
+        return $this->when($id, fn ($q) => $q->byId($id));
+    }
+
+    /**
+     * @param ?int $device_id
+     *
+     * @return self
+     */
+    public function whenDeviceId(?int $device_id): self
+    {
+        return $this->when($device_id, fn ($q) => $q->byDeviceId($device_id));
+    }
+
+    /**
+     * @param ?int $user_id
+     *
+     * @return self
+     */
+    public function whenUserId(?int $user_id): self
+    {
+        return $this->when($user_id, fn ($q) => $q->byUserId($user_id));
+    }
+
+    /**
+     * @param ?int $vehicle_id
+     *
+     * @return self
+     */
+    public function whenVehicleId(?int $vehicle_id): self
+    {
+        return $this->when($vehicle_id, fn ($q) => $q->byVehicleId($vehicle_id));
+    }
+
+    /**
+     * @param string $relation
+     *
+     * @return self
+     */
+    public function withSimple(string $relation): self
+    {
+        return $this->with([$relation => fn ($q) => $q->selectRelated()]);
+    }
+
+    /**
+     * @return self
+     */
+    public function withUser(): self
+    {
+        return $this->with('user');
+    }
+}
+
+```
+
+`app/Domains/CoreApp/Model/Builder/Traits/Gis.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\CoreApp\Model\Builder\Traits;
+
+trait Gis
+{
+    /**
+     * @param float $latitude
+     * @param float $longitude
+     * @param int $meters
+     *
+     * @return self
+     */
+    public function inRadius(float $latitude, float $longitude, int $meters): self
+    {
+        return $this->whereRaw($this->inRadiusSql($latitude, $longitude, $meters));
+    }
+
+    /**
+     * @param float $latitude
+     * @param float $longitude
+     * @param int $meters
+     *
+     * @return string
+     */
+    protected function inRadiusSql(float $latitude, float $longitude, int $meters): string
+    {
+        return sprintf(
+            'ST_Intersects(ST_Buffer(ST_SRID(POINT(%f, %f), 4326), %d), ST_SRID(`point`, 4326))',
+            helper()->longitude($longitude),
+            helper()->latitude($latitude),
+            $meters,
+        );
+    }
+}
+
+```
+
+`app/Domains/CoreApp/Model/Collection/CollectionAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\CoreApp\Model\Collection;
+
+use App\Domains\Core\Model\Collection\CollectionAbstract as CollectionAbstractCore;
+
+abstract class CollectionAbstract extends CollectionAbstractCore
+{
+}
+
+```
+
+`app/Domains/CoreApp/Model/ModelAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\CoreApp\Model;
+
+use App\Domains\Core\Model\ModelAbstract as ModelAbstractCore;
+
+abstract class ModelAbstract extends ModelAbstractCore
+{
+}
+
+```
+
+`app/Domains/CoreApp/Model/PivotAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\CoreApp\Model;
+
+use App\Domains\Core\Model\PivotAbstract as PivotAbstractCore;
+
+abstract class PivotAbstract extends PivotAbstractCore
+{
+}
+
+```
+
+`app/Domains/CoreApp/Model/Traits/Content.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\CoreApp\Model\Traits;
+
+use App\Domains\Core\Model\Traits\JsonColumn;
+
+trait Content
+{
+    use JsonColumn;
+
+    /**
+     * @param string $key
+     * @param mixed $default = null
+     *
+     * @return mixed
+     */
+    public function content(string $key, mixed $default = null): mixed
+    {
+        return $this->jsonColumn('content', $key, $default);
+    }
+}
+
+```
+
+`app/Domains/CoreApp/Model/Traits/Gis.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\CoreApp\Model\Traits;
+
+use stdClass;
+use Illuminate\Contracts\Database\Query\Expression;
+
+trait Gis
+{
+    /**
+     * @return string
+     */
+    public static function emptyGeoJSON(): string
+    {
+        return 'ST_GeomFromText("MULTIPOLYGON(((0 90,0 90,0 90,0 90)))", 0)';
+    }
+
+    /**
+     * @param float $latitude
+     * @param float $longitude
+     *
+     * @return \Illuminate\Contracts\Database\Query\Expression
+     */
+    public static function pointFromLatitudeLongitude(float $latitude, float $longitude): Expression
+    {
+        return static::db()->raw(sprintf(
+            'ST_PointFromText("POINT(%f %f)", 4326, "axis-order=long-lat")',
+            helper()->longitude($longitude),
+            helper()->latitude($latitude)
+        ));
+    }
+
+    /**
+     * @param \stdClass $json
+     * @param float $simplify = 0
+     *
+     * @return \Illuminate\Contracts\Database\Query\Expression
+     */
+    public static function geomFromGeoJSON(stdClass $json, float $simplify = 0): Expression
+    {
+        if ($json->type !== 'MultiPolygon') {
+            $json->type = 'MultiPolygon';
+            $json->coordinates = [$json->coordinates];
+        }
+
+        $sql = sprintf("ST_GeomFromGeoJSON('%s', 2, 0)", json_encode($json));
+
+        if ($simplify) {
+            $sql = 'ST_Simplify('.$sql.', '.$simplify.')';
+        }
+
+        return static::db()->raw($sql);
+    }
+}
+
+```
 
 `app/Domains/CoreApp/Validate/UpdateBoolean.php:`
 
@@ -12658,7 +12456,6 @@ abstract class UpdateBoolean extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Action/ActionAbstract.php:`
 
@@ -12712,7 +12509,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Action/ActionFactory.php:`
 
@@ -12799,7 +12595,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Action/CurlCacheClean.php:`
 
@@ -12901,7 +12696,6 @@ class CurlCacheClean extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Action/DirectoryEmptyDelete.php:`
 
@@ -13009,7 +12803,6 @@ class DirectoryEmptyDelete extends ActionAbstract
 
 ```
 
-
 `app/Domains/CoreMaintenance/Action/DomainCreate.php:`
 
 ```php
@@ -13064,7 +12857,6 @@ class DomainCreate extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Action/FileDeleteOld.php:`
 
@@ -13186,7 +12978,6 @@ class FileDeleteOld extends ActionAbstract
 
 ```
 
-
 `app/Domains/CoreMaintenance/Action/FileZip.php:`
 
 ```php
@@ -13269,7 +13060,6 @@ class FileZip extends ActionAbstract
 
 ```
 
-
 `app/Domains/CoreMaintenance/Action/MailTestQueue.php:`
 
 ```php
@@ -13298,7 +13088,6 @@ class MailTestQueue extends ActionAbstract
 
 ```
 
-
 `app/Domains/CoreMaintenance/Action/MailTestSend.php:`
 
 ```php
@@ -13326,7 +13115,6 @@ class MailTestSend extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Action/MigrationClean.php:`
 
@@ -13381,7 +13169,6 @@ class MigrationClean extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Action/OpcachePreload.php:`
 
@@ -13454,7 +13241,6 @@ class OpcachePreload extends ActionAbstract
 
 ```
 
-
 `app/Domains/CoreMaintenance/Command/CommandAbstract.php:`
 
 ```php
@@ -13469,7 +13255,6 @@ abstract class CommandAbstract extends CommandAbstractCore
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Command/CurlCacheClean.php:`
 
@@ -13505,7 +13290,6 @@ class CurlCacheClean extends CommandAbstract
 
 ```
 
-
 `app/Domains/CoreMaintenance/Command/DirectoryEmptyDelete.php:`
 
 ```php
@@ -13539,7 +13323,6 @@ class DirectoryEmptyDelete extends CommandAbstract
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Command/DomainCreate.php:`
 
@@ -13580,7 +13363,6 @@ class DomainCreate extends CommandAbstract
 
 ```
 
-
 `app/Domains/CoreMaintenance/Command/FileDeleteOld.php:`
 
 ```php
@@ -13614,7 +13396,6 @@ class FileDeleteOld extends CommandAbstract
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Command/FileZip.php:`
 
@@ -13650,7 +13431,6 @@ class FileZip extends CommandAbstract
 
 ```
 
-
 `app/Domains/CoreMaintenance/Command/MigrationClean.php:`
 
 ```php
@@ -13684,7 +13464,6 @@ class MigrationClean extends CommandAbstract
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Command/OpcachePreload.php:`
 
@@ -13720,7 +13499,6 @@ class OpcachePreload extends CommandAbstract
 
 ```
 
-
 `app/Domains/CoreMaintenance/Schedule/Manager.php:`
 
 ```php
@@ -13728,11 +13506,11 @@ class OpcachePreload extends CommandAbstract
 
 namespace App\Domains\CoreMaintenance\Schedule;
 
+use App\Domains\Core\Schedule\ScheduleAbstract;
 use App\Domains\CoreMaintenance\Command\CurlCacheClean as CurlCacheCleanCommand;
 use App\Domains\CoreMaintenance\Command\DirectoryEmptyDelete as DirectoryEmptyDeleteCommand;
 use App\Domains\CoreMaintenance\Command\FileDeleteOld as FileDeleteOldCommand;
 use App\Domains\CoreMaintenance\Command\FileZip as FileZipCommand;
-use App\Domains\Core\Schedule\ScheduleAbstract;
 
 class Manager extends ScheduleAbstract
 {
@@ -13806,7 +13584,6 @@ class Manager extends ScheduleAbstract
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Service/Domain/Create.php:`
 
@@ -13995,7 +13772,6 @@ class Create
 
 ```
 
-
 `app/Domains/CoreMaintenance/Service/Domain/Section/SectionAbstract.php:`
 
 ```php
@@ -14055,7 +13831,6 @@ abstract class SectionAbstract
 }
 
 ```
-
 
 `app/Domains/CoreMaintenance/Service/OPcache/Preloader.php:`
 
@@ -14242,7 +14017,6 @@ class Preloader
 
 ```
 
-
 `app/Domains/CoreMaintenance/Validate/DomainCreate.php:`
 
 ```php
@@ -14280,7 +14054,6 @@ class DomainCreate extends ValidateAbstract
 
 ```
 
-
 `app/Domains/CoreMaintenance/Validate/ValidateFactory.php:`
 
 ```php
@@ -14296,7 +14069,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Action/ActionAbstract.php:`
 
 ```php
@@ -14311,7 +14083,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Action/ActionFactory.php:`
 
@@ -14407,7 +14178,6 @@ class ActionFactory extends ActionFactoryAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Action/Clean.php:`
 
 ```php
@@ -14429,7 +14199,6 @@ class Clean extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Action/Fill.php:`
 
@@ -14453,7 +14222,6 @@ class Fill extends ActionAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Action/Fix.php:`
 
 ```php
@@ -14475,7 +14243,6 @@ class Fix extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Action/Fixed.php:`
 
@@ -14499,7 +14266,6 @@ class Fixed extends ActionAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Action/NotTranslated.php:`
 
 ```php
@@ -14521,7 +14287,6 @@ class NotTranslated extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Action/Only.php:`
 
@@ -14545,7 +14310,6 @@ class Only extends ActionAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Action/PlainExport.php:`
 
 ```php
@@ -14567,7 +14331,6 @@ class PlainExport extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Action/PlainImport.php:`
 
@@ -14591,7 +14354,6 @@ class PlainImport extends ActionAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Action/Translate.php:`
 
 ```php
@@ -14614,7 +14376,6 @@ class Translate extends ActionAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Action/Unused.php:`
 
 ```php
@@ -14636,7 +14397,6 @@ class Unused extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Command/Clean.php:`
 
@@ -14672,7 +14432,6 @@ class Clean extends CommandAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Command/CommandAbstract.php:`
 
 ```php
@@ -14687,7 +14446,6 @@ abstract class CommandAbstract extends CommandAbstractCore
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Command/Fill.php:`
 
@@ -14723,7 +14481,6 @@ class Fill extends CommandAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Command/Fix.php:`
 
 ```php
@@ -14757,7 +14514,6 @@ class Fix extends CommandAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Command/Fixed.php:`
 
@@ -14795,7 +14551,6 @@ class Fixed extends CommandAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Command/NotTranslated.php:`
 
 ```php
@@ -14829,7 +14584,6 @@ class NotTranslated extends CommandAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Command/Only.php:`
 
@@ -14868,7 +14622,6 @@ class Only extends CommandAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Command/PlainExport.php:`
 
 ```php
@@ -14905,7 +14658,6 @@ class PlainExport extends CommandAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Command/PlainImport.php:`
 
@@ -14944,7 +14696,6 @@ class PlainImport extends CommandAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Command/Translate.php:`
 
 ```php
@@ -14982,7 +14733,6 @@ class Translate extends CommandAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Command/Unused.php:`
 
 ```php
@@ -15016,7 +14766,6 @@ class Unused extends CommandAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Service/Clean.php:`
 
@@ -15114,7 +14863,6 @@ class Clean extends ServiceAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Service/Fill.php:`
 
@@ -15217,7 +14965,6 @@ class Fill extends ServiceAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Service/Fix.php:`
 
 ```php
@@ -15301,7 +15048,6 @@ class Fix extends ServiceAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Service/Fixed.php:`
 
 ```php
@@ -15364,7 +15110,6 @@ class Fixed extends ServiceAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Service/NotTranslated.php:`
 
 ```php
@@ -15397,7 +15142,6 @@ class NotTranslated extends ServiceAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Service/Only.php:`
 
@@ -15523,7 +15267,6 @@ class Only extends ServiceAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Service/PlainExport.php:`
 
 ```php
@@ -15599,7 +15342,6 @@ class PlainExport extends ServiceAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Service/PlainImport.php:`
 
@@ -15714,7 +15456,6 @@ class PlainImport extends ServiceAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Service/ServiceAbstract.php:`
 
@@ -15840,7 +15581,6 @@ abstract class ServiceAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Service/Translate.php:`
 
@@ -15977,7 +15717,6 @@ class Translate extends ServiceAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Service/Unused.php:`
 
 ```php
@@ -16065,7 +15804,6 @@ class Unused extends ServiceAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Validate/Fixed.php:`
 
 ```php
@@ -16089,7 +15827,6 @@ class Fixed extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Validate/Only.php:`
 
@@ -16115,7 +15852,6 @@ class Only extends ValidateAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Validate/PlainExport.php:`
 
 ```php
@@ -16139,7 +15875,6 @@ class PlainExport extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/CoreTranslation/Validate/PlainImport.php:`
 
@@ -16166,7 +15901,6 @@ class PlainImport extends ValidateAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Validate/Translate.php:`
 
 ```php
@@ -16192,7 +15926,6 @@ class Translate extends ValidateAbstract
 
 ```
 
-
 `app/Domains/CoreTranslation/Validate/ValidateFactory.php:`
 
 ```php
@@ -16208,7 +15941,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 ```
 
-
 `app/Domains/Country/Action/ActionAbstract.php:`
 
 ```php
@@ -16216,8 +15948,8 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 namespace App\Domains\Country\Action;
 
-use App\Domains\Country\Model\Country as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\Country\Model\Country as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {
@@ -16229,7 +15961,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 ```
 
-
 `app/Domains/Country/Action/ActionFactory.php:`
 
 ```php
@@ -16237,8 +15968,8 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 namespace App\Domains\Country\Action;
 
-use App\Domains\Country\Model\Country as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\Country\Model\Country as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -16273,7 +16004,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Country/Action/GetOrNew.php:`
 
@@ -16339,7 +16069,6 @@ class GetOrNew extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Country/Action/Update.php:`
 
@@ -16423,7 +16152,6 @@ class Update extends ActionAbstract
 
 ```
 
-
 `app/Domains/Country/Action/UpdateMerge.php:`
 
 ```php
@@ -16432,8 +16160,8 @@ class Update extends ActionAbstract
 namespace App\Domains\Country\Action;
 
 use App\Domains\City\Model\City as CityModel;
-use App\Domains\Country\Model\Country as Model;
 use App\Domains\Country\Model\Collection\Country as Collection;
+use App\Domains\Country\Model\Country as Model;
 use App\Domains\State\Model\State as StateModel;
 
 class UpdateMerge extends ActionAbstract
@@ -16559,7 +16287,6 @@ class UpdateMerge extends ActionAbstract
 
 ```
 
-
 `app/Domains/Country/Controller/ControllerAbstract.php:`
 
 ```php
@@ -16567,8 +16294,8 @@ class UpdateMerge extends ActionAbstract
 
 namespace App\Domains\Country\Controller;
 
-use App\Domains\Country\Model\Country as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
+use App\Domains\Country\Model\Country as Model;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -16592,7 +16319,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Country/Controller/Index.php:`
 
 ```php
@@ -16601,7 +16327,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 namespace App\Domains\Country\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Country\Service\Controller\Index as ControllerService;
+use App\Domains\Country\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -16626,6 +16352,176 @@ class Index extends ControllerAbstract
 
 ```
 
+`app/Domains/Country/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Country\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/Country/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Country\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Country\Model\Collection\Country as Collection;
+use App\Domains\Country\Model\Country as Model;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Country\Model\Collection\Country
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Country/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Country\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Country\Model\Country as Model;
+
+class Update extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Country\Model\Country $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow(data: ['alias' => $this->requestAlias()]);
+    }
+
+    /**
+     * @return string
+     */
+    protected function requestAlias(): string
+    {
+        return $this->request->input('alias')
+            ?: implode(',', $this->row->alias ?? []);
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+        ];
+    }
+}
+
+```
+
+`app/Domains/Country/Controller/Service/UpdateMerge.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Country\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Country\Model\Collection\Country as Collection;
+use App\Domains\Country\Model\Country as Model;
+
+class UpdateMerge extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Country\Model\Country $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Country\Model\Collection\Country
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->byIdNot($this->row->id)
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
 
 `app/Domains/Country/Controller/Update.php:`
 
@@ -16636,7 +16532,7 @@ namespace App\Domains\Country\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Country\Service\Controller\Update as ControllerService;
+use App\Domains\Country\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -16681,7 +16577,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Country/Controller/UpdateMerge.php:`
 
 ```php
@@ -16691,7 +16586,7 @@ namespace App\Domains\Country\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Country\Service\Controller\UpdateMerge as ControllerService;
+use App\Domains\Country\Controller\Service\UpdateMerge as ControllerService;
 
 class UpdateMerge extends ControllerAbstract
 {
@@ -16736,7 +16631,6 @@ class UpdateMerge extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Country/Controller/router.php:`
 
 ```php
@@ -16753,7 +16647,6 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
 });
 
 ```
-
 
 `app/Domains/Country/Fractal/FractalFactory.php:`
 
@@ -16783,7 +16676,6 @@ class FractalFactory extends FractalAbstract
 }
 
 ```
-
 
 `app/Domains/Country/Model/Builder/Country.php:`
 
@@ -16903,7 +16795,6 @@ class Country extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Country/Model/Collection/Country.php:`
 
 ```php
@@ -16919,7 +16810,6 @@ class Country extends CollectionAbstract
 
 ```
 
-
 `app/Domains/Country/Model/Country.php:`
 
 ```php
@@ -16928,10 +16818,10 @@ class Country extends CollectionAbstract
 namespace App\Domains\Country\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Country\Model\Builder\Country as Builder;
 use App\Domains\Country\Model\Collection\Country as Collection;
 use App\Domains\Country\Test\Factory\Country as TestFactory;
-use App\Domains\CoreApp\Model\ModelAbstract;
 
 class Country extends ModelAbstract
 {
@@ -16990,182 +16880,6 @@ class Country extends ModelAbstract
 
 ```
 
-
-`app/Domains/Country/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Country\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/Country/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Country\Service\Controller;
-
-use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Authenticatable;
-use App\Domains\Country\Model\Country as Model;
-use App\Domains\Country\Model\Collection\Country as Collection;
-
-class Index extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Country\Model\Collection\Country
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Country/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Country\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Country\Model\Country as Model;
-
-class Update extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Country\Model\Country $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow(data: ['alias' => $this->requestAlias()]);
-    }
-
-    /**
-     * @return string
-     */
-    protected function requestAlias(): string
-    {
-        return $this->request->input('alias')
-            ?: implode(',', $this->row->alias ?? []);
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-        ];
-    }
-}
-
-```
-
-
-`app/Domains/Country/Service/Controller/UpdateMerge.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Country\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Country\Model\Country as Model;
-use App\Domains\Country\Model\Collection\Country as Collection;
-
-class UpdateMerge extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Country\Model\Country $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Country\Model\Collection\Country
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->byIdNot($this->row->id)
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
 `app/Domains/Country/Validate/GetOrNew.php:`
 
 ```php
@@ -17190,7 +16904,6 @@ class GetOrNew extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/Country/Validate/Update.php:`
 
@@ -17218,7 +16931,6 @@ class Update extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Country/Validate/UpdateMerge.php:`
 
 ```php
@@ -17243,7 +16955,6 @@ class UpdateMerge extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Country/Validate/ValidateFactory.php:`
 
 ```php
@@ -17258,7 +16969,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Dashboard/Controller/ControllerAbstract.php:`
 
@@ -17275,7 +16985,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Dashboard/Controller/Index.php:`
 
 ```php
@@ -17284,7 +16993,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 namespace App\Domains\Dashboard\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Dashboard\Service\Controller\Index as ControllerService;
+use App\Domains\Dashboard\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -17309,31 +17018,14 @@ class Index extends ControllerAbstract
 
 ```
 
-
-`app/Domains/Dashboard/Controller/router.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Dashboard\Controller;
-
-use Illuminate\Support\Facades\Route;
-
-Route::group(['middleware' => ['user-auth']], static function () {
-    Route::get('/', Index::class)->name('dashboard.index');
-});
-
-```
-
-
-`app/Domains/Dashboard/Service/Controller/ControllerAbstract.php:`
+`app/Domains/Dashboard/Controller/Service/ControllerAbstract.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Dashboard\Service\Controller;
+namespace App\Domains\Dashboard\Controller\Service;
 
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
 
 abstract class ControllerAbstract extends ControllerAbstractCore
 {
@@ -17341,13 +17033,12 @@ abstract class ControllerAbstract extends ControllerAbstractCore
 
 ```
 
-
-`app/Domains/Dashboard/Service/Controller/Index.php:`
+`app/Domains/Dashboard/Controller/Service/Index.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Dashboard\Service\Controller;
+namespace App\Domains\Dashboard\Controller\Service;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
@@ -17356,9 +17047,9 @@ use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
 use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
+use App\Domains\Server\Model\Server as ServerModel;
 use App\Domains\Trip\Model\Collection\Trip as TripCollection;
 use App\Domains\Trip\Model\Trip as TripModel;
-use App\Domains\Server\Model\Server as ServerModel;
 
 class Index extends ControllerAbstract
 {
@@ -17589,6 +17280,20 @@ class Index extends ControllerAbstract
 
 ```
 
+`app/Domains/Dashboard/Controller/router.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Dashboard\Controller;
+
+use Illuminate\Support\Facades\Route;
+
+Route::group(['middleware' => ['user-auth']], static function () {
+    Route::get('/', Index::class)->name('dashboard.index');
+});
+
+```
 
 `app/Domains/Device/Action/ActionAbstract.php:`
 
@@ -17597,8 +17302,8 @@ class Index extends ControllerAbstract
 
 namespace App\Domains\Device\Action;
 
-use App\Domains\Device\Model\Device as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\Device\Model\Device as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {
@@ -17610,7 +17315,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 ```
 
-
 `app/Domains/Device/Action/ActionFactory.php:`
 
 ```php
@@ -17618,9 +17322,9 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 namespace App\Domains\Device\Action;
 
+use App\Domains\Core\Action\ActionFactoryAbstract;
 use App\Domains\Device\Model\Device as Model;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
-use App\Domains\Core\Action\ActionFactoryAbstract;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -17680,7 +17384,6 @@ class ActionFactory extends ActionFactoryAbstract
 
 ```
 
-
 `app/Domains/Device/Action/Create.php:`
 
 ```php
@@ -17715,7 +17418,6 @@ class Create extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/Device/Action/CreateUpdateAbstract.php:`
 
@@ -17868,7 +17570,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
 ```
 
-
 `app/Domains/Device/Action/Delete.php:`
 
 ```php
@@ -17896,7 +17597,6 @@ class Delete extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Device/Action/Update.php:`
 
@@ -17930,7 +17630,6 @@ class Update extends CreateUpdateAbstract
 
 ```
 
-
 `app/Domains/Device/Action/UpdateBoolean.php:`
 
 ```php
@@ -17938,8 +17637,8 @@ class Update extends CreateUpdateAbstract
 
 namespace App\Domains\Device\Action;
 
-use App\Domains\Device\Model\Device as Model;
 use App\Domains\CoreApp\Action\UpdateBoolean as UpdateBooleanCoreApp;
+use App\Domains\Device\Model\Device as Model;
 
 class UpdateBoolean extends UpdateBooleanCoreApp
 {
@@ -17958,7 +17657,6 @@ class UpdateBoolean extends UpdateBooleanCoreApp
 }
 
 ```
-
 
 `app/Domains/Device/Action/UpdateDeviceMessageCreate.php:`
 
@@ -18004,7 +17702,6 @@ class UpdateDeviceMessageCreate extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Device/Action/UpdateTransfer.php:`
 
@@ -18213,7 +17910,6 @@ class UpdateTransfer extends ActionAbstract
 
 ```
 
-
 `app/Domains/Device/Controller/ControllerAbstract.php:`
 
 ```php
@@ -18223,9 +17919,9 @@ namespace App\Domains\Device\Controller;
 
 use App\Domains\Alarm\Model\Alarm as AlarmModel;
 use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
+use App\Domains\CoreApp\Controller\ControllerWebAbstract;
 use App\Domains\Device\Model\Device as Model;
 use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
-use App\Domains\CoreApp\Controller\ControllerWebAbstract;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -18304,7 +18000,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Device/Controller/Create.php:`
 
 ```php
@@ -18314,7 +18009,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Device\Service\Controller\Create as ControllerService;
+use App\Domains\Device\Controller\Service\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -18355,7 +18050,6 @@ class Create extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Device/Controller/Index.php:`
 
 ```php
@@ -18364,7 +18058,7 @@ class Create extends ControllerAbstract
 namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Device\Service\Controller\Index as ControllerService;
+use App\Domains\Device\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -18389,7 +18083,6 @@ class Index extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Device/Controller/Map.php:`
 
 ```php
@@ -18399,7 +18092,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Domains\Device\Service\Controller\Map as ControllerService;
+use App\Domains\Device\Controller\Service\Map as ControllerService;
 
 class Map extends ControllerAbstract
 {
@@ -18436,6 +18129,426 @@ class Map extends ControllerAbstract
 
 ```
 
+`app/Domains/Device/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/Device/Controller/Service/Create.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+
+class Create extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCreateUpdate();
+    }
+}
+
+```
+
+`app/Domains/Device/Controller/Service/CreateUpdateAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\Controller\Service;
+
+abstract class CreateUpdateAbstract extends ControllerAbstract
+{
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow([
+            'code' => ($this->row->code ?? helper()->uuid()),
+            'user_id' => $this->user()->id,
+        ]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataCreateUpdate(): array
+    {
+        return $this->dataCore() + [
+            'vehicles' => $this->vehicles(),
+            'position_filter_distance_default' => app('configuration')->int('position_filter_distance')
+        ];
+    }
+}
+
+```
+
+`app/Domains/Device/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Device\Model\Collection\Device as Collection;
+use App\Domains\Device\Model\Device as Model;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @var bool
+     */
+    protected bool $vehicleEmpty = true;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->filtersUserId();
+        $this->filtersVehicleId();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCore() + [
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Device\Model\Collection\Device
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId($this->vehicle()?->id)
+                ->withMessagesCount()
+                ->withMessagesPendingCount()
+                ->withUser()
+                ->withVehicle()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Device/Controller/Service/Map.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Device\Model\Collection\Device as Collection;
+use App\Domains\Device\Model\Device as Model;
+
+class Map extends ControllerAbstract
+{
+    /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @var bool
+     */
+    protected bool $vehicleEmpty = true;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->filtersUserId();
+        $this->filtersVehicleId();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCore() + [
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Device\Model\Collection\Device
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId($this->vehicle()?->id)
+                ->whenIds($this->requestArray('ids'))
+                ->whenTripFinished($this->requestBool('finished', null))
+                ->withVehicle()
+                ->withWhereHasPositionLast()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Device/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Device\Model\Device as Model;
+
+class Update extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Device\Model\Device $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCreateUpdate() + [
+            'row' => $this->row,
+        ];
+    }
+}
+
+```
+
+`app/Domains/Device/Controller/Service/UpdateDeviceMessage.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Device\Model\Device as Model;
+use App\Domains\DeviceMessage\Model\Collection\DeviceMessage as DeviceMessageCollection;
+use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
+
+class UpdateDeviceMessage extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Device\Model\Device $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCore() + [
+            'row' => $this->row,
+            'messages' => $this->messages(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\DeviceMessage\Model\Collection\DeviceMessage
+     */
+    protected function messages(): DeviceMessageCollection
+    {
+        return DeviceMessageModel::query()
+            ->byDeviceId($this->row->id)
+            ->list()
+            ->get();
+    }
+}
+
+```
+
+`app/Domains/Device/Controller/Service/UpdateTransfer.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Device\Model\Collection\Device as Collection;
+use App\Domains\Device\Model\Device as Model;
+use App\Domains\Trip\Model\Trip as TripModel;
+use App\Domains\User\Model\Collection\User as UserCollection;
+use App\Domains\User\Model\User as UserModel;
+use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
+
+class UpdateTransfer extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Device\Model\Device $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'devices' => $this->devices(),
+            'users' => $this->users(),
+            'vehicles' => $this->vehicles(),
+            'trips' => $this->trips(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Device\Model\Collection\Device
+     */
+    protected function devices(): Collection
+    {
+        return Model::query()
+            ->byUserId($this->row->user_id)
+            ->byIdNot($this->row->id)
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return \App\Domains\User\Model\Collection\User
+     */
+    protected function users(): UserCollection
+    {
+        return UserModel::query()
+            ->byIdNot($this->row->user_id)
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
+     */
+    protected function vehicles(): VehicleCollection
+    {
+        return VehicleModel::query()
+            ->byUserId($this->row->user_id)
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return int
+     */
+    protected function trips(): int
+    {
+        return TripModel::query()
+            ->byDeviceId($this->row->id)
+            ->count();
+    }
+}
+
+```
 
 `app/Domains/Device/Controller/Update.php:`
 
@@ -18446,7 +18559,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Device\Service\Controller\Update as ControllerService;
+use App\Domains\Device\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -18512,7 +18625,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Device/Controller/UpdateBoolean.php:`
 
 ```php
@@ -18550,7 +18662,6 @@ class UpdateBoolean extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Device/Controller/UpdateDeviceMessage.php:`
 
 ```php
@@ -18559,7 +18670,7 @@ class UpdateBoolean extends ControllerAbstract
 namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Device\Service\Controller\UpdateDeviceMessage as ControllerService;
+use App\Domains\Device\Controller\Service\UpdateDeviceMessage as ControllerService;
 
 class UpdateDeviceMessage extends ControllerAbstract
 {
@@ -18587,7 +18698,6 @@ class UpdateDeviceMessage extends ControllerAbstract
 }
 
 ```
-
 
 `app/Domains/Device/Controller/UpdateDeviceMessageCreate.php:`
 
@@ -18626,7 +18736,6 @@ class UpdateDeviceMessageCreate extends ControllerAbstract
 }
 
 ```
-
 
 `app/Domains/Device/Controller/UpdateDeviceMessageUpdate.php:`
 
@@ -18686,7 +18795,6 @@ class UpdateDeviceMessageUpdate extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Device/Controller/UpdateTransfer.php:`
 
 ```php
@@ -18696,7 +18804,7 @@ namespace App\Domains\Device\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Device\Service\Controller\UpdateTransfer as ControllerService;
+use App\Domains\Device\Controller\Service\UpdateTransfer as ControllerService;
 
 class UpdateTransfer extends ControllerAbstract
 {
@@ -18741,7 +18849,6 @@ class UpdateTransfer extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Device/Controller/router.php:`
 
 ```php
@@ -18767,7 +18874,6 @@ Route::group(['middleware' => ['user-auth-manager-mode']], static function () {
 });
 
 ```
-
 
 `app/Domains/Device/ControllerApi/ControllerApiAbstract.php:`
 
@@ -18802,7 +18908,6 @@ abstract class ControllerApiAbstract extends CoreControllerApiAbstract
 
 ```
 
-
 `app/Domains/Device/ControllerApi/Create.php:`
 
 ```php
@@ -18812,7 +18917,7 @@ namespace App\Domains\Device\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
 use App\Domains\Device\Model\Device as Model;
-use App\Domains\Device\Service\ControllerApi\Create as ControllerService;
+use App\Domains\Device\ControllerApi\Service\Create as ControllerService;
 
 class Create extends ControllerApiAbstract
 {
@@ -18843,7 +18948,6 @@ class Create extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Device/ControllerApi/Delete.php:`
 
 ```php
@@ -18867,7 +18971,6 @@ class Delete extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Device/ControllerApi/Index.php:`
 
 ```php
@@ -18876,7 +18979,7 @@ class Delete extends ControllerApiAbstract
 namespace App\Domains\Device\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Device\Service\ControllerApi\Index as ControllerService;
+use App\Domains\Device\ControllerApi\Service\Index as ControllerService;
 
 class Index extends ControllerApiAbstract
 {
@@ -18899,6 +19002,173 @@ class Index extends ControllerApiAbstract
 
 ```
 
+`app/Domains/Device/ControllerApi/Service/ControllerApiAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\ControllerApi\Service;
+
+use App\Domains\CoreApp\ControllerApi\Service\ControllerApiAbstract as CoreAppControllerApiAbstract;
+
+abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
+{
+}
+
+```
+
+`app/Domains/Device/ControllerApi/Service/Create.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+
+class Create extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCustom() + $this->dataDefault();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataCustom(): array
+    {
+        return ['code' => helper()->uuid()];
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataDefault(): array
+    {
+        return $this->request->input();
+    }
+}
+
+```
+
+`app/Domains/Device/ControllerApi/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Device\Model\Device as Model;
+
+class Index extends ControllerApiAbstract
+{
+    /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @var bool
+     */
+    protected bool $vehicleEmpty = true;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return Model::query()
+            ->byUserOrManager($this->auth)
+            ->whenUserId($this->requestInteger('user_id'))
+            ->whenVehicleId($this->requestInteger('vehicle_id'))
+            ->withSimple('user')
+            ->withSimple('vehicle')
+            ->list()
+            ->get()
+            ->all();
+    }
+}
+
+```
+
+`app/Domains/Device/ControllerApi/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Device\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Device\Model\Device as Model;
+
+class Update extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Device\Model\Device $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataDefault()
+            + $this->dataRow();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataDefault(): array
+    {
+        return $this->request->input();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataRow(): array
+    {
+        return $this->row->toArray();
+    }
+}
+
+```
 
 `app/Domains/Device/ControllerApi/Update.php:`
 
@@ -18909,7 +19179,7 @@ namespace App\Domains\Device\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
 use App\Domains\Device\Model\Device as Model;
-use App\Domains\Device\Service\ControllerApi\Update as ControllerService;
+use App\Domains\Device\ControllerApi\Service\Update as ControllerService;
 
 class Update extends ControllerApiAbstract
 {
@@ -18944,7 +19214,6 @@ class Update extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Device/ControllerApi/router.php:`
 
 ```php
@@ -18960,7 +19229,6 @@ Route::patch('/device/{id}', Update::class)->name('device.update');
 Route::delete('/device/{id}', Delete::class)->name('device.delete');
 
 ```
-
 
 `app/Domains/Device/Fractal/FractalFactory.php:`
 
@@ -19082,7 +19350,6 @@ class FractalFactory extends FractalAbstract
 
 ```
 
-
 `app/Domains/Device/Middleware/Available.php:`
 
 ```php
@@ -19126,7 +19393,6 @@ class Available extends MiddlewareAbstract
 
 ```
 
-
 `app/Domains/Device/Middleware/MiddlewareAbstract.php:`
 
 ```php
@@ -19141,7 +19407,6 @@ abstract class MiddlewareAbstract extends MiddlewareAbstractCore
 }
 
 ```
-
 
 `app/Domains/Device/Model/Builder/Device.php:`
 
@@ -19320,7 +19585,6 @@ class Device extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Device/Model/Collection/Device.php:`
 
 ```php
@@ -19335,7 +19599,6 @@ class Device extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/Device/Model/Device.php:`
 
@@ -19504,608 +19767,6 @@ class Device extends ModelAbstract
 
 ```
 
-
-`app/Domains/Device/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/Device/Service/Controller/Create.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-
-class Create extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCreateUpdate();
-    }
-}
-
-```
-
-
-`app/Domains/Device/Service/Controller/CreateUpdateAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\Controller;
-
-abstract class CreateUpdateAbstract extends ControllerAbstract
-{
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow([
-            'code' => ($this->row->code ?? helper()->uuid()),
-            'user_id' => $this->user()->id,
-        ]);
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataCreateUpdate(): array
-    {
-        return $this->dataCore() + [
-            'vehicles' => $this->vehicles(),
-            'position_filter_distance_default' => app('configuration')->int('position_filter_distance')
-        ];
-    }
-}
-
-```
-
-
-`app/Domains/Device/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Device\Model\Collection\Device as Collection;
-use App\Domains\Device\Model\Device as Model;
-
-class Index extends ControllerAbstract
-{
-    /**
-     * @var bool
-     */
-    protected bool $userEmpty = true;
-
-    /**
-     * @var bool
-     */
-    protected bool $vehicleEmpty = true;
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->filters();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filters(): void
-    {
-        $this->filtersUserId();
-        $this->filtersVehicleId();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCore() + [
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'vehicle_empty' => $this->vehicleEmpty(),
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Device\Model\Collection\Device
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->whenVehicleId($this->vehicle()?->id)
-                ->withMessagesCount()
-                ->withMessagesPendingCount()
-                ->withUser()
-                ->withVehicle()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Device/Service/Controller/Map.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Device\Model\Collection\Device as Collection;
-use App\Domains\Device\Model\Device as Model;
-
-class Map extends ControllerAbstract
-{
-    /**
-     * @var bool
-     */
-    protected bool $userEmpty = true;
-
-    /**
-     * @var bool
-     */
-    protected bool $vehicleEmpty = true;
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->filters();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filters(): void
-    {
-        $this->filtersUserId();
-        $this->filtersVehicleId();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCore() + [
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'vehicle_empty' => $this->vehicleEmpty(),
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Device\Model\Collection\Device
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->whenVehicleId($this->vehicle()?->id)
-                ->whenIds($this->requestArray('ids'))
-                ->whenTripFinished($this->requestBool('finished', null))
-                ->withVehicle()
-                ->withWhereHasPositionLast()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Device/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Device\Model\Device as Model;
-
-class Update extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Device\Model\Device $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCreateUpdate() + [
-            'row' => $this->row,
-        ];
-    }
-}
-
-```
-
-
-`app/Domains/Device/Service/Controller/UpdateDeviceMessage.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Device\Model\Device as Model;
-use App\Domains\DeviceMessage\Model\DeviceMessage as DeviceMessageModel;
-use App\Domains\DeviceMessage\Model\Collection\DeviceMessage as DeviceMessageCollection;
-
-class UpdateDeviceMessage extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Device\Model\Device $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCore() + [
-            'row' => $this->row,
-            'messages' => $this->messages(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\DeviceMessage\Model\Collection\DeviceMessage
-     */
-    protected function messages(): DeviceMessageCollection
-    {
-        return DeviceMessageModel::query()
-            ->byDeviceId($this->row->id)
-            ->list()
-            ->get();
-    }
-}
-
-```
-
-
-`app/Domains/Device/Service/Controller/UpdateTransfer.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Device\Model\Device as Model;
-use App\Domains\Device\Model\Collection\Device as Collection;
-use App\Domains\Trip\Model\Trip as TripModel;
-use App\Domains\User\Model\User as UserModel;
-use App\Domains\User\Model\Collection\User as UserCollection;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
-use App\Domains\Vehicle\Model\Collection\Vehicle as VehicleCollection;
-
-class UpdateTransfer extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Device\Model\Device $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'devices' => $this->devices(),
-            'users' => $this->users(),
-            'vehicles' => $this->vehicles(),
-            'trips' => $this->trips(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Device\Model\Collection\Device
-     */
-    protected function devices(): Collection
-    {
-        return Model::query()
-            ->byUserId($this->row->user_id)
-            ->byIdNot($this->row->id)
-            ->list()
-            ->get();
-    }
-
-    /**
-     * @return \App\Domains\User\Model\Collection\User
-     */
-    protected function users(): UserCollection
-    {
-        return UserModel::query()
-            ->byIdNot($this->row->user_id)
-            ->list()
-            ->get();
-    }
-
-    /**
-     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
-     */
-    protected function vehicles(): VehicleCollection
-    {
-        return VehicleModel::query()
-            ->byUserId($this->row->user_id)
-            ->list()
-            ->get();
-    }
-
-    /**
-     * @return int
-     */
-    protected function trips(): int
-    {
-        return TripModel::query()
-            ->byDeviceId($this->row->id)
-            ->count();
-    }
-}
-
-```
-
-
-`app/Domains/Device/Service/ControllerApi/ControllerApiAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\ControllerApi;
-
-use App\Domains\CoreApp\Service\ControllerApi\ControllerApiAbstract as CoreAppControllerApiAbstract;
-
-abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
-{
-}
-
-```
-
-
-`app/Domains/Device/Service/ControllerApi/Create.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-
-class Create extends ControllerApiAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCustom() + $this->dataDefault();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataCustom(): array
-    {
-        return ['code' => helper()->uuid()];
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataDefault(): array
-    {
-        return $this->request->input();
-    }
-}
-
-```
-
-
-`app/Domains/Device/Service/ControllerApi/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Device\Model\Device as Model;
-
-class Index extends ControllerApiAbstract
-{
-    /**
-     * @var bool
-     */
-    protected bool $userEmpty = true;
-
-    /**
-     * @var bool
-     */
-    protected bool $vehicleEmpty = true;
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return Model::query()
-            ->byUserOrManager($this->auth)
-            ->whenUserId($this->requestInteger('user_id'))
-            ->whenVehicleId($this->requestInteger('vehicle_id'))
-            ->withSimple('user')
-            ->withSimple('vehicle')
-            ->list()
-            ->get()
-            ->all();
-    }
-}
-
-```
-
-
-`app/Domains/Device/Service/ControllerApi/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Device\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Device\Model\Device as Model;
-
-class Update extends ControllerApiAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Device\Model\Device $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataDefault()
-            + $this->dataRow();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataDefault(): array
-    {
-        return $this->request->input();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataRow(): array
-    {
-        return $this->row->toArray();
-    }
-}
-
-```
-
-
 `app/Domains/Device/Validate/Create.php:`
 
 ```php
@@ -20142,7 +19803,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Device/Validate/Update.php:`
 
 ```php
@@ -20155,7 +19815,6 @@ class Update extends Create
 }
 
 ```
-
 
 `app/Domains/Device/Validate/UpdateBoolean.php:`
 
@@ -20171,7 +19830,6 @@ class UpdateBoolean extends UpdateBooleanCoreApp
 }
 
 ```
-
 
 `app/Domains/Device/Validate/UpdateTransfer.php:`
 
@@ -20199,7 +19857,6 @@ class UpdateTransfer extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Device/Validate/ValidateFactory.php:`
 
 ```php
@@ -20215,7 +19872,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 ```
 
-
 `app/Domains/DeviceMessage/Action/ActionAbstract.php:`
 
 ```php
@@ -20223,8 +19879,8 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 namespace App\Domains\DeviceMessage\Action;
 
-use App\Domains\DeviceMessage\Model\DeviceMessage as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\DeviceMessage\Model\DeviceMessage as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {
@@ -20236,7 +19892,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 ```
 
-
 `app/Domains/DeviceMessage/Action/ActionFactory.php:`
 
 ```php
@@ -20244,8 +19899,8 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 namespace App\Domains\DeviceMessage\Action;
 
-use App\Domains\DeviceMessage\Model\DeviceMessage as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\DeviceMessage\Model\DeviceMessage as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -20280,7 +19935,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/DeviceMessage/Action/Create.php:`
 
@@ -20365,7 +20019,6 @@ class Create extends ActionAbstract
 
 ```
 
-
 `app/Domains/DeviceMessage/Action/Delete.php:`
 
 ```php
@@ -20393,7 +20046,6 @@ class Delete extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/DeviceMessage/Action/Duplicate.php:`
 
@@ -20430,7 +20082,6 @@ class Duplicate extends ActionAbstract
 
 ```
 
-
 `app/Domains/DeviceMessage/Model/Builder/DeviceMessage.php:`
 
 ```php
@@ -20438,8 +20089,8 @@ class Duplicate extends ActionAbstract
 
 namespace App\Domains\DeviceMessage\Model\Builder;
 
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
+use App\Domains\Device\Model\Device as DeviceModel;
 
 class DeviceMessage extends BuilderAbstract
 {
@@ -20492,7 +20143,6 @@ class DeviceMessage extends BuilderAbstract
 
 ```
 
-
 `app/Domains/DeviceMessage/Model/Collection/DeviceMessage.php:`
 
 ```php
@@ -20508,7 +20158,6 @@ class DeviceMessage extends CollectionAbstract
 
 ```
 
-
 `app/Domains/DeviceMessage/Model/DeviceMessage.php:`
 
 ```php
@@ -20518,11 +20167,11 @@ namespace App\Domains\DeviceMessage\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\DeviceMessage\Model\Builder\DeviceMessage as Builder;
 use App\Domains\DeviceMessage\Model\Collection\DeviceMessage as Collection;
 use App\Domains\DeviceMessage\Test\Factory\DeviceMessage as TestFactory;
-use App\Domains\CoreApp\Model\ModelAbstract;
 
 class DeviceMessage extends ModelAbstract
 {
@@ -20593,7 +20242,6 @@ class DeviceMessage extends ModelAbstract
 
 ```
 
-
 `app/Domains/DeviceMessage/Validate/Create.php:`
 
 ```php
@@ -20619,7 +20267,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/DeviceMessage/Validate/ValidateFactory.php:`
 
 ```php
@@ -20635,7 +20282,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 ```
 
-
 `app/Domains/Error/Controller/ControllerAbstract.php:`
 
 ```php
@@ -20650,7 +20296,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 }
 
 ```
-
 
 `app/Domains/Error/Controller/Index.php:`
 
@@ -20694,7 +20339,6 @@ class Index extends ControllerAbstract
 
 ```
 
-
 `app/Domains/File/Action/ActionAbstract.php:`
 
 ```php
@@ -20715,7 +20359,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 ```
 
-
 `app/Domains/File/Action/ActionFactory.php:`
 
 ```php
@@ -20724,8 +20367,8 @@ abstract class ActionAbstract extends ActionAbstractCore
 namespace App\Domains\File\Action;
 
 use App\Domains\Core\Action\ActionFactoryAbstract;
-use App\Domains\File\Model\File as Model;
 use App\Domains\File\Model\Collection\File as Collection;
+use App\Domains\File\Model\File as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -20769,7 +20412,6 @@ class ActionFactory extends ActionFactoryAbstract
 
 ```
 
-
 `app/Domains/File/Action/Create.php:`
 
 ```php
@@ -20798,7 +20440,6 @@ class Create extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/File/Action/CreateUpdateAbstract.php:`
 
@@ -20913,7 +20554,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
 ```
 
-
 `app/Domains/File/Action/Delete.php:`
 
 ```php
@@ -20959,7 +20599,6 @@ class Delete extends ActionAbstract
 
 ```
 
-
 `app/Domains/File/Action/Update.php:`
 
 ```php
@@ -20983,7 +20622,6 @@ class Update extends CreateUpdateAbstract
 
 ```
 
-
 `app/Domains/File/Action/Upload.php:`
 
 ```php
@@ -20992,8 +20630,8 @@ class Update extends CreateUpdateAbstract
 namespace App\Domains\File\Action;
 
 use Throwable;
-use App\Domains\File\Model\File as Model;
 use App\Domains\File\Model\Collection\File as Collection;
+use App\Domains\File\Model\File as Model;
 
 class Upload extends ActionAbstract
 {
@@ -21132,7 +20770,6 @@ class Upload extends ActionAbstract
 
 ```
 
-
 `app/Domains/File/Controller/ControllerAbstract.php:`
 
 ```php
@@ -21140,8 +20777,8 @@ class Upload extends ActionAbstract
 
 namespace App\Domains\File\Controller;
 
-use App\Domains\File\Model\File as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
+use App\Domains\File\Model\File as Model;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -21165,7 +20802,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 }
 
 ```
-
 
 `app/Domains/File/Controller/View.php:`
 
@@ -21197,7 +20833,6 @@ class View extends ControllerAbstract
 
 ```
 
-
 `app/Domains/File/Controller/router.php:`
 
 ```php
@@ -21212,7 +20847,6 @@ Route::group(['middleware' => ['user-auth']], static function () {
 });
 
 ```
-
 
 `app/Domains/File/Model/Builder/File.php:`
 
@@ -21267,7 +20901,6 @@ class File extends BuilderAbstract
 
 ```
 
-
 `app/Domains/File/Model/Collection/File.php:`
 
 ```php
@@ -21283,7 +20916,6 @@ class File extends CollectionAbstract
 
 ```
 
-
 `app/Domains/File/Model/File.php:`
 
 ```php
@@ -21293,9 +20925,9 @@ namespace App\Domains\File\Model;
 
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\File\Model\Builder\File as Builder;
 use App\Domains\File\Model\Collection\File as Collection;
-use App\Domains\CoreApp\Model\ModelAbstract;
 
 class File extends ModelAbstract
 {
@@ -21388,7 +21020,6 @@ class File extends ModelAbstract
 
 ```
 
-
 `app/Domains/File/Validate/Create.php:`
 
 ```php
@@ -21416,7 +21047,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/File/Validate/Update.php:`
 
 ```php
@@ -21440,7 +21070,6 @@ class Update extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/File/Validate/Upload.php:`
 
@@ -21472,7 +21101,6 @@ class Upload extends ValidateAbstract
 
 ```
 
-
 `app/Domains/File/Validate/ValidateFactory.php:`
 
 ```php
@@ -21487,7 +21115,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Help/Command/CommandAbstract.php:`
 
@@ -21504,7 +21131,6 @@ abstract class CommandAbstract extends CommandAbstractSahred
 
 ```
 
-
 `app/Domains/Help/Command/Show.php:`
 
 ```php
@@ -21512,8 +21138,8 @@ abstract class CommandAbstract extends CommandAbstractSahred
 
 namespace App\Domains\Help\Command;
 
-use App\Domains\Help\Service\ControllerApi\Index as IndexService;
-use App\Domains\Help\Service\ControllerApi\Detail as DetailService;
+use App\Domains\Help\ControllerApi\Service\Detail as DetailService;
+use App\Domains\Help\ControllerApi\Service\Index as IndexService;
 
 class Show extends CommandAbstract
 {
@@ -21544,7 +21170,6 @@ class Show extends CommandAbstract
 
 ```
 
-
 `app/Domains/Help/ControllerApi/ControllerApiAbstract.php:`
 
 ```php
@@ -21560,7 +21185,6 @@ abstract class ControllerApiAbstract extends CoreControllerApiAbstract
 
 ```
 
-
 `app/Domains/Help/ControllerApi/Detail.php:`
 
 ```php
@@ -21569,7 +21193,7 @@ abstract class ControllerApiAbstract extends CoreControllerApiAbstract
 namespace App\Domains\Help\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Help\Service\ControllerApi\Detail as ControllerService;
+use App\Domains\Help\ControllerApi\Service\Detail as ControllerService;
 
 class Detail extends ControllerApiAbstract
 {
@@ -21586,7 +21210,6 @@ class Detail extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Help/ControllerApi/Index.php:`
 
 ```php
@@ -21595,7 +21218,7 @@ class Detail extends ControllerApiAbstract
 namespace App\Domains\Help\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Help\Service\ControllerApi\Index as ControllerService;
+use App\Domains\Help\ControllerApi\Service\Index as ControllerService;
 
 class Index extends ControllerApiAbstract
 {
@@ -21610,30 +21233,14 @@ class Index extends ControllerApiAbstract
 
 ```
 
-
-`app/Domains/Help/ControllerApi/router.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Help\ControllerApi;
-
-use Illuminate\Support\Facades\Route;
-
-Route::get('/help', Index::class)->name('help.index');
-Route::get('/help/{name}', Detail::class)->name('help.detail');
-
-```
-
-
-`app/Domains/Help/Service/ControllerApi/ControllerApiAbstract.php:`
+`app/Domains/Help/ControllerApi/Service/ControllerApiAbstract.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Help\Service\ControllerApi;
+namespace App\Domains\Help\ControllerApi\Service;
 
-use App\Domains\CoreApp\Service\ControllerApi\ControllerApiAbstract as CoreAppControllerApiAbstract;
+use App\Domains\CoreApp\ControllerApi\Service\ControllerApiAbstract as CoreAppControllerApiAbstract;
 
 abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
 {
@@ -21641,13 +21248,12 @@ abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
 
 ```
 
-
-`app/Domains/Help/Service/ControllerApi/Detail.php:`
+`app/Domains/Help/ControllerApi/Service/Detail.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Help\Service\ControllerApi;
+namespace App\Domains\Help\ControllerApi\Service;
 
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
@@ -21815,13 +21421,12 @@ class Detail extends ControllerApiAbstract
 
 ```
 
-
-`app/Domains/Help/Service/ControllerApi/Index.php:`
+`app/Domains/Help/ControllerApi/Service/Index.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Help\Service\ControllerApi;
+namespace App\Domains\Help\ControllerApi\Service;
 
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
@@ -21868,6 +21473,19 @@ class Index extends ControllerApiAbstract
 
 ```
 
+`app/Domains/Help/ControllerApi/router.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Help\ControllerApi;
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('/help', Index::class)->name('help.index');
+Route::get('/help/{name}', Detail::class)->name('help.detail');
+
+```
 
 `app/Domains/IpLock/Action/ActionAbstract.php:`
 
@@ -21876,8 +21494,8 @@ class Index extends ControllerApiAbstract
 
 namespace App\Domains\IpLock\Action;
 
-use App\Domains\IpLock\Model\IpLock as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\IpLock\Model\IpLock as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {
@@ -21889,7 +21507,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 ```
 
-
 `app/Domains/IpLock/Action/ActionFactory.php:`
 
 ```php
@@ -21897,8 +21514,8 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 namespace App\Domains\IpLock\Action;
 
-use App\Domains\IpLock\Model\IpLock as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\IpLock\Model\IpLock as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -21957,7 +21574,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/IpLock/Action/Check.php:`
 
@@ -22029,7 +21645,6 @@ class Check extends ActionAbstract
 
 ```
 
-
 `app/Domains/IpLock/Action/Create.php:`
 
 ```php
@@ -22054,7 +21669,6 @@ class Create extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/IpLock/Action/CreateUpdateAbstract.php:`
 
@@ -22134,7 +21748,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
 ```
 
-
 `app/Domains/IpLock/Action/Delete.php:`
 
 ```php
@@ -22162,7 +21775,6 @@ class Delete extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/IpLock/Action/Lock.php:`
 
@@ -22233,7 +21845,6 @@ class Lock extends ActionAbstract
 
 ```
 
-
 `app/Domains/IpLock/Action/Update.php:`
 
 ```php
@@ -22255,7 +21866,6 @@ class Update extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/IpLock/Action/UpdateEndAt.php:`
 
@@ -22311,7 +21921,6 @@ class UpdateEndAt extends ActionAbstract
 
 ```
 
-
 `app/Domains/IpLock/Controller/ControllerAbstract.php:`
 
 ```php
@@ -22343,7 +21952,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 }
 
 ```
-
 
 `app/Domains/IpLock/Controller/Create.php:`
 
@@ -22386,7 +21994,6 @@ class Create extends ControllerAbstract
 
 ```
 
-
 `app/Domains/IpLock/Controller/Index.php:`
 
 ```php
@@ -22395,8 +22002,8 @@ class Create extends ControllerAbstract
 namespace App\Domains\IpLock\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\IpLock\Model\IpLock as Model;
 use App\Domains\IpLock\Model\Collection\IpLock as Collection;
+use App\Domains\IpLock\Model\IpLock as Model;
 
 class Index extends ControllerAbstract
 {
@@ -22424,7 +22031,6 @@ class Index extends ControllerAbstract
 }
 
 ```
-
 
 `app/Domains/IpLock/Controller/Update.php:`
 
@@ -22496,7 +22102,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/IpLock/Controller/UpdateEndAt.php:`
 
 ```php
@@ -22533,7 +22138,6 @@ class UpdateEndAt extends ControllerAbstract
 
 ```
 
-
 `app/Domains/IpLock/Controller/router.php:`
 
 ```php
@@ -22552,7 +22156,6 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
 
 ```
 
-
 `app/Domains/IpLock/Exception/ExceptionAbstract.php:`
 
 ```php
@@ -22567,7 +22170,6 @@ abstract class ExceptionAbstract extends GenericException
 }
 
 ```
-
 
 `app/Domains/IpLock/Exception/IpLocked.php:`
 
@@ -22590,7 +22192,6 @@ class IpLocked extends ExceptionAbstract
 }
 
 ```
-
 
 `app/Domains/IpLock/Middleware/Check.php:`
 
@@ -22632,7 +22233,6 @@ class Check extends MiddlewareAbstract
 
 ```
 
-
 `app/Domains/IpLock/Middleware/MiddlewareAbstract.php:`
 
 ```php
@@ -22652,7 +22252,6 @@ abstract class MiddlewareAbstract extends MiddlewareAbstractCore
 }
 
 ```
-
 
 `app/Domains/IpLock/Model/Builder/IpLock.php:`
 
@@ -22686,7 +22285,6 @@ class IpLock extends BuilderAbstract
 
 ```
 
-
 `app/Domains/IpLock/Model/Collection/IpLock.php:`
 
 ```php
@@ -22702,7 +22300,6 @@ class IpLock extends CollectionAbstract
 
 ```
 
-
 `app/Domains/IpLock/Model/IpLock.php:`
 
 ```php
@@ -22711,10 +22308,10 @@ class IpLock extends CollectionAbstract
 namespace App\Domains\IpLock\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\IpLock\Model\Builder\IpLock as Builder;
 use App\Domains\IpLock\Model\Collection\IpLock as Collection;
 use App\Domains\IpLock\Test\Factory\IpLock as TestFactory;
-use App\Domains\CoreApp\Model\ModelAbstract;
 
 class IpLock extends ModelAbstract
 {
@@ -22787,7 +22384,6 @@ class IpLock extends ModelAbstract
 
 ```
 
-
 `app/Domains/IpLock/Validate/Check.php:`
 
 ```php
@@ -22811,7 +22407,6 @@ class Check extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/IpLock/Validate/Create.php:`
 
@@ -22838,7 +22433,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/IpLock/Validate/Lock.php:`
 
 ```php
@@ -22863,7 +22457,6 @@ class Lock extends ValidateAbstract
 
 ```
 
-
 `app/Domains/IpLock/Validate/Update.php:`
 
 ```php
@@ -22876,7 +22469,6 @@ class Update extends Create
 }
 
 ```
-
 
 `app/Domains/IpLock/Validate/ValidateFactory.php:`
 
@@ -22893,7 +22485,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 ```
 
-
 `app/Domains/Language/Action/ActionAbstract.php:`
 
 ```php
@@ -22901,8 +22492,8 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 namespace App\Domains\Language\Action;
 
-use App\Domains\Language\Model\Language as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\Language\Model\Language as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {
@@ -22914,7 +22505,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 ```
 
-
 `app/Domains/Language/Action/ActionFactory.php:`
 
 ```php
@@ -22922,8 +22512,8 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 namespace App\Domains\Language\Action;
 
-use App\Domains\Language\Model\Language as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\Language\Model\Language as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -22950,7 +22540,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Language/Action/Request.php:`
 
@@ -23096,7 +22685,6 @@ class Request extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Language/Action/Set.php:`
 
@@ -23280,7 +22868,6 @@ class Set extends ActionAbstract
 
 ```
 
-
 `app/Domains/Language/ControllerApi/ControllerApiAbstract.php:`
 
 ```php
@@ -23295,7 +22882,6 @@ abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
 }
 
 ```
-
 
 `app/Domains/Language/ControllerApi/Index.php:`
 
@@ -23320,7 +22906,6 @@ class Index extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Language/ControllerApi/router.php:`
 
 ```php
@@ -23333,7 +22918,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/language', Index::class)->name('language.index');
 
 ```
-
 
 `app/Domains/Language/Fractal/FractalFactory.php:`
 
@@ -23380,7 +22964,6 @@ class FractalFactory extends FractalAbstract
 
 ```
 
-
 `app/Domains/Language/Middleware/Request.php:`
 
 ```php
@@ -23409,7 +22992,6 @@ class Request extends MiddlewareAbstract
 }
 
 ```
-
 
 `app/Domains/Language/Model/Builder/Language.php:`
 
@@ -23480,7 +23062,6 @@ class Language extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Language/Model/Collection/Language.php:`
 
 ```php
@@ -23496,7 +23077,6 @@ class Language extends CollectionAbstract
 
 ```
 
-
 `app/Domains/Language/Model/Language.php:`
 
 ```php
@@ -23505,10 +23085,10 @@ class Language extends CollectionAbstract
 namespace App\Domains\Language\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Language\Model\Builder\Language as Builder;
 use App\Domains\Language\Model\Collection\Language as Collection;
 use App\Domains\Language\Test\Factory\Language as TestFactory;
-use App\Domains\CoreApp\Model\ModelAbstract;
 
 class Language extends ModelAbstract
 {
@@ -23576,7 +23156,6 @@ class Language extends ModelAbstract
 
 ```
 
-
 `app/Domains/Language/Seeder/Language.php:`
 
 ```php
@@ -23584,8 +23163,8 @@ class Language extends ModelAbstract
 
 namespace App\Domains\Language\Seeder;
 
-use App\Domains\Language\Model\Language as Model;
 use App\Domains\Core\Seeder\SeederAbstract;
+use App\Domains\Language\Model\Language as Model;
 
 class Language extends SeederAbstract
 {
@@ -23600,7 +23179,6 @@ class Language extends SeederAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Action/ActionAbstract.php:`
 
 ```php
@@ -23608,8 +23186,8 @@ class Language extends SeederAbstract
 
 namespace App\Domains\Maintenance\Action;
 
-use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\Maintenance\Model\Maintenance as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {
@@ -23621,7 +23199,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 ```
 
-
 `app/Domains/Maintenance/Action/ActionFactory.php:`
 
 ```php
@@ -23629,8 +23206,8 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 namespace App\Domains\Maintenance\Action;
 
-use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\Maintenance\Model\Maintenance as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -23674,7 +23251,6 @@ class ActionFactory extends ActionFactoryAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Action/Create.php:`
 
 ```php
@@ -23706,7 +23282,6 @@ class Create extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/Maintenance/Action/CreateUpdateAbstract.php:`
 
@@ -23800,7 +23375,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Action/Delete.php:`
 
 ```php
@@ -23840,7 +23414,6 @@ class Delete extends ActionAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Action/Update.php:`
 
 ```php
@@ -23869,7 +23442,6 @@ class Update extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/Maintenance/Action/UpdateItem.php:`
 
@@ -24039,7 +23611,6 @@ class UpdateItem extends ActionAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Controller/ControllerAbstract.php:`
 
 ```php
@@ -24047,8 +23618,8 @@ class UpdateItem extends ActionAbstract
 
 namespace App\Domains\Maintenance\Controller;
 
-use App\Domains\Maintenance\Model\Maintenance as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
+use App\Domains\Maintenance\Model\Maintenance as Model;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -24073,7 +23644,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Controller/Create.php:`
 
 ```php
@@ -24083,7 +23653,7 @@ namespace App\Domains\Maintenance\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Maintenance\Service\Controller\Create as ControllerService;
+use App\Domains\Maintenance\Controller\Service\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -24124,7 +23694,6 @@ class Create extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Controller/Index.php:`
 
 ```php
@@ -24133,7 +23702,7 @@ class Create extends ControllerAbstract
 namespace App\Domains\Maintenance\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Maintenance\Service\Controller\Index as ControllerService;
+use App\Domains\Maintenance\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -24158,6 +23727,365 @@ class Index extends ControllerAbstract
 
 ```
 
+`app/Domains/Maintenance/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Maintenance\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/Maintenance/Controller/Service/Create.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Maintenance\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\File\Model\Collection\File as FileCollection;
+
+class Create extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCreateUpdate() + [
+            'files' => $this->files(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\File\Model\Collection\File
+     */
+    protected function files(): FileCollection
+    {
+        return new FileCollection();
+    }
+}
+
+```
+
+`app/Domains/Maintenance/Controller/Service/CreateUpdateAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Maintenance\Controller\Service;
+
+abstract class CreateUpdateAbstract extends ControllerAbstract
+{
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow([
+            'user_id' => $this->user()->id,
+        ]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataCreateUpdate(): array
+    {
+        return $this->dataCore() + [
+            'vehicles' => $this->vehicles(),
+        ];
+    }
+}
+
+```
+
+`app/Domains/Maintenance/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Maintenance\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Maintenance\Model\Collection\Maintenance as Collection;
+use App\Domains\Maintenance\Model\Maintenance as Model;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @var bool
+     */
+    protected bool $vehicleEmpty = true;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->filtersDates();
+        $this->filterIds();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersDates(): void
+    {
+        if (preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/', (string)$this->request->input('start_at')) === 0) {
+            $this->request->merge(['start_at' => '']);
+        }
+
+        if (preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/', (string)$this->request->input('end_at')) === 0) {
+            $this->request->merge(['end_at' => '']);
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function filterIds(): void
+    {
+        $this->filtersUserId();
+        $this->filtersVehicleId();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCore() + [
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
+            'list' => $this->list(),
+            'date_min' => $this->dateMin(),
+            'total' => $this->list()->sum('amount'),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Maintenance\Model\Collection\Maintenance
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->whenSearch($this->request->input('search'))
+                ->whenVehicleId((int)$this->request->input('vehicle_id'))
+                ->whenDateAtBetween($this->request->input('start_at'), $this->request->input('end_at'))
+                ->withSimple('user')
+                ->withSimple('vehicle')
+                ->list()
+                ->get()
+        );
+    }
+
+    /**
+     * @return ?string
+     */
+    protected function dateMin(): ?string
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->orderByDateAtAsc()
+                ->rawValue('DATE(`date_at`)')
+        );
+    }
+}
+
+```
+
+`app/Domains/Maintenance/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Maintenance\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\File\Model\Collection\File as FileCollection;
+use App\Domains\File\Model\File as FileModel;
+use App\Domains\Maintenance\Model\Maintenance as Model;
+
+class Update extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Maintenance\Model\Maintenance $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCreateUpdate() + [
+            'row' => $this->row,
+            'files' => $this->files(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\File\Model\Collection\File
+     */
+    protected function files(): FileCollection
+    {
+        return FileModel::query()
+            ->byRelated('maintenance', $this->row->id)
+            ->list()
+            ->get();
+    }
+}
+
+```
+
+`app/Domains/Maintenance/Controller/Service/UpdateItem.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Maintenance\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Maintenance\Model\Collection\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemCollection;
+use App\Domains\Maintenance\Model\Maintenance as Model;
+use App\Domains\Maintenance\Model\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemModel;
+use App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem as MaintenanceItemCollection;
+use App\Domains\MaintenanceItem\Model\MaintenanceItem as MaintenanceItemModel;
+
+class UpdateItem extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Maintenance\Model\Maintenance $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'items' => $this->items(),
+            'itemsPivot' => $this->itemsPivot(),
+            'total' => $this->total(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem
+     */
+    protected function items(): MaintenanceItemCollection
+    {
+        return MaintenanceItemModel::query()
+            ->byUserId($this->user()->id)
+            ->list()
+            ->get()
+            ->merge($this->itemsMerge());
+    }
+
+    /**
+     * @return \App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem
+     */
+    protected function itemsMerge(): MaintenanceItemCollection
+    {
+        return new MaintenanceItemCollection([
+            new MaintenanceItemModel([
+                'id' => 0,
+                'name' => __('maintenance-update-item.add'),
+            ]),
+        ]);
+    }
+
+    /**
+     * @return \App\Domains\Maintenance\Model\Collection\MaintenanceMaintenanceItem
+     */
+    protected function itemsPivot(): MaintenanceMaintenanceItemCollection
+    {
+        return $this->cache(
+            fn () => MaintenanceMaintenanceItemModel::query()
+                ->byMaintenanceId($this->row->id)
+                ->list()
+                ->get()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    protected function total(): array
+    {
+        $itemsPivot = $this->itemsPivot();
+
+        return [
+            'quantity' => $itemsPivot->sum('quantity'),
+            'amount_gross' => $itemsPivot->sum('amount_gross'),
+            'amount_net' => $itemsPivot->sum('amount_net'),
+            'subtotal' => $itemsPivot->sum('subtotal'),
+            'tax_amount' => $itemsPivot->sum('tax_amount'),
+            'total' => $itemsPivot->sum('total'),
+        ];
+    }
+}
+
+```
 
 `app/Domains/Maintenance/Controller/Update.php:`
 
@@ -24168,7 +24096,7 @@ namespace App\Domains\Maintenance\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Maintenance\Service\Controller\Update as ControllerService;
+use App\Domains\Maintenance\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -24234,7 +24162,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Controller/UpdateItem.php:`
 
 ```php
@@ -24245,7 +24172,7 @@ namespace App\Domains\Maintenance\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Maintenance\Service\Controller\UpdateItem as ControllerService;
+use App\Domains\Maintenance\Controller\Service\UpdateItem as ControllerService;
 
 class UpdateItem extends ControllerAbstract
 {
@@ -24292,7 +24219,6 @@ class UpdateItem extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Controller/router.php:`
 
 ```php
@@ -24310,7 +24236,6 @@ Route::group(['middleware' => ['user-auth', 'vehicle.available']], static functi
 });
 
 ```
-
 
 `app/Domains/Maintenance/Model/Builder/Maintenance.php:`
 
@@ -24419,7 +24344,6 @@ class Maintenance extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Model/Builder/MaintenanceMaintenanceItem.php:`
 
 ```php
@@ -24520,7 +24444,6 @@ class MaintenanceMaintenanceItem extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Model/Collection/Maintenance.php:`
 
 ```php
@@ -24535,7 +24458,6 @@ class Maintenance extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/Maintenance/Model/Collection/MaintenanceMaintenanceItem.php:`
 
@@ -24552,7 +24474,6 @@ class MaintenanceMaintenanceItem extends CollectionAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Model/Maintenance.php:`
 
 ```php
@@ -24564,12 +24485,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\File\Model\File as FileModel;
 use App\Domains\Maintenance\Model\Builder\Maintenance as Builder;
 use App\Domains\Maintenance\Model\Collection\Maintenance as Collection;
 use App\Domains\Maintenance\Test\Factory\Maintenance as TestFactory;
 use App\Domains\MaintenanceItem\Model\MaintenanceItem as MaintenanceItemModel;
-use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\User\Model\User as UserModel;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
@@ -24663,7 +24584,6 @@ class Maintenance extends ModelAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Model/MaintenanceMaintenanceItem.php:`
 
 ```php
@@ -24672,10 +24592,10 @@ class Maintenance extends ModelAbstract
 namespace App\Domains\Maintenance\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Domains\CoreApp\Model\PivotAbstract;
 use App\Domains\Maintenance\Model\Builder\MaintenanceMaintenanceItem as Builder;
 use App\Domains\Maintenance\Model\Collection\MaintenanceMaintenanceItem as Collection;
 use App\Domains\MaintenanceItem\Model\MaintenanceItem as MaintenanceItemModel;
-use App\Domains\CoreApp\Model\PivotAbstract;
 
 class MaintenanceMaintenanceItem extends PivotAbstract
 {
@@ -24746,373 +24666,6 @@ class MaintenanceMaintenanceItem extends PivotAbstract
 
 ```
 
-
-`app/Domains/Maintenance/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Maintenance\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/Maintenance/Service/Controller/Create.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Maintenance\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\File\Model\Collection\File as FileCollection;
-
-class Create extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCreateUpdate() + [
-            'files' => $this->files(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\File\Model\Collection\File
-     */
-    protected function files(): FileCollection
-    {
-        return new FileCollection();
-    }
-}
-
-```
-
-
-`app/Domains/Maintenance/Service/Controller/CreateUpdateAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Maintenance\Service\Controller;
-
-abstract class CreateUpdateAbstract extends ControllerAbstract
-{
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow([
-            'user_id' => $this->user()->id,
-        ]);
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataCreateUpdate(): array
-    {
-        return $this->dataCore() + [
-            'vehicles' => $this->vehicles(),
-        ];
-    }
-}
-
-```
-
-
-`app/Domains/Maintenance/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Maintenance\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Maintenance\Model\Maintenance as Model;
-use App\Domains\Maintenance\Model\Collection\Maintenance as Collection;
-
-class Index extends ControllerAbstract
-{
-    /**
-     * @var bool
-     */
-    protected bool $userEmpty = true;
-
-    /**
-     * @var bool
-     */
-    protected bool $vehicleEmpty = true;
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->filters();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filters(): void
-    {
-        $this->filtersDates();
-        $this->filterIds();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filtersDates(): void
-    {
-        if (preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/', (string)$this->request->input('start_at')) === 0) {
-            $this->request->merge(['start_at' => '']);
-        }
-
-        if (preg_match('/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/', (string)$this->request->input('end_at')) === 0) {
-            $this->request->merge(['end_at' => '']);
-        }
-    }
-
-    /**
-     * @return void
-     */
-    protected function filterIds(): void
-    {
-        $this->filtersUserId();
-        $this->filtersVehicleId();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCore() + [
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'vehicle_empty' => $this->vehicleEmpty(),
-            'list' => $this->list(),
-            'date_min' => $this->dateMin(),
-            'total' => $this->list()->sum('amount'),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Maintenance\Model\Collection\Maintenance
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->whenSearch($this->request->input('search'))
-                ->whenVehicleId((int)$this->request->input('vehicle_id'))
-                ->whenDateAtBetween($this->request->input('start_at'), $this->request->input('end_at'))
-                ->withSimple('user')
-                ->withSimple('vehicle')
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
-     * @return ?string
-     */
-    protected function dateMin(): ?string
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->orderByDateAtAsc()
-                ->rawValue('DATE(`date_at`)')
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Maintenance/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Maintenance\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\File\Model\File as FileModel;
-use App\Domains\File\Model\Collection\File as FileCollection;
-use App\Domains\Maintenance\Model\Maintenance as Model;
-
-class Update extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Maintenance\Model\Maintenance $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCreateUpdate() + [
-            'row' => $this->row,
-            'files' => $this->files(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\File\Model\Collection\File
-     */
-    protected function files(): FileCollection
-    {
-        return FileModel::query()
-            ->byRelated('maintenance', $this->row->id)
-            ->list()
-            ->get();
-    }
-}
-
-```
-
-
-`app/Domains/Maintenance/Service/Controller/UpdateItem.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Maintenance\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Maintenance\Model\Maintenance as Model;
-use App\Domains\Maintenance\Model\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemModel;
-use App\Domains\Maintenance\Model\Collection\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemCollection;
-use App\Domains\MaintenanceItem\Model\MaintenanceItem as MaintenanceItemModel;
-use App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem as MaintenanceItemCollection;
-
-class UpdateItem extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Maintenance\Model\Maintenance $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'items' => $this->items(),
-            'itemsPivot' => $this->itemsPivot(),
-            'total' => $this->total(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem
-     */
-    protected function items(): MaintenanceItemCollection
-    {
-        return MaintenanceItemModel::query()
-            ->byUserId($this->user()->id)
-            ->list()
-            ->get()
-            ->merge($this->itemsMerge());
-    }
-
-    /**
-     * @return \App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem
-     */
-    protected function itemsMerge(): MaintenanceItemCollection
-    {
-        return new MaintenanceItemCollection([
-            new MaintenanceItemModel([
-                'id' => 0,
-                'name' => __('maintenance-update-item.add'),
-            ]),
-        ]);
-    }
-
-    /**
-     * @return \App\Domains\Maintenance\Model\Collection\MaintenanceMaintenanceItem
-     */
-    protected function itemsPivot(): MaintenanceMaintenanceItemCollection
-    {
-        return $this->cache(
-            fn () => MaintenanceMaintenanceItemModel::query()
-                ->byMaintenanceId($this->row->id)
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
-     * @return array
-     */
-    protected function total(): array
-    {
-        $itemsPivot = $this->itemsPivot();
-
-        return [
-            'quantity' => $itemsPivot->sum('quantity'),
-            'amount_gross' => $itemsPivot->sum('amount_gross'),
-            'amount_net' => $itemsPivot->sum('amount_net'),
-            'subtotal' => $itemsPivot->sum('subtotal'),
-            'tax_amount' => $itemsPivot->sum('tax_amount'),
-            'total' => $itemsPivot->sum('total'),
-        ];
-    }
-}
-
-```
-
-
 `app/Domains/Maintenance/Validate/Create.php:`
 
 ```php
@@ -25145,7 +24698,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Validate/Update.php:`
 
 ```php
@@ -25158,7 +24710,6 @@ class Update extends Create
 }
 
 ```
-
 
 `app/Domains/Maintenance/Validate/UpdateItem.php:`
 
@@ -25191,7 +24742,6 @@ class UpdateItem extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Maintenance/Validate/ValidateFactory.php:`
 
 ```php
@@ -25206,7 +24756,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/MaintenanceItem/Action/ActionAbstract.php:`
 
@@ -25228,7 +24777,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 ```
 
-
 `app/Domains/MaintenanceItem/Action/ActionFactory.php:`
 
 ```php
@@ -25236,8 +24784,8 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 namespace App\Domains\MaintenanceItem\Action;
 
-use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -25273,7 +24821,6 @@ class ActionFactory extends ActionFactoryAbstract
 
 ```
 
-
 `app/Domains/MaintenanceItem/Action/Create.php:`
 
 ```php
@@ -25298,7 +24845,6 @@ class Create extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/MaintenanceItem/Action/CreateUpdateAbstract.php:`
 
@@ -25378,7 +24924,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
 ```
 
-
 `app/Domains/MaintenanceItem/Action/Delete.php:`
 
 ```php
@@ -25407,7 +24952,6 @@ class Delete extends ActionAbstract
 
 ```
 
-
 `app/Domains/MaintenanceItem/Action/Update.php:`
 
 ```php
@@ -25428,7 +24972,6 @@ class Update extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/MaintenanceItem/Controller/ControllerAbstract.php:`
 
@@ -25463,7 +25006,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/MaintenanceItem/Controller/Create.php:`
 
 ```php
@@ -25474,7 +25016,7 @@ namespace App\Domains\MaintenanceItem\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\MaintenanceItem\Service\Controller\Create as ControllerService;
+use App\Domains\MaintenanceItem\Controller\Service\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -25527,7 +25069,6 @@ class Create extends ControllerAbstract
 
 ```
 
-
 `app/Domains/MaintenanceItem/Controller/Index.php:`
 
 ```php
@@ -25536,7 +25077,7 @@ class Create extends ControllerAbstract
 namespace App\Domains\MaintenanceItem\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\MaintenanceItem\Service\Controller\Index as ControllerService;
+use App\Domains\MaintenanceItem\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -25561,6 +25102,262 @@ class Index extends ControllerAbstract
 
 ```
 
+`app/Domains/MaintenanceItem/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\MaintenanceItem\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/MaintenanceItem/Controller/Service/Create.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\MaintenanceItem\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+
+class Create extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCreateUpdate();
+    }
+}
+
+```
+
+`app/Domains/MaintenanceItem/Controller/Service/CreateUpdateAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\MaintenanceItem\Controller\Service;
+
+abstract class CreateUpdateAbstract extends ControllerAbstract
+{
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow([
+            'user_id' => $this->user()->id,
+        ]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataCreateUpdate(): array
+    {
+        return $this->dataCore();
+    }
+}
+
+```
+
+`app/Domains/MaintenanceItem/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\MaintenanceItem\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem as Collection;
+use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->filtersUserId();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCore() + [
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->withMaintenancesCount()
+                ->withStats()
+                ->withSimple('user')
+                ->orderByMaintenancesCount()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/MaintenanceItem/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\MaintenanceItem\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
+
+class Update extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\MaintenanceItem\Model\MaintenanceItem $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCreateUpdate() + [
+            'row' => $this->row,
+        ];
+    }
+}
+
+```
+
+`app/Domains/MaintenanceItem/Controller/Service/UpdateMaintenance.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\MaintenanceItem\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Maintenance\Model\Collection\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemCollection;
+use App\Domains\Maintenance\Model\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemModel;
+use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
+
+class UpdateMaintenance extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\MaintenanceItem\Model\MaintenanceItem $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'maintenancesPivot' => $this->maintenancesPivot(),
+            'total' => $this->total(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Maintenance\Model\Collection\MaintenanceMaintenanceItem
+     */
+    protected function maintenancesPivot(): MaintenanceMaintenanceItemCollection
+    {
+        return $this->cache(
+            fn () => MaintenanceMaintenanceItemModel::query()
+                ->byMaintenanceItemId($this->row->id)
+                ->withMaintenanceWithVehicle()
+                ->orderByLast()
+                ->get()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    protected function total(): array
+    {
+        $maintenancesPivot = $this->maintenancesPivot();
+
+        return [
+            'quantity' => $maintenancesPivot->sum('quantity'),
+            'amount_gross' => $maintenancesPivot->sum('amount_gross'),
+            'amount_net' => $maintenancesPivot->sum('amount_net'),
+            'subtotal' => $maintenancesPivot->sum('subtotal'),
+            'tax_amount' => $maintenancesPivot->sum('tax_amount'),
+            'total' => $maintenancesPivot->sum('total'),
+        ];
+    }
+}
+
+```
 
 `app/Domains/MaintenanceItem/Controller/Update.php:`
 
@@ -25571,7 +25368,7 @@ namespace App\Domains\MaintenanceItem\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\MaintenanceItem\Service\Controller\Update as ControllerService;
+use App\Domains\MaintenanceItem\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -25637,7 +25434,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/MaintenanceItem/Controller/UpdateMaintenance.php:`
 
 ```php
@@ -25646,7 +25442,7 @@ class Update extends ControllerAbstract
 namespace App\Domains\MaintenanceItem\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\MaintenanceItem\Service\Controller\UpdateMaintenance as ControllerService;
+use App\Domains\MaintenanceItem\Controller\Service\UpdateMaintenance as ControllerService;
 
 class UpdateMaintenance extends ControllerAbstract
 {
@@ -25675,7 +25471,6 @@ class UpdateMaintenance extends ControllerAbstract
 
 ```
 
-
 `app/Domains/MaintenanceItem/Controller/router.php:`
 
 ```php
@@ -25693,7 +25488,6 @@ Route::group(['middleware' => ['user-auth']], static function () {
 });
 
 ```
-
 
 `app/Domains/MaintenanceItem/Fractal/FractalFactory.php:`
 
@@ -25722,7 +25516,6 @@ class FractalFactory extends FractalAbstract
 }
 
 ```
-
 
 `app/Domains/MaintenanceItem/Model/Builder/MaintenanceItem.php:`
 
@@ -25790,7 +25583,6 @@ class MaintenanceItem extends BuilderAbstract
 
 ```
 
-
 `app/Domains/MaintenanceItem/Model/Collection/MaintenanceItem.php:`
 
 ```php
@@ -25806,7 +25598,6 @@ class MaintenanceItem extends CollectionAbstract
 
 ```
 
-
 `app/Domains/MaintenanceItem/Model/MaintenanceItem.php:`
 
 ```php
@@ -25814,10 +25605,10 @@ class MaintenanceItem extends CollectionAbstract
 
 namespace App\Domains\MaintenanceItem\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Maintenance\Model\Maintenance as MaintenanceModel;
 use App\Domains\Maintenance\Model\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemModel;
@@ -25900,270 +25691,6 @@ class MaintenanceItem extends ModelAbstract
 
 ```
 
-
-`app/Domains/MaintenanceItem/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\MaintenanceItem\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/MaintenanceItem/Service/Controller/Create.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\MaintenanceItem\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-
-class Create extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCreateUpdate();
-    }
-}
-
-```
-
-
-`app/Domains/MaintenanceItem/Service/Controller/CreateUpdateAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\MaintenanceItem\Service\Controller;
-
-abstract class CreateUpdateAbstract extends ControllerAbstract
-{
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow([
-            'user_id' => $this->user()->id,
-        ]);
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataCreateUpdate(): array
-    {
-        return $this->dataCore();
-    }
-}
-
-```
-
-
-`app/Domains/MaintenanceItem/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\MaintenanceItem\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
-use App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem as Collection;
-
-class Index extends ControllerAbstract
-{
-    /**
-     * @var bool
-     */
-    protected bool $userEmpty = true;
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->filters();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filters(): void
-    {
-        $this->filtersUserId();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCore() + [
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\MaintenanceItem\Model\Collection\MaintenanceItem
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->withMaintenancesCount()
-                ->withStats()
-                ->withSimple('user')
-                ->orderByMaintenancesCount()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/MaintenanceItem/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\MaintenanceItem\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
-
-class Update extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\MaintenanceItem\Model\MaintenanceItem $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCreateUpdate() + [
-            'row' => $this->row,
-        ];
-    }
-}
-
-```
-
-
-`app/Domains/MaintenanceItem/Service/Controller/UpdateMaintenance.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\MaintenanceItem\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\MaintenanceItem\Model\MaintenanceItem as Model;
-use App\Domains\Maintenance\Model\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemModel;
-use App\Domains\Maintenance\Model\Collection\MaintenanceMaintenanceItem as MaintenanceMaintenanceItemCollection;
-
-class UpdateMaintenance extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\MaintenanceItem\Model\MaintenanceItem $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'maintenancesPivot' => $this->maintenancesPivot(),
-            'total' => $this->total(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Maintenance\Model\Collection\MaintenanceMaintenanceItem
-     */
-    protected function maintenancesPivot(): MaintenanceMaintenanceItemCollection
-    {
-        return $this->cache(
-            fn () => MaintenanceMaintenanceItemModel::query()
-                ->byMaintenanceItemId($this->row->id)
-                ->withMaintenanceWithVehicle()
-                ->orderByLast()
-                ->get()
-        );
-    }
-
-    /**
-     * @return array
-     */
-    protected function total(): array
-    {
-        $maintenancesPivot = $this->maintenancesPivot();
-
-        return [
-            'quantity' => $maintenancesPivot->sum('quantity'),
-            'amount_gross' => $maintenancesPivot->sum('amount_gross'),
-            'amount_net' => $maintenancesPivot->sum('amount_net'),
-            'subtotal' => $maintenancesPivot->sum('subtotal'),
-            'tax_amount' => $maintenancesPivot->sum('tax_amount'),
-            'total' => $maintenancesPivot->sum('total'),
-        ];
-    }
-}
-
-```
-
-
 `app/Domains/MaintenanceItem/Validate/Create.php:`
 
 ```php
@@ -26189,7 +25716,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/MaintenanceItem/Validate/Update.php:`
 
 ```php
@@ -26202,7 +25728,6 @@ class Update extends Create
 }
 
 ```
-
 
 `app/Domains/MaintenanceItem/Validate/ValidateFactory.php:`
 
@@ -26219,7 +25744,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 ```
 
-
 `app/Domains/Monitor/Action/ActionAbstract.php:`
 
 ```php
@@ -26234,7 +25758,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/Monitor/Action/ActionFactory.php:`
 
@@ -26257,7 +25780,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Monitor/Action/QueueFailedRetry.php:`
 
@@ -26289,7 +25811,6 @@ class QueueFailedRetry extends ActionAbstract
 
 ```
 
-
 `app/Domains/Monitor/Controller/ControllerAbstract.php:`
 
 ```php
@@ -26305,7 +25826,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Monitor/Controller/Database.php:`
 
 ```php
@@ -26314,7 +25834,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Monitor\Service\Controller\Database as ControllerService;
+use App\Domains\Monitor\Controller\Service\Database as ControllerService;
 
 class Database extends ControllerAbstract
 {
@@ -26339,7 +25859,6 @@ class Database extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Monitor/Controller/Index.php:`
 
 ```php
@@ -26348,7 +25867,7 @@ class Database extends ControllerAbstract
 namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Monitor\Service\Controller\Index as ControllerService;
+use App\Domains\Monitor\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -26373,7 +25892,6 @@ class Index extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Monitor/Controller/Installation.php:`
 
 ```php
@@ -26382,7 +25900,7 @@ class Index extends ControllerAbstract
 namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Monitor\Service\Controller\Installation as ControllerService;
+use App\Domains\Monitor\Controller\Service\Installation as ControllerService;
 
 class Installation extends ControllerAbstract
 {
@@ -26407,7 +25925,6 @@ class Installation extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Monitor/Controller/Log.php:`
 
 ```php
@@ -26416,7 +25933,7 @@ class Installation extends ControllerAbstract
 namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Monitor\Service\Controller\Log as ControllerService;
+use App\Domains\Monitor\Controller\Service\Log as ControllerService;
 
 class Log extends ControllerAbstract
 {
@@ -26445,7 +25962,6 @@ class Log extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Monitor/Controller/LogFile.php:`
 
 ```php
@@ -26454,7 +25970,7 @@ class Log extends ControllerAbstract
 namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Monitor\Service\Controller\LogFile as ControllerService;
+use App\Domains\Monitor\Controller\Service\LogFile as ControllerService;
 
 class LogFile extends ControllerAbstract
 {
@@ -26485,7 +26001,6 @@ class LogFile extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Monitor/Controller/LogFileDownload.php:`
 
 ```php
@@ -26494,7 +26009,7 @@ class LogFile extends ControllerAbstract
 namespace App\Domains\Monitor\Controller;
 
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use App\Domains\Monitor\Service\Controller\LogFileDownload as ControllerService;
+use App\Domains\Monitor\Controller\Service\LogFileDownload as ControllerService;
 
 class LogFileDownload extends ControllerAbstract
 {
@@ -26512,7 +26027,6 @@ class LogFileDownload extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Monitor/Controller/Queue.php:`
 
 ```php
@@ -26522,7 +26036,7 @@ namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Monitor\Service\Controller\Queue as ControllerService;
+use App\Domains\Monitor\Controller\Service\Queue as ControllerService;
 
 class Queue extends ControllerAbstract
 {
@@ -26569,7 +26083,6 @@ class Queue extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Monitor/Controller/Requirements.php:`
 
 ```php
@@ -26578,7 +26091,7 @@ class Queue extends ControllerAbstract
 namespace App\Domains\Monitor\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Monitor\Service\Controller\Requirements as ControllerService;
+use App\Domains\Monitor\Controller\Service\Requirements as ControllerService;
 
 class Requirements extends ControllerAbstract
 {
@@ -26603,38 +26116,14 @@ class Requirements extends ControllerAbstract
 
 ```
 
-
-`app/Domains/Monitor/Controller/router.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Monitor\Controller;
-
-use Illuminate\Support\Facades\Route;
-
-Route::group(['middleware' => ['user-auth-admin']], static function () {
-    Route::get('/monitor', Index::class)->name('monitor.index');
-    Route::get('/monitor/installation', Installation::class)->name('monitor.installation');
-    Route::get('/monitor/database', Database::class)->name('monitor.database');
-    Route::get('/monitor/log/{path}/{file}/download', LogFileDownload::class)->name('monitor.log.file.download');
-    Route::get('/monitor/log/{path}/{file}', LogFile::class)->name('monitor.log.file');
-    Route::get('/monitor/log/{path?}', Log::class)->name('monitor.log.path');
-    Route::any('/monitor/queue/{name?}', Queue::class)->name('monitor.queue');
-    Route::get('/monitor/requirements', Requirements::class)->name('monitor.requirements');
-});
-
-```
-
-
-`app/Domains/Monitor/Service/Controller/ControllerAbstract.php:`
+`app/Domains/Monitor/Controller/Service/ControllerAbstract.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Monitor\Service\Controller;
+namespace App\Domains\Monitor\Controller\Service;
 
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
 
 abstract class ControllerAbstract extends ControllerAbstractCore
 {
@@ -26642,16 +26131,15 @@ abstract class ControllerAbstract extends ControllerAbstractCore
 
 ```
 
-
-`app/Domains/Monitor/Service/Controller/Database.php:`
+`app/Domains/Monitor/Controller/Service/Database.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Monitor\Service\Controller;
+namespace App\Domains\Monitor\Controller\Service;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 use App\Domains\Monitor\Service\Database\Database as DatabaseDriver;
 
 class Database extends ControllerAbstract
@@ -26709,16 +26197,15 @@ class Database extends ControllerAbstract
 
 ```
 
-
-`app/Domains/Monitor/Service/Controller/Index.php:`
+`app/Domains/Monitor/Controller/Service/Index.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Monitor\Service\Controller;
+namespace App\Domains\Monitor\Controller\Service;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 use App\Domains\Monitor\Service\System\Cpu;
 use App\Domains\Monitor\Service\System\Disk;
 use App\Domains\Monitor\Service\System\Memory;
@@ -26784,16 +26271,15 @@ class Index extends ControllerAbstract
 
 ```
 
-
-`app/Domains/Monitor/Service/Controller/Installation.php:`
+`app/Domains/Monitor/Controller/Service/Installation.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Monitor\Service\Controller;
+namespace App\Domains\Monitor\Controller\Service;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 use App\Services\Command\Exec;
 
 class Installation extends ControllerAbstract
@@ -26982,18 +26468,17 @@ class Installation extends ControllerAbstract
 
 ```
 
-
-`app/Domains/Monitor/Service/Controller/Log.php:`
+`app/Domains/Monitor/Controller/Service/Log.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Monitor\Service\Controller;
+namespace App\Domains\Monitor\Controller\Service;
 
 use DirectoryIterator;
 use stdClass;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 
 class Log extends LogAbstract
 {
@@ -27169,13 +26654,12 @@ class Log extends LogAbstract
 
 ```
 
-
-`app/Domains/Monitor/Service/Controller/LogAbstract.php:`
+`app/Domains/Monitor/Controller/Service/LogAbstract.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Monitor\Service\Controller;
+namespace App\Domains\Monitor\Controller\Service;
 
 use stdClass;
 
@@ -27347,16 +26831,15 @@ abstract class LogAbstract extends ControllerAbstract
 
 ```
 
-
-`app/Domains/Monitor/Service/Controller/LogFile.php:`
+`app/Domains/Monitor/Controller/Service/LogFile.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Monitor\Service\Controller;
+namespace App\Domains\Monitor\Controller\Service;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 use App\Services\Compress\Zip\Contents as ZipContents;
 
 class LogFile extends LogAbstract
@@ -27449,16 +26932,15 @@ class LogFile extends LogAbstract
 
 ```
 
-
-`app/Domains/Monitor/Service/Controller/LogFileDownload.php:`
+`app/Domains/Monitor/Controller/Service/LogFileDownload.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Monitor\Service\Controller;
+namespace App\Domains\Monitor\Controller\Service;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class LogFileDownload extends LogAbstract
@@ -27511,19 +26993,18 @@ class LogFileDownload extends LogAbstract
 
 ```
 
-
-`app/Domains/Monitor/Service/Controller/Queue.php:`
+`app/Domains/Monitor/Controller/Service/Queue.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Monitor\Service\Controller;
+namespace App\Domains\Monitor\Controller\Service;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
-use App\Domains\QueueFail\Model\QueueFail as QueueFailModel;
 use App\Domains\QueueFail\Model\Collection\QueueFail as QueueFailCollection;
+use App\Domains\QueueFail\Model\QueueFail as QueueFailModel;
 
 class Queue extends ControllerAbstract
 {
@@ -27641,16 +27122,15 @@ class Queue extends ControllerAbstract
 
 ```
 
-
-`app/Domains/Monitor/Service/Controller/Requirements.php:`
+`app/Domains/Monitor/Controller/Service/Requirements.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Monitor\Service\Controller;
+namespace App\Domains\Monitor\Controller\Service;
 
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 use App\Services\Command\Exec;
 
 class Requirements extends ControllerAbstract
@@ -27751,6 +27231,27 @@ class Requirements extends ControllerAbstract
 
 ```
 
+`app/Domains/Monitor/Controller/router.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Monitor\Controller;
+
+use Illuminate\Support\Facades\Route;
+
+Route::group(['middleware' => ['user-auth-admin']], static function () {
+    Route::get('/monitor', Index::class)->name('monitor.index');
+    Route::get('/monitor/installation', Installation::class)->name('monitor.installation');
+    Route::get('/monitor/database', Database::class)->name('monitor.database');
+    Route::get('/monitor/log/{path}/{file}/download', LogFileDownload::class)->name('monitor.log.file.download');
+    Route::get('/monitor/log/{path}/{file}', LogFile::class)->name('monitor.log.file');
+    Route::get('/monitor/log/{path?}', Log::class)->name('monitor.log.path');
+    Route::any('/monitor/queue/{name?}', Queue::class)->name('monitor.queue');
+    Route::get('/monitor/requirements', Requirements::class)->name('monitor.requirements');
+});
+
+```
 
 `app/Domains/Monitor/Service/Database/Database.php:`
 
@@ -27807,7 +27308,6 @@ class Database
 }
 
 ```
-
 
 `app/Domains/Monitor/Service/Database/Driver/DriverAbstract.php:`
 
@@ -27889,7 +27389,6 @@ abstract class DriverAbstract
 
 ```
 
-
 `app/Domains/Monitor/Service/Database/Driver/MySQL.php:`
 
 ```php
@@ -27960,7 +27459,6 @@ class MySQL extends DriverAbstract
 
 ```
 
-
 `app/Domains/Monitor/Service/Database/Driver/PgSQL.php:`
 
 ```php
@@ -28023,7 +27521,6 @@ class PgSQL extends DriverAbstract
 }
 
 ```
-
 
 `app/Domains/Monitor/Service/System/Cpu.php:`
 
@@ -28225,7 +27722,6 @@ class Cpu extends SystemAbstract
 
 ```
 
-
 `app/Domains/Monitor/Service/System/Disk.php:`
 
 ```php
@@ -28390,7 +27886,6 @@ class Disk extends SystemAbstract
 }
 
 ```
-
 
 `app/Domains/Monitor/Service/System/Memory.php:`
 
@@ -28573,7 +28068,6 @@ class Memory extends SystemAbstract
 
 ```
 
-
 `app/Domains/Monitor/Service/System/Summary.php:`
 
 ```php
@@ -28669,7 +28163,6 @@ class Summary extends SystemAbstract
 
 ```
 
-
 `app/Domains/Monitor/Service/System/SystemAbstract.php:`
 
 ```php
@@ -28729,7 +28222,6 @@ abstract class SystemAbstract
 
 ```
 
-
 `app/Domains/Monitor/Validate/QueueFailedRetry.php:`
 
 ```php
@@ -28754,7 +28246,6 @@ class QueueFailedRetry extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Monitor/Validate/ValidateFactory.php:`
 
 ```php
@@ -28770,7 +28261,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 ```
 
-
 `app/Domains/Position/Action/ActionAbstract.php:`
 
 ```php
@@ -28778,8 +28268,8 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 namespace App\Domains\Position\Action;
 
-use App\Domains\Position\Model\Position as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\Position\Model\Position as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {
@@ -28791,7 +28281,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 ```
 
-
 `app/Domains/Position/Action/ActionFactory.php:`
 
 ```php
@@ -28799,8 +28288,8 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 namespace App\Domains\Position\Action;
 
-use App\Domains\Position\Model\Position as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\Position\Model\Position as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -28835,7 +28324,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Position/Action/Create.php:`
 
@@ -29309,7 +28797,6 @@ class Create extends ActionAbstract
 
 ```
 
-
 `app/Domains/Position/Action/UpdateCity.php:`
 
 ```php
@@ -29377,7 +28864,6 @@ class UpdateCity extends ActionAbstract
 
 ```
 
-
 `app/Domains/Position/Action/UpdateCityEmpty.php:`
 
 ```php
@@ -29423,7 +28909,6 @@ class UpdateCityEmpty extends ActionAbstract
 
 ```
 
-
 `app/Domains/Position/Command/CommandAbstract.php:`
 
 ```php
@@ -29431,8 +28916,8 @@ class UpdateCityEmpty extends ActionAbstract
 
 namespace App\Domains\Position\Command;
 
-use App\Domains\Position\Model\Position as Model;
 use App\Domains\CoreApp\Command\CommandAbstract as CommandAbstractSahred;
+use App\Domains\Position\Model\Position as Model;
 
 abstract class CommandAbstract extends CommandAbstractSahred
 {
@@ -29451,7 +28936,6 @@ abstract class CommandAbstract extends CommandAbstractSahred
 }
 
 ```
-
 
 `app/Domains/Position/Command/UpdateCity.php:`
 
@@ -29492,7 +28976,6 @@ class UpdateCity extends CommandAbstract
 
 ```
 
-
 `app/Domains/Position/Command/UpdateCityEmpty.php:`
 
 ```php
@@ -29527,7 +29010,6 @@ class UpdateCityEmpty extends CommandAbstract
 
 ```
 
-
 `app/Domains/Position/Fractal/FractalFactory.php:`
 
 ```php
@@ -29535,8 +29017,8 @@ class UpdateCityEmpty extends CommandAbstract
 
 namespace App\Domains\Position\Fractal;
 
-use App\Domains\Position\Model\Position as Model;
 use App\Domains\Core\Fractal\FractalAbstract;
+use App\Domains\Position\Model\Position as Model;
 
 class FractalFactory extends FractalAbstract
 {
@@ -29602,7 +29084,6 @@ class FractalFactory extends FractalAbstract
 
 ```
 
-
 `app/Domains/Position/Job/JobAbstract.php:`
 
 ```php
@@ -29648,7 +29129,6 @@ abstract class JobAbstract extends JobAbstractCore
 
 ```
 
-
 `app/Domains/Position/Job/UpdateCity.php:`
 
 ```php
@@ -29669,7 +29149,6 @@ class UpdateCity extends JobAbstract
 
 ```
 
-
 `app/Domains/Position/Model/Builder/Position.php:`
 
 ```php
@@ -29681,8 +29160,8 @@ use App\Domains\City\Model\City as CityModel;
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\CoreApp\Model\Builder\Traits\Gis as GisTrait;
 use App\Domains\Refuel\Model\Refuel as RefuelModel;
-use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Trip\Model\Builder\Trip as TripBuilder;
+use App\Domains\Trip\Model\Trip as TripModel;
 
 class Position extends BuilderAbstract
 {
@@ -30133,7 +29612,6 @@ class Position extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Position/Model/Collection/Position.php:`
 
 ```php
@@ -30148,7 +29626,6 @@ class Position extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/Position/Model/Position.php:`
 
@@ -30170,8 +29647,8 @@ use App\Domains\Position\Model\Traits\SelectRaw as SelectRawTrait;
 use App\Domains\Position\Test\Factory\Position as TestFactory;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Trip as TripModel;
-use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 use App\Domains\User\Model\User as UserModel;
+use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 class Position extends ModelAbstract
 {
@@ -30318,7 +29795,6 @@ class Position extends ModelAbstract
 
 ```
 
-
 `app/Domains/Position/Model/Traits/Query.php:`
 
 ```php
@@ -30347,7 +29823,6 @@ trait Query
 }
 
 ```
-
 
 `app/Domains/Position/Model/Traits/SelectRaw.php:`
 
@@ -30452,7 +29927,6 @@ trait SelectRaw
 
 ```
 
-
 `app/Domains/Position/Schedule/Manager.php:`
 
 ```php
@@ -30460,8 +29934,8 @@ trait SelectRaw
 
 namespace App\Domains\Position\Schedule;
 
-use App\Domains\Position\Command\UpdateCityEmpty as UpdateCityEmptyCommand;
 use App\Domains\Core\Schedule\ScheduleAbstract;
+use App\Domains\Position\Command\UpdateCityEmpty as UpdateCityEmptyCommand;
 
 class Manager extends ScheduleAbstract
 {
@@ -30475,7 +29949,6 @@ class Manager extends ScheduleAbstract
 }
 
 ```
-
 
 `app/Domains/Position/Validate/Create.php:`
 
@@ -30510,7 +29983,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Position/Validate/ValidateFactory.php:`
 
 ```php
@@ -30525,7 +29997,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Profile/Action/ActionAbstract.php:`
 
@@ -30546,7 +30017,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/Profile/Action/ActionFactory.php:`
 
@@ -30599,7 +30069,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Profile/Action/Update.php:`
 
@@ -30855,7 +30324,6 @@ class Update extends ActionAbstract
 
 ```
 
-
 `app/Domains/Profile/Action/UpdateTelegram.php:`
 
 ```php
@@ -30916,7 +30384,6 @@ class UpdateTelegram extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Profile/Action/UpdateTelegramChatId.php:`
 
@@ -31002,7 +30469,6 @@ class UpdateTelegramChatId extends ActionAbstract
 
 ```
 
-
 `app/Domains/Profile/Action/UpdateTelegramTest.php:`
 
 ```php
@@ -31077,7 +30543,6 @@ class UpdateTelegramTest extends ActionAbstract
 
 ```
 
-
 `app/Domains/Profile/Controller/ControllerAbstract.php:`
 
 ```php
@@ -31140,273 +30605,14 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
-`app/Domains/Profile/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Profile\Controller;
-
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use App\Domains\Profile\Service\Controller\Update as ControllerService;
-
-class Update extends ControllerAbstract
-{
-    /**
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-    public function __invoke(): Response|RedirectResponse
-    {
-        $this->load();
-
-        if ($response = $this->actionPost('update')) {
-            return $response;
-        }
-
-        $this->meta('title', __('profile-update.meta-title'));
-
-        return $this->page('profile.update', $this->data());
-    }
-
-    /**
-     * @return array
-     */
-    protected function data(): array
-    {
-        return ControllerService::new($this->request, $this->auth, $this->row)->data();
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function update(): RedirectResponse
-    {
-        $this->action()->update();
-
-        $this->sessionMessage('success', __('profile-update.success'));
-
-        return redirect()->route('profile.update');
-    }
-}
-
-```
-
-
-`app/Domains/Profile/Controller/UpdateTelegram.php:`
+`app/Domains/Profile/Controller/Service/ControllerAbstract.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Profile\Controller;
+namespace App\Domains\Profile\Controller\Service;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-
-class UpdateTelegram extends ControllerAbstract
-{
-    /**
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-    public function __invoke(): Response|RedirectResponse
-    {
-        $telegram = $this->telegram();
-
-        if ($telegram->enabled() !== true) {
-            return redirect()->back();
-        }
-
-        $this->load();
-
-        if ($response = $this->actions()) {
-            return $response;
-        }
-
-        $this->requestMergeWithRow();
-
-        $this->meta('title', __('profile-update-telegram.meta-title'));
-
-        return $this->page('profile.update-telegram', [
-            'telegram_username' => $this->row->telegram['username'] ?? false,
-            'telegram_chat_id' => $this->row->telegram['chat_id'] ?? false,
-            'telegram_bot' => $telegram->config('bot'),
-            'telegram_bot_link' => $telegram->botLink(),
-        ]);
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse|false|null
-     */
-    protected function actions(): RedirectResponse|false|null
-    {
-        return $this->actionPost('updateTelegramChatId')
-            ?: $this->actionPost('updateTelegram')
-            ?: $this->actionPost('updateTelegramTest');
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function updateTelegramChatId(): RedirectResponse
-    {
-        $this->action()->updateTelegramChatId();
-
-        $this->sessionMessage('success', __('profile-update-telegram.success'));
-
-        return redirect()->back();
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function updateTelegram(): RedirectResponse
-    {
-        $this->action()->updateTelegram();
-
-        $this->sessionMessage('success', __('profile-update-telegram.success'));
-
-        return redirect()->back();
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function updateTelegramTest(): RedirectResponse
-    {
-        $this->action()->updateTelegramTest();
-
-        $this->sessionMessage('success', __('profile-update-telegram-test.success'));
-
-        return redirect()->back();
-    }
-}
-
-```
-
-
-`app/Domains/Profile/Controller/UpdateUserSession.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Profile\Controller;
-
-use Illuminate\Http\Response;
-use App\Domains\UserSession\Model\UserSession as UserSessionModel;
-use App\Domains\UserSession\Model\Collection\UserSession as UserSessionCollection;
-
-class UpdateUserSession extends ControllerAbstract
-{
-    /**
-     * @return \Illuminate\Http\Response
-     */
-    public function __invoke(): Response
-    {
-        $this->load();
-
-        $this->meta('title', __('profile-update-user-session.meta-title'));
-
-        return $this->page('profile.update-user-session', [
-            'sessions' => $this->sessions(),
-        ]);
-    }
-
-    /**
-     * @return \App\Domains\UserSession\Model\Collection\UserSession
-     */
-    protected function sessions(): UserSessionCollection
-    {
-        return UserSessionModel::query()
-            ->byUser($this->row)
-            ->unionUserFailByUser($this->row)
-            ->list()
-            ->get();
-    }
-}
-
-```
-
-
-`app/Domains/Profile/Controller/router.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Profile\Controller;
-
-use Illuminate\Support\Facades\Route;
-
-Route::group(['middleware' => ['user-auth']], static function () {
-    Route::any('/profile', Update::class)->name('profile.update');
-    Route::any('/profile/telegram', UpdateTelegram::class)->name('profile.update.telegram');
-    Route::get('/profile/user-session', UpdateUserSession::class)->name('profile.update.user-session');
-});
-
-```
-
-
-`app/Domains/Profile/ControllerApi/ControllerApiAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Profile\ControllerApi;
-
-use App\Domains\CoreApp\Controller\ControllerApiAbstract as CoreControllerApiAbstract;
-
-abstract class ControllerApiAbstract extends CoreControllerApiAbstract
-{
-}
-
-```
-
-
-`app/Domains/Profile/ControllerApi/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Profile\ControllerApi;
-
-use Illuminate\Http\JsonResponse;
-
-class Index extends ControllerApiAbstract
-{
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function __invoke(): JsonResponse
-    {
-        return $this->json($this->factory('User')->fractal('json', $this->auth));
-    }
-}
-
-```
-
-
-`app/Domains/Profile/ControllerApi/router.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Profile\ControllerApi;
-
-use Illuminate\Support\Facades\Route;
-
-Route::get('/profile', Index::class)->name('profile.index');
-
-```
-
-
-`app/Domains/Profile/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Profile\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
 
 abstract class ControllerAbstract extends ControllerAbstractCore
 {
@@ -31414,20 +30620,19 @@ abstract class ControllerAbstract extends ControllerAbstractCore
 
 ```
 
-
-`app/Domains/Profile/Service/Controller/Update.php:`
+`app/Domains/Profile/Controller/Service/Update.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Profile\Service\Controller;
+namespace App\Domains\Profile\Controller\Service;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\Language\Model\Collection\Language as LanguageCollection;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+use App\Domains\Language\Model\Language as LanguageModel;
 use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\User\Model\User as Model;
 
 class Update extends ControllerAbstract
@@ -31560,6 +30765,256 @@ class Update extends ControllerAbstract
 
 ```
 
+`app/Domains/Profile/Controller/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Profile\Controller;
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use App\Domains\Profile\Controller\Service\Update as ControllerService;
+
+class Update extends ControllerAbstract
+{
+    /**
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function __invoke(): Response|RedirectResponse
+    {
+        $this->load();
+
+        if ($response = $this->actionPost('update')) {
+            return $response;
+        }
+
+        $this->meta('title', __('profile-update.meta-title'));
+
+        return $this->page('profile.update', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth, $this->row)->data();
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function update(): RedirectResponse
+    {
+        $this->action()->update();
+
+        $this->sessionMessage('success', __('profile-update.success'));
+
+        return redirect()->route('profile.update');
+    }
+}
+
+```
+
+`app/Domains/Profile/Controller/UpdateTelegram.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Profile\Controller;
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+
+class UpdateTelegram extends ControllerAbstract
+{
+    /**
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function __invoke(): Response|RedirectResponse
+    {
+        $telegram = $this->telegram();
+
+        if ($telegram->enabled() !== true) {
+            return redirect()->back();
+        }
+
+        $this->load();
+
+        if ($response = $this->actions()) {
+            return $response;
+        }
+
+        $this->requestMergeWithRow();
+
+        $this->meta('title', __('profile-update-telegram.meta-title'));
+
+        return $this->page('profile.update-telegram', [
+            'telegram_username' => $this->row->telegram['username'] ?? false,
+            'telegram_chat_id' => $this->row->telegram['chat_id'] ?? false,
+            'telegram_bot' => $telegram->config('bot'),
+            'telegram_bot_link' => $telegram->botLink(),
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|false|null
+     */
+    protected function actions(): RedirectResponse|false|null
+    {
+        return $this->actionPost('updateTelegramChatId')
+            ?: $this->actionPost('updateTelegram')
+            ?: $this->actionPost('updateTelegramTest');
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function updateTelegramChatId(): RedirectResponse
+    {
+        $this->action()->updateTelegramChatId();
+
+        $this->sessionMessage('success', __('profile-update-telegram.success'));
+
+        return redirect()->back();
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function updateTelegram(): RedirectResponse
+    {
+        $this->action()->updateTelegram();
+
+        $this->sessionMessage('success', __('profile-update-telegram.success'));
+
+        return redirect()->back();
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function updateTelegramTest(): RedirectResponse
+    {
+        $this->action()->updateTelegramTest();
+
+        $this->sessionMessage('success', __('profile-update-telegram-test.success'));
+
+        return redirect()->back();
+    }
+}
+
+```
+
+`app/Domains/Profile/Controller/UpdateUserSession.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Profile\Controller;
+
+use Illuminate\Http\Response;
+use App\Domains\UserSession\Model\Collection\UserSession as UserSessionCollection;
+use App\Domains\UserSession\Model\UserSession as UserSessionModel;
+
+class UpdateUserSession extends ControllerAbstract
+{
+    /**
+     * @return \Illuminate\Http\Response
+     */
+    public function __invoke(): Response
+    {
+        $this->load();
+
+        $this->meta('title', __('profile-update-user-session.meta-title'));
+
+        return $this->page('profile.update-user-session', [
+            'sessions' => $this->sessions(),
+        ]);
+    }
+
+    /**
+     * @return \App\Domains\UserSession\Model\Collection\UserSession
+     */
+    protected function sessions(): UserSessionCollection
+    {
+        return UserSessionModel::query()
+            ->byUser($this->row)
+            ->unionUserFailByUser($this->row)
+            ->list()
+            ->get();
+    }
+}
+
+```
+
+`app/Domains/Profile/Controller/router.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Profile\Controller;
+
+use Illuminate\Support\Facades\Route;
+
+Route::group(['middleware' => ['user-auth']], static function () {
+    Route::any('/profile', Update::class)->name('profile.update');
+    Route::any('/profile/telegram', UpdateTelegram::class)->name('profile.update.telegram');
+    Route::get('/profile/user-session', UpdateUserSession::class)->name('profile.update.user-session');
+});
+
+```
+
+`app/Domains/Profile/ControllerApi/ControllerApiAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Profile\ControllerApi;
+
+use App\Domains\CoreApp\Controller\ControllerApiAbstract as CoreControllerApiAbstract;
+
+abstract class ControllerApiAbstract extends CoreControllerApiAbstract
+{
+}
+
+```
+
+`app/Domains/Profile/ControllerApi/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Profile\ControllerApi;
+
+use Illuminate\Http\JsonResponse;
+
+class Index extends ControllerApiAbstract
+{
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function __invoke(): JsonResponse
+    {
+        return $this->json($this->factory('User')->fractal('json', $this->auth));
+    }
+}
+
+```
+
+`app/Domains/Profile/ControllerApi/router.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Profile\ControllerApi;
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('/profile', Index::class)->name('profile.index');
+
+```
 
 `app/Domains/Profile/Validate/Update.php:`
 
@@ -31607,7 +31062,6 @@ class Update extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Profile/Validate/UpdateTelegram.php:`
 
 ```php
@@ -31634,7 +31088,6 @@ class UpdateTelegram extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Profile/Validate/ValidateFactory.php:`
 
 ```php
@@ -31649,7 +31102,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/QueueFail/Model/Builder/QueueFail.php:`
 
@@ -31673,7 +31125,6 @@ class QueueFail extends BuilderAbstract
 
 ```
 
-
 `app/Domains/QueueFail/Model/Collection/QueueFail.php:`
 
 ```php
@@ -31688,7 +31139,6 @@ class QueueFail extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/QueueFail/Model/QueueFail.php:`
 
@@ -31748,7 +31198,6 @@ class QueueFail extends ModelAbstract
 
 ```
 
-
 `app/Domains/Refuel/Action/ActionAbstract.php:`
 
 ```php
@@ -31756,8 +31205,8 @@ class QueueFail extends ModelAbstract
 
 namespace App\Domains\Refuel\Action;
 
-use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\Refuel\Model\Refuel as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {
@@ -31769,7 +31218,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 ```
 
-
 `app/Domains/Refuel/Action/ActionFactory.php:`
 
 ```php
@@ -31777,8 +31225,8 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 namespace App\Domains\Refuel\Action;
 
-use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\Refuel\Model\Refuel as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -31830,7 +31278,6 @@ class ActionFactory extends ActionFactoryAbstract
 
 ```
 
-
 `app/Domains/Refuel/Action/Create.php:`
 
 ```php
@@ -31865,7 +31312,6 @@ class Create extends CreateUpdateAbstract
 
 ```
 
-
 `app/Domains/Refuel/Action/CreateUpdateAbstract.php:`
 
 ```php
@@ -31874,8 +31320,8 @@ class Create extends CreateUpdateAbstract
 namespace App\Domains\Refuel\Action;
 
 use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\Refuel\Job\UpdateCity as UpdateCityJob;
+use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\Vehicle\Model\Vehicle as VehicleModel;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
@@ -31989,7 +31435,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
 ```
 
-
 `app/Domains/Refuel/Action/Delete.php:`
 
 ```php
@@ -32017,7 +31462,6 @@ class Delete extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Refuel/Action/Update.php:`
 
@@ -32050,7 +31494,6 @@ class Update extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/Refuel/Action/UpdateCity.php:`
 
@@ -32119,7 +31562,6 @@ class UpdateCity extends ActionAbstract
 
 ```
 
-
 `app/Domains/Refuel/Action/UpdateCityEmpty.php:`
 
 ```php
@@ -32165,7 +31607,6 @@ class UpdateCityEmpty extends ActionAbstract
 
 ```
 
-
 `app/Domains/Refuel/Command/CommandAbstract.php:`
 
 ```php
@@ -32173,8 +31614,8 @@ class UpdateCityEmpty extends ActionAbstract
 
 namespace App\Domains\Refuel\Command;
 
-use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\CoreApp\Command\CommandAbstract as CommandAbstractSahred;
+use App\Domains\Refuel\Model\Refuel as Model;
 
 abstract class CommandAbstract extends CommandAbstractSahred
 {
@@ -32193,7 +31634,6 @@ abstract class CommandAbstract extends CommandAbstractSahred
 }
 
 ```
-
 
 `app/Domains/Refuel/Command/UpdateCity.php:`
 
@@ -32234,7 +31674,6 @@ class UpdateCity extends CommandAbstract
 
 ```
 
-
 `app/Domains/Refuel/Command/UpdateCityEmpty.php:`
 
 ```php
@@ -32269,7 +31708,6 @@ class UpdateCityEmpty extends CommandAbstract
 
 ```
 
-
 `app/Domains/Refuel/Controller/ControllerAbstract.php:`
 
 ```php
@@ -32277,8 +31715,8 @@ class UpdateCityEmpty extends CommandAbstract
 
 namespace App\Domains\Refuel\Controller;
 
-use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
+use App\Domains\Refuel\Model\Refuel as Model;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -32303,7 +31741,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Refuel/Controller/Create.php:`
 
 ```php
@@ -32313,7 +31750,7 @@ namespace App\Domains\Refuel\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Refuel\Service\Controller\Create as ControllerService;
+use App\Domains\Refuel\Controller\Service\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -32354,7 +31791,6 @@ class Create extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Refuel/Controller/Index.php:`
 
 ```php
@@ -32363,7 +31799,7 @@ class Create extends ControllerAbstract
 namespace App\Domains\Refuel\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Refuel\Service\Controller\Index as ControllerService;
+use App\Domains\Refuel\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -32388,7 +31824,6 @@ class Index extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Refuel/Controller/Map.php:`
 
 ```php
@@ -32398,7 +31833,7 @@ namespace App\Domains\Refuel\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Domains\Refuel\Service\Controller\Map as ControllerService;
+use App\Domains\Refuel\Controller\Service\Map as ControllerService;
 
 class Map extends ControllerAbstract
 {
@@ -32423,6 +31858,523 @@ class Map extends ControllerAbstract
 
 ```
 
+`app/Domains/Refuel/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Refuel\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/Refuel/Controller/Service/Create.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Refuel\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Refuel\Model\Refuel as Model;
+
+class Create extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow($this->requestMergeWithRowData(), $this->previous());
+    }
+
+    /**
+     * @return array
+     */
+    protected function requestMergeWithRowData(): array
+    {
+        return $this->requestMergeWithRowUserId()
+            + $this->requestMergeWithRowLocation();
+    }
+
+    /**
+     * @return array
+     */
+    protected function requestMergeWithRowUserId(): array
+    {
+        return ['user_id' => $this->user()->id];
+    }
+
+    /**
+     * @return array
+     */
+    protected function requestMergeWithRowLocation(): array
+    {
+        return PositionModel::query()
+            ->select('latitude', 'longitude')
+            ->byUserId($this->user()->id)
+            ->orderByLast()
+            ->firstOrNew()
+            ->only('latitude', 'longitude');
+    }
+
+    /**
+     * @return \App\Domains\Refuel\Model\Refuel
+     */
+    protected function previous(): Model
+    {
+        return Model::query()
+            ->select('distance_total', 'price')
+            ->byUserId($this->user()->id)
+            ->orderByLast()
+            ->firstOrNew();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCreateUpdate();
+    }
+}
+
+```
+
+`app/Domains/Refuel/Controller/Service/CreateUpdateAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Refuel\Controller\Service;
+
+abstract class CreateUpdateAbstract extends ControllerAbstract
+{
+    /**
+     * @return array
+     */
+    protected function dataCreateUpdate(): array
+    {
+        return $this->dataCore() + [
+            'vehicles' => $this->vehicles(),
+        ];
+    }
+}
+
+```
+
+`app/Domains/Refuel/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Refuel\Controller\Service;
+
+use stdClass;
+use App\Domains\Refuel\Model\Collection\Refuel as Collection;
+use App\Domains\Refuel\Model\Refuel as Model;
+
+class Index extends IndexMapAbstract
+{
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCore() + [
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
+            'countries' => $this->countries(),
+            'country' => $this->country(),
+            'states' => $this->states(),
+            'state' => $this->state(),
+            'cities' => $this->cities(),
+            'city' => $this->city(),
+            'date_min' => $this->dateMin(),
+            'list' => $this->list(),
+            'totals' => $this->totals(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Refuel\Model\Collection\Refuel
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId((int)$this->request->input('vehicle_id'))
+                ->whenDateAtBetween($this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenCityStateCountryId($this->city()?->id, $this->state()?->id, $this->country()?->id)
+                ->withSimple('user')
+                ->withSimple('vehicle')
+                ->list()
+                ->get()
+        );
+    }
+
+    /**
+     * @return ?\stdClass
+     */
+    protected function totals(): ?stdClass
+    {
+        if ($this->list()->isEmpty()) {
+            return null;
+        }
+
+        $totals = $this->list()->reduce($this->totalsRow(...), $this->totalsCarry());
+        $totals->price = round($totals->total / $totals->quantity, 3);
+
+        return $totals;
+    }
+
+    /**
+     * @return \stdClass
+     */
+    protected function totalsCarry(): stdClass
+    {
+        return (object)[
+            'distance' => 0,
+            'quantity' => 0,
+            'price' => 0,
+            'total' => 0,
+        ];
+    }
+
+    /**
+     * @param \stdClass $carry
+     * @param \App\Domains\Refuel\Model\Refuel $row
+     *
+     * @return \stdClass
+     */
+    protected function totalsRow(stdClass $carry, Model $row): stdClass
+    {
+        $carry->distance += $row->distance;
+        $carry->quantity += $row->quantity;
+        $carry->price += $row->price;
+        $carry->total += $row->total;
+
+        return $carry;
+    }
+}
+
+```
+
+`app/Domains/Refuel/Controller/Service/IndexMapAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Refuel\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\City\Model\City as CityModel;
+use App\Domains\City\Model\Collection\City as CityCollection;
+use App\Domains\Country\Model\Collection\Country as CountryCollection;
+use App\Domains\Country\Model\Country as CountryModel;
+use App\Domains\Refuel\Model\Refuel as Model;
+use App\Domains\State\Model\Collection\State as StateCollection;
+use App\Domains\State\Model\State as StateModel;
+
+abstract class IndexMapAbstract extends ControllerAbstract
+{
+    /**
+     * @const string
+     */
+    protected const DATE_REGEXP = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
+
+    /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @var bool
+     */
+    protected bool $vehicleEmpty = true;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->filtersDates();
+        $this->filtersIds();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersDates(): void
+    {
+        $this->filtersDatesStartAt();
+        $this->filtersDatesEndAt();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersDatesStartAt(): void
+    {
+        $start_at = $this->request->input('start_at');
+
+        if ($start_at === '') {
+            return;
+        }
+
+        if (is_null($start_at) || (preg_match(static::DATE_REGEXP, $start_at) === 0)) {
+            $this->request->merge(['start_at' => date('Y-m-d', strtotime('-1 year'))]);
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersDatesEndAt(): void
+    {
+        $end_at = $this->request->input('end_at');
+
+        if (is_null($end_at) || (preg_match(static::DATE_REGEXP, $end_at) === 0)) {
+            $this->request->merge(['end_at' => '']);
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersIds(): void
+    {
+        $this->filtersUserId();
+        $this->filtersVehicleId();
+    }
+
+    /**
+     * @return ?string
+     */
+    protected function dateMin(): ?string
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->orderByDateAtAsc()
+                ->rawValue('DATE(`date_at`)')
+        );
+    }
+
+    /**
+     * @return \App\Domains\Country\Model\Collection\Country
+     */
+    protected function countries(): CountryCollection
+    {
+        return $this->cache(function () {
+            return CountryModel::query()
+                ->whenRefuelUserIdVehicleIdDateAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\Country\Model\Country
+     */
+    protected function country(): ?CountryModel
+    {
+        return $this->cache(
+            fn () => $this->countries()->firstWhere('id', $this->request->input('country_id'))
+        );
+    }
+
+    /**
+     * @return \App\Domains\State\Model\Collection\State
+     */
+    protected function states(): StateCollection
+    {
+        return $this->cache(function () {
+            if (empty($country_id = intval($this->country()?->id))) {
+                return new StateCollection();
+            }
+
+            return StateModel::query()
+                ->byCountryId($country_id)
+                ->whenRefuelUserIdVehicleIdDateAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\State\Model\State
+     */
+    protected function state(): ?StateModel
+    {
+        return $this->cache(
+            fn () => $this->states()->firstWhere('id', $this->request->input('state_id'))
+        );
+    }
+
+    /**
+     * @return \App\Domains\City\Model\Collection\City
+     */
+    protected function cities(): CityCollection
+    {
+        return $this->cache(function () {
+            if (empty($state_id = intval($this->state()?->id))) {
+                return new CityCollection();
+            }
+
+            return CityModel::query()
+                ->byStateId($state_id)
+                ->whenRefuelUserIdVehicleIdDateAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\City\Model\City
+     */
+    protected function city(): ?CityModel
+    {
+        return $this->cache(
+            fn () => $this->cities()->firstWhere('id', $this->request->input('city_id'))
+        );
+    }
+}
+
+```
+
+`app/Domains/Refuel/Controller/Service/Map.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Refuel\Controller\Service;
+
+use App\Domains\Refuel\Model\Collection\Refuel as Collection;
+use App\Domains\Refuel\Model\Refuel as Model;
+
+class Map extends IndexMapAbstract
+{
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCore() + [
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
+            'countries' => $this->countries(),
+            'country' => $this->country(),
+            'states' => $this->states(),
+            'state' => $this->state(),
+            'cities' => $this->cities(),
+            'city' => $this->city(),
+            'date_min' => $this->dateMin(),
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Refuel\Model\Collection\Refuel
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId($this->vehicle()?->id)
+                ->whenDateAtBetween($this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenCityStateCountryId($this->city()?->id, $this->state()?->id, $this->country()?->id)
+                ->withSimple('vehicle')
+                ->withCityState()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Refuel/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Refuel\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Refuel\Model\Refuel as Model;
+
+class Update extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Refuel\Model\Refuel $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCreateUpdate() + [
+            'row' => $this->row,
+        ];
+    }
+}
+
+```
 
 `app/Domains/Refuel/Controller/Update.php:`
 
@@ -32433,7 +32385,7 @@ namespace App\Domains\Refuel\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Refuel\Service\Controller\Update as ControllerService;
+use App\Domains\Refuel\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -32499,7 +32451,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Refuel/Controller/router.php:`
 
 ```php
@@ -32517,7 +32468,6 @@ Route::group(['middleware' => ['user-auth', 'vehicle.available']], static functi
 });
 
 ```
-
 
 `app/Domains/Refuel/ControllerApi/ControllerApiAbstract.php:`
 
@@ -32552,7 +32502,6 @@ abstract class ControllerApiAbstract extends CoreControllerApiAbstract
 
 ```
 
-
 `app/Domains/Refuel/ControllerApi/Create.php:`
 
 ```php
@@ -32562,7 +32511,7 @@ namespace App\Domains\Refuel\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
 use App\Domains\Refuel\Model\Refuel as Model;
-use App\Domains\Refuel\Service\ControllerApi\Create as ControllerService;
+use App\Domains\Refuel\ControllerApi\Service\Create as ControllerService;
 
 class Create extends ControllerApiAbstract
 {
@@ -32593,7 +32542,6 @@ class Create extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Refuel/ControllerApi/Delete.php:`
 
 ```php
@@ -32617,7 +32565,6 @@ class Delete extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Refuel/ControllerApi/Index.php:`
 
 ```php
@@ -32626,7 +32573,7 @@ class Delete extends ControllerApiAbstract
 namespace App\Domains\Refuel\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Refuel\Service\ControllerApi\Index as ControllerService;
+use App\Domains\Refuel\ControllerApi\Service\Index as ControllerService;
 
 class Index extends ControllerApiAbstract
 {
@@ -32649,6 +32596,155 @@ class Index extends ControllerApiAbstract
 
 ```
 
+`app/Domains/Refuel/ControllerApi/Service/ControllerApiAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Refuel\ControllerApi\Service;
+
+use App\Domains\CoreApp\ControllerApi\Service\ControllerApiAbstract as CoreAppControllerApiAbstract;
+
+abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
+{
+}
+
+```
+
+`app/Domains/Refuel/ControllerApi/Service/Create.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Refuel\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+
+class Create extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataDefault();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataDefault(): array
+    {
+        return $this->request->input();
+    }
+}
+
+```
+
+`app/Domains/Refuel/ControllerApi/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Refuel\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Refuel\Model\Refuel as Model;
+
+class Index extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return Model::query()
+            ->byUserOrManager($this->auth)
+            ->whenUserId($this->requestInteger('user_id'))
+            ->whenVehicleId($this->requestInteger('vehicle_id'))
+            ->withSimple('user')
+            ->withSimple('vehicle')
+            ->list()
+            ->get()
+            ->all();
+    }
+}
+
+```
+
+`app/Domains/Refuel/ControllerApi/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Refuel\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Refuel\Model\Refuel as Model;
+
+class Update extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Refuel\Model\Refuel $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataDefault()
+            + $this->dataRow();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataDefault(): array
+    {
+        return $this->request->input();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataRow(): array
+    {
+        return $this->row->toArray();
+    }
+}
+
+```
 
 `app/Domains/Refuel/ControllerApi/Update.php:`
 
@@ -32659,7 +32755,7 @@ namespace App\Domains\Refuel\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
 use App\Domains\Refuel\Model\Refuel as Model;
-use App\Domains\Refuel\Service\ControllerApi\Update as ControllerService;
+use App\Domains\Refuel\ControllerApi\Service\Update as ControllerService;
 
 class Update extends ControllerApiAbstract
 {
@@ -32694,7 +32790,6 @@ class Update extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Refuel/ControllerApi/router.php:`
 
 ```php
@@ -32710,7 +32805,6 @@ Route::patch('/refuel/{id}', Update::class)->name('refuel.update');
 Route::delete('/refuel/{id}', Delete::class)->name('refuel.delete');
 
 ```
-
 
 `app/Domains/Refuel/Fractal/FractalFactory.php:`
 
@@ -32763,7 +32857,6 @@ class FractalFactory extends FractalAbstract
 
 ```
 
-
 `app/Domains/Refuel/Job/JobAbstract.php:`
 
 ```php
@@ -32771,8 +32864,8 @@ class FractalFactory extends FractalAbstract
 
 namespace App\Domains\Refuel\Job;
 
-use App\Domains\Refuel\Model\Refuel as Model;
 use App\Domains\Core\Job\JobAbstract as JobAbstractCore;
+use App\Domains\Refuel\Model\Refuel as Model;
 
 abstract class JobAbstract extends JobAbstractCore
 {
@@ -32809,7 +32902,6 @@ abstract class JobAbstract extends JobAbstractCore
 
 ```
 
-
 `app/Domains/Refuel/Job/UpdateCity.php:`
 
 ```php
@@ -32829,7 +32921,6 @@ class UpdateCity extends JobAbstract
 }
 
 ```
-
 
 `app/Domains/Refuel/Model/Builder/Refuel.php:`
 
@@ -33090,7 +33181,6 @@ class Refuel extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Refuel/Model/Collection/Refuel.php:`
 
 ```php
@@ -33105,7 +33195,6 @@ class Refuel extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/Refuel/Model/Refuel.php:`
 
@@ -33209,7 +33298,6 @@ class Refuel extends ModelAbstract
 
 ```
 
-
 `app/Domains/Refuel/Schedule/Manager.php:`
 
 ```php
@@ -33217,8 +33305,8 @@ class Refuel extends ModelAbstract
 
 namespace App\Domains\Refuel\Schedule;
 
-use App\Domains\Refuel\Command\UpdateCityEmpty as UpdateCityEmptyCommand;
 use App\Domains\Core\Schedule\ScheduleAbstract;
+use App\Domains\Refuel\Command\UpdateCityEmpty as UpdateCityEmptyCommand;
 
 class Manager extends ScheduleAbstract
 {
@@ -33232,686 +33320,6 @@ class Manager extends ScheduleAbstract
 }
 
 ```
-
-
-`app/Domains/Refuel/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Refuel\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/Refuel/Service/Controller/Create.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Refuel\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Refuel\Model\Refuel as Model;
-
-class Create extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow($this->requestMergeWithRowData(), $this->previous());
-    }
-
-    /**
-     * @return array
-     */
-    protected function requestMergeWithRowData(): array
-    {
-        return $this->requestMergeWithRowUserId()
-            + $this->requestMergeWithRowLocation();
-    }
-
-    /**
-     * @return array
-     */
-    protected function requestMergeWithRowUserId(): array
-    {
-        return ['user_id' => $this->user()->id];
-    }
-
-    /**
-     * @return array
-     */
-    protected function requestMergeWithRowLocation(): array
-    {
-        return PositionModel::query()
-            ->select('latitude', 'longitude')
-            ->byUserId($this->user()->id)
-            ->orderByLast()
-            ->firstOrNew()
-            ->only('latitude', 'longitude');
-    }
-
-    /**
-     * @return \App\Domains\Refuel\Model\Refuel
-     */
-    protected function previous(): Model
-    {
-        return Model::query()
-            ->select('distance_total', 'price')
-            ->byUserId($this->user()->id)
-            ->orderByLast()
-            ->firstOrNew();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCreateUpdate();
-    }
-}
-
-```
-
-
-`app/Domains/Refuel/Service/Controller/CreateUpdateAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Refuel\Service\Controller;
-
-abstract class CreateUpdateAbstract extends ControllerAbstract
-{
-    /**
-     * @return array
-     */
-    protected function dataCreateUpdate(): array
-    {
-        return $this->dataCore() + [
-            'vehicles' => $this->vehicles(),
-        ];
-    }
-}
-
-```
-
-
-`app/Domains/Refuel/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Refuel\Service\Controller;
-
-use stdClass;
-use App\Domains\Refuel\Model\Refuel as Model;
-use App\Domains\Refuel\Model\Collection\Refuel as Collection;
-
-class Index extends IndexMapAbstract
-{
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCore() + [
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'vehicle_empty' => $this->vehicleEmpty(),
-            'countries' => $this->countries(),
-            'country' => $this->country(),
-            'states' => $this->states(),
-            'state' => $this->state(),
-            'cities' => $this->cities(),
-            'city' => $this->city(),
-            'date_min' => $this->dateMin(),
-            'list' => $this->list(),
-            'totals' => $this->totals(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Refuel\Model\Collection\Refuel
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->whenVehicleId((int)$this->request->input('vehicle_id'))
-                ->whenDateAtBetween($this->request->input('start_at'), $this->request->input('end_at'))
-                ->whenCityStateCountryId($this->city()?->id, $this->state()?->id, $this->country()?->id)
-                ->withSimple('user')
-                ->withSimple('vehicle')
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
-     * @return ?\stdClass
-     */
-    protected function totals(): ?stdClass
-    {
-        if ($this->list()->isEmpty()) {
-            return null;
-        }
-
-        $totals = $this->list()->reduce($this->totalsRow(...), $this->totalsCarry());
-        $totals->price = round($totals->total / $totals->quantity, 3);
-
-        return $totals;
-    }
-
-    /**
-     * @return \stdClass
-     */
-    protected function totalsCarry(): stdClass
-    {
-        return (object)[
-            'distance' => 0,
-            'quantity' => 0,
-            'price' => 0,
-            'total' => 0,
-        ];
-    }
-
-    /**
-     * @param \stdClass $carry
-     * @param \App\Domains\Refuel\Model\Refuel $row
-     *
-     * @return \stdClass
-     */
-    protected function totalsRow(stdClass $carry, Model $row): stdClass
-    {
-        $carry->distance += $row->distance;
-        $carry->quantity += $row->quantity;
-        $carry->price += $row->price;
-        $carry->total += $row->total;
-
-        return $carry;
-    }
-}
-
-```
-
-
-`app/Domains/Refuel/Service/Controller/IndexMapAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Refuel\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\City\Model\City as CityModel;
-use App\Domains\City\Model\Collection\City as CityCollection;
-use App\Domains\Country\Model\Collection\Country as CountryCollection;
-use App\Domains\Country\Model\Country as CountryModel;
-use App\Domains\Refuel\Model\Refuel as Model;
-use App\Domains\State\Model\Collection\State as StateCollection;
-use App\Domains\State\Model\State as StateModel;
-
-abstract class IndexMapAbstract extends ControllerAbstract
-{
-    /**
-     * @const string
-     */
-    protected const DATE_REGEXP = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
-
-    /**
-     * @var bool
-     */
-    protected bool $userEmpty = true;
-
-    /**
-     * @var bool
-     */
-    protected bool $vehicleEmpty = true;
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->filters();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filters(): void
-    {
-        $this->filtersDates();
-        $this->filtersIds();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filtersDates(): void
-    {
-        $this->filtersDatesStartAt();
-        $this->filtersDatesEndAt();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filtersDatesStartAt(): void
-    {
-        $start_at = $this->request->input('start_at');
-
-        if ($start_at === '') {
-            return;
-        }
-
-        if (is_null($start_at) || (preg_match(static::DATE_REGEXP, $start_at) === 0)) {
-            $this->request->merge(['start_at' => date('Y-m-d', strtotime('-1 year'))]);
-        }
-    }
-
-    /**
-     * @return void
-     */
-    protected function filtersDatesEndAt(): void
-    {
-        $end_at = $this->request->input('end_at');
-
-        if (is_null($end_at) || (preg_match(static::DATE_REGEXP, $end_at) === 0)) {
-            $this->request->merge(['end_at' => '']);
-        }
-    }
-
-    /**
-     * @return void
-     */
-    protected function filtersIds(): void
-    {
-        $this->filtersUserId();
-        $this->filtersVehicleId();
-    }
-
-    /**
-     * @return ?string
-     */
-    protected function dateMin(): ?string
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->orderByDateAtAsc()
-                ->rawValue('DATE(`date_at`)')
-        );
-    }
-
-    /**
-     * @return \App\Domains\Country\Model\Collection\Country
-     */
-    protected function countries(): CountryCollection
-    {
-        return $this->cache(function () {
-            return CountryModel::query()
-                ->whenRefuelUserIdVehicleIdDateAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\Country\Model\Country
-     */
-    protected function country(): ?CountryModel
-    {
-        return $this->cache(
-            fn () => $this->countries()->firstWhere('id', $this->request->input('country_id'))
-        );
-    }
-
-    /**
-     * @return \App\Domains\State\Model\Collection\State
-     */
-    protected function states(): StateCollection
-    {
-        return $this->cache(function () {
-            if (empty($country_id = intval($this->country()?->id))) {
-                return new StateCollection();
-            }
-
-            return StateModel::query()
-                ->byCountryId($country_id)
-                ->whenRefuelUserIdVehicleIdDateAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\State\Model\State
-     */
-    protected function state(): ?StateModel
-    {
-        return $this->cache(
-            fn () => $this->states()->firstWhere('id', $this->request->input('state_id'))
-        );
-    }
-
-    /**
-     * @return \App\Domains\City\Model\Collection\City
-     */
-    protected function cities(): CityCollection
-    {
-        return $this->cache(function () {
-            if (empty($state_id = intval($this->state()?->id))) {
-                return new CityCollection();
-            }
-
-            return CityModel::query()
-                ->byStateId($state_id)
-                ->whenRefuelUserIdVehicleIdDateAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\City\Model\City
-     */
-    protected function city(): ?CityModel
-    {
-        return $this->cache(
-            fn () => $this->cities()->firstWhere('id', $this->request->input('city_id'))
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Refuel/Service/Controller/Map.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Refuel\Service\Controller;
-
-use App\Domains\Refuel\Model\Collection\Refuel as Collection;
-use App\Domains\Refuel\Model\Refuel as Model;
-
-class Map extends IndexMapAbstract
-{
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCore() + [
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'vehicle_empty' => $this->vehicleEmpty(),
-            'countries' => $this->countries(),
-            'country' => $this->country(),
-            'states' => $this->states(),
-            'state' => $this->state(),
-            'cities' => $this->cities(),
-            'city' => $this->city(),
-            'date_min' => $this->dateMin(),
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Refuel\Model\Collection\Refuel
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->whenVehicleId($this->vehicle()?->id)
-                ->whenDateAtBetween($this->request->input('start_at'), $this->request->input('end_at'))
-                ->whenCityStateCountryId($this->city()?->id, $this->state()?->id, $this->country()?->id)
-                ->withSimple('vehicle')
-                ->withCityState()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Refuel/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Refuel\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Refuel\Model\Refuel as Model;
-
-class Update extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Refuel\Model\Refuel $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCreateUpdate() + [
-            'row' => $this->row,
-        ];
-    }
-}
-
-```
-
-
-`app/Domains/Refuel/Service/ControllerApi/ControllerApiAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Refuel\Service\ControllerApi;
-
-use App\Domains\CoreApp\Service\ControllerApi\ControllerApiAbstract as CoreAppControllerApiAbstract;
-
-abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
-{
-}
-
-```
-
-
-`app/Domains/Refuel/Service/ControllerApi/Create.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Refuel\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-
-class Create extends ControllerApiAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataDefault();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataDefault(): array
-    {
-        return $this->request->input();
-    }
-}
-
-```
-
-
-`app/Domains/Refuel/Service/ControllerApi/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Refuel\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Refuel\Model\Refuel as Model;
-
-class Index extends ControllerApiAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return Model::query()
-            ->byUserOrManager($this->auth)
-            ->whenUserId($this->requestInteger('user_id'))
-            ->whenVehicleId($this->requestInteger('vehicle_id'))
-            ->withSimple('user')
-            ->withSimple('vehicle')
-            ->list()
-            ->get()
-            ->all();
-    }
-}
-
-```
-
-
-`app/Domains/Refuel/Service/ControllerApi/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Refuel\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Refuel\Model\Refuel as Model;
-
-class Update extends ControllerApiAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Refuel\Model\Refuel $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataDefault()
-            + $this->dataRow();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataDefault(): array
-    {
-        return $this->request->input();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataRow(): array
-    {
-        return $this->row->toArray();
-    }
-}
-
-```
-
 
 `app/Domains/Refuel/Validate/Create.php:`
 
@@ -33947,7 +33355,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Refuel/Validate/Update.php:`
 
 ```php
@@ -33960,7 +33367,6 @@ class Update extends Create
 }
 
 ```
-
 
 `app/Domains/Refuel/Validate/ValidateFactory.php:`
 
@@ -33977,7 +33383,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 ```
 
-
 `app/Domains/Server/Action/ActionAbstract.php:`
 
 ```php
@@ -33985,8 +33390,8 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 namespace App\Domains\Server\Action;
 
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\CoreApp\Action\ActionAbstract as ActionAbstractCore;
+use App\Domains\Server\Model\Server as Model;
 
 abstract class ActionAbstract extends ActionAbstractCore
 {
@@ -33998,7 +33403,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 ```
 
-
 `app/Domains/Server/Action/ActionFactory.php:`
 
 ```php
@@ -34006,8 +33410,8 @@ abstract class ActionAbstract extends ActionAbstractCore
 
 namespace App\Domains\Server\Action;
 
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\Core\Action\ActionFactoryAbstract;
+use App\Domains\Server\Model\Server as Model;
 
 class ActionFactory extends ActionFactoryAbstract
 {
@@ -34107,7 +33511,6 @@ class ActionFactory extends ActionFactoryAbstract
 
 ```
 
-
 `app/Domains/Server/Action/Create.php:`
 
 ```php
@@ -34134,7 +33537,6 @@ class Create extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/Server/Action/CreateUpdateAbstract.php:`
 
@@ -34213,7 +33615,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
 ```
 
-
 `app/Domains/Server/Action/Delete.php:`
 
 ```php
@@ -34279,7 +33680,6 @@ class Delete extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Server/Action/LogRead.php:`
 
@@ -34418,7 +33818,6 @@ class LogRead extends ActionAbstract
 
 ```
 
-
 `app/Domains/Server/Action/Parse.php:`
 
 ```php
@@ -34426,8 +33825,8 @@ class LogRead extends ActionAbstract
 
 namespace App\Domains\Server\Action;
 
-use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Device\Model\Collection\Device as DeviceCollection;
+use App\Domains\Device\Model\Device as DeviceModel;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\ProtocolFactory;
 
@@ -34550,7 +33949,6 @@ class Parse extends ActionAbstract
 
 ```
 
-
 `app/Domains/Server/Action/StartAll.php:`
 
 ```php
@@ -34633,7 +34031,6 @@ class StartAll extends ActionAbstract
 
 ```
 
-
 `app/Domains/Server/Action/StartPort.php:`
 
 ```php
@@ -34641,9 +34038,9 @@ class StartAll extends ActionAbstract
 
 namespace App\Domains\Server\Action;
 
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\Server\Exception\PortBusy as PortBusyException;
 use App\Domains\Server\Exception\PortLocked as PortLockedException;
+use App\Domains\Server\Model\Server as Model;
 use App\Services\Filesystem\Directory;
 use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\ProtocolFactory;
@@ -34895,7 +34292,6 @@ class StartPort extends ActionAbstract
 
 ```
 
-
 `app/Domains/Server/Action/StartPorts.php:`
 
 ```php
@@ -34975,7 +34371,6 @@ class StartPorts extends ActionAbstract
 
 ```
 
-
 `app/Domains/Server/Action/StopAll.php:`
 
 ```php
@@ -35034,7 +34429,6 @@ class StopAll extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Server/Action/StopPorts.php:`
 
@@ -35127,7 +34521,6 @@ class StopPorts extends ActionAbstract
 
 ```
 
-
 `app/Domains/Server/Action/Update.php:`
 
 ```php
@@ -35153,7 +34546,6 @@ class Update extends CreateUpdateAbstract
 
 ```
 
-
 `app/Domains/Server/Action/UpdateBoolean.php:`
 
 ```php
@@ -35161,8 +34553,8 @@ class Update extends CreateUpdateAbstract
 
 namespace App\Domains\Server\Action;
 
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\CoreApp\Action\UpdateBoolean as UpdateBooleanCoreApp;
+use App\Domains\Server\Model\Server as Model;
 
 class UpdateBoolean extends UpdateBooleanCoreApp
 {
@@ -35173,7 +34565,6 @@ class UpdateBoolean extends UpdateBooleanCoreApp
 }
 
 ```
-
 
 `app/Domains/Server/Command/CommandAbstract.php:`
 
@@ -35189,7 +34580,6 @@ abstract class CommandAbstract extends CommandAbstractSahred
 }
 
 ```
-
 
 `app/Domains/Server/Command/LogRead.php:`
 
@@ -35230,7 +34620,6 @@ class LogRead extends CommandAbstract
 
 ```
 
-
 `app/Domains/Server/Command/StartAll.php:`
 
 ```php
@@ -35268,7 +34657,6 @@ class StartAll extends CommandAbstract
 }
 
 ```
-
 
 `app/Domains/Server/Command/StartPort.php:`
 
@@ -35309,7 +34697,6 @@ class StartPort extends CommandAbstract
 
 ```
 
-
 `app/Domains/Server/Command/StopAll.php:`
 
 ```php
@@ -35346,7 +34733,6 @@ class StopAll extends CommandAbstract
 
 ```
 
-
 `app/Domains/Server/Controller/ControllerAbstract.php:`
 
 ```php
@@ -35354,8 +34740,8 @@ class StopAll extends CommandAbstract
 
 namespace App\Domains\Server\Controller;
 
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
+use App\Domains\Server\Model\Server as Model;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -35378,7 +34764,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 }
 
 ```
-
 
 `app/Domains/Server/Controller/Create.php:`
 
@@ -35426,7 +34811,6 @@ class Create extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Server/Controller/Index.php:`
 
 ```php
@@ -35454,628 +34838,12 @@ class Index extends ControllerAbstract
 
 ```
 
-
-`app/Domains/Server/Controller/Status.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Controller;
-
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use App\Domains\Server\Service\Controller\Status as ControllerService;
-
-class Status extends ControllerAbstract
-{
-    /**
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-    public function __invoke(): Response|RedirectResponse
-    {
-        if ($response = $this->actions()) {
-            return $response;
-        }
-
-        $this->meta('title', __('server-status.meta-title'));
-
-        return $this->page('server.status', $this->data());
-    }
-
-    /**
-     * @return array
-     */
-    protected function data(): array
-    {
-        return ControllerService::new($this->request, $this->auth)->data();
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse|false|null
-     */
-    protected function actions(): RedirectResponse|false|null
-    {
-        return $this->actionPost('startPorts')
-            ?: $this->actionPost('stopPorts');
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function startPorts(): RedirectResponse
-    {
-        $this->action()->startPorts();
-
-        $this->sessionMessage('success', __('server-status.start-success'));
-
-        return redirect()->back();
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function stopPorts(): RedirectResponse
-    {
-        $this->action()->stopPorts();
-
-        $this->sessionMessage('success', __('server-status.stop-success'));
-
-        return redirect()->back();
-    }
-}
-
-```
-
-
-`app/Domains/Server/Controller/Update.php:`
+`app/Domains/Server/Controller/Service/ControllerAbstract.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Server\Controller;
-
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use App\Services\Protocol\ProtocolFactory;
-
-class Update extends ControllerAbstract
-{
-    /**
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-    public function __invoke(int $id): Response|RedirectResponse
-    {
-        $this->row($id);
-
-        if ($response = $this->actions()) {
-            return $response;
-        }
-
-        $this->requestMergeWithRow();
-
-        $this->meta('title', __('server-update.meta-title', ['title' => $this->row->port.' - '.$this->row->protocol]));
-
-        return $this->page('server.update', [
-            'row' => $this->row,
-            'protocols' => array_keys(ProtocolFactory::list()),
-        ]);
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse|false|null
-     */
-    protected function actions(): RedirectResponse|false|null
-    {
-        return $this->actionPost('update')
-            ?: $this->actionPost('delete');
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function update(): RedirectResponse
-    {
-        $this->action()->update();
-
-        $this->sessionMessage('success', __('server-update.success'));
-
-        return redirect()->route('server.update', $this->row->id);
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function delete(): RedirectResponse
-    {
-        $this->action()->delete();
-
-        $this->sessionMessage('success', __('server-update.delete-success'));
-
-        return redirect()->route('server.index');
-    }
-}
-
-```
-
-
-`app/Domains/Server/Controller/UpdateBoolean.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Controller;
-
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
-
-class UpdateBoolean extends ControllerAbstract
-{
-    /**
-     * @param int $id
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
-     */
-    public function __invoke(int $id): JsonResponse|RedirectResponse
-    {
-        $this->row($id);
-
-        return $this->request->wantsJson()
-            ? $this->responseJson()
-            : $this->responseRedirect();
-    }
-
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function responseJson(): JsonResponse
-    {
-        return $this->json($this->factory()->fractal('simple', $this->action()->updateBoolean()));
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function responseRedirect(): RedirectResponse
-    {
-        $this->actionCallClosure($this->action()->updateBoolean(...));
-
-        return redirect()->back();
-    }
-}
-
-```
-
-
-`app/Domains/Server/Controller/UpdateParser.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Controller;
-
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use App\Domains\Server\Service\Controller\UpdateParser as ControllerService;
-
-class UpdateParser extends ControllerAbstract
-{
-    /**
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-    public function __invoke(int $id): Response|RedirectResponse
-    {
-        $this->row($id);
-
-        $this->meta('title', __('server-update-parser.meta-title', ['title' => $this->row->port.' - '.$this->row->protocol]));
-
-        return $this->page('server.update-parser', $this->data());
-    }
-
-    /**
-     * @return array
-     */
-    protected function data(): array
-    {
-        return ControllerService::new($this->request, $this->auth, $this->row, $this->actionPost('parse'))->data();
-    }
-
-    /**
-     * @return array
-     */
-    protected function parse(): array
-    {
-        return $this->action()->parse();
-    }
-}
-
-```
-
-
-`app/Domains/Server/Controller/router.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Controller;
-
-use Illuminate\Support\Facades\Route;
-
-Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
-    Route::any('/server', Index::class)->name('server.index');
-    Route::any('/server/create', Create::class)->name('server.create');
-    Route::any('/server/status', Status::class)->name('server.status');
-    Route::any('/server/{id}', Update::class)->name('server.update');
-    Route::any('/server/{id}/boolean/{column}', UpdateBoolean::class)->name('server.update.boolean');
-    Route::any('/server/{id}/parser', UpdateParser::class)->name('server.update.parser');
-});
-
-```
-
-
-`app/Domains/Server/Exception/ExceptionAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Exception;
-
-use App\Exceptions\GenericException;
-
-abstract class ExceptionAbstract extends GenericException
-{
-}
-
-```
-
-
-`app/Domains/Server/Exception/PortBusy.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Exception;
-
-class PortBusy extends ExceptionAbstract
-{
-    /**
-     * @var int
-     */
-    protected $code = 412;
-
-    /**
-     * @var ?string
-     */
-    protected ?string $status = 'server-port-busy';
-}
-
-```
-
-
-`app/Domains/Server/Exception/PortLocked.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Exception;
-
-class PortLocked extends ExceptionAbstract
-{
-    /**
-     * @var int
-     */
-    protected $code = 408;
-
-    /**
-     * @var ?string
-     */
-    protected ?string $status = 'server-port-locked';
-}
-
-```
-
-
-`app/Domains/Server/Fractal/FractalFactory.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Fractal;
-
-use App\Domains\Server\Model\Server as Model;
-use App\Domains\Core\Fractal\FractalAbstract;
-
-class FractalFactory extends FractalAbstract
-{
-    /**
-     * @param \App\Domains\Server\Model\Server $row
-     *
-     * @return array
-     */
-    protected function simple(Model $row): array
-    {
-        return $row->only('id', 'port', 'protocol', 'debug', 'enabled');
-    }
-}
-
-```
-
-
-`app/Domains/Server/Model/Builder/Server.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Model\Builder;
-
-use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
-
-class Server extends BuilderAbstract
-{
-    /**
-     * @param int $port
-     *
-     * @return self
-     */
-    public function byPort(int $port): self
-    {
-        return $this->where('port', $port);
-    }
-
-    /**
-     * @param array $ports
-     *
-     * @return self
-     */
-    public function byPorts(array $ports): self
-    {
-        return $this->whereIntegerInRaw('port', $ports);
-    }
-
-    /**
-     * @param string $protocol
-     *
-     * @return self
-     */
-    public function byProtocol(string $protocol): self
-    {
-        return $this->where('protocol', $protocol);
-    }
-
-    /**
-     * @return self
-     */
-    public function list(): self
-    {
-        return $this->orderBy('port', 'ASC');
-    }
-}
-
-```
-
-
-`app/Domains/Server/Model/Collection/Server.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Model\Collection;
-
-use App\Domains\CoreApp\Model\Collection\CollectionAbstract;
-
-class Server extends CollectionAbstract
-{
-}
-
-```
-
-
-`app/Domains/Server/Model/Server.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Model;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Domains\Server\Model\Builder\Server as Builder;
-use App\Domains\Server\Model\Collection\Server as Collection;
-use App\Domains\Server\Test\Factory\Server as TestFactory;
-use App\Domains\CoreApp\Model\ModelAbstract;
-
-class Server extends ModelAbstract
-{
-    use HasFactory;
-
-    /**
-     * @var string
-     */
-    protected $table = 'server';
-
-    /**
-     * @const string
-     */
-    public const TABLE = 'server';
-
-    /**
-     * @const string
-     */
-    public const FOREIGN = 'server_id';
-
-    /**
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'debug' => 'boolean',
-        'enabled' => 'boolean',
-    ];
-
-    /**
-     * @param array $models
-     *
-     * @return \App\Domains\Server\Model\Collection\Server
-     */
-    public function newCollection(array $models = []): Collection
-    {
-        return new Collection($models);
-    }
-
-    /**
-     * @param \Illuminate\Database\Query\Builder $query
-     *
-     * @return \App\Domains\Server\Model\Builder\Server
-     */
-    public function newEloquentBuilder($query): Builder
-    {
-        return new Builder($query);
-    }
-
-    /**
-     * @return \App\Domains\Server\Test\Factory\Server
-     */
-    protected static function newFactory(): TestFactory
-    {
-        return TestFactory::new();
-    }
-}
-
-```
-
-
-`app/Domains/Server/Schedule/Manager.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Schedule;
-
-use App\Domains\Server\Command\StartAll as StartAllCommand;
-use App\Domains\Core\Schedule\ScheduleAbstract;
-
-class Manager extends ScheduleAbstract
-{
-    /**
-     * @return void
-     */
-    public function handle(): void
-    {
-        $this->command(StartAllCommand::class)->everyMinute();
-    }
-}
-
-```
-
-
-`app/Domains/Server/Seeder/Server.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Seeder;
-
-use App\Domains\Server\Model\Server as Model;
-use App\Domains\Core\Seeder\SeederAbstract;
-
-class Server extends SeederAbstract
-{
-    /**
-     * @return void
-     */
-    public function run(): void
-    {
-        if (Model::query()->count()) {
-            return;
-        }
-
-        $this->insertWithoutDuplicates(Model::class, 'port', $this->json('server'));
-    }
-}
-
-```
-
-
-`app/Domains/Server/Service/Command/Generator.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Service\Command;
-
-class Generator
-{
-    /**
-     * @param int $port
-     * @param bool $reset = false
-     * @param bool $debug = false
-     *
-     * @return string
-     */
-    public static function serverStartPort(int $port, bool $reset = false, bool $debug = false): string
-    {
-        return static::command('server:start:port', $port, $reset, $debug);
-    }
-
-    /**
-     * @param string $command
-     * @param int $port
-     * @param bool $reset = false
-     * @param bool $debug = false
-     *
-     * @return string
-     */
-    protected static function command(string $command, int $port, bool $reset, bool $debug): string
-    {
-        return implode(' ', array_filter([
-            $command,
-            static::port($port),
-            static::reset($reset),
-            static::debug($debug),
-        ]));
-    }
-
-    /**
-     * @param int $port
-     *
-     * @return string
-     */
-    protected static function port(int $port): string
-    {
-        return '--port='.$port;
-    }
-
-    /**
-     * @param bool $reset
-     *
-     * @return ?string
-     */
-    protected static function reset(bool $reset): ?string
-    {
-        return $reset ? '--reset' : null;
-    }
-
-    /**
-     * @param bool $debug
-     *
-     * @return ?string
-     */
-    protected static function debug(bool $debug): ?string
-    {
-        return $debug ? '--debug' : null;
-    }
-}
-
-```
-
-
-`app/Domains/Server/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Server\Service\Controller;
+namespace App\Domains\Server\Controller\Service;
 
 abstract class ControllerAbstract
 {
@@ -36090,20 +34858,19 @@ abstract class ControllerAbstract
 
 ```
 
-
-`app/Domains/Server/Service/Controller/Status.php:`
+`app/Domains/Server/Controller/Service/Status.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Server\Service\Controller;
+namespace App\Domains\Server\Controller\Service;
 
 use stdClass;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection as CollectionGeneric;
-use App\Domains\Server\Model\Server as Model;
 use App\Domains\Server\Model\Collection\Server as Collection;
+use App\Domains\Server\Model\Server as Model;
 use App\Services\Server\Process as ServerProcess;
 
 class Status extends ControllerAbstract
@@ -36222,18 +34989,17 @@ class Status extends ControllerAbstract
 
 ```
 
-
-`app/Domains/Server/Service/Controller/UpdateParser.php:`
+`app/Domains/Server/Controller/Service/UpdateParser.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Server\Service\Controller;
+namespace App\Domains\Server\Controller\Service;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
+use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Server\Model\Server as Model;
 use App\Domains\Trip\Model\Trip as TripModel;
 use App\Services\Protocol\ProtocolAbstract;
@@ -36390,6 +35156,605 @@ class UpdateParser extends ControllerAbstract
 
 ```
 
+`app/Domains/Server/Controller/Status.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Controller;
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use App\Domains\Server\Controller\Service\Status as ControllerService;
+
+class Status extends ControllerAbstract
+{
+    /**
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function __invoke(): Response|RedirectResponse
+    {
+        if ($response = $this->actions()) {
+            return $response;
+        }
+
+        $this->meta('title', __('server-status.meta-title'));
+
+        return $this->page('server.status', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth)->data();
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|false|null
+     */
+    protected function actions(): RedirectResponse|false|null
+    {
+        return $this->actionPost('startPorts')
+            ?: $this->actionPost('stopPorts');
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function startPorts(): RedirectResponse
+    {
+        $this->action()->startPorts();
+
+        $this->sessionMessage('success', __('server-status.start-success'));
+
+        return redirect()->back();
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function stopPorts(): RedirectResponse
+    {
+        $this->action()->stopPorts();
+
+        $this->sessionMessage('success', __('server-status.stop-success'));
+
+        return redirect()->back();
+    }
+}
+
+```
+
+`app/Domains/Server/Controller/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Controller;
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use App\Services\Protocol\ProtocolFactory;
+
+class Update extends ControllerAbstract
+{
+    /**
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function __invoke(int $id): Response|RedirectResponse
+    {
+        $this->row($id);
+
+        if ($response = $this->actions()) {
+            return $response;
+        }
+
+        $this->requestMergeWithRow();
+
+        $this->meta('title', __('server-update.meta-title', ['title' => $this->row->port.' - '.$this->row->protocol]));
+
+        return $this->page('server.update', [
+            'row' => $this->row,
+            'protocols' => array_keys(ProtocolFactory::list()),
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|false|null
+     */
+    protected function actions(): RedirectResponse|false|null
+    {
+        return $this->actionPost('update')
+            ?: $this->actionPost('delete');
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function update(): RedirectResponse
+    {
+        $this->action()->update();
+
+        $this->sessionMessage('success', __('server-update.success'));
+
+        return redirect()->route('server.update', $this->row->id);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function delete(): RedirectResponse
+    {
+        $this->action()->delete();
+
+        $this->sessionMessage('success', __('server-update.delete-success'));
+
+        return redirect()->route('server.index');
+    }
+}
+
+```
+
+`app/Domains/Server/Controller/UpdateBoolean.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Controller;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+
+class UpdateBoolean extends ControllerAbstract
+{
+    /**
+     * @param int $id
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    public function __invoke(int $id): JsonResponse|RedirectResponse
+    {
+        $this->row($id);
+
+        return $this->request->wantsJson()
+            ? $this->responseJson()
+            : $this->responseRedirect();
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function responseJson(): JsonResponse
+    {
+        return $this->json($this->factory()->fractal('simple', $this->action()->updateBoolean()));
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function responseRedirect(): RedirectResponse
+    {
+        $this->actionCallClosure($this->action()->updateBoolean(...));
+
+        return redirect()->back();
+    }
+}
+
+```
+
+`app/Domains/Server/Controller/UpdateParser.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Controller;
+
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use App\Domains\Server\Controller\Service\UpdateParser as ControllerService;
+
+class UpdateParser extends ControllerAbstract
+{
+    /**
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function __invoke(int $id): Response|RedirectResponse
+    {
+        $this->row($id);
+
+        $this->meta('title', __('server-update-parser.meta-title', ['title' => $this->row->port.' - '.$this->row->protocol]));
+
+        return $this->page('server.update-parser', $this->data());
+    }
+
+    /**
+     * @return array
+     */
+    protected function data(): array
+    {
+        return ControllerService::new($this->request, $this->auth, $this->row, $this->actionPost('parse'))->data();
+    }
+
+    /**
+     * @return array
+     */
+    protected function parse(): array
+    {
+        return $this->action()->parse();
+    }
+}
+
+```
+
+`app/Domains/Server/Controller/router.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Controller;
+
+use Illuminate\Support\Facades\Route;
+
+Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
+    Route::any('/server', Index::class)->name('server.index');
+    Route::any('/server/create', Create::class)->name('server.create');
+    Route::any('/server/status', Status::class)->name('server.status');
+    Route::any('/server/{id}', Update::class)->name('server.update');
+    Route::any('/server/{id}/boolean/{column}', UpdateBoolean::class)->name('server.update.boolean');
+    Route::any('/server/{id}/parser', UpdateParser::class)->name('server.update.parser');
+});
+
+```
+
+`app/Domains/Server/Exception/ExceptionAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Exception;
+
+use App\Exceptions\GenericException;
+
+abstract class ExceptionAbstract extends GenericException
+{
+}
+
+```
+
+`app/Domains/Server/Exception/PortBusy.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Exception;
+
+class PortBusy extends ExceptionAbstract
+{
+    /**
+     * @var int
+     */
+    protected $code = 412;
+
+    /**
+     * @var ?string
+     */
+    protected ?string $status = 'server-port-busy';
+}
+
+```
+
+`app/Domains/Server/Exception/PortLocked.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Exception;
+
+class PortLocked extends ExceptionAbstract
+{
+    /**
+     * @var int
+     */
+    protected $code = 408;
+
+    /**
+     * @var ?string
+     */
+    protected ?string $status = 'server-port-locked';
+}
+
+```
+
+`app/Domains/Server/Fractal/FractalFactory.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Fractal;
+
+use App\Domains\Core\Fractal\FractalAbstract;
+use App\Domains\Server\Model\Server as Model;
+
+class FractalFactory extends FractalAbstract
+{
+    /**
+     * @param \App\Domains\Server\Model\Server $row
+     *
+     * @return array
+     */
+    protected function simple(Model $row): array
+    {
+        return $row->only('id', 'port', 'protocol', 'debug', 'enabled');
+    }
+}
+
+```
+
+`app/Domains/Server/Model/Builder/Server.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Model\Builder;
+
+use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
+
+class Server extends BuilderAbstract
+{
+    /**
+     * @param int $port
+     *
+     * @return self
+     */
+    public function byPort(int $port): self
+    {
+        return $this->where('port', $port);
+    }
+
+    /**
+     * @param array $ports
+     *
+     * @return self
+     */
+    public function byPorts(array $ports): self
+    {
+        return $this->whereIntegerInRaw('port', $ports);
+    }
+
+    /**
+     * @param string $protocol
+     *
+     * @return self
+     */
+    public function byProtocol(string $protocol): self
+    {
+        return $this->where('protocol', $protocol);
+    }
+
+    /**
+     * @return self
+     */
+    public function list(): self
+    {
+        return $this->orderBy('port', 'ASC');
+    }
+}
+
+```
+
+`app/Domains/Server/Model/Collection/Server.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Model\Collection;
+
+use App\Domains\CoreApp\Model\Collection\CollectionAbstract;
+
+class Server extends CollectionAbstract
+{
+}
+
+```
+
+`app/Domains/Server/Model/Server.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Model;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\Server\Model\Builder\Server as Builder;
+use App\Domains\Server\Model\Collection\Server as Collection;
+use App\Domains\Server\Test\Factory\Server as TestFactory;
+
+class Server extends ModelAbstract
+{
+    use HasFactory;
+
+    /**
+     * @var string
+     */
+    protected $table = 'server';
+
+    /**
+     * @const string
+     */
+    public const TABLE = 'server';
+
+    /**
+     * @const string
+     */
+    public const FOREIGN = 'server_id';
+
+    /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'debug' => 'boolean',
+        'enabled' => 'boolean',
+    ];
+
+    /**
+     * @param array $models
+     *
+     * @return \App\Domains\Server\Model\Collection\Server
+     */
+    public function newCollection(array $models = []): Collection
+    {
+        return new Collection($models);
+    }
+
+    /**
+     * @param \Illuminate\Database\Query\Builder $query
+     *
+     * @return \App\Domains\Server\Model\Builder\Server
+     */
+    public function newEloquentBuilder($query): Builder
+    {
+        return new Builder($query);
+    }
+
+    /**
+     * @return \App\Domains\Server\Test\Factory\Server
+     */
+    protected static function newFactory(): TestFactory
+    {
+        return TestFactory::new();
+    }
+}
+
+```
+
+`app/Domains/Server/Schedule/Manager.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Schedule;
+
+use App\Domains\Core\Schedule\ScheduleAbstract;
+use App\Domains\Server\Command\StartAll as StartAllCommand;
+
+class Manager extends ScheduleAbstract
+{
+    /**
+     * @return void
+     */
+    public function handle(): void
+    {
+        $this->command(StartAllCommand::class)->everyMinute();
+    }
+}
+
+```
+
+`app/Domains/Server/Seeder/Server.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Seeder;
+
+use App\Domains\Core\Seeder\SeederAbstract;
+use App\Domains\Server\Model\Server as Model;
+
+class Server extends SeederAbstract
+{
+    /**
+     * @return void
+     */
+    public function run(): void
+    {
+        if (Model::query()->count()) {
+            return;
+        }
+
+        $this->insertWithoutDuplicates(Model::class, 'port', $this->json('server'));
+    }
+}
+
+```
+
+`app/Domains/Server/Service/Command/Generator.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Server\Service\Command;
+
+class Generator
+{
+    /**
+     * @param int $port
+     * @param bool $reset = false
+     * @param bool $debug = false
+     *
+     * @return string
+     */
+    public static function serverStartPort(int $port, bool $reset = false, bool $debug = false): string
+    {
+        return static::command('server:start:port', $port, $reset, $debug);
+    }
+
+    /**
+     * @param string $command
+     * @param int $port
+     * @param bool $reset = false
+     * @param bool $debug = false
+     *
+     * @return string
+     */
+    protected static function command(string $command, int $port, bool $reset, bool $debug): string
+    {
+        return implode(' ', array_filter([
+            $command,
+            static::port($port),
+            static::reset($reset),
+            static::debug($debug),
+        ]));
+    }
+
+    /**
+     * @param int $port
+     *
+     * @return string
+     */
+    protected static function port(int $port): string
+    {
+        return '--port='.$port;
+    }
+
+    /**
+     * @param bool $reset
+     *
+     * @return ?string
+     */
+    protected static function reset(bool $reset): ?string
+    {
+        return $reset ? '--reset' : null;
+    }
+
+    /**
+     * @param bool $debug
+     *
+     * @return ?string
+     */
+    protected static function debug(bool $debug): ?string
+    {
+        return $debug ? '--debug' : null;
+    }
+}
+
+```
 
 `app/Domains/Server/Validate/Create.php:`
 
@@ -36418,7 +35783,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Server/Validate/LogRead.php:`
 
 ```php
@@ -36446,7 +35810,6 @@ class LogRead extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Server/Validate/Parse.php:`
 
 ```php
@@ -36470,7 +35833,6 @@ class Parse extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/Server/Validate/StartAll.php:`
 
@@ -36497,7 +35859,6 @@ class StartAll extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Server/Validate/StartPort.php:`
 
 ```php
@@ -36523,7 +35884,6 @@ class StartPort extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/Server/Validate/StartPorts.php:`
 
@@ -36552,7 +35912,6 @@ class StartPorts extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Server/Validate/StopPorts.php:`
 
 ```php
@@ -36578,7 +35937,6 @@ class StopPorts extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Server/Validate/Update.php:`
 
 ```php
@@ -36591,7 +35949,6 @@ class Update extends Create
 }
 
 ```
-
 
 `app/Domains/Server/Validate/UpdateBoolean.php:`
 
@@ -36608,7 +35965,6 @@ class UpdateBoolean extends UpdateBooleanCoreApp
 
 ```
 
-
 `app/Domains/Server/Validate/ValidateFactory.php:`
 
 ```php
@@ -36623,7 +35979,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Shared/Controller/ControllerAbstract.php:`
 
@@ -36664,7 +36019,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Shared/Controller/Device.php:`
 
 ```php
@@ -36674,7 +36028,7 @@ namespace App\Domains\Shared\Controller;
 
 use Illuminate\Http\Response;
 use App\Domains\Device\Model\Device as DeviceModel;
-use App\Domains\Shared\Service\Controller\Device as ControllerService;
+use App\Domains\Shared\Controller\Service\Device as ControllerService;
 
 class Device extends ControllerAbstract
 {
@@ -36721,7 +36075,6 @@ class Device extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Shared/Controller/Index.php:`
 
 ```php
@@ -36731,7 +36084,7 @@ namespace App\Domains\Shared\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Domains\Shared\Service\Controller\Index as ControllerService;
+use App\Domains\Shared\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -36772,131 +36125,14 @@ class Index extends ControllerAbstract
 
 ```
 
-
-`app/Domains/Shared/Controller/Trip.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Shared\Controller;
-
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
-use App\Domains\Position\Model\Collection\Position as PositionCollection;
-use App\Domains\Trip\Model\Trip as TripModel;
-
-class Trip extends ControllerAbstract
-{
-    /**
-     * @var \App\Domains\Trip\Model\Trip
-     */
-    protected TripModel $trip;
-
-    /**
-     * @param string $code
-     *
-     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
-     */
-    public function __invoke(string $code): Response|JsonResponse
-    {
-        $this->trip($code);
-
-        if ($this->request->wantsJson()) {
-            return $this->responseJson();
-        }
-
-        $this->meta('title', __('shared-trip.meta-title', ['title' => $this->trip->name]));
-
-        return $this->page('shared.trip', [
-            'trip' => $this->trip,
-            'device' => $this->trip->device,
-            'positions' => $this->positions(),
-            'stats' => $this->trip->stats,
-        ]);
-    }
-
-    /**
-     * @param string $code
-     *
-     * @return void
-     */
-    protected function trip(string $code): void
-    {
-        $this->trip = TripModel::query()
-            ->byCode($code)
-            ->whereShared()
-            ->firstOr(fn () => $this->exceptionNotFound(__('shared-trip.error.not-found')));
-
-        $this->factory('User', $this->trip->user)->action()->set();
-    }
-
-    /**
-     * @return \App\Domains\Position\Model\Collection\Position
-     */
-    protected function positions(): PositionCollection
-    {
-        return $this->trip->positions()
-            ->withCityState()
-            ->list()
-            ->get();
-    }
-
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function responseJson(): JsonResponse
-    {
-        return $this->json($this->factory('Trip')->fractal('live', $this->responseJsonList()));
-    }
-
-    /**
-     * @return \App\Domains\Trip\Model\Trip
-     */
-    protected function responseJsonList(): TripModel
-    {
-        return $this->trip->setRelation('positions', $this->responseJsonListPositions());
-    }
-
-    /**
-     * @return \App\Domains\Position\Model\Collection\Position
-     */
-    protected function responseJsonListPositions(): PositionCollection
-    {
-        return $this->trip->positions()
-            ->byIdNext((int)$this->request->input('id_from'))
-            ->withCityState()
-            ->list()
-            ->get();
-    }
-}
-
-```
-
-
-`app/Domains/Shared/Controller/router.php:`
+`app/Domains/Shared/Controller/Service/ControllerAbstract.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Shared\Controller;
+namespace App\Domains\Shared\Controller\Service;
 
-use Illuminate\Support\Facades\Route;
-
-Route::get('/shared/device/{uuid}', Device::class)->name('shared.device');
-Route::get('/shared/trip/{uuid}', Trip::class)->name('shared.trip');
-Route::get('/shared/{slug?}', Index::class)->name('shared.index');
-
-```
-
-
-`app/Domains/Shared/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Shared\Service\Controller;
-
-use App\Domains\Core\Service\Controller\ControllerAbstract as ControllerAbstractCore;
+use App\Domains\Core\Controller\Service\ControllerAbstract as ControllerAbstractCore;
 use App\Domains\Core\Traits\Factory;
 
 abstract class ControllerAbstract extends ControllerAbstractCore
@@ -36906,18 +36142,17 @@ abstract class ControllerAbstract extends ControllerAbstractCore
 
 ```
 
-
-`app/Domains/Shared/Service/Controller/Device.php:`
+`app/Domains/Shared/Controller/Service/Device.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Shared\Service\Controller;
+namespace App\Domains\Shared\Controller\Service;
 
 use Illuminate\Http\Request;
 use App\Domains\Device\Model\Device as DeviceModel;
-use App\Domains\Trip\Model\Trip as TripModel;
 use App\Domains\Trip\Model\Collection\Trip as TripCollection;
+use App\Domains\Trip\Model\Trip as TripModel;
 
 class Device extends ControllerAbstract
 {
@@ -36979,13 +36214,12 @@ class Device extends ControllerAbstract
 
 ```
 
-
-`app/Domains/Shared/Service/Controller/Index.php:`
+`app/Domains/Shared/Controller/Service/Index.php:`
 
 ```php
 <?php declare(strict_types=1);
 
-namespace App\Domains\Shared\Service\Controller;
+namespace App\Domains\Shared\Controller\Service;
 
 use Illuminate\Http\Request;
 use App\Domains\Device\Model\Collection\Device as DeviceCollection;
@@ -37148,6 +36382,119 @@ class Index extends ControllerAbstract
 
 ```
 
+`app/Domains/Shared/Controller/Trip.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Shared\Controller;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+use App\Domains\Position\Model\Collection\Position as PositionCollection;
+use App\Domains\Trip\Model\Trip as TripModel;
+
+class Trip extends ControllerAbstract
+{
+    /**
+     * @var \App\Domains\Trip\Model\Trip
+     */
+    protected TripModel $trip;
+
+    /**
+     * @param string $code
+     *
+     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     */
+    public function __invoke(string $code): Response|JsonResponse
+    {
+        $this->trip($code);
+
+        if ($this->request->wantsJson()) {
+            return $this->responseJson();
+        }
+
+        $this->meta('title', __('shared-trip.meta-title', ['title' => $this->trip->name]));
+
+        return $this->page('shared.trip', [
+            'trip' => $this->trip,
+            'device' => $this->trip->device,
+            'positions' => $this->positions(),
+            'stats' => $this->trip->stats,
+        ]);
+    }
+
+    /**
+     * @param string $code
+     *
+     * @return void
+     */
+    protected function trip(string $code): void
+    {
+        $this->trip = TripModel::query()
+            ->byCode($code)
+            ->whereShared()
+            ->firstOr(fn () => $this->exceptionNotFound(__('shared-trip.error.not-found')));
+
+        $this->factory('User', $this->trip->user)->action()->set();
+    }
+
+    /**
+     * @return \App\Domains\Position\Model\Collection\Position
+     */
+    protected function positions(): PositionCollection
+    {
+        return $this->trip->positions()
+            ->withCityState()
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function responseJson(): JsonResponse
+    {
+        return $this->json($this->factory('Trip')->fractal('live', $this->responseJsonList()));
+    }
+
+    /**
+     * @return \App\Domains\Trip\Model\Trip
+     */
+    protected function responseJsonList(): TripModel
+    {
+        return $this->trip->setRelation('positions', $this->responseJsonListPositions());
+    }
+
+    /**
+     * @return \App\Domains\Position\Model\Collection\Position
+     */
+    protected function responseJsonListPositions(): PositionCollection
+    {
+        return $this->trip->positions()
+            ->byIdNext((int)$this->request->input('id_from'))
+            ->withCityState()
+            ->list()
+            ->get();
+    }
+}
+
+```
+
+`app/Domains/Shared/Controller/router.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Shared\Controller;
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('/shared/device/{uuid}', Device::class)->name('shared.device');
+Route::get('/shared/trip/{uuid}', Trip::class)->name('shared.trip');
+Route::get('/shared/{slug?}', Index::class)->name('shared.index');
+
+```
 
 `app/Domains/State/Action/ActionAbstract.php:`
 
@@ -37168,7 +36515,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/State/Action/ActionFactory.php:`
 
@@ -37213,7 +36559,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/State/Action/GetOrNew.php:`
 
@@ -37297,7 +36642,6 @@ class GetOrNew extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/State/Action/Update.php:`
 
@@ -37419,7 +36763,6 @@ class Update extends ActionAbstract
 
 ```
 
-
 `app/Domains/State/Action/UpdateMerge.php:`
 
 ```php
@@ -37428,8 +36771,8 @@ class Update extends ActionAbstract
 namespace App\Domains\State\Action;
 
 use App\Domains\City\Model\City as CityModel;
-use App\Domains\State\Model\State as Model;
 use App\Domains\State\Model\Collection\State as Collection;
+use App\Domains\State\Model\State as Model;
 
 class UpdateMerge extends ActionAbstract
 {
@@ -37554,7 +36897,6 @@ class UpdateMerge extends ActionAbstract
 
 ```
 
-
 `app/Domains/State/Controller/ControllerAbstract.php:`
 
 ```php
@@ -37562,8 +36904,8 @@ class UpdateMerge extends ActionAbstract
 
 namespace App\Domains\State\Controller;
 
-use App\Domains\State\Model\State as Model;
 use App\Domains\CoreApp\Controller\ControllerWebAbstract;
+use App\Domains\State\Model\State as Model;
 
 abstract class ControllerAbstract extends ControllerWebAbstract
 {
@@ -37587,7 +36929,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/State/Controller/Index.php:`
 
 ```php
@@ -37596,7 +36937,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 namespace App\Domains\State\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\State\Service\Controller\Index as ControllerService;
+use App\Domains\State\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -37621,6 +36962,191 @@ class Index extends ControllerAbstract
 
 ```
 
+`app/Domains/State/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\State\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/State/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\State\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\State\Model\Collection\State as Collection;
+use App\Domains\State\Model\State as Model;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\State\Model\Collection\State
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->withCountry()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/State/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\State\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Country\Model\Collection\Country as CountryCollection;
+use App\Domains\Country\Model\Country as CountryModel;
+use App\Domains\State\Model\State as Model;
+
+class Update extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\State\Model\State $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow(data: ['alias' => $this->requestAlias()]);
+    }
+
+    /**
+     * @return string
+     */
+    protected function requestAlias(): string
+    {
+        return $this->request->input('alias')
+            ?: implode(',', $this->row->alias ?? []);
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'countries' => $this->countries(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Country\Model\Collection\Country
+     */
+    protected function countries(): CountryCollection
+    {
+        return CountryModel::query()
+            ->list()
+            ->get();
+    }
+}
+
+```
+
+`app/Domains/State/Controller/Service/UpdateMerge.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\State\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\State\Model\Collection\State as Collection;
+use App\Domains\State\Model\State as Model;
+
+class UpdateMerge extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\State\Model\State $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\State\Model\Collection\State
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->byIdNot($this->row->id)
+                ->withCountry()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
 
 `app/Domains/State/Controller/Update.php:`
 
@@ -37631,7 +37157,7 @@ namespace App\Domains\State\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\State\Service\Controller\Update as ControllerService;
+use App\Domains\State\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -37676,7 +37202,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/State/Controller/UpdateMerge.php:`
 
 ```php
@@ -37686,7 +37211,7 @@ namespace App\Domains\State\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\State\Service\Controller\UpdateMerge as ControllerService;
+use App\Domains\State\Controller\Service\UpdateMerge as ControllerService;
 
 class UpdateMerge extends ControllerAbstract
 {
@@ -37731,7 +37256,6 @@ class UpdateMerge extends ControllerAbstract
 
 ```
 
-
 `app/Domains/State/Controller/router.php:`
 
 ```php
@@ -37748,7 +37272,6 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
 });
 
 ```
-
 
 `app/Domains/State/Fractal/FractalFactory.php:`
 
@@ -37777,7 +37300,6 @@ class FractalFactory extends FractalAbstract
 }
 
 ```
-
 
 `app/Domains/State/Model/Builder/State.php:`
 
@@ -37933,7 +37455,6 @@ class State extends BuilderAbstract
 
 ```
 
-
 `app/Domains/State/Model/Collection/State.php:`
 
 ```php
@@ -37949,7 +37470,6 @@ class State extends CollectionAbstract
 
 ```
 
-
 `app/Domains/State/Model/State.php:`
 
 ```php
@@ -37959,8 +37479,8 @@ namespace App\Domains\State\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Domains\Country\Model\Country as CountryModel;
 use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\Country\Model\Country as CountryModel;
 use App\Domains\State\Model\Builder\State as Builder;
 use App\Domains\State\Model\Collection\State as Collection;
 use App\Domains\State\Test\Factory\State as TestFactory;
@@ -38030,197 +37550,6 @@ class State extends ModelAbstract
 
 ```
 
-
-`app/Domains/State/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\State\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/State/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\State\Service\Controller;
-
-use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Authenticatable;
-use App\Domains\State\Model\State as Model;
-use App\Domains\State\Model\Collection\State as Collection;
-
-class Index extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\State\Model\Collection\State
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->withCountry()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/State/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\State\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\State\Model\State as Model;
-use App\Domains\Country\Model\Collection\Country as CountryCollection;
-use App\Domains\Country\Model\Country as CountryModel;
-
-class Update extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\State\Model\State $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow(data: ['alias' => $this->requestAlias()]);
-    }
-
-    /**
-     * @return string
-     */
-    protected function requestAlias(): string
-    {
-        return $this->request->input('alias')
-            ?: implode(',', $this->row->alias ?? []);
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'countries' => $this->countries(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Country\Model\Collection\Country
-     */
-    protected function countries(): CountryCollection
-    {
-        return CountryModel::query()
-            ->list()
-            ->get();
-    }
-}
-
-```
-
-
-`app/Domains/State/Service/Controller/UpdateMerge.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\State\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\State\Model\State as Model;
-use App\Domains\State\Model\Collection\State as Collection;
-
-class UpdateMerge extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\State\Model\State $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\State\Model\Collection\State
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->byIdNot($this->row->id)
-                ->withCountry()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
 `app/Domains/State/Validate/GetOrNew.php:`
 
 ```php
@@ -38245,7 +37574,6 @@ class GetOrNew extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/State/Validate/Update.php:`
 
@@ -38273,7 +37601,6 @@ class Update extends ValidateAbstract
 
 ```
 
-
 `app/Domains/State/Validate/UpdateMerge.php:`
 
 ```php
@@ -38298,7 +37625,6 @@ class UpdateMerge extends ValidateAbstract
 
 ```
 
-
 `app/Domains/State/Validate/ValidateFactory.php:`
 
 ```php
@@ -38313,7 +37639,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Timezone/Action/ActionAbstract.php:`
 
@@ -38334,7 +37659,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/Timezone/Action/ActionFactory.php:`
 
@@ -38371,7 +37695,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Timezone/Action/Geojson.php:`
 
@@ -38633,7 +37956,6 @@ class Geojson extends ActionAbstract
 
 ```
 
-
 `app/Domains/Timezone/Action/UpdateDefault.php:`
 
 ```php
@@ -38687,7 +38009,6 @@ class UpdateDefault extends ActionAbstract
 
 ```
 
-
 `app/Domains/Timezone/Command/CommandAbstract.php:`
 
 ```php
@@ -38707,7 +38028,6 @@ abstract class CommandAbstract extends CommandAbstractSahred
 }
 
 ```
-
 
 `app/Domains/Timezone/Command/Geojson.php:`
 
@@ -38744,7 +38064,6 @@ class Geojson extends CommandAbstract
 
 ```
 
-
 `app/Domains/Timezone/Controller/ControllerAbstract.php:`
 
 ```php
@@ -38777,7 +38096,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Timezone/Controller/Index.php:`
 
 ```php
@@ -38804,7 +38122,6 @@ class Index extends ControllerAbstract
 }
 
 ```
-
 
 `app/Domains/Timezone/Controller/UpdateDefault.php:`
 
@@ -38856,7 +38173,6 @@ class UpdateDefault extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Timezone/Controller/router.php:`
 
 ```php
@@ -38873,7 +38189,6 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
 
 ```
 
-
 `app/Domains/Timezone/ControllerApi/ControllerApiAbstract.php:`
 
 ```php
@@ -38888,7 +38203,6 @@ abstract class ControllerApiAbstract extends CoreControllerApiAbstract
 }
 
 ```
-
 
 `app/Domains/Timezone/ControllerApi/Index.php:`
 
@@ -38913,7 +38227,6 @@ class Index extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Timezone/ControllerApi/router.php:`
 
 ```php
@@ -38926,7 +38239,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/timezone', Index::class)->name('timezone.index');
 
 ```
-
 
 `app/Domains/Timezone/Fractal/FractalFactory.php:`
 
@@ -38972,7 +38284,6 @@ class FractalFactory extends FractalAbstract
 }
 
 ```
-
 
 `app/Domains/Timezone/Model/Builder/Timezone.php:`
 
@@ -39069,7 +38380,6 @@ class Timezone extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Timezone/Model/Collection/Timezone.php:`
 
 ```php
@@ -39084,7 +38394,6 @@ class Timezone extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/Timezone/Model/Timezone.php:`
 
@@ -39158,7 +38467,6 @@ class Timezone extends ModelAbstract
 
 ```
 
-
 `app/Domains/Timezone/Seeder/Timezone.php:`
 
 ```php
@@ -39203,7 +38511,6 @@ class Timezone extends SeederAbstract
 
 ```
 
-
 `app/Domains/Timezone/Validate/Geojson.php:`
 
 ```php
@@ -39228,7 +38535,6 @@ class Geojson extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Timezone/Validate/ValidateFactory.php:`
 
 ```php
@@ -39244,7 +38550,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 
 ```
 
-
 `app/Domains/Tool/Action/ActionAbstract.php:`
 
 ```php
@@ -39259,7 +38564,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/Tool/Action/ActionFactory.php:`
 
@@ -39282,7 +38586,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Tool/Action/ManifestGenerate.php:`
 
@@ -39341,7 +38644,6 @@ class ManifestGenerate extends ActionAbstract
 
 ```
 
-
 `app/Domains/Tool/Command/CommandAbstract.php:`
 
 ```php
@@ -39356,7 +38658,6 @@ abstract class CommandAbstract extends CommandAbstractSahred
 }
 
 ```
-
 
 `app/Domains/Tool/Command/ManifestGenerate.php:`
 
@@ -39392,7 +38693,6 @@ class ManifestGenerate extends CommandAbstract
 
 ```
 
-
 `app/Domains/Trip/Action/ActionAbstract.php:`
 
 ```php
@@ -39412,7 +38712,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/Trip/Action/ActionFactory.php:`
 
@@ -39538,7 +38837,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Trip/Action/Create.php:`
 
@@ -39719,7 +39017,6 @@ class Create extends ActionAbstract
 
 ```
 
-
 `app/Domains/Trip/Action/Delete.php:`
 
 ```php
@@ -39747,7 +39044,6 @@ class Delete extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Trip/Action/Import.php:`
 
@@ -40058,7 +39354,6 @@ class Import extends ActionAbstract
 
 ```
 
-
 `app/Domains/Trip/Action/LastOrNew.php:`
 
 ```php
@@ -40193,7 +39488,6 @@ class LastOrNew extends ActionAbstract
 
 ```
 
-
 `app/Domains/Trip/Action/Update.php:`
 
 ```php
@@ -40260,7 +39554,6 @@ class Update extends ActionAbstract
 
 ```
 
-
 `app/Domains/Trip/Action/UpdateBoolean.php:`
 
 ```php
@@ -40268,8 +39561,8 @@ class Update extends ActionAbstract
 
 namespace App\Domains\Trip\Action;
 
-use App\Domains\Trip\Model\Trip as Model;
 use App\Domains\CoreApp\Action\UpdateBoolean as UpdateBooleanCoreApp;
+use App\Domains\Trip\Model\Trip as Model;
 
 class UpdateBoolean extends UpdateBooleanCoreApp
 {
@@ -40288,7 +39581,6 @@ class UpdateBoolean extends UpdateBooleanCoreApp
 }
 
 ```
-
 
 `app/Domains/Trip/Action/UpdateExport.php:`
 
@@ -40356,7 +39648,6 @@ class UpdateExport extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Trip/Action/UpdateMerge.php:`
 
@@ -40453,7 +39744,6 @@ class UpdateMerge extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Trip/Action/UpdateNameDistanceTime.php:`
 
@@ -40577,7 +39867,6 @@ class UpdateNameDistanceTime extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Trip/Action/UpdatePositionCreate.php:`
 
@@ -40749,7 +40038,6 @@ class UpdatePositionCreate extends ActionAbstract
 
 ```
 
-
 `app/Domains/Trip/Action/UpdatePositionDelete.php:`
 
 ```php
@@ -40790,7 +40078,6 @@ class UpdatePositionDelete extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Trip/Action/UpdateStats.php:`
 
@@ -40972,7 +40259,6 @@ class UpdateStats extends ActionAbstract
 
 ```
 
-
 `app/Domains/Trip/Action/UpdateStatsAll.php:`
 
 ```php
@@ -41020,7 +40306,6 @@ class UpdateStatsAll extends ActionAbstract
 
 ```
 
-
 `app/Domains/Trip/Command/CommandAbstract.php:`
 
 ```php
@@ -41048,7 +40333,6 @@ abstract class CommandAbstract extends CommandAbstractSahred
 }
 
 ```
-
 
 `app/Domains/Trip/Command/Import.php:`
 
@@ -41090,7 +40374,6 @@ class Import extends CommandAbstract
 }
 
 ```
-
 
 `app/Domains/Trip/Command/UpdateStats.php:`
 
@@ -41148,7 +40431,6 @@ class UpdateStats extends CommandAbstract
 
 ```
 
-
 `app/Domains/Trip/Command/UpdateStatsAll.php:`
 
 ```php
@@ -41184,7 +40466,6 @@ class UpdateStatsAll extends CommandAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/ControllerAbstract.php:`
 
 ```php
@@ -41218,7 +40499,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/Heatmap.php:`
 
 ```php
@@ -41228,7 +40508,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\Heatmap as ControllerService;
+use App\Domains\Trip\Controller\Service\Heatmap as ControllerService;
 
 class Heatmap extends ControllerAbstract
 {
@@ -41273,7 +40553,6 @@ class Heatmap extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/Import.php:`
 
 ```php
@@ -41283,7 +40562,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\Import as ControllerService;
+use App\Domains\Trip\Controller\Service\Import as ControllerService;
 
 class Import extends ControllerAbstract
 {
@@ -41324,7 +40603,6 @@ class Import extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/Index.php:`
 
 ```php
@@ -41333,7 +40611,7 @@ class Import extends ControllerAbstract
 namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\Index as ControllerService;
+use App\Domains\Trip\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -41358,7 +40636,6 @@ class Index extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/Map.php:`
 
 ```php
@@ -41368,7 +40645,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\Map as ControllerService;
+use App\Domains\Trip\Controller\Service\Map as ControllerService;
 
 class Map extends ControllerAbstract
 {
@@ -41413,7 +40690,6 @@ class Map extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/Search.php:`
 
 ```php
@@ -41422,7 +40698,7 @@ class Map extends ControllerAbstract
 namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\Search as ControllerService;
+use App\Domains\Trip\Controller\Service\Search as ControllerService;
 
 class Search extends ControllerAbstract
 {
@@ -41447,6 +40723,1290 @@ class Search extends ControllerAbstract
 
 ```
 
+`app/Domains/Trip/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/Trip/Controller/Service/Heatmap.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use App\Domains\City\Model\City as CityModel;
+use App\Domains\City\Model\Collection\City as CityCollection;
+use App\Domains\Country\Model\Collection\Country as CountryCollection;
+use App\Domains\Country\Model\Country as CountryModel;
+use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\State\Model\Collection\State as StateCollection;
+use App\Domains\State\Model\State as StateModel;
+use App\Domains\Trip\Model\Builder\Trip as Builder;
+use App\Domains\Trip\Model\Trip as Model;
+
+class Heatmap extends Index
+{
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'users' => $this->users(),
+            'users_multiple' => $this->usersMultiple(),
+            'user' => $this->user(),
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'devices' => $this->devices(),
+            'devices_multiple' => $this->devicesMultiple(),
+            'device' => $this->device(),
+            'countries' => $this->countries(),
+            'country' => $this->country(),
+            'states' => $this->states(),
+            'state' => $this->state(),
+            'cities' => $this->cities(),
+            'city' => $this->city(),
+            'date_min' => $this->dateMin(),
+            'starts_ends' => $this->startsEnds(),
+            'bbox' => $this->bbox(),
+            'grid' => $this->grid(),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function json(): array
+    {
+        return $this->grid();
+    }
+
+    /**
+     * @return \App\Domains\Country\Model\Collection\Country
+     */
+    protected function countries(): CountryCollection
+    {
+        return $this->cache(function () {
+            return CountryModel::query()
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\Country\Model\Country
+     */
+    protected function country(): ?CountryModel
+    {
+        return $this->cache(
+            fn () => $this->countries()->firstWhere('id', $this->request->input('country_id'))
+        );
+    }
+
+    /**
+     * @return \App\Domains\State\Model\Collection\State
+     */
+    protected function states(): StateCollection
+    {
+        return $this->cache(function () {
+            if (empty($country_id = intval($this->country()?->id))) {
+                return new StateCollection();
+            }
+
+            return StateModel::query()
+                ->byCountryId($country_id)
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\State\Model\State
+     */
+    protected function state(): ?StateModel
+    {
+        return $this->cache(
+            fn () => $this->states()->firstWhere('id', $this->request->input('state_id'))
+        );
+    }
+
+    /**
+     * @return \App\Domains\City\Model\Collection\City
+     */
+    protected function cities(): CityCollection
+    {
+        return $this->cache(function () {
+            if (empty($state_id = intval($this->state()?->id))) {
+                return new CityCollection();
+            }
+
+            return CityModel::query()
+                ->byStateId($state_id)
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\City\Model\City
+     */
+    protected function city(): ?CityModel
+    {
+        return $this->cache(
+            fn () => $this->cities()->firstWhere('id', $this->request->input('city_id'))
+        );
+    }
+
+    /**
+     * @return ?array
+     */
+    protected function bbox(): ?array
+    {
+        return $this->cache(function () {
+            $query = $this->listQuery();
+
+            if (empty($query)) {
+                return;
+            }
+
+            return PositionModel::tripQueryBoundingBox($query);
+        });
+    }
+
+    /**
+     * @return ?array
+     */
+    protected function grid(): ?array
+    {
+        return $this->cache(function () {
+            $query = $this->listQuery();
+
+            if (empty($query)) {
+                return;
+            }
+
+            $grid = PositionModel::heatmap($query, $this->requestArray('bounding_box') ?: $this->bbox());
+
+            return array_map(static fn ($point) => array_map('floatval', (array)$point), $grid);
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\Trip\Model\Builder\Trip
+     */
+    protected function listQuery(): ?Builder
+    {
+        if ($this->listIsValid() === false) {
+            return null;
+        }
+
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId($this->vehicle()?->id)
+                ->whenDeviceId($this->device()?->id)
+                ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
+        );
+    }
+
+    /**
+     * @return bool
+     */
+    protected function listIsValid(): bool
+    {
+        return boolval(array_filter($this->request->except('vehicle_id', 'device_id')));
+    }
+}
+
+```
+
+`app/Domains/Trip/Controller/Service/Import.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+use App\Domains\Trip\Model\Trip as Model;
+
+class Import extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->request->merge([
+            'user_id' => $this->user()->id,
+            'timezone_id' => $this->requestTimezoneId(),
+        ]);
+    }
+
+    /**
+     * @return ?int
+     */
+    protected function requestTimezoneId(): ?int
+    {
+        return $this->requestInteger('timezone_id')
+            ?: $this->requestTimezoneIdLast();
+    }
+
+    /**
+     * @return ?int
+     */
+    protected function requestTimezoneIdLast(): ?int
+    {
+        return Model::query()
+            ->byUserId($this->user()->id)
+            ->orderByLast()
+            ->value('timezone_id');
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'users' => $this->users(),
+            'users_multiple' => $this->usersMultiple(),
+            'user' => $this->user(),
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'devices' => $this->devices(),
+            'devices_multiple' => $this->devicesMultiple(),
+            'device' => $this->device(),
+            'timezones' => $this->timezones(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Timezone\Model\Collection\Timezone
+     */
+    protected function timezones(): TimezoneCollection
+    {
+        return TimezoneModel::query()
+            ->list()
+            ->get();
+    }
+}
+
+```
+
+`app/Domains/Trip/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Trip\Model\Collection\Trip as Collection;
+use App\Domains\Trip\Model\Trip as Model;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @const string
+     */
+    protected const DATE_REGEXP = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
+
+    /**
+     * @const string
+     */
+    protected const START_AT_DEFAULT = '-7 days';
+
+    /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @var bool
+     */
+    protected bool $vehicleEmpty = true;
+
+    /**
+     * @var bool
+     */
+    protected bool $deviceEmpty = true;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->filtersDates();
+        $this->filtersIds();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersDates(): void
+    {
+        $this->filtersDatesStartAt();
+        $this->filtersDatesEndAt();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersDatesStartAt(): void
+    {
+        $start_at = $this->request->input('start_at');
+
+        if ($start_at === '') {
+            return;
+        }
+
+        if (is_null($start_at) || (preg_match(static::DATE_REGEXP, $start_at) === 0)) {
+            $this->request->merge(['start_at' => date('Y-m-d', strtotime(static::START_AT_DEFAULT))]);
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersDatesEndAt(): void
+    {
+        $end_at = $this->request->input('end_at');
+
+        if (is_null($end_at) || (preg_match(static::DATE_REGEXP, $end_at) === 0)) {
+            $this->request->merge(['end_at' => '']);
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function filtersIds(): void
+    {
+        $this->filtersUserId();
+        $this->filtersVehicleId();
+        $this->filtersDeviceId();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'users' => $this->users(),
+            'users_multiple' => $this->usersMultiple(),
+            'user' => $this->user(),
+            'user_empty' => $this->userEmpty(),
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'vehicle_empty' => $this->vehicleEmpty(),
+            'devices' => $this->devices(),
+            'devices_multiple' => $this->devicesMultiple(),
+            'device' => $this->device(),
+            'device_empty' => $this->deviceEmpty(),
+            'date_min' => $this->dateMin(),
+            'starts_ends' => $this->startsEnds(),
+            'shared' => $this->shared(),
+            'shared_public' => $this->sharedPublic(),
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return ?string
+     */
+    protected function dateMin(): ?string
+    {
+        if ($device = $this->device()) {
+            $ids = [$device->id];
+        } else {
+            $ids = $this->devices()->pluck('id')->all();
+        }
+
+        return Model::query()
+            ->byDeviceIds($ids)
+            ->orderByStartAtAsc()
+            ->rawValue('DATE(`start_utc_at`)');
+    }
+
+    /**
+     * @return array
+     */
+    protected function startsEnds(): array
+    {
+        return [
+            'start' => __('trip-index.start'),
+            'end' => __('trip-index.end'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function shared(): array
+    {
+        return [
+            '' => __('trip-index.shared-all'),
+            '1' => __('trip-index.shared-yes'),
+            '0' => __('trip-index.shared-no'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function sharedPublic(): array
+    {
+        return [
+            '' => __('trip-index.shared_public-all'),
+            '1' => __('trip-index.shared_public-yes'),
+            '0' => __('trip-index.shared_public-no'),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Trip\Model\Collection\Trip
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->selectSimple()
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId($this->vehicle()?->id)
+                ->whenDeviceId($this->device()?->id)
+                ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenShared($this->requestBool('shared', null))
+                ->whenSharedPublic($this->requestBool('shared_public', null))
+                ->withSimple('device')
+                ->withSimple('user')
+                ->withSimple('vehicle')
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Trip/Controller/Service/Map.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use App\Domains\City\Model\City as CityModel;
+use App\Domains\City\Model\Collection\City as CityCollection;
+use App\Domains\Country\Model\Collection\Country as CountryCollection;
+use App\Domains\Country\Model\Country as CountryModel;
+use App\Domains\State\Model\Collection\State as StateCollection;
+use App\Domains\State\Model\State as StateModel;
+use App\Domains\Trip\Model\Collection\Trip as Collection;
+use App\Domains\Trip\Model\Trip as Model;
+
+class Map extends Index
+{
+    /**
+     * @const string
+     */
+    protected const START_AT_DEFAULT = '-1 days';
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'users' => $this->users(),
+            'users_multiple' => $this->usersMultiple(),
+            'user' => $this->user(),
+            'user_show' => $this->userShow(),
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'vehicle_show' => $this->vehicleShow(),
+            'devices' => $this->devices(),
+            'devices_multiple' => $this->devicesMultiple(),
+            'device' => $this->device(),
+            'device_show' => $this->deviceShow(),
+            'countries' => $this->countries(),
+            'country' => $this->country(),
+            'states' => $this->states(),
+            'state' => $this->state(),
+            'cities' => $this->cities(),
+            'city' => $this->city(),
+            'date_min' => $this->dateMin(),
+            'starts_ends' => $this->startsEnds(),
+            'filter_finished' => $this->filterFinished(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Trip\Model\Collection\Trip
+     */
+    public function json(): Collection
+    {
+        return $this->list();
+    }
+
+    /**
+     * @return bool
+     */
+    public function userShow(): bool
+    {
+        return empty($this->user()) && (count($this->users()) > 1);
+    }
+
+    /**
+     * @return bool
+     */
+    public function vehicleShow(): bool
+    {
+        return empty($this->vehicle()) && (count($this->vehicles()) > 1);
+    }
+
+    /**
+     * @return bool
+     */
+    public function deviceShow(): bool
+    {
+        return empty($this->device()) && (count($this->devices()) > 1);
+    }
+
+    /**
+     * @return \App\Domains\Country\Model\Collection\Country
+     */
+    protected function countries(): CountryCollection
+    {
+        return $this->cache(function () {
+            return CountryModel::query()
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\Country\Model\Country
+     */
+    protected function country(): ?CountryModel
+    {
+        return $this->cache(
+            fn () => $this->countries()->firstWhere('id', $this->request->input('country_id'))
+        );
+    }
+
+    /**
+     * @return \App\Domains\State\Model\Collection\State
+     */
+    protected function states(): StateCollection
+    {
+        return $this->cache(function () {
+            if (empty($country_id = intval($this->country()?->id))) {
+                return new StateCollection();
+            }
+
+            return StateModel::query()
+                ->byCountryId($country_id)
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\State\Model\State
+     */
+    protected function state(): ?StateModel
+    {
+        return $this->cache(
+            fn () => $this->states()->firstWhere('id', $this->request->input('state_id'))
+        );
+    }
+
+    /**
+     * @return \App\Domains\City\Model\Collection\City
+     */
+    protected function cities(): CityCollection
+    {
+        return $this->cache(function () {
+            if (empty($state_id = intval($this->state()?->id))) {
+                return new CityCollection();
+            }
+
+            return CityModel::query()
+                ->byStateId($state_id)
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\City\Model\City
+     */
+    protected function city(): ?CityModel
+    {
+        return $this->cache(
+            fn () => $this->cities()->firstWhere('id', $this->request->input('city_id'))
+        );
+    }
+
+    /**
+     * @return \App\Domains\Trip\Model\Collection\Trip
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId($this->vehicle()?->id)
+                ->whenDeviceId($this->device()?->id)
+                ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
+                ->whenPositionIdFrom($this->requestInteger('position_id_from'))
+                ->whenFinished($this->requestBool('finished', null))
+                ->withSimpleWhen('device', $this->device() === null)
+                ->withSimpleWhen('user', $this->user() === null)
+                ->withSimpleWhen('vehicle', $this->vehicle() === null)
+                ->withSimple('positions')
+                ->listSimple()
+                ->get()
+        );
+    }
+
+    /**
+     * @return array
+     */
+    protected function filterFinished(): array
+    {
+        return [
+            '' => __('trip-map.filter-finished-all'),
+            '0' => __('trip-map.filter-finished-no'),
+            '1' => __('trip-map.filter-finished-yes'),
+        ];
+    }
+}
+
+```
+
+`app/Domains/Trip/Controller/Service/Search.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use App\Domains\City\Model\City as CityModel;
+use App\Domains\City\Model\Collection\City as CityCollection;
+use App\Domains\Country\Model\Collection\Country as CountryCollection;
+use App\Domains\Country\Model\Country as CountryModel;
+use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\State\Model\Collection\State as StateCollection;
+use App\Domains\State\Model\State as StateModel;
+use App\Domains\Trip\Model\Collection\Trip as Collection;
+use App\Domains\Trip\Model\Trip as Model;
+
+class Search extends Index
+{
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'users' => $this->users(),
+            'users_multiple' => $this->usersMultiple(),
+            'user' => $this->user(),
+            'vehicles' => $this->vehicles(),
+            'vehicles_multiple' => $this->vehiclesMultiple(),
+            'vehicle' => $this->vehicle(),
+            'devices' => $this->devices(),
+            'devices_multiple' => $this->devicesMultiple(),
+            'device' => $this->device(),
+            'countries' => $this->countries(),
+            'country' => $this->country(),
+            'states' => $this->states(),
+            'state' => $this->state(),
+            'cities' => $this->cities(),
+            'city' => $this->city(),
+            'date_min' => $this->dateMin(),
+            'starts_ends' => $this->startsEnds(),
+            'shared' => $this->shared(),
+            'shared_public' => $this->sharedPublic(),
+            'position' => $this->position(),
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Country\Model\Collection\Country
+     */
+    protected function countries(): CountryCollection
+    {
+        return $this->cache(function () {
+            return CountryModel::query()
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\Country\Model\Country
+     */
+    protected function country(): ?CountryModel
+    {
+        return $this->cache(
+            fn () => $this->countries()->firstWhere('id', $this->request->input('country_id'))
+        );
+    }
+
+    /**
+     * @return \App\Domains\State\Model\Collection\State
+     */
+    protected function states(): StateCollection
+    {
+        return $this->cache(function () {
+            if (empty($country_id = intval($this->country()?->id))) {
+                return new StateCollection();
+            }
+
+            return StateModel::query()
+                ->byCountryId($country_id)
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\State\Model\State
+     */
+    protected function state(): ?StateModel
+    {
+        return $this->cache(
+            fn () => $this->states()->firstWhere('id', $this->request->input('state_id'))
+        );
+    }
+
+    /**
+     * @return \App\Domains\City\Model\Collection\City
+     */
+    protected function cities(): CityCollection
+    {
+        return $this->cache(function () {
+            if (empty($state_id = intval($this->state()?->id))) {
+                return new CityCollection();
+            }
+
+            return CityModel::query()
+                ->byStateId($state_id)
+                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
+                ->list()
+                ->get();
+        });
+    }
+
+    /**
+     * @return ?\App\Domains\City\Model\City
+     */
+    protected function city(): ?CityModel
+    {
+        return $this->cache(
+            fn () => $this->cities()->firstWhere('id', $this->request->input('city_id'))
+        );
+    }
+
+    /**
+     * @return ?\App\Domains\Position\Model\Position
+     */
+    protected function position(): ?PositionModel
+    {
+        return $this->cache(
+            fn () => PositionModel::query()
+                ->whenUserId($this->user()?->id)
+                ->orderByDateUtcAtDesc()
+                ->first()
+        );
+    }
+
+    /**
+     * @return \App\Domains\Trip\Model\Collection\Trip
+     */
+    protected function list(): Collection
+    {
+        if ($this->listIsValid() === false) {
+            return new Collection();
+        }
+
+        return $this->cache(
+            fn () => Model::query()
+                ->selectSimple()
+                ->whenUserId($this->user()?->id)
+                ->whenVehicleId($this->vehicle()?->id)
+                ->whenDeviceId($this->device()?->id)
+                ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
+                ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
+                ->whenShared($this->requestBool('shared', null))
+                ->whenSharedPublic($this->requestBool('shared_public', null))
+                ->whenFence($this->request->float('fence_latitude'), $this->request->float('fence_longitude'), $this->request->float('fence_radius'))
+                ->withDevice()
+                ->withUser()
+                ->withVehicle()
+                ->list()
+                ->get()
+        );
+    }
+
+    /**
+     * @return bool
+     */
+    protected function listIsValid(): bool
+    {
+        return boolval(array_filter($this->request->except('vehicle_id', 'device_id')));
+    }
+}
+
+```
+
+`app/Domains/Trip/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Trip\Model\Trip as Model;
+
+class Update extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCore() + [
+            'row' => $this->row,
+        ];
+    }
+}
+
+```
+
+`app/Domains/Trip/Controller/Service/UpdateAlarmNotification.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
+use App\Domains\Position\Model\Collection\Position as PositionCollection;
+use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Trip\Model\Trip as Model;
+
+class UpdateAlarmNotification extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'positions' => $this->positions(),
+            'notifications' => $this->notifications(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Position\Model\Collection\Position
+     */
+    protected function positions(): PositionCollection
+    {
+        return $this->cache(
+            fn () => PositionModel::query()
+                ->byTripId($this->row->id)
+                ->withCityState()
+                ->list()
+                ->get()
+        );
+    }
+
+    /**
+     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
+     */
+    protected function notifications(): AlarmNotificationCollection
+    {
+        return $this->cache(
+            fn () => AlarmNotificationModel::query()
+                ->byTripId($this->row->id)
+                ->withAlarm()
+                ->withVehicle()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Trip/Controller/Service/UpdateMap.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Alarm\Model\Alarm as AlarmModel;
+use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
+use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
+use App\Domains\Position\Model\Collection\Position as PositionCollection;
+use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Trip\Model\Trip as Model;
+
+class UpdateMap extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'alarms' => $this->alarms(),
+            'positions' => $this->positions(),
+            'notifications' => $this->notifications(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Position\Model\Collection\Position
+     */
+    protected function positions(): PositionCollection
+    {
+        return $this->cache(
+            fn () => PositionModel::query()
+                ->byTripId($this->row->id)
+                ->withCityState()
+                ->list()
+                ->get()
+        );
+    }
+
+    /**
+     * @return \App\Domains\Alarm\Model\Collection\Alarm
+     */
+    protected function alarms(): AlarmCollection
+    {
+        return $this->cache(
+            fn () => AlarmModel::query()
+                ->byVehicleId($this->row->vehicle->id)
+                ->enabled()
+                ->list()
+                ->get()
+        );
+    }
+
+    /**
+     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
+     */
+    protected function notifications(): AlarmNotificationCollection
+    {
+        return $this->cache(
+            fn () => AlarmNotificationModel::query()
+                ->byTripId($this->row->id)
+                ->withAlarm()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Trip/Controller/Service/UpdateMerge.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Trip\Model\Collection\Trip as Collection;
+use App\Domains\Trip\Model\Trip as Model;
+
+class UpdateMerge extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Trip\Model\Collection\Trip
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->selectSimple()
+                ->byUserId($this->row->user_id)
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Trip/Controller/Service/UpdatePosition.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Alarm\Model\Alarm as AlarmModel;
+use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
+use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
+use App\Domains\Position\Model\Collection\Position as PositionCollection;
+use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Trip\Model\Trip as Model;
+
+class UpdatePosition extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'alarms' => $this->alarms(),
+            'positions' => $this->positions(),
+            'notifications' => $this->notifications(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Position\Model\Collection\Position
+     */
+    protected function positions(): PositionCollection
+    {
+        return $this->cache(
+            fn () => PositionModel::query()
+                ->byTripId($this->row->id)
+                ->withCityState()
+                ->list()
+                ->get()
+        );
+    }
+
+    /**
+     * @return \App\Domains\Alarm\Model\Collection\Alarm
+     */
+    protected function alarms(): AlarmCollection
+    {
+        return $this->cache(
+            fn () => AlarmModel::query()
+                ->byVehicleId($this->row->vehicle->id)
+                ->enabled()
+                ->list()
+                ->get()
+        );
+    }
+
+    /**
+     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
+     */
+    protected function notifications(): AlarmNotificationCollection
+    {
+        return $this->cache(
+            fn () => AlarmNotificationModel::query()
+                ->byTripId($this->row->id)
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Trip/Controller/Service/UpdateStat.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Trip\Model\Trip as Model;
+
+class UpdateStat extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'stats' => $this->stats(),
+        ];
+    }
+
+    /**
+     * @return ?array
+     */
+    protected function stats(): ?array
+    {
+        return $this->row->stats;
+    }
+}
+
+```
 
 `app/Domains/Trip/Controller/Update.php:`
 
@@ -41457,7 +42017,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\Update as ControllerService;
+use App\Domains\Trip\Controller\Service\Update as ControllerService;
 
 class Update extends UpdateAbstract
 {
@@ -41523,7 +42083,6 @@ class Update extends UpdateAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/UpdateAbstract.php:`
 
 ```php
@@ -41559,7 +42118,6 @@ abstract class UpdateAbstract extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/UpdateAlarmNotification.php:`
 
 ```php
@@ -41568,7 +42126,7 @@ abstract class UpdateAbstract extends ControllerAbstract
 namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\UpdateAlarmNotification as ControllerService;
+use App\Domains\Trip\Controller\Service\UpdateAlarmNotification as ControllerService;
 
 class UpdateAlarmNotification extends UpdateAbstract
 {
@@ -41596,7 +42154,6 @@ class UpdateAlarmNotification extends UpdateAbstract
 }
 
 ```
-
 
 `app/Domains/Trip/Controller/UpdateBoolean.php:`
 
@@ -41635,7 +42192,6 @@ class UpdateBoolean extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/UpdateExport.php:`
 
 ```php
@@ -41662,7 +42218,6 @@ class UpdateExport extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/UpdateMap.php:`
 
 ```php
@@ -41672,7 +42227,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\UpdateMap as ControllerService;
+use App\Domains\Trip\Controller\Service\UpdateMap as ControllerService;
 
 class UpdateMap extends UpdateAbstract
 {
@@ -41701,7 +42256,6 @@ class UpdateMap extends UpdateAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/UpdateMerge.php:`
 
 ```php
@@ -41711,7 +42265,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\UpdateMerge as ControllerService;
+use App\Domains\Trip\Controller\Service\UpdateMerge as ControllerService;
 
 class UpdateMerge extends UpdateAbstract
 {
@@ -41756,7 +42310,6 @@ class UpdateMerge extends UpdateAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/UpdatePosition.php:`
 
 ```php
@@ -41770,7 +42323,7 @@ use Illuminate\Http\Response;
 use App\Domains\Position\Model\Collection\Position as PositionCollection;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Trip\Model\Trip as Model;
-use App\Domains\Trip\Service\Controller\UpdatePosition as ControllerService;
+use App\Domains\Trip\Controller\Service\UpdatePosition as ControllerService;
 
 class UpdatePosition extends UpdateAbstract
 {
@@ -41869,7 +42422,6 @@ class UpdatePosition extends UpdateAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/UpdateStat.php:`
 
 ```php
@@ -41879,7 +42431,7 @@ namespace App\Domains\Trip\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Trip\Service\Controller\UpdateStat as ControllerService;
+use App\Domains\Trip\Controller\Service\UpdateStat as ControllerService;
 
 class UpdateStat extends UpdateAbstract
 {
@@ -41920,7 +42472,6 @@ class UpdateStat extends UpdateAbstract
 
 ```
 
-
 `app/Domains/Trip/Controller/router.php:`
 
 ```php
@@ -41947,7 +42498,6 @@ Route::group(['middleware' => ['user-auth', 'vehicle.available']], static functi
 });
 
 ```
-
 
 `app/Domains/Trip/ControllerApi/ControllerApiAbstract.php:`
 
@@ -41982,7 +42532,6 @@ abstract class ControllerApiAbstract extends CoreControllerApiAbstract
 
 ```
 
-
 `app/Domains/Trip/ControllerApi/Delete.php:`
 
 ```php
@@ -42006,7 +42555,6 @@ class Delete extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Trip/ControllerApi/Index.php:`
 
 ```php
@@ -42015,7 +42563,7 @@ class Delete extends ControllerApiAbstract
 namespace App\Domains\Trip\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Trip\Service\ControllerApi\Index as ControllerService;
+use App\Domains\Trip\ControllerApi\Service\Index as ControllerService;
 
 class Index extends ControllerApiAbstract
 {
@@ -42038,7 +42586,6 @@ class Index extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Trip/ControllerApi/Position.php:`
 
 ```php
@@ -42047,7 +42594,7 @@ class Index extends ControllerApiAbstract
 namespace App\Domains\Trip\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Trip\Service\ControllerApi\Position as ControllerService;
+use App\Domains\Trip\ControllerApi\Service\Position as ControllerService;
 
 class Position extends ControllerApiAbstract
 {
@@ -42074,6 +42621,161 @@ class Position extends ControllerApiAbstract
 
 ```
 
+`app/Domains/Trip/ControllerApi/Service/ControllerApiAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\ControllerApi\Service;
+
+use App\Domains\CoreApp\ControllerApi\Service\ControllerApiAbstract as CoreAppControllerApiAbstract;
+
+abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
+{
+}
+
+```
+
+`app/Domains/Trip/ControllerApi/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Trip\Model\Trip as Model;
+
+class Index extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return Model::query()
+            ->byUserOrManager($this->auth)
+            ->whenUserId($this->requestInteger('user_id'))
+            ->whenVehicleId($this->requestInteger('vehicle_id'))
+            ->whenDeviceId($this->requestInteger('device_id'))
+            ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
+            ->whenShared($this->requestBool('shared', null))
+            ->whenSharedPublic($this->requestBool('shared_public', null))
+            ->withSimple('device')
+            ->withSimple('timezone')
+            ->withSimple('user')
+            ->withSimple('vehicle')
+            ->listSimple()
+            ->get()
+            ->all();
+    }
+}
+
+```
+
+`app/Domains/Trip/ControllerApi/Service/Position.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Position\Model\Position as PositionModel;
+use App\Domains\Trip\Model\Trip as Model;
+
+class Position extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return PositionModel::query()
+            ->byTripId($this->row->id)
+            ->withCityCountryState()
+            ->list()
+            ->get()
+            ->all();
+    }
+}
+
+```
+
+`app/Domains/Trip/ControllerApi/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Trip\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Trip\Model\Trip as Model;
+
+class Update extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataDefault()
+            + $this->dataRow();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataDefault(): array
+    {
+        return $this->request->input();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataRow(): array
+    {
+        return $this->row->toArray();
+    }
+}
+
+```
 
 `app/Domains/Trip/ControllerApi/Update.php:`
 
@@ -42084,7 +42786,7 @@ namespace App\Domains\Trip\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
 use App\Domains\Trip\Model\Trip as Model;
-use App\Domains\Trip\Service\ControllerApi\Update as ControllerService;
+use App\Domains\Trip\ControllerApi\Service\Update as ControllerService;
 
 class Update extends ControllerApiAbstract
 {
@@ -42119,7 +42821,6 @@ class Update extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Trip/ControllerApi/router.php:`
 
 ```php
@@ -42135,7 +42836,6 @@ Route::patch('/trip/{id}', Update::class)->name('trip.update');
 Route::delete('/trip/{id}', Delete::class)->name('trip.delete');
 
 ```
-
 
 `app/Domains/Trip/Fractal/FractalFactory.php:`
 
@@ -42245,7 +42945,6 @@ class FractalFactory extends FractalAbstract
 
 ```
 
-
 `app/Domains/Trip/Job/JobAbstract.php:`
 
 ```php
@@ -42291,7 +42990,6 @@ abstract class JobAbstract extends JobAbstractCore
 
 ```
 
-
 `app/Domains/Trip/Job/UpdateStats.php:`
 
 ```php
@@ -42312,7 +43010,6 @@ class UpdateStats extends JobAbstract
 
 ```
 
-
 `app/Domains/Trip/Model/Builder/Trip.php:`
 
 ```php
@@ -42320,8 +43017,8 @@ class UpdateStats extends JobAbstract
 
 namespace App\Domains\Trip\Model\Builder;
 
-use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
+use App\Domains\Position\Model\Position as PositionModel;
 
 class Trip extends BuilderAbstract
 {
@@ -42857,7 +43554,6 @@ class Trip extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Trip/Model/Collection/Trip.php:`
 
 ```php
@@ -42872,7 +43568,6 @@ class Trip extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/Trip/Model/Traits/Query.php:`
 
@@ -42911,7 +43606,6 @@ trait Query
 }
 
 ```
-
 
 `app/Domains/Trip/Model/Traits/Statement.php:`
 
@@ -42953,7 +43647,6 @@ trait Statement
 
 ```
 
-
 `app/Domains/Trip/Model/Trip.php:`
 
 ```php
@@ -42964,9 +43657,9 @@ namespace App\Domains\Trip\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Device\Model\Device as DeviceModel;
 use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\Timezone\Model\Timezone as TimezoneModel;
 use App\Domains\Trip\Model\Builder\Trip as Builder;
 use App\Domains\Trip\Model\Collection\Trip as Collection;
@@ -43109,1464 +43802,6 @@ class Trip extends ModelAbstract
 
 ```
 
-
-`app/Domains/Trip/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/Trip/Service/Controller/Heatmap.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use App\Domains\City\Model\City as CityModel;
-use App\Domains\City\Model\Collection\City as CityCollection;
-use App\Domains\Country\Model\Collection\Country as CountryCollection;
-use App\Domains\Country\Model\Country as CountryModel;
-use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\State\Model\Collection\State as StateCollection;
-use App\Domains\State\Model\State as StateModel;
-use App\Domains\Trip\Model\Builder\Trip as Builder;
-use App\Domains\Trip\Model\Trip as Model;
-
-class Heatmap extends Index
-{
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'users' => $this->users(),
-            'users_multiple' => $this->usersMultiple(),
-            'user' => $this->user(),
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'devices' => $this->devices(),
-            'devices_multiple' => $this->devicesMultiple(),
-            'device' => $this->device(),
-            'countries' => $this->countries(),
-            'country' => $this->country(),
-            'states' => $this->states(),
-            'state' => $this->state(),
-            'cities' => $this->cities(),
-            'city' => $this->city(),
-            'date_min' => $this->dateMin(),
-            'starts_ends' => $this->startsEnds(),
-            'bbox' => $this->bbox(),
-            'grid' => $this->grid(),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public function json(): array
-    {
-        return $this->grid();
-    }
-
-    /**
-     * @return \App\Domains\Country\Model\Collection\Country
-     */
-    protected function countries(): CountryCollection
-    {
-        return $this->cache(function () {
-            return CountryModel::query()
-                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\Country\Model\Country
-     */
-    protected function country(): ?CountryModel
-    {
-        return $this->cache(
-            fn () => $this->countries()->firstWhere('id', $this->request->input('country_id'))
-        );
-    }
-
-    /**
-     * @return \App\Domains\State\Model\Collection\State
-     */
-    protected function states(): StateCollection
-    {
-        return $this->cache(function () {
-            if (empty($country_id = intval($this->country()?->id))) {
-                return new StateCollection();
-            }
-
-            return StateModel::query()
-                ->byCountryId($country_id)
-                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\State\Model\State
-     */
-    protected function state(): ?StateModel
-    {
-        return $this->cache(
-            fn () => $this->states()->firstWhere('id', $this->request->input('state_id'))
-        );
-    }
-
-    /**
-     * @return \App\Domains\City\Model\Collection\City
-     */
-    protected function cities(): CityCollection
-    {
-        return $this->cache(function () {
-            if (empty($state_id = intval($this->state()?->id))) {
-                return new CityCollection();
-            }
-
-            return CityModel::query()
-                ->byStateId($state_id)
-                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\City\Model\City
-     */
-    protected function city(): ?CityModel
-    {
-        return $this->cache(
-            fn () => $this->cities()->firstWhere('id', $this->request->input('city_id'))
-        );
-    }
-
-    /**
-     * @return ?array
-     */
-    protected function bbox(): ?array
-    {
-        return $this->cache(function () {
-            $query = $this->listQuery();
-
-            if (empty($query)) {
-                return;
-            }
-
-            return PositionModel::tripQueryBoundingBox($query);
-        });
-    }
-
-    /**
-     * @return ?array
-     */
-    protected function grid(): ?array
-    {
-        return $this->cache(function () {
-            $query = $this->listQuery();
-
-            if (empty($query)) {
-                return;
-            }
-
-            $grid = PositionModel::heatmap($query, $this->requestArray('bounding_box') ?: $this->bbox());
-
-            return array_map(static fn ($point) => array_map('floatval', (array)$point), $grid);
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\Trip\Model\Builder\Trip
-     */
-    protected function listQuery(): ?Builder
-    {
-        if ($this->listIsValid() === false) {
-            return null;
-        }
-
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->whenVehicleId($this->vehicle()?->id)
-                ->whenDeviceId($this->device()?->id)
-                ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
-                ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
-        );
-    }
-
-    /**
-     * @return bool
-     */
-    protected function listIsValid(): bool
-    {
-        return boolval(array_filter($this->request->except('vehicle_id', 'device_id')));
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/Controller/Import.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
-use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
-use App\Domains\Trip\Model\Trip as Model;
-
-class Import extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->request->merge([
-            'user_id' => $this->user()->id,
-            'timezone_id' => $this->requestTimezoneId(),
-        ]);
-    }
-
-    /**
-     * @return ?int
-     */
-    protected function requestTimezoneId(): ?int
-    {
-        return $this->requestInteger('timezone_id')
-            ?: $this->requestTimezoneIdLast();
-    }
-
-    /**
-     * @return ?int
-     */
-    protected function requestTimezoneIdLast(): ?int
-    {
-        return Model::query()
-            ->byUserId($this->user()->id)
-            ->orderByLast()
-            ->value('timezone_id');
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'users' => $this->users(),
-            'users_multiple' => $this->usersMultiple(),
-            'user' => $this->user(),
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'devices' => $this->devices(),
-            'devices_multiple' => $this->devicesMultiple(),
-            'device' => $this->device(),
-            'timezones' => $this->timezones(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Timezone\Model\Collection\Timezone
-     */
-    protected function timezones(): TimezoneCollection
-    {
-        return TimezoneModel::query()
-            ->list()
-            ->get();
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Trip\Model\Collection\Trip as Collection;
-use App\Domains\Trip\Model\Trip as Model;
-
-class Index extends ControllerAbstract
-{
-    /**
-     * @const string
-     */
-    protected const DATE_REGEXP = '/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/';
-
-    /**
-     * @const string
-     */
-    protected const START_AT_DEFAULT = '-7 days';
-
-    /**
-     * @var bool
-     */
-    protected bool $userEmpty = true;
-
-    /**
-     * @var bool
-     */
-    protected bool $vehicleEmpty = true;
-
-    /**
-     * @var bool
-     */
-    protected bool $deviceEmpty = true;
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->filters();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filters(): void
-    {
-        $this->filtersDates();
-        $this->filtersIds();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filtersDates(): void
-    {
-        $this->filtersDatesStartAt();
-        $this->filtersDatesEndAt();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filtersDatesStartAt(): void
-    {
-        $start_at = $this->request->input('start_at');
-
-        if ($start_at === '') {
-            return;
-        }
-
-        if (is_null($start_at) || (preg_match(static::DATE_REGEXP, $start_at) === 0)) {
-            $this->request->merge(['start_at' => date('Y-m-d', strtotime(static::START_AT_DEFAULT))]);
-        }
-    }
-
-    /**
-     * @return void
-     */
-    protected function filtersDatesEndAt(): void
-    {
-        $end_at = $this->request->input('end_at');
-
-        if (is_null($end_at) || (preg_match(static::DATE_REGEXP, $end_at) === 0)) {
-            $this->request->merge(['end_at' => '']);
-        }
-    }
-
-    /**
-     * @return void
-     */
-    protected function filtersIds(): void
-    {
-        $this->filtersUserId();
-        $this->filtersVehicleId();
-        $this->filtersDeviceId();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'users' => $this->users(),
-            'users_multiple' => $this->usersMultiple(),
-            'user' => $this->user(),
-            'user_empty' => $this->userEmpty(),
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'vehicle_empty' => $this->vehicleEmpty(),
-            'devices' => $this->devices(),
-            'devices_multiple' => $this->devicesMultiple(),
-            'device' => $this->device(),
-            'device_empty' => $this->deviceEmpty(),
-            'date_min' => $this->dateMin(),
-            'starts_ends' => $this->startsEnds(),
-            'shared' => $this->shared(),
-            'shared_public' => $this->sharedPublic(),
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return ?string
-     */
-    protected function dateMin(): ?string
-    {
-        if ($device = $this->device()) {
-            $ids = [$device->id];
-        } else {
-            $ids = $this->devices()->pluck('id')->all();
-        }
-
-        return Model::query()
-            ->byDeviceIds($ids)
-            ->orderByStartAtAsc()
-            ->rawValue('DATE(`start_utc_at`)');
-    }
-
-    /**
-     * @return array
-     */
-    protected function startsEnds(): array
-    {
-        return [
-            'start' => __('trip-index.start'),
-            'end' => __('trip-index.end'),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function shared(): array
-    {
-        return [
-            '' => __('trip-index.shared-all'),
-            '1' => __('trip-index.shared-yes'),
-            '0' => __('trip-index.shared-no'),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function sharedPublic(): array
-    {
-        return [
-            '' => __('trip-index.shared_public-all'),
-            '1' => __('trip-index.shared_public-yes'),
-            '0' => __('trip-index.shared_public-no'),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Trip\Model\Collection\Trip
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->selectSimple()
-                ->whenUserId($this->user()?->id)
-                ->whenVehicleId($this->vehicle()?->id)
-                ->whenDeviceId($this->device()?->id)
-                ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
-                ->whenShared($this->requestBool('shared', null))
-                ->whenSharedPublic($this->requestBool('shared_public', null))
-                ->withSimple('device')
-                ->withSimple('user')
-                ->withSimple('vehicle')
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/Controller/Map.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use App\Domains\City\Model\City as CityModel;
-use App\Domains\City\Model\Collection\City as CityCollection;
-use App\Domains\Country\Model\Collection\Country as CountryCollection;
-use App\Domains\Country\Model\Country as CountryModel;
-use App\Domains\State\Model\Collection\State as StateCollection;
-use App\Domains\State\Model\State as StateModel;
-use App\Domains\Trip\Model\Collection\Trip as Collection;
-use App\Domains\Trip\Model\Trip as Model;
-
-class Map extends Index
-{
-    /**
-     * @const string
-     */
-    protected const START_AT_DEFAULT = '-1 days';
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'users' => $this->users(),
-            'users_multiple' => $this->usersMultiple(),
-            'user' => $this->user(),
-            'user_show' => $this->userShow(),
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'vehicle_show' => $this->vehicleShow(),
-            'devices' => $this->devices(),
-            'devices_multiple' => $this->devicesMultiple(),
-            'device' => $this->device(),
-            'device_show' => $this->deviceShow(),
-            'countries' => $this->countries(),
-            'country' => $this->country(),
-            'states' => $this->states(),
-            'state' => $this->state(),
-            'cities' => $this->cities(),
-            'city' => $this->city(),
-            'date_min' => $this->dateMin(),
-            'starts_ends' => $this->startsEnds(),
-            'filter_finished' => $this->filterFinished(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Trip\Model\Collection\Trip
-     */
-    public function json(): Collection
-    {
-        return $this->list();
-    }
-
-    /**
-     * @return bool
-     */
-    public function userShow(): bool
-    {
-        return empty($this->user()) && (count($this->users()) > 1);
-    }
-
-    /**
-     * @return bool
-     */
-    public function vehicleShow(): bool
-    {
-        return empty($this->vehicle()) && (count($this->vehicles()) > 1);
-    }
-
-    /**
-     * @return bool
-     */
-    public function deviceShow(): bool
-    {
-        return empty($this->device()) && (count($this->devices()) > 1);
-    }
-
-    /**
-     * @return \App\Domains\Country\Model\Collection\Country
-     */
-    protected function countries(): CountryCollection
-    {
-        return $this->cache(function () {
-            return CountryModel::query()
-                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\Country\Model\Country
-     */
-    protected function country(): ?CountryModel
-    {
-        return $this->cache(
-            fn () => $this->countries()->firstWhere('id', $this->request->input('country_id'))
-        );
-    }
-
-    /**
-     * @return \App\Domains\State\Model\Collection\State
-     */
-    protected function states(): StateCollection
-    {
-        return $this->cache(function () {
-            if (empty($country_id = intval($this->country()?->id))) {
-                return new StateCollection();
-            }
-
-            return StateModel::query()
-                ->byCountryId($country_id)
-                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\State\Model\State
-     */
-    protected function state(): ?StateModel
-    {
-        return $this->cache(
-            fn () => $this->states()->firstWhere('id', $this->request->input('state_id'))
-        );
-    }
-
-    /**
-     * @return \App\Domains\City\Model\Collection\City
-     */
-    protected function cities(): CityCollection
-    {
-        return $this->cache(function () {
-            if (empty($state_id = intval($this->state()?->id))) {
-                return new CityCollection();
-            }
-
-            return CityModel::query()
-                ->byStateId($state_id)
-                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\City\Model\City
-     */
-    protected function city(): ?CityModel
-    {
-        return $this->cache(
-            fn () => $this->cities()->firstWhere('id', $this->request->input('city_id'))
-        );
-    }
-
-    /**
-     * @return \App\Domains\Trip\Model\Collection\Trip
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->whenVehicleId($this->vehicle()?->id)
-                ->whenDeviceId($this->device()?->id)
-                ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
-                ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
-                ->whenPositionIdFrom($this->requestInteger('position_id_from'))
-                ->whenFinished($this->requestBool('finished', null))
-                ->withSimpleWhen('device', $this->device() === null)
-                ->withSimpleWhen('user', $this->user() === null)
-                ->withSimpleWhen('vehicle', $this->vehicle() === null)
-                ->withSimple('positions')
-                ->listSimple()
-                ->get()
-        );
-    }
-
-    /**
-     * @return array
-     */
-    protected function filterFinished(): array
-    {
-        return [
-            '' => __('trip-map.filter-finished-all'),
-            '0' => __('trip-map.filter-finished-no'),
-            '1' => __('trip-map.filter-finished-yes'),
-        ];
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/Controller/Search.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use App\Domains\City\Model\City as CityModel;
-use App\Domains\City\Model\Collection\City as CityCollection;
-use App\Domains\Country\Model\Collection\Country as CountryCollection;
-use App\Domains\Country\Model\Country as CountryModel;
-use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\State\Model\Collection\State as StateCollection;
-use App\Domains\State\Model\State as StateModel;
-use App\Domains\Trip\Model\Collection\Trip as Collection;
-use App\Domains\Trip\Model\Trip as Model;
-
-class Search extends Index
-{
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'users' => $this->users(),
-            'users_multiple' => $this->usersMultiple(),
-            'user' => $this->user(),
-            'vehicles' => $this->vehicles(),
-            'vehicles_multiple' => $this->vehiclesMultiple(),
-            'vehicle' => $this->vehicle(),
-            'devices' => $this->devices(),
-            'devices_multiple' => $this->devicesMultiple(),
-            'device' => $this->device(),
-            'countries' => $this->countries(),
-            'country' => $this->country(),
-            'states' => $this->states(),
-            'state' => $this->state(),
-            'cities' => $this->cities(),
-            'city' => $this->city(),
-            'date_min' => $this->dateMin(),
-            'starts_ends' => $this->startsEnds(),
-            'shared' => $this->shared(),
-            'shared_public' => $this->sharedPublic(),
-            'position' => $this->position(),
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Country\Model\Collection\Country
-     */
-    protected function countries(): CountryCollection
-    {
-        return $this->cache(function () {
-            return CountryModel::query()
-                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\Country\Model\Country
-     */
-    protected function country(): ?CountryModel
-    {
-        return $this->cache(
-            fn () => $this->countries()->firstWhere('id', $this->request->input('country_id'))
-        );
-    }
-
-    /**
-     * @return \App\Domains\State\Model\Collection\State
-     */
-    protected function states(): StateCollection
-    {
-        return $this->cache(function () {
-            if (empty($country_id = intval($this->country()?->id))) {
-                return new StateCollection();
-            }
-
-            return StateModel::query()
-                ->byCountryId($country_id)
-                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\State\Model\State
-     */
-    protected function state(): ?StateModel
-    {
-        return $this->cache(
-            fn () => $this->states()->firstWhere('id', $this->request->input('state_id'))
-        );
-    }
-
-    /**
-     * @return \App\Domains\City\Model\Collection\City
-     */
-    protected function cities(): CityCollection
-    {
-        return $this->cache(function () {
-            if (empty($state_id = intval($this->state()?->id))) {
-                return new CityCollection();
-            }
-
-            return CityModel::query()
-                ->byStateId($state_id)
-                ->whenTripUserIdVehicleIdStartAtBetween($this->user()?->id, $this->vehicle()?->id, $this->request->input('start_at'), $this->request->input('end_at'))
-                ->list()
-                ->get();
-        });
-    }
-
-    /**
-     * @return ?\App\Domains\City\Model\City
-     */
-    protected function city(): ?CityModel
-    {
-        return $this->cache(
-            fn () => $this->cities()->firstWhere('id', $this->request->input('city_id'))
-        );
-    }
-
-    /**
-     * @return ?\App\Domains\Position\Model\Position
-     */
-    protected function position(): ?PositionModel
-    {
-        return $this->cache(
-            fn () => PositionModel::query()
-                ->whenUserId($this->user()?->id)
-                ->orderByDateUtcAtDesc()
-                ->first()
-        );
-    }
-
-    /**
-     * @return \App\Domains\Trip\Model\Collection\Trip
-     */
-    protected function list(): Collection
-    {
-        if ($this->listIsValid() === false) {
-            return new Collection();
-        }
-
-        return $this->cache(
-            fn () => Model::query()
-                ->selectSimple()
-                ->whenUserId($this->user()?->id)
-                ->whenVehicleId($this->vehicle()?->id)
-                ->whenDeviceId($this->device()?->id)
-                ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
-                ->whenCityStateCountry($this->city()?->id, $this->state()?->id, $this->country()?->id, $this->request->input('start_end'))
-                ->whenShared($this->requestBool('shared', null))
-                ->whenSharedPublic($this->requestBool('shared_public', null))
-                ->whenFence($this->request->float('fence_latitude'), $this->request->float('fence_longitude'), $this->request->float('fence_radius'))
-                ->withDevice()
-                ->withUser()
-                ->withVehicle()
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
-     * @return bool
-     */
-    protected function listIsValid(): bool
-    {
-        return boolval(array_filter($this->request->except('vehicle_id', 'device_id')));
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Trip\Model\Trip as Model;
-
-class Update extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Trip\Model\Trip $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCore() + [
-            'row' => $this->row,
-        ];
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/Controller/UpdateAlarmNotification.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
-use App\Domains\Position\Model\Collection\Position as PositionCollection;
-use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Trip\Model\Trip as Model;
-
-class UpdateAlarmNotification extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Trip\Model\Trip $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'positions' => $this->positions(),
-            'notifications' => $this->notifications(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Position\Model\Collection\Position
-     */
-    protected function positions(): PositionCollection
-    {
-        return $this->cache(
-            fn () => PositionModel::query()
-                ->byTripId($this->row->id)
-                ->withCityState()
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
-     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
-     */
-    protected function notifications(): AlarmNotificationCollection
-    {
-        return $this->cache(
-            fn () => AlarmNotificationModel::query()
-                ->byTripId($this->row->id)
-                ->withAlarm()
-                ->withVehicle()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/Controller/UpdateMap.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Alarm\Model\Alarm as AlarmModel;
-use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
-use App\Domains\Position\Model\Collection\Position as PositionCollection;
-use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Trip\Model\Trip as Model;
-
-class UpdateMap extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Trip\Model\Trip $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'alarms' => $this->alarms(),
-            'positions' => $this->positions(),
-            'notifications' => $this->notifications(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Position\Model\Collection\Position
-     */
-    protected function positions(): PositionCollection
-    {
-        return $this->cache(
-            fn () => PositionModel::query()
-                ->byTripId($this->row->id)
-                ->withCityState()
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
-     * @return \App\Domains\Alarm\Model\Collection\Alarm
-     */
-    protected function alarms(): AlarmCollection
-    {
-        return $this->cache(
-            fn () => AlarmModel::query()
-                ->byVehicleId($this->row->vehicle->id)
-                ->enabled()
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
-     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
-     */
-    protected function notifications(): AlarmNotificationCollection
-    {
-        return $this->cache(
-            fn () => AlarmNotificationModel::query()
-                ->byTripId($this->row->id)
-                ->withAlarm()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/Controller/UpdateMerge.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Trip\Model\Trip as Model;
-use App\Domains\Trip\Model\Collection\Trip as Collection;
-
-class UpdateMerge extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Trip\Model\Trip $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Trip\Model\Collection\Trip
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->selectSimple()
-                ->byUserId($this->row->user_id)
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/Controller/UpdatePosition.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Alarm\Model\Alarm as AlarmModel;
-use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
-use App\Domains\Position\Model\Collection\Position as PositionCollection;
-use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Trip\Model\Trip as Model;
-
-class UpdatePosition extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Trip\Model\Trip $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'alarms' => $this->alarms(),
-            'positions' => $this->positions(),
-            'notifications' => $this->notifications(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Position\Model\Collection\Position
-     */
-    protected function positions(): PositionCollection
-    {
-        return $this->cache(
-            fn () => PositionModel::query()
-                ->byTripId($this->row->id)
-                ->withCityState()
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
-     * @return \App\Domains\Alarm\Model\Collection\Alarm
-     */
-    protected function alarms(): AlarmCollection
-    {
-        return $this->cache(
-            fn () => AlarmModel::query()
-                ->byVehicleId($this->row->vehicle->id)
-                ->enabled()
-                ->list()
-                ->get()
-        );
-    }
-
-    /**
-     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
-     */
-    protected function notifications(): AlarmNotificationCollection
-    {
-        return $this->cache(
-            fn () => AlarmNotificationModel::query()
-                ->byTripId($this->row->id)
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/Controller/UpdateStat.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Trip\Model\Trip as Model;
-
-class UpdateStat extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Trip\Model\Trip $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'stats' => $this->stats(),
-        ];
-    }
-
-    /**
-     * @return ?array
-     */
-    protected function stats(): ?array
-    {
-        return $this->row->stats;
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/ControllerApi/ControllerApiAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\ControllerApi;
-
-use App\Domains\CoreApp\Service\ControllerApi\ControllerApiAbstract as CoreAppControllerApiAbstract;
-
-abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
-{
-}
-
-```
-
-
-`app/Domains/Trip/Service/ControllerApi/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Trip\Model\Trip as Model;
-
-class Index extends ControllerApiAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return Model::query()
-            ->byUserOrManager($this->auth)
-            ->whenUserId($this->requestInteger('user_id'))
-            ->whenVehicleId($this->requestInteger('vehicle_id'))
-            ->whenDeviceId($this->requestInteger('device_id'))
-            ->whenStartAtDateBetween($this->request->input('start_at'), $this->request->input('end_at'))
-            ->whenShared($this->requestBool('shared', null))
-            ->whenSharedPublic($this->requestBool('shared_public', null))
-            ->withSimple('device')
-            ->withSimple('timezone')
-            ->withSimple('user')
-            ->withSimple('vehicle')
-            ->listSimple()
-            ->get()
-            ->all();
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/ControllerApi/Position.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Position\Model\Position as PositionModel;
-use App\Domains\Trip\Model\Trip as Model;
-
-class Position extends ControllerApiAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Trip\Model\Trip $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return PositionModel::query()
-            ->byTripId($this->row->id)
-            ->withCityCountryState()
-            ->list()
-            ->get()
-            ->all();
-    }
-}
-
-```
-
-
-`app/Domains/Trip/Service/ControllerApi/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Trip\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Trip\Model\Trip as Model;
-
-class Update extends ControllerApiAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Trip\Model\Trip $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataDefault()
-            + $this->dataRow();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataDefault(): array
-    {
-        return $this->request->input();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataRow(): array
-    {
-        return $this->row->toArray();
-    }
-}
-
-```
-
-
 `app/Domains/Trip/Validate/Create.php:`
 
 ```php
@@ -44597,7 +43832,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Trip/Validate/Import.php:`
 
 ```php
@@ -44625,7 +43859,6 @@ class Import extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/Trip/Validate/LastOrNew.php:`
 
@@ -44655,7 +43888,6 @@ class LastOrNew extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Trip/Validate/Update.php:`
 
 ```php
@@ -44683,7 +43915,6 @@ class Update extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Trip/Validate/UpdateBoolean.php:`
 
 ```php
@@ -44698,7 +43929,6 @@ class UpdateBoolean extends UpdateBooleanCoreApp
 }
 
 ```
-
 
 `app/Domains/Trip/Validate/UpdateMerge.php:`
 
@@ -44724,7 +43954,6 @@ class UpdateMerge extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Trip/Validate/UpdatePositionCreate.php:`
 
 ```php
@@ -44748,7 +43977,6 @@ class UpdatePositionCreate extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/Trip/Validate/UpdatePositionDelete.php:`
 
@@ -44774,7 +44002,6 @@ class UpdatePositionDelete extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Trip/Validate/UpdateStatsAll.php:`
 
 ```php
@@ -44799,7 +44026,6 @@ class UpdateStatsAll extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Trip/Validate/ValidateFactory.php:`
 
 ```php
@@ -44814,7 +44040,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/User/Action/ActionAbstract.php:`
 
@@ -44835,7 +44060,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/User/Action/ActionFactory.php:`
 
@@ -44928,7 +44152,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/User/Action/AuthApi.php:`
 
@@ -45104,7 +44327,6 @@ class AuthApi extends ActionAbstract
 
 ```
 
-
 `app/Domains/User/Action/AuthCredentials.php:`
 
 ```php
@@ -45242,7 +44464,6 @@ class AuthCredentials extends ActionAbstract
 
 ```
 
-
 `app/Domains/User/Action/AuthModel.php:`
 
 ```php
@@ -45306,7 +44527,6 @@ class AuthModel extends ActionAbstract
 
 ```
 
-
 `app/Domains/User/Action/Create.php:`
 
 ```php
@@ -45347,7 +44567,6 @@ class Create extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/User/Action/CreateUpdateAbstract.php:`
 
@@ -45634,7 +44853,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
 ```
 
-
 `app/Domains/User/Action/Delete.php:`
 
 ```php
@@ -45674,7 +44892,6 @@ class Delete extends ActionAbstract
 
 ```
 
-
 `app/Domains/User/Action/Logout.php:`
 
 ```php
@@ -45713,7 +44930,6 @@ class Logout extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/User/Action/Request.php:`
 
@@ -45767,7 +44983,6 @@ class Request extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/User/Action/Set.php:`
 
@@ -45828,7 +45043,6 @@ class Set extends ActionAbstract
 
 ```
 
-
 `app/Domains/User/Action/Update.php:`
 
 ```php
@@ -45868,7 +45082,6 @@ class Update extends CreateUpdateAbstract
 
 ```
 
-
 `app/Domains/User/Command/CommandAbstract.php:`
 
 ```php
@@ -45897,7 +45110,6 @@ abstract class CommandAbstract extends CommandAbstractSahred
 }
 
 ```
-
 
 `app/Domains/User/Command/Create.php:`
 
@@ -45935,7 +45147,6 @@ class Create extends CommandAbstract
 }
 
 ```
-
 
 `app/Domains/User/Command/Update.php:`
 
@@ -45995,7 +45206,6 @@ class Update extends CommandAbstract
 
 ```
 
-
 `app/Domains/User/Controller/AuthCredentials.php:`
 
 ```php
@@ -46038,7 +45248,6 @@ class AuthCredentials extends ControllerAbstract
 
 ```
 
-
 `app/Domains/User/Controller/ControllerAbstract.php:`
 
 ```php
@@ -46079,7 +45288,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/User/Controller/Create.php:`
 
 ```php
@@ -46089,7 +45297,7 @@ namespace App\Domains\User\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\User\Service\Controller\Create as ControllerService;
+use App\Domains\User\Controller\Service\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -46130,7 +45338,6 @@ class Create extends ControllerAbstract
 
 ```
 
-
 `app/Domains/User/Controller/Disabled.php:`
 
 ```php
@@ -46160,7 +45367,6 @@ class Disabled extends ControllerAbstract
 
 ```
 
-
 `app/Domains/User/Controller/Index.php:`
 
 ```php
@@ -46188,7 +45394,6 @@ class Index extends ControllerAbstract
 
 ```
 
-
 `app/Domains/User/Controller/Logout.php:`
 
 ```php
@@ -46213,6 +45418,229 @@ class Logout extends ControllerAbstract
 
 ```
 
+`app/Domains/User/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\User\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/User/Controller/Service/Create.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\User\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+
+class Create extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCommon();
+    }
+}
+
+```
+
+`app/Domains/User/Controller/Service/CreateUpdateAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\User\Controller\Service;
+
+use App\Domains\Language\Model\Collection\Language as LanguageCollection;
+use App\Domains\Language\Model\Language as LanguageModel;
+use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+
+abstract class CreateUpdateAbstract extends ControllerAbstract
+{
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataCommon(): array
+    {
+        return $this->dataCore() + [
+            'languages' => $this->languages(),
+            'timezones' => $this->timezones(),
+            'preferences_units_distance' => $this->preferencesUnitsDistance(),
+            'preferences_units_volume' => $this->preferencesUnitsVolume(),
+            'preferences_units_money' => $this->preferencesUnitsMoney(),
+            'preferences_units_decimal' => $this->preferencesUnitsDecimal(),
+            'preferences_units_thousand' => $this->preferencesUnitsThousand(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Language\Model\Collection\Language
+     */
+    protected function languages(): LanguageCollection
+    {
+        return LanguageModel::query()
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return \App\Domains\Timezone\Model\Collection\Timezone
+     */
+    protected function timezones(): TimezoneCollection
+    {
+        return TimezoneModel::query()
+            ->list()
+            ->get();
+    }
+
+    /**
+     * @return array
+     */
+    protected function preferencesUnitsDistance(): array
+    {
+        return [
+            'kilometer' => __('user-create.preferences-units-distance-kilometer'),
+            'knot' => __('user-create.preferences-units-distance-knot'),
+            'mile' => __('user-create.preferences-units-distance-mile'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function preferencesUnitsMoney(): array
+    {
+        return [
+            'euro' => __('user-create.preferences-units-money-euro'),
+            'dollar' => __('user-create.preferences-units-money-dollar'),
+            '' => __('user-create.preferences-units-money-other'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function preferencesUnitsVolume(): array
+    {
+        return [
+            'liter' => __('user-create.preferences-units-volume-liter'),
+            'gallon' => __('user-create.preferences-units-volume-gallon'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function preferencesUnitsDecimal(): array
+    {
+        return [
+            ',' => __('user-create.preferences-units-decimal-comma'),
+            '.' => __('user-create.preferences-units-decimal-dot'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function preferencesUnitsThousand(): array
+    {
+        return [
+            '.' => __('user-create.preferences-units-thousand-dot'),
+            ',' => __('user-create.preferences-units-thousand-comma'),
+        ];
+    }
+}
+
+```
+
+`app/Domains/User/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\User\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\User\Model\User as Model;
+
+class Update extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\User\Model\User $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return void
+     */
+    public function request(): void
+    {
+        $this->requestMergeWithRow(['api_key' => $this->requestApiKey()]);
+    }
+
+    /**
+     * @return string
+     */
+    public function requestApiKey(): string
+    {
+        return $this->row->api_key_prefix
+            ? ($this->row->api_key_prefix.'-*****-****-****-************')
+            : '';
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCommon() + [
+            'row' => $this->row,
+            'can_be_deleted' => ($this->row->id !== $this->auth->id),
+        ];
+    }
+}
+
+```
 
 `app/Domains/User/Controller/Update.php:`
 
@@ -46223,7 +45651,7 @@ namespace App\Domains\User\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\User\Service\Controller\Update as ControllerService;
+use App\Domains\User\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -46289,7 +45717,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/User/Controller/UpdateUserSession.php:`
 
 ```php
@@ -46298,8 +45725,8 @@ class Update extends ControllerAbstract
 namespace App\Domains\User\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\UserSession\Model\UserSession as UserSessionModel;
 use App\Domains\UserSession\Model\Collection\UserSession as UserSessionCollection;
+use App\Domains\UserSession\Model\UserSession as UserSessionModel;
 
 class UpdateUserSession extends ControllerAbstract
 {
@@ -46335,7 +45762,6 @@ class UpdateUserSession extends ControllerAbstract
 
 ```
 
-
 `app/Domains/User/Controller/router.php:`
 
 ```php
@@ -46365,7 +45791,6 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
 });
 
 ```
-
 
 `app/Domains/User/ControllerApi/ControllerApiAbstract.php:`
 
@@ -46399,7 +45824,6 @@ abstract class ControllerApiAbstract extends CoreControllerApiAbstract
 
 ```
 
-
 `app/Domains/User/ControllerApi/Create.php:`
 
 ```php
@@ -46421,7 +45845,6 @@ class Create extends ControllerApiAbstract
 }
 
 ```
-
 
 `app/Domains/User/ControllerApi/Delete.php:`
 
@@ -46446,7 +45869,6 @@ class Delete extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/User/ControllerApi/Index.php:`
 
 ```php
@@ -46455,8 +45877,8 @@ class Delete extends ControllerApiAbstract
 namespace App\Domains\User\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\User\Model\User as Model;
 use App\Domains\User\Model\Collection\User as Collection;
+use App\Domains\User\Model\User as Model;
 
 class Index extends ControllerApiAbstract
 {
@@ -46478,7 +45900,6 @@ class Index extends ControllerApiAbstract
 }
 
 ```
-
 
 `app/Domains/User/ControllerApi/Update.php:`
 
@@ -46506,7 +45927,6 @@ class Update extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/User/ControllerApi/router.php:`
 
 ```php
@@ -46524,7 +45944,6 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
 });
 
 ```
-
 
 `app/Domains/User/Exception/AuthFailed.php:`
 
@@ -46550,7 +45969,6 @@ class AuthFailed extends AuthenticationException
 
 ```
 
-
 `app/Domains/User/Exception/ExceptionAbstract.php:`
 
 ```php
@@ -46565,7 +45983,6 @@ abstract class ExceptionAbstract extends GenericException
 }
 
 ```
-
 
 `app/Domains/User/Exception/NotEnabled.php:`
 
@@ -46589,7 +46006,6 @@ class NotEnabled extends ExceptionAbstract
 
 ```
 
-
 `app/Domains/User/Exception/NotLogged.php:`
 
 ```php
@@ -46612,7 +46028,6 @@ class NotLogged extends ExceptionAbstract
 
 ```
 
-
 `app/Domains/User/Exception/SessionEmpty.php:`
 
 ```php
@@ -46634,7 +46049,6 @@ class SessionEmpty extends ExceptionAbstract
 }
 
 ```
-
 
 `app/Domains/User/Fractal/FractalFactory.php:`
 
@@ -46688,7 +46102,6 @@ class FractalFactory extends FractalAbstract
 
 ```
 
-
 `app/Domains/User/Middleware/Admin.php:`
 
 ```php
@@ -46721,7 +46134,6 @@ class Admin extends MiddlewareAbstract
 
 ```
 
-
 `app/Domains/User/Middleware/AdminMode.php:`
 
 ```php
@@ -46753,7 +46165,6 @@ class AdminMode extends MiddlewareAbstract
 }
 
 ```
-
 
 `app/Domains/User/Middleware/AuthApi.php:`
 
@@ -46803,7 +46214,6 @@ class AuthApi extends MiddlewareAbstract
 
 ```
 
-
 `app/Domains/User/Middleware/AuthRedirect.php:`
 
 ```php
@@ -46840,7 +46250,6 @@ class AuthRedirect extends MiddlewareAbstract
 
 ```
 
-
 `app/Domains/User/Middleware/Enabled.php:`
 
 ```php
@@ -46872,7 +46281,6 @@ class Enabled extends MiddlewareAbstract
 }
 
 ```
-
 
 `app/Domains/User/Middleware/Manager.php:`
 
@@ -46906,7 +46314,6 @@ class Manager extends MiddlewareAbstract
 
 ```
 
-
 `app/Domains/User/Middleware/ManagerMode.php:`
 
 ```php
@@ -46939,7 +46346,6 @@ class ManagerMode extends MiddlewareAbstract
 
 ```
 
-
 `app/Domains/User/Middleware/MiddlewareAbstract.php:`
 
 ```php
@@ -46970,7 +46376,6 @@ abstract class MiddlewareAbstract extends MiddlewareAbstractCore
 }
 
 ```
-
 
 `app/Domains/User/Middleware/Request.php:`
 
@@ -47023,7 +46428,6 @@ class Request extends MiddlewareAbstract
 }
 
 ```
-
 
 `app/Domains/User/Model/Builder/User.php:`
 
@@ -47095,7 +46499,6 @@ class User extends BuilderAbstract
 
 ```
 
-
 `app/Domains/User/Model/Collection/User.php:`
 
 ```php
@@ -47110,7 +46513,6 @@ class User extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/User/Model/Traits/Preferences.php:`
 
@@ -47165,7 +46567,6 @@ trait Preferences
 }
 
 ```
-
 
 `app/Domains/User/Model/User.php:`
 
@@ -47294,235 +46695,6 @@ class User extends ModelAbstract implements Authenticatable
 
 ```
 
-
-`app/Domains/User/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\User\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/User/Service/Controller/Create.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\User\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-
-class Create extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCommon();
-    }
-}
-
-```
-
-
-`app/Domains/User/Service/Controller/CreateUpdateAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\User\Service\Controller;
-
-use App\Domains\Language\Model\Language as LanguageModel;
-use App\Domains\Language\Model\Collection\Language as LanguageCollection;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
-use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
-
-abstract class CreateUpdateAbstract extends ControllerAbstract
-{
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataCommon(): array
-    {
-        return $this->dataCore() + [
-            'languages' => $this->languages(),
-            'timezones' => $this->timezones(),
-            'preferences_units_distance' => $this->preferencesUnitsDistance(),
-            'preferences_units_volume' => $this->preferencesUnitsVolume(),
-            'preferences_units_money' => $this->preferencesUnitsMoney(),
-            'preferences_units_decimal' => $this->preferencesUnitsDecimal(),
-            'preferences_units_thousand' => $this->preferencesUnitsThousand(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Language\Model\Collection\Language
-     */
-    protected function languages(): LanguageCollection
-    {
-        return LanguageModel::query()
-            ->list()
-            ->get();
-    }
-
-    /**
-     * @return \App\Domains\Timezone\Model\Collection\Timezone
-     */
-    protected function timezones(): TimezoneCollection
-    {
-        return TimezoneModel::query()
-            ->list()
-            ->get();
-    }
-
-    /**
-     * @return array
-     */
-    protected function preferencesUnitsDistance(): array
-    {
-        return [
-            'kilometer' => __('user-create.preferences-units-distance-kilometer'),
-            'knot' => __('user-create.preferences-units-distance-knot'),
-            'mile' => __('user-create.preferences-units-distance-mile'),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function preferencesUnitsMoney(): array
-    {
-        return [
-            'euro' => __('user-create.preferences-units-money-euro'),
-            'dollar' => __('user-create.preferences-units-money-dollar'),
-            '' => __('user-create.preferences-units-money-other'),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function preferencesUnitsVolume(): array
-    {
-        return [
-            'liter' => __('user-create.preferences-units-volume-liter'),
-            'gallon' => __('user-create.preferences-units-volume-gallon'),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function preferencesUnitsDecimal(): array
-    {
-        return [
-            ',' => __('user-create.preferences-units-decimal-comma'),
-            '.' => __('user-create.preferences-units-decimal-dot'),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    protected function preferencesUnitsThousand(): array
-    {
-        return [
-            '.' => __('user-create.preferences-units-thousand-dot'),
-            ',' => __('user-create.preferences-units-thousand-comma'),
-        ];
-    }
-}
-
-```
-
-
-`app/Domains/User/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\User\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\User\Model\User as Model;
-
-class Update extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\User\Model\User $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return void
-     */
-    public function request(): void
-    {
-        $this->requestMergeWithRow(['api_key' => $this->requestApiKey()]);
-    }
-
-    /**
-     * @return string
-     */
-    public function requestApiKey(): string
-    {
-        return $this->row->api_key_prefix
-            ? ($this->row->api_key_prefix.'-*****-****-****-************')
-            : '';
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCommon() + [
-            'row' => $this->row,
-            'can_be_deleted' => ($this->row->id !== $this->auth->id),
-        ];
-    }
-}
-
-```
-
-
 `app/Domains/User/Validate/AuthCredentials.php:`
 
 ```php
@@ -47547,7 +46719,6 @@ class AuthCredentials extends ValidateAbstract
 }
 
 ```
-
 
 `app/Domains/User/Validate/Create.php:`
 
@@ -47593,7 +46764,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/User/Validate/Update.php:`
 
 ```php
@@ -47638,7 +46808,6 @@ class Update extends ValidateAbstract
 
 ```
 
-
 `app/Domains/User/Validate/ValidateFactory.php:`
 
 ```php
@@ -47653,7 +46822,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/UserFail/Action/ActionAbstract.php:`
 
@@ -47680,7 +46848,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/UserFail/Action/ActionFactory.php:`
 
@@ -47709,7 +46876,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/UserFail/Action/Create.php:`
 
@@ -47842,7 +47008,6 @@ class Create extends ActionAbstract
 
 ```
 
-
 `app/Domains/UserFail/Model/Builder/UserFail.php:`
 
 ```php
@@ -47889,7 +47054,6 @@ class UserFail extends BuilderAbstract
 
 ```
 
-
 `app/Domains/UserFail/Model/Collection/UserFail.php:`
 
 ```php
@@ -47904,7 +47068,6 @@ class UserFail extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/UserFail/Model/UserFail.php:`
 
@@ -47979,7 +47142,6 @@ class UserFail extends ModelAbstract
 
 ```
 
-
 `app/Domains/UserFail/Validate/Create.php:`
 
 ```php
@@ -48007,7 +47169,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/UserFail/Validate/ValidateFactory.php:`
 
 ```php
@@ -48022,7 +47183,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/UserSession/Action/ActionAbstract.php:`
 
@@ -48049,7 +47209,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/UserSession/Action/ActionFactory.php:`
 
@@ -48078,7 +47237,6 @@ class ActionFactory extends ActionFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/UserSession/Action/Create.php:`
 
@@ -48146,7 +47304,6 @@ class Create extends ActionAbstract
 
 ```
 
-
 `app/Domains/UserSession/Controller/ControllerAbstract.php:`
 
 ```php
@@ -48179,7 +47336,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/UserSession/Controller/Index.php:`
 
 ```php
@@ -48188,8 +47344,8 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 namespace App\Domains\UserSession\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\UserSession\Model\UserSession as Model;
 use App\Domains\UserSession\Model\Collection\UserSession as Collection;
+use App\Domains\UserSession\Model\UserSession as Model;
 
 class Index extends ControllerAbstract
 {
@@ -48220,7 +47376,6 @@ class Index extends ControllerAbstract
 
 ```
 
-
 `app/Domains/UserSession/Controller/router.php:`
 
 ```php
@@ -48236,7 +47391,6 @@ Route::group(['middleware' => ['user-auth-admin-mode']], static function () {
 
 ```
 
-
 `app/Domains/UserSession/Model/Builder/UserSession.php:`
 
 ```php
@@ -48246,8 +47400,8 @@ namespace App\Domains\UserSession\Model\Builder;
 
 use App\Domains\CoreApp\Model\Builder\BuilderAbstract;
 use App\Domains\User\Model\User as UserModel;
-use App\Domains\UserFail\Model\UserFail as UserFailModel;
 use App\Domains\UserFail\Model\Builder\UserFail as UserFailBuilder;
+use App\Domains\UserFail\Model\UserFail as UserFailModel;
 
 class UserSession extends BuilderAbstract
 {
@@ -48344,7 +47498,6 @@ class UserSession extends BuilderAbstract
 
 ```
 
-
 `app/Domains/UserSession/Model/Collection/UserSession.php:`
 
 ```php
@@ -48359,7 +47512,6 @@ class UserSession extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/UserSession/Model/UserSession.php:`
 
@@ -48434,7 +47586,6 @@ class UserSession extends ModelAbstract
 
 ```
 
-
 `app/Domains/UserSession/Validate/Create.php:`
 
 ```php
@@ -48461,7 +47612,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/UserSession/Validate/ValidateFactory.php:`
 
 ```php
@@ -48476,7 +47626,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Domains/Vehicle/Action/ActionAbstract.php:`
 
@@ -48497,7 +47646,6 @@ abstract class ActionAbstract extends ActionAbstractCore
 }
 
 ```
-
 
 `app/Domains/Vehicle/Action/ActionFactory.php:`
 
@@ -48559,7 +47707,6 @@ class ActionFactory extends ActionFactoryAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Action/Create.php:`
 
 ```php
@@ -48589,7 +47736,6 @@ class Create extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/Vehicle/Action/CreateUpdateAbstract.php:`
 
@@ -48677,7 +47823,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Action/Delete.php:`
 
 ```php
@@ -48706,7 +47851,6 @@ class Delete extends ActionAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Action/Update.php:`
 
 ```php
@@ -48733,7 +47877,6 @@ class Update extends CreateUpdateAbstract
 }
 
 ```
-
 
 `app/Domains/Vehicle/Action/UpdateAlarm.php:`
 
@@ -48780,7 +47923,6 @@ class UpdateAlarm extends ActionAbstract
 }
 
 ```
-
 
 `app/Domains/Vehicle/Action/UpdateDevice.php:`
 
@@ -48853,7 +47995,6 @@ class UpdateDevice extends ActionAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Controller/ControllerAbstract.php:`
 
 ```php
@@ -48925,7 +48066,6 @@ abstract class ControllerAbstract extends ControllerWebAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Controller/Create.php:`
 
 ```php
@@ -48935,7 +48075,7 @@ namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Service\Controller\Create as ControllerService;
+use App\Domains\Vehicle\Controller\Service\Create as ControllerService;
 
 class Create extends ControllerAbstract
 {
@@ -48976,7 +48116,6 @@ class Create extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Controller/Index.php:`
 
 ```php
@@ -48985,7 +48124,7 @@ class Create extends ControllerAbstract
 namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Service\Controller\Index as ControllerService;
+use App\Domains\Vehicle\Controller\Service\Index as ControllerService;
 
 class Index extends ControllerAbstract
 {
@@ -49010,7 +48149,6 @@ class Index extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Controller/Map.php:`
 
 ```php
@@ -49020,7 +48158,7 @@ namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Service\Controller\Map as ControllerService;
+use App\Domains\Vehicle\Controller\Service\Map as ControllerService;
 
 class Map extends ControllerAbstract
 {
@@ -49057,6 +48195,464 @@ class Map extends ControllerAbstract
 
 ```
 
+`app/Domains/Vehicle/Controller/Service/ControllerAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\Controller\Service;
+
+use App\Domains\CoreApp\Controller\Service\ControllerAbstract as ControllerAbstractCore;
+
+abstract class ControllerAbstract extends ControllerAbstractCore
+{
+}
+
+```
+
+`app/Domains/Vehicle/Controller/Service/Create.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+
+class Create extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow([
+            'user_id' => $this->user()->id,
+            'timezone_id' => $this->timezoneId(),
+        ]);
+    }
+
+    /**
+     * @return int
+     */
+    protected function timezoneId(): int
+    {
+        return $this->cache(
+            fn () => TimezoneModel::query()
+                ->whereDefault()
+                ->value('id')
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCreateUpdate();
+    }
+}
+
+```
+
+`app/Domains/Vehicle/Controller/Service/CreateUpdateAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\Controller\Service;
+
+use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
+use App\Domains\Timezone\Model\Timezone as TimezoneModel;
+
+abstract class CreateUpdateAbstract extends ControllerAbstract
+{
+    /**
+     * @return array
+     */
+    protected function dataCreateUpdate(): array
+    {
+        return $this->dataCore() + [
+            'timezones' => $this->timezones(),
+            'trip_wait_minutes_default' => app('configuration')->int('trip_wait_minutes')
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Timezone\Model\Collection\Timezone
+     */
+    protected function timezones(): TimezoneCollection
+    {
+        return $this->cache(
+            fn () => TimezoneModel::query()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Vehicle/Controller/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Vehicle\Model\Collection\Vehicle as Collection;
+use App\Domains\Vehicle\Model\Vehicle as Model;
+
+class Index extends ControllerAbstract
+{
+    /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->filtersUserId();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCore() + [
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->withAlarmsCount()
+                ->withAlarmsNotificationsCount()
+                ->withAlarmsNotificationsPendingCount()
+                ->withDevicesCount()
+                ->withTimezone()
+                ->withUser()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Vehicle/Controller/Service/Map.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Vehicle\Model\Collection\Vehicle as Collection;
+use App\Domains\Vehicle\Model\Vehicle as Model;
+
+class Map extends ControllerAbstract
+{
+    /**
+     * @var bool
+     */
+    protected bool $userEmpty = true;
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+        $this->filters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function filters(): void
+    {
+        $this->filtersUserId();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCore() + [
+            'list' => $this->list(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
+     */
+    protected function list(): Collection
+    {
+        return $this->cache(
+            fn () => Model::query()
+                ->whenUserId($this->user()?->id)
+                ->whenIds($this->requestArray('ids'))
+                ->whenTripFinished($this->requestBool('finished', null))
+                ->withWhereHasPositionLast()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Vehicle/Controller/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Vehicle\Model\Vehicle as Model;
+
+class Update extends CreateUpdateAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Vehicle\Model\Vehicle $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+        $this->request();
+    }
+
+    /**
+     * @return void
+     */
+    protected function request(): void
+    {
+        $this->requestMergeWithRow();
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCreateUpdate() + [
+            'row' => $this->row,
+        ];
+    }
+}
+
+```
+
+`app/Domains/Vehicle/Controller/Service/UpdateAlarm.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Alarm\Model\Alarm as AlarmModel;
+use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
+use App\Domains\Vehicle\Model\Vehicle as Model;
+
+class UpdateAlarm extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Vehicle\Model\Vehicle $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'alarms' => $this->alarms(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Alarm\Model\Collection\Alarm
+     */
+    protected function alarms(): AlarmCollection
+    {
+        return $this->cache(
+            fn () => AlarmModel::query()
+                ->byUserId($this->user()->id)
+                ->withVehiclePivot($this->row->id)
+                ->list()
+                ->get()
+                ->sortByDesc('vehiclePivot')
+        );
+    }
+}
+
+```
+
+`app/Domains/Vehicle/Controller/Service/UpdateAlarmNotification.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
+use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
+use App\Domains\Vehicle\Model\Vehicle as Model;
+
+class UpdateAlarmNotification extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Vehicle\Model\Vehicle $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'notifications' => $this->notifications(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
+     */
+    protected function notifications(): AlarmNotificationCollection
+    {
+        return $this->cache(
+            fn () => AlarmNotificationModel::query()
+                ->byVehicleId($this->row->id)
+                ->withAlarm()
+                ->withPosition()
+                ->withTrip()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
+
+`app/Domains/Vehicle/Controller/Service/UpdateDevice.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\Controller\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Device\Model\Collection\Device as DeviceCollection;
+use App\Domains\Device\Model\Device as DeviceModel;
+use App\Domains\Vehicle\Model\Vehicle as Model;
+
+class UpdateDevice extends ControllerAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Vehicle\Model\Vehicle $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return [
+            'row' => $this->row,
+            'devices' => $this->devices(),
+        ];
+    }
+
+    /**
+     * @return \App\Domains\Device\Model\Collection\Device
+     */
+    protected function devices(): DeviceCollection
+    {
+        return $this->cache(
+            fn () => DeviceModel::query()
+                ->byUserId($this->user()->id)
+                ->withVehicle()
+                ->list()
+                ->get()
+        );
+    }
+}
+
+```
 
 `app/Domains/Vehicle/Controller/Update.php:`
 
@@ -49067,7 +48663,7 @@ namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Service\Controller\Update as ControllerService;
+use App\Domains\Vehicle\Controller\Service\Update as ControllerService;
 
 class Update extends ControllerAbstract
 {
@@ -49133,7 +48729,6 @@ class Update extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Controller/UpdateAlarm.php:`
 
 ```php
@@ -49143,7 +48738,7 @@ namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Service\Controller\UpdateAlarm as ControllerService;
+use App\Domains\Vehicle\Controller\Service\UpdateAlarm as ControllerService;
 
 class UpdateAlarm extends ControllerAbstract
 {
@@ -49188,7 +48783,6 @@ class UpdateAlarm extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Controller/UpdateAlarmNotification.php:`
 
 ```php
@@ -49197,7 +48791,7 @@ class UpdateAlarm extends ControllerAbstract
 namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Service\Controller\UpdateAlarmNotification as ControllerService;
+use App\Domains\Vehicle\Controller\Service\UpdateAlarmNotification as ControllerService;
 
 class UpdateAlarmNotification extends ControllerAbstract
 {
@@ -49226,7 +48820,6 @@ class UpdateAlarmNotification extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Controller/UpdateDevice.php:`
 
 ```php
@@ -49236,7 +48829,7 @@ namespace App\Domains\Vehicle\Controller;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use App\Domains\Vehicle\Service\Controller\UpdateDevice as ControllerService;
+use App\Domains\Vehicle\Controller\Service\UpdateDevice as ControllerService;
 
 class UpdateDevice extends ControllerAbstract
 {
@@ -49281,7 +48874,6 @@ class UpdateDevice extends ControllerAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Controller/router.php:`
 
 ```php
@@ -49302,7 +48894,6 @@ Route::group(['middleware' => ['user-auth']], static function () {
 });
 
 ```
-
 
 `app/Domains/Vehicle/ControllerApi/ControllerApiAbstract.php:`
 
@@ -49337,7 +48928,6 @@ abstract class ControllerApiAbstract extends CoreControllerApiAbstract
 
 ```
 
-
 `app/Domains/Vehicle/ControllerApi/Create.php:`
 
 ```php
@@ -49347,7 +48937,7 @@ namespace App\Domains\Vehicle\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
 use App\Domains\Vehicle\Model\Vehicle as Model;
-use App\Domains\Vehicle\Service\ControllerApi\Create as ControllerService;
+use App\Domains\Vehicle\ControllerApi\Service\Create as ControllerService;
 
 class Create extends ControllerApiAbstract
 {
@@ -49378,7 +48968,6 @@ class Create extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Vehicle/ControllerApi/Delete.php:`
 
 ```php
@@ -49402,7 +48991,6 @@ class Delete extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Vehicle/ControllerApi/Index.php:`
 
 ```php
@@ -49411,7 +48999,7 @@ class Delete extends ControllerApiAbstract
 namespace App\Domains\Vehicle\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\Vehicle\Service\ControllerApi\Index as ControllerService;
+use App\Domains\Vehicle\ControllerApi\Service\Index as ControllerService;
 
 class Index extends ControllerApiAbstract
 {
@@ -49434,6 +49022,171 @@ class Index extends ControllerApiAbstract
 
 ```
 
+`app/Domains/Vehicle/ControllerApi/Service/ControllerApiAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\ControllerApi\Service;
+
+use App\Domains\CoreApp\ControllerApi\Service\ControllerApiAbstract as CoreAppControllerApiAbstract;
+
+abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
+{
+}
+
+```
+
+`app/Domains/Vehicle/ControllerApi/Service/Create.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+
+class Create extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataCustom() + $this->dataDefault();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataCustom(): array
+    {
+        return ['timezone_id' => $this->dataCustomTimezoneId()];
+    }
+
+    /**
+     * @return int
+     */
+    protected function dataCustomTimezoneId(): int
+    {
+        return $this->requestInteger('timezone_id', $this->auth->timezone_id);
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataDefault(): array
+    {
+        return $this->request->input();
+    }
+}
+
+```
+
+`app/Domains/Vehicle/ControllerApi/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Vehicle\Model\Vehicle as Model;
+
+class Index extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return Model::query()
+            ->byUserOrManager($this->auth)
+            ->whenUserId($this->requestInteger('user_id'))
+            ->withSimple('devices')
+            ->withSimple('user')
+            ->withSimple('timezone')
+            ->list()
+            ->get()
+            ->all();
+    }
+}
+
+```
+
+`app/Domains/Vehicle/ControllerApi/Service/Update.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Vehicle\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use App\Domains\Vehicle\Model\Vehicle as Model;
+
+class Update extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     * @param \App\Domains\Vehicle\Model\Vehicle $row
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
+    {
+    }
+
+    /**
+     * @return array
+     */
+    public function data(): array
+    {
+        return $this->dataDefault()
+            + $this->dataRow();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataDefault(): array
+    {
+        return $this->request->input();
+    }
+
+    /**
+     * @return array
+     */
+    protected function dataRow(): array
+    {
+        return $this->row->toArray();
+    }
+}
+
+```
 
 `app/Domains/Vehicle/ControllerApi/Update.php:`
 
@@ -49444,7 +49197,7 @@ namespace App\Domains\Vehicle\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
 use App\Domains\Vehicle\Model\Vehicle as Model;
-use App\Domains\Vehicle\Service\ControllerApi\Update as ControllerService;
+use App\Domains\Vehicle\ControllerApi\Service\Update as ControllerService;
 
 class Update extends ControllerApiAbstract
 {
@@ -49479,7 +49232,6 @@ class Update extends ControllerApiAbstract
 
 ```
 
-
 `app/Domains/Vehicle/ControllerApi/router.php:`
 
 ```php
@@ -49495,7 +49247,6 @@ Route::patch('/vehicle/{id}', Update::class)->name('vehicle.update');
 Route::delete('/vehicle/{id}', Delete::class)->name('vehicle.delete');
 
 ```
-
 
 `app/Domains/Vehicle/Fractal/FractalFactory.php:`
 
@@ -49600,7 +49351,6 @@ class FractalFactory extends FractalAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Middleware/Available.php:`
 
 ```php
@@ -49644,7 +49394,6 @@ class Available extends MiddlewareAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Middleware/MiddlewareAbstract.php:`
 
 ```php
@@ -49659,7 +49408,6 @@ abstract class MiddlewareAbstract extends MiddlewareAbstractCore
 }
 
 ```
-
 
 `app/Domains/Vehicle/Model/Builder/Vehicle.php:`
 
@@ -49788,7 +49536,6 @@ class Vehicle extends BuilderAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Model/Collection/Vehicle.php:`
 
 ```php
@@ -49803,7 +49550,6 @@ class Vehicle extends CollectionAbstract
 }
 
 ```
-
 
 `app/Domains/Vehicle/Model/Vehicle.php:`
 
@@ -49964,645 +49710,6 @@ class Vehicle extends ModelAbstract
 
 ```
 
-
-`app/Domains/Vehicle/Service/Controller/ControllerAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\Controller;
-
-use App\Domains\CoreApp\Service\Controller\ControllerAbstract as ControllerAbstractCore;
-
-abstract class ControllerAbstract extends ControllerAbstractCore
-{
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/Controller/Create.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
-
-class Create extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow([
-            'user_id' => $this->user()->id,
-            'timezone_id' => $this->timezoneId(),
-        ]);
-    }
-
-    /**
-     * @return int
-     */
-    protected function timezoneId(): int
-    {
-        return $this->cache(
-            fn () => TimezoneModel::query()
-                ->whereDefault()
-                ->value('id')
-        );
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCreateUpdate();
-    }
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/Controller/CreateUpdateAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\Controller;
-
-use App\Domains\Timezone\Model\Timezone as TimezoneModel;
-use App\Domains\Timezone\Model\Collection\Timezone as TimezoneCollection;
-
-abstract class CreateUpdateAbstract extends ControllerAbstract
-{
-    /**
-     * @return array
-     */
-    protected function dataCreateUpdate(): array
-    {
-        return $this->dataCore() + [
-            'timezones' => $this->timezones(),
-            'trip_wait_minutes_default' => app('configuration')->int('trip_wait_minutes')
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Timezone\Model\Collection\Timezone
-     */
-    protected function timezones(): TimezoneCollection
-    {
-        return $this->cache(
-            fn () => TimezoneModel::query()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/Controller/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Vehicle\Model\Vehicle as Model;
-use App\Domains\Vehicle\Model\Collection\Vehicle as Collection;
-
-class Index extends ControllerAbstract
-{
-    /**
-     * @var bool
-     */
-    protected bool $userEmpty = true;
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->filters();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filters(): void
-    {
-        $this->filtersUserId();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCore() + [
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->withAlarmsCount()
-                ->withAlarmsNotificationsCount()
-                ->withAlarmsNotificationsPendingCount()
-                ->withDevicesCount()
-                ->withTimezone()
-                ->withUser()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/Controller/Map.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Vehicle\Model\Collection\Vehicle as Collection;
-use App\Domains\Vehicle\Model\Vehicle as Model;
-
-class Map extends ControllerAbstract
-{
-    /**
-     * @var bool
-     */
-    protected bool $userEmpty = true;
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-        $this->filters();
-    }
-
-    /**
-     * @return void
-     */
-    protected function filters(): void
-    {
-        $this->filtersUserId();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCore() + [
-            'list' => $this->list(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Vehicle\Model\Collection\Vehicle
-     */
-    protected function list(): Collection
-    {
-        return $this->cache(
-            fn () => Model::query()
-                ->whenUserId($this->user()?->id)
-                ->whenIds($this->requestArray('ids'))
-                ->whenTripFinished($this->requestBool('finished', null))
-                ->withWhereHasPositionLast()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/Controller/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Vehicle\Model\Vehicle as Model;
-
-class Update extends CreateUpdateAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Vehicle\Model\Vehicle $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-        $this->request();
-    }
-
-    /**
-     * @return void
-     */
-    protected function request(): void
-    {
-        $this->requestMergeWithRow();
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCreateUpdate() + [
-            'row' => $this->row,
-        ];
-    }
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/Controller/UpdateAlarm.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Alarm\Model\Alarm as AlarmModel;
-use App\Domains\Alarm\Model\Collection\Alarm as AlarmCollection;
-use App\Domains\Vehicle\Model\Vehicle as Model;
-
-class UpdateAlarm extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Vehicle\Model\Vehicle $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'alarms' => $this->alarms(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Alarm\Model\Collection\Alarm
-     */
-    protected function alarms(): AlarmCollection
-    {
-        return $this->cache(
-            fn () => AlarmModel::query()
-                ->byUserId($this->user()->id)
-                ->withVehiclePivot($this->row->id)
-                ->list()
-                ->get()
-                ->sortByDesc('vehiclePivot')
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/Controller/UpdateAlarmNotification.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\AlarmNotification\Model\AlarmNotification as AlarmNotificationModel;
-use App\Domains\AlarmNotification\Model\Collection\AlarmNotification as AlarmNotificationCollection;
-use App\Domains\Vehicle\Model\Vehicle as Model;
-
-class UpdateAlarmNotification extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Vehicle\Model\Vehicle $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'notifications' => $this->notifications(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\AlarmNotification\Model\Collection\AlarmNotification
-     */
-    protected function notifications(): AlarmNotificationCollection
-    {
-        return $this->cache(
-            fn () => AlarmNotificationModel::query()
-                ->byVehicleId($this->row->id)
-                ->withAlarm()
-                ->withPosition()
-                ->withTrip()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/Controller/UpdateDevice.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\Controller;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Device\Model\Device as DeviceModel;
-use App\Domains\Device\Model\Collection\Device as DeviceCollection;
-use App\Domains\Vehicle\Model\Vehicle as Model;
-
-class UpdateDevice extends ControllerAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Vehicle\Model\Vehicle $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return [
-            'row' => $this->row,
-            'devices' => $this->devices(),
-        ];
-    }
-
-    /**
-     * @return \App\Domains\Device\Model\Collection\Device
-     */
-    protected function devices(): DeviceCollection
-    {
-        return $this->cache(
-            fn () => DeviceModel::query()
-                ->byUserId($this->user()->id)
-                ->withVehicle()
-                ->list()
-                ->get()
-        );
-    }
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/ControllerApi/ControllerApiAbstract.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\ControllerApi;
-
-use App\Domains\CoreApp\Service\ControllerApi\ControllerApiAbstract as CoreAppControllerApiAbstract;
-
-abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
-{
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/ControllerApi/Create.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-
-class Create extends ControllerApiAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataCustom() + $this->dataDefault();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataCustom(): array
-    {
-        return ['timezone_id' => $this->dataCustomTimezoneId()];
-    }
-
-    /**
-     * @return int
-     */
-    protected function dataCustomTimezoneId(): int
-    {
-        return $this->requestInteger('timezone_id', $this->auth->timezone_id);
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataDefault(): array
-    {
-        return $this->request->input();
-    }
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/ControllerApi/Index.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Vehicle\Model\Vehicle as Model;
-
-class Index extends ControllerApiAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return Model::query()
-            ->byUserOrManager($this->auth)
-            ->whenUserId($this->requestInteger('user_id'))
-            ->withSimple('devices')
-            ->withSimple('user')
-            ->withSimple('timezone')
-            ->list()
-            ->get()
-            ->all();
-    }
-}
-
-```
-
-
-`app/Domains/Vehicle/Service/ControllerApi/Update.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\Vehicle\Service\ControllerApi;
-
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use App\Domains\Vehicle\Model\Vehicle as Model;
-
-class Update extends ControllerApiAbstract
-{
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
-     * @param \App\Domains\Vehicle\Model\Vehicle $row
-     *
-     * @return self
-     */
-    public function __construct(protected Request $request, protected Authenticatable $auth, protected Model $row)
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        return $this->dataDefault()
-            + $this->dataRow();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataDefault(): array
-    {
-        return $this->request->input();
-    }
-
-    /**
-     * @return array
-     */
-    protected function dataRow(): array
-    {
-        return $this->row->toArray();
-    }
-}
-
-```
-
-
 `app/Domains/Vehicle/Validate/Create.php:`
 
 ```php
@@ -50634,7 +49741,6 @@ class Create extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Validate/Update.php:`
 
 ```php
@@ -50647,7 +49753,6 @@ class Update extends Create
 }
 
 ```
-
 
 `app/Domains/Vehicle/Validate/UpdateAlarm.php:`
 
@@ -50674,7 +49779,6 @@ class UpdateAlarm extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Validate/UpdateDevice.php:`
 
 ```php
@@ -50700,7 +49804,6 @@ class UpdateDevice extends ValidateAbstract
 
 ```
 
-
 `app/Domains/Vehicle/Validate/ValidateFactory.php:`
 
 ```php
@@ -50715,7 +49818,6 @@ class ValidateFactory extends ValidateFactoryAbstract
 }
 
 ```
-
 
 `app/Exceptions/AuthenticationException.php:`
 
@@ -50735,7 +49837,6 @@ class AuthenticationException extends AuthenticationExceptionVendor
 }
 
 ```
-
 
 `app/Exceptions/GenericException.php:`
 
@@ -50838,7 +49939,6 @@ class GenericException extends Exception
 
 ```
 
-
 `app/Exceptions/Handler.php:`
 
 ```php
@@ -50846,11 +49946,11 @@ class GenericException extends Exception
 
 namespace App\Exceptions;
 
+use Sentry;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as HandlerVendor;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response as HttpResponse;
-use Sentry;
 use App\Domains\Error\Controller\Index as ErrorController;
 
 class Handler extends HandlerVendor
@@ -50933,7 +50033,6 @@ class Handler extends HandlerVendor
 
 ```
 
-
 `app/Exceptions/NotAllowedException.php:`
 
 ```php
@@ -50951,7 +50050,6 @@ class NotAllowedException extends GenericException
 
 ```
 
-
 `app/Exceptions/NotFoundException.php:`
 
 ```php
@@ -50968,7 +50066,6 @@ class NotFoundException extends GenericException
 }
 
 ```
-
 
 `app/Exceptions/Response.php:`
 
@@ -51185,7 +50282,6 @@ class Response
 
 ```
 
-
 `app/Exceptions/UnexpectedValueException.php:`
 
 ```php
@@ -51203,7 +50299,6 @@ class UnexpectedValueException extends GenericException
 
 ```
 
-
 `app/Exceptions/ValidatorException.php:`
 
 ```php
@@ -51220,7 +50315,6 @@ class ValidatorException extends GenericException
 }
 
 ```
-
 
 `app/Http/Kernel.php:`
 
@@ -51318,7 +50412,6 @@ class Kernel extends KernelVendor
 
 ```
 
-
 `app/Http/Middleware/Https.php:`
 
 ```php
@@ -51350,7 +50443,6 @@ class Https
 
 ```
 
-
 `app/Http/Middleware/MessagesShareFromSession.php:`
 
 ```php
@@ -51381,7 +50473,6 @@ class MessagesShareFromSession
 }
 
 ```
-
 
 `app/Http/Middleware/RequestLogger.php:`
 
@@ -51421,7 +50512,6 @@ class RequestLogger
 }
 
 ```
-
 
 `app/Http/Middleware/Reset.php:`
 
@@ -51469,7 +50559,6 @@ class Reset
 
 ```
 
-
 `app/Http/Middleware/TrustProxies.php:`
 
 ```php
@@ -51496,7 +50585,6 @@ class TrustProxies extends Middleware
 }
 
 ```
-
 
 `app/Providers/App.php:`
 
@@ -51539,7 +50627,6 @@ class App extends ServiceProvider
 }
 
 ```
-
 
 `app/Providers/Debug.php:`
 
@@ -51624,7 +50711,6 @@ class Debug extends ServiceProvider
 
 ```
 
-
 `app/Providers/Route.php:`
 
 ```php
@@ -51698,7 +50784,6 @@ class Route extends RouteServiceProvider
 }
 
 ```
-
 
 `app/Providers/View.php:`
 
@@ -51827,7 +50912,6 @@ class View extends ServiceProvider
 
 ```
 
-
 `app/Services/Buffer/Bcd.php:`
 
 ```php
@@ -51856,7 +50940,6 @@ class Bcd
 }
 
 ```
-
 
 `app/Services/Buffer/Bit.php:`
 
@@ -51903,7 +50986,6 @@ class Bit
 }
 
 ```
-
 
 `app/Services/Buffer/Byte.php:`
 
@@ -52071,7 +51153,6 @@ class Byte
 
 ```
 
-
 `app/Services/Captcha/Captcha.php:`
 
 ```php
@@ -52159,7 +51240,6 @@ class Captcha
 }
 
 ```
-
 
 `app/Services/Chrono/Chrono.php:`
 
@@ -52347,6 +51427,169 @@ class Chrono
 
 ```
 
+`app/Services/Command/Exec.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Services\Command;
+
+class Exec
+{
+    /**
+     * @param string $command
+     *
+     * @return ?string
+     */
+    public static function available(string $command): ?string
+    {
+        return static::cmd('/bin/sh -c "command -v '.escapeshellarg($command).'" 2>/dev/null') ?: null;
+    }
+
+    /**
+     * @param string $command
+     *
+     * @return string
+     */
+    public static function cmd(string $command): string
+    {
+        return trim(strval(shell_exec($command)));
+    }
+
+    /**
+     * @param string $command
+     *
+     * @return array
+     */
+    public static function cmdArray(string $command): array
+    {
+        return static::toArray(static::cmd($command));
+    }
+
+    /**
+     * @param string $command
+     *
+     * @return array
+     */
+    public static function cmdArrayInt(string $command): array
+    {
+        return array_map('intval', static::toArray(static::cmd($command)));
+    }
+
+    /**
+     * @param string $command
+     *
+     * @return float
+     */
+    public static function cmdFloat(string $command): float
+    {
+        return intval(static::cmd($command));
+    }
+
+    /**
+     * @param string $command
+     *
+     * @return int
+     */
+    public static function cmdInt(string $command): int
+    {
+        return intval(static::cmd($command));
+    }
+
+    /**
+     * @param string $command
+     *
+     * @return array
+     */
+    public static function cmdLines(string $command): array
+    {
+        return static::toLines(static::cmd($command));
+    }
+
+    /**
+     * @param string $command
+     *
+     * @return array
+     */
+    public static function cmdLinesArray(string $command): array
+    {
+        return static::filter(array_map(
+            static fn ($line) => static::toArray($line),
+            static::cmdLines($command)
+        ));
+    }
+
+    /**
+     * @return string
+     */
+    public static function php(): string
+    {
+        if ($php = env('PHP_BINARY')) {
+            return $php;
+        }
+
+        if (static::phpIsCli()) {
+            return PHP_BINARY;
+        }
+
+        $version = PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;
+
+        return static::available('php'.$version) ?: static::available('php');
+    }
+
+    /**
+     * @return bool
+     */
+    protected static function phpIsCli(): bool
+    {
+        return (PHP_SAPI === 'cli') || defined('STDIN');
+    }
+
+    /**
+     * @param string $output
+     *
+     * @return array
+     */
+    protected static function toArray(string $output): array
+    {
+        return static::explode(' ', preg_replace('/\s+/', ' ', $output));
+    }
+
+    /**
+     * @param string $output
+     *
+     * @return array
+     */
+    protected static function toLines(string $output): array
+    {
+        return static::explode("\n", $output);
+    }
+
+    /**
+     * @param string $delimiter
+     * @param string $output
+     *
+     * @return array
+     */
+    protected static function explode(string $delimiter, string $output): array
+    {
+        return static::filter(explode($delimiter, $output));
+    }
+
+    /**
+     * @param array $output
+     *
+     * @return array
+     */
+    protected static function filter(array $output): array
+    {
+        return array_values(array_filter($output, static function ($value) {
+            return is_string($value) ? strlen($value) : $value;
+        }));
+    }
+}
+
+```
 
 `app/Services/Command/Artisan.php:`
 
@@ -52534,172 +51777,6 @@ class Artisan
 
 ```
 
-
-`app/Services/Command/Exec.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Services\Command;
-
-class Exec
-{
-    /**
-     * @param string $command
-     *
-     * @return ?string
-     */
-    public static function available(string $command): ?string
-    {
-        return static::cmd('/bin/sh -c "command -v '.escapeshellarg($command).'" 2>/dev/null') ?: null;
-    }
-
-    /**
-     * @param string $command
-     *
-     * @return string
-     */
-    public static function cmd(string $command): string
-    {
-        return trim(strval(shell_exec($command)));
-    }
-
-    /**
-     * @param string $command
-     *
-     * @return array
-     */
-    public static function cmdArray(string $command): array
-    {
-        return static::toArray(static::cmd($command));
-    }
-
-    /**
-     * @param string $command
-     *
-     * @return array
-     */
-    public static function cmdArrayInt(string $command): array
-    {
-        return array_map('intval', static::toArray(static::cmd($command)));
-    }
-
-    /**
-     * @param string $command
-     *
-     * @return float
-     */
-    public static function cmdFloat(string $command): float
-    {
-        return intval(static::cmd($command));
-    }
-
-    /**
-     * @param string $command
-     *
-     * @return int
-     */
-    public static function cmdInt(string $command): int
-    {
-        return intval(static::cmd($command));
-    }
-
-    /**
-     * @param string $command
-     *
-     * @return array
-     */
-    public static function cmdLines(string $command): array
-    {
-        return static::toLines(static::cmd($command));
-    }
-
-    /**
-     * @param string $command
-     *
-     * @return array
-     */
-    public static function cmdLinesArray(string $command): array
-    {
-        return static::filter(array_map(
-            static fn ($line) => static::toArray($line),
-            static::cmdLines($command)
-        ));
-    }
-
-    /**
-     * @return string
-     */
-    public static function php(): string
-    {
-        if ($php = env('PHP_BINARY')) {
-            return $php;
-        }
-
-        if (static::phpIsCli()) {
-            return PHP_BINARY;
-        }
-
-        $version = PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;
-
-        return static::available('php'.$version) ?: static::available('php');
-    }
-
-    /**
-     * @return bool
-     */
-    protected static function phpIsCli(): bool
-    {
-        return (PHP_SAPI === 'cli') || defined('STDIN');
-    }
-
-    /**
-     * @param string $output
-     *
-     * @return array
-     */
-    protected static function toArray(string $output): array
-    {
-        return static::explode(' ', preg_replace('/\s+/', ' ', $output));
-    }
-
-    /**
-     * @param string $output
-     *
-     * @return array
-     */
-    protected static function toLines(string $output): array
-    {
-        return static::explode("\n", $output);
-    }
-
-    /**
-     * @param string $delimiter
-     * @param string $output
-     *
-     * @return array
-     */
-    protected static function explode(string $delimiter, string $output): array
-    {
-        return static::filter(explode($delimiter, $output));
-    }
-
-    /**
-     * @param array $output
-     *
-     * @return array
-     */
-    protected static function filter(array $output): array
-    {
-        return array_values(array_filter($output, static function ($value) {
-            return is_string($value) ? strlen($value) : $value;
-        }));
-    }
-}
-
-```
-
-
 `app/Services/Compress/Zip/Contents.php:`
 
 ```php
@@ -52776,7 +51853,6 @@ class Contents
 }
 
 ```
-
 
 `app/Services/Compress/Zip/Create.php:`
 
@@ -52864,7 +51940,6 @@ class Create
 
 ```
 
-
 `app/Services/Compress/Zip/Extract.php:`
 
 ```php
@@ -52912,7 +51987,6 @@ class Extract
 }
 
 ```
-
 
 `app/Services/Compress/Zip/File.php:`
 
@@ -53112,7 +52186,6 @@ class File
 }
 
 ```
-
 
 `app/Services/Compress/Zip/Folder.php:`
 
@@ -53379,7 +52452,6 @@ class Folder
 
 ```
 
-
 `app/Services/Csv/Read.php:`
 
 ```php
@@ -53577,7 +52649,6 @@ class Read
 
 ```
 
-
 `app/Services/Csv/Write.php:`
 
 ```php
@@ -53666,7 +52737,6 @@ class Write
 }
 
 ```
-
 
 `app/Services/Curl/Cache.php:`
 
@@ -53799,7 +52869,6 @@ class Cache
 }
 
 ```
-
 
 `app/Services/Curl/Curl.php:`
 
@@ -55002,7 +54071,6 @@ class Curl
 
 ```
 
-
 `app/Services/Curl/CurlException.php:`
 
 ```php
@@ -55017,7 +54085,6 @@ class CurlException extends Exception
 }
 
 ```
-
 
 `app/Services/Curl/Log.php:`
 
@@ -55049,7 +54116,6 @@ class Log
 }
 
 ```
-
 
 `app/Services/Database/Logger.php:`
 
@@ -55304,7 +54370,6 @@ class Logger
 
 ```
 
-
 `app/Services/Filesystem/Directory.php:`
 
 ```php
@@ -55427,7 +54492,6 @@ class Directory
 
 ```
 
-
 `app/Services/Filesystem/File.php:`
 
 ```php
@@ -55487,7 +54551,6 @@ class File
 
 ```
 
-
 `app/Services/Gpx/Read.php:`
 
 ```php
@@ -55495,9 +54558,9 @@ class File
 
 namespace App\Services\Gpx;
 
-use phpGPX\phpGPX;
 use phpGPX\Models\GpxFile;
 use phpGPX\Models\Point;
+use phpGPX\phpGPX;
 
 class Read
 {
@@ -55675,7 +54738,6 @@ class Read
 
 ```
 
-
 `app/Services/Gpx/Write.php:`
 
 ```php
@@ -55825,7 +54887,6 @@ class Write
 
 ```
 
-
 `app/Services/Helper/Helper.php:`
 
 ```php
@@ -55863,7 +54924,6 @@ class Helper
 
 ```
 
-
 `app/Services/Helper/Service.php:`
 
 ```php
@@ -55885,7 +54945,6 @@ class Service
 }
 
 ```
-
 
 `app/Services/Helper/Traits/Arrays.php:`
 
@@ -56111,7 +55170,6 @@ trait Arrays
 
 ```
 
-
 `app/Services/Helper/Traits/Custom.php:`
 
 ```php
@@ -56142,7 +55200,6 @@ trait Custom
 }
 
 ```
-
 
 `app/Services/Helper/Traits/Date.php:`
 
@@ -56390,7 +55447,6 @@ trait Date
 
 ```
 
-
 `app/Services/Helper/Traits/Exception.php:`
 
 ```php
@@ -56435,7 +55491,6 @@ trait Exception
 }
 
 ```
-
 
 `app/Services/Helper/Traits/File.php:`
 
@@ -56490,7 +55545,6 @@ trait File
 }
 
 ```
-
 
 `app/Services/Helper/Traits/Geo.php:`
 
@@ -56754,7 +55808,6 @@ trait Geo
 
 ```
 
-
 `app/Services/Helper/Traits/Misc.php:`
 
 ```php
@@ -56858,7 +55911,6 @@ trait Misc
 
 ```
 
-
 `app/Services/Helper/Traits/Number.php:`
 
 ```php
@@ -56918,7 +55970,6 @@ trait Number
 }
 
 ```
-
 
 `app/Services/Helper/Traits/Unit.php:`
 
@@ -57220,7 +56271,6 @@ trait Unit
 
 ```
 
-
 `app/Services/Helper/functions.php:`
 
 ```php
@@ -57247,7 +56297,6 @@ function service(): App\Services\Helper\Service
 }
 
 ```
-
 
 `app/Services/Html/Alert.php:`
 
@@ -57399,7 +56448,6 @@ class Alert
 }
 
 ```
-
 
 `app/Services/Html/Html.php:`
 
@@ -57569,7 +56617,6 @@ class Html
 
 ```
 
-
 `app/Services/Html/Traits/Custom.php:`
 
 ```php
@@ -57730,7 +56777,6 @@ trait Custom
 
 ```
 
-
 `app/Services/Locate/Arcgis.php:`
 
 ```php
@@ -57779,7 +56825,6 @@ class Arcgis extends LocateAbstract
 }
 
 ```
-
 
 `app/Services/Locate/Gisgraphy.php:`
 
@@ -57841,7 +56886,6 @@ class Gisgraphy extends LocateAbstract
 }
 
 ```
-
 
 `app/Services/Locate/LocateAbstract.php:`
 
@@ -57919,7 +56963,6 @@ abstract class LocateAbstract
 
 ```
 
-
 `app/Services/Locate/LocateFactory.php:`
 
 ```php
@@ -57974,7 +57017,6 @@ class LocateFactory
 
 ```
 
-
 `app/Services/Locate/Nominatim.php:`
 
 ```php
@@ -58023,7 +57065,6 @@ class Nominatim extends LocateAbstract
 }
 
 ```
-
 
 `app/Services/Locate/Resource.php:`
 
@@ -58083,7 +57124,6 @@ class Resource
 }
 
 ```
-
 
 `app/Services/Logger/DailyAbstract.php:`
 
@@ -58168,7 +57208,6 @@ abstract class DailyAbstract
 
 ```
 
-
 `app/Services/Logger/DeprecationsDaily.php:`
 
 ```php
@@ -58194,7 +57233,6 @@ class DeprecationsDaily extends DailyAbstract
 
 ```
 
-
 `app/Services/Logger/LaravelDaily.php:`
 
 ```php
@@ -58214,7 +57252,6 @@ class LaravelDaily extends DailyAbstract
 }
 
 ```
-
 
 `app/Services/Logger/Mail.php:`
 
@@ -58270,7 +57307,6 @@ class Mail
 }
 
 ```
-
 
 `app/Services/Logger/MonologRotatingFileAbstract.php:`
 
@@ -58367,7 +57403,6 @@ abstract class MonologRotatingFileAbstract
 }
 
 ```
-
 
 `app/Services/Logger/RotatingFileAbstract.php:`
 
@@ -58475,7 +57510,6 @@ abstract class RotatingFileAbstract
 
 ```
 
-
 `app/Services/Protocol/Aquila/Manager.php:`
 
 ```php
@@ -58543,7 +57577,6 @@ class Manager extends ProtocolAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/Aquila/Parser/Location.php:`
 
@@ -58698,7 +57731,6 @@ class Location extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/DebugHttp/Manager.php:`
 
 ```php
@@ -58772,7 +57804,6 @@ class Manager extends ProtocolAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/DebugSocket/Manager.php:`
 
@@ -58850,7 +57881,6 @@ class Manager extends ProtocolAbstract
 
 ```
 
-
 `app/Services/Protocol/GPS103/Manager.php:`
 
 ```php
@@ -58925,7 +57955,6 @@ class Manager extends ProtocolAbstract
 
 ```
 
-
 `app/Services/Protocol/GPS103/Parser/Auth.php:`
 
 ```php
@@ -58990,7 +58019,6 @@ class Auth extends ParserAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/GPS103/Parser/Command.php:`
 
@@ -59082,7 +58110,6 @@ class Command extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/GPS103/Parser/Heartbeat.php:`
 
 ```php
@@ -59146,7 +58173,6 @@ class Heartbeat extends ParserAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/GPS103/Parser/Location.php:`
 
@@ -59388,7 +58414,6 @@ class Location extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/GT06/Manager.php:`
 
 ```php
@@ -59458,7 +58483,6 @@ class Manager extends ProtocolAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/GT06/Parser/Auth.php:`
 
@@ -59535,7 +58559,6 @@ class Auth extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/GT06/Parser/Heartbeat.php:`
 
 ```php
@@ -59602,7 +58625,6 @@ class Heartbeat extends ParserAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/GT06/Parser/LocationGpsModular.php:`
 
@@ -59820,7 +58842,6 @@ class LocationGpsModular extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/GT06/Parser/LocationLbs.php:`
 
 ```php
@@ -60003,7 +59024,6 @@ class LocationLbs extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/H02/Manager.php:`
 
 ```php
@@ -60077,7 +59097,6 @@ class Manager extends ProtocolAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/H02/Parser/Command.php:`
 
@@ -60169,7 +59188,6 @@ class Command extends ParserAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/H02/Parser/Location.php:`
 
@@ -60366,7 +59384,6 @@ class Location extends ParserAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/H02/Parser/LocationBinary.php:`
 
@@ -60679,7 +59696,6 @@ class LocationBinary extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/H02/Parser/Sms.php:`
 
 ```php
@@ -60771,7 +59787,6 @@ class Sms extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/OsmAnd/Manager.php:`
 
 ```php
@@ -60837,7 +59852,6 @@ class Manager extends ProtocolAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/OsmAnd/Parser/Location.php:`
 
@@ -61013,7 +60027,6 @@ class Location extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/ParserAbstract.php:`
 
 ```php
@@ -61021,11 +60034,11 @@ class Location extends ParserAbstract
 
 namespace App\Services\Protocol;
 
-use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Protocol\Resource\Auth as ResourceAuth;
 use App\Services\Protocol\Resource\Command as ResourceCommand;
 use App\Services\Protocol\Resource\Heartbeat as ResourceHeartbeat;
 use App\Services\Protocol\Resource\Location as ResourceLocation;
+use App\Services\Protocol\Resource\ResourceAbstract;
 use App\Services\Protocol\Resource\Sms as ResourceSms;
 
 abstract class ParserAbstract
@@ -61183,7 +60196,6 @@ abstract class ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/ProtocolAbstract.php:`
 
 ```php
@@ -61264,7 +60276,6 @@ abstract class ProtocolAbstract
 
 ```
 
-
 `app/Services/Protocol/ProtocolFactory.php:`
 
 ```php
@@ -61342,7 +60353,6 @@ class ProtocolFactory
 
 ```
 
-
 `app/Services/Protocol/Queclink/Manager.php:`
 
 ```php
@@ -61350,8 +60360,8 @@ class ProtocolFactory
 
 namespace App\Services\Protocol\Queclink;
 
-use App\Services\Protocol\Queclink\Parser\Location as LocationParser;
 use App\Services\Protocol\ProtocolAbstract;
+use App\Services\Protocol\Queclink\Parser\Location as LocationParser;
 use App\Services\Server\Socket\Server;
 
 class Manager extends ProtocolAbstract
@@ -61412,7 +60422,6 @@ class Manager extends ProtocolAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/Queclink/Parser/Location.php:`
 
@@ -61577,7 +60586,6 @@ class Location extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/Resource/Auth.php:`
 
 ```php
@@ -61637,7 +60645,6 @@ class Auth extends ResourceAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/Resource/Command.php:`
 
@@ -61716,7 +60723,6 @@ class Command extends ResourceAbstract
 
 ```
 
-
 `app/Services/Protocol/Resource/Heartbeat.php:`
 
 ```php
@@ -61776,7 +60782,6 @@ class Heartbeat extends ResourceAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/Resource/Location.php:`
 
@@ -61916,7 +60921,6 @@ class Location extends ResourceAbstract
 
 ```
 
-
 `app/Services/Protocol/Resource/ResourceAbstract.php:`
 
 ```php
@@ -62027,7 +61031,6 @@ abstract class ResourceAbstract
 
 ```
 
-
 `app/Services/Protocol/Resource/Sms.php:`
 
 ```php
@@ -62105,7 +61108,6 @@ class Sms extends ResourceAbstract
 
 ```
 
-
 `app/Services/Protocol/TK102/Manager.php:`
 
 ```php
@@ -62113,9 +61115,9 @@ class Sms extends ResourceAbstract
 
 namespace App\Services\Protocol\TK102;
 
+use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\TK102\Parser\Command as CommandParser;
 use App\Services\Protocol\TK102\Parser\Location as LocationParser;
-use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Server\Socket\Server;
 
 class Manager extends ProtocolAbstract
@@ -62175,7 +61177,6 @@ class Manager extends ProtocolAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/TK102/Parser/Command.php:`
 
@@ -62268,7 +61269,6 @@ class Command extends ParserAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/TK102/Parser/Location.php:`
 
@@ -62469,7 +61469,6 @@ class Location extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/Teltonika/Manager.php:`
 
 ```php
@@ -62477,9 +61476,9 @@ class Location extends ParserAbstract
 
 namespace App\Services\Protocol\Teltonika;
 
+use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Protocol\Teltonika\Parser\Auth as AuthParser;
 use App\Services\Protocol\Teltonika\Parser\Locations as LocationsParser;
-use App\Services\Protocol\ProtocolAbstract;
 use App\Services\Server\Socket\Server;
 
 class Manager extends ProtocolAbstract
@@ -62535,7 +61534,6 @@ class Manager extends ProtocolAbstract
 }
 
 ```
-
 
 `app/Services/Protocol/Teltonika/Parser/Auth.php:`
 
@@ -62623,7 +61621,6 @@ class Auth extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/Teltonika/Parser/Codec.php:`
 
 ```php
@@ -62655,7 +61652,6 @@ class Codec
 }
 
 ```
-
 
 `app/Services/Protocol/Teltonika/Parser/Location.php:`
 
@@ -62929,7 +61925,6 @@ class Location extends ParserAbstract
 
 ```
 
-
 `app/Services/Protocol/Teltonika/Parser/Locations.php:`
 
 ```php
@@ -63030,7 +62025,6 @@ class Locations extends ParserAbstract
 }
 
 ```
-
 
 `app/Services/Request/Logger.php:`
 
@@ -63197,7 +62191,6 @@ class Logger extends RotatingFileAbstract
 
 ```
 
-
 `app/Services/Request/Response.php:`
 
 ```php
@@ -63238,7 +62231,6 @@ class Response
 }
 
 ```
-
 
 `app/Services/Server/Connection.php:`
 
@@ -63478,7 +62470,6 @@ class Connection
 
 ```
 
-
 `app/Services/Server/Http/Client.php:`
 
 ```php
@@ -63637,7 +62628,6 @@ class Client
 }
 
 ```
-
 
 `app/Services/Server/Http/Server.php:`
 
@@ -63912,7 +62902,6 @@ class Server extends ServerAbstract
 
 ```
 
-
 `app/Services/Server/Logger.php:`
 
 ```php
@@ -64034,7 +63023,6 @@ class Logger
 
 ```
 
-
 `app/Services/Server/Pool.php:`
 
 ```php
@@ -64152,7 +63140,6 @@ class Pool
 }
 
 ```
-
 
 `app/Services/Server/Process.php:`
 
@@ -64319,7 +63306,6 @@ class Process
 
 ```
 
-
 `app/Services/Server/ServerAbstract.php:`
 
 ```php
@@ -64415,7 +63401,6 @@ abstract class ServerAbstract
 }
 
 ```
-
 
 `app/Services/Server/Socket/Client.php:`
 
@@ -64674,7 +63659,6 @@ class Client
 
 ```
 
-
 `app/Services/Server/Socket/Server.php:`
 
 ```php
@@ -64687,8 +63671,8 @@ use Exception;
 use Socket;
 use Throwable;
 use App\Services\Server\Connection;
-use App\Services\Server\ServerAbstract;
 use App\Services\Server\Logger;
+use App\Services\Server\ServerAbstract;
 
 class Server extends ServerAbstract
 {
@@ -65028,7 +64012,6 @@ class Server extends ServerAbstract
 
 ```
 
-
 `app/Services/Telegram/Client.php:`
 
 ```php
@@ -65168,7 +64151,6 @@ class Client
 }
 
 ```
-
 
 `app/Services/Translator/Provider/DeepL/Manager.php:`
 
@@ -65398,7 +64380,6 @@ class Manager extends ProviderAbstract
 
 ```
 
-
 `app/Services/Translator/Provider/Microsoft/Manager.php:`
 
 ```php
@@ -65503,7 +64484,6 @@ class Manager extends ProviderAbstract
 }
 
 ```
-
 
 `app/Services/Translator/Provider/OpenAI/Manager.php:`
 
@@ -65692,7 +64672,6 @@ class Manager extends ProviderAbstract
 
 ```
 
-
 `app/Services/Translator/Provider/ProviderAbstract.php:`
 
 ```php
@@ -65745,7 +64724,6 @@ abstract class ProviderAbstract
 }
 
 ```
-
 
 `app/Services/Translator/TranslatorFactory.php:`
 
@@ -65810,7 +64788,6 @@ class TranslatorFactory
 }
 
 ```
-
 
 `app/Services/Validator/Data.php:`
 
@@ -66052,7 +65029,6 @@ class Data
 
 ```
 
-
 `app/Services/Validator/ValidatorAbstract.php:`
 
 ```php
@@ -66226,7 +65202,6 @@ abstract class ValidatorAbstract
 
 ```
 
-
 `app/Services/View/Bag.php:`
 
 ```php
@@ -66241,7 +65216,6 @@ class Bag extends ViewErrorBag
 }
 
 ```
-
 
 `app/Services/View/Message.php:`
 
@@ -66652,7 +65626,6 @@ class Message
 
 ```
 
-
 `app/View/Components/ChartSpeed.php:`
 
 ```php
@@ -66724,7 +65697,6 @@ class ChartSpeed extends Component
 }
 
 ```
-
 
 `app/View/Components/Map.php:`
 
@@ -66833,7 +65805,6 @@ class Map extends Component
 }
 
 ```
-
 
 `app/View/Components/MapDevice.php:`
 
@@ -66970,7 +65941,6 @@ class MapDevice extends Component
 
 ```
 
-
 `app/View/Components/MapRefuel.php:`
 
 ```php
@@ -67063,7 +66033,6 @@ class MapRefuel extends Component
 
 ```
 
-
 `app/View/Components/MapTrip.php:`
 
 ```php
@@ -67104,7 +66073,6 @@ class MapTrip extends Component
 }
 
 ```
-
 
 `app/View/Components/MapVehicle.php:`
 
@@ -67241,7 +66209,6 @@ class MapVehicle extends Component
 
 ```
 
-
 `app/View/Components/Message.php:`
 
 ```php
@@ -67336,7 +66303,6 @@ class Message extends Component
 }
 
 ```
-
 
 `app/View/Components/Select.php:`
 
@@ -67617,6 +66583,5 @@ class Select extends Component
 }
 
 ```
-
 
 

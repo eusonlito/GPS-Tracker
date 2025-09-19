@@ -1210,13 +1210,11 @@ resources/
         ├── delete-modal.blade.php
         └── empty.blade.php
 
-
 Excluded Content:
 
 Directories with excluded files:
 
 - /resources/app/mcc: 1 files
-
 
 - /resources/lang/ar_AE: 143 files
 
@@ -1242,12 +1240,9 @@ Directories with excluded files:
 
 - /resources/views/assets/manifest: 4 files
 
-
 - /resources/views/assets/publish: 2 files
 
-
 - /resources/views/assets/scss: 5 files
-
 
 File extensions excluded:
 
@@ -1274,7 +1269,6 @@ File extensions excluded:
 - .sh: 1 files
 
 - .svg: 33 files
-
 
 `resources/views/components/chart-speed.blade.php:`
 
@@ -1361,7 +1355,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/components/map-device.blade.php:`
 
 ```php
@@ -1425,7 +1418,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/components/map-refuel.blade.php:`
 
 ```php
@@ -1482,7 +1474,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </app-map>
 
 ```
-
 
 `resources/views/components/map-trip.blade.php:`
 
@@ -1542,7 +1533,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </app-map>
 
 ```
-
 
 `resources/views/components/map-vehicle.blade.php:`
 
@@ -1605,7 +1595,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/components/map.blade.php:`
 
 ```php
@@ -1653,7 +1642,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/components/message.blade.php:`
 
 ```php
@@ -1669,7 +1657,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/components/select.blade.php:`
 
 ```php
@@ -1684,7 +1671,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </select>
 
 ```
-
 
 `resources/views/domains/alarm/create.blade.php:`
 
@@ -1730,7 +1716,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/alarm/index.blade.php:`
 
@@ -1817,7 +1802,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/alarm/molecules/create-update.blade.php:`
 
 ```php
@@ -1865,7 +1849,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/alarm/types/fence-in/create.blade.php:`
 
 ```php
@@ -1889,7 +1872,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 <div class="map-fence mt-5" data-map-fence data-map-fence-latitude="#alarm-type-fence-in-latitude" data-map-fence-longitude="#alarm-type-fence-in-longitude" data-map-fence-radius="#alarm-type-fence-in-radius"></div>
 
 ```
-
 
 `resources/views/domains/alarm/types/fence-out/create.blade.php:`
 
@@ -1915,13 +1897,11 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/alarm/types/movement/create.blade.php:`
 
 ```php
 
 ```
-
 
 `resources/views/domains/alarm/types/overspeed/create.blade.php:`
 
@@ -1935,7 +1915,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/alarm/types/polygon-in/create.blade.php:`
 
 ```php
@@ -1944,7 +1923,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 <div class="map-polygon mt-5" data-map-polygon data-map-polygon-latitude="{{ $position?->latitude }}" data-map-polygon-longitude="{{ $position?->longitude }}" data-map-polygon-input="#alarm-type-polygon-geojson"></div>
 
 ```
-
 
 `resources/views/domains/alarm/types/polygon-out/create.blade.php:`
 
@@ -1955,13 +1933,11 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/alarm/types/vibration/create.blade.php:`
 
 ```php
 
 ```
-
 
 `resources/views/domains/alarm/update-alarm-notification.blade.php:`
 
@@ -2028,7 +2004,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/alarm/update-layout.blade.php:`
 
 ```php
@@ -2053,7 +2028,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/alarm/update-vehicle.blade.php:`
 
@@ -2104,7 +2078,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/alarm/update.blade.php:`
 
 ```php
@@ -2146,7 +2119,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/alarm-notification/index.blade.php:`
 
@@ -2255,7 +2227,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/alarm-notification/molecules/alert.blade.php:`
 
 ```php
@@ -2307,7 +2278,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/city/index.blade.php:`
 
 ```php
@@ -2355,7 +2325,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/city/update-layout.blade.php:`
 
 ```php
@@ -2379,7 +2348,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/city/update-merge.blade.php:`
 
@@ -2446,7 +2414,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/city/update.blade.php:`
 
 ```php
@@ -2505,7 +2472,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/configuration/index.blade.php:`
 
 ```php
@@ -2555,7 +2521,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/configuration/molecules/create-update.blade.php:`
 
 ```php
@@ -2585,7 +2550,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/configuration/update-layout.blade.php:`
 
 ```php
@@ -2609,7 +2573,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/configuration/update.blade.php:`
 
 ```php
@@ -2632,7 +2595,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/country/index.blade.php:`
 
@@ -2677,7 +2639,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/country/update-layout.blade.php:`
 
 ```php
@@ -2701,7 +2662,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/country/update-merge.blade.php:`
 
@@ -2764,7 +2724,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/country/update.blade.php:`
 
 ```php
@@ -2803,7 +2762,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/dashboard/index.blade.php:`
 
@@ -2891,7 +2849,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/dashboard/molecules/onboarding.blade.php:`
 
@@ -3013,7 +2970,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/device/create.blade.php:`
 
 ```php
@@ -3049,7 +3005,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/device/index.blade.php:`
 
@@ -3146,7 +3101,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/device/map.blade.php:`
 
 ```php
@@ -3183,7 +3137,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/device/molecules/create-update.blade.php:`
 
@@ -3264,7 +3217,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/device/update-device-message.blade.php:`
 
 ```php
@@ -3341,7 +3293,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/device/update-layout.blade.php:`
 
 ```php
@@ -3369,7 +3320,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/device/update-transfer.blade.php:`
 
@@ -3411,7 +3361,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/device/update.blade.php:`
 
@@ -3462,7 +3411,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/error/index.blade.php:`
 
 ```php
@@ -3492,7 +3440,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </html>
 
 ```
-
 
 `resources/views/domains/file/molecules/create-update.blade.php:`
 
@@ -3540,7 +3487,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/ip-lock/create.blade.php:`
 
 ```php
@@ -3567,7 +3513,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/ip-lock/index.blade.php:`
 
@@ -3628,7 +3573,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/ip-lock/molecules/create-update.blade.php:`
 
 ```php
@@ -3645,7 +3589,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </div>
 
 ```
-
 
 `resources/views/domains/ip-lock/update-layout.blade.php:`
 
@@ -3670,7 +3613,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/ip-lock/update.blade.php:`
 
 ```php
@@ -3693,7 +3635,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/maintenance/create.blade.php:`
 
@@ -3730,7 +3671,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/maintenance/index.blade.php:`
 
@@ -3844,7 +3784,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/maintenance/molecules/create-update.blade.php:`
 
 ```php
@@ -3899,7 +3838,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/maintenance/molecules/update-item-modal.blade.php:`
 
 ```php
@@ -3926,7 +3864,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </div>
 
 ```
-
 
 `resources/views/domains/maintenance/update-item.blade.php:`
 
@@ -4042,7 +3979,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/maintenance/update-layout.blade.php:`
 
 ```php
@@ -4069,7 +4005,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/maintenance/update.blade.php:`
 
@@ -4107,7 +4042,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/maintenance-item/create.blade.php:`
 
 ```php
@@ -4143,7 +4077,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/maintenance-item/index.blade.php:`
 
@@ -4223,7 +4156,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/maintenance-item/molecules/create-update.blade.php:`
 
 ```php
@@ -4235,7 +4167,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </div>
 
 ```
-
 
 `resources/views/domains/maintenance-item/update-layout.blade.php:`
 
@@ -4263,7 +4194,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/maintenance-item/update-maintenance.blade.php:`
 
@@ -4338,7 +4268,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/maintenance-item/update.blade.php:`
 
 ```php
@@ -4374,7 +4303,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/monitor/database.blade.php:`
 
@@ -4414,7 +4342,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/monitor/index.blade.php:`
 
@@ -4605,7 +4532,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/monitor/installation.blade.php:`
 
 ```php
@@ -4704,7 +4630,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/monitor/log/file.blade.php:`
 
 ```php
@@ -4726,7 +4651,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/monitor/log/header.blade.php:`
 
 ```php
@@ -4744,7 +4668,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </div>
 
 ```
-
 
 `resources/views/domains/monitor/log/index.blade.php:`
 
@@ -4799,7 +4722,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/monitor/queue/delayed.blade.php:`
 
 ```php
@@ -4840,7 +4762,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/monitor/queue/failed.blade.php:`
 
@@ -4889,7 +4810,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/monitor/queue/layout.blade.php:`
 
 ```php
@@ -4916,7 +4836,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/monitor/queue/pending.blade.php:`
 
@@ -4958,7 +4877,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/monitor/requirements.blade.php:`
 
@@ -5023,7 +4941,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/profile/update-layout.blade.php:`
 
 ```php
@@ -5052,7 +4969,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/profile/update-telegram.blade.php:`
 
@@ -5115,7 +5031,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/profile/update-user-session.blade.php:`
 
 ```php
@@ -5152,7 +5067,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/profile/update.blade.php:`
 
@@ -5283,7 +5197,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/refuel/create.blade.php:`
 
 ```php
@@ -5319,7 +5232,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/refuel/index.blade.php:`
 
@@ -5450,7 +5362,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/refuel/map.blade.php:`
 
 ```php
@@ -5515,7 +5426,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/refuel/molecules/create-update.blade.php:`
 
@@ -5583,7 +5493,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/refuel/update-layout.blade.php:`
 
 ```php
@@ -5606,7 +5515,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/refuel/update.blade.php:`
 
@@ -5644,7 +5552,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/server/create.blade.php:`
 
 ```php
@@ -5667,7 +5574,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/server/index.blade.php:`
 
@@ -5723,7 +5629,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/server/molecules/create-update.blade.php:`
 
 ```php
@@ -5753,7 +5658,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </div>
 
 ```
-
 
 `resources/views/domains/server/status.blade.php:`
 
@@ -5862,7 +5766,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/server/update-layout.blade.php:`
 
 ```php
@@ -5886,7 +5789,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/server/update-parser.blade.php:`
 
@@ -6023,7 +5925,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/server/update.blade.php:`
 
 ```php
@@ -6049,7 +5950,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/shared/device.blade.php:`
 
@@ -6097,7 +5997,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/shared/index/index.blade.php:`
 
 ```php
@@ -6129,14 +6028,12 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/shared/index/molecules/devices-empty.blade.php:`
 
 ```php
 <img class="m-auto mt-10 lg:mt-20 h-60" src="@asset('build/images/device.svg')">
 
 ```
-
 
 `resources/views/domains/shared/index/molecules/devices-map.blade.php:`
 
@@ -6146,7 +6043,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 <x-map-device :devices="$devices"></x-map-device>
 
 ```
-
 
 `resources/views/domains/shared/index/molecules/map-filters.blade.php:`
 
@@ -6189,14 +6085,12 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/shared/index/molecules/trips-empty.blade.php:`
 
 ```php
 <img class="m-auto mt-10 lg:mt-20 h-60" src="@asset('build/images/trip.svg')">
 
 ```
-
 
 `resources/views/domains/shared/index/molecules/trips-map.blade.php:`
 
@@ -6211,7 +6105,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 ></x-map>
 
 ```
-
 
 `resources/views/domains/shared/trip.blade.php:`
 
@@ -6297,7 +6190,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/state/index.blade.php:`
 
 ```php
@@ -6341,7 +6233,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/state/update-layout.blade.php:`
 
 ```php
@@ -6365,7 +6256,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/state/update-merge.blade.php:`
 
@@ -6430,7 +6320,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/state/update.blade.php:`
 
 ```php
@@ -6469,7 +6358,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/timezone/index.blade.php:`
 
 ```php
@@ -6504,7 +6392,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/trip/heatmap.blade.php:`
 
@@ -6587,7 +6474,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/trip/import.blade.php:`
 
 ```php
@@ -6647,7 +6533,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/trip/index.blade.php:`
 
@@ -6798,7 +6683,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/trip/map.blade.php:`
 
 ```php
@@ -6883,7 +6767,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/trip/search.blade.php:`
 
@@ -7094,7 +6977,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/trip/update-alarm-notification.blade.php:`
 
 ```php
@@ -7165,7 +7047,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/trip/update-layout.blade.php:`
 
 ```php
@@ -7207,7 +7088,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/trip/update-map.blade.php:`
 
 ```php
@@ -7235,7 +7115,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/trip/update-merge.blade.php:`
 
@@ -7295,7 +7174,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/trip/update-position.blade.php:`
 
@@ -7373,7 +7251,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/trip/update-stat.blade.php:`
 
 ```php
@@ -7428,7 +7305,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/trip/update.blade.php:`
 
@@ -7504,7 +7380,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/user/auth-credentials.blade.php:`
 
 ```php
@@ -7543,7 +7418,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/user/create.blade.php:`
 
 ```php
@@ -7570,7 +7444,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/user/disabled.blade.php:`
 
@@ -7600,7 +7473,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </html>
 
 ```
-
 
 `resources/views/domains/user/index.blade.php:`
 
@@ -7664,7 +7536,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/user/molecules/create-update.blade.php:`
 
@@ -7767,7 +7638,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/user/update-layout.blade.php:`
 
 ```php
@@ -7791,7 +7661,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/user/update-user-session.blade.php:`
 
@@ -7830,7 +7699,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/user/update.blade.php:`
 
 ```php
@@ -7862,7 +7730,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/user-session/index.blade.php:`
 
@@ -7915,7 +7782,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/vehicle/create.blade.php:`
 
 ```php
@@ -7951,7 +7817,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/vehicle/index.blade.php:`
 
@@ -8034,7 +7899,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/vehicle/map.blade.php:`
 
 ```php
@@ -8067,7 +7931,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/vehicle/molecules/create-update.blade.php:`
 
@@ -8108,7 +7971,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </div>
 
 ```
-
 
 `resources/views/domains/vehicle/update-alarm-notification.blade.php:`
 
@@ -8183,7 +8045,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/vehicle/update-alarm.blade.php:`
 
 ```php
@@ -8239,7 +8100,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/vehicle/update-device.blade.php:`
 
 ```php
@@ -8291,7 +8151,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/domains/vehicle/update-layout.blade.php:`
 
 ```php
@@ -8317,7 +8176,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 @stop
 
 ```
-
 
 `resources/views/domains/vehicle/update.blade.php:`
 
@@ -8358,7 +8216,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/layouts/empty.blade.php:`
 
 ```php
@@ -8376,7 +8233,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 </html>
 
 ```
-
 
 `resources/views/layouts/in.blade.php:`
 
@@ -8409,7 +8265,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 
 ```
 
-
 `resources/views/layouts/molecules/footer.blade.php:`
 
 ```php
@@ -8418,7 +8273,6 @@ new Chart(document.getElementById('{{ $id }}'), {
 <!-- Execution Time {{ sprintf('%.3f', microtime(true) - LARAVEL_START) }} seconds // Memory Usage @sizeHuman(memory_get_peak_usage(false)) -->
 
 ```
-
 
 `resources/views/layouts/molecules/head.blade.php:`
 
@@ -8448,7 +8302,6 @@ const WWW = '{{ rtrim(asset('/'), '/') }}';
 </script>
 
 ```
-
 
 `resources/views/layouts/molecules/in-sidebar-menu.blade.php:`
 
@@ -8869,7 +8722,6 @@ const WWW = '{{ rtrim(asset('/'), '/') }}';
 
 ```
 
-
 `resources/views/layouts/molecules/in-sidebar-mobile.blade.php:`
 
 ```php
@@ -8893,7 +8745,6 @@ const WWW = '{{ rtrim(asset('/'), '/') }}';
 
 ```
 
-
 `resources/views/layouts/molecules/in-sidebar.blade.php:`
 
 ```php
@@ -8911,7 +8762,6 @@ const WWW = '{{ rtrim(asset('/'), '/') }}';
 
 ```
 
-
 `resources/views/layouts/molecules/in-top-bar.blade.php:`
 
 ```php
@@ -8922,7 +8772,6 @@ const WWW = '{{ rtrim(asset('/'), '/') }}';
 </div>
 
 ```
-
 
 `resources/views/layouts/out.blade.php:`
 
@@ -8941,7 +8790,6 @@ const WWW = '{{ rtrim(asset('/'), '/') }}';
 </html>
 
 ```
-
 
 `resources/views/layouts/shared.blade.php:`
 
@@ -8975,7 +8823,6 @@ const WWW = '{{ rtrim(asset('/'), '/') }}';
 
 ```
 
-
 `resources/views/molecules/delete-modal.blade.php:`
 
 ```php
@@ -9005,7 +8852,6 @@ const WWW = '{{ rtrim(asset('/'), '/') }}';
 
 ```
 
-
 `resources/views/molecules/empty.blade.php:`
 
 ```php
@@ -9015,6 +8861,5 @@ const WWW = '{{ rtrim(asset('/'), '/') }}';
 </div>
 
 ```
-
 
 
