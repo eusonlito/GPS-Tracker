@@ -118,7 +118,7 @@ class Server extends ServerAbstract
      */
     protected function listen(): void
     {
-        socket_listen($this->socket);
+        socket_listen($this->socket, 1024);
     }
 
     /**
@@ -137,7 +137,7 @@ class Server extends ServerAbstract
     protected function read(Closure $handler): void
     {
         do {
-            usleep(10000);
+            usleep(1000);
 
             $sockets = $this->pool->sockets();
 
@@ -172,7 +172,7 @@ class Server extends ServerAbstract
 
         array_push($sockets, $this->socket);
 
-        return intval(socket_select($sockets, $write, $except, null));
+        return intval(socket_select($sockets, $write, $except, 0, 10000));
     }
 
     /**
@@ -196,10 +196,13 @@ class Server extends ServerAbstract
             return;
         }
 
-        $timeout = ['sec' => 5, 'usec' => 0];
+        $timeout = ['sec' => 2, 'usec' => 0];
 
         socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
         socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
+
+        socket_set_option($socket, SOL_TCP, TCP_NODELAY, 1);
+        socket_set_option($socket, SOL_SOCKET, SO_KEEPALIVE, 1);
 
         $this->pool->add($connection = new Connection($this->port, $socket));
 
