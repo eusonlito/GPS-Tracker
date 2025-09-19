@@ -118,7 +118,7 @@ class Server extends ServerAbstract
      */
     protected function listen(): void
     {
-        socket_listen($this->socket, 1024);
+        socket_listen($this->socket, SOMAXCONN);
     }
 
     /**
