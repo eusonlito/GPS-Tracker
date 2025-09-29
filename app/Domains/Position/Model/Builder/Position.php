@@ -58,9 +58,29 @@ class Position extends BuilderAbstract
      *
      * @return self
      */
+    public function byDateAtAfterEqual(string $date_at): self
+    {
+        return $this->where('date_at', '>=', $date_at);
+    }
+
+    /**
+     * @param string $date_at
+     *
+     * @return self
+     */
+    public function byDateAtBeforeEqual(string $date_at): self
+    {
+        return $this->where('date_at', '<=', $date_at);
+    }
+
+    /**
+     * @param string $date_at
+     *
+     * @return self
+     */
     public function byDateAtBeforeEqualNear(string $date_at): self
     {
-        return $this->where('date_at', '<=', $date_at)->orderByDateAtDesc();
+        return $this->byDateAtBeforeEqual($date_at)->orderByDateAtDesc();
     }
 
     /**
@@ -88,9 +108,29 @@ class Position extends BuilderAbstract
      *
      * @return self
      */
+    public function byDateUtcAtAfterEqual(string $date_utc_at): self
+    {
+        return $this->where('date_utc_at', '>=', $date_utc_at);
+    }
+
+    /**
+     * @param string $date_utc_at
+     *
+     * @return self
+     */
+    public function byDateUtcAtBeforeEqual(string $date_utc_at): self
+    {
+        return $this->where('date_utc_at', '<=', $date_utc_at);
+    }
+
+    /**
+     * @param string $date_utc_at
+     *
+     * @return self
+     */
     public function byDateUtcAtBeforeEqualNear(string $date_utc_at): self
     {
-        return $this->where('date_utc_at', '<=', $date_utc_at)->orderByDateUtcAtDesc();
+        return $this->byDateUtcAtBeforeEqual($date_utc_at)->orderByDateUtcAtDesc();
     }
 
     /**
@@ -248,6 +288,14 @@ class Position extends BuilderAbstract
     /**
      * @return self
      */
+    public function listSimple(): self
+    {
+        return $this->selectSimple()->orderByDateUtcAtDesc();
+    }
+
+    /**
+     * @return self
+     */
     public function orderByDateAtDesc(): self
     {
         return $this->orderBy('date_at', 'DESC');
@@ -293,6 +341,29 @@ class Position extends BuilderAbstract
     }
 
     /**
+     * @return self
+     */
+    public function selectSimple(): self
+    {
+        return $this->select(
+            'id',
+            'latitude',
+            'longitude',
+            'speed',
+            'direction',
+            'signal',
+            'date_at',
+            'date_utc_at',
+            'city_id',
+            'device_id',
+            'timezone_id',
+            'trip_id',
+            'user_id',
+            'vehicle_id'
+        )->orderByDateUtcAtDesc();
+    }
+
+    /**
      * @param ?int $user_id
      * @param ?int $vehicle_id
      * @param ?string $before_date_at
@@ -311,6 +382,78 @@ class Position extends BuilderAbstract
     public function selectRelated(): self
     {
         return $this->select('id', 'date_utc_at', 'longitude', 'latitude', 'trip_id')->orderByDateUtcAtAsc();
+    }
+
+    /**
+     * @param ?string $start_at
+     * @param ?string $end_at
+     *
+     * @return self
+     */
+    public function whenDateAtBetween(?string $start_at, ?string $end_at): self
+    {
+        return $this->whenDateAtAfter($start_at)->whenDateAtBefore($end_at);
+    }
+
+    /**
+     * @param ?string $start_at
+     *
+     * @return self
+     */
+    public function whenDateAtAfter(?string $start_at): self
+    {
+        return $this->when($start_at, fn ($q) => $q->byDateAtAfterEqual($start_at));
+    }
+
+    /**
+     * @param ?string $end_at
+     *
+     * @return self
+     */
+    public function whenDateAtBefore(?string $end_at): self
+    {
+        return $this->when($end_at, fn ($q) => $q->byDateAtBeforeEqual($end_at));
+    }
+
+    /**
+     * @param ?string $start_at
+     * @param ?string $end_at
+     *
+     * @return self
+     */
+    public function whenDateUtcAtBetween(?string $start_at, ?string $end_at): self
+    {
+        return $this->whenDateUtcAtAfter($start_at)->whenDateUtcAtBefore($end_at);
+    }
+
+    /**
+     * @param ?string $start_at
+     *
+     * @return self
+     */
+    public function whenDateUtcAtAfter(?string $start_at): self
+    {
+        return $this->when($start_at, fn ($q) => $q->byDateUtcAtAfterEqual($start_at));
+    }
+
+    /**
+     * @param ?string $end_at
+     *
+     * @return self
+     */
+    public function whenDateUtcAtBefore(?string $end_at): self
+    {
+        return $this->when($end_at, fn ($q) => $q->byDateUtcAtBeforeEqual($end_at));
+    }
+
+    /**
+     * @param ?int $trip_id
+     *
+     * @return self
+     */
+    public function whenTripId(?int $trip_id): self
+    {
+        return $this->when($trip_id, fn ($q) => $q->byTripId($trip_id));
     }
 
     /**
@@ -429,6 +572,36 @@ class Position extends BuilderAbstract
     public function withDevice(): self
     {
         return $this->with('device');
+    }
+
+    /**
+     * @param array $with
+     *
+     * @return self
+     */
+    public function withRelations(array $with): self
+    {
+        if (in_array('device', $with, true)) {
+            $this->withSimple('device');
+        }
+
+        if (in_array('timezone', $with, true)) {
+            $this->withSimple('timezone');
+        }
+
+        if (in_array('trip', $with, true)) {
+            $this->withSimple('trip');
+        }
+
+        if (in_array('user', $with, true)) {
+            $this->withSimple('user');
+        }
+
+        if (in_array('vehicle', $with, true)) {
+            $this->withSimple('vehicle');
+        }
+
+        return $this;
     }
 
     /**
