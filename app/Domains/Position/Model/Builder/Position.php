@@ -324,7 +324,7 @@ class Position extends BuilderAbstract
      */
     public function orderByDateUtcAtDesc(): self
     {
-        return $this->orderBy('date_utc_at', 'DESC');
+        return $this->orderBy('date_utc_at', 'DESC')->orderBy('id', 'DESC');
     }
 
     /**

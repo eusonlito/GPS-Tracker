@@ -3,6 +3,7 @@
 namespace App\Domains\Position\ControllerApi\Service;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use App\Domains\Position\Model\Position as Model;
 
@@ -19,9 +20,9 @@ class Index extends ControllerApiAbstract
     }
 
     /**
-     * @return array
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function data(): array
+    public function data(): LengthAwarePaginator
     {
         return Model::query()
             ->byUserOrManager($this->auth)
@@ -32,8 +33,6 @@ class Index extends ControllerApiAbstract
             ->whenDateAtBetween($this->request->input('start_at'), $this->request->input('end_at'))
             ->listSimple()
             ->withRelations($this->requestArray('with'))
-            ->paginate(min($this->requestInteger('limit', 100), 1000))
-            ->get()
-            ->all();
+            ->paginate(min($this->requestInteger('limit', 100), 1000));
     }
 }

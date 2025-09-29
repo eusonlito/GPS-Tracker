@@ -99,4 +99,23 @@ class FractalFactory extends FractalAbstract
             'shared_public' => $row->shared_public,
         ];
     }
+
+    /**
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return array
+     */
+    protected function related(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'name' => $row->name,
+            'start_at' => $row->start_at,
+            'end_at' => $row->end_at,
+            'distance' => helper()->unit('distance', $row->distance),
+            'distance_human' => helper()->unitHuman('distance', $row->distance),
+            'time' => $row->time,
+            'time_human' => helper()->timeHuman($row->time),
+        ];
+    }
 }

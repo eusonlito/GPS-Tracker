@@ -3,6 +3,7 @@
 namespace App\Domains\Position\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Domains\Position\ControllerApi\Service\Index as ControllerService;
 
 class Index extends ControllerApiAbstract
@@ -16,9 +17,9 @@ class Index extends ControllerApiAbstract
     }
 
     /**
-     * @return array
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    protected function data(): array
+    protected function data(): LengthAwarePaginator
     {
         return ControllerService::new($this->request, $this->auth)->data();
     }
