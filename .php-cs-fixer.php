@@ -7,7 +7,7 @@ return (new Config())
     ->setRiskyAllowed(true)
     ->setUnsupportedPhpVersionAllowed(true)
     ->setRules([
-        '@PHP82Migration' => true,
+        '@PHP8x2Migration' => true,
         '@PSR2' => true,
         'blank_line_after_opening_tag' => false,
         'cast_spaces' => false,

@@ -234,8 +234,12 @@ class Create extends ActionAbstract
             return $this->logDebug('isValidPreviousDifferent', 'false', false);
         }
 
-        if ($this->isValidPreviousNotNear() === false) {
-            return $this->logDebug('isValidPreviousNotNear', 'false', false);
+        if ($this->isValidPreviousFilterDistance() === false) {
+            return $this->logDebug('isValidPreviousFilterDistance', 'false', false);
+        }
+
+        if ($this->isValidPreviousFilterTime() === false) {
+            return $this->logDebug('isValidPreviousFilterTime', 'false', false);
         }
 
         return true;
@@ -281,7 +285,7 @@ class Create extends ActionAbstract
     /**
      * @return bool
      */
-    protected function isValidPreviousNotNear(): bool
+    protected function isValidPreviousFilterDistance(): bool
     {
         if (empty($this->previous)) {
             return true;
@@ -293,7 +297,7 @@ class Create extends ActionAbstract
             return true;
         }
 
-        if ($this->isValidPreviousNotNearMovement()) {
+        if ($this->isValidPreviousFilterDistanceMovement()) {
             return true;
         }
 
@@ -310,9 +314,27 @@ class Create extends ActionAbstract
     /**
      * @return bool
      */
-    protected function isValidPreviousNotNearMovement(): bool
+    protected function isValidPreviousFilterDistanceMovement(): bool
     {
         return boolval($this->previous->speed) !== boolval($this->data['speed']);
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isValidPreviousFilterTime(): bool
+    {
+        if (empty($this->previous)) {
+            return true;
+        }
+
+        $time = $this->device->config('position_filter_time');
+
+        if ($time === 0) {
+            return true;
+        }
+
+        return (strtotime($this->data['date_utc_at']) - strtotime($this->previous->date_utc_at)) > $time;
     }
 
     /**

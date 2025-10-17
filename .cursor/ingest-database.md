@@ -99,7 +99,6 @@ database/
 └── schema/
     └── mysql-schema.sql
 
-
 Excluded Content:
 
 Directories with excluded files:
@@ -110,7 +109,6 @@ Directories with excluded files:
 
 - /database/migrations: 86 files
 
-
 File extensions excluded:
 
 - .dockerignore: 1 files
@@ -118,7 +116,6 @@ File extensions excluded:
 - .gitignore: 1 files
 
 - .php: 87 files
-
 
 `database/schema/mysql-schema.sql:`
 
@@ -825,6 +822,5 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (85,'2025_07_24_010
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (86,'2025_07_24_010000_vehicle_config',1);
 
 ```
-
 
 

@@ -267,6 +267,23 @@ class Trip extends BuilderAbstract
     /**
      * @return self
      */
+    public function selectRelated(): self
+    {
+        return $this->select(
+            'id',
+            'name',
+            'start_at',
+            'start_utc_at',
+            'end_at',
+            'end_utc_at',
+            'time',
+            'distance',
+        );
+    }
+
+    /**
+     * @return self
+     */
     public function selectSimple(): self
     {
         return $this->select(

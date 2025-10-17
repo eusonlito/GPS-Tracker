@@ -1,6 +1,8 @@
 <?php return [
     'config-position_filter_distance' => 'Distance minimale en mètres entre les positions',
     'config-position_filter_distance-tooltip' => 'Si la distance entre deux positions est inférieure à cette valeur, elle sera ignorée. Si non renseigné, la valeur par défaut de :value mètres sera utilisée.',
+    'config-position_filter_time' => 'Temps minimum en secondes entre les positions',
+    'config-position_filter_time-tooltip' => 'Si le temps entre deux positions est inférieur à cette valeur, il sera ignoré.',
     'enabled' => 'Actif',
     'error' => [
         'code-exists' => 'Le code indiqué existe déjà',

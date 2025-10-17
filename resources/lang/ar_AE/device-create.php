@@ -1,6 +1,8 @@
 <?php return [
     'config-position_filter_distance' => 'الفصل الأدنى بالمتر بين المواقع',
     'config-position_filter_distance-tooltip' => 'إذا كانت المسافة بين موقعين أقل من هذه القيمة، سيتم تجاهلها. إذا لم يتم ملؤها، سيتم استخدام القيمة الافتراضية :value متر.',
+    'config-position_filter_time' => 'الحد الأدنى للوقت بالثواني بين المواقع',
+    'config-position_filter_time-tooltip' => 'إذا كانت الفترة الزمنية بين موقعين أقل من هذه القيمة، فسيتم تجاهلها.',
     'enabled' => 'نشط',
     'error' => [
         'code-exists' => 'الرمز المحدد موجود مسبقاً',

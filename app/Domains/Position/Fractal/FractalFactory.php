@@ -12,6 +12,31 @@ class FractalFactory extends FractalAbstract
      *
      * @return array
      */
+    protected function api(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'latitude' => $row->latitude,
+            'longitude' => $row->longitude,
+            'speed' => helper()->unit('speed', $row->speed),
+            'direction' => $row->direction,
+            'signal' => $row->signal,
+            'date_at' => $row->date_at,
+            'date_utc_at' => $row->date_utc_at,
+            'city' => $this->fromIfLoaded('City', 'related', $row, 'city'),
+            'device' => $this->fromIfLoaded('Device', 'related', $row, 'device'),
+            'timezone' => $this->fromIfLoaded('Timezone', 'related', $row, 'timezone'),
+            'trip' => $this->fromIfLoaded('Trip', 'related', $row, 'trip'),
+            'user' => $this->fromIfLoaded('User', 'related', $row, 'user'),
+            'vehicle' => $this->fromIfLoaded('Vehicle', 'related', $row, 'vehicle'),
+        ];
+    }
+
+    /**
+     * @param \App\Domains\Position\Model\Position $row
+     *
+     * @return array
+     */
     protected function json(Model $row): array
     {
         return [
