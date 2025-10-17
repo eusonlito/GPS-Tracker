@@ -1,6 +1,8 @@
 <?php return [
     'config-position_filter_distance' => 'Separación mínima en metros entre posiciones',
     'config-position_filter_distance-tooltip' => 'Si la distancia entre dos posiciones es menor a este valor, se descartará. Si no se rellena, se usará el valor por defecto de :value metros.',
+    'config-position_filter_time' => 'Tiempo mínimo en segundos entre posiciones',
+    'config-position_filter_time-tooltip' => 'Si el tiempo entre dos posiciones es menor a este valor, se descartará.',
     'enabled' => 'Activo',
     'error' => [
         'code-exists' => 'El código indicado ya existe',

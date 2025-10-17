@@ -28,6 +28,7 @@ class Device extends FactoryAbstract
 
             'config' => [
                 'position_filter_distance' => 0,
+                'position_filter_time' => 0,
             ],
 
             'enabled' => true,
