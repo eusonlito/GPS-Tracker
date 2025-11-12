@@ -8,7 +8,7 @@
     {
         "key": "position_filter_distance_multiplier",
         "value": 0,
-        "description": "Dynamic distance multiplier based on speed (ref 100 km/h). 0 = disabled (uses fixed distance)"
+        "description": "Adjusts minimum separation proportionally based on speed (ref 100 km/h). Value is added to 100 as base. 0 = disabled (uses fixed distance)"
     },
 
     {
