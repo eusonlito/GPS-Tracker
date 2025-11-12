@@ -301,14 +301,12 @@ class Create extends ActionAbstract
             return true;
         }
 
-        $meters = helper()->coordinatesDistance(
+        return helper()->coordinatesDistance(
             $this->previous->latitude,
             $this->previous->longitude,
             $this->data['latitude'],
             $this->data['longitude'],
-        );
-
-        return $meters > $distance;
+        ) >= $this->isValidPreviousFilterDistanceReference($distance);
     }
 
     /**
@@ -317,6 +315,35 @@ class Create extends ActionAbstract
     protected function isValidPreviousFilterDistanceMovement(): bool
     {
         return boolval($this->previous->speed) !== boolval($this->data['speed']);
+    }
+
+    /**
+     * @param int $distance
+     *
+     * @return int
+     */
+    protected function isValidPreviousFilterDistanceReference(int $distance): int
+    {
+        $speed = $this->data['speed'];
+
+        if ($speed === 0.0) {
+            return $distance;
+        }
+
+        $multiplier = $this->device->config('position_filter_distance_multiplier');
+
+        if ($multiplier === 0) {
+            return $distance;
+        }
+
+        $factor = 1.0 + ((100 + $multiplier) / 100.0) * (($speed / 100.0) - 1.0);
+        $distance = intval(round($distance * $factor));
+
+        if ($distance < 1) {
+            $distance = 1;
+        }
+
+        return $distance;
     }
 
     /**

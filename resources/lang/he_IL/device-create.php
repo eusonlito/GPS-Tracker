@@ -1,6 +1,8 @@
 <?php return [
     'config-position_filter_distance' => 'מרחק מינימלי במטרים בין מיקומים',
     'config-position_filter_distance-tooltip' => 'אם המרחק בין שתי עמדות קטן מערך זה, הוא יידחה. אם לא יוזן ערך, ייעשה שימוש בערך ברירת המחדל של :value מטרים.',
+    'config-position_filter_distance_multiplier' => 'מכפיל הפרדה מינימלית לפי מהירות',
+    'config-position_filter_distance_multiplier-tooltip' => 'מתאים את ההפרדה באופן פרופורציונלי לפי מהירות (התייחסות 100 קמ״ש). נוסחה: מרחק = בסיס × (1 + ((100 + ערך) ÷ 100) × ((מהירות ÷ 100) - 1)). 0 = מושבת. דוגמה: עם ערך 5 והפרדת בסיס של 38מ׳, ב-30 קמ״ש מתאימים 10מ׳, וב-130 קמ״ש מתאימים 50מ׳.',
     'config-position_filter_time' => 'זמן מינימלי בשניות בין מיקומים',
     'config-position_filter_time-tooltip' => 'אם הזמן בין שני מיקומים קטן מערך זה, הוא יידחה.',
     'enabled' => 'פעיל',
@@ -9,6 +11,7 @@
         'serial-exists' => 'המספר הסידורי שצוין כבר קיים',
         'vehicle-exists' => 'הרכב שנבחר אינו זמין',
     ],
+    'filters' => 'מסננים',
     'meta-title' => 'מכשירים > שמור',
     'model' => 'דגם',
     'name' => 'שם',

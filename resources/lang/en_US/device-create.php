@@ -1,6 +1,8 @@
 <?php return [
     'config-position_filter_distance' => 'Minimum separation in meters between positions',
     'config-position_filter_distance-tooltip' => 'If the distance between two positions is less than this value, it will be discarded. If not filled, the default value of :value meters will be used.',
+    'config-position_filter_distance_multiplier' => 'Minimum separation multiplier by speed',
+    'config-position_filter_distance_multiplier-tooltip' => 'Adjusts separation proportionally based on speed (ref. 100 km/h). Formula: distance = base × (1 + ((100 + value) ÷ 100) × ((speed ÷ 100) - 1)). 0 = disabled. Example: with value 5 and base separation of 38m, at 30 km/h corresponds to 10m, and at 130 km/h corresponds to 50m.',
     'config-position_filter_time' => 'Minimum time in seconds between positions',
     'config-position_filter_time-tooltip' => 'If the time between two positions is less than this value, it will be discarded.',
     'enabled' => 'Enabled',
@@ -9,6 +11,7 @@
         'serial-exists' => 'The specified serial already exists',
         'vehicle-exists' => 'The selected vehicle is not available',
     ],
+    'filters' => 'Filters',
     'meta-title' => 'Devices > Create',
     'model' => 'Model',
     'name' => 'Name',
