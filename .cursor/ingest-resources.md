@@ -3185,11 +3185,6 @@ new Chart(document.getElementById('{{ $id }}'), {
     </div>
 
     <div class="p-2">
-        <label for="device-config-position_filter_distance" class="form-label">{{ __('device-create.config-position_filter_distance') }} <span class="ml-2 btn btn-secondary rounded-full badge-p" data-tippy-content="{{ __('device-create.config-position_filter_distance-tooltip', ['value' => $position_filter_distance_default]) }}">i</span></label>
-        <input type="number" name="config[position_filter_distance]" class="form-control form-control-lg" id="device-config-position_filter_distance" value="{{ $REQUEST->input('config.position_filter_distance') }}" min="0" step="1">
-    </div>
-
-    <div class="p-2">
         <x-select name="vehicle_id" :options="$vehicles" value="id" text="name" id="device-create-vehicle" :label="__('device-create.vehicle')" :placeholder="__('device-create.vehicle-select')"></x-select>
     </div>
 
@@ -3215,6 +3210,26 @@ new Chart(document.getElementById('{{ $id }}'), {
     </div>
 </div>
 
+<div class="box mt-5">
+    <h2 class="px-5 py-2 border-b border-gray-200 text-lg font-medium">{{ __('device-create.filters') }}</h2>
+
+    <div class="p-5 pt-1 lg:flex">
+        <div class="flex-1 p-2">
+            <label for="device-config-position_filter_distance" class="form-label">{{ __('device-create.config-position_filter_distance') }} <span class="ml-2 btn btn-secondary rounded-full badge-p" data-tippy-content="{{ __('device-create.config-position_filter_distance-tooltip', ['value' => $position_filter_distance_default]) }}">i</span></label>
+            <input type="number" name="config[position_filter_distance]" class="form-control form-control-lg" id="device-config-position_filter_distance" value="{{ $REQUEST->input('config.position_filter_distance') }}" min="0" step="1">
+        </div>
+
+        <div class="flex-1 p-2">
+            <label for="device-config-position_filter_distance_multiplier" class="form-label">{{ __('device-create.config-position_filter_distance_multiplier') }} <span class="ml-2 btn btn-secondary rounded-full badge-p" data-tippy-content="{{ __('device-create.config-position_filter_distance_multiplier-tooltip') }}">i</span></label>
+            <input type="number" name="config[position_filter_distance_multiplier]" class="form-control form-control-lg" id="device-config-position_filter_distance_multiplier" value="{{ $REQUEST->input('config.position_filter_distance_multiplier') }}" min="0" step="1">
+        </div>
+
+        <div class="flex-1 p-2">
+            <label for="device-config-position_filter_time" class="form-label">{{ __('device-create.config-position_filter_time') }} <span class="ml-2 btn btn-secondary rounded-full badge-p" data-tippy-content="{{ __('device-create.config-position_filter_time-tooltip') }}">i</span></label>
+            <input type="number" name="config[position_filter_time]" class="form-control form-control-lg" id="device-config-position_filter_time" value="{{ $REQUEST->input('config.position_filter_time') }}" min="0" step="1">
+        </div>
+    </div>
+</div>
 ```
 
 `resources/views/domains/device/update-device-message.blade.php:`
