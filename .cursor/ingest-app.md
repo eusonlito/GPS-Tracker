@@ -760,6 +760,13 @@ app/
 │   │   │   ├── CommandAbstract.php
 │   │   │   ├── UpdateCity.php
 │   │   │   └── UpdateCityEmpty.php
+│   │   ├── ControllerApi/
+│   │   │   ├── Service/
+│   │   │   │   ├── ControllerApiAbstract.php
+│   │   │   │   └── Index.php
+│   │   │   ├── ControllerApiAbstract.php
+│   │   │   ├── Index.php
+│   │   │   └── router.php
 │   │   ├── Fractal/
 │   │   │   └── FractalFactory.php
 │   │   ├── Job/
@@ -6524,6 +6531,8 @@ class City extends BuilderAbstract
             'id',
             'name',
             'alias',
+            'latitude',
+            'longitude',
             'created_at',
             'updated_at',
             'state_id',
@@ -8774,6 +8783,7 @@ abstract class EventAbstract
 
 namespace App\Domains\Core\Fractal;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use App\Domains\Core\Model\ModelAbstract;
 use App\Domains\Core\Traits\Factory;
@@ -8782,13 +8792,6 @@ abstract class FractalAbstract
 {
     use Factory;
 
-    /**
-     * @param string $function
-     * @param mixed $value
-     * @param mixed ...$args
-     *
-     * @return ?array
-     */
     final public function transform(string $function, $value, ...$args): ?array
     {
         if ($value === null) {
@@ -8803,6 +8806,10 @@ abstract class FractalAbstract
             return $this->collection($function, $value, $args);
         }
 
+        if ($value instanceof LengthAwarePaginator) {
+            return $this->paginated($function, $value, $args);
+        }
+
         if ($this->isArraySequential($value)) {
             return $this->sequential($function, $value, $args);
         }
@@ -8810,11 +8817,6 @@ abstract class FractalAbstract
         return $this->call($function, $value, $args);
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return bool
-     */
     final protected function isArraySequential($value): bool
     {
         return is_array($value)
@@ -8822,13 +8824,6 @@ abstract class FractalAbstract
             && ($keys === array_keys($value));
     }
 
-    /**
-     * @param string $function
-     * @param \Illuminate\Support\Collection $value
-     * @param array $args
-     *
-     * @return array
-     */
     final protected function collection(string $function, Collection $value, array $args): array
     {
         return $value
@@ -8838,52 +8833,32 @@ abstract class FractalAbstract
             ->toArray();
     }
 
-    /**
-     * @param string $function
-     * @param array $value
-     * @param array $args
-     *
-     * @return array
-     */
+    final protected function paginated(string $function, LengthAwarePaginator $value, array $args): array
+    {
+        return [
+            'data' => $this->transform($function, $value->items(), ...$args),
+            'pages' => $value->lastPage(),
+            'page' => $value->currentPage(),
+            'offset' => $value->perPage(),
+            'total' => $value->total(),
+        ];
+    }
+
     final protected function sequential(string $function, array $value, array $args): array
     {
         return array_map(fn ($each) => $this->call($function, $each, $args), array_values($value));
     }
 
-    /**
-     * @param string $function
-     * @param mixed $value
-     * @param array $args
-     *
-     * @return ?array
-     */
     final protected function call(string $function, $value, array $args): ?array
     {
         return $this->$function($value, ...$args);
     }
 
-    /**
-     * @param string $domain
-     * @param string $view
-     * @param mixed $data
-     * @param mixed ...$args
-     *
-     * @return ?array
-     */
     final protected function from(string $domain, string $view, $data, ...$args): ?array
     {
         return $this->factory($domain)->fractal($view, $data, ...$args);
     }
 
-    /**
-     * @param string $domain
-     * @param string $view = 'simple'
-     * @param \App\Domains\Core\Model\ModelAbstract $row
-     * @param string $relation
-     * @param mixed ...$args
-     *
-     * @return ?array
-     */
     final protected function fromIfLoaded(string $domain, string $view, ModelAbstract $row, string $relation, ...$args): ?array
     {
         if ($row->relationLoaded($relation) === false) {
@@ -8893,15 +8868,6 @@ abstract class FractalAbstract
         return $this->from($domain, $view, $row->$relation, ...$args);
     }
 
-    /**
-     * @param string $domain
-     * @param string $view = 'simple'
-     * @param \App\Domains\Core\Model\ModelAbstract $row
-     * @param string $relation
-     * @param mixed ...$args
-     *
-     * @return ?array
-     */
     final protected function fromIfLoadedOrId(string $domain, string $view, ModelAbstract $row, string $relation, ...$args): ?array
     {
         $return = $this->fromIfLoaded($domain, $view, $row, $relation, ...$args);
@@ -18205,7 +18171,7 @@ abstract class CreateUpdateAbstract extends ControllerAbstract
     {
         return $this->dataCore() + [
             'vehicles' => $this->vehicles(),
-            'position_filter_distance_default' => app('configuration')->int('position_filter_distance')
+            'position_filter_distance_default' => app('configuration')->int('position_filter_distance'),
         ];
     }
 }
@@ -19797,6 +19763,8 @@ class Create extends ValidateAbstract
             'shared_public' => ['bail', 'boolean'],
             'config' => ['bail', 'array', 'required'],
             'config.position_filter_distance' => ['bail', 'integer', 'min:0'],
+            'config.position_filter_distance_multiplier' => ['bail', 'integer', 'min:0'],
+            'config.position_filter_time' => ['bail', 'integer', 'min:0'],
         ];
     }
 }
@@ -24846,6 +24814,34 @@ class Create extends CreateUpdateAbstract
 
 ```
 
+`app/Domains/MaintenanceItem/Action/Delete.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\MaintenanceItem\Action;
+
+class Delete extends ActionAbstract
+{
+    /**
+     * @return void
+     */
+    public function handle(): void
+    {
+        $this->delete();
+    }
+
+    /**
+     * @return void
+     */
+    protected function delete(): void
+    {
+        $this->row->delete();
+    }
+}
+
+```
+
 `app/Domains/MaintenanceItem/Action/CreateUpdateAbstract.php:`
 
 ```php
@@ -24919,34 +24915,6 @@ abstract class CreateUpdateAbstract extends ActionAbstract
             ->byName($this->data['name'])
             ->byUserId($this->data['user_id'])
             ->exists();
-    }
-}
-
-```
-
-`app/Domains/MaintenanceItem/Action/Delete.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Domains\MaintenanceItem\Action;
-
-class Delete extends ActionAbstract
-{
-    /**
-     * @return void
-     */
-    public function handle(): void
-    {
-        $this->delete();
-    }
-
-    /**
-     * @return void
-     */
-    protected function delete(): void
-    {
-        $this->row->delete();
     }
 }
 
@@ -28564,8 +28532,12 @@ class Create extends ActionAbstract
             return $this->logDebug('isValidPreviousDifferent', 'false', false);
         }
 
-        if ($this->isValidPreviousNotNear() === false) {
-            return $this->logDebug('isValidPreviousNotNear', 'false', false);
+        if ($this->isValidPreviousFilterDistance() === false) {
+            return $this->logDebug('isValidPreviousFilterDistance', 'false', false);
+        }
+
+        if ($this->isValidPreviousFilterTime() === false) {
+            return $this->logDebug('isValidPreviousFilterTime', 'false', false);
         }
 
         return true;
@@ -28611,7 +28583,7 @@ class Create extends ActionAbstract
     /**
      * @return bool
      */
-    protected function isValidPreviousNotNear(): bool
+    protected function isValidPreviousFilterDistance(): bool
     {
         if (empty($this->previous)) {
             return true;
@@ -28623,26 +28595,71 @@ class Create extends ActionAbstract
             return true;
         }
 
-        if ($this->isValidPreviousNotNearMovement()) {
+        if ($this->isValidPreviousFilterDistanceMovement()) {
             return true;
         }
 
-        $meters = helper()->coordinatesDistance(
+        return helper()->coordinatesDistance(
             $this->previous->latitude,
             $this->previous->longitude,
             $this->data['latitude'],
             $this->data['longitude'],
-        );
-
-        return $meters > $distance;
+        ) >= $this->isValidPreviousFilterDistanceReference($distance);
     }
 
     /**
      * @return bool
      */
-    protected function isValidPreviousNotNearMovement(): bool
+    protected function isValidPreviousFilterDistanceMovement(): bool
     {
         return boolval($this->previous->speed) !== boolval($this->data['speed']);
+    }
+
+    /**
+     * @param int $distance
+     *
+     * @return int
+     */
+    protected function isValidPreviousFilterDistanceReference(int $distance): int
+    {
+        $speed = $this->data['speed'];
+
+        if ($speed === 0.0) {
+            return $distance;
+        }
+
+        $multiplier = $this->device->config('position_filter_distance_multiplier');
+
+        if ($multiplier === 0) {
+            return $distance;
+        }
+
+        $factor = 1.0 + ((100 + $multiplier) / 100.0) * (($speed / 100.0) - 1.0);
+        $distance = intval(round($distance * $factor));
+
+        if ($distance < 1) {
+            $distance = 1;
+        }
+
+        return $distance;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isValidPreviousFilterTime(): bool
+    {
+        if (empty($this->previous)) {
+            return true;
+        }
+
+        $time = $this->device->config('position_filter_time');
+
+        if ($time === 0) {
+            return true;
+        }
+
+        return (strtotime($this->data['date_utc_at']) - strtotime($this->previous->date_utc_at)) > $time;
     }
 
     /**
@@ -29010,6 +29027,125 @@ class UpdateCityEmpty extends CommandAbstract
 
 ```
 
+`app/Domains/Position/ControllerApi/ControllerApiAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Position\ControllerApi;
+
+use App\Domains\CoreApp\Controller\ControllerApiAbstract as CoreControllerApiAbstract;
+
+abstract class ControllerApiAbstract extends CoreControllerApiAbstract
+{
+}
+
+```
+
+`app/Domains/Position/ControllerApi/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Position\ControllerApi;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\Domains\Position\ControllerApi\Service\Index as ControllerService;
+
+class Index extends ControllerApiAbstract
+{
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function __invoke(): JsonResponse
+    {
+        return $this->json($this->factory()->fractal('api', $this->data()));
+    }
+
+    /**
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
+    protected function data(): LengthAwarePaginator
+    {
+        return ControllerService::new($this->request, $this->auth)->data();
+    }
+}
+
+```
+
+`app/Domains/Position/ControllerApi/Service/ControllerApiAbstract.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Position\ControllerApi\Service;
+
+use App\Domains\CoreApp\ControllerApi\Service\ControllerApiAbstract as CoreAppControllerApiAbstract;
+
+abstract class ControllerApiAbstract extends CoreAppControllerApiAbstract
+{
+}
+
+```
+
+`app/Domains/Position/ControllerApi/Service/Index.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Position\ControllerApi\Service;
+
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Request;
+use App\Domains\Position\Model\Position as Model;
+
+class Index extends ControllerApiAbstract
+{
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return self
+     */
+    public function __construct(protected Request $request, protected Authenticatable $auth)
+    {
+    }
+
+    /**
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
+    public function data(): LengthAwarePaginator
+    {
+        return Model::query()
+            ->byUserOrManager($this->auth)
+            ->whenUserId($this->requestInteger('user_id'))
+            ->whenVehicleId($this->requestInteger('vehicle_id'))
+            ->whenDeviceId($this->requestInteger('device_id'))
+            ->whenTripId($this->requestInteger('trip_id'))
+            ->whenDateAtBetween($this->request->input('start_at'), $this->request->input('end_at'))
+            ->listSimple()
+            ->withRelations($this->requestArray('with'))
+            ->paginate(min($this->requestInteger('limit', 100), 1000));
+    }
+}
+
+```
+
+`app/Domains/Position/ControllerApi/router.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Domains\Position\ControllerApi;
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('/position', Index::class)->name('position.index');
+
+```
+
 `app/Domains/Position/Fractal/FractalFactory.php:`
 
 ```php
@@ -29022,6 +29158,31 @@ use App\Domains\Position\Model\Position as Model;
 
 class FractalFactory extends FractalAbstract
 {
+    /**
+     * @param \App\Domains\Position\Model\Position $row
+     *
+     * @return array
+     */
+    protected function api(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'latitude' => $row->latitude,
+            'longitude' => $row->longitude,
+            'speed' => helper()->unit('speed', $row->speed),
+            'direction' => $row->direction,
+            'signal' => $row->signal,
+            'date_at' => $row->date_at,
+            'date_utc_at' => $row->date_utc_at,
+            'city' => $this->fromIfLoaded('City', 'related', $row, 'city'),
+            'device' => $this->fromIfLoaded('Device', 'related', $row, 'device'),
+            'timezone' => $this->fromIfLoaded('Timezone', 'related', $row, 'timezone'),
+            'trip' => $this->fromIfLoaded('Trip', 'related', $row, 'trip'),
+            'user' => $this->fromIfLoaded('User', 'related', $row, 'user'),
+            'vehicle' => $this->fromIfLoaded('Vehicle', 'related', $row, 'vehicle'),
+        ];
+    }
+
     /**
      * @param \App\Domains\Position\Model\Position $row
      *
@@ -29212,9 +29373,29 @@ class Position extends BuilderAbstract
      *
      * @return self
      */
+    public function byDateAtAfterEqual(string $date_at): self
+    {
+        return $this->where('date_at', '>=', $date_at);
+    }
+
+    /**
+     * @param string $date_at
+     *
+     * @return self
+     */
+    public function byDateAtBeforeEqual(string $date_at): self
+    {
+        return $this->where('date_at', '<=', $date_at);
+    }
+
+    /**
+     * @param string $date_at
+     *
+     * @return self
+     */
     public function byDateAtBeforeEqualNear(string $date_at): self
     {
-        return $this->where('date_at', '<=', $date_at)->orderByDateAtDesc();
+        return $this->byDateAtBeforeEqual($date_at)->orderByDateAtDesc();
     }
 
     /**
@@ -29242,9 +29423,29 @@ class Position extends BuilderAbstract
      *
      * @return self
      */
+    public function byDateUtcAtAfterEqual(string $date_utc_at): self
+    {
+        return $this->where('date_utc_at', '>=', $date_utc_at);
+    }
+
+    /**
+     * @param string $date_utc_at
+     *
+     * @return self
+     */
+    public function byDateUtcAtBeforeEqual(string $date_utc_at): self
+    {
+        return $this->where('date_utc_at', '<=', $date_utc_at);
+    }
+
+    /**
+     * @param string $date_utc_at
+     *
+     * @return self
+     */
     public function byDateUtcAtBeforeEqualNear(string $date_utc_at): self
     {
-        return $this->where('date_utc_at', '<=', $date_utc_at)->orderByDateUtcAtDesc();
+        return $this->byDateUtcAtBeforeEqual($date_utc_at)->orderByDateUtcAtDesc();
     }
 
     /**
@@ -29402,6 +29603,14 @@ class Position extends BuilderAbstract
     /**
      * @return self
      */
+    public function listSimple(): self
+    {
+        return $this->selectSimple()->orderByDateUtcAtDesc();
+    }
+
+    /**
+     * @return self
+     */
     public function orderByDateAtDesc(): self
     {
         return $this->orderBy('date_at', 'DESC');
@@ -29430,7 +29639,7 @@ class Position extends BuilderAbstract
      */
     public function orderByDateUtcAtDesc(): self
     {
-        return $this->orderBy('date_utc_at', 'DESC');
+        return $this->orderBy('date_utc_at', 'DESC')->orderBy('id', 'DESC');
     }
 
     /**
@@ -29444,6 +29653,29 @@ class Position extends BuilderAbstract
             MAX(`position`.`latitude`) AS `latitude_max`,
             MAX(`position`.`longitude`) AS `longitude_max`
         ');
+    }
+
+    /**
+     * @return self
+     */
+    public function selectSimple(): self
+    {
+        return $this->select(
+            'id',
+            'latitude',
+            'longitude',
+            'speed',
+            'direction',
+            'signal',
+            'date_at',
+            'date_utc_at',
+            'city_id',
+            'device_id',
+            'timezone_id',
+            'trip_id',
+            'user_id',
+            'vehicle_id'
+        )->orderByDateUtcAtDesc();
     }
 
     /**
@@ -29465,6 +29697,78 @@ class Position extends BuilderAbstract
     public function selectRelated(): self
     {
         return $this->select('id', 'date_utc_at', 'longitude', 'latitude', 'trip_id')->orderByDateUtcAtAsc();
+    }
+
+    /**
+     * @param ?string $start_at
+     * @param ?string $end_at
+     *
+     * @return self
+     */
+    public function whenDateAtBetween(?string $start_at, ?string $end_at): self
+    {
+        return $this->whenDateAtAfter($start_at)->whenDateAtBefore($end_at);
+    }
+
+    /**
+     * @param ?string $start_at
+     *
+     * @return self
+     */
+    public function whenDateAtAfter(?string $start_at): self
+    {
+        return $this->when($start_at, fn ($q) => $q->byDateAtAfterEqual($start_at));
+    }
+
+    /**
+     * @param ?string $end_at
+     *
+     * @return self
+     */
+    public function whenDateAtBefore(?string $end_at): self
+    {
+        return $this->when($end_at, fn ($q) => $q->byDateAtBeforeEqual($end_at));
+    }
+
+    /**
+     * @param ?string $start_at
+     * @param ?string $end_at
+     *
+     * @return self
+     */
+    public function whenDateUtcAtBetween(?string $start_at, ?string $end_at): self
+    {
+        return $this->whenDateUtcAtAfter($start_at)->whenDateUtcAtBefore($end_at);
+    }
+
+    /**
+     * @param ?string $start_at
+     *
+     * @return self
+     */
+    public function whenDateUtcAtAfter(?string $start_at): self
+    {
+        return $this->when($start_at, fn ($q) => $q->byDateUtcAtAfterEqual($start_at));
+    }
+
+    /**
+     * @param ?string $end_at
+     *
+     * @return self
+     */
+    public function whenDateUtcAtBefore(?string $end_at): self
+    {
+        return $this->when($end_at, fn ($q) => $q->byDateUtcAtBeforeEqual($end_at));
+    }
+
+    /**
+     * @param ?int $trip_id
+     *
+     * @return self
+     */
+    public function whenTripId(?int $trip_id): self
+    {
+        return $this->when($trip_id, fn ($q) => $q->byTripId($trip_id));
     }
 
     /**
@@ -29583,6 +29887,36 @@ class Position extends BuilderAbstract
     public function withDevice(): self
     {
         return $this->with('device');
+    }
+
+    /**
+     * @param array $with
+     *
+     * @return self
+     */
+    public function withRelations(array $with): self
+    {
+        if (in_array('device', $with, true)) {
+            $this->withSimple('device');
+        }
+
+        if (in_array('timezone', $with, true)) {
+            $this->withSimple('timezone');
+        }
+
+        if (in_array('trip', $with, true)) {
+            $this->withSimple('trip');
+        }
+
+        if (in_array('user', $with, true)) {
+            $this->withSimple('user');
+        }
+
+        if (in_array('vehicle', $with, true)) {
+            $this->withSimple('vehicle');
+        }
+
+        return $this;
     }
 
     /**
@@ -42941,6 +43275,25 @@ class FractalFactory extends FractalAbstract
             'shared_public' => $row->shared_public,
         ];
     }
+
+    /**
+     * @param \App\Domains\Trip\Model\Trip $row
+     *
+     * @return array
+     */
+    protected function related(Model $row): array
+    {
+        return [
+            'id' => $row->id,
+            'name' => $row->name,
+            'start_at' => $row->start_at,
+            'end_at' => $row->end_at,
+            'distance' => helper()->unit('distance', $row->distance),
+            'distance_human' => helper()->unitHuman('distance', $row->distance),
+            'time' => $row->time,
+            'time_human' => helper()->timeHuman($row->time),
+        ];
+    }
 }
 
 ```
@@ -43277,6 +43630,23 @@ class Trip extends BuilderAbstract
     public function orderByEndUtcAtNearest(string $end_utc_at): self
     {
         return $this->orderByRaw('ABS(TIMESTAMPDIFF(MINUTE, `end_utc_at`, ?)) ASC', [$end_utc_at]);
+    }
+
+    /**
+     * @return self
+     */
+    public function selectRelated(): self
+    {
+        return $this->select(
+            'id',
+            'name',
+            'start_at',
+            'start_utc_at',
+            'end_at',
+            'end_utc_at',
+            'time',
+            'distance',
+        );
     }
 
     /**
@@ -48287,7 +48657,7 @@ abstract class CreateUpdateAbstract extends ControllerAbstract
     {
         return $this->dataCore() + [
             'timezones' => $this->timezones(),
-            'trip_wait_minutes_default' => app('configuration')->int('trip_wait_minutes')
+            'trip_wait_minutes_default' => app('configuration')->int('trip_wait_minutes'),
         ];
     }
 
@@ -62026,6 +62396,47 @@ class Locations extends ParserAbstract
 
 ```
 
+`app/Services/Request/Response.php:`
+
+```php
+<?php declare(strict_types=1);
+
+namespace App\Services\Request;
+
+class Response
+{
+    /**
+     * @var int
+     */
+    protected static $status = 200;
+
+    /**
+     * @param ?int $status = null
+     *
+     * @return int
+     */
+    public static function status(?int $status = null): int
+    {
+        if ($status !== null) {
+            static::$status = static::get($status);
+        }
+
+        return static::$status;
+    }
+
+    /**
+     * @param int $status
+     *
+     * @return int
+     */
+    protected static function get(int $status): int
+    {
+        return (($status >= 200) && ($status <= 500)) ? $status : 500;
+    }
+}
+
+```
+
 `app/Services/Request/Logger.php:`
 
 ```php
@@ -62186,47 +62597,6 @@ class Logger extends RotatingFileAbstract
         }
 
         return $input;
-    }
-}
-
-```
-
-`app/Services/Request/Response.php:`
-
-```php
-<?php declare(strict_types=1);
-
-namespace App\Services\Request;
-
-class Response
-{
-    /**
-     * @var int
-     */
-    protected static $status = 200;
-
-    /**
-     * @param ?int $status = null
-     *
-     * @return int
-     */
-    public static function status(?int $status = null): int
-    {
-        if ($status !== null) {
-            static::$status = static::get($status);
-        }
-
-        return static::$status;
-    }
-
-    /**
-     * @param int $status
-     *
-     * @return int
-     */
-    protected static function get(int $status): int
-    {
-        return (($status >= 200) && ($status <= 500)) ? $status : 500;
     }
 }
 
@@ -63782,7 +64152,7 @@ class Server extends ServerAbstract
      */
     protected function listen(): void
     {
-        socket_listen($this->socket);
+        socket_listen($this->socket, SOMAXCONN);
     }
 
     /**
@@ -63801,7 +64171,7 @@ class Server extends ServerAbstract
     protected function read(Closure $handler): void
     {
         do {
-            usleep(10000);
+            usleep(1000);
 
             $sockets = $this->pool->sockets();
 
@@ -63836,7 +64206,7 @@ class Server extends ServerAbstract
 
         array_push($sockets, $this->socket);
 
-        return intval(socket_select($sockets, $write, $except, null));
+        return intval(socket_select($sockets, $write, $except, 0, 10000));
     }
 
     /**
@@ -63860,10 +64230,13 @@ class Server extends ServerAbstract
             return;
         }
 
-        $timeout = ['sec' => 5, 'usec' => 0];
+        $timeout = ['sec' => 2, 'usec' => 0];
 
         socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
         socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
+
+        socket_set_option($socket, SOL_TCP, TCP_NODELAY, 1);
+        socket_set_option($socket, SOL_SOCKET, SO_KEEPALIVE, 1);
 
         $this->pool->add($connection = new Connection($this->port, $socket));
 
