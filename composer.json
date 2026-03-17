@@ -25,7 +25,7 @@
         "nunomaduro/phpinsights": "dev-master",
         "phpcompatibility/php-compatibility": "^9.3",
         "phpunit/phpunit": "^11.0",
-        "psalm/plugin-laravel": "dev-master",
+        "psalm/plugin-laravel": "3.1",
         "spatie/laravel-ignition": "dev-main",
         "squizlabs/php_codesniffer": "^3.7",
         "vimeo/psalm": "^6.8"
