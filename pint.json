@@ -6,6 +6,7 @@
         "@PSR2": true,
         "blank_line_after_opening_tag": false,
         "cast_spaces": false,
+        "fully_qualified_strict_types": false,
         "linebreak_after_opening_tag": false,
         "new_with_parentheses": true,
         "no_superfluous_phpdoc_tags": false,
