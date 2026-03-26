@@ -12,6 +12,19 @@
     </projectFiles>
 
     <issueHandlers>
+        <MissingPureAnnotation>
+            <errorLevel type="suppress">
+                <directory name="app" />
+                <directory name="database" />
+            </errorLevel>
+        </MissingPureAnnotation>
+
+        <MissingImmutableAnnotation>
+            <errorLevel type="suppress">
+                <directory name="app" />
+            </errorLevel>
+        </MissingImmutableAnnotation>
+
         <MissingTemplateParam>
             <errorLevel type="suppress">
                 <directory name="app" />
@@ -47,6 +60,12 @@
                 <directory name="app" />
             </errorLevel>
         </UndefinedConstant>
+
+        <MissingAbstractPureAnnotation>
+            <errorLevel type="suppress">
+                <directory name="app" />
+            </errorLevel>
+        </MissingAbstractPureAnnotation>
 
         <UnusedClass>
             <errorLevel type="suppress">
