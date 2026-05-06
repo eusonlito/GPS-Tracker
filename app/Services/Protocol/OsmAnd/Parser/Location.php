@@ -83,7 +83,19 @@ class Location extends ParserAbstract
      */
     protected function messageIsValidFromJsonBody(): string
     {
-        return trim(preg_split("/\r\n\r\n|\n\n|\r\r/", $this->message, 2)[1] ?? '');
+        $body = trim(preg_split("/\r\n\r\n|\n\n|\r\r/", $this->message, 2)[1] ?? '');
+
+        if ($body) {
+            return $body;
+        }
+
+        $pos = strpos($this->message, '{');
+
+        if ($pos !== false) {
+            return trim(substr($this->message, $pos));
+        }
+
+        return '';
     }
 
     /**
@@ -211,13 +223,13 @@ class Location extends ParserAbstract
      */
     protected function valuesMapSpeed(): float
     {
-        return $this->valueFloat($this->valueFirst([
+        return max($this->valueFloat($this->valueFirst([
             'speed',
             'location.speed',
             'location.coords.speed',
             'coords.speed',
             'position.speed',
-        ])) ?? 0.0;
+        ])) ?? 0.0, 0.0);
     }
 
     /**
@@ -225,7 +237,7 @@ class Location extends ParserAbstract
      */
     protected function valuesMapDirection(): int
     {
-        return intval($this->valueFirst([
+        $value = max(intval($this->valueFirst([
             'direction',
             'bearing',
             'heading',
@@ -242,7 +254,13 @@ class Location extends ParserAbstract
             'position.direction',
             'position.bearing',
             'position.heading',
-        ]) ?? 0);
+        ]) ?? 0), 0);
+
+        if ($value >= 360) {
+            $value %= 360;
+        }
+
+        return $value;
     }
 
     /**
