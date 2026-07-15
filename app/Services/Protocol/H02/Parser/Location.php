@@ -38,12 +38,12 @@ class Location extends ParserAbstract
         return '/^'
             .'\*[A-Z]{2},'           //  0 - maker
             .'[0-9]+,'               //  1 - serial
-            .'V[15],'                //  2 - type (V1,V5)
+            .'V[0-9],'               //  2 - type (V1,V5,V6,V8...)
             .'[0-9]{6},'             //  3 - time
             .'[VA],'                 //  4 - signal
             .'[0-9]{4}\.[0-9]{4},'   //  5 - latitude
             .'[NS],'                 //  6 - latitude direction
-            .'[0-9]{4,5}\.[0-9]{4},' //  7 - longitude (V1=5,V5=4)
+            .'[0-9]{4,5}\.[0-9]{4},' //  7 - longitude (V1=5,V5/6/8=4)
             .'[EW],'                 //  8 - longitude direction
             .'[0-9]{0,3}\.[0-9]{2},' //  9 - speed
             .'[0-9]{0,3},'           // 10 - direction
