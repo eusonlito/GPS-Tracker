@@ -2,6 +2,8 @@
 
 namespace App\Domains\Refuel\Test\Controller;
 
+use App\Domains\Refuel\Model\Refuel as Model;
+
 class Update extends ControllerAbstract
 {
     /**
@@ -67,7 +69,30 @@ class Update extends ControllerAbstract
      */
     public function testPostAuthUpdateSuccess(): void
     {
-        $this->postAuthUpdateSuccess();
+        $this->authUser();
+        $this->createVehicle();
+
+        $data = $this->factoryMake()->toArray();
+
+        $this->post(route('refuel.create'), $data + $this->action('create'))
+            ->assertStatus(302);
+
+        $row = Model::query()->orderByDesc('id')->first();
+        $expense = $this->assertExpenseSynced($row);
+        $expense_id = $expense->id;
+
+        $data = $this->factoryMake()->toArray();
+
+        $this->post(route($this->route, $row->id), $data + $this->action())
+            ->assertStatus(302)
+            ->assertRedirect(route($this->route, $row->id));
+
+        $this->dataVsRow($data, $this->rowLast());
+
+        $row = Model::query()->byId($row->id)->first();
+        $expense = $this->assertExpenseSynced($row);
+
+        $this->assertEquals($expense_id, $expense->id);
     }
 
     /**

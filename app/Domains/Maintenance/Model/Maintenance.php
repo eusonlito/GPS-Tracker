@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Domains\CoreApp\Model\ModelAbstract;
+use App\Domains\Expense\Model\Expense as ExpenseModel;
 use App\Domains\File\Model\File as FileModel;
 use App\Domains\Maintenance\Model\Builder\Maintenance as Builder;
 use App\Domains\Maintenance\Model\Collection\Maintenance as Collection;
@@ -60,6 +62,14 @@ class Maintenance extends ModelAbstract
     protected static function newFactory(): TestFactory
     {
         return TestFactory::new();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function expense(): HasOne
+    {
+        return $this->hasOne(ExpenseModel::class, static::FOREIGN);
     }
 
     /**
