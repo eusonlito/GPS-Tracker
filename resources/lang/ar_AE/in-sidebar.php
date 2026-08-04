@@ -16,6 +16,7 @@
     'logout' => 'الخروج',
     'maintenance' => 'الصيانة',
     'maintenance-create' => 'إنشاء',
+    'maintenance-expense' => 'المصاريف',
     'maintenance-index' => 'قائمة',
     'maintenance-item' => 'العناصر',
     'monitor' => 'مراقبة',

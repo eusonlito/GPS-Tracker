@@ -111,6 +111,13 @@
                 <div class="side-menu__title">{{ __('in-sidebar.maintenance-item') }}</div>
             </a>
         </li>
+
+        <li>
+            <a href="{{ route('maintenance.expense') }}" class="side-menu {{ ($ROUTE === 'maintenance.expense') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('dollar-sign')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.maintenance-expense') }}</div>
+            </a>
+        </li>
     </ul>
 </li>
 

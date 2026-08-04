@@ -16,6 +16,7 @@
     'logout' => 'התנתקות',
     'maintenance' => 'תחזוקה',
     'maintenance-create' => 'תחזוקה חדשה',
+    'maintenance-expense' => 'הוצאות',
     'maintenance-index' => 'רשימה',
     'maintenance-item' => 'פריטים',
     'monitor' => 'מסך',

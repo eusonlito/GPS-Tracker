@@ -16,6 +16,7 @@
     'logout' => 'Logout',
     'maintenance' => 'Maintenances',
     'maintenance-create' => 'Create',
+    'maintenance-expense' => 'Expenses',
     'maintenance-index' => 'List',
     'maintenance-item' => 'Items',
     'monitor' => 'Monitor',

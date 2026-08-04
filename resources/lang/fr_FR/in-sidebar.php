@@ -16,6 +16,7 @@
     'logout' => 'Sortie',
     'maintenance' => 'Maintenance',
     'maintenance-create' => 'Créer',
+    'maintenance-expense' => 'Dépenses',
     'maintenance-index' => 'Liste d\'articles',
     'maintenance-item' => 'Articles',
     'monitor' => 'Moniteur',
