@@ -110,24 +110,12 @@ class Stat extends ControllerAbstract
         $first = $chronological->first();
         $last = $chronological->last();
 
-        $maintenance = $this->list()->filter(fn ($row) => $row->category?->code === 'maintenance');
-        $refuel = $this->list()->filter(fn ($row) => $row->category?->code === 'refuel');
-        $other = $this->list()->filter(fn ($row) => empty($row->category?->code));
-
-        $maintenance_amount = $maintenance->sum('amount');
-        $refuel_amount = $refuel->sum('amount');
-        $other_amount = $other->sum('amount');
         $total = $this->list()->sum('amount');
         $period = $this->statsPeriod($first->date_at, $last->date_at);
         $distance = $this->statsDistance($chronological);
 
         return (object)[
-            'maintenance_count' => $maintenance->count(),
-            'maintenance_amount' => $maintenance_amount,
-            'refuel_count' => $refuel->count(),
-            'refuel_amount' => $refuel_amount,
-            'other_count' => $other->count(),
-            'other_amount' => $other_amount,
+            'categories' => $this->statsCategories($distance['total']),
             'total' => $total,
             'distance_start' => $distance['start'],
             'distance_end' => $distance['end'],
@@ -138,8 +126,40 @@ class Stat extends ControllerAbstract
             'amount_per_distance' => (($distance['total'] !== null) && ($distance['total'] > 0)) ? round($total / $distance['total'], 4) : null,
             'amount_per_day' => round($total / $period['days'], 2),
             'amount_per_month' => round($total / $period['days'] * 30, 2),
-            'maintenance_amount_per_distance' => (($distance['total'] !== null) && ($distance['total'] > 0)) ? round($maintenance_amount / $distance['total'], 4) : null,
-            'refuel_amount_per_distance' => (($distance['total'] !== null) && ($distance['total'] > 0)) ? round($refuel_amount / $distance['total'], 4) : null,
+        ];
+    }
+
+    /**
+     * @param ?float $distance
+     *
+     * @return array<int, \stdClass>
+     */
+    protected function statsCategories(?float $distance): array
+    {
+        return $this->list()
+            ->groupBy('expense_category_id')
+            ->map(fn ($rows) => $this->statsCategory($rows, $distance))
+            ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)
+            ->values()
+            ->all();
+    }
+
+    /**
+     * @param \App\Domains\Expense\Model\Collection\Expense $rows
+     * @param ?float $distance
+     *
+     * @return \stdClass
+     */
+    protected function statsCategory(Collection $rows, ?float $distance): stdClass
+    {
+        $amount = $rows->sum('amount');
+
+        return (object)[
+            'id' => $rows->first()->expense_category_id,
+            'name' => $rows->first()->category->name,
+            'count' => $rows->count(),
+            'amount' => $amount,
+            'amount_per_distance' => (($distance !== null) && ($distance > 0)) ? round($amount / $distance, 4) : null,
         ];
     }
 

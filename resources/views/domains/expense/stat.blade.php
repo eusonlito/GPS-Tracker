@@ -71,23 +71,15 @@
         <div class="text-xl font-medium mt-1">@dateDiffHuman($stats->start_at, $stats->end_at)</div>
     </div>
 
-    <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.maintenance_amount') }}</div>
-        <div class="text-xl font-medium mt-1">@unitHumanRaw('money', $stats->maintenance_amount)</div>
-        <div class="text-slate-400 text-sm mt-1">{{ __('expense-stat.stats.count', ['count' => $stats->maintenance_count]) }}</div>
-    </div>
+    @foreach ($stats->categories as $category)
 
     <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.refuel_amount') }}</div>
-        <div class="text-xl font-medium mt-1">@unitHumanRaw('money', $stats->refuel_amount)</div>
-        <div class="text-slate-400 text-sm mt-1">{{ __('expense-stat.stats.count', ['count' => $stats->refuel_count]) }}</div>
+        <div class="text-slate-500">{{ $category->name }}</div>
+        <div class="text-xl font-medium mt-1">@unitHumanRaw('money', $category->amount)</div>
+        <div class="text-slate-400 text-sm mt-1">{{ __('expense-stat.stats.count', ['count' => $category->count]) }}</div>
     </div>
 
-    <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.other_amount') }}</div>
-        <div class="text-xl font-medium mt-1">@unitHumanRaw('money', $stats->other_amount)</div>
-        <div class="text-slate-400 text-sm mt-1">{{ __('expense-stat.stats.count', ['count' => $stats->other_count]) }}</div>
-    </div>
+    @endforeach
 
     <div class="box p-5">
         <div class="text-slate-500">{{ __('expense-stat.stats.total') }}</div>
@@ -115,27 +107,20 @@
         <div class="text-xl font-medium mt-1">@unitHumanRaw('money', $stats->amount_per_month)</div>
     </div>
 
+    @foreach ($stats->categories as $category)
+
     <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.maintenance_amount_per_distance') }}</div>
+        <div class="text-slate-500">{{ __('expense-stat.stats.amount_per_distance_category', ['name' => $category->name]) }}</div>
         <div class="text-xl font-medium mt-1">
-            @if (is_null($stats->maintenance_amount_per_distance))
+            @if (is_null($category->amount_per_distance))
             —
             @else
-            @unitHumanRaw('money', $stats->maintenance_amount_per_distance, 4)
+            @unitHumanRaw('money', $category->amount_per_distance, 4)
             @endif
         </div>
     </div>
 
-    <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.refuel_amount_per_distance') }}</div>
-        <div class="text-xl font-medium mt-1">
-            @if (is_null($stats->refuel_amount_per_distance))
-            —
-            @else
-            @unitHumanRaw('money', $stats->refuel_amount_per_distance, 4)
-            @endif
-        </div>
-    </div>
+    @endforeach
 </div>
 
 @endif

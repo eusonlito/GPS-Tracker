@@ -140,16 +140,16 @@
         </li>
 
         <li>
-            <a href="{{ route('expense.stat') }}" class="side-menu {{ ($ROUTE === 'expense.stat') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('bar-chart-2')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.expense-stat') }}</div>
+            <a href="{{ route('expense-category.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'expense-category.') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('tag')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.expense-category') }}</div>
             </a>
         </li>
 
         <li>
-            <a href="{{ route('expense-category.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'expense-category.') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('tag')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.expense-category') }}</div>
+            <a href="{{ route('expense.stat') }}" class="side-menu {{ ($ROUTE === 'expense.stat') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('bar-chart-2')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.expense-stat') }}</div>
             </a>
         </li>
     </ul>
