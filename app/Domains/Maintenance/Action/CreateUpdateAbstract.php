@@ -21,6 +21,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         $this->check();
         $this->save();
         $this->files();
+        $this->expense();
 
         return $this->row;
     }
@@ -82,5 +83,22 @@ abstract class CreateUpdateAbstract extends ActionAbstract
             'related_id' => $this->row->id,
             'user_id' => $this->data['user_id'],
         ];
+    }
+
+    /**
+     * @return void
+     */
+    protected function expense(): void
+    {
+        $this->factory('Expense')->action([
+            'name' => $this->row->name,
+            'description' => $this->row->description,
+            'amount' => $this->row->amount,
+            'date_at' => $this->row->date_at,
+            'distance' => $this->row->distance,
+            'user_id' => $this->row->user_id,
+            'vehicle_id' => $this->row->vehicle_id,
+            'maintenance_id' => $this->row->id,
+        ])->upsertFromMaintenance();
     }
 }

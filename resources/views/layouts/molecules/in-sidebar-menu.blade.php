@@ -111,11 +111,45 @@
                 <div class="side-menu__title">{{ __('in-sidebar.maintenance-item') }}</div>
             </a>
         </li>
+    </ul>
+</li>
+
+@php ($active = str_starts_with($ROUTE, 'expense'))
+
+<li>
+    <a href="javascript:;" class="side-menu {{ $active ? 'side-menu--active' : '' }}">
+        <div class="side-menu__icon">@icon('dollar-sign')</div>
+        <div class="side-menu__title">
+            {{ __('in-sidebar.expense') }} <div class="side-menu__sub-icon {{ $active ? 'transform rotate-180' : '' }}">@icon('chevron-down')</div>
+        </div>
+    </a>
+
+    <ul class="{{ $active ? 'side-menu__sub-open' : '' }}">
+        <li>
+            <a href="{{ route('expense.index') }}" class="side-menu {{ ($ROUTE === 'expense.index') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('list')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.expense-index') }}</div>
+            </a>
+        </li>
 
         <li>
-            <a href="{{ route('maintenance.expense') }}" class="side-menu {{ ($ROUTE === 'maintenance.expense') ? 'side-menu--active' : '' }}">
-                <div class="side-menu__icon">@icon('dollar-sign')</div>
-                <div class="side-menu__title">{{ __('in-sidebar.maintenance-expense') }}</div>
+            <a href="{{ route('expense.create') }}" class="side-menu {{ ($ROUTE === 'expense.create') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('plus-circle')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.expense-create') }}</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('expense.stat') }}" class="side-menu {{ ($ROUTE === 'expense.stat') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('bar-chart-2')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.expense-stat') }}</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('expense-category.index') }}" class="side-menu {{ str_starts_with($ROUTE, 'expense-category.') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('tag')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.expense-category') }}</div>
             </a>
         </li>
     </ul>
