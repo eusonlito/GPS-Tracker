@@ -2,10 +2,13 @@
 
 namespace App\Services\Helper\Traits;
 
+use DateInterval;
 use DateTime;
+use DateTimeImmutable;
 use DateTimeZone;
 use IntlDateFormatter;
 use Throwable;
+use UnexpectedValueException;
 
 trait Date
 {
@@ -63,6 +66,80 @@ trait Date
         $last = array_pop($human);
 
         return implode(', ', $human).' '.__('common.and').' '.$last;
+    }
+
+    /**
+     * @param int $days
+     *
+     * @return string
+     */
+    public function daysHuman(int $days): string
+    {
+        if ($days < 0) {
+            throw new UnexpectedValueException(__('date.error.days'));
+        }
+
+        $start = new DateTimeImmutable('2001-01-01');
+
+        return $this->dateIntervalHuman($start->diff($start->modify('+'.$days.' days')));
+    }
+
+    /**
+     * @param string $start_at
+     * @param string $end_at
+     *
+     * @return string
+     */
+    public function dateDiffHuman(string $start_at, string $end_at): string
+    {
+        $start = new DateTimeImmutable(substr($start_at, 0, 10));
+        $end = new DateTimeImmutable(substr($end_at, 0, 10));
+
+        if ($end < $start) {
+            throw new UnexpectedValueException(__('date.error.days'));
+        }
+
+        return $this->dateIntervalHuman($start->diff($end->modify('+1 day')));
+    }
+
+    /**
+     * @param \DateInterval $interval
+     *
+     * @return string
+     */
+    protected function dateIntervalHuman(DateInterval $interval): string
+    {
+        $parts = [];
+
+        if ($interval->y) {
+            $parts[] = trans_choice('date.year', $interval->y, ['count' => $interval->y]);
+        }
+
+        if ($interval->m) {
+            $parts[] = trans_choice('date.month', $interval->m, ['count' => $interval->m]);
+        }
+
+        if ($interval->d || ($parts === [])) {
+            $parts[] = trans_choice('date.day', $interval->d, ['count' => $interval->d]);
+        }
+
+        return $this->dateIntervalHumanJoin($parts);
+    }
+
+    /**
+     * @param array $parts
+     *
+     * @return string
+     */
+    protected function dateIntervalHumanJoin(array $parts): string
+    {
+        if (count($parts) === 1) {
+            return $parts[0];
+        }
+
+        $last = array_pop($parts);
+
+        return implode(', ', $parts).' '.__('date.and').' '.$last;
     }
 
     /**

@@ -85,6 +85,7 @@ class Create extends ControllerAbstract
     {
         $this->createVehicle();
         $this->postAuthCreateSuccess();
+        $this->assertExpenseSynced($this->rowLast());
     }
 
     /**

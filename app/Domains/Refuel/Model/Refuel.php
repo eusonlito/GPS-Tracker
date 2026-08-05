@@ -4,9 +4,11 @@ namespace App\Domains\Refuel\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Domains\City\Model\City as CityModel;
 use App\Domains\CoreApp\Model\ModelAbstract;
 use App\Domains\CoreApp\Model\Traits\Gis as GisTrait;
+use App\Domains\Expense\Model\Expense as ExpenseModel;
 use App\Domains\Position\Model\Position as PositionModel;
 use App\Domains\Refuel\Model\Builder\Refuel as Builder;
 use App\Domains\Refuel\Model\Collection\Refuel as Collection;
@@ -68,6 +70,14 @@ class Refuel extends ModelAbstract
     public function city(): BelongsTo
     {
         return $this->belongsTo(CityModel::class, CityModel::FOREIGN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function expense(): HasOne
+    {
+        return $this->hasOne(ExpenseModel::class, static::FOREIGN);
     }
 
     /**

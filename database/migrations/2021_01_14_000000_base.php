@@ -150,6 +150,36 @@ return new class() extends MigrationAbstract {
             $table->unsignedBigInteger('device_id');
         });
 
+        Schema::create('expense', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name')->index();
+            $table->text('description')->nullable();
+
+            $table->decimal('amount', 10, 2)->default(0);
+            $table->date('date_at')->index();
+            $table->decimal('distance', 10, 2)->nullable();
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('expense_category_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('vehicle_id');
+            $table->unsignedBigInteger('maintenance_id')->nullable()->unique();
+            $table->unsignedBigInteger('refuel_id')->nullable()->unique();
+        });
+
+        Schema::create('expense_category', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name')->index();
+            $table->string('code')->nullable()->unique();
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('user_id')->nullable();
+        });
+
         Schema::create('file', function (Blueprint $table) {
             $table->id();
 
@@ -501,6 +531,19 @@ return new class() extends MigrationAbstract {
 
         Schema::table('device_message', function (Blueprint $table) {
             $this->foreignOnDeleteCascade($table, 'device');
+        });
+
+        Schema::table('expense', function (Blueprint $table) {
+            $this->foreignOnDeleteCascade($table, 'expense_category');
+            $this->foreignOnDeleteCascade($table, 'user');
+            $this->foreignOnDeleteCascade($table, 'vehicle');
+            $this->foreignOnDeleteCascade($table, 'maintenance');
+            $this->foreignOnDeleteCascade($table, 'refuel');
+        });
+
+        Schema::table('expense_category', function (Blueprint $table) {
+            $this->tableAddUnique($table, ['name', 'user_id']);
+            $this->foreignOnDeleteCascade($table, 'user');
         });
 
         Schema::table('file', function (Blueprint $table) {

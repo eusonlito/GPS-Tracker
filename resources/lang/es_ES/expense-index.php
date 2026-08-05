@@ -1,0 +1,15 @@
+<?php return [
+    'amount' => 'Importe',
+    'category' => 'Categoría',
+    'create' => 'Crear',
+    'date_at' => 'Fecha',
+    'distance' => 'Km totales',
+    'end_at' => 'Fin',
+    'meta-title' => 'Gastos',
+    'name' => 'Nombre',
+    'search' => 'Buscar',
+    'send' => 'Enviar',
+    'start_at' => 'Inicio',
+    'user' => 'Usuario',
+    'vehicle' => 'Vehículo',
+];

@@ -1,0 +1,30 @@
+<?php return [
+    'empty' => 'There are no expenses for the selected filters',
+    'end_at' => 'End',
+    'error' => [
+        'days' => 'The date range is not valid',
+    ],
+    'meta-title' => 'Vehicle expenses',
+    'section' => [
+        'categories' => 'By category',
+        'summary' => 'Period summary',
+    ],
+    'send' => 'Send',
+    'start_at' => 'Start',
+    'stats' => [
+        'amount_per_day' => 'Cost per day',
+        'amount_per_distance' => 'Cost per km',
+        'amount_per_month' => 'Monthly cost',
+        'count' => ':count records',
+        'days' => 'Period',
+        'distance' => 'Distance traveled',
+        'distance_end' => 'Final km',
+        'distance_start' => 'Initial km',
+        'end_at' => 'End date',
+        'percent' => ':percent%',
+        'start_at' => 'Start date',
+        'total' => 'Total cost',
+    ],
+    'user' => 'User',
+    'vehicle' => 'Vehicle',
+];
