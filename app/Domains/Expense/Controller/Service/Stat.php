@@ -74,7 +74,6 @@ class Stat extends ControllerAbstract
             'vehicle' => $this->vehicle(),
             'vehicle_empty' => $this->vehicleEmpty(),
             'date_min' => $this->dateMin(),
-            'list' => $this->list(),
             'stats' => $this->stats(),
         ];
     }
@@ -115,7 +114,7 @@ class Stat extends ControllerAbstract
         $distance = $this->statsDistance($chronological);
 
         return (object)[
-            'categories' => $this->statsCategories($distance['total']),
+            'categories' => $this->statsCategories($total, $distance['total'], $period['days']),
             'total' => $total,
             'distance_start' => $distance['start'],
             'distance_end' => $distance['end'],
@@ -130,27 +129,31 @@ class Stat extends ControllerAbstract
     }
 
     /**
+     * @param float $total
      * @param ?float $distance
+     * @param int $days
      *
      * @return array<int, \stdClass>
      */
-    protected function statsCategories(?float $distance): array
+    protected function statsCategories(float $total, ?float $distance, int $days): array
     {
         return $this->list()
             ->groupBy('expense_category_id')
-            ->map(fn ($rows) => $this->statsCategory($rows, $distance))
-            ->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)
+            ->map(fn ($rows) => $this->statsCategory($rows, $total, $distance, $days))
+            ->sortByDesc('amount')
             ->values()
             ->all();
     }
 
     /**
      * @param \App\Domains\Expense\Model\Collection\Expense $rows
+     * @param float $total
      * @param ?float $distance
+     * @param int $days
      *
      * @return \stdClass
      */
-    protected function statsCategory(Collection $rows, ?float $distance): stdClass
+    protected function statsCategory(Collection $rows, float $total, ?float $distance, int $days): stdClass
     {
         $amount = $rows->sum('amount');
 
@@ -159,7 +162,10 @@ class Stat extends ControllerAbstract
             'name' => $rows->first()->category->name,
             'count' => $rows->count(),
             'amount' => $amount,
+            'percent' => ($total > 0) ? round($amount / $total * 100, 1) : 0.0,
             'amount_per_distance' => (($distance !== null) && ($distance > 0)) ? round($amount / $distance, 4) : null,
+            'amount_per_day' => round($amount / $days, 2),
+            'amount_per_month' => round($amount / $days * 30, 2),
         ];
     }
 

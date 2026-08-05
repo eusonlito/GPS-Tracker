@@ -32,154 +32,151 @@
 
 @if ($stats)
 
-<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-5">
-    <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.distance_start') }}</div>
-        <div class="text-xl font-medium mt-1">
-            @if (is_null($stats->distance_start))
-            —
-            @else
-            @unitHumanRaw('distance', $stats->distance_start, 0)
-            @endif
-        </div>
-    </div>
-
-    <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.distance_end') }}</div>
-        <div class="text-xl font-medium mt-1">
-            @if (is_null($stats->distance_end))
-            —
-            @else
-            @unitHumanRaw('distance', $stats->distance_end, 0)
-            @endif
-        </div>
-    </div>
-
-    <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.distance') }}</div>
-        <div class="text-xl font-medium mt-1">
-            @if (is_null($stats->distance))
-            —
-            @else
-            @unitHumanRaw('distance', $stats->distance, 0)
-            @endif
-        </div>
-    </div>
-
-    <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.days') }}</div>
-        <div class="text-xl font-medium mt-1">@dateDiffHuman($stats->start_at, $stats->end_at)</div>
-    </div>
-
-    @foreach ($stats->categories as $category)
-
-    <div class="box p-5">
-        <div class="text-slate-500">{{ $category->name }}</div>
-        <div class="text-xl font-medium mt-1">@unitHumanRaw('money', $category->amount)</div>
-        <div class="text-slate-400 text-sm mt-1">{{ __('expense-stat.stats.count', ['count' => $category->count]) }}</div>
-    </div>
-
-    @endforeach
-
-    <div class="box p-5">
+<div class="box p-5 mt-5 lg:flex lg:items-end lg:justify-between">
+    <div>
         <div class="text-slate-500">{{ __('expense-stat.stats.total') }}</div>
-        <div class="text-xl font-medium mt-1">@unitHumanRaw('money', $stats->total)</div>
+        <div class="text-3xl font-medium mt-2">@unitHumanRaw('money', $stats->total)</div>
     </div>
 
-    <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.amount_per_distance') }}</div>
-        <div class="text-xl font-medium mt-1">
-            @if (is_null($stats->amount_per_distance))
-            —
-            @else
-            @unitHumanRaw('money', $stats->amount_per_distance, 4)
-            @endif
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-5 lg:mt-0 lg:gap-8">
+        <div>
+            <div class="text-slate-500 text-sm">{{ __('expense-stat.stats.amount_per_day') }}</div>
+            <div class="text-xl font-medium mt-1">@unitHumanRaw('money', $stats->amount_per_day)</div>
+        </div>
+
+        <div>
+            <div class="text-slate-500 text-sm">{{ __('expense-stat.stats.amount_per_month') }}</div>
+            <div class="text-xl font-medium mt-1">@unitHumanRaw('money', $stats->amount_per_month)</div>
+        </div>
+
+        <div>
+            <div class="text-slate-500 text-sm">{{ __('expense-stat.stats.amount_per_distance') }}</div>
+            <div class="text-xl font-medium mt-1">
+                @if (is_null($stats->amount_per_distance))
+                —
+                @else
+                @unitHumanRaw('money', $stats->amount_per_distance, 4)
+                @endif
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.amount_per_day') }}</div>
-        <div class="text-xl font-medium mt-1">@unitHumanRaw('money', $stats->amount_per_day)</div>
-    </div>
+<div class="box mt-5">
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-5 p-5">
+        <div>
+            <div class="text-slate-500 text-sm">{{ __('expense-stat.stats.start_at') }}</div>
+            <div class="text-xl font-medium mt-1">@dateLocal($stats->start_at)</div>
+        </div>
 
-    <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.amount_per_month') }}</div>
-        <div class="text-xl font-medium mt-1">@unitHumanRaw('money', $stats->amount_per_month)</div>
-    </div>
+        <div>
+            <div class="text-slate-500 text-sm">{{ __('expense-stat.stats.end_at') }}</div>
+            <div class="text-xl font-medium mt-1">@dateLocal($stats->end_at)</div>
+        </div>
 
-    @foreach ($stats->categories as $category)
+        <div>
+            <div class="text-slate-500 text-sm">{{ __('expense-stat.stats.days') }}</div>
+            <div class="text-xl font-medium mt-1">@dateDiffHuman($stats->start_at, $stats->end_at)</div>
+        </div>
 
-    <div class="box p-5">
-        <div class="text-slate-500">{{ __('expense-stat.stats.amount_per_distance_category', ['name' => $category->name]) }}</div>
-        <div class="text-xl font-medium mt-1">
-            @if (is_null($category->amount_per_distance))
-            —
-            @else
-            @unitHumanRaw('money', $category->amount_per_distance, 4)
-            @endif
+        <div>
+            <div class="text-slate-500 text-sm">{{ __('expense-stat.stats.distance_start') }}</div>
+            <div class="text-xl font-medium mt-1">
+                @if (is_null($stats->distance_start))
+                —
+                @else
+                @unitHumanRaw('distance', $stats->distance_start, 0)
+                @endif
+            </div>
+        </div>
+
+        <div>
+            <div class="text-slate-500 text-sm">{{ __('expense-stat.stats.distance_end') }}</div>
+            <div class="text-xl font-medium mt-1">
+                @if (is_null($stats->distance_end))
+                —
+                @else
+                @unitHumanRaw('distance', $stats->distance_end, 0)
+                @endif
+            </div>
+        </div>
+
+        <div>
+            <div class="text-slate-500 text-sm">{{ __('expense-stat.stats.distance') }}</div>
+            <div class="text-xl font-medium mt-1">
+                @if (is_null($stats->distance))
+                —
+                @else
+                @unitHumanRaw('distance', $stats->distance, 0)
+                @endif
+            </div>
         </div>
     </div>
+</div>
 
-    @endforeach
+<div class="box mt-5">
+    <div class="p-5">
+        @foreach ($stats->categories as $category)
+
+        @php ($link = route('expense.index', array_filter([
+            'user_id' => $REQUEST->input('user_id'),
+            'vehicle_id' => $REQUEST->input('vehicle_id'),
+            'start_at' => $stats->start_at,
+            'end_at' => $stats->end_at,
+            'expense_category_id' => $category->id,
+        ], static fn ($value) => ($value !== null) && ($value !== ''))))
+
+        <a href="{{ $link }}" class="block {{ $loop->last ? '' : 'mb-5 pb-5 border-b border-slate-200/60' }} hover:opacity-80">
+            <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:gap-6">
+                <div class="min-w-0 flex-1">
+                    <div class="font-medium truncate">{{ $category->name }}</div>
+                    <div class="text-slate-400 text-sm mt-1">{{ __('expense-stat.stats.count', ['count' => $category->count]) }}</div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 lg:gap-6 shrink-0">
+                    <div class="text-center px-3">
+                        <div class="text-slate-500 text-xs">{{ __('expense-stat.stats.total') }}</div>
+                        <div class="text-sm font-medium mt-1 whitespace-nowrap">@unitHumanRaw('money', $category->amount)</div>
+                    </div>
+
+                    <div class="text-center px-3">
+                        <div class="text-slate-500 text-xs">{{ __('expense-stat.stats.amount_per_day') }}</div>
+                        <div class="text-sm font-medium mt-1 whitespace-nowrap">@unitHumanRaw('money', $category->amount_per_day)</div>
+                    </div>
+
+                    <div class="text-center px-3">
+                        <div class="text-slate-500 text-xs">{{ __('expense-stat.stats.amount_per_month') }}</div>
+                        <div class="text-sm font-medium mt-1 whitespace-nowrap">@unitHumanRaw('money', $category->amount_per_month)</div>
+                    </div>
+
+                    <div class="text-center px-3">
+                        <div class="text-slate-500 text-xs">{{ __('expense-stat.stats.amount_per_distance') }}</div>
+                        <div class="text-sm font-medium mt-1 whitespace-nowrap">
+                            @if (is_null($category->amount_per_distance))
+                            —
+                            @else
+                            @unitHumanRaw('money', $category->amount_per_distance, 4)
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress h-6 mt-3">
+                <div class="progress-bar p-3 whitespace-nowrap" style="width: {{ $category->percent }}%" role="progressbar" aria-valuenow="{{ $category->percent }}" aria-valuemin="0" aria-valuemax="100">{{ __('expense-stat.stats.percent', ['percent' => $category->percent]) }}</div>
+            </div>
+        </a>
+
+        @endforeach
+    </div>
+</div>
+
+@else
+
+<div class="box p-5 mt-5 text-center text-slate-500">
+    {{ __('expense-stat.empty') }}
 </div>
 
 @endif
-
-<div class="overflow-auto scroll-visible header-sticky">
-    <table id="expense-stat-list-table" class="table table-report sm:mt-5 font-medium font-semibold text-center whitespace-nowrap" data-table-sort data-table-pagination data-table-pagination-limit="10">
-        <thead>
-            <tr>
-                @if ($user_empty)
-                <th>{{ __('expense-stat.user') }}</th>
-                @endif
-
-                @if ($vehicle_empty)
-                <th>{{ __('expense-stat.vehicle') }}</th>
-                @endif
-
-                <th>{{ __('expense-stat.category') }}</th>
-                <th class="text-left">{{ __('expense-stat.name') }}</th>
-                <th>{{ __('expense-stat.date_at') }}</th>
-                <th>{{ __('expense-stat.distance') }}</th>
-                <th>{{ __('expense-stat.amount') }}</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach ($list as $row)
-
-            @php ($link = route('expense.update', $row->id))
-
-            <tr>
-                @if ($user_empty)
-                <td><a href="{{ $link }}" class="block">{{ $row->user->name }}</a></td>
-                @endif
-
-                @if ($vehicle_empty)
-                <td><a href="{{ $link }}" class="block">{{ $row->vehicle->name }}</a></td>
-                @endif
-
-                <td><a href="{{ $link }}" class="block">{{ $row->category->name }}</a></td>
-                <td><a href="{{ $link }}" class="block text-left">{{ $row->name }}</a></td>
-                <td data-table-sort-value="{{ $row->date_at }}"><a href="{{ $link }}" class="block">@dateLocal($row->date_at)</a></td>
-                <td data-table-sort-value="{{ $row->distance }}"><a href="{{ $link }}" class="block">@if ($row->distance !== null)@unitHumanRaw('distance', $row->distance, 0)@endif</a></td>
-                <td data-table-sort-value="{{ $row->amount }}"><a href="{{ $link }}" class="block">@unitHumanRaw('money', $row->amount)</a></td>
-            </tr>
-
-            @endforeach
-        </tbody>
-
-        @if ($stats)
-
-        <tfoot class="bg-white">
-            <tr>
-                <th colspan="{{ 4 + intval($user_empty) + intval($vehicle_empty) }}"></th>
-                <th>@unitHumanRaw('money', $stats->total)</th>
-            </tr>
-        </tfoot>
-
-        @endif
-    </table>
-</div>
 
 @stop
