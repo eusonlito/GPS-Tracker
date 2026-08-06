@@ -16,6 +16,6 @@ trait Demo
         $time = config('demo.reset_time');
         $time = ((date('H:i') > $time) ? 'tomorrow' : 'today').' '.$time;
 
-        return $this->dateDiffHuman(time(), strtotime($time));
+        return $this->dateTimeDiffHuman(time(), strtotime($time));
     }
 }

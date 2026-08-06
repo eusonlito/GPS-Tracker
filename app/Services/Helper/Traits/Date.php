@@ -28,7 +28,7 @@ trait Date
      *
      * @return string
      */
-    public function dateDiffHuman(string|int $start, string|int $end): string
+    public function dateTimeDiffHuman(string|int $start, string|int $end): string
     {
         if (is_int($start)) {
             $start = '@'.$start;
