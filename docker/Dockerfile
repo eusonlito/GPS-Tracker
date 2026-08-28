@@ -27,6 +27,8 @@ WORKDIR /app
 
 COPY  ./ /app
 
+RUN test -x ./docker/init.sh && bash -n ./docker/init.sh
+
 RUN echo ":set noshowmode" >> $HOME/.vimrc
 
 RUN git config --global --add safe.directory /app

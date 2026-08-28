@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if ! grep -qE "^APP_KEY=[a-zA-Z0-9:]+\$" .env; then
-    php artisan key:generate
+    php artisan -n key:generate
 fi
 
 LOG="storage/logs/deploy/$(date +"%Y/%m")/$(date +"%Y-%m-%d").log"
