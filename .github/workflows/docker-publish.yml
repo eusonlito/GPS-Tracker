@@ -82,8 +82,6 @@ jobs:
           cache-to: type=gha,mode=max
           provenance: true
           labels: org.opencontainers.image.description=GPS Tracker application
-          build-args: |
-            BUILDKIT_INLINE_CACHE=1
           tags: |
             ${{ env.IMAGE_NAME }}:${{ github.event_name == 'release' && steps.release.outputs.tag || 'ci' }}
             ${{ github.event_name == 'release' && github.event.release.prerelease == false && format('{0}:latest', env.IMAGE_NAME) || '' }}

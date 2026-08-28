@@ -25,7 +25,6 @@ RUN chmod 0600 /etc/cron.d/crontab
 
 WORKDIR /app
 
-COPY ./docker/init.sh /app/docker/init.sh
 COPY  ./ /app
 
 RUN test -x ./docker/init.sh && bash -n ./docker/init.sh
