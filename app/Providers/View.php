@@ -98,6 +98,14 @@ class View extends ServiceProvider
             return "<?= helper()->timeHuman($expression); ?>";
         });
 
+        Blade::directive('daysHuman', function (string $expression) {
+            return "<?= helper()->daysHuman($expression); ?>";
+        });
+
+        Blade::directive('dateDiffHuman', function (string $expression) {
+            return "<?= helper()->dateDiffHuman($expression); ?>";
+        });
+
         Blade::directive('unit', function (string $expression) {
             return "<?= helper()->unit($expression); ?>";
         });

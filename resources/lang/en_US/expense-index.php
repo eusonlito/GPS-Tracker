@@ -1,0 +1,15 @@
+<?php return [
+    'amount' => 'Amount',
+    'category' => 'Category',
+    'create' => 'Create',
+    'date_at' => 'Date',
+    'distance' => 'Total distance',
+    'end_at' => 'End',
+    'meta-title' => 'Expenses',
+    'name' => 'Name',
+    'search' => 'Search',
+    'send' => 'Send',
+    'start_at' => 'Start',
+    'user' => 'User',
+    'vehicle' => 'Vehicle',
+];

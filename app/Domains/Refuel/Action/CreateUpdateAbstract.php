@@ -23,6 +23,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         $this->check();
         $this->save();
         $this->job();
+        $this->expense();
 
         return $this->row;
     }
@@ -113,5 +114,21 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     protected function job(): void
     {
         UpdateCityJob::dispatch($this->row->id);
+    }
+
+    /**
+     * @return void
+     */
+    protected function expense(): void
+    {
+        $this->factory('Expense')->action([
+            'name' => __('expense.sync.refuel'),
+            'amount' => $this->row->total,
+            'date_at' => $this->row->date_at,
+            'distance' => $this->row->distance_total,
+            'user_id' => $this->row->user_id,
+            'vehicle_id' => $this->row->vehicle_id,
+            'refuel_id' => $this->row->id,
+        ])->upsertFromRefuel();
     }
 }

@@ -1,0 +1,30 @@
+<?php return [
+    'empty' => 'No hay gastos para los filtros seleccionados',
+    'end_at' => 'Fin',
+    'error' => [
+        'days' => 'El rango de fechas no es válido',
+    ],
+    'meta-title' => 'Gastos del vehículo',
+    'section' => [
+        'categories' => 'Por categoría',
+        'summary' => 'Resumen del periodo',
+    ],
+    'send' => 'Enviar',
+    'start_at' => 'Inicio',
+    'stats' => [
+        'amount_per_day' => 'Coste por día',
+        'amount_per_distance' => 'Coste por km',
+        'amount_per_month' => 'Coste mensual',
+        'count' => ':count registros',
+        'days' => 'Periodo',
+        'distance' => 'Km recorridos',
+        'distance_end' => 'Km finales',
+        'distance_start' => 'Km iniciales',
+        'end_at' => 'Fecha fin',
+        'percent' => ':percent%',
+        'start_at' => 'Fecha inicio',
+        'total' => 'Coste total',
+    ],
+    'user' => 'Usuario',
+    'vehicle' => 'Vehículo',
+];
