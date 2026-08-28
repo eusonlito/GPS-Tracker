@@ -16,3 +16,4 @@
 
 *.sh
 !docker/pull.sh
+!docker/test.sh

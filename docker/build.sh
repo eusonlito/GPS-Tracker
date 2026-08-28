@@ -3,6 +3,7 @@
 set -e
 
 mode="${1:-build}"
+compose=(sudo docker compose -f docker/docker-compose.yml -f docker/docker-compose.compatibility.yml)
 
 if [ ! -f .env ]; then
     cp docker/.env.example .env
@@ -15,11 +16,11 @@ fi
 case "$mode" in
     build)
         sudo rm -rf bootstrap/cache/*.php
-        sudo docker compose -f docker/docker-compose.yml pull gpstracker-mysql gpstracker-redis
-        sudo docker compose -f docker/docker-compose.yml build gpstracker-app
+        "${compose[@]}" pull gpstracker-mysql gpstracker-redis
+        "${compose[@]}" build gpstracker-app
         ;;
     pull)
-        sudo docker compose -f docker/docker-compose.yml pull
+        "${compose[@]}" pull
         ;;
     *)
         echo "Usage: $0 [build|pull]" >&2

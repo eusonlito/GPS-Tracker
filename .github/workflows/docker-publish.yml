@@ -23,10 +23,11 @@ jobs:
 
       - name: Validate Docker Compose configuration
         run: |
-          bash -n docker/build.sh docker/pull.sh docker/run.sh
+          bash -n docker/build.sh docker/pull.sh docker/run.sh docker/test.sh
           cp docker/.env.example .env
+          bash docker/test.sh
 
-          compose_config="$(docker compose -f docker/docker-compose.yml.example config --format json)"
+          compose_config="$(docker compose -f docker/docker-compose.yml.example -f docker/docker-compose.compatibility.yml config --format json)"
           env_source="$(jq -r '.services["gpstracker-app"].volumes[] | select(.target == "/app/.env") | .source' <<< "$compose_config")"
           compose_image="$(jq -r '.services["gpstracker-app"].image' <<< "$compose_config")"
           build_context="$(jq -r '.services["gpstracker-app"].build.context' <<< "$compose_config")"

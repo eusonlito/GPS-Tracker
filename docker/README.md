@@ -24,9 +24,10 @@ the current checkout.
 This pulls `eusonlito/gps-tracker` and the service images without rebuilding
 the application. Public images do not require a local Docker Hub login.
 
-Existing installations keep their generated `docker/docker-compose.yml`.
-Before switching an older installation to the published image, update that
-file from `docker/docker-compose.yml.example` while preserving local changes.
+Existing installations keep their generated `docker/docker-compose.yml` and
+local customizations. The versioned compatibility file supplies the application
+image and build context automatically, including for older image-only or
+build-only configurations.
 
 ## Publish to Docker Hub
 
