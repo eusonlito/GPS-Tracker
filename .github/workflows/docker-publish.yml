@@ -1,42 +1,84 @@
 name: Docker Build and Publish
 
 on:
+  pull_request:
+    paths:
+      - .github/workflows/docker-publish.yml
+      - .dockerignore
+      - docker/**
+      - composer.json
+      - composer.lock
   release:
     types: [published]
+
+permissions:
+  contents: read
+
+env:
+  IMAGE_NAME: eusonlito/gps-tracker
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-      
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Validate Docker Compose configuration
+        run: |
+          cp docker/.env.example .env
+          docker compose -f docker/docker-compose.yml.example config --quiet
+
+          env_source="$(docker compose -f docker/docker-compose.yml.example config --format json \
+            | jq -r '.services["gpstracker-app"].volumes[] | select(.target == "/app/.env") | .source')"
+
+          if [[ "$env_source" != "$GITHUB_WORKSPACE/.env" ]]; then
+            echo "Unexpected .env mount source: $env_source" >&2
+            exit 1
+          fi
+
+      - name: Validate release tag
+        if: github.event_name == 'release'
+        id: release
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          if [[ ! "$RELEASE_TAG" =~ ^[A-Za-z0-9_][A-Za-z0-9_.-]{0,127}$ ]]; then
+            echo "Release tag is not a valid Docker tag: $RELEASE_TAG" >&2
+            exit 1
+          fi
+
+          printf 'tag=%s\n' "$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+
       - name: Login to Docker Hub
-        uses: docker/login-action@v2
+        if: github.event_name == 'release'
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
+
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@96fe6ef7f33517b61c61be40b68a1882f3264fb8 # v4.2.0
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      
+        uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
+
       - name: Build and push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
         with:
           context: .
           file: ./docker/Dockerfile
-          push: true
+          push: ${{ github.event_name == 'release' }}
           platforms: linux/amd64,linux/arm64
           cache-from: type=gha
           cache-to: type=gha,mode=max
           provenance: true
-          outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=GPS Tracker application
+          labels: org.opencontainers.image.description=GPS Tracker application
           build-args: |
             BUILDKIT_INLINE_CACHE=1
           tags: |
-            ${{ github.event.release.prerelease == false && github.event.release.draft == false && format('{0}/gps-tracker:latest', secrets.DOCKERHUB_USERNAME) || '' }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/gps-tracker:${{ github.event.release.tag_name }}
+            ${{ env.IMAGE_NAME }}:${{ github.event_name == 'release' && steps.release.outputs.tag || 'ci' }}
+            ${{ github.event_name == 'release' && github.event.release.prerelease == false && format('{0}:latest', env.IMAGE_NAME) || '' }}

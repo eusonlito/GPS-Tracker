@@ -41,7 +41,7 @@ services:
             gpstracker-redis:
                 condition: service_healthy
         volumes:
-            - ./.env:/app/.env
+            - ./../.env:/app/.env
             - ./../storage:/app/storage
         ports:
             - "8080:80"
