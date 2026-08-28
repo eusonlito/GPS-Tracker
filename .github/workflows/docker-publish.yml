@@ -2,12 +2,6 @@ name: Docker Build and Publish
 
 on:
   pull_request:
-    paths:
-      - .github/workflows/docker-publish.yml
-      - .dockerignore
-      - docker/**
-      - composer.json
-      - composer.lock
   release:
     types: [published]
 
@@ -32,11 +26,17 @@ jobs:
           cp docker/.env.example .env
           docker compose -f docker/docker-compose.yml.example config --quiet
 
-          env_source="$(docker compose -f docker/docker-compose.yml.example config --format json \
-            | jq -r '.services["gpstracker-app"].volumes[] | select(.target == "/app/.env") | .source')"
+          compose_config="$(docker compose -f docker/docker-compose.yml.example config --format json)"
+          env_source="$(jq -r '.services["gpstracker-app"].volumes[] | select(.target == "/app/.env") | .source' <<< "$compose_config")"
+          compose_image="$(jq -r '.services["gpstracker-app"].image' <<< "$compose_config")"
 
           if [[ "$env_source" != "$GITHUB_WORKSPACE/.env" ]]; then
             echo "Unexpected .env mount source: $env_source" >&2
+            exit 1
+          fi
+
+          if [[ "$compose_image" != "$IMAGE_NAME" ]]; then
+            echo "Unexpected Compose image: $compose_image" >&2
             exit 1
           fi
 
@@ -48,6 +48,11 @@ jobs:
         run: |
           if [[ ! "$RELEASE_TAG" =~ ^[A-Za-z0-9_][A-Za-z0-9_.-]{0,127}$ ]]; then
             echo "Release tag is not a valid Docker tag: $RELEASE_TAG" >&2
+            exit 1
+          fi
+
+          if [[ "$RELEASE_TAG" == "latest" ]]; then
+            echo "Release tag 'latest' is reserved for the stable channel" >&2
             exit 1
           fi
 
