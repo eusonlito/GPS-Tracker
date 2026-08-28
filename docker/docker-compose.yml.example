@@ -33,6 +33,9 @@ services:
 
     gpstracker-app:
         image: eusonlito/gps-tracker
+        build:
+            context: ..
+            dockerfile: ./docker/Dockerfile
         container_name: gpstracker-app
         restart: unless-stopped
         depends_on:

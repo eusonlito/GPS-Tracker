@@ -23,12 +23,13 @@ jobs:
 
       - name: Validate Docker Compose configuration
         run: |
+          bash -n docker/build.sh docker/pull.sh docker/run.sh
           cp docker/.env.example .env
-          docker compose -f docker/docker-compose.yml.example config --quiet
 
           compose_config="$(docker compose -f docker/docker-compose.yml.example config --format json)"
           env_source="$(jq -r '.services["gpstracker-app"].volumes[] | select(.target == "/app/.env") | .source' <<< "$compose_config")"
           compose_image="$(jq -r '.services["gpstracker-app"].image' <<< "$compose_config")"
+          build_context="$(jq -r '.services["gpstracker-app"].build.context' <<< "$compose_config")"
 
           if [[ "$env_source" != "$GITHUB_WORKSPACE/.env" ]]; then
             echo "Unexpected .env mount source: $env_source" >&2
@@ -37,6 +38,11 @@ jobs:
 
           if [[ "$compose_image" != "$IMAGE_NAME" ]]; then
             echo "Unexpected Compose image: $compose_image" >&2
+            exit 1
+          fi
+
+          if [[ "$build_context" != "$GITHUB_WORKSPACE" ]]; then
+            echo "Unexpected Compose build context: $build_context" >&2
             exit 1
           fi
 

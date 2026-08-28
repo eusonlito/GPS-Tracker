@@ -3,6 +3,7 @@
 /.env
 /.git
 /.phpunit.cache
+/docker/README.md
 /public/manifest.json
 /public/hot
 /storage/docker
