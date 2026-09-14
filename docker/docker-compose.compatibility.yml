@@ -1,0 +1,6 @@
+services:
+  gpstracker-app:
+    image: eusonlito/gps-tracker
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
