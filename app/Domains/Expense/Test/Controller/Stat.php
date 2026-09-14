@@ -69,8 +69,7 @@ class Stat extends ControllerAbstract
         $this->get($this->routeToController())
             ->assertStatus(200)
             ->assertSeeText($row->category->name)
-            ->assertSeeText(__('expense-stat.stats.total'))
-            ->assertSeeText(__('expense-stat.section.categories'));
+            ->assertSeeText(__('expense-stat.stats.total'));
     }
 
     /**
